@@ -1,0 +1,12 @@
+[Unit]
+Description=Emacs daemon
+Documentation=man:emacs
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/emacs --daemon
+ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+Restart=always
+
+[Install]
+WantedBy=default.target

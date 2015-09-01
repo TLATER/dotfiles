@@ -1,0 +1,7 @@
+[Unit]
+Description=mouse hiding tool for X server at %i
+Documentation=man:unclutter
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/unclutter -idle 3 -jitter 3 -noevents -root -display %i

@@ -1,0 +1,12 @@
+[Unit]
+Description=Mpd daemon
+Documentation=man:mpd
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/mpd --no-daemon --stdout -v %h/.config/mpd/mpd.conf
+ExecStop=/usr/bin/mpd --kill
+Restart=always
+
+[Install]
+WantedBy=default.target

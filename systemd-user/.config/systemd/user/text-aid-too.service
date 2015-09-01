@@ -1,0 +1,13 @@
+[Unit]
+Description=Text-aid-too daemon
+Documentation=https://github.com/smblott-github/text-aid-too#text-aid-too
+
+[Service]
+Type=simple
+#Environment=;P
+#Environment=;P
+ExecStart=/usr/bin/text-aid-too
+Restart=always
+
+[Install]
+WantedBy=default.target

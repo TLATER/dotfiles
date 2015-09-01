@@ -1,0 +1,14 @@
+[Unit]
+Description=Steam client for X server at %i
+Documentation=man:steam
+
+[Service]
+Type=simple
+PIDFile=%h/.steampid
+Environment=DISPLAY=%i
+
+ExecStart=/usr/bin/steam -tenfoot -enableremotecontrol
+ExecStop=/usr/bin/bash -c "if kill -0 `cat %h/.steampid`; then\
+steam -shutdown;\
+fi;"
+ExecStopPost=/usr/bin/openbox --exit
