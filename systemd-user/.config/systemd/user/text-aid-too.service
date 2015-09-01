@@ -5,7 +5,7 @@ Documentation=https://github.com/smblott-github/text-aid-too#text-aid-too
 [Service]
 Type=simple
 #Environment=;P
-#Environment=;P
+Environment="TEXT_AID_TOO_EDITOR=emacsclient"
 ExecStart=/usr/bin/text-aid-too
 Restart=always
 
