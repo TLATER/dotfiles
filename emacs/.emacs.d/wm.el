@@ -43,9 +43,11 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-;; Keybindings
+;;; Keybindings
+
 ;; Back to line-mode
 (exwm-input-set-key (kbd "s-r") 'exwm-reset)
+
 ;; Workspace keybindings
 (exwm-input-set-key (kbd "s-1")
                     (lambda ()
@@ -99,6 +101,18 @@
 (exwm-input-set-key (kbd "s-<return>") (lambda ()
                                          (interactive)
                                          (launch-application "xterm")))
+
+;; Media keys
+;; (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (lambda ()
+;;                                                      (interactive)
+;;                                                      (volume-change 5)))
+;; (exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (lambda ()
+;;                                                      (interactive)
+;;                                                      (volume-change -5)))
+;; (exwm-input-set-key (kbd "<XF86AudioMute>") (lambda ()
+;;                                               (interactive)
+;;                                               (volume-mute)))
+
 
 ;; Additional UI
 (setq display-time-default-load-average nil)
