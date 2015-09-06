@@ -16,7 +16,7 @@ export SSH_AUTH_SOCK
 xset -display $DISPLAY dpms 0 0 0
 xset -display $DISPLAY s 0 0
 
-xbindkeys
+#xbindkeys
 systemctl --user start unclutter@$DISPLAY
 
 export WM=exwm

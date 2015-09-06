@@ -32,8 +32,11 @@
       (file)))))
  '(openwith-confirm-invocation nil)
  '(openwith-mode t)
+ '(rcirc-authinfo (quote (("localhost" bitlbee "tlater" "nmm2cool"))))
+ '(rcirc-server-alist (quote (("localhost"))))
  '(same-window-buffer-names (quote ("*Org Agenda*")))
- '(sml/theme (quote respectful)))
+ '(sml/theme (quote respectful))
+ '(whitespace-global-modes (quote (not text-aid-too-mode))))
 
 ;; Add MELPA package repository
 (require 'package)
@@ -42,6 +45,13 @@
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
+
+;; Add a mode for the chrome extension
+(define-derived-mode text-aid-too-mode html-mode
+  (setq mode-name "Text-Aid-Too"))
+(add-to-list 'auto-mode-alist
+             '("tlater-text-aid-too-[-[:alnum:]]*\.html" . text-aid-too-mode))
+(add-hook 'text-aid-too-mode-hook (lambda () (flyspell-mode t)))
 
 ;; Hide hidden files in dired
 (require 'dired-x)
@@ -167,3 +177,7 @@
       (when (looking-at "^    ")
                 (replace-match "")))))
 )
+
+;; Notifications for rcirc
+(eval-after-load 'rcirc '(require 'rcirc-notify))
+(eval-after-load 'rcirc '(rcirc-notify-add-hooks))

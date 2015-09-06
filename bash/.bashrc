@@ -32,7 +32,7 @@ complete -W "mbax4tm2@kilburn.cs.manchester.ac.uk www.tlater.net" ssh
 # Aliases
 alias ls='ls --color=auto'
 #alias skype='apulse32 skype'
-alias emacs='emacsclient -t'
+alias emacs='emacsclient'
 #alias pbcopy='xclip -selection clipboard'
 #alias pbpaste='xclip -selection clipboard -o'
 #alias open='/usr/bin/vendor_perl/mimeopen'

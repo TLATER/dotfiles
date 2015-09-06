@@ -40,7 +40,8 @@ When called interactively, a negative prefix turns mute on and a positive off"
       (setq mute-string "toggle"))
 
     (start-process "volume" "*Volume*" "amixer" "set" "Master" mute-string)
-    (set-process-filter (get-process "volume") 'volume-parse-filter)))
+    (set-process-filter (get-process "volume") 'volume-parse-filter)
+    (accept-process-output (get-process "volume"))))
 
 (defun volume-change (amount)
   "Adjusts volume relatively using the amount given"
@@ -50,4 +51,5 @@ When called interactively, a negative prefix turns mute on and a positive off"
         (setq volume-string (concat (number-to-string (math-abs amount)) "%+"))
       (setq volume-string (concat (number-to-string (math-abs amount)) "%-")))
     (start-process "volume" "*Volume*" "amixer" "set" "Master" volume-string)
-    (set-process-filter (get-process "volume") 'volume-parse-filter)))
+    (set-process-filter (get-process "volume") 'volume-parse-filter)
+    (accept-process-output (get-process "volume"))))
