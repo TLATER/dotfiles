@@ -161,6 +161,11 @@ When called interactively, a negative prefix turns mute on and a positive off"
                                                 (interactive)
                                                 (volume-mute)))
 
+;; Emacs page-up and down for X windows
+(exwm-input-set-simulation-keys
+ '(([?\C-v] . next)
+   ([?\M-v] . prior)))
+
 ;; Enable EXWM
 (exwm-enable)
 
