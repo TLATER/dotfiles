@@ -31,7 +31,8 @@
       (setq volume-mute-state (string= "off" (match-string 1 string)))
 
       ;; Insert the values into the buffer
-;;      (insert string)
+      (erase-buffer)
+      (insert string)
       (volume-display))))
 
 (defun volume-display ()
@@ -70,6 +71,15 @@ When called interactively, a negative prefix turns mute on and a positive off"
     (start-process "volume" "*Volume*" "amixer" "set" "Master" volume-string)
     (set-process-filter (get-process "volume") 'volume-parse-filter)
     (accept-process-output (get-process "volume"))))
+
+(defun brightness-change (amount)
+  "Adjust screen brightness relatively using the amount given"
+  (interactive "NChange screen brightness by: ")
+  (let ((brightness-string))
+    (if (> 0 amount)
+        (setq brightness-string (concat (number-to-string amount) "%"))
+      (setq brightness-string (concat "+" (number-to-string amount) "%")))
+    (start-process "brightness" "*Brightness*" "xbacklight" brightness-string)))
 
 ;; Load the requirements
 (add-to-list 'load-path "~/.emacs.d/user/xelb")
@@ -151,15 +161,30 @@ When called interactively, a negative prefix turns mute on and a positive off"
                                          (interactive)
                                          (launch-application "xterm")))
 ;; Media keys
+(exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (lambda ()
+                                                     (interactive)
+                                                     (volume-change 5)))
 (exwm-input-set-key (kbd "s-<f8>") (lambda ()
                                      (interactive)
                                      (volume-change 5)))
+(exwm-input-set-key (kbd "<XF86AudioLowerVolume>") (lambda ()
+                                                     (interactive)
+                                                     (volume-change -5)))
 (exwm-input-set-key (kbd "s-<f7>") (lambda ()
                                      (interactive)
                                      (volume-change -5)))
-(exwm-input-set-key (kbd "s-<f6>") (lambda ()
+(exwm-input-set-key (kbd "<XF86AudioMute>") (lambda ()
                                                 (interactive)
                                                 (volume-mute)))
+(exwm-input-set-key (kbd "s-<f6>") (lambda ()
+                                     (interactive)
+                                     (volume-mute)))
+(exwm-input-set-key (kbd "<XF86MonBrightnessUp>") (lambda ()
+                                                    (interactive)
+                                                    (brightness-change 10)))
+(exwm-input-set-key (kbd "<XF86MonBrightnessDown>") (lambda ()
+                                                      (interactive)
+                                                      (brightness-change -10)))
 
 ;; Emacs page-up and down for X windows
 (exwm-input-set-simulation-keys

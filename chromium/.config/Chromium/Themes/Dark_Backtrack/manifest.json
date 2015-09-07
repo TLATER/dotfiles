@@ -1,0 +1,69 @@
+{
+  "manifest_version": 2,
+  "description": "Just a dark theme",
+  "name": "Backtrack_Dark",
+  "theme": {
+    "colors": {
+      "bookmark_text": [
+        222,
+        222,
+        222
+      ],
+      "bookmark_background": [
+        32,
+        32,
+        32
+      ],
+      "frame": [
+        80,
+        80,
+        80
+      ],
+      "ntp_link": [
+        80,
+        80,
+        80
+      ],
+      "ntp_text": [
+        200,
+        200,
+        200
+      ],
+      "ntp_background": [
+        32,
+        32,
+        32
+      ],
+      "tab_background_text": [
+        222,
+        222,
+        222
+      ],
+      "tab_text": [
+        222,
+        222,
+        222
+      ],
+      "toolbar": [
+        32,
+        32,
+        32
+      ]
+    },
+    "images": {
+      "theme_button_background": "images\/theme_button_background.png",
+      "theme_frame": "images\/theme_frame.png",
+      "theme_ntp_background": "images\/background.png",
+      "theme_tab_background": "images\/theme_tab_background.png",
+      "theme_toolbar": "images\/theme_toolbar.png"
+    },
+    "tints": {
+      "frame_inactive": [
+        -1,
+        0.4,
+        0.53
+      ]
+    }
+  },
+  "version": "1.0"
+}

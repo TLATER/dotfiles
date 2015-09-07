@@ -50,7 +50,7 @@
 (define-derived-mode text-aid-too-mode html-mode
   (setq mode-name "Text-Aid-Too"))
 (add-to-list 'auto-mode-alist
-             '("tlater-text-aid-too-[-[:alnum:]]*\.html" . text-aid-too-mode))
+             '("tlater-text-aid-too-[-[:alnum:]]*\.txt" . text-aid-too-mode))
 (add-hook 'text-aid-too-mode-hook (lambda () (flyspell-mode t)))
 
 ;; Hide hidden files in dired

@@ -1,0 +1,72 @@
+/* Player progress bar color settings */
+.ytp-play-progress {
+    background: #1277c5;
+}
+
+.ytp-load-progress {
+    background: rgba(252, 252, 252, 0.7);
+}
+
+.ytp-scrubber-button {
+    background: #1277c5;
+}
+
+/* Volume slider color settings */
+.ytp-bigmode .ytp-volume-slider-handle:before,
+.ytp-volume-slider-handle:before {
+    background: #1277c5 !important;
+}
+
+.ytp-bigmode .ytp-volume-slider-handle:after,
+.ytp-volume-slider-handle:after {
+    background: silver !important;
+}
+
+/* The UI button svg colors */
+.ytp-playlist-menu-button-icon .ytp-svg-fill,
+.ytp-chrome-top .ytp-button:not(.ytp-playlist-menu-button) .ytp-svg-fill,
+.ytp-chrome-controls .ytp-button .ytp-svg-fill {
+    fill: #FCFCFC;
+}
+
+/* Miscellaneous recoloring */
+/* Toggle buttons */
+.ytp-menuitem[aria-checked="true"] .ytp-menuitem-toggle-checkbox {
+    background: #1277c5;
+}
+/* HD superscript */
+.ytp-menuitem sup {
+    color: #1277c5;
+}
+/* Settings HD button-notification */
+.ytp-settings-button.ytp-hd-quality-badge:after,
+.ytp-settings-button.ytp-4k-quality-badge:after,
+.ytp-settings-button.ytp-5k-quality-badge:after,
+.ytp-settings-button.ytp-8k-quality-badge:after {
+    background-color: #1277c5;
+}
+/* Subtitles activated detail */
+.ytp-chrome-controls .ytp-button[aria-pressed]:after {
+    background-color: #1277c5;
+}
+
+
+/* Resizes the progress bar hover height (useful when scrobbing) */
+.ytp-progress-bar-container:hover {
+    height: 7px !important;
+}
+/* This makes the button larger to avoid it looking odd due to the hover resize */
+.ytp-scrubber-button {
+    height: 14px !important;
+    width: 14px !important;
+    border-radius: 7px !important;
+    top: -4px !important;
+}
+
+/* Resizes the UI to use 100% of the player screen */
+/* Borked because youtube sucks and the selection gets skewed
+
+.ytp-chrome-bottom {
+    left: 0 !important;
+	width: 100% !important;
+}*/
