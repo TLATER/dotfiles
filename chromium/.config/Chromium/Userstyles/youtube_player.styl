@@ -1,0 +1,57 @@
+accent = #1277c5
+middle = silver
+scrubber_height = 7px
+
+/* Player progress bar */
+.ytp-play-progress
+.ytp-scrubber-button
+  background accent
+
+.ytp-load-progress
+  background rgba(252, 252, 252, 0.7)
+
+/* Volume slider */
+.ytp-bigmode .ytp-volume-slider-handle
+.ytp-volume-slider-handle
+  &:before
+    background accent !important
+
+  &:after
+    background middle !important
+
+/* UI buttons */
+.ytp-playlist-menu-button-icon .ytp-svg-fill
+.ytp-chrome-top .ytp-button:not(.ytp-playlist-menu-button) .ytp-svg-fill
+.ytp-chrome-controls .ytp-button .ytp-svg-fill
+  fill #fcfcfc
+
+/* Toggle background */
+.ytp-menuitem[aria-checked="true"] .ytp-menuitem-toggle-checkbox
+  background accent
+
+/* HD menu */
+.ytp-menuitem sup
+  color accent
+
+.ytp-settings-button.ytp-hd-quality-badge
+.ytp-settings-button.ytp-4k-quality-badge
+.ytp-settings-button.ytp-5k-quality-badge
+.ytp-settings-button.ytp-8k-quality-badge
+  &:after
+    background-color accent
+
+/* Subtitles activated */
+.ytp-chrome-controls .ytp-button[aria-pressed]
+  &:after
+    background-color accent
+
+/* Progress bar hover height resize */
+.ytp-progress-bar-container
+  &:hover
+    height scrubber_height !important
+
+.ytp-scrubber-button
+  height 2 * scrubber_height !important
+  width 2 * scrubber_height !important
+  border-radius 2 * scrubber_height !important
+  top -4px !important
