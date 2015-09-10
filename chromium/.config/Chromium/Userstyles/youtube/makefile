@@ -12,3 +12,8 @@ $(ODIR)/%.css: src/%.styl
 
 youtube.css: $(OBJ)
 	cat $^ > $@
+
+.PHONY: clean
+
+clean:
+	rm youtube.css obj/*
