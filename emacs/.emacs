@@ -181,3 +181,4 @@
 ;; Notifications for rcirc
 (eval-after-load 'rcirc '(require 'rcirc-notify))
 (eval-after-load 'rcirc '(rcirc-notify-add-hooks))
+(put 'erase-buffer 'disabled nil)

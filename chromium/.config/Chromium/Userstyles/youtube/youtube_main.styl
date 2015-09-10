@@ -1,0 +1,159 @@
+@require '../include/colors'
+
+/* Generic colors */
+body
+  background back
+
+a
+  color font_color
+
+button
+  &:focus
+    outline 1px solid accent
+
+h1.yt
+  color font_color
+/* Masthead */
+#yt-masthead-container
+#masthead-appbar
+  background back
+  border-bottom 2px solid highlight
+
+// Youtube logo
+#yt-masthead #logo-container .logo
+  recolor_red_png 100%
+
+// Search bar
+#masthead-search
+  .search-btn-component .yt-uix-button-content
+    recolor_black_png 2000%
+
+// Guide button
+.yt-legacy-css #masthead-positioner:hover #appbar-guide-button
+  background highlight
+  border-color highlight_back
+  .yt-uix-button-arrow
+    border-top-color accent
+
+.show-guide
+  .yt-uix-button-icon-appbar-guide
+    &
+    #masthead-positioner:hover
+      recolor_red_png 100%
+  #appbar-guide-button
+    .yt-uix-button-arrow
+      border-top-color accent
+
+// Bell-button
+#yt-masthead-user .yt-uix-button-icon-bell
+  recolor_black_png 200%
+
+/* Guide */
+#appbar-guide-menu
+.guide-flyout
+  background highlight
+
+.guide-pinned .guide-pinning-enabled #appbar-guide-menu
+.guide-flyout
+  border 2px solid highlight_back
+
+.guide-item
+.guide-view-more
+  color font_color
+  &:hover
+    &
+    .yt-deemphasized-text
+    /.guide-flyout-trigger.on-hover
+    /.guide-collapsible-item .yt-uix-expander-head:hover
+      background highlight_back
+
+.guide-item.guide-item-selected
+.guide-item.guide-item-selected .yt-deemphasized-text
+  &
+  &:hover
+    background highlight_back
+
+.guide-item .thumb.yt-sprite
+  recolor_gray_png 100%
+
+li.guide-section h3 a
+  color accent
+
+.guide-section-separator
+  border-bottom 2px solid highlight_back
+
+/* Footer */
+body #footer-container
+  background-color back
+  &
+  #footer-main
+    border-color highlight
+    border-width 2px
+
+#footer-logo .footer-logo-icon
+  recolor_red_png 100%
+
+// This doesn't seem to work yet
+//#footer .yt-uix-button-icon
+//  recolor_gray_png 100%
+
+#footer-links-primary a
+#footer-links-secondary a
+#footer-links-secondary .copyright
+  color font_color
+  &:hover
+    color font_color_back
+
+/* Various UI elements */
+// Cards
+.yt-card
+  background-color highlight
+
+// Epic nav item
+.epic-nav-item
+  &
+  &.selected
+  &.yt-uix-button-toggled
+  &-heading
+    color font_color
+    border-color accent
+
+.yt-uix-button.yt-uix-button-epic-nav-item
+  color font_color_back
+  button&
+  #appbar-nav &
+  a&
+    color font_color_back
+    &.partially-selected
+      color font_color
+      border-color accent
+    &:hover
+      border-color accent
+    &:hover
+      border-color accent
+
+// UIX buttons
+.yt-uix-button-default
+  background highlight
+  border-color highlight_back
+  &:hover
+  &:focus
+    background highlight_back
+    border-color highlight_back
+    box-shadow none
+  &[disabled]
+    &
+    &:hover
+    &:active
+    &:focus
+      background highlight_back
+  &
+  /.yt-uix-button-text
+    color accent
+  .yt-uix-button-icon
+  &:before
+    recolor_black_png 147%
+
+// Channel verify button
+.yt-channel-title-icon-verified
+  recolor_gray_png 100%

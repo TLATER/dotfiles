@@ -1,0 +1,27 @@
+@require "../include/colors.styl"
+
+.all-comments
+  &
+  a
+    color font_color
+    background-color highlight
+
+.comments
+  .comment-header
+    .user-name
+      color font_color
+      font-weight bold
+      &:hover
+        text-decoration underline
+    .time
+      a
+        color font_color_back
+  .comment-text
+    .comment-text-content
+      color font_color
+  .comment-footer-action
+  .separator
+    color font_color
+  .sprite_like
+  .sprite_dislike
+    recolor_black_png 100

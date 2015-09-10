@@ -1,0 +1,15 @@
+back = #0f0f0f
+highlight = #091f2e
+highlight_back = #11151c
+accent = #268bd2
+
+font_color = #99d1ce
+font_visited = #599cab
+font_color_back = #195466
+
+recolor_red_png(bright)
+  -webkit-filter hue-rotate(202deg) brightness(bright)
+recolor_black_png(arg)
+  -webkit-filter invert(100%)
+recolor_gray_png(arg)
+  -webkit-filter sepia(100%) hue-rotate(136deg) saturate(169%) brightness(arg)

@@ -1,0 +1,73 @@
+@require "../include/colors.styl"
+
+/* Header */
+#watch-header
+  .yt-user-info a
+    color font_color
+
+.watch-view-count
+  color font_color_back
+
+#watch8-ytcenter-buttons .yt-uix-button img
+  recolor_gray_png 100%
+
+#watch8-action-buttons
+  border none
+
+.yt-uix-button-has-icon.no-icon-markup:before
+  recolor_black_png 100%
+
+.yt-uix-button-has-icon.like-button-renderer-like-button-clicked:before
+  -webkit-filter none
+
+.yt-uix-button-content
+  color font_color
+  .like-button-renderer-like-button-unclicked &
+  .like-button-renderer-dislike-button-unclicked &
+  .like-button-renderer-like-button-unclicked:hover &
+  .like-button-renderer-dislike-button-unclicked:hover &
+    color font_color !important
+
+/* Description */
+#watch-description
+#action-panel-details a
+    color font_color
+
+#action-panel-details
+  &:hover
+    a
+      color accent
+
+
+.yt-card
+  .yt-uix-tabs
+    border-bottom 2px solid highlight_back
+    .yt-uix-button
+      &:hover
+      &.yt-uix-button-toggled
+        border-bottom-color accent
+  .yt-uix-button-expander
+    border-top 2px solid highlight_back
+
+/* Watch sidebar */
+#watch7-sidebar
+  .video-list-item
+    a
+      .title
+        color font_color
+      &:hover
+        .title
+        .yt-deemphasized-text
+          color font_color
+          text-decoration underline
+      &:visited
+        .title
+        .yt-deemphasized-text
+          color font_visited
+        &:hover
+          .title
+          .yt-deemphasized-text
+            color font_visited
+            text-decoration underline
+    .stat
+      color font_color_back
