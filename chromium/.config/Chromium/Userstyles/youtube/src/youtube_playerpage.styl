@@ -3,7 +3,7 @@
 
    Author: Tristan Maat <tm@tlater.net>
 */
-@require "../include/colors.styl"
+@require "colors"
 
 /* Header */
 #watch-header
@@ -54,6 +54,29 @@
   .yt-uix-button-expander
     border-top 2px solid highlight_back
 
+.yt-uix-button-subscribed-branded
+.yt-uix-button-subscribed-unbranded
+.yt-subscription-button-subscriber-count-branded-horizontal
+.yt-subscription-button-subscriber-count-unbranded-horizontal
+  color font_color
+  background-color highlight
+  border-color highlight_back
+  &:hover
+    background-color highlight_back
+  &[disabled]
+    &
+    &:hover
+    &:active
+    &:focus
+      background-color highlight
+      border-color highlight_back
+
+.autoplay-bar
+  .checkbox-on-off
+    color font_color
+  .autoplay-info-icon
+    recolor_black_png 100%
+
 /* Watch sidebar */
 #watch7-sidebar
   .video-list-item
@@ -76,3 +99,5 @@
             text-decoration underline
     .stat
       color font_color_back
+  .watch-sidebar-separation-line
+    border-bottom 1px solid highlight_back

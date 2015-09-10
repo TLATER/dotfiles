@@ -3,7 +3,7 @@
 
    Author: Tristan Maat <tm@tlater.net>
 */
-@require '../include/colors'
+@require 'colors'
 
 /* Feed header */
 .feed-header
@@ -54,3 +54,17 @@
     &:hover
       color font_color
       text-decoration underline
+
+.yt-uix-button-subscribe-unbranded
+  background-color highlight
+  border 1px solid highlight_back
+  &:hover
+    background-color highlight_back
+    border-color highlight_back
+  &[disabled]
+    &
+    &:hover
+    &:active
+    &:focus
+      background-color highlight
+      border 1px solid highlight_back

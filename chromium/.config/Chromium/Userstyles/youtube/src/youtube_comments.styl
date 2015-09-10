@@ -3,13 +3,16 @@
 
    Author: Tristan Maat <tm@tlater.net>
 */
-@require "../include/colors.styl"
+@require "colors"
 
 .all-comments
   &
   a
     color font_color
     background-color highlight
+
+.display-message
+  color font_color
 
 .comments
   .comment-header
@@ -30,3 +33,14 @@
   .sprite_like
   .sprite_dislike
     recolor_black_png 100
+  .paginator
+    &
+    &.activated
+      color font_color
+      background-image none
+      background-color highlight
+      border-color highlight_back
+      &:hover
+        background-image none
+        background-color highlight_back
+        border-color highlight_back

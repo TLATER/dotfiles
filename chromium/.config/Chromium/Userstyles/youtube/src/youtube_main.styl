@@ -3,7 +3,7 @@
 
    Author: Tristan Maat <tm@tlater.net>
 */
-@require '../include/colors'
+@require 'colors'
 
 /* Generic colors */
 body
@@ -141,6 +141,12 @@ body #footer-container
 .yt-uix-button-default
   background highlight
   border-color highlight_back
+  &
+  /.yt-uix-button-text
+    color accent
+    &:hover
+      background highlight
+      border-color highlight_back
   &:hover
   &:focus
     background highlight_back
@@ -152,13 +158,54 @@ body #footer-container
     &:active
     &:focus
       background highlight_back
-  &
-  /.yt-uix-button-text
-    color accent
   .yt-uix-button-icon
   &:before
     recolor_black_png 147%
 
+.yt-uix-button-primary
+  background-color accent
+  border-color highlight
+  &:hover
+    background-color accent_back
+  &[disabled]
+    &
+    &:hover
+    &:active
+    &:focus
+      background-color accent
+      border-color highlight
+
+// uix button menu
+.yt-uix-button-menu
+  background-color highlight
+  border-color highlight_back
+  & &-item
+    background-color highlight
+    color font_color
+    border-color highlight_back
+    &:hover
+      background-color highlight_back
+      color white
+
 // Channel verify button
 .yt-channel-title-icon-verified
   recolor_gray_png 100%
+
+// Checkbox button
+.yt-uix-checkbox-on-off
+  label
+    background highlight_back
+  input[type=checkbox]
+    &:checked+label
+      background accent
+
+// Popup menus
+.yt-ui-menu
+  &-content
+    background highlight
+    border 2px solid highlight_back
+  &-item
+    color font_color
+    &:hover
+    .yt-uix-menu-trigger-selected &
+      background-color highlight_back

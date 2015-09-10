@@ -1,0 +1,27 @@
+/* youtube_home.styl
+   Part of the exwm cyan style
+
+   Author: Tristan Maat <tm@tlater.net>
+*/
+@require "colors"
+
+.branded-page-module-title
+  color font_color
+  a.branded-page-module-title-link:hover
+    color font_color
+    text-decoration underline
+
+.shelf-description
+.shelf-annotation
+  color font_color_back
+
+.yt-uix-button-subscribe-branded
+  background-color accent
+  &:hover
+    background-color accent_back
+  &[disabled]
+    &
+    &:hover
+    &:active
+    &:focus
+      background-color accent
