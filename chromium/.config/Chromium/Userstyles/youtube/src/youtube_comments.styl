@@ -14,25 +14,42 @@
 .display-message
   color font_color
 
+
+
 .comments
   .comment-header
     .user-name
       color font_color
       font-weight bold
+      background-color transparent
       &:hover
         text-decoration underline
     .time
       a
         color font_color_back
+
+  .comment-replies-header
+    color font_color
+
+  .channel-owner .comment-header .user-name
+    background-color highlight_back
+
   .comment-text
     .comment-text-content
       color font_color
+
   .comment-footer-action
   .separator
     color font_color
+
   .sprite_like
   .sprite_dislike
     recolor_black_png 100
+
+  .feedback-banner
+    background-color highlight_back
+    border-color highlight_back
+
   .paginator
     &
     &.activated
