@@ -71,12 +71,14 @@ h1.yt
     /.guide-flyout-trigger.on-hover
     /.guide-collapsible-item .yt-uix-expander-head:hover
       background highlight_back
-
-.guide-item.guide-item-selected
-.guide-item.guide-item-selected .yt-deemphasized-text
-  &
-  &:hover
-    background highlight_back
+  .guide-count
+    color font_color
+  &.guide-item-selected
+    &
+    .yt-deemphasized-text
+      &
+      &:hover
+        background highlight_back
 
 .guide-item .thumb.yt-sprite
   recolor_gray_png 100%
@@ -139,6 +141,11 @@ body #footer-container
 .yt-uix-button-default
   background highlight
   border-color highlight_back
+  &.yt-uix-button-active
+  &.yt-uix-button-active:focus
+    background highlight
+    border-color highlight_back
+    box-shadow inset 0 1px 0 highlight_back
   &
   /.yt-uix-button-text
     color accent
@@ -210,5 +217,6 @@ body #footer-container
   &-item
     color font_color
     &:hover
+    &:focus
     .yt-uix-menu-trigger-selected &
       background-color highlight_back

@@ -1,0 +1,101 @@
+/* youtube_userchannel.styl
+   Part of the exwm cyan style
+
+   Author: Tristan Maat <tm@tlater.net>
+*/
+@require "colors"
+
+/* Header */
+.yt-uix-button-c4-view-action
+  background-color highlight_back
+  border-color highlight
+
+.channel-header
+  .secondary-header-contents
+    background-color highlight
+    border-bottom 2px solid highlight_back
+    .nav-text
+      color font_color
+  .secondary-header-action
+    .header-action-icon
+      recolor_gray_png 100%
+
+/* Post form */
+#channel-feed-post-form
+  border-bottom 2px solid highlight_back
+
+/* Sidebar */
+.c4-checklist-module
+  border 1px solid highlight_back
+  .checklist-item-title-text
+  .view-all-link a
+    color font_color
+
+#other-channels-sidebar:hover
+  background-color highlight
+
+/* Subscription checkbox */
+.privacy-label-text
+.privacy-checkbox-text
+  color font_color
+
+.yt-uix-button-icon-privacy-private
+  recolor_black_png 100%
+
+/* Discussion warnings (another iframe >:( )) */
+// Review comment warning
+.uza.rtb
+  background accent
+  color font_color
+
+/* Comment reviewing (iframe...) */
+// review box
+.BJa.v3a
+  background-color highlight
+  border-bottom 2px solid highlight_back
+
+// stop review button
+.b-c-Ba
+  background-color accent
+
+// other review buttons
+.b-c-R.b-c-I
+  background-color highlight
+  border 1px solid highlight_back
+  // their icons
+  .Gka
+    recolor_gray_png 400%
+
+// review icons
+.AH, .fea, .x5, .DH, .kC
+  recolor_black_png 100%
+
+// review icons tooltip
+.b-p
+  background-color highlight_back
+  border-color highlight
+  color font_color
+  box-shadow 1px 1px highlight_back
+  &-Aa &-Q
+  &-Aa &-T
+  &-Fa &-Q
+  &-Fa &-T
+    border-color highlight_back transparent
+
+// Spam tag
+.zbHZJb
+  color accent
+  border 1px solid accent
+
+/* About page */
+.c4-module-is-editable
+  .about-description-editor &
+  .about-business-email-editor &
+  .about-metadata-editor &
+    &:hover
+      background-color highlight_back
+
+
+.about-metadata
+  .yt-uix-button-c4-view-action
+    border-color highlight
