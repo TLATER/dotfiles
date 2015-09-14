@@ -1,6 +1,6 @@
 Xft.dpi: 180
 Xft.autohint: 0
-!Xft.lcdfilter:  lcddefault
+Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
@@ -8,9 +8,9 @@ Xft.rgba: rgb
 Xcursor.theme: pixelfun3
 Xcursor.size: 64
 
-XTerm*foreground:   rgb:fa/fa/fa
-XTerm*background:   rgb:0f/0f/0f
-XTerm*faceName:     DejaVu Sans Mono:pixelsize=32
+XTerm*foreground: rgb:fa/fa/fa
+XTerm*background: rgb:0f/0f/0f
+XTerm*faceName: DejaVu Sans Mono:pixelsize=32
 
 XTerm*metaSendsEscape: true
 

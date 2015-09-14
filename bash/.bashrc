@@ -43,8 +43,8 @@ alias pbpaste='xsel --clipboard'
 
 # Environment variables
 #export ANDROID_HOME='/opt/android-sdk'
-export RTV_EDITOR='emacs'
-export EDITOR='emacs'
+export RTV_EDITOR='emacsclient'
+export EDITOR='emacsclient'
 
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
 PATH=$PATH:/home/tlater/bin
