@@ -21,7 +21,7 @@
      "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c"
      default)))
  '(diredp-image-preview-in-tooltip nil)
- '(display-battery-mode t)
+;; '(display-battery-mode t)
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
  '(fancy-battery-mode t)
@@ -71,7 +71,7 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 ;; Use sml
-(sml/setup)
+;;(sml/setup)
 
 ;; Open with external applications
 (openwith-mode t)
