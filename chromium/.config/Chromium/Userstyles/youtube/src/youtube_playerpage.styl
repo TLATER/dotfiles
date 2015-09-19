@@ -106,3 +106,47 @@
       color font_color_back
   .watch-sidebar-separation-line
     border-bottom 1px solid highlight_back
+
+/* Playlist card */
+.watch-playlist
+  background-color highlight
+  color font_color
+
+#player-playlist
+  .playlist-videos-list
+    &
+    .yt-ui-ellipsis
+      background-color highlight_back
+    &>li:hover
+      &
+      .yt-ui-ellipsis
+        background-color highlight
+
+    :not(.watch-queue-nav) &
+      &>li.currently-playing
+        &
+        .yt-ui-ellipsis
+          background-color accent_back
+        .index
+          color font_color
+
+  .playlist-video
+    h4
+      color font_color
+
+  .video-uploader-byline
+    color font_color_back
+
+  .playlist-title
+    a
+      color font_color
+
+  .yt-uix-playlistlike:before
+    recolor_black_png 100%
+
+  .control-bar
+    border-top 1px solid highlight_back
+
+  .yt-uix-button-icon-watch-appbar-autoplay
+  .yt-uix-button-icon-watch-appbar-shuffle-video-list
+    recolor_white_png 100%
