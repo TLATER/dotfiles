@@ -1,15 +1,12 @@
 $thumbcolor = #091f2e
 
 ::-webkit-scrollbar
-  width 12px
+  width 10px
+  height 10px
+  transition width height .8s
 
-  &-track
-  &-track-piece
+  *
     background transparent
 
   &-thumb
     background $thumbcolor
-    -webkit-border-radius 12px
-
-  &:hover
-    color black
