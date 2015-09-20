@@ -8,11 +8,15 @@ font_color = #99d1ce
 font_visited = #599cab
 font_color_back = #195466
 
+$red = #d26937
+
 recolor_red_png(bright)
   -webkit-filter hue-rotate(202deg) brightness(bright)
 recolor_black_png(arg)
-  -webkit-filter invert(100%)
+  -webkit-filter invert(100%) sepia(100%) saturate(500%) hue-rotate(120deg)
 recolor_gray_png(arg)
   -webkit-filter sepia(100%) hue-rotate(136deg) saturate(169%) brightness(arg)
 recolor_white_png(arg)
   -webkit-filter sepia(100%) saturate(500%) hue-rotate(154deg) brightness(arg)
+recolor_black_png_to_red(arg)
+  -webkit-filter invert(100%) sepia(100%) saturate(10000%) hue-rotate(-61deg) brightness(85%)

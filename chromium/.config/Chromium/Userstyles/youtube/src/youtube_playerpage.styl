@@ -33,6 +33,14 @@
   .like-button-renderer-dislike-button-unclicked:hover &
     color font_color !important
 
+  .like-button-renderer-dislike-button-clicked &
+  .like-button-renderer-dislike-button-clicked:hover &
+  /.yt-uix-button.like-button-renderer-dislike-button-clicked
+    color $red !important
+    &:before
+    &:after
+      recolor_black_png_to_red 100%
+
 /* Description */
 #watch-description
 #action-panel-details a
