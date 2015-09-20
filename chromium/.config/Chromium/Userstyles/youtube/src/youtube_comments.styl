@@ -42,11 +42,13 @@
 
   .sprite_like
   .sprite_dislike
-    recolor_black_png 100
+    recolor_black_png 100%
 
   .sprite_dislike_on
     -webkit-filter invert(100%) sepia(100%) saturate(200%) hue-rotate(-15deg) brightness(85%)
 
+  .sprite_caret
+    -webkit-filter invert(100%) sepia(100%) saturate(500%) hue-rotate(168deg) brightness(85%)
 
   .feedback-banner
     background-color highlight_back
@@ -72,3 +74,27 @@
   &-loading
   &-error
     color font_color
+
+// Read more overlay
+.comment-text.long
+  .comment-text-toggle
+    height 100px
+    position absolute
+    width 85%
+    bottom 27px
+    background -webkit-linear-gradient(top, transparent 0%, highlight 85%)
+
+    a
+      bottom 0
+      position absolute
+
+  &.expanded
+    .comment-text-toggle
+      height auto
+      position initial
+      display inline
+      background transparent
+      bottom 0
+
+      a
+        position initial
