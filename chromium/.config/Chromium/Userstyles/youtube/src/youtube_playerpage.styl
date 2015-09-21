@@ -20,7 +20,12 @@
   border none
 
 .yt-uix-button-has-icon.no-icon-markup:before
-  recolor_black_png 100%
+.yt-uix-subscription-preferences-button:before
+  -webkit-filter invert(100%) sepia(100%) saturate(500%) hue-rotate(140deg)
+
+.yt-uix-button-subscribed-branded.hover-enabled:hover:before
+.yt-uix-subscription-preferences-button:before
+  height 14px
 
 .yt-uix-button-has-icon.like-button-renderer-like-button-clicked:before
   -webkit-filter none
