@@ -21,4 +21,9 @@ systemctl --user start unclutter@$DISPLAY
 export WM=exwm
 export EDITOR=emacsclient
 
+#compton -CGb --backend GLX --no-fading-openclose --sw-opti # --dbus
+#xcompmgr &
+
+feh --bg-scale "$HOME/Pictures/snowmiku.jpg"
+
 exec emacs --eval '(load-file "~/.emacs.d/wm.el")'

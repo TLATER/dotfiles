@@ -13,7 +13,12 @@
  '(battery-status-function (quote battery-linux-sysfs))
  '(custom-safe-themes
    (quote
-    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "740ccd12c61e3b4dc96b452e662d61598658042dc642e2ce48967d369f5f2930" "d20a27e387c8d961b1c6dfa877859c06fab9b03bfa56350e6c9b61d9e90b1090" "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c" default)))
+    ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e"
+     "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa"
+     "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223"
+     "740ccd12c61e3b4dc96b452e662d61598658042dc642e2ce48967d369f5f2930"
+     "d20a27e387c8d961b1c6dfa877859c06fab9b03bfa56350e6c9b61d9e90b1090"
+     "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c" default)))
  '(diredp-image-preview-in-tooltip nil)
  '(display-battery-mode t)
  '(display-time-24hr-format t)
@@ -52,6 +57,14 @@
 (add-to-list 'auto-mode-alist
              '("tlater-text-aid-too-[-[:alnum:]]*\..*" . text-aid-too-mode))
 (add-hook 'text-aid-too-mode-hook (lambda () (flyspell-mode t)))
+
+;; Avoid the annoying help messages
+(setq show-help-function nil)
+
+;; Make emacs transparent
+(setq frame-alpha-lower-limit 0)
+(set-frame-parameter (selected-frame) 'alpha '(90 0))
+(add-to-list 'default-frame-alist '(alpha 90 0))
 
 ;; Hide hidden files in dired
 (require 'dired-x)
