@@ -160,6 +160,15 @@ When called interactively, a negative prefix turns mute on and a positive off"
 (exwm-input-set-key (kbd "s-<return>") (lambda ()
                                          (interactive)
                                          (launch-application "xterm")))
+
+;; Window switching
+(exwm-input-set-key (kbd "s-j") (lambda ()
+                                  (interactive)
+                                  (other-window 1)))
+(exwm-input-set-key (kbd "s-k") (lambda ()
+                                  (interactive)
+                                  (other-window -1)))
+
 ;; Media keys
 (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (lambda ()
                                                      (interactive)
@@ -181,10 +190,10 @@ When called interactively, a negative prefix turns mute on and a positive off"
                                      (volume-mute)))
 (exwm-input-set-key (kbd "<XF86MonBrightnessUp>") (lambda ()
                                                     (interactive)
-                                                    (brightness-change 10)))
+                                                    (brightness-change 5)))
 (exwm-input-set-key (kbd "<XF86MonBrightnessDown>") (lambda ()
                                                       (interactive)
-                                                      (brightness-change -10)))
+                                                      (brightness-change -5)))
 
 ;; Emacs page-up and down for X windows
 (exwm-input-set-simulation-keys

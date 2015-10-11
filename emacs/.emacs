@@ -18,7 +18,8 @@
      "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223"
      "740ccd12c61e3b4dc96b452e662d61598658042dc642e2ce48967d369f5f2930"
      "d20a27e387c8d961b1c6dfa877859c06fab9b03bfa56350e6c9b61d9e90b1090"
-     "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c" default)))
+     "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c"
+     default)))
  '(diredp-image-preview-in-tooltip nil)
  '(display-battery-mode t)
  '(display-time-24hr-format t)
@@ -37,11 +38,9 @@
       (file)))))
  '(openwith-confirm-invocation nil)
  '(openwith-mode t)
- '(rcirc-authinfo (quote (("localhost" bitlbee "tlater" "nmm2cool"))))
- '(rcirc-server-alist (quote (("localhost"))))
  '(same-window-buffer-names (quote ("*Org Agenda*")))
  '(sml/theme (quote respectful))
- '(whitespace-global-modes (quote (not text-aid-too-mode))))
+ '(whitespace-global-modes (quote (not text-aid-too-mode erc-mode))))
 
 ;; Add MELPA package repository
 (require 'package)
@@ -191,7 +190,34 @@
                 (replace-match "")))))
 )
 
-;; Notifications for rcirc
-(eval-after-load 'rcirc '(require 'rcirc-notify))
-(eval-after-load 'rcirc '(rcirc-notify-add-hooks))
-(put 'erase-buffer 'disabled nil)
+;; IRC client settings
+(setq sound-default "/home/tlater/nihaha.wav")
+
+(defun sound (&optional path)
+  (start-process-shell-command
+   "sound"
+   nil
+   (concat "aplay -fcd " (or path sound-default))))
+
+(defun erc-message-receive-sound (proc parsed)
+  (let* ((tgt (car (erc-response.command-args parsed)))
+          (privp (erc-current-nick-p tgt)))
+    (and
+     privp
+     (sound)
+     nil)))
+
+(add-hook 'erc-text-matched-hook
+          (lambda (match-type nickuserhost message)
+            (cond
+             ((eq match-type 'currnet-nick)
+              (sound)))))
+
+(add-hook 'erc-server-PRIVMSG-functions
+          'erc-message-receive-sound)
+
+(global-set-key (kbd "s-c") (lambda ()
+                              (interactive)
+                              (erc :server "localhost"
+                                   :nick "tlater"
+                                   :password (read-passwd "Password: "))))
