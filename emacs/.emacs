@@ -44,10 +44,8 @@
 
 ;; Add MELPA package repository
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/") t)
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
 ;; Add a mode for the chrome extension
@@ -190,6 +188,9 @@
                 (replace-match "")))))
 )
 
+;; Disable the obnoxious alarm bell
+(setq ring-bell-function 'ignore)
+
 ;; IRC client settings
 (setq sound-default "/home/tlater/nihaha.wav")
 
@@ -217,7 +218,7 @@
           'erc-message-receive-sound)
 
 (global-set-key (kbd "s-c") (lambda ()
-                              (interactive)
-                              (erc :server "localhost"
-                                   :nick "tlater"
-                                   :password (read-passwd "Password: "))))
+                             (interactive)
+                             (erc :server "localhost"
+                                  :nick "tlater"
+                                  :password (read-passwd "Password: "))))
