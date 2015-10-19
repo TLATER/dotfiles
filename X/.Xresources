@@ -11,8 +11,8 @@ Xcursor.size: 32
 XTerm*foreground: rgb:fa/fa/fa
 XTerm*background: rgb:0f/0f/0f
 XTerm*faceName: DejaVu Sans Mono
-
 XTerm*metaSendsEscape: true
+XTerm*scrollBar: false
 
 ! [modified] Solarized color scheme for the X Window System
 !
