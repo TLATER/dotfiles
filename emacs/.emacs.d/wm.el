@@ -82,9 +82,6 @@ When called interactively, a negative prefix turns mute on and a positive off"
     (start-process "brightness" "*Brightness*" "xbacklight" brightness-string)))
 
 ;; Load the requirements
-(add-to-list 'load-path "~/.emacs.d/user/xelb")
-(add-to-list 'load-path "~/.emacs.d/user/xelb/lib")
-(add-to-list 'load-path "~/.emacs.d/user/xelb/util")
 (add-to-list 'load-path "~/.emacs.d/user/exwm")
 
 ;; Load the theme (since this is an X session...)
