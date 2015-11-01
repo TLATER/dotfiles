@@ -48,6 +48,9 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
+;; Add nethack
+(add-to-list 'load-path "~/.emacs.d/user/nethack")
+
 ;; Add a mode for the chrome extension
 (define-derived-mode text-aid-too-mode html-mode
   (setq mode-name "Text-Aid-Too"))
@@ -69,7 +72,7 @@
 (add-hook 'dired-mode-hook (lambda () (dired-omit-mode 1)))
 
 ;; Use sml
-;;(sml/setup)
+(sml/setup)
 
 ;; Open with external applications
 (openwith-mode t)
