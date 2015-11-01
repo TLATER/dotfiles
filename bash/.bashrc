@@ -46,5 +46,8 @@ alias pbpaste='xsel --clipboard'
 export RTV_EDITOR='emacsclient'
 export EDITOR='emacsclient'
 
+# Prevent the annoying newline annoyances after a resize
+shopt -s checkwinsize
+
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
 PATH=$PATH:/home/tlater/bin
