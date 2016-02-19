@@ -210,6 +210,10 @@ When called interactively, a negative prefix turns mute on and a positive off"
 (setq display-time-default-load-average nil)
 (display-time-mode t)
 
+;; System tray
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
+
 ;; Autostart
 ;; (exwm-workspace-switch (1- exwm-workspace-number))
 ;; (launch-application "thunderbird")
