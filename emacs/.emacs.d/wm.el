@@ -82,6 +82,7 @@ When called interactively, a negative prefix turns mute on and a positive off"
     (start-process "brightness" "*Brightness*" "xbacklight" brightness-string)))
 
 ;; Load the requirements
+(add-to-list 'load-path "~/.emacs.d/user/xelb")
 (add-to-list 'load-path "~/.emacs.d/user/exwm")
 
 ;; Load the theme (since this is an X session...)
@@ -208,6 +209,10 @@ When called interactively, a negative prefix turns mute on and a positive off"
 ;; Additional UI
 (setq display-time-default-load-average nil)
 (display-time-mode t)
+
+;; System tray
+(require 'exwm-systemtray)
+(exwm-systemtray-enable)
 
 ;; Autostart
 ;; (exwm-workspace-switch (1- exwm-workspace-number))

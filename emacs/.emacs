@@ -10,7 +10,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(battery-mode-line-format " %b%p%% ")
+ '(battery-mode-line-format " %b%p%% " t)
  '(battery-status-function (quote battery-linux-sysfs))
  '(custom-safe-themes
    (quote
@@ -24,8 +24,6 @@
  '(openwith-associations
    (quote
     (("\\.wav\\'" "aplay"
-      (file))
-     ("\\.pdf\\'" "evince"
       (file))
      ("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp3\\)\\'" "mplayer"
       ("-idx" file))
@@ -43,6 +41,7 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
+<<<<<<< HEAD
 ;; Add eclim
 ;; (require 'eclim)
 ;; (global-eclim-mode)
@@ -54,9 +53,20 @@
 
 ;; (require 'auto-complete-config)
 ;; (ac-config-default)
+;; Add and set up eclim
+(require 'eclim)
+(global-eclim-mode)
+(require 'eclimd)
+
+;; Auto-complete setup
+(require 'auto-complete-config)
+(ac-config-default)
 
 ;; (require 'ac-emacs-eclim-source)
 ;; (ac-emacs-eclim-config)
+
+;; Add nethack
+(add-to-list 'load-path "~/.emacs.d/user/nethack")
 
 ;; Add a mode for the chrome extension
 (define-derived-mode text-aid-too-mode html-mode
@@ -130,9 +140,6 @@
 ;; Improved latex commands
 ;;(load "auctex.el" nil t t)
 ;;(load "preview-latex.el" nil t t)
-
-;; Auto-complete setup
-(ac-config-default)
 
 ;; Fix ls
 ;;(setenv "PATH" (concat (getenv "PATH") ":/bin:/opt/android-sdk/tools"))
