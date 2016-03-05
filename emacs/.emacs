@@ -16,6 +16,7 @@
    (quote
     ("a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "740ccd12c61e3b4dc96b452e662d61598658042dc642e2ce48967d369f5f2930" "d20a27e387c8d961b1c6dfa877859c06fab9b03bfa56350e6c9b61d9e90b1090" "f1d5ef054829b643d2c758bf201f7b1972a0455006b5b42270e2a260c8102c3c" default)))
  '(diredp-image-preview-in-tooltip nil)
+ '(display-battery-mode t)
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
  '(fancy-battery-mode t)
@@ -40,6 +41,18 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
+<<<<<<< HEAD
+;; Add eclim
+;; (require 'eclim)
+;; (global-eclim-mode)
+;; (require 'eclimd)
+
+;; (setq help-at-pt-display-when-idle t)
+;; (setq help-at-pt-timer-delay 0.1)
+;; (help-at-pt-set-timer)
+
+;; (require 'auto-complete-config)
+;; (ac-config-default)
 ;; Add and set up eclim
 (require 'eclim)
 (global-eclim-mode)
