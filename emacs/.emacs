@@ -41,29 +41,9 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-<<<<<<< HEAD
-;; Add eclim
-;; (require 'eclim)
-;; (global-eclim-mode)
-;; (require 'eclimd)
-
-;; (setq help-at-pt-display-when-idle t)
-;; (setq help-at-pt-timer-delay 0.1)
-;; (help-at-pt-set-timer)
-
-;; (require 'auto-complete-config)
-;; (ac-config-default)
-;; Add and set up eclim
-(require 'eclim)
-(global-eclim-mode)
-(require 'eclimd)
-
 ;; Auto-complete setup
 (require 'auto-complete-config)
 (ac-config-default)
-
-;; (require 'ac-emacs-eclim-source)
-;; (ac-emacs-eclim-config)
 
 ;; Add nethack
 (add-to-list 'load-path "~/.emacs.d/user/nethack")
@@ -136,17 +116,6 @@
           (alltodo "")
           (tags "+NOTE")))
         ))
-
-;; Improved latex commands
-;;(load "auctex.el" nil t t)
-;;(load "preview-latex.el" nil t t)
-
-;; Fix ls
-;;(setenv "PATH" (concat (getenv "PATH") ":/bin:/opt/android-sdk/tools"))
-;;(setq exec-path (append exec-path '("/bin")))
-
-;; Android development config
-;;(require 'android-mode)
 
 ;; Enable electric pair mode
 (electric-pair-mode)
