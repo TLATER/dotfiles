@@ -5,7 +5,25 @@
 */
 @require "colors"
 
-.all-comments
+// Comment input box
+.comment-simplebox
+  background-color transparent
+
+  &-renderer
+    border-bottom none
+
+    &-collapsed-content
+      border-color highlight_back
+
+  &-arrow
+    .arrow-inner
+      display none
+    .arrow-outer
+      border-top-color highlight_back
+      border-right-color highlight_back
+
+// Comment thread
+.comment-thread-renderer
   &
   a
     color font_color
@@ -14,61 +32,64 @@
 .display-message
   color font_color
 
-.comments
-  .comment-header
-    .user-name
-      color font_color
-      font-weight bold
-      background-color transparent
-      &:hover
-        text-decoration underline
-    .time
-      a
-        color font_color_back
-
-  .comment-replies-header
+.comment-replies-renderer
+  &-view
+  &-hide
     color font_color
 
-  .channel-owner .comment-header .user-name
-    background-color highlight_back
+.comment-renderer
+  &-content
+    .comment-renderer-header
+      .comment-author-text
+        color font_color
+        font-weight bold
+        background-color transparent
+        &:hover
+          text-decoration underline
+      .comment-renderer-time
+        a
+          color font_color_back
 
-  .comment-text
-    .comment-text-content
+    .channel-owner .comment-header .user-name
+      background-color highlight_back
+
+    .comment-text
+      .comment-text-content
+        color font_color
+
+    .comment-footer-action
+    .separator
       color font_color
 
-  .comment-footer-action
-  .separator
-    color font_color
+    .sprite_like
+    .sprite_dislike
+      recolor_black_png 100%
 
-  .sprite_like
-  .sprite_dislike
-    recolor_black_png 100%
+    .sprite_dislike_on
+      -webkit-filter invert(100%) sepia(100%) saturate(200%) hue-rotate(-15deg) brightness(85%)
 
-  .sprite_dislike_on
-    -webkit-filter invert(100%) sepia(100%) saturate(200%) hue-rotate(-15deg) brightness(85%)
+    .sprite_caret
+      -webkit-filter invert(100%) sepia(100%) saturate(500%) hue-rotate(168deg) brightness(85%)
 
-  .sprite_caret
-    -webkit-filter invert(100%) sepia(100%) saturate(500%) hue-rotate(168deg) brightness(85%)
-
-  .feedback-banner
-    background-color highlight_back
-    border-color highlight_back
-
-  .paginator
-    &
-    &.activated
-      color font_color
-      background-image none
-      background-color highlight
+    .feedback-banner
+      background-color highlight_back
       border-color highlight_back
-      &:hover
-        background-image none
-        background-color highlight_back
-        border-color highlight_back
 
-  b
-    color font_visited
-    font-weight bold
+    .paginator
+      &
+      &.activated
+        color font_color
+        background-image none
+        background-color highlight
+        border-color highlight_back
+        &:hover
+          background-image none
+          background-color highlight_back
+          border-color highlight_back
+
+    b
+      color font_visited
+      font-weight bold
 
 .action-panel
   &-loading
