@@ -33,10 +33,27 @@
     a.yt-user-name
       color font_color
 
-#browse-items-primary .item-section>li>.yt-lockup-tile
-.branded-page-v2-primary-col .branded-page-box
-.section-list li .item-section .branded-page-box
-  border-bottom 2px solid highlight_back
+/* The border under all non-first video lists */
+#browse-items-primary
+  .item-section>li>
+    &.yt-lockup-tile
+    &.multirow-shelf
+    /.compact-shelf.branded-page-box
+      border-bottom 2px solid highlight_back
+
+// .section-list li .item-section .branded-page-box
+
+
+/* The border under the first video of each video list */
+.branded-page-v2-primary-col
+  .branded-page-box:last-child
+    &.video-player-view-component
+    &.c4-featured-content
+    &.c4-featured-content-editor
+    &.welcome
+    ~/ .branded-page-box
+    /.section-list li .item-section .branded-page-box
+      border-bottom 2px solid highlight_back
 
 .yt-uix-expander-ellipsis
   background-color highlight
