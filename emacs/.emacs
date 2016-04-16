@@ -10,7 +10,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(battery-mode-line-format " %b%p%% " t)
+ '(android-mode-sdk-dir "/opt/android-sdk")
+ '(battery-mode-line-format " %b%p%% ")
  '(battery-status-function (quote battery-linux-sysfs))
  '(custom-safe-themes
    (quote
@@ -19,6 +20,30 @@
  '(display-battery-mode t)
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
+ '(ecb-compilation-buffer-names
+   (quote
+    (("*Calculator*")
+     ("*vc*")
+     ("*vc-diff*")
+     ("*Apropos*")
+     ("*Occur*")
+     ("*shell*")
+     ("\\*[cC]ompilation.*\\*" . t)
+     ("\\*i?grep.*\\*" . t)
+     ("*JDEE Compile Server*")
+     ("*Help*")
+     ("*Completions*")
+     ("*Backtrace*")
+     ("*Compile-log*")
+     ("*bsh*")
+     ("*Messages*")
+     ("*compilation*"))))
+ '(ecb-compile-window-height 6)
+ '(ecb-major-modes-show-or-hide (quote (nil)))
+ '(ecb-options-version "2.40")
+ '(ecb-other-window-behavior (quote smart))
+ '(ecb-source-path (quote (("/" "/"))))
+ '(ecb-vc-enable-support t)
  '(fancy-battery-mode t)
  '(fancy-battery-show-percentage t)
  '(openwith-associations
@@ -47,6 +72,8 @@
 
 ;; Add nethack
 (add-to-list 'load-path "~/.emacs.d/user/nethack")
+
+(add-to-list 'load-path "~/.emacs.d/usr/jde-int/jde-int.el")
 
 ;; Add a mode for the chrome extension
 (define-derived-mode text-aid-too-mode html-mode
@@ -174,6 +201,10 @@
                 (replace-match "")))))
 )
 
+;; Android mode
+(require 'android-mode)
+
+
 ;; Disable the obnoxious alarm bell
 (setq ring-bell-function 'ignore)
 
@@ -223,3 +254,5 @@
       '(lambda (process event)
          (zone-leave-me-alone)))
      (zone-when-idle 1)))
+
+;; Android compilation regex
