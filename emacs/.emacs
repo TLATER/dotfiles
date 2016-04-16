@@ -56,6 +56,7 @@
       (file)))))
  '(openwith-confirm-invocation nil)
  '(openwith-mode t)
+ '(org-agenda-files (quote ("~/Documents/org/coursework.org")))
  '(same-window-buffer-names (quote ("*Org Agenda*")))
  '(sml/theme (quote respectful))
  '(whitespace-global-modes (quote (not text-aid-too-mode erc-mode))))
@@ -113,36 +114,12 @@
 (global-set-key (kbd "C-:") 'uncomment-region)
 
 ;; Organisation handler configuration
-(setq org-agenda-files '("~/Documents/org/coursework.org" "~/Documents/other.org"))
-(setq org-default-notes-file "~/Documents/notes/life.org")
+(setq org-agenda-files '("~/Documents/org/coursework.org"
+                         "~/Documents/org/appointments.org"))
+(setq org-default-notes-file "~/Documents/org/notes.org")
 
 (global-set-key (kbd "C-c a") 'org-agenda)
 (global-set-key (kbd "C-c c") 'org-capture)
-
-(setq org-capture-templates
-      (quote(("t" "todo" entry (file+headline "~/Documents/notes/tasks.org"
-                                              "Miscellaneous tasks")
-              "** TODO %?")
-
-             ("u" "urgent" entry (file+headline "~/Documents/notes/tasks.org"
-                                                "Urgent tasks")
-              "** TODO %?")
-
-             ("n" "note" entry (file "~/Documents/notes/misc.org")
-              "* %?\n  :NOTE:\n  \n")
-
-             ("a" "anime" entry (file+headline "~/Documents/notes/anime.org"
-                                               "Found on the internet")
-              "** %?")
-             )))
-
-(setq org-agenda-custom-commands
-      '(("N" "List all notes" tags "+NOTE")
-        ("n" "Agenda and all TODO's + notes"
-         ((agenda "")
-          (alltodo "")
-          (tags "+NOTE")))
-        ))
 
 ;; Enable electric pair mode
 (electric-pair-mode)
