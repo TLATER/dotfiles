@@ -113,7 +113,7 @@
 (global-set-key (kbd "C-:") 'uncomment-region)
 
 ;; Organisation handler configuration
-(setq org-agenda-files '("~/Documents/notes"))
+(setq org-agenda-files '("~/Documents/org/coursework.org" "~/Documents/other.org"))
 (setq org-default-notes-file "~/Documents/notes/life.org")
 
 (global-set-key (kbd "C-c a") 'org-agenda)
