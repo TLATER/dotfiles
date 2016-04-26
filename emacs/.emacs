@@ -67,6 +67,9 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
+;; Set font
+(set-frame-font "Tamzen:pixelsize=14" nil t)
+
 ;; Auto-complete setup
 (require 'auto-complete-config)
 (ac-config-default)
@@ -107,7 +110,6 @@
 
 ;; Set compile keybindings
 (global-set-key (kbd "C-x c") 'compile)
-(global-set-key (kbd "C-x r") 'recompile)
 
 ;; Comment region
 (global-set-key (kbd "C-;") 'comment-region)
@@ -231,5 +233,3 @@
       '(lambda (process event)
          (zone-leave-me-alone)))
      (zone-when-idle 1)))
-
-;; Android compilation regex
