@@ -38,9 +38,9 @@
      ("*bsh*")
      ("*Messages*")
      ("*compilation*"))))
- '(ecb-compile-window-height 6)
+ '(ecb-compile-window-height 10)
  '(ecb-major-modes-show-or-hide (quote (nil)))
- '(ecb-options-version "2.40")
+ '(ecb-options-version "2.50")
  '(ecb-other-window-behavior (quote smart))
  '(ecb-source-path (quote (("/" "/"))))
  '(ecb-vc-enable-support t)
@@ -56,7 +56,7 @@
       (file)))))
  '(openwith-confirm-invocation nil)
  '(openwith-mode t)
- '(org-agenda-files (quote ("~/Documents/org/coursework.org")))
+ '(org-agenda-files (quote ("~/Documents/org/coursework.org")) t)
  '(same-window-buffer-names (quote ("*Org Agenda*")))
  '(sml/theme (quote respectful))
  '(whitespace-global-modes (quote (not text-aid-too-mode erc-mode))))
@@ -78,6 +78,8 @@
 (add-to-list 'load-path "~/.emacs.d/user/nethack")
 
 (add-to-list 'load-path "~/.emacs.d/usr/jde-int/jde-int.el")
+(add-to-list 'load-path "~/.emacs.d/user/ecb")
+(require 'ecb-autoloads)
 
 ;; Add a mode for the chrome extension
 (define-derived-mode text-aid-too-mode html-mode
