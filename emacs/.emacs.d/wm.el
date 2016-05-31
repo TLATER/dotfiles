@@ -160,12 +160,17 @@ When called interactively, a negative prefix turns mute on and a positive off"
                                          (launch-application "xterm")))
 
 ;; Window switching
-(exwm-input-set-key (kbd "s-j") (lambda ()
-                                  (interactive)
-                                  (other-window 1)))
-(exwm-input-set-key (kbd "s-k") (lambda ()
-                                  (interactive)
-                                  (other-window -1)))
+(exwm-input-set-key (kbd "s-i") 'windmove-up)
+(exwm-input-set-key (kbd "s-j") 'windmove-left)
+(exwm-input-set-key (kbd "s-k") 'windmove-right)
+(exwm-input-set-key (kbd "s-m") 'windmove-down)
+
+;; (exwm-input-set-key (kbd "s-j") (lambda ()
+;;                                   (interactive)
+;;                                   (other-window 1)))
+;; (exwm-input-set-key (kbd "s-k") (lambda ()
+;;                                   (interactive)
+;;                                   (other-window -1)))
 
 ;; Media keys
 (exwm-input-set-key (kbd "<XF86AudioRaiseVolume>") (lambda ()
