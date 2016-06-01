@@ -686,6 +686,12 @@
 </menu>
 
 <applications>
+  <!-- YGOPRO (window name not set) -->
+  <application type="normal"
+               title="[---]">
+    <fullscreen>yes</fullscreen>
+    <maximized>yes</maximized>
+  </application>
 <!--
   # this is an example with comments through out. use these to make your
   # own rules, but without the comments of course.
