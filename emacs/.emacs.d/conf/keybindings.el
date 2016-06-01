@@ -14,4 +14,4 @@
 ;; Commenting
 (global-set-key (kbd "C-;") 'comment-region)
 ;; This is C-S-;
-(global-set-key (kbd "C-:") 'comment-region)
+(global-set-key (kbd "C-:") 'uncomment-region)
