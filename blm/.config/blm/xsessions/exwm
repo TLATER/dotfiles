@@ -25,6 +25,7 @@ export EDITOR=emacsclient
 #xcompmgr &
 
 feh --bg-scale "$HOME/Pictures/snowmiku.jpg"
+xsetroot -cursor_name left_ptr
 
 systemctl --user start synergyc@haruna.service
 xsetroot -cursor_name left_ptr

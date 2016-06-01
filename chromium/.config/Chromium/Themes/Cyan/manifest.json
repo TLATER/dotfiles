@@ -1,78 +1,83 @@
 {
-  "theme": {
-    "colors": {
-      "button_background": [
-        30,
-        139,
-        210
-      ],
-      "toolbar": [
-        17,
-        21,
-        28
-      ],
-      "bookmark_background": [
-        9,
-        31,
-        46
-      ],
-      "frame": [
-        15,
-        15,
-        15
-      ],
-      "frame_inactive": [
-        9,
-        31,
-        46
-      ],
-      "ntp_header": [
-        9,
-        31,
-        46
-      ],
-      "ntp_background": [
-        15,
-        15,
-        15
-      ],
-      "bookmark_text": [
-        153,
-        209,
-        206
-      ],
-      "tab_text": [
-        211,
-        235,
-        233
-      ],
-      "tab_background_text": [
-        153,
-        209,
-        206
-      ]
+    "theme": {
+        "colors": {
+            "button_background": [
+                30,
+                139,
+                210
+            ],
+            "control_background": [
+                30,
+                139,
+                210
+            ],
+            "toolbar": [
+                17,
+                21,
+                28
+            ],
+            "bookmark_background": [
+                30,
+                139,
+                210
+            ],
+            "frame": [
+                15,
+                15,
+                15
+            ],
+            "frame_inactive": [
+                9,
+                31,
+                46
+            ],
+            "ntp_header": [
+                9,
+                31,
+                46
+            ],
+            "ntp_background": [
+                15,
+                15,
+                15
+            ],
+            "bookmark_text": [
+                153,
+                209,
+                206
+            ],
+            "tab_text": [
+                211,
+                235,
+                233
+            ],
+            "tab_background_text": [
+                153,
+                209,
+                206
+            ]
+        },
+        "images": {
+            "theme_frame": "images\/frame.png",
+            "theme_tab_background": "images\/tab_background.png",
+            "theme_tab_background_incognito": "images\/tab_background.png",
+            "theme_toolbar": "images\/toolbar.png"
+        },
+        "tints": {
+            "frame_inactive": [
+                0.8,
+                0.3,
+                0.55
+            ],
+            "buttons": [
+                0.57,
+                0.69,
+                0.49
+            ]
+        }
     },
-    "images": {
-      "theme_frame": "images\/frame.png",
-      "theme_tab_background": "images\/tab_background.png",
-      "theme_tab_background_incognito": "images\/tab_background.png",
-      "theme_toolbar": "images\/toolbar.png"
-    },
-    "tints": {
-      "frame_inactive": [
-        0.8,
-        0.3,
-        0.55
-      ],
-      "buttons": [
-        0.57,
-        0.69,
-        0.49
-      ]
-    }
-  },
-  "manifest_version": 2,
-  "version": "0.1",
-  "description": "A dark theme made to fit cyan exwm",
-  "name": "Cyan"
+    "manifest_version": 2,
+    "version": "0.1",
+    "description": "A dark theme made to fit cyan exwm",
+    "name": "Cyan"
 }

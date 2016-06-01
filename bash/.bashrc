@@ -27,7 +27,7 @@
 # fi
 
 # Autocompletion
-complete -W "mbax4tm2@kilburn.cs.manchester.ac.uk www.tlater.net" ssh
+# complete -W "mbax4tm2@kilburn.cs.manchester.ac.uk www.tlater.net" ssh
 
 # Aliases
 alias ls='ls --color=auto'
@@ -50,4 +50,4 @@ export EDITOR='emacsclient'
 shopt -s checkwinsize
 
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
-PATH=$PATH:/home/tlater/bin
+PATH="$PATH:/home/tlater/bin"

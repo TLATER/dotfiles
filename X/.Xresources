@@ -18,26 +18,26 @@ XTerm*scrollBar: false
 !
 ! http://ethanschoonover.com/solarized
 
-*foreground:              #8cf3ff
-*fading:                  40
-*fadeColor:               #002b36
-*cursorColor:             #0d9ed3
-*pointerColorBackground:  #586e75
-*pointerColorForeground:  #0d9ed3
+! XTerm*foreground:              #8cf3ff
+XTerm*fading:                  40
+XTerm*fadeColor:               #002b36
+XTerm*cursorColor:             #0d9ed3
+XTerm*pointerColorBackground:  #586e75
+XTerm*pointerColorForeground:  #0d9ed3
 
-*color0:                  #073642
-*color1:                  #dc322f
-*color2:                  #2aa889
-*color3:                  #b58900
-*color4:                  #268bd2
-*color5:                  #707880
-*color6:                  cyan
-*color7:                  #eee8d5
-*color8:                  #002b36
-*color9:                  #cb4b16
-*color10:                 #586e75
-*color11:                 #70bcd8
-*color12:                 #8cf3ff
-*color13:                 #6c71c4
-*color14:                 cyan
-*color15:                 #fdf6e3
+XTerm*color0:                  #073642
+XTerm*color1:                  #dc322f
+XTerm*color2:                  #2aa889
+XTerm*color3:                  #b58900
+XTerm*color4:                  #268bd2
+XTerm*color5:                  #707880
+XTerm*color6:                  cyan
+XTerm*color7:                  #eee8d5
+XTerm*color8:                  #002b36
+XTerm*color9:                  #cb4b16
+XTerm*color10:                 #586e75
+XTerm*color11:                 #70bcd8
+XTerm*color12:                 #8cf3ff
+XTerm*color13:                 #6c71c4
+XTerm*color14:                 cyan
+XTerm*color15:                 #fdf6e3
