@@ -26,4 +26,7 @@ export EDITOR=emacsclient
 
 feh --bg-scale "$HOME/Pictures/snowmiku.jpg"
 
+systemctl --user start synergyc@haruna.service
+xsetroot -cursor_name left_ptr
+
 exec emacs --eval '(load-file "~/.emacs.d/wm.el")'

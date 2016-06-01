@@ -10,7 +10,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(battery-mode-line-format " %b%p%% " t)
+ '(android-mode-sdk-dir "/opt/android-sdk")
+ '(battery-mode-line-format " %b%p%% ")
  '(battery-status-function (quote battery-linux-sysfs))
  '(custom-safe-themes
    (quote
@@ -19,6 +20,8 @@
  '(display-battery-mode t)
  '(display-time-24hr-format t)
  '(display-time-day-and-date t)
+ '(ecb-compile-window-height 10)
+ '(ecb-options-version "2.40")
  '(fancy-battery-mode t)
  '(fancy-battery-show-percentage t)
  '(openwith-associations
@@ -41,7 +44,6 @@
                          ("melpa" . "http://melpa.org/packages/")))
 (package-initialize)
 
-<<<<<<< HEAD
 ;; Add eclim
 ;; (require 'eclim)
 ;; (global-eclim-mode)
@@ -146,7 +148,8 @@
 ;;(setq exec-path (append exec-path '("/bin")))
 
 ;; Android development config
-;;(require 'android-mode)
+(require 'android-mode)
+
 
 ;; Enable electric pair mode
 (electric-pair-mode)
@@ -254,3 +257,8 @@
       '(lambda (process event)
          (zone-leave-me-alone)))
      (zone-when-idle 1)))
+
+(require 'org)
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
