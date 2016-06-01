@@ -1,0 +1,7 @@
+[Unit]
+Description=Synergy Client Daemon for %i
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/synergyc --no-daemon %i
+Restart=on-failure
