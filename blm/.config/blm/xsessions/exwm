@@ -25,5 +25,6 @@ export EDITOR=emacsclient
 #xcompmgr &
 
 feh --bg-scale "$HOME/Pictures/snowmiku.jpg"
+xsetroot -cursor_name left_ptr
 
 exec emacs --eval '(load-file "~/.emacs.d/wm.el")'
