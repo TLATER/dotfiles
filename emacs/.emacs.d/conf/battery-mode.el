@@ -6,7 +6,7 @@
 
 (use-package battery
   :init
-  (setq battery-mode-line-format " %b%p%% ")
   (setq battery-status-function (quote battery-linux-sysfs))
   :config
-  (display-battery-mode t))
+  (display-battery-mode t)
+  (setq battery-mode-line-format " %b%p%%"))

@@ -27,7 +27,6 @@
 ;; Load the sub-configurations
 (load-file "~/.emacs.d/conf/auto-complete.el")
 (load-file "~/.emacs.d/conf/auto-inserts.el")
-(load-file "~/.emacs.d/conf/battery-mode.el")
 (load-file "~/.emacs.d/conf/coding-standards.el")
 (load-file "~/.emacs.d/conf/ecb.el")
 (load-file "~/.emacs.d/conf/keybindings.el")
@@ -39,3 +38,5 @@
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
 (load-file "~/.emacs.d/conf/text-aid-too-mode.el")
 (load-file "~/.emacs.d/conf/themes.el")
+
+(load-file "~/.emacs.d/conf/battery-mode.el")
