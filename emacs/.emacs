@@ -21,6 +21,13 @@
 ;; Allow use-package to install packages if not present
 (setq use-package-always-ensure t)
 
+;; Check if we need to load exwm
+(setq load-exwm-switch (member "--wm" command-line-args))
+(setq command-line-args (delete "--wm" command-line-args))
+
+(if load-exwm-switch
+    (load-file "~/.emacs.d/conf/wm/wm.el"))
+
 ;; Load custom functions
 (load-file "~/.emacs.d/conf/unindent-region.el")
 (load-file "~/.emacs.d/conf/eval-and-replace.el")
