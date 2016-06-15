@@ -26,23 +26,14 @@
 #     setterm -background black
 # fi
 
-# Autocompletion
-# complete -W "mbax4tm2@kilburn.cs.manchester.ac.uk www.tlater.net" ssh
-
 # Aliases
 alias ls='ls --color=auto'
-#alias skype='apulse32 skype'
-alias emacs='emacsclient'
-#alias pbcopy='xclip -selection clipboard'
-#alias pbpaste='xclip -selection clipboard -o'
-#alias open='/usr/bin/vendor_perl/mimeopen'
-#alias ncmpcpp='ncmpcpp -c /home/tlater/.config/ncmpcpp'
+alias emacs='emacsclient -c -a ""'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
 
 # Environment variables
-#export ANDROID_HOME='/opt/android-sdk'
 export RTV_EDITOR='emacsclient'
 export EDITOR='emacsclient'
 
