@@ -15,3 +15,6 @@
 (global-set-key (kbd "C-;") 'comment-region)
 ;; This is C-S-;
 (global-set-key (kbd "C-:") 'uncomment-region)
+
+;; Eval-and-replace
+(global-set-key (kbd "C-c e") 'eval-and-replace)
