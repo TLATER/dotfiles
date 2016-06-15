@@ -1,0 +1,7 @@
+[user]
+	email = tm@tlater.net
+	name = Tristan Maat
+[filter "text-aid-too"]
+	clean = "sed -e 's/^Environment=\"TEXT_AID_TOO_SECR.*/#Environment=;P/'"
+[push]
+	default = simple
