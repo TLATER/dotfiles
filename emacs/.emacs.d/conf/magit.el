@@ -5,4 +5,6 @@
 ;; ------------------------------------------------------------
 
 ;; Set up ecb
-(use-package magit)
+(use-package magit
+  :bind
+  ("C-c g s" . magit-status))
