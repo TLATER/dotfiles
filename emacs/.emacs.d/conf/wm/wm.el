@@ -1,5 +1,4 @@
-;; Load xelb and exwm
-(use-package xelb)
+;; Load exwm
 (use-package exwm
   :init
   (setq exwm-workspace-number 9)
@@ -23,8 +22,8 @@
   (load-file "~/.emacs.d/conf/wm/brightness.el")
   (load-file "~/.emacs.d/conf/wm/keybindings.el")
 
-  (exwm-enable))
+  ;; Enable the systemtray
+  (require 'exwm-systemtray)
+  (exwm-systemtray-enable)
 
-;;(use-package exwm-systemtray
-;;  :config
-;;  (exwm-systemtray-enable))
+  (exwm-enable))
