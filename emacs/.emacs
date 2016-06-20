@@ -44,6 +44,8 @@
 (load-file "~/.emacs.d/conf/modeline-info.el")
 (load-file "~/.emacs.d/conf/org.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
+(load-file "~/.emacs.d/conf/server.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
 (load-file "~/.emacs.d/conf/text-aid-too-mode.el")
 (load-file "~/.emacs.d/conf/themes.el")
+(load-file "~/.emacs.d/conf/whitespace.el")

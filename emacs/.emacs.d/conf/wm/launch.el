@@ -1,3 +1,9 @@
+;; ------------------------------------------------------------
+;; launch.el
+;;
+;; EXWM application launching functions
+;; ------------------------------------------------------------
+
 (defun launch-application-interactively ()
   "Prompts the user to launch an application interactively."
   (interactive)

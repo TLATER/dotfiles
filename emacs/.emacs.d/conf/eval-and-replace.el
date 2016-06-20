@@ -1,3 +1,10 @@
+;; ------------------------------------------------------------
+;; eval-and-replace.el
+;;
+;; A function to evaluate the preceding sexp and replace it with its
+;; value (e.g. (+ 5 5) -> 10)
+;; ------------------------------------------------------------
+
 (defun eval-and-replace ()
   "Replace the preceding sexp with its value."
   (interactive)

@@ -1,3 +1,9 @@
+;; ------------------------------------------------------------
+;; brightness.el
+;;
+;; EXWM brightness functions
+;; ------------------------------------------------------------
+
 (defun brightness-change (amount)
   "Adjust screen brightness relatively using the amount given"
   (interactive "NChange screen brightness by: ")
