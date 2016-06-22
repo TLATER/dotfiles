@@ -6,8 +6,7 @@ Documentation=man:steam
 Type=simple
 PIDFile=%h/.steampid
 Environment=DISPLAY=%i
-
-ExecStart=/usr/bin/bash -c "LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so' ~/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh /usr/bin/steam -tenfoot -enableremotecontrol"
+ExecStart=/usr/bin/bash -c "LD_PRELOAD='/usr/$LIB/libstdc++.so.6 /usr/$LIB/libgcc_s.so.1 /usr/$LIB/libxcb.so.1 /usr/$LIB/libgpg-error.so' ~/.local/share/Steam/ubuntu12_32/steam-runtime/run.sh /usr/bin/steam -bigpicture -enableremotecontrol"
 ExecStop=/usr/bin/bash -c "if kill -0 `cat %h/.steampid`; then\
 steam -shutdown;\
 fi;"
