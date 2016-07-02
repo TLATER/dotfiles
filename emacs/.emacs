@@ -37,6 +37,7 @@
 (load-file "~/.emacs.d/conf/auto-inserts.el")
 (load-file "~/.emacs.d/conf/coding-standards.el")
 (load-file "~/.emacs.d/conf/ecb.el")
+(load-file "~/.emacs.d/conf/flycheck.el")
 (load-file "~/.emacs.d/conf/keybindings.el")
 (load-file "~/.emacs.d/conf/linum-mode.el")
 (load-file "~/.emacs.d/conf/magit.el")
