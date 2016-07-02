@@ -28,7 +28,7 @@
 
 # Aliases
 alias ls='ls --color=auto'
-alias emacs='emacsclient -c -a ""'
+alias emacs='emacsclient -a ""'
 alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
@@ -41,6 +41,11 @@ export ALTERNATE_EDITOR='emacs -nw'
 
 # Prevent the annoying newline annoyances after a resize
 shopt -s checkwinsize
+
+# Set dir colors
+if [ -f ~/.config/dir_colors ]; then
+    eval `dircolors ~/.config/dir_colors`
+fi
 
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
 PATH="$PATH:/home/tlater/bin"
