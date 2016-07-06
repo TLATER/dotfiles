@@ -48,6 +48,7 @@
 (load-file "~/.emacs.d/conf/screensaver.el")
 (load-file "~/.emacs.d/conf/server.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
+(load-file "~/.emacs.d/conf/stylus-mode.el")
 (load-file "~/.emacs.d/conf/text-aid-too-mode.el")
 (load-file "~/.emacs.d/conf/themes.el")
 (load-file "~/.emacs.d/conf/web-mode.el")
