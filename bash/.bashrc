@@ -37,7 +37,6 @@ alias pbpaste='xsel --clipboard'
 export RTV_EDITOR='emacsclient'
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
-export ALTERNATE_EDITOR='emacs -nw'
 
 # Prevent the annoying newline annoyances after a resize
 shopt -s checkwinsize
