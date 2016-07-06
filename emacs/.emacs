@@ -15,7 +15,7 @@
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.org/packages/")))
-(setq package-load-list '((ein nil) (ein-mumamo nil) all))
+(setq package-load-list '(all))
 (package-initialize)
 
 ;; Allow use-package to install packages if not present
@@ -44,9 +44,11 @@
 (load-file "~/.emacs.d/conf/misc.el")
 (load-file "~/.emacs.d/conf/modeline-info.el")
 (load-file "~/.emacs.d/conf/org.el")
+(load-file "~/.emacs.d/conf/php-mode.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
 (load-file "~/.emacs.d/conf/server.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
 (load-file "~/.emacs.d/conf/text-aid-too-mode.el")
 (load-file "~/.emacs.d/conf/themes.el")
+(load-file "~/.emacs.d/conf/web-mode.el")
 (load-file "~/.emacs.d/conf/whitespace.el")
