@@ -1,0 +1,10 @@
+[Unit]
+Description=Mail sync server
+Documentation=man:mbsync
+
+[Service]
+Type=oneshot
+Environment=NOTMUCH_CONFIG=%h/.config/notmuch/notmuch-config
+ExecStartPre=%h/bin/maildir-notmuch-sync %h/Documents/mail
+ExecStart=/usr/bin/mbsync -Vac %h/.config/mbsync/mbsyncrc
+ExecStartPost=/usr/bin/notmuch new

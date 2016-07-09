@@ -29,7 +29,6 @@
 # Aliases
 alias ls='ls --color=auto'
 alias emacs='emacsclient -a ""'
-alias tmux='tmux -f ~/.config/tmux/tmux.conf'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
 
@@ -37,6 +36,7 @@ alias pbpaste='xsel --clipboard'
 export RTV_EDITOR='emacsclient'
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
+export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuch-config"
 
 # Prevent the annoying newline annoyances after a resize
 shopt -s checkwinsize
