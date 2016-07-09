@@ -48,3 +48,8 @@ fi
 
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
 PATH="$PATH:/home/tlater/bin"
+
+# Start screen
+if [ -z "$STY" ] && [ "$TERM" != "linux" ]; then
+    exec screen -AxRR
+fi
