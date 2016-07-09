@@ -15,7 +15,7 @@ Inbox ~/Documents/mail/tlater.net/Inbox
 Channel tlater.net
 Master :tlater.net-remote:
 Slave :tlater.net-local:
-Patterns *
+Patterns INBOX *
 Create Both
 SyncState *
 
@@ -58,6 +58,6 @@ Inbox ~/Documents/mail/kiara.at/Inbox
 Channel kiara.at
 Master :kiara.at-remote:
 Slave :kiara.at-local:
-Patterns *
+Patterns INBOX *
 Create Both
 SyncState *
