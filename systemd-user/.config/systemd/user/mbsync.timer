@@ -1,0 +1,9 @@
+[Unit]
+Description=Mail sync timer
+
+[Timer]
+OnCalendar=*-*-* 00/1:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

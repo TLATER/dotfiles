@@ -42,6 +42,7 @@
 (load-file "~/.emacs.d/conf/magit.el")
 (load-file "~/.emacs.d/conf/misc.el")
 (load-file "~/.emacs.d/conf/modeline-info.el")
+(load-file "~/.emacs.d/conf/notmuch.el")
 (load-file "~/.emacs.d/conf/org.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
