@@ -48,6 +48,7 @@
 (load-file "~/.emacs.d/conf/org.el")
 (load-file "~/.emacs.d/conf/php-mode.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
+(load-file "~/.eamcs.d/conf/sendmail.el")
 (load-file "~/.emacs.d/conf/server.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
 (load-file "~/.emacs.d/conf/stylus-mode.el")
