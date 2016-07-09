@@ -28,4 +28,6 @@
           ("*Compile-log*")
           ("*bsh*")
           ("*Messages*")
-          ("*compilation*"))))
+          ("*compilation*")))
+  :bind
+  ("C-c w r" . ecb-redraw-layout))

@@ -1,3 +1,9 @@
+;; ------------------------------------------------------------
+;; volume.el
+;;
+;; EXWM volume functions
+;; ------------------------------------------------------------
+
 (defvar volume-level "The current volume level in %")
 (defvar volume-mute-state "The current mute state")
 
