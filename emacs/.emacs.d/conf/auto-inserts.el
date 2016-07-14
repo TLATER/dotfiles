@@ -35,13 +35,11 @@
        "Short description: "
        "<?php" \n
        "/**" \n
-       > " * " (file-name-nondirectory (buffer-file-name)) \n
-       > " *" \n
        > " * " str \n
        > " *" \n
+       > " * @package " \n
        > " * @author "
        (insert user-full-name) " <" (insert user-mail-address) ">" \n
-       > " * @package " \n
        > " */" \n \n
        > _ \n
        "?>")))

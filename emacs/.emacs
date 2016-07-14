@@ -4,7 +4,16 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(org-agenda-files nil))
+ '(org-agenda-files nil)
+ '(notmuch-saved-searches
+   (quote
+    ((:name "inbox" :query "tag:inbox" :key "i")
+     (:name "unread" :query "tag:unread" :key "u")
+     (:name "flagged" :query "tag:flagged" :key "f")
+     (:name "sent" :query "tag:sent" :key "t")
+     (:name "drafts" :query "tag:draft" :key "d")
+     (:name "all mail" :query "*" :key "a")
+     (:name "bandcamp" :query "tag:bandcamp")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,7 +57,7 @@
 (load-file "~/.emacs.d/conf/org.el")
 (load-file "~/.emacs.d/conf/php-mode.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
-(load-file "~/.eamcs.d/conf/sendmail.el")
+(load-file "~/.emacs.d/conf/sendmail.el")
 (load-file "~/.emacs.d/conf/server.el")
 (load-file "~/.emacs.d/conf/smart-mode-line.el")
 (load-file "~/.emacs.d/conf/stylus-mode.el")
