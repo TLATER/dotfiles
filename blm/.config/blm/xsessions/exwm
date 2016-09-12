@@ -15,10 +15,10 @@ eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
 # Disable dpms auto off
-xset -display $DISPLAY dpms 0 0 0
-xset -display $DISPLAY s 0 0
+xset -display "$DISPLAY" dpms 0 0 0
+xset -display "$DISPLAY" s 0 0
 
-systemctl --user start unclutter@$DISPLAY
+systemctl --user start unclutter@"$DISPLAY"
 
 export WM=exwm
 export EDITOR=emacsclient
@@ -28,5 +28,7 @@ xsetroot -cursor_name left_ptr
 
 systemctl --user start synergyc@haruna.service
 xsetroot -cursor_name left_ptr
+
+compton -CGb
 
 exec emacs --wm
