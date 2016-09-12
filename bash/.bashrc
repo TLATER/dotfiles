@@ -31,6 +31,7 @@ alias ls='ls --color=auto'
 alias emacs='emacsclient -a ""'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
+alias winetricks='winetricks -q'
 
 # Environment variables
 export RTV_EDITOR='emacsclient'
