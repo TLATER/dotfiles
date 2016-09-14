@@ -189,6 +189,13 @@
 <keyboard>
   <chainQuitKey>C-g</chainQuitKey>
 
+  <!-- Generic keybindings -->
+  <keybind key="W-s">
+    <action name="Execute">
+      <execute>pass-rofi</execute>
+    </action>
+  </keybind>
+
   <!-- Keybindings for desktop switching -->
   <keybind key="C-A-Left">
     <action name="GoToDesktop"><to>left</to><wrap>no</wrap></action>
