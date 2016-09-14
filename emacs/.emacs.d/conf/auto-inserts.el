@@ -44,4 +44,47 @@
        > _ \n
        "?>")))
 
+(eval-after-load 'autoinsert
+  '(define-auto-insert '("\\.scss\\'" . "SCSS skeleton")
+     '(
+       "Short description: "
+       "////" \n
+       "/// " (file-name-nondirectory (buffer-file-name)) \n
+       "/// " str \n
+       "///" \n
+       "/// Copyright (C) " (insert (shell-command-to-string
+                                     "echo -n $(date +%Y)"))
+       " " (insert user-full-name) \n
+       "///" \n
+       "/// @author "
+       (insert user-full-name) " <" (insert user-mail-address) ">" \n
+       "////" \n
+       \n
+       > _ \n)))
+
+(eval-after-load 'autoinsert
+  '(define-auto-insert '("\\.js\\'" . "JavaScript skeleton")
+     '(
+       "Short description: "
+       "/**" \n
+       " * @file" \n
+       " * " str \n
+       " * @author "
+       (insert user-full-name) " <" (insert user-mail-address) ">" \n
+       " */" \n
+       \n
+       > _ \n)))
+
+(eval-after-load 'autoinsert
+  '(define-auto-insert '("\\.service\\'" . "Systemd service skeleton")
+     '(
+       "Unit description: "
+       "[Unit]" \n
+       "Description=" str \n \n
+       "[Service]" \n
+       "ExecStart=" _ \n
+       "ExecStop=" \n \n
+       "[Install]" \n
+       "WantedBy=multi-user.target" \n)))
+
 ;;; auto-inserts.el ends here
