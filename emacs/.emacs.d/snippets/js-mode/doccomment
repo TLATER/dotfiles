@@ -1,0 +1,10 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: doccomment
+# key: /**
+# binding: direct-keybinding
+# --
+/**
+ * ${1:description}${2:
+ *
+ * @$0}
+ */
