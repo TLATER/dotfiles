@@ -1,5 +1,15 @@
+;; necessary since there is no before workspace switch hook
+(defun exwm-workspace-switch-hack (workspace)
+  "Transparency reset hack function."
+  (let (previous-frame (selected-frame))
+    (exwm-workspace-switch workspace)
+    (set-frame-parameter (previous-frame) 'alpha `(,exwm-background-transparency 0))))
+
 ;; Back to line-mode
 (exwm-input-set-key (kbd "s-r") 'exwm-reset)
+
+;; Workspace transparency
+(exwm-input-set-key (kbd "s-t") 'exwm-toggle-frame-transparency)
 
 ;; Workspace keybindings
 (exwm-input-set-key (kbd "s-1")
@@ -53,6 +63,9 @@
 (exwm-input-set-key (kbd "s-<return>") (lambda ()
                                          (interactive)
                                          (launch-application "xterm")))
+(exwm-input-set-key (kbd "s-s") (lambda ()
+                                  (interactive)
+                                  (launch-application "pass-rofi")))
 
 ;; Window switching
 (exwm-input-set-key (kbd "s-i") 'windmove-up)
