@@ -5,6 +5,6 @@ Documentation=man:mbsync
 [Service]
 Type=oneshot
 Environment=NOTMUCH_CONFIG=%h/.config/notmuch/notmuch-config
-ExecStartPre=%h/bin/notmuch-directory-sync
+ExecStartPre=$HOME/bin/notmuch-directory-sync
 ExecStart=/usr/bin/mbsync -Vac %h/.config/mbsync/mbsyncrc
 ExecStartPost=/usr/bin/notmuch new
