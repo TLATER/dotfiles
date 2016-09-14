@@ -1,0 +1,6 @@
+# -*- mode: snippet; require-final-newline: nil -*-
+# name: doccomment tag
+# key: @
+# binding: direct-keybinding
+# --
+@${1:tag}${2: {${3:type}}}${4: ${5:name}}${6: - ${7:description}}

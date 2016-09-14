@@ -4,7 +4,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ecb-options-version "2.40")
- '(org-agenda-files nil)
  '(notmuch-saved-searches
    (quote
     ((:name "inbox" :query "tag:inbox" :key "i")
@@ -13,7 +12,12 @@
      (:name "sent" :query "tag:sent" :key "t")
      (:name "drafts" :query "tag:draft" :key "d")
      (:name "all mail" :query "*" :key "a")
-     (:name "bandcamp" :query "tag:bandcamp")))))
+     (:name "bandcamp" :query "tag:bandcamp")
+     (:name "umri-dh-cs" :query "tag:umri-dh-cs")
+     (:name "tristan@kiara.at" :query "to:tristan@kiara.at")
+     (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
+     (:name "tm@tlater.net" :query "to:tm@tlater.net"))))
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -50,11 +54,13 @@
 (load-file "~/.emacs.d/conf/flycheck.el")
 (load-file "~/.emacs.d/conf/keybindings.el")
 (load-file "~/.emacs.d/conf/linum-mode.el")
+(load-file "~/.emacs.d/conf/js-mode.el")
 (load-file "~/.emacs.d/conf/magit.el")
 (load-file "~/.emacs.d/conf/misc.el")
 (load-file "~/.emacs.d/conf/modeline-info.el")
 (load-file "~/.emacs.d/conf/notmuch.el")
 (load-file "~/.emacs.d/conf/org.el")
+(load-file "~/.emacs.d/conf/org-gcal.el")
 (load-file "~/.emacs.d/conf/php-mode.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
 (load-file "~/.emacs.d/conf/sendmail.el")
@@ -66,3 +72,4 @@
 (load-file "~/.emacs.d/conf/battery-mode.el")
 (load-file "~/.emacs.d/conf/web-mode.el")
 (load-file "~/.emacs.d/conf/whitespace.el")
+(load-file "~/.emacs.d/conf/yasnippet.el")
