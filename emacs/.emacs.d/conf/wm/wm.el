@@ -27,9 +27,9 @@
   (load-file "~/.emacs.d/conf/wm/volume.el")
   (load-file "~/.emacs.d/conf/wm/brightness.el")
   (load-file "~/.emacs.d/conf/wm/keybindings.el")
+  (load-file "~/.emacs.d/conf/wm/transparency.el")
 
   ;; Enable the systemtray
   (require 'exwm-systemtray)
   (exwm-systemtray-enable)
-
   (exwm-enable))
