@@ -12,4 +12,16 @@
   (setq-local comment-multi-line t)
   (local-set-key [remap indent-new-comment-line] 'c-indent-new-comment-line))
 
+
+(use-package js2-mode
+  :init
+  (setq js2-basic-offset 4)
+  (setq-default js2-additional-externs
+                '("$"
+                  "define"
+                  "require"))
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
+
 ;;; js-mode.el ends here
