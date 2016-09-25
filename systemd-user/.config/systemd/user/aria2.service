@@ -1,0 +1,8 @@
+[Unit]
+Description=Aria2 download daemon
+
+[Service]
+ExecStart=/usr/bin/aria2c
+
+[Install]
+WantedBy=multi-user.target
