@@ -32,13 +32,14 @@ alias emacs='emacsclient -a ""'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
 alias winetricks='winetricks -q'
+alias cleandocker='sudo docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}")'
 
 # Environment variables
 export RTV_EDITOR='emacsclient'
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs -nw'
-export NOTMUCH_CONFIG="$HOME/.config/notmuch/notmuch-config"
+export DIANA_SECRET_TOKEN='nYtCKPA4h37CZrQnTUqbnMKEdrftKmWj'
 
 # Prevent the annoying newline annoyances after a resize
 shopt -s checkwinsize
