@@ -58,42 +58,53 @@
 ;; Allow use-package to install packages if not present
 (setq use-package-always-ensure t)
 
+;; Graceful file loader - http://emacs.stackexchange.com/a/17818
+(defun load-file-softly (filename)
+  "As `load-file', but instead of an error just print a message.
+
+If there is an error, its message will be included in the message
+printed."
+  (condition-case err
+      (load-file filename)
+    (error (message "Error loading %s: \"%s\""
+                    (if filename (format "%s" filename))
+                    (error-message-string err))
+           nil)))
+
 ;; Check if we need to load exwm
 (setq load-exwm-switch (member "--wm" command-line-args))
 (setq command-line-args (delete "--wm" command-line-args))
 
 (if load-exwm-switch
-    (load-file "~/.emacs.d/conf/wm/wm.el"))
+    (load-file-softly "~/.emacs.d/conf/wm/wm.el"))
 
 ;; Load custom functions
-(load-file "~/.emacs.d/conf/unindent-region.el")
-(load-file "~/.emacs.d/conf/eval-and-replace.el")
+(load-file-softly "~/.emacs.d/conf/unindent-region.el")
+(load-file-softly "~/.emacs.d/conf/eval-and-replace.el")
 
 ;; Load the sub-configurations
-(load-file "~/.emacs.d/conf/auto-complete.el")
-(load-file "~/.emacs.d/conf/auto-inserts.el")
-(load-file "~/.emacs.d/conf/coding-standards.el")
-(load-file "~/.emacs.d/conf/ecb.el")
-(load-file "~/.emacs.d/conf/flycheck.el")
-(load-file "~/.emacs.d/conf/keybindings.el")
-(load-file "~/.emacs.d/conf/linum-mode.el")
-(load-file "~/.emacs.d/conf/js-mode.el")
-(load-file "~/.emacs.d/conf/magit.el")
-(load-file "~/.emacs.d/conf/misc.el")
-(load-file "~/.emacs.d/conf/modeline-info.el")
-(load-file "~/.emacs.d/conf/notmuch.el")
-(load-file "~/.emacs.d/conf/org.el")
-(load-file "~/.emacs.d/conf/org-gcal.el")
-;; (load-file "~/.emacs.d/conf/php-mode.el")
-(load-file "~/.emacs.d/conf/screensaver.el")
-(load-file "~/.emacs.d/conf/sendmail.el")
-(load-file "~/.emacs.d/conf/server.el")
-(load-file "~/.emacs.d/conf/smart-mode-line.el")
-(load-file "~/.emacs.d/conf/stylus-mode.el")
-(load-file "~/.emacs.d/conf/text-aid-too-mode.el")
-(load-file "~/.emacs.d/conf/themes.el")
-(load-file "~/.emacs.d/conf/web-mode.el")
-(load-file "~/.emacs.d/conf/whitespace.el")
-(load-file "~/.emacs.d/conf/yasnippet.el")
-
-(add-to-list 'load-path "~/.emacs.d/contrib")
+(load-file-softly "~/.emacs.d/conf/auto-complete.el")
+(load-file-softly "~/.emacs.d/conf/auto-inserts.el")
+(load-file-softly "~/.emacs.d/conf/coding-standards.el")
+(load-file-softly "~/.emacs.d/conf/ecb.el")
+(load-file-softly "~/.emacs.d/conf/flycheck.el")
+(load-file-softly "~/.emacs.d/conf/keybindings.el")
+(load-file-softly "~/.emacs.d/conf/linum-mode.el")
+(load-file-softly "~/.emacs.d/conf/js-mode.el")
+(load-file-softly "~/.emacs.d/conf/magit.el")
+(load-file-softly "~/.emacs.d/conf/misc.el")
+(load-file-softly "~/.emacs.d/conf/modeline-info.el")
+(load-file-softly "~/.emacs.d/conf/notmuch.el")
+(load-file-softly "~/.emacs.d/conf/org.el")
+(load-file-softly "~/.emacs.d/conf/org-gcal.el")
+;; (load-file-softly "~/.emacs.d/conf/php-mode.el")
+(load-file-softly "~/.emacs.d/conf/screensaver.el")
+(load-file-softly "~/.emacs.d/conf/sendmail.el")
+(load-file-softly "~/.emacs.d/conf/server.el")
+(load-file-softly "~/.emacs.d/conf/smart-mode-line.el")
+(load-file-softly "~/.emacs.d/conf/stylus-mode.el")
+(load-file-softly "~/.emacs.d/conf/text-aid-too-mode.el")
+(load-file-softly "~/.emacs.d/conf/themes.el")
+(load-file-softly "~/.emacs.d/conf/web-mode.el")
+(load-file-softly "~/.emacs.d/conf/whitespace.el")
+(load-file-softly "~/.emacs.d/conf/yasnippet.el")
