@@ -59,16 +59,29 @@
 ;; Allow use-package to install packages if not present
 (setq use-package-always-ensure t)
 
+;; Graceful file loader - http://emacs.stackexchange.com/a/17818
+(defun load-file-softly (filename)
+  "As `load-file', but instead of an error just print a message.
+
+If there is an error, its message will be included in the message
+printed."
+  (condition-case err
+      (load-file filename)
+    (error (message "Error loading %s: \"%s\""
+                    (if filename (format "%s" filename))
+                    (error-message-string err))
+           nil)))
+
 ;; Check if we need to load exwm
 (setq load-exwm-switch (member "--wm" command-line-args))
 (setq command-line-args (delete "--wm" command-line-args))
 
 (if load-exwm-switch
-    (load-file "~/.emacs.d/conf/wm/wm.el"))
+    (load-file-softly "~/.emacs.d/conf/wm/wm.el"))
 
 ;; Load custom functions
-(load-file "~/.emacs.d/conf/unindent-region.el")
-(load-file "~/.emacs.d/conf/eval-and-replace.el")
+(load-file-softly "~/.emacs.d/conf/unindent-region.el")
+(load-file-softly "~/.emacs.d/conf/eval-and-replace.el")
 
 ;; Load the sub-configurations
 (load-file-softly "~/.emacs.d/conf/auto-complete.el")
