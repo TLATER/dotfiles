@@ -17,6 +17,8 @@
      (:name "tristan@kiara.at" :query "to:tristan@kiara.at")
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
      (:name "tm@tlater.net" :query "to:tm@tlater.net"))))
+     (:name "music_ai" :query "tag:music_ai"))))
+>>>>>>> 23f236d... Add projectile mode and allow setting c++ standard
  '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
  '(org-latex-default-packages-alist
    (quote
@@ -36,8 +38,11 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (yaml-mode projectile brainfuck-mode bfbuilder yasnippet websocket web-mode use-package systemd stylus-mode smart-mode-line scss-mode sass-mode requirejs rcirc-notify rainbow-mode org-gcal openwith notmuch nhexl-mode markdown-mode magit lua-mode json-mode jedi jdee jade-mode imenu-list glsl-mode folding flymake-jslint flycheck exwm emacs-eclim edit-server ecb dockerfile-mode csv-mode arduino-mode android-mode ac-php ac-js2))))
-
+    (projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-gcc-include-path . "ex1/include")
+     (flycheck-gcc-language-standard . c++11)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -67,31 +72,29 @@
 (load-file "~/.emacs.d/conf/eval-and-replace.el")
 
 ;; Load the sub-configurations
-(load-file "~/.emacs.d/conf/auto-complete.el")
-(load-file "~/.emacs.d/conf/auto-inserts.el")
-(load-file "~/.emacs.d/conf/coding-standards.el")
-(load-file "~/.emacs.d/conf/ecb.el")
-(load-file "~/.emacs.d/conf/flycheck.el")
-(load-file "~/.emacs.d/conf/keybindings.el")
-(load-file "~/.emacs.d/conf/linum-mode.el")
-(load-file "~/.emacs.d/conf/js-mode.el")
-(load-file "~/.emacs.d/conf/magit.el")
-(load-file "~/.emacs.d/conf/misc.el")
-(load-file "~/.emacs.d/conf/modeline-info.el")
-(load-file "~/.emacs.d/conf/notmuch.el")
-(load-file "~/.emacs.d/conf/org.el")
-(load-file "~/.emacs.d/conf/org-gcal.el")
-(load-file "~/.emacs.d/conf/php-mode.el")
-(load-file "~/.emacs.d/conf/screensaver.el")
-(load-file "~/.emacs.d/conf/sendmail.el")
-(load-file "~/.emacs.d/conf/server.el")
-(load-file "~/.emacs.d/conf/smart-mode-line.el")
-(load-file "~/.emacs.d/conf/stylus-mode.el")
-(load-file "~/.emacs.d/conf/text-aid-too-mode.el")
-(load-file "~/.emacs.d/conf/themes.el")
-(load-file "~/.emacs.d/conf/battery-mode.el")
-(load-file "~/.emacs.d/conf/web-mode.el")
-(load-file "~/.emacs.d/conf/whitespace.el")
-(load-file "~/.emacs.d/conf/yasnippet.el")
-
-(load-file "~/.emacs.d/conf/c-mode.el")
+(load-file-softly "~/.emacs.d/conf/auto-complete.el")
+(load-file-softly "~/.emacs.d/conf/auto-inserts.el")
+(load-file-softly "~/.emacs.d/conf/coding-standards.el")
+(load-file-softly "~/.emacs.d/conf/ecb.el")
+(load-file-softly "~/.emacs.d/conf/flycheck.el")
+(load-file-softly "~/.emacs.d/conf/keybindings.el")
+(load-file-softly "~/.emacs.d/conf/linum-mode.el")
+(load-file-softly "~/.emacs.d/conf/js-mode.el")
+(load-file-softly "~/.emacs.d/conf/magit.el")
+(load-file-softly "~/.emacs.d/conf/misc.el")
+(load-file-softly "~/.emacs.d/conf/modeline-info.el")
+(load-file-softly "~/.emacs.d/conf/notmuch.el")
+(load-file-softly "~/.emacs.d/conf/org.el")
+(load-file-softly "~/.emacs.d/conf/org-gcal.el")
+;; (load-file-softly "~/.emacs.d/conf/php-mode.el")
+(load-file-softly "~/.emacs.d/conf/projectile.el")
+(load-file-softly "~/.emacs.d/conf/screensaver.el")
+(load-file-softly "~/.emacs.d/conf/sendmail.el")
+(load-file-softly "~/.emacs.d/conf/server.el")
+(load-file-softly "~/.emacs.d/conf/smart-mode-line.el")
+(load-file-softly "~/.emacs.d/conf/stylus-mode.el")
+(load-file-softly "~/.emacs.d/conf/text-aid-too-mode.el")
+(load-file-softly "~/.emacs.d/conf/themes.el")
+(load-file-softly "~/.emacs.d/conf/web-mode.el")
+(load-file-softly "~/.emacs.d/conf/whitespace.el")
+(load-file-softly "~/.emacs.d/conf/yasnippet.el")
