@@ -9,9 +9,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
 fi
 
 # Merge user Xresources
-[[ -f ~/.Xresources ]] && xrdb -display $DISPLAY -merge ~/.Xresources
+[[ -f ~/.Xresources ]] && xrdb -display "$DISPLAY" -merge ~/.Xresources
 
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+eval "$(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
 export SSH_AUTH_SOCK
 
 # Disable dpms auto off
@@ -30,5 +30,6 @@ systemctl --user start synergyc@haruna.service
 xsetroot -cursor_name left_ptr
 
 compton -CGb
+#dunst &
 
 exec emacs --wm
