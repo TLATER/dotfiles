@@ -11,13 +11,36 @@
      (:name "flagged" :query "tag:flagged" :key "f")
      (:name "sent" :query "tag:sent" :key "t")
      (:name "drafts" :query "tag:draft" :key "d")
-     (:name "all mail" :query "*" :key "a")
-     (:name "bandcamp" :query "tag:bandcamp")
+     (:name "tristan@kiara.at" :query "to:tristan@kiara.at and tag:inbox")
+     (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com and tag:inbox")
+     (:name "tm@tlater.net" :query "(to:tristan.maat@student.manchester.ac.uk OR to:tm@tlater.net) AND tag:inbox")
      (:name "umri-dh-cs" :query "tag:umri-dh-cs")
-     (:name "tristan@kiara.at" :query "to:tristan@kiara.at")
-     (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
-     (:name "tm@tlater.net" :query "to:tm@tlater.net"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t))
+     (:name "music_ai" :query "tag:music_ai"))))
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")))
+ '(org-latex-default-packages-alist
+   (quote
+    (("AUTO" "inputenc" t)
+     ("T1" "fontenc" t)
+     ("" "fixltx2e" nil)
+     ("" "graphicx" t)
+     ("" "grffile" t)
+     ("" "longtable" nil)
+     ("" "wrapfig" nil)
+     ("" "rotating" nil)
+     ("normalem" "ulem" t)
+     ("" "amsmath" t)
+     ("" "textcomp" t)
+     ("" "amssymb" t)
+     ("" "capt-of" nil)
+     ("dvipsnames" "xcolor" nil)
+     ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
+ '(package-selected-packages
+   (quote
+    (systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-gcc-include-path . "ex1/include")
+     (flycheck-gcc-language-standard . c++11)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -61,7 +84,7 @@
 (load-file "~/.emacs.d/conf/notmuch.el")
 (load-file "~/.emacs.d/conf/org.el")
 (load-file "~/.emacs.d/conf/org-gcal.el")
-(load-file "~/.emacs.d/conf/php-mode.el")
+;; (load-file "~/.emacs.d/conf/php-mode.el")
 (load-file "~/.emacs.d/conf/screensaver.el")
 (load-file "~/.emacs.d/conf/sendmail.el")
 (load-file "~/.emacs.d/conf/server.el")
@@ -72,3 +95,5 @@
 (load-file "~/.emacs.d/conf/web-mode.el")
 (load-file "~/.emacs.d/conf/whitespace.el")
 (load-file "~/.emacs.d/conf/yasnippet.el")
+
+(add-to-list 'load-path "~/.emacs.d/contrib")

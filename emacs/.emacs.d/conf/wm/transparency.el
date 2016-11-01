@@ -1,4 +1,4 @@
-;;; transparency.el---Transparency configuration (background image :))
+ ;;; transparency.el---Transparency configuration (background image :))
 ;;
 ;; Copyright (C) 2016 Tristan Daniel Maat
 ;; Author: Tristan Daniel Maat <tm@tlater.net>
@@ -16,8 +16,6 @@
   (if (equal '(90 0) (frame-parameter (selected-frame) 'alpha))
       (set-frame-parameter (selected-frame) 'alpha '(100 100))
     (set-frame-parameter (selected-frame) 'alpha `(,exwm-background-transparency 0))))
-
-(message "%s" (equal '(90 0) (frame-parameter (selected-frame) 'alpha)))
 
 (setq frame-alpha-lower-limit 0)
 (set-frame-parameter (selected-frame) 'alpha `(,exwm-background-transparency 0))

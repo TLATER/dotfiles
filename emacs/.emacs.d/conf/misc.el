@@ -24,3 +24,6 @@
 
 ;; Set the email address
 (setq user-mail-address "tm@tlater.net")
+
+;; Add various simple packages
+(use-package systemd)
