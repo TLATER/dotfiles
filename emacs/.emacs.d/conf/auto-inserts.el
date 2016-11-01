@@ -30,6 +30,23 @@
        ";;; " (file-name-nondirectory (buffer-file-name)) " ends here" \n)))
 
 (eval-after-load 'autoinsert
+  '(define-auto-insert '(sh-mode . "Bash skeleton")
+     '(
+       "Short description: "
+       "#!/usr/bin/env bash" \n
+       "##" \n
+       "# Copyright (C) " (insert (shell-command-to-string
+                                   "echo -n $(date +%Y)")) " "
+                                   (insert user-full-name) \n
+       "#" \n
+       "# Title:       " (file-name-nondirectory (buffer-file-name)) \n
+       "# Description: " str \n
+       "# Author:      "
+       (insert user-full-name) " <" (insert user-mail-address) ">" \n
+       "##" \n \n
+       > _ \n)))
+
+(eval-after-load 'autoinsert
   '(define-auto-insert '("\\.php\\'" . "PHP skeleton")
      '(
        "Short description: "
