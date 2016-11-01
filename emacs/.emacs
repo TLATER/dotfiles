@@ -16,7 +16,7 @@
      (:name "tm@tlater.net" :query "(to:tristan.maat@student.manchester.ac.uk OR to:tm@tlater.net) AND tag:inbox")
      (:name "umri-dh-cs" :query "tag:umri-dh-cs")
      (:name "music_ai" :query "tag:music_ai"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")))
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
  '(org-latex-default-packages-alist
    (quote
     (("AUTO" "inputenc" t)
@@ -36,7 +36,7 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+    (projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-include-path . "ex1/include")
@@ -98,6 +98,7 @@ printed."
 (load-file-softly "~/.emacs.d/conf/org.el")
 (load-file-softly "~/.emacs.d/conf/org-gcal.el")
 ;; (load-file-softly "~/.emacs.d/conf/php-mode.el")
+(load-file-softly "~/.emacs.d/conf/projectile.el")
 (load-file-softly "~/.emacs.d/conf/screensaver.el")
 (load-file-softly "~/.emacs.d/conf/sendmail.el")
 (load-file-softly "~/.emacs.d/conf/server.el")
