@@ -40,6 +40,8 @@ export VISUAL='emacsclient'
 export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs -nw'
 export DIANA_SECRET_TOKEN='nYtCKPA4h37CZrQnTUqbnMKEdrftKmWj'
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
+export CPLUS_INCLUDE_PATH="$HOME/.local/include:CPLUS_INCLUDE_PATH"
 
 # Prevent the annoying newline annoyances after a resize
 shopt -s checkwinsize
