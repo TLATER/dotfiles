@@ -17,7 +17,27 @@
      (:name "tristan@kiara.at" :query "to:tristan@kiara.at")
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
      (:name "tm@tlater.net" :query "to:tm@tlater.net"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t))
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
+ '(org-latex-default-packages-alist
+   (quote
+    (("AUTO" "inputenc" t)
+     ("T1" "fontenc" t)
+     ("" "fixltx2e" nil)
+     ("" "graphicx" t)
+     ("" "grffile" t)
+     ("" "longtable" nil)
+     ("" "wrapfig" nil)
+     ("" "rotating" nil)
+     ("normalem" "ulem" t)
+     ("" "amsmath" t)
+     ("" "textcomp" t)
+     ("" "amssymb" t)
+     ("" "capt-of" nil)
+     ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
+ '(package-selected-packages
+   (quote
+    (yaml-mode projectile brainfuck-mode bfbuilder yasnippet websocket web-mode use-package systemd stylus-mode smart-mode-line scss-mode sass-mode requirejs rcirc-notify rainbow-mode org-gcal openwith notmuch nhexl-mode markdown-mode magit lua-mode json-mode jedi jdee jade-mode imenu-list glsl-mode folding flymake-jslint flycheck exwm emacs-eclim edit-server ecb dockerfile-mode csv-mode arduino-mode android-mode ac-php ac-js2))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -73,3 +93,5 @@
 (load-file "~/.emacs.d/conf/web-mode.el")
 (load-file "~/.emacs.d/conf/whitespace.el")
 (load-file "~/.emacs.d/conf/yasnippet.el")
+
+(load-file "~/.emacs.d/conf/c-mode.el")
