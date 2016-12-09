@@ -16,9 +16,8 @@
      (:name "umri-dh-cs" :query "tag:umri-dh-cs")
      (:name "tristan@kiara.at" :query "to:tristan@kiara.at")
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
-     (:name "tm@tlater.net" :query "to:tm@tlater.net"))))
+     (:name "tm@tlater.net" :query "to:tm@tlater.net")
      (:name "music_ai" :query "tag:music_ai"))))
->>>>>>> 23f236d... Add projectile mode and allow setting c++ standard
  '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
  '(org-latex-default-packages-alist
    (quote
