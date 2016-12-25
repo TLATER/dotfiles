@@ -18,7 +18,7 @@
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
      (:name "tm@tlater.net" :query "to:tm@tlater.net")
      (:name "music_ai" :query "tag:music_ai"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")))
  '(org-latex-default-packages-alist
    (quote
     (("AUTO" "inputenc" t)
@@ -37,7 +37,7 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+    (yasnippet projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
  '(safe-local-variable-values
    (quote
     ((flycheck-gcc-include-path . "ex1/include")
@@ -85,6 +85,7 @@ printed."
 
 ;; Load the sub-configurations
 (load-file-softly "~/.emacs.d/conf/auto-complete.el")
+(load-file-softly "~/.emacs.d/conf/battery-mode.el")
 (load-file-softly "~/.emacs.d/conf/auto-inserts.el")
 (load-file-softly "~/.emacs.d/conf/coding-standards.el")
 (load-file-softly "~/.emacs.d/conf/ecb.el")
