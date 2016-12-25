@@ -3,6 +3,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(battery-mode-line-format " %b%p%% ")
+ '(display-battery-mode t)
  '(ecb-options-version "2.40")
  '(notmuch-saved-searches
    (quote
@@ -18,7 +20,7 @@
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
      (:name "tm@tlater.net" :query "to:tm@tlater.net")
      (:name "music_ai" :query "tag:music_ai"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")))
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
  '(org-latex-default-packages-alist
    (quote
     (("AUTO" "inputenc" t)

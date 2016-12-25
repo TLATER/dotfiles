@@ -8,5 +8,5 @@
   :init
   (setq battery-status-function (quote battery-linux-sysfs))
   :config
-  (display-battery-mode t)
-  (setq battery-mode-line-format " %b%p%%"))
+  (setq-default battery-mode-line-format " %b%p%% ")
+  (display-battery-mode t))
