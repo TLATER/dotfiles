@@ -33,6 +33,7 @@ alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
 alias winetricks='winetricks -q'
 alias cleandocker='sudo docker rmi -f $(sudo docker images | grep "<none>" | awk "{print \$3}")'
+alias yaourt='yaourt --noconfirm'
 
 # Environment variables
 export RTV_EDITOR='emacsclient'
