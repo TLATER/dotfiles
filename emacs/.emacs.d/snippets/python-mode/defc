@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: def classmethod
+# key: @classmethod
+# binding: direct-keybinding
+# --
+@classmethod
+def ${1:name}(cls${3:, arg}):
+    $0
