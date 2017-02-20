@@ -7,7 +7,7 @@ FLAGS =
 _OBJ = youtube_main.css youtube_subscriptions.css youtube_playerpage.css\
        youtube_player.css youtube_comments.css youtube_home.css\
        youtube_history.css youtube_channel.css youtube_userchannel.css\
-       youtube_playlists.css
+       youtube_playlists.css youtube_center.css
 OBJ = $(addprefix $(ODIR)/,$(_OBJ))
 
 $(ODIR)/%.css: src/%.styl
