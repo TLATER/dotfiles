@@ -48,7 +48,7 @@ export CPLUS_INCLUDE_PATH="$HOME/.local/include:CPLUS_INCLUDE_PATH"
 shopt -s checkwinsize
 
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
-PATH="$PATH:/home/tlater/bin"
+PATH="$PATH:/home/tlater/bin:/home/tlater/.local/bin"
 
 # Set dir colors
 if [ -f ~/.config/dir_colors ]; then
