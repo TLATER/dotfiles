@@ -21,6 +21,7 @@
                   "require"))
   :config
   (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+  (define-key js2-mode-map (kbd "\C-c T") 'mocha-test-project)
   (define-key js2-mode-map (kbd "\C-c \C-r j") 'js-doc-insert-function-doc-snippet)
   (define-key js2-mode-map (kbd "\C-c \C-r f") 'js-doc-insert-file-doc)
   (define-key js2-mode-map (kbd "@") 'js-doc-insert-tag))
@@ -37,5 +38,12 @@
         js-doc-author (format "%s <%s>" user-full-name "tm@tlater.net")
         js-doc-url "tlater.net"
         js-doc-license "UNLICENSED"))
+
+(use-package mocha)
+(use-package mocha-snippets
+  :init
+  (setq mocha-snippets-string-delimiter "\"")
+  (setq mocha-snippets-use-fat-arrows t)
+  (setq mocha-snippets-add-space-after-function-keyword t))
 
 ;;; js-mode.el ends here
