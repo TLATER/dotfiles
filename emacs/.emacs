@@ -5,7 +5,7 @@
  ;; If there is more than one, they won't work right.
  '(battery-mode-line-format " %b%p%% ")
  '(display-battery-mode t)
- '(ecb-options-version "2.40")
+ '(ecb-options-version "2.50")
  '(notmuch-saved-searches
    (quote
     ((:name "inbox" :query "tag:inbox" :key "i")
@@ -39,10 +39,43 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (yasnippet projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+    (aggressive-indent yaml-mode yasnippet projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
  '(safe-local-variable-values
    (quote
-    ((flycheck-gcc-include-path . "ex1/include")
+    ((eval progn
+           (require
+            (quote projectile))
+           (setq projectile-project-run-cmd
+                 (concat "cd "
+                         (projectile-project-root)
+                         "/ex1; ./test.sh"))
+           (setq projectile-project-run-cmd
+                 (concat "cd "
+                         (projectile-project-root)
+                         "/ex1; sudo intel_gpu_time ./test.sh"))
+           (setq projectile-project-compilation-cmd
+                 (concat "LD_LIBRARY_PATH=\"$HOME/.local/lib:$LD_LIBRARY_PATH\" CPLUS_INCLUDE_PATH=\"$HOME/.local/include:$CPLUS_INCLUDE_PATH\" make -kC "
+                         (projectile-project-root)
+                         "ex1"))
+           (setq compile-command
+                 (concat "LD_LIBRARY_PATH=\"$HOME/.local/lib:$LD_LIBRARY_PATH\" CPLUS_INCLUDE_PATH=\"$HOME/.local/include:$CPLUS_INCLUDE_PATH\" make -kC "
+                         (projectile-project-root)
+                         "ex1"))
+           (setq flycheck-gcc-include-path
+                 (list
+                  (concat
+                   (projectile-project-root)
+                   "ex1/include")
+                  (concat
+                   (projectile-project-root)
+                   "lib/shader")
+                  (concat
+                   (projectile-project-root)
+                   "lib/glm")
+                  (concat
+                   (projectile-project-root)
+                   "lib/shader/include"))))
+     (flycheck-gcc-include-path . "ex1/include")
      (flycheck-gcc-language-standard . c++11)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
