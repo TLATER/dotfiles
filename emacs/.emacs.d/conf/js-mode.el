@@ -37,4 +37,5 @@
         js-doc-author (format "%s <%s>" user-full-name "tm@tlater.net")
         js-doc-url "tlater.net"
         js-doc-license "UNLICENSED"))
+
 ;;; js-mode.el ends here

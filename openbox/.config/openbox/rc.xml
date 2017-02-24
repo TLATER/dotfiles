@@ -424,7 +424,7 @@
       <action name="Move"/>
     </mousebind>
     <mousebind button="Left" action="DoubleClick">
-      <action name="ToggleMaximize"/>
+      <action name="ToggleFullscreen"/>
     </mousebind>
 
     <mousebind button="Up" action="Click">

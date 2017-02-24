@@ -1,4 +1,4 @@
- ;;; transparency.el---Transparency configuration (background image :))
+;;; transparency.el---Transparency configuration (background image :))
 ;;
 ;; Copyright (C) 2016 Tristan Daniel Maat
 ;; Author: Tristan Daniel Maat <tm@tlater.net>
