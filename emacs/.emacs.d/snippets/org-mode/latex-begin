@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: LaTeX begin
+# key: \begin
+# --
+\begin{${1:type}}
+$0
+\end{$1}
