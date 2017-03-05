@@ -27,3 +27,6 @@
 
 ;; Add various simple packages
 (use-package systemd)
+(use-package undo-tree
+  :config
+  (global-undo-tree-mode))
