@@ -3,7 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ecb-options-version "2.40")
+ '(ecb-options-version "2.50")
  '(notmuch-saved-searches
    (quote
     ((:name "inbox" :query "tag:inbox" :key "i")
@@ -36,7 +36,7 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (sass-mode pug-mode mocha-snippets mocha pycoverage pytest jedi bbdb org-mobile-sync yaml-mode projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+    (undo-tree aggressive-indent sass-mode pug-mode mocha-snippets mocha pycoverage pytest jedi bbdb org-mobile-sync yaml-mode projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
  '(safe-local-variable-values
    (quote
     ((mocha-environment-variables . "NODE_ENV=test")
