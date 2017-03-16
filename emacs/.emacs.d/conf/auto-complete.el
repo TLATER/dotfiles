@@ -9,10 +9,3 @@
   :config
   (setq-default ac-sources (push 'ac-source-yasnippet ac-sources))
   (ac-config-default))
-
-(use-package jedi
-  :init
-  (setq jedi:complete-on-dot t)
-
-  :config
-  (add-hook 'python-mode-hook 'jedi:setup))

@@ -36,7 +36,7 @@
      ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
  '(package-selected-packages
    (quote
-    (undo-tree aggressive-indent sass-mode pug-mode mocha-snippets mocha pycoverage pytest jedi bbdb org-mobile-sync yaml-mode projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
+    (pycoverage-mode undo-tree aggressive-indent sass-mode pug-mode mocha-snippets mocha pycoverage pytest jedi bbdb org-mobile-sync yaml-mode projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
  '(safe-local-variable-values
    (quote
     ((mocha-environment-variables . "NODE_ENV=test")
@@ -526,6 +526,7 @@ printed."
 (load-file-softly "~/.emacs.d/conf/org-gcal.el")
 ;; (load-file-softly "~/.emacs.d/conf/php-mode.el")
 (load-file-softly "~/.emacs.d/conf/projectile.el")
+(load-file-softly "~/.emacs.d/conf/python.el")
 (load-file-softly "~/.emacs.d/conf/screensaver.el")
 (load-file-softly "~/.emacs.d/conf/sendmail.el")
 (load-file-softly "~/.emacs.d/conf/server.el")
