@@ -18,11 +18,9 @@
   (add-hook 'python-mode-hook 'jedi:setup))
 
 (use-package pytest
-  :config
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (local-set-key "\C-t." 'pytest-one)
-              (local-set-key "\C-ta" 'pytest-all)
-              (local-set-key "\C-tm" 'pytest-module))))
+  :bind (:map python-mode-map
+              ("C-c t ." . pytest-one)
+              ("C-c t a" . pythest-all)
+              ("C-c t m" . pytest-module)))
 
 ;;; python.el ends here

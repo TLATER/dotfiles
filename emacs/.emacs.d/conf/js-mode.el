@@ -20,11 +20,7 @@
                   "define"
                   "require"))
   :config
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
-  (define-key js2-mode-map (kbd "\C-c T") 'mocha-test-project)
-  (define-key js2-mode-map (kbd "\C-c \C-r j") 'js-doc-insert-function-doc-snippet)
-  (define-key js2-mode-map (kbd "\C-c \C-r f") 'js-doc-insert-file-doc)
-  (define-key js2-mode-map (kbd "@") 'js-doc-insert-tag))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
 
 (use-package js2-refactor
   :init
@@ -37,9 +33,18 @@
   (setq js-doc-mail-address user-mail-address
         js-doc-author (format "%s <%s>" user-full-name "tm@tlater.net")
         js-doc-url "tlater.net"
-        js-doc-license "UNLICENSED"))
+        js-doc-license "UNLICENSED")
+  :bind (:map js2-mode-map
+              ("C-c d f" . js-doc-insert-function-doc-snippet)
+              ("C-c d m" . js-doc-insert-file-doc)
+              ("@" . js-doc-insert-tag)))
 
-(use-package mocha)
+(use-package mocha
+  :bind (:map js2-mode-map
+              ("C-c t ." . mocha-test-at-point)
+              ("C-c t a" . mocha-test-project)
+              ("C-c t m" . mocha-test-file)))
+
 (use-package mocha-snippets
   :init
   (setq mocha-snippets-string-delimiter "\"")
