@@ -24,6 +24,13 @@
 
 ;; Set the email address
 (setq user-mail-address "tm@tlater.net")
+(setq user-full-name "Tristan Daniël Maat")
+
+;; Enable dired improvements
+(require 'dired-x)
+(setq-default dired-omit-files-p t)
+(setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
+(setq dired-dwim-target t)
 
 ;; Add various simple packages
 (use-package systemd)
