@@ -24,11 +24,6 @@
 
 ;;; Code:
 
-;; Since epg fails on university computer, ignore package signatures.
-;; Obviously that's a catastrophy in the making, but hey, no other
-;; options.
-(setq package-check-signature nil)
-
 ;; Disable the scroll bar
 (scroll-bar-mode -1)
 
