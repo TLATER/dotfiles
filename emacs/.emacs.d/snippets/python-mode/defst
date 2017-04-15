@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name: def static
-# key: @staticmethod
-# binding: direct-keybinding
-# --
-@staticmethod
-def ${1:name}(${3:arg}):
-    $0
