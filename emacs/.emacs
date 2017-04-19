@@ -20,23 +20,10 @@
      (:name "tris.maat@gmail.com" :query "to:tris.maat@gmail.com")
      (:name "tm@tlater.net" :query "to:tm@tlater.net")
      (:name "music_ai" :query "tag:music_ai"))))
- '(org-agenda-files (quote ("~/Documents/org/calendar.org")) t)
- '(org-latex-default-packages-alist
+ '(org-agenda-files (quote ("~/Documents/org/calendar.org")))
+ '(org-latex-pdf-process
    (quote
-    (("AUTO" "inputenc" t)
-     ("T1" "fontenc" t)
-     ("" "fixltx2e" nil)
-     ("" "graphicx" t)
-     ("" "grffile" t)
-     ("" "longtable" nil)
-     ("" "wrapfig" nil)
-     ("" "rotating" nil)
-     ("normalem" "ulem" t)
-     ("" "amsmath" t)
-     ("" "textcomp" t)
-     ("" "amssymb" t)
-     ("" "capt-of" nil)
-     ("colorlinks=true,urlcolor=NavyBlue" "hyperref" nil))))
+    ("%latex -interaction nonstopmode -output-directory %o %f" "%bib %b" "%latex -interaction nonstopmode -output-directory %o %f" "%latex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
     (aggressive-indent yaml-mode yasnippet projectile systemd-mode exwm websocket web-mode use-package systemd stylus-mode sr-speedbar smart-mode-line semi php-mode org-gcal openwith notmuch markdown-mode magit json-mode js2-refactor js-doc jedi jdee imenu-list groovy-mode glsl-mode fringe-helper flycheck emacs-eclim ecb dockerfile-mode auto-complete-auctex auctex android-mode)))
