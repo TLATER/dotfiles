@@ -1,8 +1,0 @@
-# -*- mode: snippet; require-final-newline: nil -*-
-# name: function
-# key: f
-# binding: direct-keybinding
-# --
-function${1: ${2:name}} (${3:arg}) {
-    $0
-}
