@@ -10,3 +10,5 @@
 
 [alias]
 	ignore = "!ign() { cd \"$GIT_PREFIX\"; for file in $@; do echo \"$file\" >> .gitignore; done; }; ign"
+[core]
+	editor = "emacs -nw"
