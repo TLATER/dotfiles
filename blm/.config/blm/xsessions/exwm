@@ -23,7 +23,7 @@ systemctl --user start unclutter@"$DISPLAY"
 export WM=exwm
 export EDITOR=emacsclient
 
-feh --bg-scale "$HOME/Pictures/snowmiku.jpg"
+feh --bg-scale "$HOME/Pictures/backgrounds/rainy_road.png"
 xsetroot -cursor_name left_ptr
 
 systemctl --user start synergyc@haruna.service
