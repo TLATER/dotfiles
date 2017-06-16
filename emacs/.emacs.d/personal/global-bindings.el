@@ -32,6 +32,9 @@
 (global-set-key (kbd "C-;") 'comment-region)
 (global-set-key (kbd "C-:") 'uncomment-region)
 
+;; Compiling
+(global-set-key (kbd "C-x c") 'compile)
+
 ;; Deleting backwards
 (defun backward-kill-line ()
   "Kill the line backwards from point"
