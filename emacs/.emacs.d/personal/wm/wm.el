@@ -32,10 +32,6 @@
 (setq exwm-workspace-number 9)
 
 ;; config
-;; Load the theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/personal/themes")
-(load-theme 'cyan t)
-
 (server-start)
 
 (add-hook 'exwm-update-class-hook

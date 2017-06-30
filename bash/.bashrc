@@ -28,7 +28,7 @@
 
 # Aliases
 alias ls='ls --color=auto'
-alias emacs='emacsclient -a ""'
+alias emacs='emacsclient -na ""'
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard'
 alias winetricks='winetricks -q'
