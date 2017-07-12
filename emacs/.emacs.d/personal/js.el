@@ -56,5 +56,12 @@
 (define-key js2-mode-map (kbd "C-c t a") 'mocha-test-project)
 (define-key js2-mode-map (kbd "C-c t m") 'mocha-test-file)
 
+;; web-mode
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
+
+;; ember mode
+(add-hook 'js-mode-hook (lambda () (ember-mode t)))
+(add-hook 'web-mode-hook (lambda () (ember-mode t)))
+
 (provide 'js)
 ;;; js.el ends here
