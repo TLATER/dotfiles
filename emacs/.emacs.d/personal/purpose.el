@@ -27,26 +27,38 @@
 (prelude-require-package 'window-purpose)
 (prelude-require-package 'helm-purpose)
 
+;; Keys
+(helm-purpose-setup)
+
+(setq purpose-preferred-prompt 'helm)
+
+(define-key purpose-mode-map (kbd "C-x b") 'helm-purpose-switch-buffer-with-purpose)
+(define-key purpose-mode-map (kbd "C-x C-f") nil)
+
 (purpose-mode)
 
 ;;; Side windows
-;; regex
+;; regex-bound
 (add-to-list 'purpose-user-regexp-purposes
              '("\\*eshell\\*\\(<[[:digit:]]+>\\)?" . side-window))
 (add-to-list 'purpose-user-regexp-purposes
              '("\\*pytest-?.*\\*" . side-window))
-(add-to-list 'purpose-user-regexp-purposes
-             '("\\*terminal\\*" . side-window))
-;; name
+
+;; name-bound
+(add-to-list 'purpose-user-name-purposes
+             '("*Python*" . side-window))
+(add-to-list 'purpose-user-name-purposes
+             '("*terminal*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*compilation*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*RE-Builder*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*eww*" . side-window))
+(add-to-list 'purpose-user-name-purposes
+             '("*Help*" . side-window))
 
 (purpose-compile-user-configuration)
-(helm-purpose-setup)
 
 (provide 'purpose)
 ;;; purpose.el ends here
