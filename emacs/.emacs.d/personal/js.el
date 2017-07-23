@@ -39,15 +39,17 @@
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-r")
 
-;; tern
-(add-to-list 'load-path "~/.emacs.d/.tern/emacs")
-(autoload 'tern-mode "tern.el" nil t)
-(add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+(prelude-require-package 'indium)
 
-;; company-tern
-(prelude-require-package 'company-tern)
-;; config
-(add-to-list 'company-backends 'company-tern)
+;; ;; tern
+;; (add-to-list 'load-path "~/.emacs.d/.tern/emacs")
+;; (autoload 'tern-mode "tern.el" nil t)
+;; (add-hook 'js2-mode-hook (lambda () (tern-mode t)))
+
+;; ;; company-tern
+;; (prelude-require-package 'company-tern)
+;; ;; config
+;; (add-to-list 'company-backends 'company-tern)
 
 ;; mocha
 (prelude-require-package 'mocha)
