@@ -32,6 +32,8 @@
 (define-key prelude-mode-map (kbd "C-c TAB") nil)
 (define-key prelude-mode-map (kbd "C-c g") nil)
 (define-key prelude-mode-map (kbd "C-<backspace>") nil)
+(define-key prelude-mode-map (kbd "C-c o") nil)
+(define-key prelude-mode-map (kbd "C-c t") nil)
 
 (define-key flyspell-mode-map (kbd "C-;") nil)
 

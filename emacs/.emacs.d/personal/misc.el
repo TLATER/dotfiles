@@ -24,6 +24,10 @@
 
 ;;; Code:
 
+;; Load the theme
+(add-to-list 'custom-theme-load-path "~/.emacs.d/personal/themes")
+(load-theme 'cyan t)
+
 ;; Display the time in the mode line
 (setq display-time-24hr-format t)
 (setq display-time-day-and-date t)
