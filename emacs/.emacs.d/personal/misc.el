@@ -42,5 +42,10 @@
 ;; Default dictionary
 (setq ispell-dictionary "en_US")
 
+;; Tramp ssh
+(setq tramp-default-method "scp")
+
+(setq prelude-auto-save nil)
+
 (provide 'misc)
 ;;; misc.el ends here
