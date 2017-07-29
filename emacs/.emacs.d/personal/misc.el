@@ -29,10 +29,10 @@
 (load-theme 'cyan t)
 
 ;; Display the time in the mode line
-(setq display-time-24hr-format t)
-(setq display-time-day-and-date t)
-(setq display-time-default-load-average nil)
-(display-time-mode t)
+;; (setq display-time-24hr-format t)
+;; (setq display-time-day-and-date t)
+;; (setq display-time-default-load-average nil)
+;; (display-time-mode t)
 
 ;; Beacon
 (setq beacon-color "#245361")
