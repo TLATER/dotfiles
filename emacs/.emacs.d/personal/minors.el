@@ -32,5 +32,8 @@
 ;; Magit
 (global-set-key (kbd "C-c g s") 'magit-status)
 
+;; Install stumpwm-mode
+(prelude-require-package 'stumpwm-mode)
+
 (provide 'minors)
 ;;; minors.el ends here
