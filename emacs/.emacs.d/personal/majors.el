@@ -24,7 +24,14 @@
 
 ;;; Code:
 
+;; Buildstream
 (add-to-list 'auto-mode-alist '("\\.bst\\'" . yaml-mode))
+
+;; Systemd
+(prelude-require-package 'systemd)
+
+;; Web-mode
+(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 
 (provide 'majors)
 ;;; majors.el ends here
