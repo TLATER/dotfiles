@@ -43,6 +43,8 @@
              '("\\*eshell\\*\\(<[[:digit:]]+>\\)?" . side-window))
 (add-to-list 'purpose-user-regexp-purposes
              '("\\*pytest-?.*\\*" . side-window))
+(add-to-list 'purpose-user-regexp-purposes
+             '("\\*WoMan [[:digit:]]+ .*\\*" . side-window))
 
 ;; name-bound
 (add-to-list 'purpose-user-name-purposes
@@ -57,6 +59,8 @@
              '("*eww*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*Help*" . side-window))
+(add-to-list 'purpose-user-name-purposes
+             '("*Flycheck errors*" . side-window))
 
 (purpose-compile-user-configuration)
 
