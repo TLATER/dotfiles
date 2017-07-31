@@ -33,6 +33,8 @@
   (add-to-list 'company-backends 'company-jedi))
 ;; config
 (setq jedi:complete-on-dot t)
+(eval-after-load "python-mode"
+  '(define-key python-mode-map (kbd "C-.") 'jedi:goto-definition))
 
 ;; pytest
 (prelude-require-package 'pytest)
