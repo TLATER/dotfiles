@@ -1,4 +1,4 @@
-Xft.dpi: 160
+Xft.dpi: 90
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -6,11 +6,12 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
 Xcursor.theme: pixelfun3
-Xcursor.size: 64
+Xcursor.size: 32
 
 XTerm*foreground: rgb:fa/fa/fa
 XTerm*background: rgb:0f/0f/0f
-XTerm*faceName: DejaVu Sans Mono:pixelsize=32
+XTerm*renderFont: true
+XTerm*faceSize: 11
 XTerm*metaSendsEscape: true
 XTerm*scrollBar: false
 
@@ -44,4 +45,4 @@ XTerm*color15:                 #fdf6e3
 
 rofi.color-normal:             #0f0f0f, #99d1ce, #0f0f0f, #091f2e, #268bd2
 rofi.color-window:             #0f0f0f, #0f0f0f
-rofi.font:                     mono 22
+rofi.font:                     mono 11
