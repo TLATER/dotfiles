@@ -25,6 +25,7 @@
 ;;; Code:
 
 (in-package :stumpwm)
+(load "~/quicklisp/setup.lisp")
 
 ;;; Imports:
 ;; External libraries
@@ -82,7 +83,6 @@
   (set-fg-color base5)
   (set-focus-color base5)
   (set-border-color base5)
-  (set-unfocus-color base4))
   (set-unfocus-color base4)
 
   (set-win-bg-color base0))
@@ -92,8 +92,13 @@
 
 ;; Font
 (load-module "ttf-fonts")
+
+;; Add /usr/local/share to font search path (normally only /usr/share/fonts)
+(push "/usr/local/share/fonts/" xft:*font-dirs*)
+
+(xft:cache-fonts)
 (set-font (make-instance 'xft:font
                          :family "Hack"
-                         :size 24))
+                         :subfamily "Regular"))
 
 ;;; init.lisp ends here
