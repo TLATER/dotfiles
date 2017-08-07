@@ -11,6 +11,7 @@ Xcursor.size: 32
 XTerm*foreground: rgb:fa/fa/fa
 XTerm*background: rgb:0f/0f/0f
 XTerm*renderFont: true
+XTerm*faceName: Hack-Regular
 XTerm*faceSize: 11
 XTerm*metaSendsEscape: true
 XTerm*scrollBar: false
