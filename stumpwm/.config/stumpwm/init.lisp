@@ -44,6 +44,10 @@
 ;;; Keys:
 (define-key *root-map* (kbd "e") "exec emacsclient -c -a 'emacs'")
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs'")
+(define-key *root-map* (kbd ".") "exec rofi -show run")
+(define-key *root-map* (kbd "C-.") "exec rofi -show run")
+(define-key *root-map* (kbd ",") "exec pass-rofi")
+(define-key *root-map* (kbd "C-,") "exec pass-rofi")
 
 ;;; Visual:
 ;; Colors
