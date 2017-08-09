@@ -34,6 +34,13 @@
 (add-to-load-path (concat
                    (getenv "HOME")
                    "/.config/stumpwm/libs/ttf-fonts"))
+(add-to-load-path (concat
+                   (getenv "HOME")
+                   "/.config/stumpwm/libs/notify"))
+
+;; ;; Notifications:
+;; (load-module "notify")
+;; (notify-server-toggle)
 
 ;;; Gaps:
 (load-module "swm-gaps")
@@ -76,6 +83,12 @@
   (set-focus-color base5)
   (set-border-color base5)
   (set-unfocus-color base4))
+  (set-unfocus-color base4)
+
+  (set-win-bg-color base0))
+
+;; Window settings
+(setf *window-border-style* :tight)
 
 ;; Font
 (load-module "ttf-fonts")
