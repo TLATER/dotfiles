@@ -49,7 +49,11 @@
 ;; Tramp ssh
 (setq tramp-default-method "scp")
 
+;; Disable auto-save
 (setq prelude-auto-save nil)
+
+;; Set autocompletion delay
+(setq company-idle-delay 0.1)
 
 (provide 'misc)
 ;;; misc.el ends here
