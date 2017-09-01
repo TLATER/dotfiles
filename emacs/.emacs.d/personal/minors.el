@@ -35,5 +35,8 @@
 ;; Install stumpwm-mode
 (prelude-require-package 'stumpwm-mode)
 
+;; helm-dash
+(prelude-require-package 'helm-dash)
+
 (provide 'minors)
 ;;; minors.el ends here
