@@ -27,8 +27,8 @@
 (defun erc-codethink ()
   (interactive)
   (erc-tls :server "irc0.codethink.co.uk"
-           :port "6502"
-           :nick "tlater"))
+           :port 6502
+           :full-name user-full-name))
 
 (defun erc-buildstream ()
   (interactive)
@@ -36,7 +36,7 @@
        :nick "tlater"))
 
 (setq erc-autojoin-channels-alist
-      '(("irc0.codethink.co.uk" "#codethink" "#bl013")
+      '(("irc0.codethink.co.uk" "#codethink" "#bloomberg")
         ("irc.gnome.org" "#buildstream")))
 
 ;; Make ERC column fill change with window size
