@@ -24,6 +24,10 @@
 
 ;;; Code:
 
+;; Set tls program
+(require 'tls)
+(setq tls-program (cons "openssl s_client -connect %h:%p -no_ssl2 -ign_eof -cert $HOME/.config/certificates/%h/tlater.pem" tls-program))
+
 (defun erc-codethink ()
   (interactive)
   (erc-tls :server "irc0.codethink.co.uk"

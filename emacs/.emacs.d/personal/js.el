@@ -39,7 +39,7 @@
 (add-hook 'js2-mode-hook #'js2-refactor-mode)
 (js2r-add-keybindings-with-prefix "C-c C-r")
 
-(prelude-require-package 'indium)
+;; (prelude-require-package 'indium)
 
 ;; ;; tern
 ;; (add-to-list 'load-path "~/.emacs.d/.tern/emacs")
@@ -52,18 +52,18 @@
 ;; (add-to-list 'company-backends 'company-tern)
 
 ;; mocha
-(prelude-require-package 'mocha)
-;; config
-(define-key js2-mode-map (kbd "C-c t .") 'mocha-test-at-point)
-(define-key js2-mode-map (kbd "C-c t a") 'mocha-test-project)
-(define-key js2-mode-map (kbd "C-c t m") 'mocha-test-file)
+;; (prelude-require-package 'mocha)
+;; ;; config
+;; (define-key js2-mode-map (kbd "C-c t .") 'mocha-test-at-point)
+;; (define-key js2-mode-map (kbd "C-c t a") 'mocha-test-project)
+;; (define-key js2-mode-map (kbd "C-c t m") 'mocha-test-file)
 
 ;; web-mode
 (add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
 
 ;; ember mode
-(add-hook 'js-mode-hook (lambda () (ember-mode t)))
-(add-hook 'web-mode-hook (lambda () (ember-mode t)))
+;; (add-hook 'js-mode-hook (lambda () (ember-mode t)))
+;; (add-hook 'web-mode-hook (lambda () (ember-mode t)))
 
 (provide 'js)
 ;;; js.el ends here

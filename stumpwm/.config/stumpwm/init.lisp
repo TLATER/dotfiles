@@ -22,7 +22,7 @@
 
 ;;
 
-;;; Code:
+;;; Code: (setq stumpwm-shell-program "/home/tristanmaat/bin/stumpish")
 
 (in-package :stumpwm)
 (load "~/quicklisp/setup.lisp")
@@ -58,6 +58,10 @@
 (define-key *root-map* (kbd "C-.") "exec rofi -show run")
 (define-key *root-map* (kbd ",") "exec pass-rofi")
 (define-key *root-map* (kbd "C-,") "exec pass-rofi")
+
+;; Audio:
+(define-key *root-map* (kbd ">") "exec pulseaudio-ctl up")
+(define-key *root-map* (kbd "<") "exec pulseaudio-ctl down")
 
 ;;; Visual:
 ;; Colors
@@ -100,5 +104,13 @@
 (set-font (make-instance 'xft:font
                          :family "Hack"
                          :subfamily "Regular"))
+
+;; Pass
+(defun pass ()
+  (message
+   (run-shell-command
+    (concat "pass -c "
+            (completing-read nil "Password: " (list) nil nil t))
+    t)))
 
 ;;; init.lisp ends here

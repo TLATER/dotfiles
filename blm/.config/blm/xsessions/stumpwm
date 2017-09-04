@@ -11,18 +11,28 @@ fi
 # Merge user Xresources
 [[ -f ~/.Xresources ]] && xrdb -display "$DISPLAY" -merge ~/.Xresources
 
+feh --bg-scale "$HOME/Pictures/backgrounds/the_lair_by_allagar-dbjwdtg.jpg"
+xsetroot -cursor_name left_ptr
+
 # Disable dpms auto off
-xset -display "$DISPLAY" dpms 0 0 0
-xset -display "$DISPLAY" s 0 0
+# xset -display "$DISPLAY" dpms 0 0 0
+# xset -display "$DISPLAY" s 0 0
 
 systemctl --user start unclutter@"$DISPLAY"
+systemctl --user start dunst
+
+# compton -CGb
+
+eval `gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh`
+export GNOME_KEYRING_CONTROL
+export SSH_AUTH_SOCK
+export GPG_AGENT_INFO
+export GNOME_KEYRING_PID
 
 export WM=stumpwm
 export EDITOR=emacsclient
 
-feh --bg-scale "$HOME/Pictures/backgrounds/rainy_road.png"
-xsetroot -cursor_name left_ptr
+xset s off
+xset b off
 
-compton -CGb
-
-exec stumpwm
+exec ssh-agent /usr/local/bin/stumpwm
