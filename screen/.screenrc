@@ -1,2 +1,4 @@
 # Bind the command key to C-o for emacs (and muscle memory) compatability
 escape ^Oo
+nethack on
+caption always "%{bk}%n %t%=%{gk}%c "
