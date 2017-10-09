@@ -61,6 +61,8 @@
              '("*Help*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*Flycheck errors*" . side-window))
+(add-to-list 'purpose-user-name-purposes
+             '("*Org Agenda*" . side-window))
 
 (purpose-compile-user-configuration)
 
