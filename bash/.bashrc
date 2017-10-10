@@ -88,3 +88,8 @@ fi
 if [ -z "$STY" ] && [ "$TERM" != "linux" ]; then
     exec screen -AxRR
 fi
+
+# Set screen window title
+if [ "$TERM" == "screen" ]; then
+    PROMPT_COMMAND='printf "\033k\033\134"'
+fi

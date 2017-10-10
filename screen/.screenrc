@@ -1,4 +1,16 @@
+# Allow using the terminal scrollback
+termcapinfo xterm|xterms|xs|rxvt|xterm-termite ti@:te@
+# Allow setting the window title from screen
+termcapinfo xterm|xterms|xs|rxvt|xterm-termite "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
+
+# Set the window title to commands automagically
+shelltitle "$ |bash"
+
 # Bind the command key to C-o for emacs (and muscle memory) compatability
 escape ^Oo
+
+# Nethack!
 nethack on
+
+# Set the caption bars
 caption always "%{bk}%n %t%=%{gk}%c "
