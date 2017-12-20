@@ -50,7 +50,7 @@
 (setq tramp-default-method "scp")
 
 ;; Disable auto-save
-(setq prelude-auto-save nil)
+(setq prelude-auto-save t)
 
 ;; Set autocompletion delay
 (setq company-idle-delay 0.1)
@@ -69,6 +69,11 @@
             (list url)))))
 
 (setq browse-url-browser-function 'browse-url-vivaldi)
+
+;; Get rid of (suspend-frame) in graphical displays
+(when (display-graphic-p)
+  (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-z")))
 
 (provide 'misc)
 ;;; misc.el ends here
