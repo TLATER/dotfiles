@@ -14,3 +14,7 @@ nethack on
 
 # Set the caption bars
 caption always "%{bk}%n %t%=%{gk}%c "
+
+# Scrollback
+defscrollback 10000
+compacthist on
