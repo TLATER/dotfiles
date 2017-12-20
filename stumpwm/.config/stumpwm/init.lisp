@@ -63,6 +63,8 @@
 (define-key *root-map* (kbd ">") "exec pulseaudio-ctl up")
 (define-key *root-map* (kbd "<") "exec pulseaudio-ctl down")
 
+(define-key *root-map* (kbd "L") "exec i3lock -i ~/Pictures/backgrounds/the_lair.png; mpc pause")
+
 ;;; Visual:
 ;; Colors
 (let ((base0   "#0f0f0f")
