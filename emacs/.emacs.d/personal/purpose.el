@@ -33,6 +33,7 @@
 (setq purpose-preferred-prompt 'helm)
 
 (define-key purpose-mode-map (kbd "C-x b") 'helm-purpose-switch-buffer-with-purpose)
+(define-key purpose-mode-map (kbd "C-x B") 'switch-buffer-without-purpose)
 (define-key purpose-mode-map (kbd "C-x C-f") nil)
 
 (purpose-mode)
