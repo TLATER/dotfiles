@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+;; Highlights
+(require 'erc)
+(require 'erc-match)
+(setq erc-keywords '("NB ALL:"))
+
 ;; Set tls program
 (require 'tls)
 (setq tls-program (cons "openssl s_client -connect %h:%p -no_ssl2 -ign_eof -cert $HOME/.config/certificates/%h/tlater.pem" tls-program))
@@ -32,12 +37,24 @@
   (interactive)
   (erc-tls :server "irc0.codethink.co.uk"
            :port 6502
+           :nick "tristanmaat/codethink"
            :full-name user-full-name))
+
+(defun erc-gnome ()
+  (interactive)
+  (erc-tls :server "irc0.codethink.co.uk"
+           :port 6502
+           :nick "tristanmaat/gnome"))
 
 (defun erc-buildstream ()
   (interactive)
-  (erc :server "irc.gnome.org"
-       :nick "tlater"))
+  (erc :server "irc.gnome.org"))
+
+(defun erc-freenode ()
+  (interactive)
+  (erc-tls :server "irc0.codethink.co.uk"
+           :port 6502
+           :nick "tristanmaat/freenode"))
 
 (setq erc-autojoin-channels-alist
       '(("irc0.codethink.co.uk" "#codethink" "#bloomberg")
