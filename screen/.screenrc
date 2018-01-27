@@ -13,7 +13,7 @@ escape ^Oo
 nethack on
 
 # Set the caption bars
-caption always "%{bk}%n %t%=%{gk}%c "
+caption always "%{bk}%n %t%=%{gk}"
 
 # Scrollback
 defscrollback 10000
