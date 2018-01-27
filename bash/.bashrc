@@ -60,6 +60,7 @@ alias cleandocker='sudo docker rmi -f $(sudo docker images | grep "<none>" | awk
 alias yaourt='yaourt --noconfirm'
 
 # Environment variables
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/opt/bin"
 export RTV_EDITOR='emacsclient'
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
