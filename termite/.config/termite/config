@@ -17,7 +17,7 @@ scrollback_lines = 10000
 #urgent_on_bell = true
 
 # $BROWSER is used by default if set, with xdg-open as a fallback
-browser = vivaldi
+browser = firefox
 
 # "system", "on" or "off"
 #cursor_blink = system
