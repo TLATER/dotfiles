@@ -12,18 +12,21 @@
  '(eshell-prefer-lisp-functions t)
  '(flycheck-python-pylint-executable "/usr/local/bin/pylint")
  '(helm-dash-browser-func (quote eww))
- '(inferior-lisp-program "sbcl")
+ '(inferior-lisp-program "sbcl" t)
  '(org-latex-pdf-process
    (quote
     ("pdflatex -interaction nonstopmode -output-directory %o %f" "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f" "pdflatex -interaction nonstopmode -output-directory %o %f")))
  '(package-selected-packages
    (quote
-    (helm-purpose window-purpose indium stumpwm-mode pytest company-jedi jedi-core exwm mocha company-tern js2-refactor jdee yaml-mode web-mode scss-mode geiser company-auctex cdlatex auctex json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
+    (dockerfile-mode pycoverage markdown-mode helm-purpose window-purpose indium stumpwm-mode pytest company-jedi jedi-core exwm mocha company-tern js2-refactor jdee yaml-mode web-mode scss-mode geiser company-auctex cdlatex auctex json-mode js2-mode rainbow-mode elisp-slime-nav rainbow-delimiters company helm-ag helm-descbinds helm-projectile helm smex ido-ubiquitous flx-ido zop-to-char zenburn-theme which-key volatile-highlights undo-tree smartrep smartparens smart-mode-line operate-on-number move-text magit projectile ov imenu-anywhere guru-mode grizzl god-mode gitignore-mode gitconfig-mode git-timemachine gist flycheck expand-region epl editorconfig easy-kill diminish diff-hl discover-my-major dash crux browse-kill-ring beacon anzu ace-window)))
  '(pytest-global-name "py.test")
  '(rainbow-x-colors-major-mode-list
    (quote
     (emacs-lisp-mode lisp-mode lisp-interaction-mode c-mode c++-mode java-mode)))
- '(safe-local-variable-values (quote ((py-indent-offset . 4)))))
+ '(safe-local-variable-values
+   (quote
+    ((flycheck-disabled-checkers emacs-lisp-checkdoc)
+     (py-indent-offset . 4)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
