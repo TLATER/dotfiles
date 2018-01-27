@@ -56,19 +56,8 @@
 (setq company-idle-delay 0.1)
 
 ;; Set default browser
-(defun browse-url-vivaldi (url &optional _new-window)
-  "Ask the Vivaldi WWW browser to load URL."
-  (interactive (browse-url-interactive-arg "URL: "))
-  (setq url (browse-url-encode-url url))
-  (let* ((process-environment (browse-url-process-environment)))
-    (apply 'start-process
-           (concat "vivaldi " url) nil
-           "vivaldi"
-           (append
-            browse-url-chromium-arguments
-            (list url)))))
 
-(setq browse-url-browser-function 'browse-url-vivaldi)
+(setq browse-url-browser-function 'browse-url-firefox)
 
 ;; Get rid of (suspend-frame) in graphical displays
 (when (display-graphic-p)
