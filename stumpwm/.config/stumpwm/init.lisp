@@ -22,13 +22,16 @@
 
 ;;
 
-;;; Code: (setq stumpwm-shell-program "/home/tristanmaat/bin/stumpish")
+;;; Code:
 
 (in-package :stumpwm)
-(load "~/quicklisp/setup.lisp")
+;; (setq stumpwm-shell-program (concat (getenv "HOME") "/.local/bin/stumpish"))
 
 ;;; Imports:
 ;; External libraries
+(add-to-load-path (concat
+                   (getenv "HOME")
+                   "/.config/stumpwm/libs/amixer"))
 (add-to-load-path (concat
                    (getenv "HOME")
                    "/.config/stumpwm/libs/swm-gaps"))
@@ -37,7 +40,7 @@
                    "/.config/stumpwm/libs/ttf-fonts"))
 (add-to-load-path (concat
                    (getenv "HOME")
-                   "/.config/stumpwm/libs/notify"))
+                   "/.config/stumpwm/libs/battery-portable"))
 
 ;; ;; Notifications:
 ;; (load-module "notify")
@@ -59,9 +62,15 @@
 (define-key *root-map* (kbd ",") "exec pass-rofi")
 (define-key *root-map* (kbd "C-,") "exec pass-rofi")
 
-;; Audio:
-(define-key *root-map* (kbd ">") "exec pulseaudio-ctl up")
-(define-key *root-map* (kbd "<") "exec pulseaudio-ctl down")
+;;; Audio:
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer -c 1 sset Master 5%+")
+(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer -c 1 sset Master 5%-")
+(define-key *top-map* (kbd "XF86AudioMute") "exec amixer -c 1 sset Master toggle")
+(define-key *root-map* (kbd ">") "exec amixer -c 1 sset Master 5%+")
+(define-key *root-map* (kbd "<") "exec amixer -c 1 sset Master 5%-")
+
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight +5%")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -5%")
 
 (define-key *root-map* (kbd "L") "exec i3lock -i ~/Pictures/backgrounds/the_lair.png; mpc pause")
 
@@ -91,21 +100,31 @@
   (set-border-color base5)
   (set-unfocus-color base4)
 
-  (set-win-bg-color base0))
+  (set-win-bg-color base0)
+
+  (setf *mode-line-background-color* base0)
+  (setf *mode-line-foreground-color* base4)
+  (setf *mode-line-border-color* base3))
 
 ;; Window settings
 (setf *window-border-style* :tight)
 
 ;; Font
 (load-module "ttf-fonts")
+;; Mode line
+(load-module "battery-portable")
 
 ;; Add /usr/local/share to font search path (normally only /usr/share/fonts)
 (push "/usr/local/share/fonts/" xft:*font-dirs*)
+(setf *time-modeline-string* "%k:%M")
+(setf *mode-line-position* :bottom)
 
 (xft:cache-fonts)
 (set-font (make-instance 'xft:font
                          :family "Hack"
                          :subfamily "Regular"))
+(setf *screen-mode-line-format* (list "[^B%n^b] ^> %d | %B"))
+(mode-line)
 
 ;; Pass
 (defun pass ()
@@ -115,4 +134,5 @@
             (completing-read nil "Password: " (list) nil nil t))
     t)))
 
+(swm-gaps:toggle-gaps)
 ;;; init.lisp ends here
