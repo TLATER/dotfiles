@@ -6,6 +6,7 @@ Documentation=man:emacs
 Type=forking
 ExecStart=/usr/bin/emacs --daemon
 ExecStop=/usr/bin/emacsclient --eval "(kill-emacs)"
+TimeoutStartSec=0
 Restart=always
 
 [Install]
