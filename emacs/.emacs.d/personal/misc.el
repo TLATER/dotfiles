@@ -28,6 +28,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/personal/themes")
 (load-theme 'cyan t)
 
+;; Use an in-emacs gpg agent
+(setq epa-pinentry-mode 'loopback)
+(pinentry-start)
+
 ;; Display the time in the mode line
 ;; (setq display-time-24hr-format t)
 ;; (setq display-time-day-and-date t)
