@@ -1,9 +1,0 @@
-[Unit]
-Description=Main sync timer
-
-[Timer]
-Persistent=true
-OnCalendar=*:0/30
-
-[Install]
-WantedBy=timers.target

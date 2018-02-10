@@ -1,7 +1,0 @@
-[Unit]
-Description=Mail sync daemon
-Documentation=man:muchsync
-
-[Service]
-Type=oneshot
-ExecStart=/usr/bin/muchsync -s "ssh -p 2222" tlater.net
