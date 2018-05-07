@@ -24,7 +24,8 @@
 
 ;;; Code:
 
-(setq python-shell-interpreter "python3")
+(when (executable-find "ipython3")
+  (setq python-shell-interpreter "ipython3"))
 
 ;; jedi
 (prelude-require-package 'jedi-core)
