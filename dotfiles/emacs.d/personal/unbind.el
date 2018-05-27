@@ -37,5 +37,24 @@
 
 (define-key flyspell-mode-map (kbd "C-;") nil)
 
+(global-set-key [remap other-window] nil)
+
+;; Prelude overrides C-a, which breaks beginning-of-line in bash
+(add-hook 'eshell-mode-hook (lambda ()
+                              (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
+                                    (newmap (make-sparse-keymap)))
+                                (set-keymap-parent newmap oldmap)
+                                (define-key newmap (kbd "C-a") nil)
+                                (make-local-variable 'minor-mode-overriding-map-alist)
+                                (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))))
+
+(add-hook 'term-mode-hook (lambda ()
+                            (let ((oldmap (cdr (assoc 'prelude-mode minor-mode-map-alist)))
+                                  (newmap (make-sparse-keymap)))
+                              (set-keymap-parent newmap oldmap)
+                              (define-key newmap (kbd "C-a") nil)
+                              (make-local-variable 'minor-mode-overriding-map-alist)
+                              (push `(prelude-mode . ,newmap) minor-mode-overriding-map-alist))))
+
 (provide 'unbind)
 ;;; unbind.el ends here
