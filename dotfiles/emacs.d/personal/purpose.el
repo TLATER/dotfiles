@@ -53,6 +53,8 @@
 (add-to-list 'purpose-user-name-purposes
              '("*terminal*" . side-window))
 (add-to-list 'purpose-user-name-purposes
+             '("*ansi-term*" . side-window))
+(add-to-list 'purpose-user-name-purposes
              '("*compilation*" . side-window))
 (add-to-list 'purpose-user-name-purposes
              '("*RE-Builder*" . side-window))
