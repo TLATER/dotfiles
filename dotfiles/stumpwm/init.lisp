@@ -63,11 +63,15 @@
 (define-key *root-map* (kbd "C-,") "exec pass-rofi")
 
 ;;; Audio:
-(define-key *top-map* (kbd "XF86AudioRaiseVolume") "exec amixer -c 1 sset Master 5%+")
-(define-key *top-map* (kbd "XF86AudioLowerVolume") "exec amixer -c 1 sset Master 5%-")
-(define-key *top-map* (kbd "XF86AudioMute") "exec amixer -c 1 sset Master toggle")
-(define-key *root-map* (kbd ">") "exec amixer -c 1 sset Master 5%+")
-(define-key *root-map* (kbd "<") "exec amixer -c 1 sset Master 5%-")
+(setf up "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
+(setf down "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+(setf mute "exec pactl set-sink-mute @DEFAULT_SINK@ toggle")
+
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") up)
+(define-key *top-map* (kbd "XF86AudioLowerVolume") down)
+(define-key *top-map* (kbd "XF86AudioMute") mute)
+(define-key *root-map* (kbd ">") up)
+(define-key *root-map* (kbd "<") down)
 
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight +5%")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -5%")
