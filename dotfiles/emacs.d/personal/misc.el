@@ -63,10 +63,8 @@
 
 (setq browse-url-browser-function 'browse-url-firefox)
 
-;; Get rid of (suspend-frame) in graphical displays
-(when (display-graphic-p)
-  (global-unset-key (kbd "C-z"))
-  (global-unset-key (kbd "C-x C-z")))
+;; Disable the annoying suspend-frame command
+(put 'suspend-frame 'disabled t)
 
 (provide 'misc)
 ;;; misc.el ends here
