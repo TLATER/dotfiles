@@ -4,6 +4,9 @@ config:
   dotpath: dotfiles
 
 profiles:
+  ct-lt-214:
+    dotfiles:
+      - ALL
   ren:
     dotfiles:
       - ALL
