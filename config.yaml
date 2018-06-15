@@ -65,7 +65,10 @@ dotfiles:
     dst: ~/.config/mpd
     src: mpd
     link: true
-
+  bin:
+    dst: ~/.local/bin
+    src: bin
+    link: true
 
  # emacs:
  #   actions:

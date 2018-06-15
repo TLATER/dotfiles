@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+set -eu
+
+BACKGROUND_HOME="${BACKGROUND_HOME:-$HOME/Documents/Pictures/Backgrounds}"
+XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+
+collect-backgrounds() {
+    local root="$1"
+    # feh by default supports only jpg on Gentoo, since this is the
+    # lowest common denominator we only allow jpg backgrounds
+    find "$root" -type f -readable ! -wholename "$current" \( -name '*.jpg' -o -name '*.jpeg' \)
+}
+
+select-random() {
+    local list="$1"
+    echo "$list" | head -n $(((RANDOM % 4) + 1)) | tail -n 1
+}
+
+set-background() {
+    local background="$1"
+    feh --bg-fill "$background"
+}
+
+main() {
+    local current
+    local current_file
+    local new
+    local potential
+
+    current_file="$XDG_DATA_HOME/background"
+
+    if [ -f "$current_file" ]; then
+        current="$(cat "$current_file")"
+    else
+        current=""
+    fi
+
+    potential="$(collect-backgrounds "$BACKGROUND_HOME")"
+    new="$(select-random "$potential")"
+
+    if [ -f "$new" ]; then
+        set-background "$new"
+        echo "$new" > "$current_file"
+    else
+        echo "Could not find $new" > /dev/stderr
+        exit 1
+    fi
+}
+
+main "$@"
