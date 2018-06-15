@@ -73,3 +73,5 @@ fi
 if [ "$TERM" == "screen" ]; then
     PROMPT_COMMAND='printf "\033k\033\134"'
 fi
+
+export PATH="$PATH:$HOME/.local/bin"
