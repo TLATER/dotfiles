@@ -14,7 +14,10 @@ collect-backgrounds() {
 
 select-random() {
     local list="$1"
-    echo "$list" | head -n $(((RANDOM % 4) + 1)) | tail -n 1
+    local count
+
+    count=$(echo "$list" | wc -w)
+    echo "$list" | head -n $(((RANDOM % count) + 1)) | tail -n 1
 }
 
 set-background() {
