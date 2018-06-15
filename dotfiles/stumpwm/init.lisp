@@ -76,7 +76,7 @@
 (define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight +5%")
 (define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -5%")
 
-(define-key *root-map* (kbd "L") "exec i3lock -i ~/Pictures/backgrounds/the_lair.png; mpc pause")
+(define-key *root-map* (kbd "L") "exec light-locker-command -l")
 
 ;;; Visual:
 ;; Colors
