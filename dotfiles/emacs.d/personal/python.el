@@ -25,7 +25,8 @@
 ;;; Code:
 
 (when (executable-find "ipython3")
-  (setq python-shell-interpreter "ipython3"))
+  (setq python-shell-interpreter "ipython3"
+        python-shell-interpreter-args "--simple-prompt -i"))
 
 ;; jedi
 (prelude-require-package 'jedi-core)
