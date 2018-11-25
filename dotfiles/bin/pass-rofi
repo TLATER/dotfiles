@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+set -eu
+
+STORE="${PASSWORD_STORE_DIR-$HOME/.password-store}"
+
+get-passwords() {
+    local passwords
+    passwords="$(find "$STORE" -name '*.gpg' -exec realpath --relative-base="$STORE" {} \;)"
+    echo "${passwords//.gpg/}"
+}
+
+write-password() {
+    if hash xdotool 2>/dev/null; then
+        xdotool - <<<"type --clearmodifiers -- $(pass show "$password" | head -n 1)"
+    else
+        pass show -c "$password"
+    fi
+}
+
+main() {
+    local password
+
+    password=$(get-passwords | rofi -dmenu -p "Password: ")
+    if [[ -n "$password" ]]; then
+        write-password
+    fi
+}
+
+main "$@"
