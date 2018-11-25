@@ -7,9 +7,9 @@ XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 
 collect-backgrounds() {
     local root="$1"
-    # feh by default supports only jpg on Gentoo, since this is the
-    # lowest common denominator we only allow jpg backgrounds
-    find "$root" -type f -readable ! -wholename "$current" \( -name '*.jpg' -o -name '*.jpeg' \)
+    # Find readable files that aren't the current background and can
+    # be read by feh
+    find "$root" -type f -readable ! -wholename "$current" -exec feh -U {} +
 }
 
 select-random() {
@@ -17,6 +17,14 @@ select-random() {
     local count
 
     count=$(echo "$list" | wc -w)
+
+    # Assert that we have some kind of background
+    if [ $count -lt 1 ]; then
+        echo "Error: No other background images found in '$BACKGROUND_HOME'"\
+             > /dev/stderr
+        exit 1
+    fi
+
     echo "$list" | head -n $(((RANDOM % count) + 1)) | tail -n 1
 }
 
@@ -31,6 +39,8 @@ main() {
     local new
     local potential
 
+    # Check if we can write to the current-background info
+    touch "$XDG_DATA_HOME/background"
     current_file="$XDG_DATA_HOME/background"
 
     if [ -f "$current_file" ]; then
