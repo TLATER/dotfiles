@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2017  Tristan Daniël Maat
 
-;; Author: Tristan Daniël Maat;; ------------------------------------------------------------ <tm@tlater.net>
+;; Author: Tristan Daniël Maat <tm@tlater.net>
 ;; Keywords: local
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -25,7 +25,6 @@
 ;;; Code:
 
 (in-package :stumpwm)
-;; (setq stumpwm-shell-program (concat (getenv "HOME") "/.local/bin/stumpish"))
 
 ;;; Imports:
 ;; External libraries
@@ -142,3 +141,7 @@
 
 (swm-gaps:toggle-gaps)
 ;;; init.lisp ends here
+
+;; Local Variables:
+;; stumpwm-shell-program: "/usr/bin/stumpish"
+;; End:
