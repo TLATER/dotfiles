@@ -41,6 +41,7 @@
 (add-to-load-path (concat
                    (getenv "HOME")
                    "/.config/stumpwm/libs/battery-portable"))
+(load "~/.local/lib/quicklisp/setup.lisp")
 
 ;; ;; Notifications:
 ;; (load-module "notify")
@@ -114,6 +115,7 @@
 (setf *window-border-style* :tight)
 
 ;; Font
+(ql:quickload "clx-truetype")
 (load-module "ttf-fonts")
 ;; Mode line
 (load-module "battery-portable")
