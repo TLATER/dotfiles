@@ -25,58 +25,14 @@
 ;;; Code:
 
 (in-package :stumpwm)
-
-;;; Imports:
-;; External libraries
-(add-to-load-path (concat
-                   (getenv "HOME")
-                   "/.config/stumpwm/libs/amixer"))
-(add-to-load-path (concat
-                   (getenv "HOME")
-                   "/.config/stumpwm/libs/swm-gaps"))
-(add-to-load-path (concat
-                   (getenv "HOME")
-                   "/.config/stumpwm/libs/ttf-fonts"))
-(add-to-load-path (concat
-                   (getenv "HOME")
-                   "/.config/stumpwm/libs/battery-portable"))
 (load "~/.local/lib/quicklisp/setup.lisp")
+
+;; Disable the startup message
+(setf *startup-message* nil)
 
 ;; ;; Notifications:
 ;; (load-module "notify")
 ;; (notify-server-toggle)
-
-;;; Gaps:
-(load-module "swm-gaps")
-(setf swm-gaps:*inner-gaps-size* 20)
-(setf swm-gaps:*outer-gaps-size* 28)
-(define-key *root-map* (kbd "u") "toggle-gaps")
-
-;;; Keys:
-(define-key *root-map* (kbd "c") "exec termite")
-(define-key *root-map* (kbd "C-c") "exec termite")
-(define-key *root-map* (kbd "e") "exec emacsclient -c -a 'emacs'")
-(define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs'")
-(define-key *root-map* (kbd ".") "exec rofi -show drun")
-(define-key *root-map* (kbd "C-.") "exec rofi -show drun")
-(define-key *root-map* (kbd ",") "exec pass-rofi")
-(define-key *root-map* (kbd "C-,") "exec pass-rofi")
-
-;;; Audio:
-(setf up "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
-(setf down "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
-(setf mute "exec pactl set-sink-mute @DEFAULT_SINK@ toggle")
-
-(define-key *top-map* (kbd "XF86AudioRaiseVolume") up)
-(define-key *top-map* (kbd "XF86AudioLowerVolume") down)
-(define-key *top-map* (kbd "XF86AudioMute") mute)
-(define-key *root-map* (kbd ">") up)
-(define-key *root-map* (kbd "<") down)
-
-(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight +5%")
-(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -5%")
-
-(define-key *root-map* (kbd "L") "exec light-locker-command -l")
 
 ;;; Visual:
 ;; Colors
@@ -116,30 +72,64 @@
 ;; Font
 (ql:quickload "clx-truetype")
 (load-module "ttf-fonts")
-;; Mode line
+(push "/usr/local/share/fonts/" xft:*font-dirs*)
+(set-font (make-instance 'xft:font
+                         :family "Noto Sans Mono"
+                         :subfamily "Regular"
+                         :size 24))
+
+;; Gaps:
+(load-module "swm-gaps")
+(setf swm-gaps:*inner-gaps-size* 20)
+(setf swm-gaps:*outer-gaps-size* 28)
+(define-key *root-map* (kbd "u") "toggle-gaps")
+
+;;; Keys:
+(define-key *root-map* (kbd "c") "exec termite")
+(define-key *root-map* (kbd "C-c") "exec termite")
+(define-key *root-map* (kbd "e") "exec emacsclient -c -a 'emacs'")
+(define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs'")
+(define-key *root-map* (kbd ".") "exec rofi -show drun")
+(define-key *root-map* (kbd "C-.") "exec rofi -show drun")
+(define-key *root-map* (kbd ",") "exec pass-rofi")
+(define-key *root-map* (kbd "C-,") "exec pass-rofi")
+
+;; Audio:
+(setf up "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")
+(setf down "exec pactl set-sink-volume @DEFAULT_SINK@ -5%")
+(setf mute "exec pactl set-sink-mute @DEFAULT_SINK@ toggle")
+
+(define-key *top-map* (kbd "XF86AudioRaiseVolume") up)
+(define-key *top-map* (kbd "XF86AudioLowerVolume") down)
+(define-key *top-map* (kbd "XF86AudioMute") mute)
+(define-key *root-map* (kbd ">") up)
+(define-key *root-map* (kbd "<") down)
+
+;; Brightness
+(define-key *top-map* (kbd "XF86MonBrightnessUp") "exec xbacklight +5%")
+(define-key *top-map* (kbd "XF86MonBrightnessDown") "exec xbacklight -5%")
+
+;; Locking
+(define-key *root-map* (kbd "L") "exec light-locker-command -l")
+
+;;; Mode line
+(ql:quickload "xembed")
+(load-module "stumptray")
 (load-module "battery-portable")
 
-;; Add /usr/local/share to font search path (normally only /usr/share/fonts)
-(push "/usr/local/share/fonts/" xft:*font-dirs*)
+(setf stumptray:*tray-placeholder-pixels-per-space* 20)
+
 (setf *time-modeline-string* "%k:%M")
 (setf *mode-line-position* :bottom)
+(setf *screen-mode-line-format* (list "[^B%n^b] ^> %d | %B | %T"))
 
-(xft:cache-fonts)
-;; (set-font (make-instance 'xft:font
-;;                          :family "Hack"
-;;                          :subfamily "Regular"))
-(setf *screen-mode-line-format* (list "[^B%n^b] ^> %d | %B"))
 (mode-line)
-
-;; Pass
-(defun pass ()
-  (message
-   (run-shell-command
-    (concat "pass -c "
-            (completing-read nil "Password: " (list) nil nil t))
-    t)))
-
+(stumptray:stumptray)
 (swm-gaps:toggle-gaps)
+
+;;; Autostart
+(run-shell-command "dex -ae stumpwm")
+
 ;;; init.lisp ends here
 
 ;; Local Variables:
