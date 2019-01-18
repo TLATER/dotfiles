@@ -85,3 +85,7 @@ dotfiles:
 #    rm installer.sh
 #    ln -s $HOME/.emacs.d/personal emacs.d/personal
 #    ln -s $HOME/.emacs.d/prelude-modules.el emacs.d/prelude-modules.el
+  dunst:
+    dst: ~/.config/dunst
+    src: dunst
+    link: true
