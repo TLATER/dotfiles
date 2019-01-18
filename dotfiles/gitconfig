@@ -1,6 +1,6 @@
 [user]
-	email = tm@tlater.net
 	name = Tristan Maat
+	email = tristan.maat@codethink.co.uk
 
 [push]
 	default = simple
@@ -10,3 +10,5 @@
 
 [core]
 	editor = "emacs"
+[gitlab]
+	user = tlater

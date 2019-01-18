@@ -70,13 +70,13 @@
 (setf *window-border-style* :tight)
 
 ;; Font
-(ql:quickload "clx-truetype")
-(load-module "ttf-fonts")
-(push "/usr/local/share/fonts/" xft:*font-dirs*)
-(set-font (make-instance 'xft:font
-                         :family "Noto Sans Mono"
-                         :subfamily "Regular"
-                         :size 24))
+;; (ql:quickload "clx-truetype")
+;; (load-module "ttf-fonts")
+;; (push "/usr/local/share/fonts/" xft:*font-dirs*)
+;; (set-font (make-instance 'xft:font
+;;                         :family "Noto Sans Mono"
+;;                         :subfamily "Regular"
+;;                         :size 24))
 
 ;; Gaps:
 (load-module "swm-gaps")
