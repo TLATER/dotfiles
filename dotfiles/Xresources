@@ -48,3 +48,5 @@ rofi.color-normal:             #0f0f0f, #99d1ce, #0f0f0f, #091f2e, #268bd2
 rofi.color-window:             #0f0f0f, #0f0f0f
 rofi.font:                     mono 11
 rofi.modi:                     drun
+rofi.show-icons:               true
+rofi.drun-display-format:      {name}
