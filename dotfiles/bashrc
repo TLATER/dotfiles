@@ -58,10 +58,7 @@ alias pbpaste='xsel --clipboard'
 alias winetricks='winetricks -q'
 
 # Environment variables
-export VISUAL='emacsclient'
-export EDITOR='emacsclient'
-export ALTERNATE_EDITOR='emacs'
-
+[ -f .env ] && source .env
 PS1='\[\033[1;36m\]\u \[\033[0;36m\]\w \$ \[\033[0m'
 
 # Start screen
@@ -73,5 +70,3 @@ fi
 if [ "$TERM" == "screen" ]; then
     PROMPT_COMMAND='printf "\033k\033\134"'
 fi
-
-export PATH="$PATH:$HOME/.local/bin"
