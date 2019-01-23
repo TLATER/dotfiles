@@ -117,7 +117,7 @@
 (load-module "stumptray")
 (load-module "battery-portable")
 
-(setf stumptray:*tray-placeholder-pixels-per-space* 20)
+(setf stumptray:*tray-placeholder-pixels-per-space* 22)
 
 (setf *time-modeline-string* "%k:%M")
 (setf *mode-line-position* :bottom)
