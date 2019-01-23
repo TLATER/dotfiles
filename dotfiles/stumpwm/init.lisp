@@ -117,11 +117,25 @@
 (load-module "stumptray")
 (load-module "battery-portable")
 
+;; Helper functions
+(defun has-battery-p ()
+  "Whether the current system has a battery or not"
+  (if (battery-portable::all-batteries
+       (battery-portable::preferred-battery-method))
+      't
+      'nil))
+
 (setf stumptray:*tray-placeholder-pixels-per-space* 22)
 
 (setf *time-modeline-string* "%k:%M")
 (setf *mode-line-position* :bottom)
-(setf *screen-mode-line-format* (list "[^B%n^b] ^> %d | %B | %T"))
+
+(setf *screen-mode-line-format*
+      (list "[^B%n^b]"                   ;; Current group name
+            "^>"                         ;; Skip to other side
+            "%d "                        ;; Current time
+            (if (has-battery-p) "| %B ") ;; Battery status
+            "| %T"))                     ;; Tray
 
 (mode-line)
 (stumptray:stumptray)
