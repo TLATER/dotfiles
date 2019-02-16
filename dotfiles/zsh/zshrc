@@ -1,0 +1,19 @@
+# Ensure we follow XDG_BASE_DIRECTORY specifications
+HISTFILE="$XDG_DATA_HOME/.zsh_history"
+
+# Load extensions
+autoload -U zcalc
+
+# Load more granular configuration files
+source "$ZDOTDIR/aliases.zsh"
+source "$ZDOTDIR/completion.zsh"
+source "$ZDOTDIR/keybindings.zsh"
+source "$ZDOTDIR/theme.zsh"
+source "$ZDOTDIR/oh-my-zsh-expat/oh-my-zsh-expat.zsh"
+
+# Load plugins
+for plugin in "$ZDOTDIR/plugins/"*; do
+    for file in "$plugin/"*.zsh; do
+        source "$file"
+    done
+done

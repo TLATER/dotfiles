@@ -1,0 +1,12 @@
+# Load environment configuration first
+[ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
+[ -f .env ] && source .env
+
+# Start screen if it hasn't started yet
+if [ -z "$STY" ] && [ "$TERM" != "linux" ]; then
+    exec screen -AxRR
+fi
+
+# Load zsh configuration
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+source "$ZDOTDIR/zshrc"
