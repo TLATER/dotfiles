@@ -80,6 +80,9 @@
    'org-babel-load-languages
    '((gnuplot . t))))
 
+(use-package org-ref
+  :after (org))
+
 ;; Show "wrong" whitespace
 (use-package whitespace
   :init
