@@ -81,11 +81,13 @@
 (unless package--initialized (package-initialize))
 
 ;; Setup use-package
-(load (expand-file-name "use-package.el" (file-name-directory load-file-name)))
+(load (expand-file-name "use-package" (file-name-directory load-file-name)))
 
 ;; Load everything in the config directory
 (when (file-exists-p config-dir)
-  (mapc 'load (directory-files config-dir 't "^[^#\.].*\\.el$")))
+  (mapc (lambda (file)
+          (load (file-name-sans-extension file)))
+        (directory-files config-dir 't "^[^#\.].*\\.el$")))
 
 (provide 'init)
 ;;; init.el ends here

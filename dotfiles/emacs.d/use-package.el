@@ -31,6 +31,7 @@
 (eval-when-compile
   (require 'use-package))
 
+(require 'use-package)
 (setq use-package-compute-statistics t)
 (setq use-package-always-ensure t)
 
@@ -40,7 +41,8 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package use-package-ensure-system-package)
+(use-package use-package-ensure-system-package
+  :after exec-path-from-shell)
 
 (provide 'use-package)
 ;;; use-package.el ends here

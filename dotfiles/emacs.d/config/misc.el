@@ -32,12 +32,19 @@
 (setq require-final-newline "visit-save")
 
 ;; Make dired hide hidden files
-(add-hook 'dired-load-hook
-          (lambda ()
-            (load "dired-x")
-            (setq-default dired-omit-files-p t)
-            (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$"))
-            (setq dired-dwim-target t)))
+(use-package dired
+  :commands dired
+  :ensure nil
+  :init
+  (setq dired-dwim-target t))
+
+(use-package dired-x
+  :ensure nil
+  :after (dired)
+  :init
+  (setq-default dired-omit-files-p t)
+  :config
+  (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
 ;; Backdrop behind current line
 (use-package beacon
