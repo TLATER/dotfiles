@@ -36,9 +36,9 @@
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
-             :if (memq window-system '(mac ns x))
-             :config
-             (exec-path-from-shell-initialize))
+  :if (not (memq system-type '(cygwin windows-nt)))
+  :config
+  (exec-path-from-shell-initialize))
 
 (use-package use-package-ensure-system-package)
 
