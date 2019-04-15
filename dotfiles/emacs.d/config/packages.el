@@ -33,8 +33,7 @@
 
 ;; Better undo
 (use-package undo-tree
-             :config
-             (global-undo-tree-mode))
+             :bind ([remap undo] . undo-tree-visualize))
 
 ;; Auto-completion
 (use-package company
