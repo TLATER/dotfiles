@@ -1,2 +1,0 @@
-alias emacs for i in ${eshell-flatten-list $*} {find-file $i}
-alias clear recenter 0

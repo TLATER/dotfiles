@@ -1,9 +1,9 @@
-;;; global-bindings.el --- Global keybindings -*- lexical-binding: t; -*-
+;;; keybindings.el --- Global keybindings            -*- lexical-binding: t; -*-
 
-;;   Copyright (C) 2017  Tristan Daniel Maat
+;; Copyright (C) 2019  Tristan Daniël Maat
 
-;; Author: Tristan Daniel Maat <mbax4tm2@E-C07KI1803.it.manchester.ac.uk>
-;; Keywords: local
+;; Author: Tristan Daniël Maat <tm@tlater.net>
+;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -24,25 +24,21 @@
 
 ;;; Code:
 
-;; Paragraph movement
-(global-set-key (kbd "M-p") 'backward-paragraph)
-(global-set-key (kbd "M-n") 'forward-paragraph)
-
-;; Commenting
-(global-set-key (kbd "C-;") 'comment-region)
-(global-set-key (kbd "C-:") 'uncomment-region)
-
-;; Compiling
-(global-set-key (kbd "C-x c") 'compile)
-
-;; Deleting backwards
 (defun backward-kill-line ()
   "Kill the line backwards from point"
   (interactive)
   (kill-line 0)
   (indent-according-to-mode))
-(global-set-key (kbd "M-<backspace>") 'backward-kill-line)
+
+(global-set-key (kbd "M-p") 'backward-paragraph)
+(global-set-key (kbd "M-n") 'forward-paragraph)
+
+(global-set-key (kbd "C-;") 'comment-region)
+(global-set-key (kbd "C-:") 'uncomment-region)
+
+(global-set-key (kbd "C-x c") 'compile)
+
 (global-set-key (kbd "C-<backspace>") 'backward-kill-word)
 
-(provide 'global-bindings)
-;;; global-bindings.el ends here
+(provide 'keybindings)
+;;; keybindings.el ends here

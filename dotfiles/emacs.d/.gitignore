@@ -1,0 +1,8 @@
+.last-package-update-day
+auto-save-list/
+backups/
+elpa/
+erc/
+projectile-bookmarks.eld
+transient/
+config/custom.el

@@ -1,9 +1,9 @@
-;;; majors.el --- Major mode configuration           -*- lexical-binding: t; -*-
+;;; js.el --- Javascript configuration               -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2017  Tristan Daniël Maat
+;; Copyright (C) 2019  Tristan Daniël Maat
 
 ;; Author: Tristan Daniël Maat <tm@tlater.net>
-;; Keywords: local
+;; Keywords: convenience
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -16,7 +16,7 @@
 ;; GNU General Public License for more details.
 
 ;; You should have received a copy of the GNU General Public License
-;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
+;; along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -24,14 +24,18 @@
 
 ;;; Code:
 
-;; Buildstream
-(add-to-list 'auto-mode-alist '("\\.bst\\'" . yaml-mode))
+;; Mainly use js2-mode
+(use-package js2-mode
+             :init
+             (setq js2-basic-offset 4)
+             (setq-default js2-additional-externs
+                           '("$" "define" "require")))
 
-;; Systemd
-(prelude-require-package 'systemd)
+(use-package js2-refactor
+             :after (js2-mode)
+             :hook js2-mode
+             :config
+             (js2r-add-keybindings-with-prefix "C-c C-r"))
 
-;; Web-mode
-(add-to-list 'auto-mode-alist '("\\.hbs\\'" . web-mode))
-
-(provide 'majors)
-;;; majors.el ends here
+(provide 'js)
+;;; js.el ends here
