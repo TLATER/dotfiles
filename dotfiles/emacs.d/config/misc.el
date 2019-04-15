@@ -29,7 +29,10 @@
 (setq-default tab-width 4)
 
 ;; Ask if we want to add newlines to files
-(setq require-final-newline "visit-save")
+(use-package files
+  :ensure nil
+  :init
+  (setq require-final-newline "visit-save"))
 
 ;; Make dired hide hidden files
 (use-package dired
@@ -57,6 +60,8 @@
   (setq ispell-dictionary "en_US"))
 
 ;; Speed up tramp a bit
+;; Don't use-package tramp here because I'm not sure what function
+;; invokes tramp
 (setq tramp-default-method "scp")
 
 ;; Set default browser
@@ -65,10 +70,15 @@
   :init
   (setq browse-url-browser-function 'browse-url-default-browser))
 
-;; Let org-babel handle gnuplot
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((gnuplot . t)))
+;; Configure org-mode
+(use-package org
+  :mode ("\\.org\\'" . org-mode)
+  :init
+  (defvar org-latex-listings t "Whether to use lstlistings for org latex exports")
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((gnuplot . t))))
 
 ;; Show "wrong" whitespace
 (use-package whitespace
