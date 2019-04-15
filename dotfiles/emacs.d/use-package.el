@@ -31,6 +31,7 @@
 (eval-when-compile
   (require 'use-package))
 
+(setq use-package-compute-statistics t)
 (setq use-package-always-ensure t)
 
 ;; Ensure that our exec path is set up correctly

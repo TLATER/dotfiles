@@ -25,28 +25,32 @@
 ;;; Code:
 
 (use-package python
-             :config
-             (when (executable-find "ipython3")
-               (setq python-shell-interpreter "ipython3"
-                     python-shell-interpreter-args "--simple-prompt -i")))
+  :mode ("\\.py\\'" . python-mode)
+  :interpreter ("python" . python-mode)
+  :config
+  (when (executable-find "ipython3")
+    (setq python-shell-interpreter "ipython3"
+          python-shell-interpreter-args "--simple-prompt -i")))
 
 (use-package jedi-core
-             :init
-             (setq jedi:complete-on-dot t)
-             :config
-             (eval-after-load "python-mode"
-               '(define-key python-mode-map (kbd "C-.") 'jedi:goto-definition)))
+  :after (python)
+  :hook (python-mode . jedi:setup)
+  :init
+  (setq jedi:complete-on-dot t)
+  :bind (:map python-mode-map
+              ("C-." . jedi:goto-definition)))
 
 (use-package company-jedi
-             :after (company jedi-core)
-             :config
-             (add-to-list 'company-backends 'company-jedi))
+  :after (company jedi-core)
+  :config
+  (add-to-list 'company-backends 'company-jedi))
 
 (use-package pytest
-             :bind (:map python-mode-map
-                         ("C-c t ." . pytest-one)
-                         ("C-c t a" . pytest-all)
-                         ("C-c t m" . pytest-module)))
+  :after (python)
+  :bind (:map python-mode-map
+              ("C-c t ." . pytest-one)
+              ("C-c t a" . pytest-all)
+              ("C-c t m" . pytest-module)))
 
 (provide 'python)
 ;;; python.el ends here

@@ -25,29 +25,29 @@
 ;;; Code:
 
 (use-package tls
-             :config
-             (add-to-list 'tls-program "openssl s_client -connect %h:%p -no_ssl2 -ign_eof -cert $HOME/.config/certificates/%h/tlater.pem"))
+  :config
+  (add-to-list 'tls-program "openssl s_client -connect %h:%p -no_ssl2 -ign_eof -cert $HOME/.config/certificates/%h/tlater.pem"))
 
 (use-package erc
-             :after (tls)
-             :commands erc-tls
-             :init
-             (setq erc-log-channels-directory "~/.emacs.d/erc/logs")
-             (setq erc-keywords '("NB ALL:"))
-             (setq erc-modules '(autojoin button completion fill
-                                 irccontrols list log match menu
-                                 move-to-prompt netsplit networks
-                                 noncommands notifications
-                                 readonly ring scrolltobottom
-                                 stamp spelling track truncate))
-             :config
-	     (make-directory "~/.emacs.d/erc/logs" t)
-             (defun erc-codethink ()
-               (interactive)
-               (erc-tls :server "irc0.codethink.co.uk"
-                        :port 6502
-                        :nick "tristanmaat/codethink"
-                        :full-name user-full-name)))
+  :after (tls)
+  :commands erc-tls
+  :init
+  (setq erc-log-channels-directory "~/.emacs.d/erc/logs")
+  (setq erc-keywords '("NB ALL:"))
+  (setq erc-modules '(autojoin button completion fill
+                               irccontrols list log match menu
+                               move-to-prompt netsplit networks
+                               noncommands notifications
+                               readonly ring scrolltobottom
+                               stamp spelling track truncate))
+  :config
+  (make-directory "~/.emacs.d/erc/logs" t)
+  (defun erc-codethink ()
+    (interactive)
+    (erc-tls :server "irc0.codethink.co.uk"
+             :port 6502
+             :nick "tristanmaat/codethink"
+             :full-name user-full-name)))
 
 
 (provide 'erc)

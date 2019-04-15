@@ -26,16 +26,18 @@
 
 ;; Mainly use js2-mode
 (use-package js2-mode
-             :init
-             (setq js2-basic-offset 4)
-             (setq-default js2-additional-externs
-                           '("$" "define" "require")))
+  :mode "\\.js\\'"
+  :interpreter "node"
+  :init
+  (setq js2-basic-offset 4)
+  (setq-default js2-additional-externs
+                '("$" "define" "require")))
 
 (use-package js2-refactor
-             :after (js2-mode)
-             :hook js2-mode
-             :config
-             (js2r-add-keybindings-with-prefix "C-c C-r"))
+  :after (js2-mode)
+  :hook js2-mode
+  :config
+  (js2r-add-keybindings-with-prefix "C-c C-r"))
 
 (provide 'js)
 ;;; js.el ends here

@@ -50,12 +50,11 @@
   (setq ispell-dictionary "en_US"))
 
 ;; Speed up tramp a bit
-(use-package tramp
-  :init
-  (setq tramp-default-method "scp"))
+(setq tramp-default-method "scp")
 
 ;; Set default browser
 (use-package browse-url
+  :functions browse-url
   :init
   (setq browse-url-browser-function 'browse-url-default-browser))
 
