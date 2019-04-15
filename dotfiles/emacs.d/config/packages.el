@@ -84,7 +84,11 @@
 ;; Project browser
 (use-package projectile
              :bind-keymap
-             ("C-c p" . projectile-command-map))
+             ("C-c p" . projectile-command-map)
+             :init
+             (setq projectile-project-search-path '("~/Documents/Projects/"))
+             :config
+             (projectile-discover-projects-in-search-path))
 (use-package helm-projectile
              :after (helm projectile)
              :bind
