@@ -70,7 +70,7 @@
 
 ;; Set default browser
 (use-package browse-url
-  :functions browse-url
+  :commands browse-url
   :init
   (setq browse-url-browser-function 'browse-url-default-browser))
 
