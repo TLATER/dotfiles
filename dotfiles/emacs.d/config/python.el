@@ -25,25 +25,14 @@
 ;;; Code:
 
 (use-package python
+  :ensure-system-package
+  (pyls . "pip install --user \'python-language-server[rope,mccabe,pydocstyle,yapf]\'")
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
-  :config
+  :init
   (when (executable-find "ipython3")
     (setq python-shell-interpreter "ipython3"
           python-shell-interpreter-args "--simple-prompt -i")))
-
-(use-package jedi-core
-  :after (python)
-  :hook (python-mode . jedi:setup)
-  :init
-  (setq jedi:complete-on-dot t)
-  :bind (:map python-mode-map
-              ("C-." . jedi:goto-definition)))
-
-(use-package company-jedi
-  :after (company jedi-core)
-  :config
-  (add-to-list 'company-backends 'company-jedi))
 
 (use-package pytest
   :after (python)

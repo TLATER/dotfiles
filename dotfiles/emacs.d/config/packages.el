@@ -59,14 +59,6 @@
   :init
   (setq company-idle-delay 0.1))
 
-;; LSP integration
-(use-package lsp-mode
-  :hook rust-mode)
-(use-package lsp-ui
-  :after (lsp-mode))
-(use-package company-lsp
-  :after (lsp-mode company))
-
 ;; In-line linting
 (use-package flycheck
   :functions (global-flycheck-mode)
