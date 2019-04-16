@@ -116,5 +116,15 @@
              :config
              (sml/setup))
 
+;; Better snippets
+(use-package yasnippet
+  :commands yas-expand-snippet
+  :config
+  (yas-global-mode 1))
+
+(use-package yatemplate
+  :config
+  (yatemplate-fill-alist))
+
 (provide 'packages)
 ;;; packages.el ends here
