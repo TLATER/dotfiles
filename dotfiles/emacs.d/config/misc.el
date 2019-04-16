@@ -76,6 +76,7 @@
 
 ;; Configure org-mode
 (use-package org
+  :functions (org-babel-do-load-languages)
   :mode ("\\.org\\'" . org-mode)
   :init
   (defvar org-latex-listings t "Whether to use lstlistings for org latex exports")
@@ -89,6 +90,7 @@
 
 ;; Show "wrong" whitespace
 (use-package whitespace
+  :functions (global-whitespace-mode)
   :init
   (setq whitespace-style '(face trailing tabs space-after-tab
                                 space-before-tab tab-mark))
@@ -97,6 +99,7 @@
 
 ;; Remove trailing whitespace upon save
 (use-package whitespace-cleanup-mode
+  :functions (global-whitespace-cleanup-mode)
   :config
   (global-whitespace-cleanup-mode))
 

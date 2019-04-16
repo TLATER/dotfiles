@@ -29,7 +29,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
-  (require 'use-package))
+  (require 'use-package)
+  (setq use-package-expand-minimally byte-compile-current-file))
 
 (require 'use-package)
 (setq use-package-compute-statistics t)
@@ -37,6 +38,7 @@
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
+  :functions (exec-path-from-shell-initialize)
   :if (not (memq system-type '(cygwin windows-nt)))
   :config
   (exec-path-from-shell-initialize))

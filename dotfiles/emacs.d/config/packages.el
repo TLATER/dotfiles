@@ -26,6 +26,7 @@
 
 ;; Automatically update packages every once in a while
 (use-package auto-package-update
+  :functions (auto-package-update-maybe)
   :config
   (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
@@ -34,6 +35,7 @@
 ;; Handy commands
 (use-package crux
   :demand
+  :functions (crux-reopen-as-root-mode)
   :bind
   ("C-c o" . crux-open-with)
   ([remap kill-line] . crux-smart-kill-line)
@@ -67,11 +69,13 @@
 
 ;; In-line linting
 (use-package flycheck
+  :functions (global-flycheck-mode)
   :config
   (global-flycheck-mode))
 
 ;; Better parens handling
 (use-package smartparens
+  :functions (smartparens-global-mode sp-use-smartparens-bindings)
   :config
   (require 'smartparens-config)
   (smartparens-global-mode t)
@@ -98,6 +102,7 @@
 
 ;; Project browser
 (use-package projectile
+  :functions (projectile-discover-projects-in-search-path)
   :bind-keymap
   ("C-c p" . projectile-command-map)
   :init
@@ -105,6 +110,7 @@
   :config
   (projectile-discover-projects-in-search-path))
 (use-package helm-projectile
+  :functions (helm-projectile-on)
   :after (helm projectile)
   :bind
   ([remap projectile-find-other-file] . helm-projectile-find-other-file)
@@ -128,16 +134,19 @@
 
 ;; Better mode-line
 (use-package smart-mode-line
+  :functions (sml/setup)
   :config
   (sml/setup))
 
 ;; Better snippets
 (use-package yasnippet
+  :functions (yas-global-mode)
   :commands yas-expand-snippet
   :config
   (yas-global-mode 1))
 
 (use-package yatemplate
+  :functions (yatemplate-fill-alist)
   :config
   (yatemplate-fill-alist))
 
