@@ -1,9 +1,14 @@
-.last-package-update-day
 auto-save-list/
 backups/
 elpa/
 erc/
-projectile-bookmarks.eld
 transient/
-config/custom.el
+.python-environments/
+eshell/
+flycheck_*
 *.elc
+config/custom.el
+.last-package-update-day
+tramp
+projectile-bookmarks.eld
+
