@@ -25,25 +25,25 @@
 ;;; Code:
 
 (use-package yaml-mode
-             :mode "\\.bst\\'")
+  :mode "\\.bst\\'")
 
 (use-package systemd
-             :mode ("\\.service\\'" . systemd-mode))
+  :mode ("\\.service\\'" . systemd-mode))
 
 (use-package web-mode
-             :mode "\\.hbs\\'")
+  :mode "\\.hbs\\'")
 
 (use-package rust-mode
-             :mode "\\.rs\\'")
+  :mode "\\.rs\\'")
 
 (use-package dockerfile-mode
-             :mode "\\`Dockerfile\\'")
+  :mode "\\`Dockerfile\\'")
 
 (use-package scss-mode
-             :mode ("\\.sass\\'" "\\.scss\\'"))
+  :mode ("\\.sass\\'" "\\.scss\\'"))
 
 (use-package json-mode
-             :mode ("\\.json\\'"))
+  :mode ("\\.json\\'"))
 
 (use-package stumpwm-mode)
 

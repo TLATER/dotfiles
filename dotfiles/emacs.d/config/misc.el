@@ -91,7 +91,7 @@
 (use-package whitespace
   :init
   (setq whitespace-style '(face trailing tabs space-after-tab
-                           space-before-tab tab-mark))
+                                space-before-tab tab-mark))
   :config
   (global-whitespace-mode))
 
