@@ -29,8 +29,7 @@
   (package-refresh-contents)
   (package-install 'use-package))
 (eval-when-compile
-  (require 'use-package)
-  (setq use-package-expand-minimally byte-compile-current-file))
+  (require 'use-package))
 
 (require 'use-package)
 (setq use-package-compute-statistics t)
