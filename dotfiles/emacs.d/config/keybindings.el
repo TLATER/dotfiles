@@ -25,7 +25,7 @@
 ;;; Code:
 
 (defun backward-kill-line ()
-  "Kill the line backwards from point"
+  "Kill the line backwards from point."
   (interactive)
   (kill-line 0)
   (indent-according-to-mode))
