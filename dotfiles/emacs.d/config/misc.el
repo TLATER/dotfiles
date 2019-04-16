@@ -34,6 +34,10 @@
   :init
   (setq require-final-newline "visit-save"))
 
+;; Set user name/email
+(setq user-full-name "Tristan Daniël Maat")
+(setq user-mail-address "tm@tlater.net")
+
 ;; Make dired hide hidden files
 (use-package dired
   :commands dired
