@@ -31,6 +31,22 @@
              (setq auto-package-update-hide-results t)
              (auto-package-update-maybe))
 
+;; Handy commands
+(use-package crux
+  :demand
+  :bind
+  ("C-c o" . crux-open-with)
+  ([remap kill-line] . crux-smart-kill-line)
+  ("C-c u" . crux-view-url)
+  ("C-c e" . crux-eval-and-replace)
+  ("C-c D" . crux-delete-file-and-buffer)
+  ("C-c C" . crux-copy-file-preserve-attributes)
+  ("C-c R" . crux-rename-file-and-buffer)
+  ([remap delete-indentation] . crux-top-join-line)
+  :config
+  (crux-with-region-or-buffer comment-or-uncomment-region)
+  (crux-reopen-as-root-mode))
+
 ;; Better undo
 (use-package undo-tree
              :bind ([remap undo] . undo-tree-visualize))
