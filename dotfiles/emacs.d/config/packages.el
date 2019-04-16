@@ -85,11 +85,10 @@
 (use-package helm
              :config
              (require 'helm-config)
+             (helm-mode 1)
              :bind
-             ("M-x" . helm-M-x)
-             ("C-x C-f" . helm-find-files)
-             :init
-             (helm-mode 1))
+             ([remap execute-extended-command] . helm-M-x)
+             ([remap find-file] . helm-find-files))
 
 ;; Doc browser
 (use-package helm-dash
