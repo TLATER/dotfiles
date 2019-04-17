@@ -142,5 +142,22 @@
   :config
   (yatemplate-fill-alist))
 
+;; Project browser
+(use-package treemacs
+  :config
+  (treemacs-follow-mode t)
+  (treemacs-filewatch-mode t)
+  (treemacs-fringe-indicator-mode t)
+  (treemacs-git-mode 'deferred)
+  :bind
+  ("C-c t b" . treemacs)
+  ("C-c t a" . treemacs-add-project-to-workspace)
+  ("C-c t w" . treemacs-switch-workspace)
+  ("C-c t n" . treemacs-create-workspace))
+(use-package treemacs-projectile
+  :after (treemacs projectile))
+(use-package treemacs-magit
+  :after (treemacs magit))
+
 (provide 'packages)
 ;;; packages.el ends here
