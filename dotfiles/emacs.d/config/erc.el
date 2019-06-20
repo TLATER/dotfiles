@@ -44,7 +44,7 @@
   (make-directory "~/.emacs.d/erc/logs" t)
   (defun erc-codethink ()
     (interactive)
-    (erc-tls :server "irc0.codethink.co.uk"
+    (erc-tls :server "bouncer.codethink.co.uk"
              :port 6502
              :nick "tristanmaat/codethink"
              :full-name user-full-name)))
