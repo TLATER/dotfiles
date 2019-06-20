@@ -34,6 +34,9 @@
 (defvar backup-dir (expand-file-name
                     "backups"
                     (file-name-directory load-file-name)))
+(defvar share-dir (expand-file-name
+                   "share"
+                   (file-name-directory load-file-name)))
 (setq custom-file (expand-file-name "custom.el" config-dir))
 
 ;; Disable the useless UI components
@@ -63,6 +66,7 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
+(setq auto-save-list-file-prefix (expand-file-name "auto-save-list" share-dir))
 (setq create-lockfiles nil)
 
 ;; Set the theme

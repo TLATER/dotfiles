@@ -32,7 +32,7 @@
   :after (tls)
   :commands erc-tls
   :init
-  (setq erc-log-channels-directory "~/.emacs.d/erc/logs")
+  (setq erc-log-channels-directory (expand-file-name "erc/logs" share-dir))
   (setq erc-keywords '("NB ALL:"))
   (setq erc-modules '(autojoin button completion fill
                                irccontrols list log match menu

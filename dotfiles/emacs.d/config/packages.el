@@ -87,8 +87,11 @@
              ([remap find-file] . helm-find-files))
 
 ;; Doc browser
+(use-package dash-docs
+  :init
+  (setq dash-docs-docsets-path (expand-file-name "docsets" share-dir)))
 (use-package helm-dash
-  :after (helm)
+  :after (helm dash-docs)
   :bind
   ("C-c d" . helm-dash))
 
@@ -140,7 +143,9 @@
 (use-package yatemplate
   :functions (yatemplate-fill-alist)
   :config
-  (yatemplate-fill-alist))
+  (yatemplate-fill-alist)
+  :init
+  (setq yatemplate-dir (expand-file-name "yatemplate" share-dir)))
 
 ;; Project browser
 (use-package treemacs
