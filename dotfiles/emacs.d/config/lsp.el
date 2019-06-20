@@ -48,6 +48,8 @@
 
 (use-package company-lsp
   :after (lsp-mode company)
+  :init
+  (setq company-lsp-cache-candidates 'auto)
   :config
   (add-to-list 'company-backends 'company-lsp))
 
