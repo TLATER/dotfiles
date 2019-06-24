@@ -1,7 +1,3 @@
-# -*- mode: snippet -*-
-# contributor: tlater
-# name: template.sh
-# --
 #!/usr/bin/env ${2:sh}
 #
 ## install.sh --- ${1}
