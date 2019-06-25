@@ -1,0 +1,11 @@
+[[!meta title="Notes, `(format-time-string "%a %d %B %Y")`"]]
+[[!meta date="`(format-time-string "%F %T")`"]]
+[[!meta author="`(user-full-name)`"]]
+[[!tag "notes"]]
+
+[[!toc levels=2]]
+
+* Done
+** $0
+* Doing
+* Todo
