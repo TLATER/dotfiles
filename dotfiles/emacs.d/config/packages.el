@@ -164,5 +164,17 @@
 (use-package treemacs-magit
   :after (treemacs magit))
 
+(use-package diff-hl
+  :custom-face
+  (diff-hl-insert ((t (:inherit nil :foreground nil :background "#2aa889"))))
+  (diff-hl-delete ((t (:inherit nil :foreground nil :background "#dc322f"))))
+  (diff-hl-change ((t (:inherit nil :foreground nil :background "#d26937"))))
+  :init
+  (setq diff-hl-draw-borders nil)
+  :config
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (diff-hl-flydiff-mode)
+  (global-diff-hl-mode))
+
 (provide 'packages)
 ;;; packages.el ends here
