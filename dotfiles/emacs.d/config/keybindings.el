@@ -30,6 +30,11 @@
   (kill-line 0)
   (indent-according-to-mode))
 
+(defun other-window-backwards ()
+  "Go to the other window in reverse order."
+  (interactive)
+  (other-window -1))
+
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 
@@ -39,6 +44,8 @@
 (global-set-key (kbd "C-x c") 'compile)
 
 (global-set-key (kbd "C-<backspace>") 'backward-kill-word)
+
+(global-set-key (kbd "C-x O") 'other-window-backwards)
 
 (provide 'keybindings)
 ;;; keybindings.el ends here
