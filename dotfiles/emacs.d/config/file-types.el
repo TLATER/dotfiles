@@ -47,6 +47,9 @@
 (use-package json-mode
   :mode ("\\.json\\'"))
 
+(use-package graphql-mode
+  :mode ("\\.graphql\\'" "\\.gql\\'"))
+
 (use-package stumpwm-mode)
 
 (provide 'file-types)
