@@ -55,7 +55,6 @@
 (when (display-graphic-p)
   (put 'suspend-frame 'disabled t))
 (setq load-prefer-newer t)
-(setq gc-cons-threshold 50000000)
 (setq large-file-warning-threshold 100000000)
 
 ;; Don't litter backup files everywhere
@@ -86,6 +85,10 @@
 
 ;; Setup use-package
 (load (expand-file-name "use-package" (file-name-directory load-file-name)))
+;; Setup garbage collection
+(use-package gcmh
+  :config
+  (gcmh-mode 1))
 
 ;; Load everything in the config directory
 (when (file-exists-p config-dir)
