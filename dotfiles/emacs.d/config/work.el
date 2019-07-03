@@ -28,7 +28,7 @@
        (progn
          (defvar log-dir (expand-file-name
                           "~/Documents/journal/log/"))
-         (find-file (expand-file-name (format-time-string "%Y/notes-%F.org") log-dir)))))
+         (find-file (expand-file-name (format-time-string "%Y/week-%W.org") log-dir)))))
 
 (provide 'work)
 ;;; work.el ends here

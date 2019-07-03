@@ -5,7 +5,7 @@
 
 [[!toc levels=2]]
 
-* Done
-** $0
-* Doing
-* Todo
+$0
+
+#+BEGIN: clocktable :scope file :maxlevel 2 :tstart "<`(format-time-string "%F")`>" :tend "<now>" :step day
+#+END
