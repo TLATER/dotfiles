@@ -91,7 +91,8 @@
 ;; Doc browser
 (use-package dash-docs
   :init
-  (setq dash-docs-docsets-path (expand-file-name "docsets" share-dir)))
+  (setq dash-docs-docsets-path (expand-file-name "docsets" share-dir))
+  (setq dash-docs-browser-func 'eww-browse-url))
 (use-package helm-dash
   :after (helm dash-docs)
   :bind
