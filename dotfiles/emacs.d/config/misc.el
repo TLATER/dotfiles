@@ -104,5 +104,18 @@
   :config
   (global-whitespace-cleanup-mode))
 
+(use-package compile
+  :ensure nil
+  :init
+  (setq compilation-finish-functions
+        (append compilation-finish-functions
+                (lambda (buffer status)
+                  (call-process "notify-send" nil nil nil
+                                "-t" "0"
+                                "-i" "emacs"
+                                "Compilation finished in Emacs"
+                                status))))
+  (setq compilation-scroll-output t))
+
 (provide 'misc)
 ;;; misc.el ends here
