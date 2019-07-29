@@ -30,6 +30,9 @@
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :init
+  (when (executable-find "ipython")
+    (setq python-shell-interpreter "ipython"
+          python-shell-interpreter-args "--simple-prompt -i"))
   (when (executable-find "ipython3")
     (setq python-shell-interpreter "ipython3"
           python-shell-interpreter-args "--simple-prompt -i")))
