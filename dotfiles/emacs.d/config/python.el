@@ -25,6 +25,7 @@
 ;;; Code:
 
 (use-package python
+  :after (dash-docs)
   :ensure-system-package
   (pyls . "pip install --user \'python-language-server[rope,mccabe,pydocstyle,yapf]\'")
   :mode ("\\.py\\'" . python-mode)
@@ -35,7 +36,9 @@
           python-shell-interpreter-args "--simple-prompt -i"))
   (when (executable-find "ipython3")
     (setq python-shell-interpreter "ipython3"
-          python-shell-interpreter-args "--simple-prompt -i")))
+          python-shell-interpreter-args "--simple-prompt -i"))
+  (add-hook 'python-mode-hook
+            (lambda () (dash-docs-activate-docset "Python 3"))))
 
 (use-package pytest
   :after (python)
