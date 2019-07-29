@@ -26,7 +26,7 @@
 
 (use-package lsp-mode
   :functions (lsp-register-custom-settings)
-  :hook ((rust-mode python-mode) . lsp)
+  :hook ((rust-mode python-mode sh-mode) . lsp)
   :bind
   ("C-c r" . lsp-rename)
   :init
