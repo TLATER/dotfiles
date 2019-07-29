@@ -25,7 +25,7 @@
 ;;; Code:
 
 (use-package yaml-mode
-  :mode "\\.bst\\'")
+  :mode ("\\.bst\\'" "\\project.conf\\'"))
 
 (use-package systemd
   :mode ("\\.service\\'" . systemd-mode))
