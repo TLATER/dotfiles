@@ -87,7 +87,9 @@
              (helm-ff-lynx-style-map t)
              :bind
              ([remap execute-extended-command] . helm-M-x)
-             ([remap find-file] . helm-find-files))
+             ([remap find-file] . helm-find-files)
+             ("C-c i" . helm-imenu)
+             ("C-c s" . helm-occur))
 
 ;; Doc browser
 (use-package dash-docs
