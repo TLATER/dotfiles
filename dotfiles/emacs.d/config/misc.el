@@ -104,17 +104,21 @@
   :config
   (global-whitespace-cleanup-mode))
 
+(use-package alert
+  :init
+  (setq alert-default-style 'libnotify))
+
 (use-package compile
+  :after alert
   :ensure nil
   :init
   (setq compilation-finish-functions
         (append compilation-finish-functions
-                (lambda (buffer status)
-                  (call-process "notify-send" nil nil nil
-                                "-t" "0"
-                                "-i" "emacs"
-                                "Compilation finished in Emacs"
-                                status))))
+                (lambda (_ status)
+                  (alert status
+                         :title "Compilation finished"
+                         :id 'emacs-compilation
+                         :category 'compilation.complete))))
   (setq compilation-scroll-output t))
 
 (provide 'misc)
