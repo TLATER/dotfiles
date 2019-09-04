@@ -1,0 +1,10 @@
+[Unit]
+Description=gpg-agent
+Documentation=man:gpg
+
+[Service]
+ExecStart=gpg-agent --write-env-file "/run/user/1000/gpg-agent-info"
+Restart=always
+
+[Install]
+WantedBy=default.target
