@@ -50,6 +50,9 @@
 (use-package graphql-mode
   :mode ("\\.graphql\\'" "\\.gql\\'"))
 
+(use-package protobuf-mode
+  :mode ("\\.proto\\'"))
+
 (use-package stumpwm-mode)
 
 (provide 'file-types)
