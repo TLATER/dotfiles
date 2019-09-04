@@ -33,7 +33,11 @@
   ;; We want flycheck, not flymake
   (setq lsp-prefer-flymake nil)
   (setq lsp-pyls-plugins-pydocstyle-enabled t)
-  (setq lsp-rust-clippy-preference "on"))
+  (setq lsp-rust-clippy-preference "on")
+  :config
+  ;; Enable .dir-locals config loading
+  (add-hook 'hack-local-variables-hook
+            (lambda () (when (derived-mode-p 'XXX-mode) (lsp)))))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
