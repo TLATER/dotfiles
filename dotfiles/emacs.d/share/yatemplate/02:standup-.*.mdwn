@@ -1,0 +1,15 @@
+[[!meta title="Standup, `(format-time-string "%a %d %b %Y")`"]]
+[[!meta date="`(format-time-string "%F %T")`"]]
+[[!meta author="`(user-full-name)`"]]
+[[!tag "standup"]]
+
+[[!toc levels=2]]
+
+# Attendance
+
+## Present
+
+# Reports
+
+# Discussion
+$0
