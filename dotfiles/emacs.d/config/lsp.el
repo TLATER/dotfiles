@@ -32,15 +32,7 @@
   :init
   ;; We want flycheck, not flymake
   (setq lsp-prefer-flymake nil)
-  (setq lsp-pyls-plugins-pydocstyle-enabled t)
-  :config
-  ;; Add pylint setting to pyls - this isn't currently included for
-  ;; some reason
-  (defcustom lsp-pyls-plugins-pylint-enabled t
-    "Enable or disable the plugin."
-    :type 'boolean
-    :group 'pyls-ls)
-  (lsp-register-custom-settings '(("pyls.plugins.pylint-enabled" lsp-pyls-plugins-pylint-enabled))))
+  (setq lsp-pyls-plugins-pydocstyle-enabled t))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
