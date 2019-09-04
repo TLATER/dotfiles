@@ -47,5 +47,8 @@
 
 (global-set-key (kbd "C-x O") 'other-window-backwards)
 
+(global-unset-key (kbd "<XF86Back>"))
+(global-unset-key (kbd "<XF86Forward>"))
+
 (provide 'keybindings)
 ;;; keybindings.el ends here
