@@ -25,7 +25,7 @@ select-random() {
         exit 1
     fi
 
-    echo "$list" | head -n $(((RANDOM % count) + 1)) | tail -n 1
+    echo "$list" | sort -R | tail -n 1
 }
 
 set-background() {
