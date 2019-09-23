@@ -1,3 +1,6 @@
 [submodule "dotdrop"]
 	path = dotdrop
 	url = https://github.com/deadc0de6/dotdrop.git
+[submodule "zsh-background-notify"]
+	path = dotfiles/zsh/plugins/zsh-background-notify
+	url = https://github.com/t413/zsh-background-notify.git
