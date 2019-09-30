@@ -85,8 +85,8 @@
 (define-key *root-map* (kbd "u") "toggle-gaps")
 
 ;;; Keys:
-(define-key *root-map* (kbd "c") "exec termite")
-(define-key *root-map* (kbd "C-c") "exec termite")
+(define-key *root-map* (kbd "c") "exec ${VTERM:-xterm}")
+(define-key *root-map* (kbd "C-c") "exec ${VTERM:-xterm}")
 (define-key *root-map* (kbd "e") "exec emacsclient -c -a 'emacs'")
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs'")
 (define-key *root-map* (kbd ".") "exec rofi -show drun")
