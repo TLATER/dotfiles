@@ -11,7 +11,7 @@ export BACKGROUND_HOME="$HOME/Pictures/backgrounds"
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs'
-export VTERM='termite'
+export VTERM='alacritty'
 
 # Make a handful of applications follow XDG_BASE_DIRS
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
