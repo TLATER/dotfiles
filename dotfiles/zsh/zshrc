@@ -5,6 +5,7 @@ HISTFILE="$XDG_DATA_HOME/.zsh_history"
 autoload -U zcalc
 
 # Load more granular configuration files
+source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/completion.zsh"
 source "$ZDOTDIR/keybindings.zsh"
