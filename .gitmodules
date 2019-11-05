@@ -4,3 +4,6 @@
 [submodule "zsh-background-notify"]
 	path = dotfiles/zsh/plugins/zsh-background-notify
 	url = https://github.com/t413/zsh-background-notify.git
+[submodule "dotfiles/zsh/plugins/zsh-autoswitch-virtualenv"]
+	path = dotfiles/zsh/plugins/zsh-autoswitch-virtualenv
+	url = https://github.com/MichaelAquilina/zsh-autoswitch-virtualenv.git
