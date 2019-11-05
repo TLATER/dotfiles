@@ -7,5 +7,6 @@
 
 $0
 
+* Clock
 #+BEGIN: clocktable :scope file :maxlevel 2 :tstart "<`(format-time-string "%F")`>" :tend "<now>" :step day
-#+END
+#+END:
