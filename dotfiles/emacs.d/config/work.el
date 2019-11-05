@@ -26,6 +26,10 @@
 
 (cond ((string-equal (system-name) "ct-lt-214")
        (progn
+         ;; Set work mail address
+         (setq user-mail-address "tristan.maat@codethink.co.uk")
+
+         ;; Automatically open journal stuff
          (defvar log-dir (expand-file-name
                           "~/Documents/journal/log/"))
          (find-file (expand-file-name (format-time-string "%Y/week-%W.org") log-dir)))))
