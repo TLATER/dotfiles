@@ -69,7 +69,7 @@ dotfiles:
     src: mpd
     link: true
   bin:
-    dst: ~/.local/bin
+    dst: ~/.local/usr/bin
     src: bin
     link: true
 

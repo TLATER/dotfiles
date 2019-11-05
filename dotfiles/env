@@ -5,6 +5,7 @@ export XDG_LIB_HOME="$HOME/.local/lib"
 export XDG_CACHE_HOME="$HOME/.cache"
 
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:$HOME/.local/usr/bin"
 
 export BACKGROUND_HOME="$HOME/Pictures/backgrounds"
 
