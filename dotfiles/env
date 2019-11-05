@@ -17,10 +17,5 @@ export VTERM='alacritty'
 # Make a handful of applications follow XDG_BASE_DIRS
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
 
-if [ -f "/run/user/1000/gpg-agent-info" ]; then
-   source /run/user/1000/gpg-agent-info
-   export GPG_AGENT_INFO
-fi
-
 GPG_TTY=$(tty)
 export GPG_TTY
