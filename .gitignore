@@ -1,0 +1,7 @@
+/dotfiles/zsh/.zcalc_history
+/dotfiles/systemd-user/timers.target.wants/
+/dotfiles/emacs.d/var/
+/dotfiles/emacs.d/url/
+/dotfiles/emacs.d/network-security.data
+/dotfiles/emacs.d/forge-database.sqlite
+/dotfiles/emacs.d/.cache/
