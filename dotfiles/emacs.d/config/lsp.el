@@ -29,6 +29,7 @@
   :hook ((rust-mode python-mode sh-mode) . lsp)
   :bind
   ("C-c r" . lsp-rename)
+  ("C-c f" . lsp-format-buffer)
   :init
   ;; We want flycheck, not flymake
   (setq lsp-prefer-flymake nil)
