@@ -3,7 +3,7 @@
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 
 # Start screen if it hasn't started yet
-if [ -z "$STY" ] && [ "$TERM" != "linux" ]; then
+if [ -z "$STY" ] && [ "$TERM" != "" ] && [ "$TERM" != "linux" ]; then
     exec screen -AxRR
 fi
 
