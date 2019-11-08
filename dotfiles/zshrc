@@ -3,7 +3,7 @@
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 
 # Start screen if it hasn't started yet
-if (( $+commands[screen] )) && [ -z "$STY" ] && [ "$TERM" != "linux" ]; then
+if (( $+commands[screen] )) && [ -z "$STY" ] && [ "$TERM" != "dumb" ] && [ "$TERM" != "linux" ]; then
     echo $TERM
     exec screen -AxRR
 fi
