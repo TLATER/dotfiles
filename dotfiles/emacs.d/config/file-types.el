@@ -34,8 +34,6 @@
   :mode "\\.hbs\\'")
 
 (use-package rust-mode
-  :ensure-system-package
-  (rls . "rustup component add rls rust-analysis rust-src")
   :mode "\\.rs\\'")
 
 (use-package dockerfile-mode

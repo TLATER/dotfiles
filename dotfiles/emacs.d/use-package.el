@@ -42,8 +42,5 @@
   :config
   (exec-path-from-shell-initialize))
 
-(use-package use-package-ensure-system-package
-  :after exec-path-from-shell)
-
 (provide 'use-package)
 ;;; use-package.el ends here

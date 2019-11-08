@@ -26,8 +26,6 @@
 
 (use-package python
   :after (dash-docs)
-  :ensure-system-package
-  (pyls . "pip install --user \'python-language-server[rope,mccabe,pydocstyle,yapf]\'")
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :init
