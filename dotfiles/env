@@ -7,8 +7,6 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export PATH="$PATH:$HOME/.local/bin"
 export PATH="$PATH:$HOME/.local/usr/bin"
 
-export BACKGROUND_HOME="$HOME/Pictures/backgrounds"
-
 export VISUAL='emacsclient'
 export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs'
