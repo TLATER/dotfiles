@@ -36,6 +36,9 @@
 (use-package rust-mode
   :mode "\\.rs\\'")
 
+(use-package cython-mode
+  :mode "\\.pyx\\'")
+
 (use-package dockerfile-mode
   :mode "\\`Dockerfile\\'")
 
