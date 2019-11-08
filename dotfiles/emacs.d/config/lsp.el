@@ -35,6 +35,8 @@
   (setq lsp-prefer-flymake nil)
   (setq lsp-pyls-plugins-pydocstyle-enabled t)
   (setq lsp-rust-clippy-preference "on")
+  (add-to-list 'safe-local-variable-values
+               '(lsp-pyls-plugins-pylint-args "--rcfile=/home/tlater/Documents/Work/buildstream/.pylintrc" "--enable-=fixme"))
   :config
   ;; Enable .dir-locals config loading
   (add-hook 'hack-local-variables-hook
