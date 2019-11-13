@@ -24,14 +24,14 @@
 
 ;;; Code:
 
-(cond ((string-equal (system-name) "ct-lt-214")
+(cond ((string-equal (system-name) "ct-lt-02052")
        (progn
          ;; Set work mail address
          (setq user-mail-address "tristan.maat@codethink.co.uk")
 
          ;; Automatically open journal stuff
          (defvar log-dir (expand-file-name
-                          "~/Documents/journal/log/"))
+                          "~/Documents/Work/Wikis/journal/log/"))
          (find-file (expand-file-name (format-time-string "%Y/week-%W.org") log-dir)))))
 
 (provide 'work)
