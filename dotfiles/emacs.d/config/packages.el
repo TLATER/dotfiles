@@ -28,7 +28,6 @@
 (use-package auto-package-update
   :functions (auto-package-update-maybe)
   :config
-  (setq auto-package-update-delete-old-versions t)
   (setq auto-package-update-hide-results t)
   (auto-package-update-maybe)
   (add-hook 'auto-package-update-before-hook (lambda () (package-refresh-contents))))
