@@ -151,7 +151,3 @@
 (run-shell-command "dex -ae stumpwm")
 
 ;;; init.lisp ends here
-
-;; Local Variables:
-;; stumpwm-shell-program: "/usr/bin/stumpish"
-;; End:
