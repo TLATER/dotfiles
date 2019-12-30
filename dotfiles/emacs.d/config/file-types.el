@@ -54,6 +54,9 @@
 (use-package protobuf-mode
   :mode ("\\.proto\\'"))
 
+(use-package csv-mode
+  :mode ("\\.csv\\'"))
+
 (use-package stumpwm-mode)
 
 (provide 'file-types)
