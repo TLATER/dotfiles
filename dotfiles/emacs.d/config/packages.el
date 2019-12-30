@@ -85,6 +85,7 @@
              (helm-mode 1)
              :custom
              (helm-ff-lynx-style-map t)
+             (helm-completion-style 'helm)
              :bind
              ([remap execute-extended-command] . helm-M-x)
              ([remap find-file] . helm-find-files)
