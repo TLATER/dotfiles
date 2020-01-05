@@ -5,3 +5,4 @@
 /dotfiles/emacs.d/network-security.data
 /dotfiles/emacs.d/forge-database.sqlite
 /dotfiles/emacs.d/.cache/
+/nixpkgs/result

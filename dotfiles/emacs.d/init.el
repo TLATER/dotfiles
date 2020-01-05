@@ -77,14 +77,44 @@
 ;; some minimal components for daemon mode and stop here if we're
 ;; root?
 
-;; Setup package.el
-(require 'package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(unless package--initialized (package-initialize))
+;; Figure out if package installation is handled externally.
+;;
+;; We do this by checking if any installed use-package version is
+;; marked as "external".
+(eval-and-compile
+  (require 'package)
+  (setq using-external-packages (member "external"
+                          (mapcar 'package-desc-status
+                                  (cdr (assoc 'use-package package-alist))))))
 
-;; Setup use-package
-(load (expand-file-name "use-package" (file-name-directory load-file-name)))
+;; Make sure use-package is installed if it's not installed externally
+(unless using-external-packages
+  (unless package--initialized (package-initialize))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package)))
+
+(eval-and-compile
+  ;; Setup use-package, regardless of how it is installed
+  ;; bind-key is a dependency...
+  (require 'bind-key)
+  (require 'use-package)
+
+  ;; If packages are installed externally, we want to turn "ensure" off
+  (setq use-package-always-ensure (not using-external-packages))
+  (when using-external-packages
+    (setq use-package-ensure-function 'ignore)
+    (setq package-enable-at-startup nil)))
+
+;; Ensure that our exec path is set up correctly
+(use-package exec-path-from-shell
+  :functions (exec-path-from-shell-initialize)
+  :if (not (memq system-type '(cygwin windows-nt)))
+  :init
+  (setq exec-path-from-shell-arguments '("-l"))
+  :config
+  (exec-path-from-shell-initialize))
+
 ;; Setup garbage collection
 (use-package gcmh
   :config
@@ -93,7 +123,7 @@
 ;; Load everything in the config directory
 (when (file-exists-p config-dir)
   (mapc (lambda (file)
-          (load (file-name-sans-extension file)))
+          (load file nil nil t))
         (directory-files config-dir 't "^[^#\.].*\\.el$")))
 
 (provide 'init)
