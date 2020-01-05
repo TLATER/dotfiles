@@ -2,12 +2,14 @@
 [ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 
-# Start screen if it hasn't started yet
-if (( $+commands[screen] )) && [ -z "$STY" ] && [ "$TERM" != "dumb" ] && [ "$TERM" != "linux" ]; then
-    echo $TERM
-    exec screen -AxRR
-fi
+# Everything else is just for interactive shells
+if [[ -o interactive ]]; then
+    # Start screen if it hasn't started yet
+    if (( $+commands[screen] )) && [ -z "$STY" ] && [ "$TERM" != "dumb" ] && [ "$TERM" != "linux" ]; then
+        exec screen -AxRR -c "$XDG_CONFIG_HOME/screen/config"
+    fi
 
-# Load zsh configuration
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-source "$ZDOTDIR/zshrc"
+    # Load zsh configuration
+    ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+    source "$ZDOTDIR/zshrc"
+fi
