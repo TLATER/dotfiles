@@ -68,14 +68,14 @@
 (setq auto-save-list-file-prefix (expand-file-name "auto-save-list" share-dir))
 (setq create-lockfiles nil)
 
-;; Set the theme
-(add-to-list 'custom-theme-load-path theme-dir)
-(load-theme 'cyan t)
-
-;; Might not want to do the latter if we're not in a normal
+;; Might not want to do the following if we're not in a normal
 ;; environment, i.e., if we're *not* invoked as a daemon. Maybe set
 ;; some minimal components for daemon mode and stop here if we're
 ;; root?
+
+;; Set the theme
+(add-to-list 'custom-theme-load-path theme-dir)
+(load-theme 'cyan t)
 
 ;; Figure out if package installation is handled externally.
 ;;
