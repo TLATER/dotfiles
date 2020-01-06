@@ -112,12 +112,6 @@
 ;; Locking
 (define-key *root-map* (kbd "L") "exec light-locker-command -l")
 
-;; Pinentry
-(ql:quickload "cffi")
-(ql:quickload "usocket-server")
-(ql:quickload "percent-encoding")
-(load-module "pinentry")
-
 ;;; Mode line
 (ql:quickload "xembed")
 (load-module "stumptray")
