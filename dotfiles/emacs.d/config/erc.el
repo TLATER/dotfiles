@@ -47,6 +47,12 @@
     (erc-tls :server "bouncer.codethink.co.uk"
              :port 6502
              :nick "tristanmaat/codethink"
+             :full-name user-full-name))
+  (defun erc-exirc ()
+    (interactive)
+    (erc-tls :server "bouncer.codethink.co.uk"
+             :port 6502
+             :nick "tristanmaat/exirc"
              :full-name user-full-name)))
 
 
