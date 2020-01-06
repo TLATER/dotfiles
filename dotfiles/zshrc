@@ -4,8 +4,17 @@
 
 # Everything else is just for interactive shells
 if [[ -o interactive ]]; then
-    # Start screen if it hasn't started yet
-    if (( $+commands[screen] )) && [ -z "$STY" ] && [ "$TERM" != "dumb" ] && [ "$TERM" != "linux" ]; then
+    # Start screen if...
+    if \
+        # The command exists \
+        (( $+commands[screen] )) && \
+            # The configuration file exists \
+            [ -f "$XDG_CONFIG_HOME/screen/config" ] && \
+            # Screen is not already running \
+            [ -z "$STY" ] && \
+            # And our terminal is acceptable \
+            [ "$TERM" != "dumb" ] && \
+            [ "$TERM" != "linux" ]; then
         exec screen -AxRR -c "$XDG_CONFIG_HOME/screen/config"
     fi
 
