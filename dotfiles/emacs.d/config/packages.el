@@ -114,6 +114,8 @@
   :functions (projectile-discover-projects-in-search-path)
   :bind-keymap
   ("C-c p" . projectile-command-map)
+  :init
+  (setq projectile-use-git-grep t)
   :config
   (projectile-discover-projects-in-search-path))
 (use-package helm-projectile
