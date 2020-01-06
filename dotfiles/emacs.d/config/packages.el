@@ -79,12 +79,20 @@
 
 ;; Better prompts
 (use-package helm
+             :init
+             (add-hook 'helm-mode-hook
+                       (lambda ()
+                         (setq completion-styles
+                               (cond ((assq 'helm-flex completion-styles-alist)
+                                      '(helm-flex))
+                                     ((assq 'flex completion-styles-alist)
+                                      '(flex))))))
              :config
              (require 'helm-config)
              (helm-mode 1)
              :custom
              (helm-ff-lynx-style-map t)
-             (helm-completion-style 'helm-flex)
+             (helm-completion-style 'emacs)
              :bind
              ([remap execute-extended-command] . helm-M-x)
              ([remap find-file] . helm-find-files)
