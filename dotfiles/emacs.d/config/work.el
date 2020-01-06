@@ -26,7 +26,13 @@
 
 (cond ((string-equal (system-name) "ct-lt-02052")
        (progn
-         ;; Set work mail address
+         ;; Set work mail
+         (use-package smptpmail
+           :ensure nil
+           :init
+           (setq smtpmail-smtp-server "mail.codethink.co.uk"
+                 smtpmail-smtp-service 587
+                 send-mail-function 'smtpmail-send-it))
          (setq user-mail-address "tristan.maat@codethink.co.uk")
 
          ;; Automatically open journal stuff
