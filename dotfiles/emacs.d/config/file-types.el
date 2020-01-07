@@ -57,6 +57,9 @@
 (use-package csv-mode
   :mode ("\\.csv\\'"))
 
+(use-package nix-mode
+  :mode ("\\.nix\\'"))
+
 (use-package stumpwm-mode)
 
 (provide 'file-types)
