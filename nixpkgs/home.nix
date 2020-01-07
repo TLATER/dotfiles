@@ -12,13 +12,14 @@
   systemd.user.services = {
     emacs = {
       Unit = {
-        Description = "Emacs text editor";
+        Description = "Emacs: the extensible, self-documenting text editor";
         Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs";
+        X-RestartIfChanged = false;
       };
       Service = {
-        ExecStart = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacs --fg-daemon";
+        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${(import ./emacs.nix { inherit pkgs; })}/bin/emacs --fg-daemon'";
         ExecStop = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacsclient --eval \"(kill-emacs)\"";
-        Environment = "SSH_AUTH_SOCK=%t/keyring/ssh";
+        Restart = "on-failure";
       };
       Install = {
         WantedBy = ["default.target"];
