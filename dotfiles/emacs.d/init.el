@@ -101,6 +101,8 @@
 
   ;; If packages are installed externally, we want to turn "ensure" off
   (setq use-package-always-ensure (not using-external-packages))
+  (setq use-package-compute-statistics t)
+
   (when using-external-packages
     (setq use-package-ensure-function 'ignore)
     (setq package-enable-at-startup nil)))
