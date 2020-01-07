@@ -79,13 +79,12 @@
 
 ;; Figure out if package installation is handled externally.
 ;;
-;; We do this by checking if any installed use-package version is
-;; marked as "external".
+;; We do this by checking if a function defined by the nix site lisp
+;; is bound.
 (eval-and-compile
   (require 'package)
-  (setq using-external-packages (member "external"
-                          (mapcar 'package-desc-status
-                                  (cdr (assoc 'use-package package-alist))))))
+  (setq using-external-packages (or (getenv "SCANNING_PACKAGES")
+                                    (fboundp 'nix--profile-paths))))
 
 ;; Make sure use-package is installed if it's not installed externally
 (unless using-external-packages

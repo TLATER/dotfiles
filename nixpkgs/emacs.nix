@@ -13,7 +13,7 @@ with pkgs; with emacsPackagesNg;
         runCommand "package-list" {
           buildInputs = [ emacsDistribution.emacs ];
         } ''
-        emacs --batch --quick \
+        HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
               -L ${emacsDistribution.use-package}/share/emacs/site-lisp/elpa/use-package-* \
               -L ${emacsDistribution.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
               -l ${ensure ./use-package-list.el "site-lisp/use-package-list.el"} \
