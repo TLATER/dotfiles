@@ -27,10 +27,12 @@
 ;; Automatically update packages every once in a while
 (use-package auto-package-update
   :functions (auto-package-update-maybe)
-  :config
+  :init
   (setq auto-package-update-hide-results t)
-  (auto-package-update-maybe)
-  (add-hook 'auto-package-update-before-hook (lambda () (package-refresh-contents))))
+  :config
+  (unless using-external-packages
+    (auto-package-update-maybe)
+    (add-hook 'auto-package-update-before-hook (lambda () (package-refresh-contents)))))
 
 ;; Handy commands
 (use-package crux
