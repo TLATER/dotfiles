@@ -9,6 +9,13 @@
     (import ./emacs.nix { inherit pkgs; })
   ];
 
+  home.file = {
+    ".emacs.d" = {
+      recursive = true;
+      source = ../dotfiles/emacs.d;
+    };
+  };
+
   systemd.user.services = {
     emacs = {
       Unit = {

@@ -32,7 +32,7 @@
   :after (tls)
   :commands erc-tls
   :init
-  (setq erc-log-channels-directory (expand-file-name "erc/logs" share-dir))
+  (setq erc-log-channels-directory (expand-file-name "erc/logs" data-dir))
   (setq erc-keywords '("NB ALL:"))
   (setq erc-modules '(autojoin button completion fill
                                irccontrols list log match menu
@@ -41,7 +41,7 @@
                                readonly ring scrolltobottom
                                stamp spelling track truncate))
   :config
-  (make-directory "~/.emacs.d/erc/logs" t)
+  (make-directory erc-log-channels-directory t)
   (defun erc-codethink ()
     (interactive)
     (erc-tls :server "bouncer.codethink.co.uk"

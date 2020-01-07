@@ -31,9 +31,12 @@
 (defvar theme-dir (expand-file-name
                    "themes"
                    (file-name-directory load-file-name)))
+(defvar data-dir (expand-file-name
+                  "emacs"
+                  (getenv "XDG_DATA_HOME")))
 (defvar backup-dir (expand-file-name
                     "backups"
-                    (file-name-directory load-file-name)))
+                    data-dir))
 (defvar share-dir (expand-file-name
                    "share"
                    (file-name-directory load-file-name)))
@@ -65,7 +68,7 @@
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
-(setq auto-save-list-file-prefix (expand-file-name "auto-save-list" share-dir))
+(setq auto-save-list-file-prefix (expand-file-name "auto-save-list/" backup-dir))
 (setq create-lockfiles nil)
 
 ;; Might not want to do the following if we're not in a normal
@@ -88,6 +91,7 @@
 
 ;; Make sure use-package is installed if it's not installed externally
 (unless using-external-packages
+  (setq package-user-dir (expand-file-name "elpa" data-dir))
   (unless package--initialized (package-initialize))
   (unless (package-installed-p 'use-package)
     (package-refresh-contents)

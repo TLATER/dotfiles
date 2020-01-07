@@ -28,7 +28,8 @@
 (use-package auto-package-update
   :functions (auto-package-update-maybe)
   :init
-  (setq auto-package-update-hide-results t)
+  (setq auto-package-update-hide-results t
+        auto-package-update-last-update-day-path (expand-file-name ".update-day" data-dir))
   :config
   (unless using-external-packages
     (auto-package-update-maybe)
@@ -78,6 +79,11 @@
 ;; Magit!
 (use-package magit
   :bind ("C-c g s" . magit-status))
+(use-package transient
+  :init
+  (setq transient-levels-file (expand-file-name "transient/levels.el" data-dir)
+        transient-values-file (expand-file-name "transient/values.el" data-dir)
+        transient-history-file (expand-file-name "transient/history.el" data-dir)))
 
 ;; Better prompts
 (use-package helm
@@ -104,7 +110,7 @@
 ;; Doc browser
 (use-package dash-docs
   :init
-  (setq dash-docs-docsets-path (expand-file-name "docsets" share-dir))
+  (setq dash-docs-docsets-path (expand-file-name "docsets" data-dir))
   (setq dash-docs-browser-func 'eww-browse-url))
 (use-package helm-dash
   :after (helm dash-docs)
@@ -153,7 +159,10 @@
 (use-package yasnippet
   :functions (yas-global-mode)
   :commands yas-expand-snippet
+  :init
+  (setq yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
   :config
+  (make-directory (expand-file-name "snippets" share-dir) t)
   (yas-global-mode 1))
 
 (use-package yatemplate
