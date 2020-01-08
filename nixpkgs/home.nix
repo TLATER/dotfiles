@@ -15,6 +15,7 @@
       recursive = true;
       source = ../dotfiles/emacs.d;
     };
+    ".Xresources".source = ../dotfiles/Xresources;
   };
 
   systemd.user.services = {
