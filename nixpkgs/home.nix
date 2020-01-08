@@ -11,6 +11,7 @@
 
   home.file = {
     ".emacs.d" = {
+      onChange = "${pkgs.systemd}/bin/systemctl --user reload emacs.service";
       recursive = true;
       source = ../dotfiles/emacs.d;
     };
@@ -24,6 +25,7 @@
         X-RestartIfChanged = false;
       };
       Service = {
+        ExecReload = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacsclient --eval \"(load-file user-init-file)\"";
         ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${(import ./emacs.nix { inherit pkgs; })}/bin/emacs --fg-daemon'";
         ExecStop = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacsclient --eval \"(kill-emacs)\"";
         Restart = "on-failure";
