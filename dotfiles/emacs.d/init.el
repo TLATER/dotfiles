@@ -62,8 +62,7 @@
 
 ;; Don't litter backup files everywhere
 (setq backup-by-copying t
-      backup-directory-alist
-      '((".*" . "~/.emacs.d/backups/"))
+      backup-directory-alist `(("." . ,backup-dir))
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
