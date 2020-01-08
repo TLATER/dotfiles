@@ -18,6 +18,20 @@
     ".Xresources".source = ../dotfiles/Xresources;
   };
 
+  xdg.configFile = {
+    "dunst/dunstrc".source = ../dotfiles/dunst/dunstrc;
+  };
+
+  services = {
+    # Dunst is configured in ~/.config/dunst/dunstrc
+    dunst.enable = true;
+    gpg-agent = {
+      enable = true;
+      enableSshSupport = true;
+      defaultCacheTtl = 28800;
+    };
+  };
+
   systemd.user.services = {
     emacs = {
       Unit = {
