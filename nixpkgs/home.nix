@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alacritty
     dunst
+    python37Packages.ipython
     screen
 
     (import ./emacs.nix { inherit pkgs; })
@@ -20,6 +21,12 @@
 
   xdg.configFile = {
     "dunst/dunstrc".source = ../dotfiles/dunst/dunstrc;
+  };
+
+  programs = {
+    feh.enable = true;
+    # Rofi is configured in .Xresources
+    rofi.enable = true;
   };
 
   services = {
