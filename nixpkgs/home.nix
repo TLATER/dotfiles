@@ -30,7 +30,7 @@
       userName = "Tristan Daniël Maat";
       userEmail = if isWorkProfile then "tristan.maat@codethink.co.uk" else "tm@tlater.net";
       signing = {
-        key = "4CFAC122454FB978!";
+        key = if isWorkProfile then "B32554B9C8BA03ED" else "4CFAC122454FB978";
         signByDefault = true;
       };
     };
