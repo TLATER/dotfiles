@@ -25,6 +25,15 @@
 
   programs = {
     feh.enable = true;
+    git = {
+      enable = true;
+      userName = "Tristan Daniël Maat";
+      userEmail = if isWorkProfile then "tristan.maat@codethink.co.uk" else "tm@tlater.net";
+      signing = {
+        key = "4CFAC122454FB978!";
+        signByDefault = true;
+      };
+    };
     # Rofi is configured in .Xresources
     rofi.enable = true;
   };
