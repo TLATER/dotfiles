@@ -33,7 +33,7 @@
                    (file-name-directory load-file-name)))
 (defvar data-dir (expand-file-name
                   "emacs"
-                  (getenv "XDG_DATA_HOME")))
+                  (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
 (defvar backup-dir (expand-file-name
                     "backups"
                     data-dir))
