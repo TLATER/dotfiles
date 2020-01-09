@@ -40,7 +40,8 @@
 (defvar share-dir (expand-file-name
                    "share"
                    (file-name-directory load-file-name)))
-(setq custom-file (expand-file-name "custom.el" config-dir))
+(setq custom-file (expand-file-name "custom.el" data-dir))
+(load custom-file)
 
 ;; Disable the useless UI components
 (if (fboundp 'menu-bar-mode)
