@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -41,6 +41,14 @@
       signing = {
         key = if isWorkProfile then "B32554B9C8BA03ED" else "4CFAC122454FB978";
         signByDefault = true;
+      };
+    };
+    password-store = {
+      enable = true;
+      settings = {
+        PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
+        PASSWORD_STORE_KEY = "0x9FAF1AA48509A7F1";
+        PASSWORD_STORE_GENERATED_LENGTH = "16";
       };
     };
     # Rofi is configured in .Xresources
