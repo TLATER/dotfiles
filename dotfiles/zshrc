@@ -1,6 +1,7 @@
 # Load environment configuration first
 [ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
+[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
 # Everything else is just for interactive shells
 if [[ -o interactive ]]; then

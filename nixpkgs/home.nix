@@ -6,6 +6,7 @@
     dunst
     python37Packages.ipython
     screen
+    zsh
 
     (import ./emacs.nix { inherit pkgs; })
   ];
@@ -16,11 +17,19 @@
       recursive = true;
       source = ../dotfiles/emacs.d;
     };
+    ".env" = {
+      source = ../dotfiles/env;
+    };
     ".Xresources".source = ../dotfiles/Xresources;
+    ".zshrc".source = ../dotfiles/zshrc;
   };
 
   xdg.configFile = {
     "dunst/dunstrc".source = ../dotfiles/dunst/dunstrc;
+    "zsh" = {
+      recursive = true;
+      source = ../dotfiles/zsh;
+    };
   };
 
   programs = {
