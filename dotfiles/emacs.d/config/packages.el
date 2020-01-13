@@ -201,5 +201,9 @@
   (diff-hl-flydiff-mode)
   (global-diff-hl-mode))
 
+(use-package shr
+  :init
+  (setq shr-use-colors nil))
+
 (provide 'packages)
 ;;; packages.el ends here

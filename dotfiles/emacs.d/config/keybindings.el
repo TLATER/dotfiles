@@ -50,5 +50,8 @@
 (global-unset-key (kbd "<XF86Back>"))
 (global-unset-key (kbd "<XF86Forward>"))
 
+(when (daemonp)
+  (global-set-key (kbd "C-x C-c") 'delete-frame))
+
 (provide 'keybindings)
 ;;; keybindings.el ends here
