@@ -41,7 +41,8 @@
                    "share"
                    (file-name-directory load-file-name)))
 (setq custom-file (expand-file-name "custom.el" data-dir))
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 ;; Disable the useless UI components
 (if (fboundp 'menu-bar-mode)
