@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
-{
+with import ./helpers.nix { inherit lib; };
+
+in {
   home.packages = with pkgs; [
     alacritty
     dunst
@@ -101,7 +103,7 @@
           realName = "Tristan Daniël Maat";
 
           userName = "tristanmaat";
-          passwordCommand = "pass codethink.co.uk | tr -d '\\n'";
+          passwordCommand = (dictToVars config.programs.password-store.settings) + " ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
           imap = {
             host = "mail.codethink.co.uk";
             port = 993;
@@ -114,7 +116,6 @@
           mbsync = {
             create = "maildir";
             enable = isWorkProfile;
-            flatten = ".";
           };
         };
       };
