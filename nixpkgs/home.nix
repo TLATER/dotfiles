@@ -2,6 +2,9 @@
 
 with import ./helpers.nix { inherit lib; };
 
+let
+  isWorkProfile = false; # TODO: compute from hostname
+
 in {
   home.packages = with pkgs; [
     alacritty
