@@ -4,6 +4,7 @@
   home.packages = with pkgs; [
     alacritty
     dunst
+    neomutt
     python37Packages.ipython
     screen
     zsh
@@ -20,6 +21,7 @@
     ".env" = {
       source = ../dotfiles/env;
     };
+    ".mailcap".source = ../dotfiles/mailcap;
     ".Xresources".source = ../dotfiles/Xresources;
     ".zshrc".source = ../dotfiles/zshrc;
   };
@@ -29,6 +31,10 @@
     "zsh" = {
       recursive = true;
       source = ../dotfiles/zsh;
+    };
+    "neomutt" = {
+      recursive = true;
+      source = ../dotfiles/neomutt;
     };
   };
 
@@ -43,6 +49,7 @@
         signByDefault = true;
       };
     };
+    mbsync.enable = true;
     password-store = {
       enable = true;
       settings = {
@@ -63,6 +70,7 @@
       enableSshSupport = true;
       defaultCacheTtl = 28800;
     };
+    mbsync.enable = true;
   };
 
   systemd.user.services = {
@@ -81,6 +89,37 @@
       Install = {
         WantedBy = ["default.target"];
       };
+    };
+  };
+
+  accounts = {
+    email = {
+      accounts = {
+        "codethink.co.uk" = {
+          address = "tristan.maat@codethink.co.uk";
+          primary = isWorkProfile;
+          realName = "Tristan Daniël Maat";
+
+          userName = "tristanmaat";
+          passwordCommand = "pass codethink.co.uk | tr -d '\\n'";
+          imap = {
+            host = "mail.codethink.co.uk";
+            port = 993;
+          };
+          smtp = {
+            host = "mail.codethink.co.uk";
+            port = 587;
+          };
+
+          mbsync = {
+            create = "maildir";
+            enable = isWorkProfile;
+            flatten = ".";
+          };
+        };
+      };
+      maildirBasePath = "${config.xdg.dataHome}/mail";
+      certificatesFile = ./certificates/mail-certs.crt;
     };
   };
 

@@ -1,0 +1,2 @@
+text/html; emacsclient --eval '(shr-render-buffer (find-file-other-frame "%s"))'
+image/*; feh %s
