@@ -1,7 +1,8 @@
 set realname = "Tristan Daniël Maat"
 
-set smtp_url = "smtp://tristanmaat@mail.codethink.co.uk:993"
-set smtp_pass = "`pass codethink.co.uk`"
+set sendmail = "msmtp"
+set use_from = yes
+set envelope_from = yes
 
 set sidebar_visible
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
