@@ -55,6 +55,7 @@ in {
       };
     };
     mbsync.enable = true;
+    msmtp.enable = true;
     password-store = {
       enable = true;
       settings = {
@@ -113,17 +114,22 @@ in {
           };
           smtp = {
             host = "mail.codethink.co.uk";
-            port = 587;
+            port = 465;
           };
 
           mbsync = {
             create = "maildir";
             enable = isWorkProfile;
           };
+          msmtp = {
+            enable = isWorkProfile;
+            extraConfig = {
+              from = "tristan.maat@codethink.co.uk";
+            };
+          };
         };
       };
       maildirBasePath = "${config.xdg.dataHome}/mail";
-      certificatesFile = ./certificates/mail-certs.crt;
     };
   };
 
