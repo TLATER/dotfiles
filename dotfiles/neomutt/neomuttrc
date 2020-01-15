@@ -13,5 +13,4 @@ bind index,pager \CN sidebar-next
 bind index,pager \CX sidebar-open
 
 set folder = "$XDG_DATA_HOME/mail/"
-mailboxes ="codethink.co.uk"
 mailboxes `cd "$XDG_DATA_HOME/mail/" && find codethink.co.uk/* -type d ! \( -name new -or -name cur -or -name tmp \) -printf '="%p" '`
