@@ -15,6 +15,13 @@ in {
     screen
     zsh
 
+    # Fonts
+    hack-font
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+
+    # Custom packages
     custom-emacs
   ];
 
@@ -34,16 +41,18 @@ in {
 
   xdg.configFile = {
     "dunst/dunstrc".source = ../dotfiles/dunst/dunstrc;
-    "zsh" = {
-      recursive = true;
-      source = ../dotfiles/zsh;
-    };
+    "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
     "neomutt" = {
       recursive = true;
       source = ../dotfiles/neomutt;
     };
+    "zsh" = {
+      recursive = true;
+      source = ../dotfiles/zsh;
+    };
   };
 
+  fonts.fontconfig.enable = true;
   programs = {
     feh.enable = true;
     git = {
