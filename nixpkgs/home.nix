@@ -46,6 +46,7 @@ in {
       recursive = true;
       source = ../dotfiles/neomutt;
     };
+    "screen/config".source = ../dotfiles/screenrc;
     "zsh" = {
       recursive = true;
       source = ../dotfiles/zsh;
