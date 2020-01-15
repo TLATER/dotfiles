@@ -27,11 +27,7 @@
 (cond ((string-equal (system-name) "ct-lt-02052")
        (progn
          ;; Set work mail
-         (require 'smtpmail)
-         (setq smtpmail-smtp-server "mail.codethink.co.uk"
-               smtpmail-smtp-service 587
-               send-mail-function 'smtpmail-send-it
-               user-mail-address "tristan.maat@codethink.co.uk")
+         (setq user-mail-address "tristan.maat@codethink.co.uk")
 
          ;; Automatically open journal stuff
          (defvar log-dir (expand-file-name

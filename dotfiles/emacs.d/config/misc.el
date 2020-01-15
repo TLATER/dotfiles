@@ -38,6 +38,14 @@
 (setq user-full-name "Tristan Daniël Maat")
 (setq user-mail-address "tm@tlater.net")
 
+(use-package sendmail
+  :ensure nil
+  :init
+  (require 'message)
+  (setq message-send-mail-function 'message-send-mail-with-sendmail
+        send-mail-function 'sendmail-send-it
+        sendmail-program "msmtp"))
+
 ;; Make dired hide hidden files
 (use-package dired
   :commands dired
