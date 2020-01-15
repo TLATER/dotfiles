@@ -4,6 +4,7 @@ with import ./helpers.nix { inherit lib; };
 
 let
   isWorkProfile = false; # TODO: compute from hostname
+  custom-emacs = import ./emacs.nix { inherit pkgs; };
 
 in {
   home.packages = with pkgs; [
@@ -14,7 +15,7 @@ in {
     screen
     zsh
 
-    (import ./emacs.nix { inherit pkgs; })
+    custom-emacs
   ];
 
   home.file = {
@@ -87,9 +88,9 @@ in {
         X-RestartIfChanged = false;
       };
       Service = {
-        ExecReload = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacsclient --eval \"(load-file user-init-file)\"";
-        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${(import ./emacs.nix { inherit pkgs; })}/bin/emacs --fg-daemon'";
-        ExecStop = "${(import ./emacs.nix { inherit pkgs; })}/bin/emacsclient --eval \"(kill-emacs)\"";
+        ExecReload = "${custom-emacs}/bin/emacsclient --eval \"(load-file user-init-file)\"";
+        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${custom-emacs}/bin/emacs --fg-daemon'";
+        ExecStop = "${custom-emacs}/bin/emacsclient --eval \"(kill-emacs)\"";
         Restart = "on-failure";
       };
       Install = {
