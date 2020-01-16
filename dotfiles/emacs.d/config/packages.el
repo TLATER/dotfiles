@@ -124,6 +124,7 @@
   ("C-c p" . projectile-command-map)
   :init
   (setq projectile-use-git-grep t)
+  (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" data-dir))
   :config
   (projectile-discover-projects-in-search-path))
 (use-package helm-projectile
