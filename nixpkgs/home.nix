@@ -1,10 +1,10 @@
 { config, lib, pkgs, ... }:
 
-with import ./helpers.nix { inherit lib; };
 
 let
   isWorkProfile = false; # TODO: compute from hostname
-  custom-emacs = import ./emacs.nix { inherit pkgs; };
+  helpers = import ./helpers { inherit lib; };
+  local-pkgs = import ./local-pkgs { inherit pkgs; };
 
 in {
   home.packages = with pkgs; [
@@ -22,14 +22,14 @@ in {
     noto-fonts-emoji
 
     # Custom packages
-    custom-emacs
+    local-pkgs.emacs
   ];
 
   home.file = {
     ".emacs.d" = {
       onChange = ''
       # Recompile init files
-      SCANNING_PACKAGES=true ${custom-emacs}/bin/emacs --batch --quick \
+      SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
             --eval "(byte-recompile-directory user-emacs-directory 0)"
 
       # Then reload the running emacs config, if any
@@ -105,9 +105,9 @@ in {
         X-RestartIfChanged = false;
       };
       Service = {
-        ExecReload = "${custom-emacs}/bin/emacsclient --eval \"(load-file user-init-file)\"";
-        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${custom-emacs}/bin/emacs --fg-daemon'";
-        ExecStop = "${custom-emacs}/bin/emacsclient --eval \"(kill-emacs)\"";
+        ExecReload = "${local-pkgs.emacs}/bin/emacsclient --eval \"(load-file user-init-file)\"";
+        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${local-pkgs.emacs}/bin/emacs --fg-daemon'";
+        ExecStop = "${local-pkgs.emacs}/bin/emacsclient --eval \"(kill-emacs)\"";
         Restart = "on-failure";
       };
       Install = {
@@ -125,7 +125,7 @@ in {
           realName = "Tristan Daniël Maat";
 
           userName = "tristanmaat";
-          passwordCommand = (dictToVars config.programs.password-store.settings) + " ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
+          passwordCommand = (helpers.dictToVars config.programs.password-store.settings) + " ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
           imap = {
             host = "mail.codethink.co.uk";
             port = 993;

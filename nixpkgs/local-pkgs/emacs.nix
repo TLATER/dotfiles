@@ -2,7 +2,6 @@
 
 with pkgs; with emacsPackagesNg;
 
-
   let
     use-package-list = stdenv.mkDerivation {
       pname = "use-package-list";
@@ -20,12 +19,6 @@ with pkgs; with emacsPackagesNg;
     };
 
     emacsDistribution = (emacsPackagesNgGen (if hostPlatform.isDarwin then pkgs.emacsMacport else pkgs.emacs));
-      # Include the emacs config directory; we want to include what
-      # use-package includes, so we need to be able to read this.
-      config = builtins.filterSource
-        (path: type: type != "directory"  || basenameOf path != "*.elc")
-        ../dotfiles/emacs.d;
-
       # Compute the list of use-package-d packages.
       package-list =
         runCommand "package-list" {
@@ -35,7 +28,7 @@ with pkgs; with emacsPackagesNg;
               -L ${emacsDistribution.use-package}/share/emacs/site-lisp/elpa/use-package-* \
               -L ${emacsDistribution.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
               -l ${use-package-list}/use-package-list.el \
-              --eval "(use-package-list \"${config}/init.el\")" \
+              --eval "(use-package-list \"${../../dotfiles/emacs.d}/init.el\")" \
               > $out
         '';
 
