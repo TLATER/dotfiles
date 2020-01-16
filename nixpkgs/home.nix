@@ -27,7 +27,14 @@ in {
 
   home.file = {
     ".emacs.d" = {
-      onChange = "${pkgs.systemd}/bin/systemctl --user reload emacs.service";
+      onChange = ''
+      # Recompile init files
+      SCANNING_PACKAGES=true ${custom-emacs}/bin/emacs --batch --quick \
+            --eval "(byte-recompile-directory user-emacs-directory 0)"
+
+      # Then reload the running emacs config, if any
+      ${pkgs.systemd}/bin/systemctl --user reload emacs.service
+      '';
       recursive = true;
       source = ../dotfiles/emacs.d;
     };
