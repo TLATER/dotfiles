@@ -1,2 +1,2 @@
-text/html; emacsclient --eval '(shr-render-buffer (find-file-other-frame "%s"))'
+text/html; emacsclient --eval '(progn (shr-render-buffer (find-file-other-frame "%s")) (delete-other-windows))'
 image/*; feh %s
