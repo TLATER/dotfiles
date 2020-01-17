@@ -129,5 +129,8 @@
                          :category 'compilation.complete))))
   (setq compilation-scroll-output t))
 
+(when (member "Noto Emoji" (font-family-list))
+  (set-fontset-font t 'unicode "Noto Emoji" nil 'prepend))
+
 (provide 'misc)
 ;;; misc.el ends here
