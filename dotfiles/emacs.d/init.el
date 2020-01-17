@@ -34,9 +34,9 @@
 (defvar data-dir (expand-file-name
                   "emacs"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
-(defvar backup-dir (expand-file-name
-                    "backups"
-                    data-dir))
+(defvar back-dir (expand-file-name
+                    "emacs/backups"
+                    (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
 (defvar share-dir (expand-file-name
                    "share"
                    (file-name-directory load-file-name)))
@@ -64,12 +64,13 @@
 
 ;; Don't litter backup files everywhere
 (setq backup-by-copying t
-      backup-directory-alist `(("." . ,backup-dir))
+      backup-directory-alist `(("." . ,back-dir))
       delete-old-versions t
       kept-new-versions 6
       kept-old-versions 2
       version-control t)
-(setq auto-save-list-file-prefix (expand-file-name "auto-save-list/" backup-dir))
+(setq auto-save-list-file-prefix (expand-file-name "auto-save-list/" back-dir)
+      auto-save-file-name-transforms `((".*" ,back-dir)))
 (setq create-lockfiles nil)
 
 ;; Might not want to do the following if we're not in a normal
