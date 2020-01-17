@@ -16,7 +16,8 @@ export ALTERNATE_EDITOR='emacs'
 export VTERM='alacritty'
 
 # Make a handful of applications follow XDG_BASE_DIRS
-export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export CARGO_HOME="$XDG_CACHE_HOME/cargo"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 GPG_TTY=$(tty)
 export GPG_TTY
