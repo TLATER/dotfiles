@@ -33,11 +33,16 @@
   :init
   ;; We want flycheck, not flymake
   (setq lsp-prefer-flymake nil)
+
+  ;;; Python
   (setq lsp-pyls-plugins-pydocstyle-enabled t)
-  (setq lsp-rust-clippy-preference "on")
   (setq lsp-pyls-plugins-pylint-args '("--rcfile=/home/tlater/.config/pylint"))
   (add-to-list 'safe-local-variable-values
                '(lsp-pyls-plugins-pylint-args "--rcfile=/home/tlater/Documents/Work/buildstream/.pylintrc" "--enable-=fixme"))
+
+  ;;; Rust
+  (setq lsp-rust-clippy-preference "on")
+
   :config
   ;; Enable .dir-locals config loading
   (add-hook 'hack-local-variables-hook
