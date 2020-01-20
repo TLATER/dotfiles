@@ -25,20 +25,27 @@
 ;;; Code:
 
 (in-package :stumpwm)
-(require "asdf")
-(asdf:require-system "xembed")
-(asdf:require-system "clx-truetype")
+(when *initializing*
+  (require "asdf")
+  (asdf:require-system "xembed")
+  (asdf:require-system "clx-truetype")
 
-(let ((contrib-dir (or (sb-unix::posix-getenv "STUMPWM_CONTRIB_DIR")
-                       "/usr/share/stumpwm/modules")))
-  (when (probe-file contrib-dir)
-    (set-module-dir contrib-dir)))
+  (let ((contrib-dir (or (sb-unix::posix-getenv "STUMPWM_CONTRIB_DIR")
+                         "/usr/share/stumpwm/modules")))
+    (when (probe-file contrib-dir)
+      (set-module-dir contrib-dir)))
+
+  ;; (load-module "notify")
+  ;; (load-module "ttf-fonts")
+  (load-module "swm-gaps")
+  (load-module "stumptray")
+  (load-module "battery-portable"))
+
 
 ;; Disable the startup message
 (setf *startup-message* nil)
 
 ;; ;; Notifications:
-;; (load-module "notify")
 ;; (notify-server-toggle)
 
 ;;; Visual:
@@ -106,21 +113,17 @@
 
 ;; Font
 
-;; (load-module "ttf-fonts")
 ;; (push "/usr/local/share/fonts/" xft:*font-dirs*)
 ;; (set-font (make-instance 'xft:font
 ;;                         :family "Hack"
 ;;                         :subfamily "Regular"))
 
 ;; Gaps:
-(load-module "swm-gaps")
 (setf swm-gaps:*inner-gaps-size* 20)
 (setf swm-gaps:*outer-gaps-size* 28)
 (define-key *root-map* (kbd "u") "toggle-gaps")
 
 ;;; Mode line
-(load-module "stumptray")
-(load-module "battery-portable")
 
 ;; Helper functions
 (defun has-battery-p ()
@@ -142,6 +145,7 @@
             (if (has-battery-p) "| %B ") ;; Battery status
             "| %T"))                     ;; Tray
 
+;; Final set of side-effectful bits of config
 (when *initializing*
   (mode-line)
   (stumptray:stumptray)
