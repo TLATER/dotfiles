@@ -49,23 +49,6 @@ in {
   };
 
   xdg.configFile = {
-    "common-lisp/source-registry.conf".text = ''
-    (:source-registry
-      (:directory "${pkgs.lispPackages.clx-truetype}/lib/common-lisp/clx-truetype")
-      (:directory "${pkgs.lispPackages.xembed}/lib/common-lisp/xembed")
-      (:directory "${pkgs.lispPackages.clx}/lib/common-lisp/clx")
-      (:directory "${pkgs.lispPackages.zpb-ttf}/lib/common-lisp/zpb-ttf")
-      (:directory "${pkgs.lispPackages.cl-vectors}/lib/common-lisp/cl-vectors")
-      (:directory "${pkgs.lispPackages.cl-aa}/lib/common-lisp/cl-aa")
-      (:directory "${pkgs.lispPackages.cl-paths}/lib/common-lisp/cl-paths")
-      (:directory "${pkgs.lispPackages.cl-paths-ttf}/lib/common-lisp/cl-paths-ttf")
-      (:directory "${pkgs.lispPackages.cl-fad}/lib/common-lisp/cl-fad")
-      (:directory "${pkgs.lispPackages.bordeaux-threads}/lib/common-lisp/bordeaux-threads")
-      (:directory "${pkgs.lispPackages.alexandria}/lib/common-lisp/alexandria")
-      (:directory "${pkgs.lispPackages.cl-store}/lib/common-lisp/cl-store")
-      (:directory "${pkgs.lispPackages.trivial-features}/lib/common-lisp/trivial-features")
-      :inherit-configuration)
-    '';
     "dunst/dunstrc".source = ../dotfiles/dunst/dunstrc;
     "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
     "neomutt" = {
@@ -85,12 +68,12 @@ in {
 
   xsession = {
     enable = true;
-    windowManager.command = "${local-pkgs.stumpwm}/bin/stumpwm";
     initExtra = ''
     export STUMPWM_CONTRIB_DIR=${local-pkgs.stumpwm-contrib}/share/stumpwm/modules
     export WM=stumpwm
     xrdb -merge ~/.Xresources
     '';
+    windowManager.command = "${local-pkgs.stumpwm}/bin/stumpwm-lisp-launcher.sh --eval '(require :asdf)' --eval '(asdf:load-system :stumpwm)' --eval '(stumpwm:stumpwm)'";
   };
 
   fonts.fontconfig.enable = true;

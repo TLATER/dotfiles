@@ -30,6 +30,18 @@
   (asdf:require-system "xembed")
   (asdf:require-system "clx-truetype")
 
+  ;; Modules can only be loaded on nixos if they are pre-compiled with
+  ;; .fasl files, otherwise asdf will try to create a fasl file in the
+  ;; nix store... Since this would be a lot of effort for
+  ;; stumpwm-contrib, we set up custom caching in ~/.cache.
+  ;;
+  ;; FIXME: Instead of forcing output translations, it would be a lot
+  ;; nicer simply to precompile the stumpwm modules we need. This
+  ;; would probably mean individually packaging all stumpwm modules,
+  ;; but may be worth the effort.
+  (asdf:initialize-output-translations
+   '(:output-translations :ignore-inherited-configuration :enable-user-cache))
+
   (let ((contrib-dir (or (sb-unix::posix-getenv "STUMPWM_CONTRIB_DIR")
                          "/usr/share/stumpwm/modules")))
     (when (probe-file contrib-dir)
