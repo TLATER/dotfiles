@@ -7,6 +7,7 @@ switch`.
 
 ### Todo
 - [ ] Manage stumpwm config
+  - Change the way dependency asdf locations are configured
 - [ ] De-vendor zsh plugins
 - [ ] Add gpg/ssh configuration
 - [ ] Add gtk theming
