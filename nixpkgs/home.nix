@@ -150,6 +150,10 @@ in {
           identitiesOnly = true;
           identityFile = "~/.ssh/tlater.pub";
         };
+        "github.com" = {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/tlater.pub";
+        };
       };
     };
   };
