@@ -7,7 +7,6 @@ switch`.
 
 ### Todo
 - [ ] De-vendor zsh plugins
-- [ ] Add gpg/ssh configuration
 - [ ] Add gtk theming
 - [ ] Figure out how to pre-compile stumpwm module FASL files
 - [ ] Look into https://github.com/HugoReeves/nix-home for inspiration
