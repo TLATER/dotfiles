@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 
-
 let
   isWorkProfile = false; # TODO: compute from hostname
   helpers = import ./helpers { inherit lib; };
