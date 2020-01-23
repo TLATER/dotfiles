@@ -54,7 +54,7 @@
 
 ;; Better undo
 (use-package undo-tree
-  :bind ([remap undo] . undo-tree-visualize))
+  :hook (after-init . global-undo-tree-mode))
 
 ;; Auto-completion
 (use-package company
