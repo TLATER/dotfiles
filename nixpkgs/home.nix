@@ -85,6 +85,22 @@ in {
   };
 
   fonts.fontconfig.enable = true;
+  gtk = {
+    enable = true;
+    font = {
+      package = pkgs.noto-fonts;
+      name = "Noto Sans 10";
+    };
+    iconTheme = {
+      package = pkgs.papirus-icon-theme;
+      name = "ePapirus";
+    };
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc-Dark";
+    };
+  };
+
   programs = {
     git = {
       enable = true;
