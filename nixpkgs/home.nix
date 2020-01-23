@@ -46,6 +46,7 @@ in {
     ".mailcap".source = ../dotfiles/mailcap;
     ".Xresources".source = ../dotfiles/Xresources;
     ".zshrc".source = ../dotfiles/zshrc;
+    ".ssh/tlater.pub".source = ../keys/tlater.pub;
   };
 
   xdg.configFile = {
@@ -84,8 +85,43 @@ in {
       userName = "Tristan Daniël Maat";
       userEmail = if isWorkProfile then "tristan.maat@codethink.co.uk" else "tm@tlater.net";
       signing = {
-        key = if isWorkProfile then "B32554B9C8BA03ED" else "4CFAC122454FB978";
+        key = "0x49670FD774E43268";
         signByDefault = true;
+      };
+    };
+    gpg = {
+      enable = true;
+      settings = {
+        fixed-list-mode = true;
+        keyid-format = "0xlong";
+        personal-digest-preferences = builtins.concatStringsSep " " [
+          "SHA512"
+          "SHA384"
+          "SHA256"
+        ];
+        personal-cipher-preferences = builtins.concatStringsSep " " [
+          "AES256"
+          "AES192"
+          "AES"
+        ];
+        default-preference-list = builtins.concatStringsSep " " [
+          "SHA512"
+          "SHA384"
+          "SHA256"
+          "AES256"
+          "AES192"
+          "AES"
+          "ZLIB"
+          "BZIP2"
+          "ZIP"
+          "Uncompressed"
+        ];
+        use-agent = true;
+        verify-options = "show-uid-validity";
+        list-options = "show-uid-validity";
+        cert-digest-algo = "SHA512";
+        throw-keyids = true;
+        no-emit-version = true;
       };
     };
     mbsync.enable = true;
@@ -94,12 +130,24 @@ in {
       enable = true;
       settings = {
         PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
-        PASSWORD_STORE_KEY = "0x9FAF1AA48509A7F1";
+        PASSWORD_STORE_KEY = "0xBC7BB2DB17C78E42";
         PASSWORD_STORE_GENERATED_LENGTH = "16";
       };
     };
     # Rofi is configured in .Xresources
     rofi.enable = true;
+    ssh = {
+      enable = true;
+      matchBlocks = {
+        "tlater.net" = {
+          hostname = "tlater.net";
+          user = "tlater";
+          port = 2222;
+          identitiesOnly = true;
+          identityFile = "~/.ssh/tlater.pub";
+        };
+      };
+    };
   };
 
   services = {
