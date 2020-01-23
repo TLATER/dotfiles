@@ -10,10 +10,18 @@ in {
   home.packages = with pkgs; [
     alacritty
     dunst
+    feh
     neomutt
-    python37Packages.ipython
+    rofi
     screen
+    scrot
+    xsel
     zsh
+
+    # Dev things
+    python37Packages.ipython
+    gcc # Required for rustc (mozilla/nixpkgs-mozilla#22)
+    rustup
 
     # Fonts
     hack-font
@@ -79,7 +87,6 @@ in {
 
   fonts.fontconfig.enable = true;
   programs = {
-    feh.enable = true;
     git = {
       enable = true;
       userName = "Tristan Daniël Maat";
@@ -134,8 +141,6 @@ in {
         PASSWORD_STORE_GENERATED_LENGTH = "16";
       };
     };
-    # Rofi is configured in .Xresources
-    rofi.enable = true;
     ssh = {
       enable = true;
       matchBlocks = {
