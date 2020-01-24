@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
-let local-pkgs = import ../local-pkgs { inherit pkgs; };
+let
+  local-pkgs = import ../local-pkgs { inherit pkgs; };
 
 in
 {
