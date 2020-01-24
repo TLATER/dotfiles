@@ -10,6 +10,7 @@ in {
   home.packages = with pkgs; [
     alacritty
     dunst
+    dex
     feh
     neomutt
     rofi
@@ -58,6 +59,16 @@ in {
   };
 
   xdg.configFile = {
+    "autostart/background.desktop".text = ''
+    [Desktop Entry]
+    Version=1.1
+    Type=Application
+    Name=Background
+    GenericName=Background setter
+    NoDisplay=true
+    Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
+    Exec=${local-pkgs.background}/bin/background;
+    '';
     "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
     "neomutt" = {
       recursive = true;
