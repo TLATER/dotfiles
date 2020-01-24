@@ -14,6 +14,7 @@ in
     dex
     dunst
     feh
+    llpp
     neomutt
     rofi
     screen
