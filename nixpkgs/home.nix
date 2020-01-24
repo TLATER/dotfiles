@@ -32,6 +32,7 @@ in {
 
     # Custom packages
     local-pkgs.emacs
+    local-pkgs.pass-rofi
     local-pkgs.stumpwm
     local-pkgs.stumpwm-contrib
   ];
