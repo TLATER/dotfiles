@@ -28,6 +28,16 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+(use-package tramp
+  :ensure nil
+  :init
+  (setq tramp-persistency-file-name (expand-file-name "tramp" data-dir)))
+
+(use-package url
+  :ensure nil
+  :init
+  (setq url-configuration-directory (expand-file-name "url" data-dir)))
+
 ;; Ask if we want to add newlines to files
 (use-package files
   :ensure nil
