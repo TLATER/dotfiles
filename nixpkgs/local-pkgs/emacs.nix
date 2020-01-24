@@ -1,4 +1,4 @@
-{ pkgs, ensure ? (f: n: f), basenameOf ? (f: n: f) }:
+{ pkgs }:
 
 with pkgs; with emacsPackagesNg;
 

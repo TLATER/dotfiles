@@ -1,4 +1,4 @@
-{ config, lib, pkgs, use-xdotool ? true, ... }:
+{ pkgs, use-xdotool ? true }:
 
 with pkgs;
 

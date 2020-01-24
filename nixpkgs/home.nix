@@ -10,8 +10,8 @@ in
 {
   home.packages = with pkgs; [
     alacritty
-    dunst
     dex
+    dunst
     feh
     neomutt
     rofi
@@ -51,9 +51,7 @@ in
       recursive = true;
       source = ../dotfiles/emacs.d;
     };
-    ".env" = {
-      source = ../dotfiles/env;
-    };
+    ".env".source = ../dotfiles/env;
     ".mailcap".source = ../dotfiles/mailcap;
     ".Xresources".source = ../dotfiles/Xresources;
     ".zshrc".source = ../dotfiles/zshrc;
@@ -98,6 +96,7 @@ in
   };
 
   fonts.fontconfig.enable = true;
+
   programs = {
     git = {
       enable = true;
@@ -172,7 +171,6 @@ in
   };
 
   services = {
-    # Dunst is configured in ~/.config/dunst/dunstrc
     dunst = {
       enable = true;
       settings = {
