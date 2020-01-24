@@ -4,6 +4,11 @@ HISTFILE="$XDG_DATA_HOME/.zsh_history"
 # Load extensions
 autoload -U zcalc
 
+# Allow nix-shell to function
+if (( $+commands[any-nix-shell] )); then
+    any-nix-shell zsh | source /dev/stdin
+fi
+
 # Load more granular configuration files
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/aliases.zsh"

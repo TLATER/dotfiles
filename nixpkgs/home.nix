@@ -10,6 +10,7 @@ in
 {
   home.packages = with pkgs; [
     alacritty
+    any-nix-shell
     dex
     dunst
     feh
@@ -18,7 +19,6 @@ in
     screen
     scrot
     xsel
-    zsh
 
     # Dev things
     python37Packages.ipython
@@ -38,6 +38,10 @@ in
     local-pkgs.stumpwm-contrib
   ];
 
+  imports = [
+    ./configurations/zsh.nix
+  ];
+
   home.file = {
     ".emacs.d" = {
       onChange = ''
@@ -54,7 +58,6 @@ in
     ".env".source = ../dotfiles/env;
     ".mailcap".source = ../dotfiles/mailcap;
     ".Xresources".source = ../dotfiles/Xresources;
-    ".zshrc".source = ../dotfiles/zshrc;
     ".ssh/tlater.pub".source = ../keys/tlater.pub;
   };
 
@@ -79,10 +82,6 @@ in
       onChange = "${local-pkgs.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
     };
     "screen/config".source = ../dotfiles/screenrc;
-    "zsh" = {
-      recursive = true;
-      source = ../dotfiles/zsh;
-    };
   };
 
   xsession = {
