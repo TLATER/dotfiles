@@ -6,7 +6,8 @@ let
   helpers = import ./helpers { inherit lib; };
   local-pkgs = import ./local-pkgs { inherit pkgs; };
 
-in {
+in
+{
   home.packages = with pkgs; [
     alacritty
     dunst
@@ -40,12 +41,12 @@ in {
   home.file = {
     ".emacs.d" = {
       onChange = ''
-      # Recompile init files
-      SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
-            --eval "(byte-recompile-directory user-emacs-directory 0)"
+        # Recompile init files
+        SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
+              --eval "(byte-recompile-directory user-emacs-directory 0)"
 
-      # Then reload the running emacs config, if any
-      ${pkgs.systemd}/bin/systemctl --user reload emacs.service
+        # Then reload the running emacs config, if any
+        ${pkgs.systemd}/bin/systemctl --user reload emacs.service
       '';
       recursive = true;
       source = ../dotfiles/emacs.d;
@@ -61,14 +62,14 @@ in {
 
   xdg.configFile = {
     "autostart/background.desktop".text = ''
-    [Desktop Entry]
-    Version=1.1
-    Type=Application
-    Name=Background
-    GenericName=Background setter
-    NoDisplay=true
-    Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
-    Exec=${local-pkgs.background}/bin/background;
+      [Desktop Entry]
+      Version=1.1
+      Type=Application
+      Name=Background
+      GenericName=Background setter
+      NoDisplay=true
+      Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
+      Exec=${local-pkgs.background}/bin/background;
     '';
     "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
     "neomutt" = {
@@ -89,9 +90,9 @@ in {
   xsession = {
     enable = true;
     initExtra = ''
-    export STUMPWM_CONTRIB_DIR=${local-pkgs.stumpwm-contrib}/share/stumpwm/modules
-    export WM=stumpwm
-    xrdb -merge ~/.Xresources
+      export STUMPWM_CONTRIB_DIR=${local-pkgs.stumpwm-contrib}/share/stumpwm/modules
+      export WM=stumpwm
+      xrdb -merge ~/.Xresources
     '';
     windowManager.command = "${local-pkgs.stumpwm}/bin/stumpwm-lisp-launcher.sh --eval '(require :asdf)' --eval '(asdf:load-system :stumpwm)' --eval '(stumpwm:stumpwm)'";
   };
@@ -242,7 +243,7 @@ in {
         Restart = "on-failure";
       };
       Install = {
-        WantedBy = ["default.target"];
+        WantedBy = [ "default.target" ];
       };
     };
   };

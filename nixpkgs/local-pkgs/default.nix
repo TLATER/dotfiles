@@ -8,4 +8,5 @@ let
     stumpwm = pkgs.callPackage ./stumpwm.nix {};
     stumpwm-contrib = pkgs.callPackage ./stumpwm-contrib.nix {};
   };
-in local-pkgs
+in
+local-pkgs

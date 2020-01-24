@@ -12,9 +12,10 @@ let
       sha256 = "1f1chwqyac8ndbb917rz3kl3ngiyx68np0xgjcqncbxfs1l48k38";
     };
     installPhase = ''
-    mkdir -p $out/share/stumpwm/modules
-    cp -r * $out/share/stumpwm/modules
+      mkdir -p $out/share/stumpwm/modules
+      cp -r * $out/share/stumpwm/modules
     '';
   };
 
-in stumpwm-contrib
+in
+stumpwm-contrib
