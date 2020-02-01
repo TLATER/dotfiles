@@ -22,7 +22,6 @@ in
     xsel
 
     # Dev things
-    python37Packages.ipython
     gcc # Required for rustc (mozilla/nixpkgs-mozilla#22)
     rustup
 
@@ -33,29 +32,17 @@ in
     noto-fonts-emoji
 
     # Custom packages
-    local-pkgs.emacs
     local-pkgs.pass-rofi
     local-pkgs.stumpwm
     local-pkgs.stumpwm-contrib
   ];
 
   imports = [
+    ./configurations/emacs.nix
     ./configurations/zsh.nix
   ];
 
   home.file = {
-    ".emacs.d" = {
-      onChange = ''
-        # Recompile init files
-        SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
-              --eval "(byte-recompile-directory user-emacs-directory 0)"
-
-        # Then reload the running emacs config, if any
-        ${pkgs.systemd}/bin/systemctl --user reload emacs.service
-      '';
-      recursive = true;
-      source = ../dotfiles/emacs.d;
-    };
     ".env".source = ../dotfiles/env;
     ".mailcap".source = ../dotfiles/mailcap;
     ".Xresources".source = ../dotfiles/Xresources;
@@ -225,25 +212,6 @@ in
       defaultCacheTtl = 28800;
     };
     mbsync.enable = true;
-  };
-
-  systemd.user.services = {
-    emacs = {
-      Unit = {
-        Description = "Emacs: the extensible, self-documenting text editor";
-        Documentation = "info:emacs man:emacs(1) https://gnu.org/software/emacs";
-        X-RestartIfChanged = false;
-      };
-      Service = {
-        ExecReload = "${local-pkgs.emacs}/bin/emacsclient --eval \"(load-file user-init-file)\"";
-        ExecStart = "${pkgs.runtimeShell} -l -c 'exec ${local-pkgs.emacs}/bin/emacs --fg-daemon'";
-        ExecStop = "${local-pkgs.emacs}/bin/emacsclient --eval \"(kill-emacs)\"";
-        Restart = "on-failure";
-      };
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
-    };
   };
 
   accounts = {
