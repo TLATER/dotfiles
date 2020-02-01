@@ -48,6 +48,9 @@
 (use-package json-mode
   :mode ("\\.json\\'"))
 
+(use-package jsonnet-mode
+  :mode ("\\.jsonnet\\'"))
+
 (use-package graphql-mode
   :mode ("\\.graphql\\'" "\\.gql\\'"))
 
