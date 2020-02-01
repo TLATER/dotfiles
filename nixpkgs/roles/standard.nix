@@ -3,8 +3,8 @@
 with lib;
 
 let
-  helpers = import ./helpers { inherit lib; };
-  local-pkgs = import ./local-pkgs { inherit pkgs; };
+  helpers = import ../helpers { inherit lib; };
+  local-pkgs = import ../local-pkgs { inherit pkgs; };
 
 in
 {
@@ -21,10 +21,10 @@ in
   };
 
   imports = [
-    ./configurations/dunst.nix
-    ./configurations/emacs.nix
-    ./configurations/mail.nix
-    ./configurations/zsh.nix
+    ../configurations/dunst.nix
+    ../configurations/emacs.nix
+    ../configurations/mail.nix
+    ../configurations/zsh.nix
   ];
 
   config = {
@@ -56,9 +56,9 @@ in
     ];
 
     home.file = {
-      ".env".source = ../dotfiles/env;
-      ".Xresources".source = ../dotfiles/Xresources;
-      ".ssh/tlater.pub".source = ../keys/tlater.pub;
+      ".env".source = ../../dotfiles/env;
+      ".Xresources".source = ../../dotfiles/Xresources;
+      ".ssh/tlater.pub".source = ../../keys/tlater.pub;
     };
 
     xdg.configFile = {
@@ -72,12 +72,12 @@ in
         Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
         Exec=${local-pkgs.background}/bin/background
       '';
-      "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
+      "fontconfig/fonts.conf".source = ../../dotfiles/fonts.conf;
       "stumpwm/config" = {
-        source = ../dotfiles/stumpwm/config;
+        source = ../../dotfiles/stumpwm/config;
         onChange = "${local-pkgs.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
       };
-      "screen/config".source = ../dotfiles/screenrc;
+      "screen/config".source = ../../dotfiles/screenrc;
     };
 
     xsession = {
