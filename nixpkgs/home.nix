@@ -71,7 +71,7 @@ in
       GenericName=Background setter
       NoDisplay=true
       Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
-      Exec=${local-pkgs.background}/bin/background;
+      Exec=${local-pkgs.background}/bin/background
     '';
     "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
     "neomutt" = {
