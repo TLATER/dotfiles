@@ -1,10 +1,14 @@
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   local-pkgs = import ../local-pkgs { inherit pkgs; };
 
 in
 {
+  home.packages = with pkgs; [
+    zsh
+  ];
+
   # Basic, local config
   home.file.".zshrc".source = ../../dotfiles/zshrc;
   xdg.configFile = {
