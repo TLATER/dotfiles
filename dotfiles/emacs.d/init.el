@@ -82,36 +82,8 @@
 (add-to-list 'custom-theme-load-path theme-dir)
 (load-theme 'cyan t)
 
-;; Figure out if package installation is handled externally.
-;;
-;; We do this by checking if a function defined by the nix site lisp
-;; is bound.
-(eval-and-compile
-  (require 'package)
-  (setq using-external-packages (or (getenv "SCANNING_PACKAGES")
-                                    (fboundp 'nix--profile-paths))))
-
-;; Make sure use-package is installed if it's not installed externally
-(unless using-external-packages
-  (setq package-user-dir (expand-file-name "elpa" data-dir))
-  (unless package--initialized (package-initialize))
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package)))
-
-(eval-and-compile
-  ;; Setup use-package, regardless of how it is installed
-  ;; bind-key is a dependency...
-  (require 'bind-key)
-  (require 'use-package)
-
-  ;; If packages are installed externally, we want to turn "ensure" off
-  (setq use-package-always-ensure (not using-external-packages))
-  (setq use-package-compute-statistics t)
-
-  (when using-external-packages
-    (setq use-package-ensure-function 'ignore)
-    (setq package-enable-at-startup nil)))
+;; Set up package sourcing
+(load (expand-file-name "package-sourcing.el" (file-name-directory load-file-name)))
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
