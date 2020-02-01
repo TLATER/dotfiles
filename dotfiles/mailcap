@@ -1,3 +1,3 @@
-text/html; emacsclient --eval '(progn (shr-render-buffer (find-file-other-frame "%s")) (delete-other-windows))'
+text/html; emacsclient -n -c --eval '(progn (shr-render-buffer (find-file "%s")) (delete-other-windows))'
 image/*; feh '%s'
 application/pdf; llpp '%s'
