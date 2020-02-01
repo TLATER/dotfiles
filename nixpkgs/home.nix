@@ -23,6 +23,7 @@ in
   imports = [
     ./configurations/dunst.nix
     ./configurations/emacs.nix
+    ./configurations/mail.nix
     ./configurations/zsh.nix
   ];
 
@@ -33,7 +34,6 @@ in
       dex
       feh
       llpp
-      neomutt
       rofi
       screen
       scrot
@@ -57,7 +57,6 @@ in
 
     home.file = {
       ".env".source = ../dotfiles/env;
-      ".mailcap".source = ../dotfiles/mailcap;
       ".Xresources".source = ../dotfiles/Xresources;
       ".ssh/tlater.pub".source = ../keys/tlater.pub;
     };
@@ -74,10 +73,6 @@ in
         Exec=${local-pkgs.background}/bin/background
       '';
       "fontconfig/fonts.conf".source = ../dotfiles/fonts.conf;
-      "neomutt" = {
-        recursive = true;
-        source = ../dotfiles/neomutt;
-      };
       "stumpwm/config" = {
         source = ../dotfiles/stumpwm/config;
         onChange = "${local-pkgs.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
@@ -142,8 +137,6 @@ in
           no-emit-version = true;
         };
       };
-      mbsync.enable = true;
-      msmtp.enable = true;
       password-store = {
         enable = true;
         settings = {
@@ -175,42 +168,6 @@ in
         enable = true;
         enableSshSupport = true;
         defaultCacheTtl = 28800;
-      };
-      mbsync.enable = true;
-    };
-
-    accounts = {
-      email = {
-        accounts = {
-          "codethink.co.uk" = {
-            address = "tristan.maat@codethink.co.uk";
-            primary = config.isWorkProfile;
-            realName = "Tristan Daniël Maat";
-
-            userName = "tristanmaat";
-            passwordCommand = (helpers.dictToVars config.programs.password-store.settings) + " ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
-            imap = {
-              host = "mail.codethink.co.uk";
-              port = 993;
-            };
-            smtp = {
-              host = "mail.codethink.co.uk";
-              port = 465;
-            };
-
-            mbsync = {
-              create = "maildir";
-              enable = config.isWorkProfile;
-            };
-            msmtp = {
-              enable = config.isWorkProfile;
-              extraConfig = {
-                from = "tristan.maat@codethink.co.uk";
-              };
-            };
-          };
-        };
-        maildirBasePath = "${config.xdg.dataHome}/mail";
       };
     };
 
