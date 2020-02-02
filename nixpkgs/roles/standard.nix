@@ -24,6 +24,7 @@ in
     ../configurations/dunst.nix
     ../configurations/emacs.nix
     ../configurations/mail.nix
+    ../configurations/stumpwm.nix
     ../configurations/zsh.nix
   ];
 
@@ -31,7 +32,6 @@ in
     home.packages = with pkgs; [
       alacritty
       any-nix-shell
-      dex
       feh
       llpp
       rofi
@@ -43,54 +43,17 @@ in
       gcc # Required for rustc (mozilla/nixpkgs-mozilla#22)
       rustup
 
-      # Fonts
-      hack-font
-      noto-fonts
-      noto-fonts-cjk
-      noto-fonts-emoji
-
-      # Custom packages
       local-pkgs.pass-rofi
-      local-pkgs.stumpwm
-      local-pkgs.stumpwm-contrib
     ];
 
     home.file = {
       ".env".source = ../../dotfiles/env;
-      ".Xresources".source = ../../dotfiles/Xresources;
       ".ssh/tlater.pub".source = ../../keys/tlater.pub;
     };
 
     xdg.configFile = {
-      "autostart/background.desktop".text = ''
-        [Desktop Entry]
-        Version=1.1
-        Type=Application
-        Name=Background
-        GenericName=Background setter
-        NoDisplay=true
-        Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
-        Exec=${local-pkgs.background}/bin/background
-      '';
-      "fontconfig/fonts.conf".source = ../../dotfiles/fonts.conf;
-      "stumpwm/config" = {
-        source = ../../dotfiles/stumpwm/config;
-        onChange = "${local-pkgs.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
-      };
       "screen/config".source = ../../dotfiles/screenrc;
     };
-
-    xsession = {
-      enable = true;
-      initExtra = ''
-        export STUMPWM_CONTRIB_DIR=${local-pkgs.stumpwm-contrib}/share/stumpwm/modules
-        export WM=stumpwm
-        xrdb -merge ~/.Xresources
-      '';
-      windowManager.command = "${local-pkgs.stumpwm}/bin/stumpwm-lisp-launcher.sh --eval '(require :asdf)' --eval '(asdf:load-system :stumpwm)' --eval '(stumpwm:stumpwm)'";
-    };
-
-    fonts.fontconfig.enable = true;
 
     programs = {
       git = {
