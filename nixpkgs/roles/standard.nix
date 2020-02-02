@@ -25,6 +25,7 @@ in
     ../configurations/emacs.nix
     ../configurations/mail.nix
     ../configurations/stumpwm.nix
+    ../configurations/tty-programs.nix
     ../configurations/zsh.nix
   ];
 
