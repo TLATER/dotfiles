@@ -3,6 +3,7 @@
 {
   home.packages = with pkgs; [
     any-nix-shell
+    pass
     screen
   ];
 
@@ -58,14 +59,6 @@
         cert-digest-algo = "SHA512";
         throw-keyids = true;
         no-emit-version = true;
-      };
-    };
-    password-store = {
-      enable = true;
-      settings = {
-        PASSWORD_STORE_DIR = "${config.xdg.dataHome}/password-store";
-        PASSWORD_STORE_KEY = "0xBC7BB2DB17C78E42";
-        PASSWORD_STORE_GENERATED_LENGTH = "16";
       };
     };
     ssh = {

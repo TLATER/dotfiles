@@ -38,7 +38,7 @@ in
           realName = "Tristan Daniël Maat";
 
           userName = "tristanmaat";
-          passwordCommand = (helpers.dictToVars config.programs.password-store.settings) + " ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
+          passwordCommand = "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
           imap = {
             host = "mail.codethink.co.uk";
             port = 993;
