@@ -44,6 +44,48 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+;; Set up package loading
+(require 'package)
+(setq package-user-dir (expand-file-name "elpa" data-dir))
+(setq using-external-packages (or (getenv "SCANNING_PACKAGES")
+                                  (fboundp 'nix--profile-paths)))
+
+;; Make sure use-package is installed if it's not installed externally
+(unless using-external-packages
+  (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                      (not (gnutls-available-p))))
+         (proto (if no-ssl "http" "https")))
+    (when no-ssl
+      (warn "\
+Your version of Emacs does not support SSL connections,
+which is unsafe because it allows man-in-the-middle attacks.
+There are two things you can do about this warning:
+1. Install an Emacs version that does support SSL and be safe.
+2. Remove this warning from your init file so you won't see it again."))
+    ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA Stable as desired
+    (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+    ;;(add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+    (when (< emacs-major-version 24)
+      ;; For important compatibility libraries like cl-lib
+      (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
+
+  (unless package--initialized (package-initialize))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package)))
+
+;; Setup use-package, regardless of how it is installed
+;; bind-key is a dependency...
+(require 'bind-key)
+(require 'use-package)
+
+;; If packages are installed externally, we want to turn "ensure" off
+(setq use-package-always-ensure (not using-external-packages))
+(setq use-package-compute-statistics t)
+(when using-external-packages
+  (setq use-package-ensure-function 'ignore)
+  (setq package-enable-at-startup nil))
+
 ;; Disable the useless UI components
 (if (fboundp 'menu-bar-mode)
     (menu-bar-mode -1))
@@ -81,9 +123,6 @@
 ;; Set the theme
 (add-to-list 'custom-theme-load-path theme-dir)
 (load-theme 'cyan t)
-
-;; Set up package sourcing
-(load (expand-file-name "package-sourcing.el" (file-name-directory load-file-name)))
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
