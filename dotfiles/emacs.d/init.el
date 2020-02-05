@@ -28,9 +28,6 @@
 (defvar config-dir (expand-file-name
                     "config"
                     (file-name-directory load-file-name)))
-(defvar theme-dir (expand-file-name
-                   "themes"
-                   (file-name-directory load-file-name)))
 (defvar data-dir (expand-file-name
                   "emacs"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
@@ -121,8 +118,17 @@ There are two things you can do about this warning:
 ;; root?
 
 ;; Set the theme
-(add-to-list 'custom-theme-load-path theme-dir)
-(load-theme 'cyan t)
+(use-package gotham-theme
+  :load-path "themes"
+  :init
+  :config
+  (add-to-list 'gotham-color-alist `(base0   "#0f0f0f" ,(if gotham-tty-256-colors "color-232" "black")))
+  (add-to-list 'gotham-color-alist `(base5   "#268bd2" ,(if gotham-tty-256-colors "color-81"  "brightcyan")))
+  (add-to-list 'gotham-color-alist `(red     "#dc322f" ,(if gotham-tty-256-colors "color-124" "red")))
+  (add-to-list 'gotham-color-alist `(yellow  "#b58900" ,(if gotham-tty-256-colors "color-214" "yellow")))
+  (add-to-list 'gotham-color-alist `(magenta "#707880" ,(if gotham-tty-256-colors "color-67"  "brightmagenta")))
+  (add-to-list 'gotham-color-alist `(cyan    "#599cab" ,(if gotham-tty-256-colors "color-44"  "cyan")))
+  (load-theme 'gotham t))
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
