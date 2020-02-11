@@ -31,6 +31,8 @@
   ("C-c r" . lsp-rename)
   ("C-c f" . lsp-format-buffer)
   :init
+  (setq lsp-session-file (expand-file-name "lsp-session-v1" data-dir))
+
   ;; We want flycheck, not flymake
   (setq lsp-prefer-flymake nil)
 

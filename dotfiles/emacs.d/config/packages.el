@@ -219,5 +219,10 @@
   :config
   (global-hl-line-mode))
 
+(use-package eshell
+  :ensure nil
+  :init
+  (setq eshell-directory-name (expand-file-name "eshell" data-dir)))
+
 (provide 'packages)
 ;;; packages.el ends here
