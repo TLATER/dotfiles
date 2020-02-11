@@ -109,7 +109,7 @@ There are two things you can do about this warning:
       kept-old-versions 2
       version-control t)
 (setq auto-save-list-file-prefix (expand-file-name "auto-save-list/" back-dir)
-      auto-save-file-name-transforms `((".*" ,back-dir)))
+      auto-save-file-name-transforms `((".*/\\(.*\\)" ,(expand-file-name "\\1" back-dir) t)))
 (setq create-lockfiles nil)
 
 ;; Might not want to do the following if we're not in a normal
