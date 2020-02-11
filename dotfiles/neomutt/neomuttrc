@@ -1,6 +1,5 @@
-set realname = "Tristan Daniël Maat"
+# User/maildir configuration are in the home-manager controlled paths
 
-set sendmail = "msmtp"
 set use_from = yes
 set envelope_from = yes
 
@@ -12,5 +11,3 @@ bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
 bind index,pager \CX sidebar-open
 
-set folder = "$XDG_DATA_HOME/mail/"
-mailboxes `cd "$XDG_DATA_HOME/mail/" && find codethink.co.uk/* -type d ! \( -name new -or -name cur -or -name tmp \) -printf '="%p" '`
