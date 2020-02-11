@@ -11,3 +11,5 @@ bind index,pager \CP sidebar-prev
 bind index,pager \CN sidebar-next
 bind index,pager \CX sidebar-open
 
+auto_view text/html
+alternative_order text/enriched text/plain text/html text

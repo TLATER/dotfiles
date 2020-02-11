@@ -6,6 +6,7 @@ let
 in
 {
   home.packages = with pkgs; [
+    elinks
     neomutt
   ];
 

@@ -1,3 +1,4 @@
-text/html; emacsclient -n -c --eval '(progn (shr-render-buffer (find-file "%s")) (delete-other-windows))'
+text/html; emacsclient -n -c --eval '(progn (shr-render-buffer (find-file "%s")) (delete-other-windows))'; test=test -n "$DISPLAY"
+text/html; elinks --dump %s; copiousoutput
 image/*; feh '%s'
 application/pdf; llpp '%s'
