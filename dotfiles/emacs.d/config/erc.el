@@ -41,6 +41,8 @@
                                readonly ring scrolltobottom
                                stamp spelling track truncate))
   :config
+  (require 'erc-spelling)
+  (erc-spelling-mode 1)
   (make-directory erc-log-channels-directory t)
   (defun erc-codethink ()
     (interactive)

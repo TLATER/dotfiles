@@ -68,6 +68,14 @@
   :config
   (global-flycheck-mode))
 
+(use-package flyspell
+  :ensure nil
+  :init
+  (setq ispell-program-name "aspell"
+        ispell-extra-args '("--sug-mode=ultra"))
+  :hook ((prog-mode . flyspell-prog-mode)
+         (text-mode . flyspell-mode)))
+
 ;; Better parens handling
 (use-package smartparens
   :functions (smartparens-global-mode sp-use-smartparens-bindings)
