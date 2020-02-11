@@ -214,5 +214,10 @@
   :init
   (setq shr-use-colors nil))
 
+(use-package hl-line
+  :ensure nil
+  :config
+  (global-hl-line-mode))
+
 (provide 'packages)
 ;;; packages.el ends here
