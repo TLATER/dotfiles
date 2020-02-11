@@ -40,6 +40,7 @@
 
 (use-package pytest
   :after (python)
+  :defines (python-mode-map)
   :bind (:map python-mode-map
               ("C-c t ." . pytest-one)
               ("C-c t a" . pytest-all)

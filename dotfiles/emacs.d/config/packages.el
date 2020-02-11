@@ -183,6 +183,10 @@
 
 ;; Project browser
 (use-package treemacs
+  :commands (treemacs-follow-mode
+             treemacs-filewatch-mode
+             treemacs-fringe-indicator-mode
+             treemacs-git-mode)
   :config
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)

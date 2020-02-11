@@ -44,7 +44,7 @@
 ;; Set up package loading
 (require 'package)
 (setq package-user-dir (expand-file-name "elpa" data-dir))
-(setq using-external-packages (or (getenv "SCANNING_PACKAGES")
+(defvar using-external-packages (or (getenv "SCANNING_PACKAGES")
                                   (fboundp 'nix--profile-paths)))
 
 ;; Make sure use-package is installed if it's not installed externally
