@@ -4,7 +4,11 @@ set use_from = yes
 set envelope_from = yes
 
 set sidebar_visible
+set sidebar_component_depth = 0
+set sidebar_short_path = yes
+set sidebar_folder_indent = yes
 set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+set sidebar_sort_method = "path"
 set mail_check_stats
 
 bind index,pager \CP sidebar-prev
