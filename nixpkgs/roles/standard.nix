@@ -21,6 +21,7 @@ in
   };
 
   imports = [
+    ../configurations/alacritty.nix
     ../configurations/dunst.nix
     ../configurations/emacs.nix
     ../configurations/mail.nix
@@ -31,7 +32,6 @@ in
 
   config = {
     home.packages = with pkgs; [
-      alacritty
       feh
       llpp
       rofi
