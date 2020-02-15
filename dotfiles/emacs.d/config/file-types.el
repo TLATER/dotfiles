@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package gnuplot-mode
+  :mode ("\\.p\\'" "\\.gp\\'" "\\.gnuplot\\'"))
+
 (use-package yaml-mode
   :mode ("\\.bst\\'" "\\project.conf\\'"))
 
