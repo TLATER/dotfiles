@@ -58,7 +58,7 @@ in
           };
           neomutt = {
             enable = config.isWorkProfile;
-            sendMailCommand = "msmtpq --read-envelope-from --read-recipients";
+            sendMailCommand = "msmtp --read-recipients";
             extraConfig = ''
               mailboxes `find ${config.accounts.email.maildirBasePath}/codethink.co.uk/* -type d ! \( -name new -or -name cur -or -name tmp \) -printf '"%p" '`
             '';
