@@ -1,7 +1,6 @@
-# Allow using the terminal scrollback
-termcapinfo xterm|xterms|xs|rxvt|xterm-termite ti@:te@
-# Allow setting the window title from screen
-termcapinfo xterm|xterms|xs|rxvt|xterm-termite "hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007"
+# Use the message bar instead of the window title for messages on
+# alacritty
+termcapinfo alacritty "hs@:ts@:fs@:ds@"
 
 # Set the window title to commands automagically
 shelltitle "$ |bash"
