@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package markdown-mode
+  :mode ("\\.mdwn\\'" "/tmp/neomutt-.*"))
+
 (use-package gnuplot-mode
   :mode ("\\.p\\'" "\\.gp\\'" "\\.gnuplot\\'"))
 
