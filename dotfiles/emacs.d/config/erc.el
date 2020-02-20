@@ -30,7 +30,7 @@
 
 (use-package erc
   :after (tls)
-  :commands erc-tls
+  :commands (erc-tls erc-buffer-list)
   :init
   (setq erc-log-channels-directory (expand-file-name "erc/logs" data-dir))
   (setq erc-keywords '("NB ALL:"))
