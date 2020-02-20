@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package pug-mode
+  :mode ("\\.pug\\'"))
+
 (use-package markdown-mode
   :mode ("\\.mdwn\\'" "/tmp/neomutt-.*"))
 
