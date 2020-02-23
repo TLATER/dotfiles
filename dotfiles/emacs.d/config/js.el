@@ -24,8 +24,13 @@
 
 ;;; Code:
 
+;; Required because we need c-populate-syntax-table
+(use-package cc-mode
+  :mode "\\.cc\\'")
+
 ;; Mainly use js2-mode
 (use-package js2-mode
+  :after (cc-mode)
   :mode "\\.js\\'"
   :interpreter "node"
   :init
