@@ -70,6 +70,8 @@
 
 (use-package flyspell
   :ensure nil
+  :bind (:map flyspell-mode-map
+              ("C-;" . nil))
   :init
   (setq ispell-program-name "aspell"
         ispell-extra-args '("--sug-mode=ultra"))
