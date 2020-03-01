@@ -8,6 +8,7 @@ in
   home.packages = with pkgs; [
     pandoc
     elinks
+    hydroxide
     neomutt
   ];
 
@@ -28,9 +29,68 @@ in
     mbsync.enable = true;
   };
 
+  systemd.user.services = {
+    hydroxide = {
+      Unit = {
+        Description = "Protonmail service proxy";
+      };
+
+      Service = {
+        ExecStart = "${pkgs.hydroxide}/bin/hydroxide serve";
+      };
+
+      Install = {
+        WantedBy = [ "mbsync.service" ];
+      };
+    };
+  };
+
   accounts = {
     email = {
       accounts = {
+        "tlater.net" = {
+          address = "tm@tlater.net";
+          primary = !config.isWorkProfile;
+          realName = "Tristan Daniël Maat";
+
+          userName = "tlater";
+          passwordCommand = "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass protonmail/local | ${pkgs.coreutils}/bin/tr -d '\\n'";
+          imap = {
+            host = "127.0.0.1";
+            port = 1143;
+            tls.enable = false;
+          };
+          smtp = {
+            host = "localhost";
+            port = 1025;
+            tls.enable = false;
+          };
+          gpg = {
+            key = "0x35AED29F3800E029";
+            signByDefault = true;
+          };
+
+          mbsync = {
+            create = "maildir";
+            enable = true;
+          };
+          msmtp = {
+            enable = true;
+            extraConfig = {
+              from = "tm@tlater.net";
+              auth = "plain";
+            };
+          };
+          neomutt = {
+            enable = true;
+            sendMailCommand = "msmtp --read-recipients";
+            extraConfig = ''
+              set pgp_default_key = 0x35AED29F3800E029
+              mailboxes `find ${config.accounts.email.maildirBasePath}/tlater.net/* -type d ! \( -name new -or -name cur -or -name tmp \) -printf '"%p" '`
+          '';
+          };
+        };
+
         "codethink.co.uk" = {
           address = "tristan.maat@codethink.co.uk";
           primary = config.isWorkProfile;
