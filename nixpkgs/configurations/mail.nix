@@ -6,7 +6,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    discount  # Markdown implementation
+    pandoc
     elinks
     neomutt
   ];
