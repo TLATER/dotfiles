@@ -21,6 +21,7 @@ in
     msmtp.enable = true;
     neomutt = {
       enable = true;
+      editor = "$EDITOR -c";
       extraConfig = builtins.readFile ../../dotfiles/neomutt/neomuttrc;
     };
   };
