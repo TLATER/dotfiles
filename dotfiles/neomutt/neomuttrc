@@ -19,5 +19,3 @@ bind index,pager \CX sidebar-open
 
 auto_view text/html
 alternative_order text/enriched text/plain text/html text
-
-macro compose K "| pandoc --from markdown --to html -o /tmp/neomutt-alternative.html<Enter><attach-file>/tmp/neomutt-alternative.html<Enter><tag-entry><previous-entry><tag-entry><group-alternatives>" "Turn markdown mail into multipart/alternative"

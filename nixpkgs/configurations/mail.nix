@@ -2,11 +2,19 @@
 
 let
   helpers = import ../helpers { inherit lib; };
+  # TODO: Think a bit about whether we can add a minimal bit of CSS
+  # here
+  markdown-script = pkgs.writeScript "convert-mail.sh" ''
+    #!${pkgs.bash}/bin/bash
+    ${pkgs.pandoc}/bin/pandoc \
+        --from markdown \
+        --to html \
+        -o /tmp/neomutt-alternative.html
+  '';
 
 in
 {
   home.packages = with pkgs; [
-    pandoc
     elinks
     hydroxide
     neomutt
@@ -22,7 +30,9 @@ in
     neomutt = {
       enable = true;
       editor = "$EDITOR -c";
-      extraConfig = builtins.readFile ../../dotfiles/neomutt/neomuttrc;
+      extraConfig = builtins.readFile ../../dotfiles/neomutt/neomuttrc + ''
+        macro compose K "| ${markdown-script}<Enter><attach-file>/tmp/neomutt-alternative.html<Enter>"
+      '';
     };
   };
 
