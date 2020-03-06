@@ -96,14 +96,14 @@
 (setf *window-border-style* :tight)
 
 ;;; Keys:
-(define-key *root-map* (kbd "c") "exec ${VTERM:-xterm}")
-(define-key *root-map* (kbd "C-c") "exec ${VTERM:-xterm}")
+(define-key *root-map* (kbd "c") "exec nixGLIntel alacritty")
+(define-key *root-map* (kbd "C-c") "exec nixGLIntel alacritty")
 (define-key *root-map* (kbd "e") "exec emacsclient -c -a 'emacs'")
 (define-key *root-map* (kbd "C-e") "exec emacsclient -c -a 'emacs'")
-(define-key *root-map* (kbd ".") "exec rofi -show drun")
-(define-key *root-map* (kbd "C-.") "exec rofi -show drun")
-(define-key *root-map* (kbd ",") "exec pass-rofi")
-(define-key *root-map* (kbd "C-,") "exec pass-rofi")
+(define-key *root-map* (kbd ".") "exec nixGLIntel rofi -show drun")
+(define-key *root-map* (kbd "C-.") "exec nixGLIntel rofi -show drun")
+(define-key *root-map* (kbd ",") "exec nixGLIntel pass-rofi")
+(define-key *root-map* (kbd "C-,") "exec nixGLIntel pass-rofi")
 
 ;; Audio:
 (setf up "exec pactl set-sink-volume @DEFAULT_SINK@ +5%")

@@ -164,6 +164,8 @@
 (use-package smart-mode-line
   :functions (sml/setup)
   :config
+  (load-theme 'smart-mode-line-respectful t)
+  (load-theme 'gotham t)
   (sml/setup))
 
 ;; Better snippets

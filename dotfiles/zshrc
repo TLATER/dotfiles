@@ -1,4 +1,5 @@
 # Load environment configuration first
+[ -f "$HOME/.env" ] && source "$HOME/.env"
 [ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
