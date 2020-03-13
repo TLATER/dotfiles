@@ -40,7 +40,7 @@
   :mode ("\\.service\\'" . systemd-mode))
 
 (use-package web-mode
-  :mode "\\.hbs\\'")
+  :mode "\\.hbs\\'" "\\.tsx?\\'")
 
 (use-package rustic
   :mode "\\.rs\\'")
