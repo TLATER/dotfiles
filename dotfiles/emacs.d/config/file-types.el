@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package lua-mode
+  :mode ("\\.lua\\'"))
+
 (use-package pug-mode
   :mode ("\\.pug\\'"))
 
