@@ -42,7 +42,7 @@
 (use-package web-mode
   :mode "\\.hbs\\'")
 
-(use-package rust-mode
+(use-package rustic
   :mode "\\.rs\\'")
 
 (use-package cython-mode
