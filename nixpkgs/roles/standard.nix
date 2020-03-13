@@ -45,6 +45,7 @@ in
       local-pkgs.pass-rofi
     ];
 
+    programs.direnv.enable = true;
     programs.home-manager.enable = true;
     home.stateVersion = "19.09";
   };

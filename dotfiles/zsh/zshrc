@@ -9,6 +9,9 @@ if (( $+commands[any-nix-shell] )); then
     any-nix-shell zsh | source /dev/stdin
 fi
 
+# Activate direnv
+eval "$(direnv hook zsh)"
+
 # Load more granular configuration files
 source "$ZDOTDIR/functions.zsh"
 source "$ZDOTDIR/aliases.zsh"

@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+;; Use direnv variables for projects
+(use-package direnv
+  :config
+  (direnv-mode))
+
 ;; Automatically update packages every once in a while
 (use-package auto-package-update
   :functions (auto-package-update-maybe)
