@@ -8,6 +8,11 @@ in
   home.packages = with pkgs; [
     local-pkgs.emacs
 
+    # Spell checks
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+
     # Used for interactive python shells
     nodePackages.bash-language-server
     python37Packages.ipython
