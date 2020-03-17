@@ -8,7 +8,7 @@
   ];
 
   home.file = {
-    ".env".source = ../../dotfiles/env;
+    ".profile".source = ../../dotfiles/env;
     ".ssh/tlater.pub".source = ../../keys/tlater.pub;
   };
 
