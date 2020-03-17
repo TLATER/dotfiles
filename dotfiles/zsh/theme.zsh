@@ -1,5 +1,5 @@
 # Ensure our env isn't setting anything weird first
-autoload -U promptinit && prompt restore
+autoload -U promptinit && promptinit && prompt restore
 
 PROMPT="%B%F{cyan}%n%b %(5~|../|)%4~ %(!|#|$)%f "
 
