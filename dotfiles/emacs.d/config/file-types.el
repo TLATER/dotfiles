@@ -31,7 +31,9 @@
   :mode ("\\.pug\\'"))
 
 (use-package markdown-mode
-  :mode ("\\.mdwn\\'" "/tmp/neomutt-.*"))
+  :mode ("\\.mdwn\\'" "/tmp/neomutt-.*")
+  :init
+  (setq markdown-command '("nix-shell" "-p" "pandoc" "--run" "pandoc --from=markdown --to=html5")))
 
 (use-package gnuplot-mode
   :mode ("\\.p\\'" "\\.gp\\'" "\\.gnuplot\\'"))
