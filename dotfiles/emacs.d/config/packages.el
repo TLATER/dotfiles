@@ -24,6 +24,19 @@
 
 ;;; Code:
 
+(use-package dashboard
+  :init
+  (setq initial-buffer-choice (lambda ()
+                                (or
+                                 (get-buffer "*dashboard*")
+                                 (get-buffer "*scratch*"))))
+  (setq dashboard-items '((recents . 5)
+                          (bookmarks . 5)
+                          (projects . 5)
+                          (registers . 5)))
+  :config
+  (dashboard-setup-startup-hook))
+
 ;; Use direnv variables for projects
 (use-package direnv
   :config
