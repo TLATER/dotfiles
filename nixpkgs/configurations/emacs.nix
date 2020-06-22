@@ -16,6 +16,8 @@ in
     # Used for interactive python shells
     nodePackages.bash-language-server
     python37Packages.ipython
+    shellcheck
+    gnuplot
   ];
 
   home.file.".emacs.d" = {
