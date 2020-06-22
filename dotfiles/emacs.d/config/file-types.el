@@ -46,7 +46,9 @@
   :mode "\\.hbs\\'" "\\.tsx?\\'")
 
 (use-package rustic
-  :mode "\\.rs\\'")
+  :mode "\\.rs\\'"
+  :config
+  (require 'smartparens-rust))
 
 (use-package cython-mode
   :mode "\\.pyx\\'")
