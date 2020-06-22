@@ -21,7 +21,7 @@ export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 
 # Set up password store properly
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export PASSWORD_STORE_KEY="0xBC7BB2DB17C78E42"
+export PASSWORD_STORE_KEY="0x9FAF1AA48509A7F1"
 export PASSWORD_STORE_GENERATED_LENGTH="16";
 
 GPG_TTY=$(tty)
