@@ -25,6 +25,7 @@ in
     ../configurations/dunst.nix
     ../configurations/emacs.nix
     ../configurations/mail.nix
+    ../configurations/misc.nix
     ../configurations/stumpwm.nix
     ../configurations/tty-programs.nix
     ../configurations/zsh.nix
