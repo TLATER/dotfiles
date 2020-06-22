@@ -58,7 +58,7 @@
         verify-options = "show-uid-validity";
         list-options = "show-uid-validity";
         cert-digest-algo = "SHA512";
-        throw-keyids = true;
+        throw-keyids = false;
         no-emit-version = true;
       };
     };
