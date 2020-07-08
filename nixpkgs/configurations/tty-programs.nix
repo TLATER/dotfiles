@@ -5,7 +5,6 @@
     any-nix-shell
     pass
     screen
-    webmacs
   ];
 
   home.file = {

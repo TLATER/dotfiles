@@ -24,6 +24,7 @@ in
     ../configurations/alacritty.nix
     ../configurations/dunst.nix
     ../configurations/emacs.nix
+    ../configurations/graphical-programs.nix
     ../configurations/mail.nix
     ../configurations/misc.nix
     ../configurations/stumpwm.nix
