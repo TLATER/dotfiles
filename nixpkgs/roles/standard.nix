@@ -24,9 +24,9 @@ in
     ../configurations/alacritty.nix
     ../configurations/dunst.nix
     ../configurations/emacs.nix
+    ../configurations/firefox.nix
     ../configurations/graphical-programs.nix
     ../configurations/mail.nix
-    ../configurations/misc.nix
     ../configurations/stumpwm.nix
     ../configurations/tty-programs.nix
     ../configurations/zsh.nix
