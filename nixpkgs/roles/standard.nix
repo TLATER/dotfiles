@@ -30,6 +30,7 @@ in
     ../configurations/stumpwm.nix
     ../configurations/tty-programs.nix
     ../configurations/zsh.nix
+    ../configurations/mime.nix
   ];
 
   config = {
