@@ -85,5 +85,6 @@
       enableSshSupport = true;
       defaultCacheTtl = 28800;
     };
+    syncthing.enable = true;
   };
 }
