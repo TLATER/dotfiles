@@ -27,6 +27,7 @@
 (use-package lsp-mode
   :functions (lsp-register-custom-settings)
   :hook ((rust-mode python-mode sh-mode) . lsp)
+  :after (company-mode)
   :bind
   ("C-c r" . lsp-rename)
   ("C-c f" . lsp-format-buffer)
@@ -53,13 +54,6 @@
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :after (lsp-mode))
-
-(use-package company-lsp
-  :after (lsp-mode company)
-  :init
-  (setq company-lsp-cache-candidates 'auto)
-  :config
-  (add-to-list 'company-backends 'company-lsp))
 
 (provide 'lsp)
 ;;; lsp.el ends here
