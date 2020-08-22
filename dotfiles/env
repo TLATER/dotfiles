@@ -1,6 +1,12 @@
 # Set up home-manager
 [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
+# Set emacsclient as a "browser" - xdg-open naively checks this
+# variable to open unknown file types, or otherwise tries to open
+# absolutely everything in firefox. Really need to find out who wrote
+# that script and slap them.
+export BROWSER="emacsclient --no-wait -c"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
