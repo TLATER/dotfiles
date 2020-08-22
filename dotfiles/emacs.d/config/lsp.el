@@ -27,7 +27,6 @@
 (use-package lsp-mode
   :functions (lsp-register-custom-settings)
   :hook ((web-mode rust-mode python-mode sh-mode) . lsp)
-  :after (company-mode)
   :bind
   ("C-c r" . lsp-rename)
   ("C-c f" . lsp-format-buffer)
