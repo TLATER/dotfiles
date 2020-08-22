@@ -28,8 +28,9 @@
   :functions (lsp-register-custom-settings)
   :hook ((web-mode rust-mode python-mode sh-mode) . lsp)
   :bind
-  ("C-c r" . lsp-rename)
-  ("C-c f" . lsp-format-buffer)
+  (:map lsp-mode-map
+   ("C-c r" . lsp-rename)
+   ("C-c f" . lsp-format-buffer))
   :init
   (setq lsp-session-file (expand-file-name "lsp-session-v1" data-dir))
 
