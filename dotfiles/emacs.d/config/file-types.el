@@ -48,7 +48,7 @@
   :mode "\\.hbs\\'" "\\.tsx?\\'")
 
 (use-package rustic
-  :mode "\\.rs\\'"
+  :mode ("\\.rs\\'" . rustic-mode)
   :config
   (require 'smartparens-rust))
 
