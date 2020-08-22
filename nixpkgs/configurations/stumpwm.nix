@@ -10,6 +10,9 @@ in
     local-pkgs.stumpwm
     local-pkgs.stumpwm-contrib
 
+    # Allow us to change the running instance from emacs
+    stumpish
+
     # Manages autostarts
     dex
 
