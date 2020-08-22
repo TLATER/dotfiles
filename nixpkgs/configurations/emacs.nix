@@ -16,6 +16,9 @@ in
     python37Packages.ipython
     shellcheck
     gnuplot
+
+    # Needed for magit-lfs
+    git-lfs
   ];
 
   home.file.".emacs.d" = {
