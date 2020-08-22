@@ -157,6 +157,10 @@
             (if (has-battery-p) "| %B ") ;; Battery status
             "| %T"))                     ;; Tray
 
+;; Make discord show up on the right group
+(define-frame-preference "discy" (2 NIL t :class "discord"))
+(push '(:class "discord") stumpwm:*deny-raise-request*)
+
 ;; Final set of side-effectful bits of config
 (when *initializing*
   (mode-line)
