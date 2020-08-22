@@ -49,3 +49,4 @@ rofi.font:                     mono 11
 rofi.modi:                     drun
 rofi.show-icons:               true
 rofi.drun-display-format:      {name}
+rofi.terminal:                 alacritty
