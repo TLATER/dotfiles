@@ -44,9 +44,6 @@
 (use-package systemd
   :mode ("\\.service\\'" . systemd-mode))
 
-(use-package web-mode
-  :mode "\\.hbs\\'" "\\.tsx?\\'")
-
 (use-package rustic
   :mode ("\\.rs\\'" . rustic-mode)
   :config
