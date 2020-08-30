@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+set -eu
+
+SCREENSHOT_HOME="${SCREENSHOT_HOME:-$HOME/Documents/Pictures/Screenshots}"
+
+get-current-window() {
+    local output
+    output="$(xprop -root _NET_ACTIVE_WINDOW)"
+    echo "${output:40}"
+}
+
+get-window-name() {
+    local id="$1"
+    local output
+    output="$(xprop -id "${id}" WM_NAME)"
+    echo "$(expr match "${output}" '.*"\(.*\)"')"
+}
+
+main() {
+    local mode="-u"
+    local name
+    local opt
+    local window
+
+    window="$(get-current-window)"
+    name="$(get-window-name "${window}")"
+
+    while getopts "acs" option; do
+        case "${option}" in
+            a)
+                mode="-a"
+                ;;
+            c)
+                mode="-u"
+                ;;
+            s)
+                mode="-s"
+                ;;
+        esac
+    done
+
+    sleep .1
+    scrot "%FT%T.png" "${mode}" -e "mkdir -p ${SCREENSHOT_HOME}/${name}; mv \$f ${SCREENSHOT_HOME}/${name}/"
+}
+
+main "$@"
