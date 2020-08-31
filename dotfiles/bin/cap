@@ -22,6 +22,7 @@ main() {
     local name
     local opt
     local window
+    local filename
 
     window="$(get-current-window)"
     name="$(get-window-name "${window}")"
@@ -41,7 +42,9 @@ main() {
     done
 
     sleep .1
-    scrot "%FT%T.png" "${mode}" -e "mkdir -p ${SCREENSHOT_HOME}/${name}; mv \$f ${SCREENSHOT_HOME}/${name}/"
+    filename=$(scrot "%FT%T.png" "${mode}" -e 'echo $f')
+    mkdir -p "${SCREENSHOT_HOME}/${name}/"
+    mv "${filename}" "${SCREENSHOT_HOME}/${name}/"
 }
 
 main "$@"
