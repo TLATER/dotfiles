@@ -2,6 +2,7 @@
 
 set use_from = yes
 set envelope_from = yes
+set mime_forward = yes
 
 set sidebar_visible
 set sidebar_component_depth = 0
