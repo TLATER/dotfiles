@@ -2,3 +2,4 @@ text/html; emacsclient -n -c --eval '(progn (shr-render-buffer (find-file "%s"))
 text/html; elinks --dump %s; copiousoutput
 image/*; feh '%s'
 application/pdf; llpp '%s'
+text/calendar; dump-ics '%s'; copiousoutput

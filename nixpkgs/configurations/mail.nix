@@ -2,6 +2,7 @@
 
 let
   helpers = import ../helpers { inherit lib; };
+  local-pkgs = import ../local-pkgs { inherit pkgs; };
   # TODO: Think a bit about whether we can add a minimal bit of CSS
   # here
   markdown-script = pkgs.writeScript "convert-mail.sh" ''
@@ -18,6 +19,8 @@ in
     elinks
     hydroxide
     neomutt
+
+    local-pkgs.dump-ics
   ];
 
   home.file = {

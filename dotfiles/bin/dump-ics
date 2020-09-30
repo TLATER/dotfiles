@@ -1,0 +1,25 @@
+#!/usr/bin/env nix-shell
+#! nix-shell -i python -p python38 python38Packages.ics
+
+import sys
+
+from ics import Calendar, Event
+
+
+def print_event(event: Event):
+    print(event.begin._datetime)
+    print(f"{event.name}\n\t{event.begin._datetime.strftime('%c')}")
+
+
+def main():
+    in_file: str = sys.argv[1]
+    with open(in_file) as f:
+        calendar = Calendar(f.read())
+
+    for event in calendar.events:
+        print_event(event)
+        print()
+
+
+if __name__ == '__main__':
+    main()
