@@ -83,7 +83,8 @@
     gpg-agent = {
       enable = true;
       enableSshSupport = true;
-      defaultCacheTtl = 28800;
+      defaultCacheTtl = 86400;
+      maxCacheTtl = 2592000;
     };
     syncthing.enable = true;
   };
