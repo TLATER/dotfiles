@@ -16,7 +16,7 @@ let
 in
 {
   home.packages = with pkgs; [
-    elinks
+    lynx
     hydroxide
     neomutt
 
