@@ -1,5 +1,5 @@
 text/html; emacsclient -n -c --eval '(progn (shr-render-buffer (find-file "%s")) (delete-other-windows))'; test=test -n "$DISPLAY"
-text/html; lynx -localhost -dump %s; copiousoutput
+text/html; lynx -localhost -assume_charset=%{charset} -display_charset=utf-8 -collapse_br_tags -dump %s; nametemplate=%s.html; copiousoutput
 image/*; feh '%s'
 application/pdf; llpp '%s'
 text/calendar; dump-ics '%s'; copiousoutput
