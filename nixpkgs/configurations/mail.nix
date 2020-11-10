@@ -34,6 +34,7 @@ in
       enable = true;
       editor = "$EDITOR -c";
       extraConfig = builtins.readFile ../../dotfiles/neomutt/neomuttrc + ''
+        set new_mail_command = "${pkgs.libnotify}/bin/notify-send 'New mail in %f' '%n new messages, %u unread.'"
         macro compose K "| ${markdown-script}<Enter><attach-file>/tmp/neomutt-alternative.html<Enter>"
       '';
     };
@@ -41,6 +42,7 @@ in
 
   services = {
     mbsync.enable = true;
+    imapnotify.enable = true;
   };
 
   systemd.user.services = {
