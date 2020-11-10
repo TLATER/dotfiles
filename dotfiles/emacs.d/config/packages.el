@@ -112,7 +112,14 @@
   (setq transient-levels-file (expand-file-name "transient/levels.el" data-dir)
         transient-values-file (expand-file-name "transient/values.el" data-dir)
         transient-history-file (expand-file-name "transient/history.el" data-dir)))
-(use-package magit-lfs)
+(use-package magit-lfs
+  :after magit)
+(use-package forge
+  :after magit
+  :config
+  (add-to-list
+   'forge-alist '("gitlab.codethink.co.uk" "gitlab.codethink.co.uk/api/v4"
+                "gitlab.codethink.co.uk" forge-gitlab-repository)))
 
 ;; Better prompts
 (use-package helm

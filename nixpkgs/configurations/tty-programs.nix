@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   home.packages = with pkgs; [
@@ -24,6 +24,12 @@
       signing = {
         key = "0x49670FD774E43268";
         signByDefault = true;
+      };
+      extraConfig = {
+        gitlab.user = "tlater";
+        "gitlab.gitlab.codethink.co.uk/api/v4" = {
+          user = "tristanmaat";
+        };
       };
     };
     gpg = {
@@ -64,16 +70,14 @@
     ssh = {
       enable = true;
       matchBlocks = {
-        "tlater.net" = {
-          hostname = "tlater.net";
-          user = "tlater";
-          port = 2222;
+        "*" = {
           identitiesOnly = true;
           identityFile = "~/.ssh/tlater.pub";
         };
-        "github.com" = {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/tlater.pub";
+        "tlater.net" = lib.hm.dag.entryAfter ["*"] {
+          hostname = "tlater.net";
+          user = "tlater";
+          port = 2222;
         };
       };
     };
