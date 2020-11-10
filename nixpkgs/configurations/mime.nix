@@ -65,9 +65,10 @@
       "text/xml" = "emacsclient.desktop";
       "text/x-c" = "emacsclient.desktop";
       "text/x-c++" = "emacsclient.desktop";
-      "x-scheme-handler/ftp" = "emacsclient.desktop";
-      "x-scheme-handler/http" = "emacsclient.desktop";
-      "x-scheme-handler/https" = "emacsclient.desktop";
+
+      # Use firefox for http/s
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
     };
 
     # xdg-open ignores these, but let's unregister all the wine cruft
