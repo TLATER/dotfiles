@@ -87,7 +87,11 @@ in
           };
 
           mbsync = {
-            create = "maildir";
+            extraConfig = {
+              account = {
+                AuthMechs = "LOGIN";
+              };
+            };
             enable = true;
           };
           msmtp = {
