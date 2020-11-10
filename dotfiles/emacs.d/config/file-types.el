@@ -80,5 +80,8 @@
 
 (use-package stumpwm-mode)
 
+(use-package ahk-mode
+  :mode ("\\.ahk\\'"))
+
 (provide 'file-types)
 ;;; file-types.el ends here
