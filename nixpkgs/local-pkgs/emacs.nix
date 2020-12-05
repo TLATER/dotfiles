@@ -8,8 +8,8 @@ let
     version = "0e148a4f2096bd27a99025bf0639604afd326db9";
     src = fetchgit {
       url = "https://github.com/matthewbauer/bauer.git";
-      rev = "0e148a4f2096bd27a99025bf0639604afd326db9";
-      sha256 = "0mn7pb0h8fqc6i182jcp9lp7igxqmh20i1mabgchf8f4ypnqpr5s";
+      rev = "052ab567753a69ab50aad0e02ae2a44b02bce7e3";
+      sha256 = "14is7jg0778j2aif41v2s0ilc5w8xzxmc0d4aqzlrrkny6dmcm42";
       fetchSubmodules = false;
     };
     installPhase = ''
