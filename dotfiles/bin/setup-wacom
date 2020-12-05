@@ -1,0 +1,103 @@
+#!/usr/bin/env nix-shell
+#! nix-shell -i python -p python38 python38Packages.ics xf86_input_wacom
+
+# Currently comfortable osu setting is .3
+
+import argparse
+import os
+import subprocess
+import sys
+
+from subprocess import CalledProcessError
+from math import floor
+from typing import Tuple
+
+
+class SetupWacomException(Exception):
+    def __init__(self, text: str, exit_code: int):
+        super().__init__(text)
+        self.code = exit_code
+
+
+def get_device() -> int:
+    try:
+        devices = subprocess.check_output(["xsetwacom", "--list", "devices"], text=True)
+    except CalledProcessError as err:
+        raise SetupWacomException(f"Could not list devices: {err}\n"
+                                  "Maybe you need to enable `xserver.wacom`?",
+                                  os.EX_UNAVAILABLE)
+
+    pads = list(filter(lambda line: "type: STYLUS" in line, devices.splitlines()))
+    if len(pads) > 1:
+        raise SetupWacomException("Too many tablets.\n"
+                                  "This script can only set up one.",
+                                  os.EX_USAGE)
+    elif len(pads) < 1:
+        raise SetupWacomException("No tablets found.\n"
+                                  "Maybe you need to enable `xserver.wacom`?",
+                                  os.EX_UNAVAILABLE)
+
+    pad = pads[0]
+    return int(pad.split('\t')[1].split(' ')[1])
+
+
+def get_current_size(id: int) -> Tuple[int, int, int, int]:
+    try:
+        subprocess.check_call(["xsetwacom", "--set", str(id), "ResetArea"], text=True)
+    except CalledProcessError as err:
+        raise SetupWacomException(f"Could not reset device size: {err}\n",
+                                  os.EX_OSERR)
+
+    try:
+        area = subprocess.check_output(["xsetwacom", "--get", str(id), "Area"], text=True)
+    except CalledProcessError as err:
+        raise SetupWacomException(f"Could not get device size: {err}\n",
+                                  os.EX_OSERR)
+
+    area = area.split(' ')
+    return (int(area[0]), int(area[1]), int(area[2]), int(area[3]))
+
+
+def set_size(id: int, size: Tuple[int, int, int, int]):
+    try:
+        subprocess.check_call(["xsetwacom", "--set", str(id), "Area",
+                               str(size[0]), str(size[1]), str(size[2]), str(size[3])])
+    except CalledProcessError as err:
+        raise SetupWacomException(f"Unable to set device size: {err}\n",
+                                  os.EX_OSERR)
+
+
+def scale_size(size: Tuple[int, int, int, int], factor: float) -> Tuple[int, int, int, int]:
+    return (
+        floor((size[0] - size[2] / 2) * factor + size[2] / 2),
+        floor((size[1] - size[3] / 2) * factor + size[3] / 2),
+        floor((size[2] - size[2] / 2) * factor + size[2] / 2),
+        floor((size[3] - size[3] / 2) * factor + size[3] / 2),
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("scale", type=float, help="The size to scale the surface by")
+    parser.add_argument("--dry-run", "-d",
+                        default=False,
+                        action="store_true",
+                        help="Whether to actually apply scaling")
+    args = parser.parse_args()
+
+    device = get_device()
+    current_area = get_current_size(device)
+    scaled = scale_size(current_area, args.scale)
+
+    if not args.dry_run:
+        set_size(device, scaled)
+    else:
+        print(f"Will scale to: {scaled}")
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except SetupWacomException as err:
+        print(err, file=sys.stderr)
+        sys.exit(err.code)
