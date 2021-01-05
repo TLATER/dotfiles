@@ -5,7 +5,58 @@
 
 [[!toc levels=2]]
 
-$0
+* Day 5
+** TS010
+   #+BEGIN_SRC markdown
+   * Done
+     - TS010 - Optimising Build for Infotainment
+   * Todo
+     - TS010 - Optimising Build for Infotainment
+   #+END_SRC
+
+* Day 4
+** TS010
+   #+BEGIN_SRC markdown
+   * Done
+     - TS010 - Optimising Build for Infotainment
+   * Todo
+     - TS010 - Optimising Build for Infotainment
+   #+END_SRC
+
+* Day 3
+** TS010
+   #+BEGIN_SRC markdown
+   * Done
+     - TS010 - Optimising Build for Infotainment
+   * Todo
+     - TS010 - Optimising Build for Infotainment
+   #+END_SRC
+
+* Day 2
+** TS010
+   #+BEGIN_SRC markdown
+   * Done
+     - TS010 - Optimising Build for Infotainment
+   * Todo
+     - TS010 - Optimising Build for Infotainment
+   #+END_SRC
+
+* Day 1
+** TS010
+   #+BEGIN_SRC markdown
+   * Done
+     - TS010 - Optimising Build for Infotainment
+   * Todo
+     - TS010 - Optimising Build for Infotainment (Tuesday)
+   #+END_SRC
+
+** CO071
+   #+BEGIN_SRC markdown
+   * Done
+     - CO071 - FinOS engineering support
+   * Todo
+     - CO071 - FinOS engineering support
+   #+END_SRC
 
 * Clock
 #+BEGIN: clocktable :scope file :maxlevel 2 :tstart "<`(format-time-string "%F")`>" :tend "<now>" :step day
