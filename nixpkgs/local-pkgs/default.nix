@@ -7,6 +7,7 @@ with pkgs;
   cap = pkgs.callPackage ./cap.nix {};
   dump-ics = pkgs.callPackage ./dump-ics.nix {};
   emacs = pkgs.callPackage ./emacs.nix {};
+  gauth = pkgs.callPackage ./gauth.nix {};
   oh-my-zsh-emacs = pkgs.callPackage ./oh-my-zsh-emacs.nix {};
   oh-my-zsh-require-tool = pkgs.callPackage ./oh-my-zsh-require-tool.zsh {};
   oh-my-zsh-screen = pkgs.callPackage ./oh-my-zsh-screen.nix {};

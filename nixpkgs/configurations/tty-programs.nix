@@ -1,11 +1,15 @@
 { config, lib, pkgs, ... }:
 
+let
+  local-pkgs = import ../local-pkgs { inherit pkgs; };
+
+in
 {
   home.packages = with pkgs; [
     any-nix-shell
     pass
     screen
-  ];
+  ] ++ (if config.isWorkProfile then [ local-pkgs.gauth ] else []);
 
   home.file = {
     ".profile".source = ../../dotfiles/env;
