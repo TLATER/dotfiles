@@ -26,7 +26,7 @@
 
 (use-package lsp-mode
   :functions (lsp-register-custom-settings)
-  :hook ((web-mode rust-mode python-mode sh-mode) . lsp)
+  :hook ((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . lsp)
   :bind
   (:map lsp-mode-map
    ("C-c r" . lsp-rename)
