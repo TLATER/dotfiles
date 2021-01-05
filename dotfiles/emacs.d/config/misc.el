@@ -110,7 +110,7 @@
 (use-package whitespace
   :functions (global-whitespace-mode)
   :init
-  (setq whitespace-style '(face trailing tabs space-after-tab
+  (setq whitespace-style '(face trailing indentation space-after-tab
                                 space-before-tab tab-mark))
   (setq whitespace-global-modes '(not erc-mode))
   :config
