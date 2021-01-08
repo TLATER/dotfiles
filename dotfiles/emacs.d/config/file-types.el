@@ -35,11 +35,6 @@
   :init
   (setq markdown-command '("nix-shell" "-p" "pandoc" "--run" "pandoc --from=markdown --to=html5")))
 
-(use-package gnuplot
-  :mode ("\\.p\\'" "\\.gp\\'" "\\.gnuplot\\'")
-  :init
-  (setq gnuplot-program "gnuplot"))
-
 (use-package yaml-mode
   :mode ("\\.bst\\'" "\\project.conf\\'"))
 
