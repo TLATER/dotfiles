@@ -21,7 +21,7 @@ in
     git-lfs
   ];
 
-  home.file.".emacs.d" = {
+  xdg.configFile."emacs" = {
     onChange = ''
       # Recompile init files
       SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
