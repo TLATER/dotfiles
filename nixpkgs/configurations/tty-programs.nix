@@ -34,6 +34,9 @@ in
         "gitlab.gitlab.codethink.co.uk/api/v4" = {
           user = "tristanmaat";
         };
+        url = {
+          "ssh://git@".pushInsteadOf = "https://";
+        };
       };
     };
     gpg = {
