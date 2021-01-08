@@ -24,13 +24,7 @@
 
 ;;; Code:
 
-(use-package tls
-  :ensure nil
-  :config
-  (add-to-list 'tls-program "openssl s_client -connect %h:%p -no_ssl2 -ign_eof -cert $HOME/.config/certificates/%h/tlater.pem"))
-
 (use-package erc
-  :after (tls)
   :commands (erc-tls erc-buffer-list)
   :init
   (setq erc-log-channels-directory (expand-file-name "erc/logs" data-dir))
