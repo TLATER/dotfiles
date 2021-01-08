@@ -9,7 +9,7 @@ stdenv.mkDerivation {
     owner = "ohmyzsh";
     repo = "ohmyzsh";
     rev = "05e2956dc61198d4767b96d97c5d10c93cedd6e3";
-    sha256 = "0i8fd9wjgj6hcf5ykwyfim93ydvlnclqa9cga3w0fal87dgr261w";
+    sha256 = "1fw48vjksxii9m5chrlsabc3zf0fq9bgn2z487f23gd1vlpplj6l";
   };
   installPhase = ''
     mkdir -p $out/
