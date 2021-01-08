@@ -9,7 +9,7 @@ with pkgs;
   emacs = pkgs.callPackage ./emacs.nix {};
   gauth = pkgs.callPackage ./gauth.nix {};
   oh-my-zsh-emacs = pkgs.callPackage ./oh-my-zsh-emacs.nix {};
-  oh-my-zsh-require-tool = pkgs.callPackage ./oh-my-zsh-require-tool.zsh {};
+  oh-my-zsh-require-tool = pkgs.callPackage ./oh-my-zsh-require-tool.nix {};
   oh-my-zsh-screen = pkgs.callPackage ./oh-my-zsh-screen.nix {};
   pass-rofi = pkgs.callPackage ./pass-rofi.nix {};
   stumpwm = pkgs.callPackage ./stumpwm.nix {};
