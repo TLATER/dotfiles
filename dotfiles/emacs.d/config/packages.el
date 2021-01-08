@@ -116,6 +116,8 @@
   :after magit)
 (use-package forge
   :after magit
+  :init
+  (setq forge-database-file (expand-file-name "forge-database.sqlite" data-dir))
   :config
   (add-to-list
    'forge-alist '("gitlab.codethink.co.uk" "gitlab.codethink.co.uk/api/v4"

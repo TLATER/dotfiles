@@ -28,6 +28,11 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+(use-package recentf
+  :ensure nil
+  :init
+  (setq recentf-save-file (expand-file-name "recentf" data-dir)))
+
 (use-package tramp
   :ensure nil
   :init
