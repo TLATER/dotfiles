@@ -71,7 +71,8 @@
   :mode ("\\.csv\\'"))
 
 (use-package nix-mode
-  :mode ("\\.nix\\'"))
+  :mode ("\\.nix\\'")
+  :bind ("C-c f" . nix-format-buffer))
 
 (use-package stumpwm-mode)
 
