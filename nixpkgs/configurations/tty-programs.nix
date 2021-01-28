@@ -97,6 +97,5 @@ in
       defaultCacheTtl = 86400;
       maxCacheTtl = 2592000;
     };
-    syncthing.enable = true;
   };
 }
