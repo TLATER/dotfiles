@@ -30,6 +30,7 @@ in
         signByDefault = true;
       };
       extraConfig = {
+        github.user = "tlater";
         gitlab.user = "tlater";
         "gitlab.gitlab.codethink.co.uk/api/v4" = {
           user = "tristanmaat";
