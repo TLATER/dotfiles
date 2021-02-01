@@ -48,7 +48,10 @@ in
       local-pkgs.pass-rofi
     ];
 
-    programs.direnv.enable = true;
+    programs.direnv = {
+      enable = true;
+      enableNixDirenvIntegration = true;
+    };
     programs.home-manager.enable = true;
     home.stateVersion = "19.09";
   };
