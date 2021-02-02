@@ -8,4 +8,6 @@ in
   home.packages = with pkgs; [
     local-pkgs.cap
   ];
+
+  services.caffeine.enable = true;
 }
