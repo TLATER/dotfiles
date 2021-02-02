@@ -9,6 +9,7 @@ in
     any-nix-shell
     pass
     screen
+    tree
   ] ++ (if config.isWorkProfile then [ local-pkgs.gauth ] else []);
 
   home.file = {
