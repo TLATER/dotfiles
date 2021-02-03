@@ -12,10 +12,7 @@ in
     aspellDicts.en-computers
 
     # Used for interactive python shells
-    nodePackages.bash-language-server
     python37Packages.ipython
-    shellcheck
-    gnuplot
 
     # Needed for magit-lfs
     git-lfs
