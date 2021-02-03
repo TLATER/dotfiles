@@ -15,26 +15,76 @@
         "type": "github"
       }
     },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1611323638,
+        "narHash": "sha256-+7wm2RH82NYTZjzl0Nw+8E4yyXqVp/6xPdPWHAQXlt8=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "91bd34620d73340be03642279ee0d1c64110ee6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "ref": "release-20.09",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1612194028,
-        "narHash": "sha256-AFPVC9gNDHnx52FGD1IWRvM3S3D1AgEbEaOkxDerlyU=",
+        "lastModified": 1612486967,
+        "narHash": "sha256-XnJ1HcpLDIgAKwtIExtN0PpaCWWx/MPdNRo9jpAJTRk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "ead24f04b06a5d5cb224b1cb5be6ae59c58c6915",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1612433293,
+        "narHash": "sha256-p9vbZBJE8BqLr4uOC+RP12Kg6v6u/gpi8jJ2v1iBAk4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "65211f5afcc3637c55423b327157a5eae05dff67",
+        "rev": "2b9daa020d40aac9d6ff3d1941d22acf4a3e9229",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "nixos-unstable",
+        "ref": "nixos-20.09",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nurpkgs": {
+      "locked": {
+        "lastModified": 1612481730,
+        "narHash": "sha256-b3WHTlnC0Qp2F6LVI8foImxINs4d6+E0uidzeEz6vUY=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "369220aed329fc68502c5da8a379e383f40662ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
         "type": "github"
       }
     },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs"
+        "home-manager": "home-manager",
+        "nixpkgs": "nixpkgs_2",
+        "nurpkgs": "nurpkgs"
       }
     }
   },
