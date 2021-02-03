@@ -1,13 +1,10 @@
 { config, pkgs, ... }:
 
-let
-  nurpkgs = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") { inherit pkgs; };
-
-in
 {
   xdg.userDirs = {
     enable = true;
-    desktop = "${config.home.homeDirectory}"; # Work around firefox creating a "Desktop" directory
+    desktop =
+      "${config.home.homeDirectory}"; # Work around firefox creating a "Desktop" directory
   };
 
   xdg.dataFile."applications/whatsapp.desktop".text = ''
@@ -22,7 +19,7 @@ in
 
   programs.firefox = {
     enable = true;
-    extensions = with nurpkgs.repos.rycee.firefox-addons; [
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       react-devtools
       ublock-origin
     ];
@@ -34,12 +31,17 @@ in
         "browser.ctrlTab.recentlyUsedOrder" = false;
         "browser.discovery.enabled" = false;
         "browser.laterrun.enabled" = false;
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
-        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =
+          false;
+        "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
+          false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
-        "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" =
+          "";
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" =
+          "";
+        "browser.newtabpage.activity-stream.section.highlights.includePocket" =
+          false;
         "browser.newtabpage.pinned" = false;
         "browser.ssb.enabled" = true;
         "browser.urlbar.placeholderName" = "DuckDuckGo";

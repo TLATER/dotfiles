@@ -1,31 +1,22 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, dotroot, ... }:
 
-let
-  local-pkgs = import ../local-pkgs { inherit pkgs; };
-
-in
 {
-  home.packages = with pkgs; [
-    any-nix-shell
-    pass
-    screen
-    tree
-  ] ++ (if config.isWorkProfile then [ local-pkgs.gauth ] else []);
+  imports = [ ./emacs.nix ./mail ./mail/personal.nix ./zsh.nix ];
+
+  home.packages = with pkgs; [ any-nix-shell pass screen tree ];
 
   home.file = {
-    ".profile".source = ../../dotfiles/env;
-    ".ssh/tlater.pub".source = ../../keys/tlater.pub;
+    ".profile".source = "${dotroot}/dotfiles/env";
+    ".ssh/tlater.pub".source = "${dotroot}/keys/tlater.pub";
   };
 
-  xdg.configFile = {
-    "screen/config".source = ../../dotfiles/screenrc;
-  };
+  xdg.configFile."screen/config".source = "${dotroot}/dotfiles/screenrc";
 
   programs = {
     git = {
       enable = true;
       userName = "Tristan Daniël Maat";
-      userEmail = if config.isWorkProfile then "tristan.maat@codethink.co.uk" else "tm@tlater.net";
+      userEmail = "tm@tlater.net";
       signing = {
         key = "0x49670FD774E43268";
         signByDefault = true;
@@ -33,12 +24,8 @@ in
       extraConfig = {
         github.user = "tlater";
         gitlab.user = "tlater";
-        "gitlab.gitlab.codethink.co.uk/api/v4" = {
-          user = "tristanmaat";
-        };
-        url = {
-          "ssh://git@".pushInsteadOf = "https://";
-        };
+        "gitlab.gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
+        url."ssh://git@".pushInsteadOf = "https://";
       };
     };
     gpg = {
@@ -46,16 +33,10 @@ in
       settings = {
         fixed-list-mode = true;
         keyid-format = "0xlong";
-        personal-digest-preferences = builtins.concatStringsSep " " [
-          "SHA512"
-          "SHA384"
-          "SHA256"
-        ];
-        personal-cipher-preferences = builtins.concatStringsSep " " [
-          "AES256"
-          "AES192"
-          "AES"
-        ];
+        personal-digest-preferences =
+          builtins.concatStringsSep " " [ "SHA512" "SHA384" "SHA256" ];
+        personal-cipher-preferences =
+          builtins.concatStringsSep " " [ "AES256" "AES192" "AES" ];
         default-preference-list = builtins.concatStringsSep " " [
           "SHA512"
           "SHA384"
@@ -83,7 +64,7 @@ in
           identitiesOnly = true;
           identityFile = "~/.ssh/tlater.pub";
         };
-        "tlater.net" = lib.hm.dag.entryAfter ["*"] {
+        "tlater.net" = lib.hm.dag.entryAfter [ "*" ] {
           hostname = "tlater.net";
           user = "tlater";
           port = 2222;

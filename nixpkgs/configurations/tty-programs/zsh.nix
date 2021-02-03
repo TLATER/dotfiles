@@ -1,20 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, dotroot, ... }:
 
-let
-  local-pkgs = import ../local-pkgs { inherit pkgs; };
-
-in
 {
-  home.packages = with pkgs; [
-    zsh
-  ];
+  home.packages = with pkgs; [ zsh ];
 
   # Basic, local config
-  home.file.".zshrc".source = ../../dotfiles/zshrc;
+  home.file.".zshrc".source = "${dotroot}/dotfiles/zshrc";
   xdg.configFile = {
     "zsh" = {
       recursive = true;
-      source = ../../dotfiles/zsh;
+      source = "${dotroot}/dotfiles/zsh";
     };
   };
 
@@ -22,19 +16,19 @@ in
   xdg.configFile = {
     "zsh/plugins/zsh-background-notify" = {
       recursive = true;
-      source = local-pkgs.zsh-background-notify;
+      source = pkgs.local.zsh-background-notify;
     };
     "zsh/oh-my-zsh-expat/plugins/emacs" = {
       recursive = true;
-      source = local-pkgs.oh-my-zsh-emacs;
+      source = pkgs.local.oh-my-zsh-emacs;
     };
     "zsh/oh-my-zsh-expat/plugins/screen" = {
       recursive = true;
-      source = local-pkgs.oh-my-zsh-screen;
+      source = pkgs.local.oh-my-zsh-screen;
     };
     "zsh/oh-my-zsh-expat/tools/" = {
       recursive = true;
-      source = local-pkgs.oh-my-zsh-require-tool;
+      source = pkgs.local.oh-my-zsh-require-tool;
     };
   };
 }

@@ -1,9 +1,5 @@
-{ pkgs, ... }:
+{ pkgs, dotroot, ... }:
 
-let
-  local-pkgs = import ../local-pkgs { inherit pkgs; };
-
-in
 {
   home.packages = with pkgs; [
     # Spell checks
@@ -21,23 +17,23 @@ in
   xdg.configFile."emacs" = {
     onChange = ''
       # Recompile init files
-      SCANNING_PACKAGES=true ${local-pkgs.emacs}/bin/emacs --batch --quick \
+      SCANNING_PACKAGES=true ${pkgs.emacs}/bin/emacs --batch --quick \
         --eval "(byte-recompile-directory user-emacs-directory 0)"
     '';
     recursive = true;
-    source = ../../dotfiles/emacs.d;
+    source = "${dotroot}/dotfiles/emacs.d";
   };
 
   programs.emacs = {
     enable = true;
-    package = local-pkgs.emacs;
+    package = pkgs.local.emacs;
   };
 
   services.emacs = {
     enable = true;
     client = {
       enable = true;
-      arguments = ["--no-wait" "--create-frame"];
+      arguments = [ "--no-wait" "--create-frame" ];
     };
   };
 }

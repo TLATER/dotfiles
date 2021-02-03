@@ -1,6 +1,7 @@
 { pkgs }:
 
-with pkgs; with emacsPackagesNg;
+with pkgs;
+with emacsPackagesNg;
 
 let
   use-package-list = stdenv.mkDerivation rec {
@@ -18,12 +19,11 @@ let
     '';
   };
 
-  emacsDistribution = (emacsPackagesNgGen (if hostPlatform.isDarwin then pkgs.emacsMacport else pkgs.emacs));
+  emacsDistribution = (emacsPackagesNgGen
+    (if hostPlatform.isDarwin then pkgs.emacsMacport else pkgs.emacs));
   # Compute the list of use-package-d packages.
   package-list =
-    runCommand "package-list" {
-      buildInputs = [ emacsDistribution.emacs ];
-    } ''
+    runCommand "package-list" { buildInputs = [ emacsDistribution.emacs ]; } ''
       HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
             -L ${emacsDistribution.use-package}/share/emacs/site-lisp/elpa/use-package-* \
             -L ${emacsDistribution.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
@@ -32,10 +32,8 @@ let
             > $out
     '';
 
-  required-packages = builtins.fromJSON (builtins.readFile package-list) ++ [ "use-package" ];
+  required-packages = builtins.fromJSON (builtins.readFile package-list)
+    ++ [ "use-package" ];
 
-in
-emacsDistribution.emacsWithPackages (
-  epkgs:
-    map (required: builtins.getAttr required epkgs) required-packages
-)
+in emacsDistribution.emacsWithPackages
+(epkgs: map (required: builtins.getAttr required epkgs) required-packages)
