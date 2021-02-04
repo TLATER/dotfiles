@@ -17,6 +17,5 @@ stdenv.mkDerivation {
     sed -i 's|rofi|${rofi}/bin/rofi|' "$out/bin/pass-rofi"
     sed -i 's|pass show|${pass}/bin/pass show|' "$out/bin/pass-rofi"
   '';
-  propagatedBuildInputs = [ rofi pass ]
-    ++ stdenv.lib.optional (use-xdotool) xdotool;
+  propagatedBuildInputs = [ rofi pass ] ++ lib.optional (use-xdotool) xdotool;
 }
