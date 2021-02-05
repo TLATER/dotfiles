@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package elm-mode
+  :mode ("\\.elm\\'"))
+
 (use-package lua-mode
   :mode ("\\.lua\\'"))
 
