@@ -13,6 +13,7 @@
   xdg.configFile."screen/config".source = "${dotroot}/dotfiles/screenrc";
 
   programs = {
+    ncmpcpp.enable = true;
     git = {
       enable = true;
       userName = "Tristan Daniël Maat";
