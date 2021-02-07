@@ -31,7 +31,9 @@
       };
 
       mbsync = {
-        extraConfig.account.AuthMechs = "LOGIN";
+        create = "maildir";
+        expunge = "both";
+        remove = "maildir";
         enable = true;
       };
       msmtp = {
