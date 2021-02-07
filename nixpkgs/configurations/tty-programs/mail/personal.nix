@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  # Work around https://github.com/nix-community/home-manager/issues/249
+  systemd.user.services.mbsync.Service.Environment =
+    "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin";
+
   accounts.email.accounts = {
     "tlater.net" = {
       address = "tm@tlater.net";
@@ -9,8 +13,7 @@
       realName = "Tristan Daniël Maat";
 
       userName = "tlater";
-      passwordCommand =
-        "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass protonmail/local | ${pkgs.coreutils}/bin/tr -d '\\n'";
+      passwordCommand = "${pkgs.local.read-sops}/bin/read-sops hydroxide";
 
       imap = {
         host = "127.0.0.1";
