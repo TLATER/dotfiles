@@ -1,0 +1,32 @@
+name: update
+on:
+  schedule:
+    - cron: '0 2 * * 6'
+  workflow_dispatch:
+jobs:
+  update:
+    name: Update flake inputs
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ssh-key: ${{ secrets.PR_CREATE_KEY }}
+      - uses: cachix/install-nix-action@v12
+        with:
+          install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      - uses: crazy-max/ghaction-import-gpg@v3
+        with:
+          gpg-private-key: ${{ secrets.GIT_SIGNING_KEY }}
+          git-user-signingkey: true
+          git-commit-gpgsign: true
+          git-committer-name: GitHub automation
+          git-committer-email: tm@tlater.net
+      - run: nix flake update --commit-lock-file --recreate-lock-file
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          branch: bot/update
+          delete-branch: true
+          title: Update flake inputs
