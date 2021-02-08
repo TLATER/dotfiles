@@ -1,27 +1,14 @@
 # dotfiles
 
-My dotfiles repository. Deployment is managed through [Home
-Manager](https://github.com/rycee/home-manager/) - simply symlink the
-nixpkgs directory to `$XDG_CONFIG_HOME/nixpkgs/`, create a `home.nix`
-file in that directory that looks something like this:
+My NixOS-managed dotfiles repository. For the time being this cannot
+be deployed easily without a downstream NixOS configuration (see my
+[nixos-hosts](https://github.com/TLATER/dotfiles) for an example).
 
-```nix
-{ config, lib, pkgs, ...}:
+It's possible in theory with the help of `nix build`, but I have not
+bothered to implement it for now.
 
-{
-  imports = [
-    ./roles/standard.nix
-  ];
+A more reasonable deployment method depends on the resolution of
+[nix-community/home-manager#1783](https://github.com/nix-community/home-manager/issues/1783).
 
-  isWorkProfile = true;
-  screenWidth = 1920;
-}
-```
-
-and run `home-manager switch`.
-
-### Todo
-- [ ] Add gtk theming (blocked by NixOS/nixpkgs#54150, see tlater/gtk)
-- [ ] Look into https://github.com/HugoReeves/nix-home for inspiration
-      for a slightly more modular approach; might make changes between
-      different machines easier to maintain.
+I attempt to keep things in traditional dotfiles where it's simple
+enough, so feel free to rummage through the `dotfiles` directory.
