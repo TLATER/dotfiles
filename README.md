@@ -2,7 +2,7 @@
 
 My NixOS-managed dotfiles repository. For the time being this cannot
 be deployed easily without a downstream NixOS configuration (see my
-[nixos-hosts](https://github.com/TLATER/dotfiles) for an example).
+[nixos-hosts](https://github.com/TLATER/nixos-hosts) for an example).
 
 It's possible in theory with the help of `nix build`, but I have not
 bothered to implement it for now.
