@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-20.09";
     nurpkgs.url = "github:nix-community/NUR";
     flake-utils.url = "github:numtide/flake-utils";
@@ -13,6 +14,10 @@
       make-home = { username ? "tlater", homeDirectory ? "/home/${username}"
         , modules ? [ ] }: {
           nixpkgs.overlays = [
+            (final: prev: {
+              unstable =
+                import inputs.nixpkgs-unstable { system = prev.system; };
+            })
             (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
             inputs.nurpkgs.overlay
           ];
