@@ -47,6 +47,7 @@
         "browser.urlbar.placeholderName" = "DuckDuckGo";
         "browser.urlbar.suggest.openpage" = false;
         "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+        "extensions.pocket.enabled" = false;
       };
     };
   };
