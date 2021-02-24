@@ -145,6 +145,9 @@
   ("C-c i" . helm-imenu)
   ("C-c s" . helm-occur))
 
+(use-package helm-tramp
+  :after helm)
+
 ;; Doc browser
 (use-package dash-docs
   :init
