@@ -26,7 +26,7 @@
     profiles."tlater" = {
       settings = {
         "app.shield.optoutstudies.enabled" = false;
-        "browser.bookmarks.restore_default_bookmarks" = true;
+        "browser.bookmarks.restore_default_bookmarks" = false;
         "browser.contentblocking.category" = "strict";
         "browser.ctrlTab.recentlyUsedOrder" = false;
         "browser.discovery.enabled" = false;
