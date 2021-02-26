@@ -44,6 +44,7 @@
           false;
         "browser.newtabpage.pinned" = false;
         "browser.ssb.enabled" = true;
+        "browser.toolbars.bookmarks.visibility" = "never";
         "browser.urlbar.placeholderName" = "DuckDuckGo";
         "browser.urlbar.suggest.openpage" = false;
         "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
