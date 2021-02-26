@@ -50,6 +50,8 @@
         "browser.urlbar.suggest.openpage" = false;
         "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
         "extensions.pocket.enabled" = false;
+        "privacy.trackingprotection.enabled" = true;
+        "privacy.trackingprotection.socialtracking.enabled" = true;
       };
     };
   };
