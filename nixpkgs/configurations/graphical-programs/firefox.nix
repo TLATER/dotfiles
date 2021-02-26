@@ -43,6 +43,7 @@
         "browser.newtabpage.activity-stream.section.highlights.includePocket" =
           false;
         "browser.newtabpage.pinned" = false;
+        "browser.protections_panel.infoMessage.seen" = true;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.ssb.enabled" = true;
         "browser.toolbars.bookmarks.visibility" = "never";
