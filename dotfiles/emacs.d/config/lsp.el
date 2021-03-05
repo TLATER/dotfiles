@@ -33,6 +33,7 @@
    ("C-c f" . lsp-format-buffer)
    ("C-c h" . lsp-describe-thing-at-point))
   :init
+  (setq lsp-server-install-dir (expand-file-name "lsp/servers" data-dir))
   (setq lsp-session-file (expand-file-name "lsp-session-v1" data-dir)
         lsp-ui-doc-enable nil)
 

@@ -44,6 +44,7 @@
 ;; Set up package loading
 (require 'package)
 (setq package-user-dir (expand-file-name "elpa" data-dir))
+(setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 (defvar using-external-packages (or (getenv "SCANNING_PACKAGES")
                                   (fboundp 'nix--profile-paths)))
 
