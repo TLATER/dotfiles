@@ -22,7 +22,16 @@
         key = "0x49670FD774E43268";
         signByDefault = true;
       };
+      ignores = [ ".envrc" ".direnv/" ];
       extraConfig = {
+        branch.autoSetupRebase = "always";
+        checkout.defaultRemote = "origin";
+
+        pull.rebase = true;
+        pull.ff = "only";
+        push.default = "current";
+
+        # Magit-forge configuration
         github.user = "tlater";
         gitlab.user = "tlater";
         "gitlab.gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
