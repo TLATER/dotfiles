@@ -35,5 +35,6 @@
       enable = true;
       arguments = [ "--no-wait" "--create-frame" ];
     };
+    socketActivation.enable = true;
   };
 }
