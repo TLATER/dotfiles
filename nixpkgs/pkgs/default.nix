@@ -1,4 +1,4 @@
-{ pkgs }:
+{ pkgs, unstable-pkgs }:
 
 with pkgs;
 
@@ -8,6 +8,7 @@ with pkgs;
   dump-ics = pkgs.callPackage ./dump-ics.nix { };
   emacs = pkgs.callPackage ./emacs.nix { };
   gauth = pkgs.callPackage ./gauth.nix { };
+  gcs = unstable-pkgs.callPackage ./gcs.nix { };
   oh-my-zsh-emacs = pkgs.callPackage ./oh-my-zsh-emacs.nix { };
   oh-my-zsh-require-tool = pkgs.callPackage ./oh-my-zsh-require-tool.nix { };
   oh-my-zsh-screen = pkgs.callPackage ./oh-my-zsh-screen.nix { };

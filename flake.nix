@@ -18,7 +18,12 @@
               unstable =
                 import inputs.nixpkgs-unstable { system = prev.system; };
             })
-            (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
+            (final: prev: {
+              local = import ./nixpkgs/pkgs {
+                pkgs = prev;
+                unstable-pkgs = prev.unstable;
+              };
+            })
             inputs.nurpkgs.overlay
           ];
 
@@ -47,8 +52,11 @@
     }
     # Set up a "dev shell" that will work on all architectures
     // (inputs.flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = inputs.nixpkgs.legacyPackages.${system};
+      let
+        pkgs = inputs.nixpkgs.legacyPackages.${system};
+        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
       in {
+        packages = import ./nixpkgs/pkgs { inherit pkgs unstable-pkgs; };
         devShell = pkgs.mkShell { buildInputs = with pkgs; [ nixfmt ]; };
       }));
 }
