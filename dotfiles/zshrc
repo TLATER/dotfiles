@@ -3,6 +3,9 @@
 [ -f "$HOME/.profile" ] && source "$HOME/.profile"
 [ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 
+# Don't create .zcompdump files in $HOME
+compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"
+
 # Everything else is just for interactive shells
 if [[ -o interactive ]]; then
     # Start screen if...

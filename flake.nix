@@ -29,6 +29,7 @@
       homeConfigurations = {
         yui = make-home {
           modules = [
+            ./nixpkgs/configurations
             ./nixpkgs/configurations/graphical-programs
             ./nixpkgs/configurations/tty-programs
             ./nixpkgs/configurations/graphical-programs/games.nix
@@ -36,6 +37,7 @@
         };
         ct-lt-02052 = make-home {
           modules = [
+            ./nixpkgs/configurations
             ./nixpkgs/configurations/graphical-programs
             ./nixpkgs/configurations/tty-programs
             ./nixpkgs/configurations/tty-programs/work.nix

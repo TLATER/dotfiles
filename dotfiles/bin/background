@@ -30,7 +30,7 @@ select-random() {
 
 set-background() {
     local background="$1"
-    feh --bg-fill "$background"
+    feh --no-fehbg --bg-fill "$background"
 }
 
 main() {
