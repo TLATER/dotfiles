@@ -3,7 +3,13 @@
 {
   imports = [ ./emacs.nix ./mail ./mail/personal.nix ./zsh.nix ];
 
-  home.packages = with pkgs; [ any-nix-shell pass screen tree ];
+  home.packages = with pkgs; [
+    any-nix-shell
+    nixfmt # *.nix files are used to pull in project deps, so we always need this
+    pass
+    screen
+    tree
+  ];
 
   home.file = {
     ".profile".source = "${dotroot}/dotfiles/env";
