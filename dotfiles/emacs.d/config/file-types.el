@@ -80,7 +80,8 @@
 
 (use-package nix-mode
   :mode ("\\.nix\\'")
-  :bind ("C-c f" . nix-format-buffer))
+  :bind (:map nix-mode-map
+              ("C-c f" . nix-format-buffer)))
 
 (use-package stumpwm-mode)
 
