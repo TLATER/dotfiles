@@ -6,7 +6,8 @@ with pkgs;
   background = pkgs.callPackage ./background.nix { };
   cap = pkgs.callPackage ./cap.nix { };
   dump-ics = pkgs.callPackage ./dump-ics.nix { };
-  emacs = pkgs.callPackage ./emacs.nix { };
+  # FIXME: When 21.5 is stable, switch back to stable pkgs
+  emacs = unstable-pkgs.callPackage ./emacs.nix { };
   gauth = pkgs.callPackage ./gauth.nix { };
   gcs = unstable-pkgs.callPackage ./gcs.nix { };
   oh-my-zsh-emacs = pkgs.callPackage ./oh-my-zsh-emacs.nix { };
