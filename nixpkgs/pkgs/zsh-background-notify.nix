@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, fetchFromGitHub, libnotify }:
 
 stdenv.mkDerivation {
   pname = "zsh-background-notify";

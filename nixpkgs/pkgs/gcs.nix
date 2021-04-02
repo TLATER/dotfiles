@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, fetchFromGitHub, jdk15, jre, makeWrapper, wrapGAppsHook }:
 
 stdenv.mkDerivation rec {
   pname = "gcs";

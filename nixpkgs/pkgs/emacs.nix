@@ -1,7 +1,5 @@
-{ pkgs }:
-
-with pkgs;
-with emacsPackagesNg;
+{ stdenv, fetchgit, hostPlatform, emacsPackagesNgGen, emacsMacport, emacs
+, runCommand }:
 
 let
   use-package-list = stdenv.mkDerivation rec {
@@ -20,7 +18,7 @@ let
   };
 
   emacsDistribution = (emacsPackagesNgGen
-    (if hostPlatform.isDarwin then pkgs.emacsMacport else pkgs.emacs));
+    (if hostPlatform.isDarwin then emacsMacport else emacs));
   # Compute the list of use-package-d packages.
   package-list =
     runCommand "package-list" { buildInputs = [ emacsDistribution.emacs ]; } ''

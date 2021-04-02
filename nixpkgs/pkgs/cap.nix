@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, scrot, xorg, makeWrapper }:
 
 stdenv.mkDerivation {
   pname = "cap";

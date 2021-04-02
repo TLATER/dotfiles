@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, python38, python38Packages, ... }:
 
 stdenv.mkDerivation {
   pname = "dump-ics";

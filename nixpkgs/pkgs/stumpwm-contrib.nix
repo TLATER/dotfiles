@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, fetchgit }:
 
 stdenv.mkDerivation {
   pname = "stumpwm-contrib";

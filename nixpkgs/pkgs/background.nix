@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, feh, makeWrapper }:
 
 stdenv.mkDerivation {
   pname = "background";

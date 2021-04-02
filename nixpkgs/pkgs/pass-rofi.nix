@@ -1,6 +1,4 @@
-{ pkgs, use-xdotool ? true }:
-
-with pkgs;
+{ lib, stdenv, xdotool, rofi, pass, use-xdotool ? true }:
 
 stdenv.mkDerivation {
   pname = "pass-rofi";
@@ -17,5 +15,4 @@ stdenv.mkDerivation {
     sed -i 's|rofi|${rofi}/bin/rofi|' "$out/bin/pass-rofi"
     sed -i 's|pass show|${pass}/bin/pass show|' "$out/bin/pass-rofi"
   '';
-  propagatedBuildInputs = [ rofi pass ] ++ lib.optional (use-xdotool) xdotool;
 }

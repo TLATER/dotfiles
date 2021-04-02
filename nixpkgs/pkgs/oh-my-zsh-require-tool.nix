@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ stdenv, fetchFromGitHub }:
 
 stdenv.mkDerivation {
   pname = "oh-my-zsh-emacs";

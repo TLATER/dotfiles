@@ -1,6 +1,4 @@
-{ pkgs }:
-
-with pkgs;
+{ buildGoModule, fetchFromGitHub }:
 
 buildGoModule rec {
   pname = "gauth";
