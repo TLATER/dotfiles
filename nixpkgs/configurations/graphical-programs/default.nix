@@ -15,7 +15,6 @@
     local.pass-rofi
   ];
 
-  # services.caffeine.enable = true;
   xdg.configFile = {
     "alacritty/alacritty.yml".source =
       "${dotroot}/dotfiles/alacritty/alacritty.yml";
