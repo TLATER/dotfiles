@@ -1,6 +1,6 @@
 { stdenv, scrot, xorg, makeWrapper }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "cap";
   version = "1.0";
   src = ../../dotfiles/bin;
@@ -8,5 +8,10 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     install cap $out/bin
   '';
-  propagatedBuildInputs = [ scrot xorg.xprop ];
+  nativeBuildInputs = [ makeWrapper ];
+  wrapperPath = with stdenv.lib; makeBinPath [ scrot xorg.xprop ];
+  postFixup = ''
+    wrapProgram $out/bin/cap \
+        --prefix PATH : "${wrapperPath}"
+  '';
 }

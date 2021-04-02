@@ -1,6 +1,6 @@
-{ stdenv, python3, sops }:
+{ stdenv, python3, sops, makeWrapper }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "read-sops";
   version = "1.0";
   src = ../../dotfiles/bin;
@@ -8,7 +8,12 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     install read-sops $out/bin
   '';
+  nativeBuildInputs = [ makeWrapper ];
+  wrapperPath = with stdenv.lib; makeBinPath [ sops ];
   buildInputs =
     [ (python3.withPackages (pypkgs: with pypkgs; [ xdg ruamel_yaml ])) ];
-  propagatedBuildInputs = [ sops ];
+  postFixup = ''
+    wrapProgram $out/bin/read-sops \
+        --prefix PATH : "${wrapperPath}"
+  '';
 }

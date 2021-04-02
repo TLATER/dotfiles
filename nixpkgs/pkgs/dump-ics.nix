@@ -1,4 +1,4 @@
-{ stdenv, python38, python38Packages, ... }:
+{ stdenv, python3 }:
 
 stdenv.mkDerivation {
   pname = "dump-ics";
@@ -8,5 +8,5 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     install dump-ics $out/bin
   '';
-  propagatedBuildInputs = [ python38 python38Packages.ics ];
+  buildInputs = [ (python3.withPackages (pypkgs: with pypkgs; [ ics ])) ];
 }

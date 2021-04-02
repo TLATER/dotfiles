@@ -8,7 +8,6 @@
     feh
     llpp
     rofi
-    scrot
     xsel
 
     local.cap

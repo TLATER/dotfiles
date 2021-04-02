@@ -1,6 +1,6 @@
 { stdenv, feh, makeWrapper }:
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "background";
   version = "1.0";
   src = ../../dotfiles/bin;
@@ -8,5 +8,10 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     install background $out/bin
   '';
-  propagatedBuildInputs = [ feh ];
+  nativeBuildInputs = [ makeWrapper ];
+  wrapperPath = with stdenv.lib; makeBinPath [ feh ];
+  postFixup = ''
+    wrapProgram $out/bin/background \
+        --prefix PATH : "${wrapperPath}"
+  '';
 }
