@@ -44,6 +44,7 @@
           false;
         "browser.newtabpage.pinned" = false;
         "browser.protections_panel.infoMessage.seen" = true;
+        "browser.quitShortcut.disabled" = true;
         "browser.shell.checkDefaultBrowser" = false;
         "browser.ssb.enabled" = true;
         "browser.toolbars.bookmarks.visibility" = "never";
