@@ -11,22 +11,16 @@
 
   outputs = inputs:
     let
+      overlays = [
+        (final: prev: {
+          unstable = import inputs.nixpkgs-unstable { system = prev.system; };
+        })
+        (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
+        inputs.nurpkgs.overlay
+      ];
       make-home = { username ? "tlater", homeDirectory ? "/home/${username}"
         , modules ? [ ] }: {
-          nixpkgs.overlays = [
-            (final: prev: {
-              unstable =
-                import inputs.nixpkgs-unstable { system = prev.system; };
-            })
-            (final: prev: {
-              local = import ./nixpkgs/pkgs {
-                pkgs = prev;
-                unstable-pkgs = prev.unstable;
-              };
-            })
-            inputs.nurpkgs.overlay
-          ];
-
+          nixpkgs.overlays = overlays;
           imports = [ ./nixpkgs ] ++ modules;
         };
 
@@ -52,11 +46,9 @@
     }
     # Set up a "dev shell" that will work on all architectures
     // (inputs.flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = inputs.nixpkgs.legacyPackages.${system};
-        unstable-pkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
+      let pkgs = import inputs.nixpkgs { inherit overlays system; };
       in {
-        packages = import ./nixpkgs/pkgs { inherit pkgs unstable-pkgs; };
+        packages = import ./nixpkgs/pkgs { inherit pkgs; };
         devShell = pkgs.mkShell { buildInputs = with pkgs; [ nixfmt ]; };
       }));
 }
