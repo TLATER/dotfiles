@@ -19,4 +19,6 @@
     "alacritty/alacritty.yml".source =
       "${dotroot}/dotfiles/alacritty/alacritty.yml";
   };
+
+  services.caffeine.enable = true;
 }
