@@ -5,6 +5,7 @@
 
   home.packages = with pkgs; [
     alacritty
+    barrier
     feh
     llpp
     rofi
