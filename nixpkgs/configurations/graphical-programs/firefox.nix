@@ -1,12 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  xdg.userDirs = {
-    enable = true;
-    desktop =
-      "${config.home.homeDirectory}"; # Work around firefox creating a "Desktop" directory
-  };
-
   xdg.dataFile."applications/whatsapp.desktop".text = ''
     [Desktop Entry]
     Version=1.0
