@@ -96,5 +96,10 @@
       defaultCacheTtl = 86400;
       maxCacheTtl = 2592000;
     };
+    mpd = {
+      enable = true;
+      musicDirectory = config.xdg.userDirs.music;
+      network.startWhenNeeded = true;
+    };
   };
 }
