@@ -32,6 +32,8 @@
             ./nixpkgs/configurations/graphical-programs
             ./nixpkgs/configurations/tty-programs
             ./nixpkgs/configurations/graphical-programs/games.nix
+
+            ./nixpkgs/configurations/graphical-programs/barrier-server.nix
           ];
         };
         ct-lt-02052 = make-home {
@@ -40,6 +42,8 @@
             ./nixpkgs/configurations/graphical-programs
             ./nixpkgs/configurations/tty-programs
             ./nixpkgs/configurations/tty-programs/work.nix
+
+            ./nixpkgs/configurations/graphical-programs/barrier-client.nix
           ];
         };
       };
