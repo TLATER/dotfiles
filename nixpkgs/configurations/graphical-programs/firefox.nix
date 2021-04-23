@@ -14,7 +14,11 @@
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+      buster-captcha-solver
+      clearurls
+      no-pdf-download
       react-devtools
+      reduxdevtools
       ublock-origin
     ];
     profiles."tlater" = {
