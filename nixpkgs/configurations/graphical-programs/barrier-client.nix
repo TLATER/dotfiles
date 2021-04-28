@@ -19,7 +19,7 @@
         "--no-restart"
         "%i"
       ];
-      Restart = "on-failure";
+      Restart = "always";
     };
   };
 }
