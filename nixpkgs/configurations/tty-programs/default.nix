@@ -19,7 +19,10 @@
   xdg.configFile."screen/config".source = "${dotroot}/dotfiles/screenrc";
 
   programs = {
-    ncmpcpp.enable = true;
+    ncmpcpp = {
+      enable = true;
+      settings.ncmpcpp_directory = "${config.xdg.dataHome}";
+    };
     git = {
       enable = true;
       userName = "Tristan Daniël Maat";

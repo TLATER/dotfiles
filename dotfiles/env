@@ -21,10 +21,6 @@ export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs'
 export VTERM='alacritty'
 
-# Make a handful of applications follow XDG_BASE_DIRS
-export CARGO_HOME="$XDG_CACHE_HOME/cargo"
-export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
-
 # Set up password store properly
 export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
 export PASSWORD_STORE_KEY="0x9FAF1AA48509A7F1"
