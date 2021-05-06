@@ -43,10 +43,10 @@
           system = "x86_64-linux";
           modules = [
             ./nixpkgs/configurations/graphical-programs
-            ./nixpkgs/configurations/tty-programs
+            ./nixpkgs/configurations/graphical-programs/pcs.nix
             ./nixpkgs/configurations/graphical-programs/games.nix
-
-            ./nixpkgs/configurations/graphical-programs/barrier-server.nix
+            ./nixpkgs/configurations/tty-programs
+            ./nixpkgs/configurations/tty-programs/mail/personal.nix
           ];
         };
 
@@ -54,10 +54,10 @@
           system = "x86_64-linux";
           modules = [
             ./nixpkgs/configurations/graphical-programs
+            ./nixpkgs/configurations/graphical-programs/pcs.nix
             ./nixpkgs/configurations/tty-programs
+            ./nixpkgs/configurations/tty-programs/mail/work.nix
             ./nixpkgs/configurations/tty-programs/work.nix
-
-            ./nixpkgs/configurations/graphical-programs/barrier-client.nix
           ];
         };
       };

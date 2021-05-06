@@ -21,10 +21,5 @@ export EDITOR='emacsclient'
 export ALTERNATE_EDITOR='emacs'
 export VTERM='alacritty'
 
-# Set up password store properly
-export PASSWORD_STORE_DIR="$XDG_DATA_HOME/password-store"
-export PASSWORD_STORE_KEY="0x9FAF1AA48509A7F1"
-export PASSWORD_STORE_GENERATED_LENGTH="16";
-
 GPG_TTY=$(tty)
 export GPG_TTY

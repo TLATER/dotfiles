@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./. ];
+
   # Work around https://github.com/nix-community/home-manager/issues/249
   systemd.user.services.mbsync.Service.Environment =
     "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin";

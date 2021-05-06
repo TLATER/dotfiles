@@ -1,12 +1,11 @@
 { config, lib, pkgs, dotroot, ... }:
 
 {
-  imports = [ ./emacs.nix ./mail ./mail/personal.nix ./zsh.nix ];
+  imports = [ ./emacs.nix ./zsh.nix ];
 
   home.packages = with pkgs; [
     any-nix-shell
     nixfmt # *.nix files are used to pull in project deps, so we always need this
-    pass
     screen
     tree
   ];
@@ -19,18 +18,11 @@
   xdg.configFile."screen/config".source = "${dotroot}/dotfiles/screenrc";
 
   programs = {
-    ncmpcpp = {
-      enable = true;
-      settings.ncmpcpp_directory = "${config.xdg.dataHome}";
-    };
     git = {
       enable = true;
       userName = "Tristan Daniël Maat";
       userEmail = "tm@tlater.net";
-      signing = {
-        key = "0x49670FD774E43268";
-        signByDefault = true;
-      };
+      signing.key = "0x49670FD774E43268";
       ignores = [ ".envrc" ".direnv/" ];
       extraConfig = {
         branch.autoSetupRebase = "always";
@@ -43,10 +35,11 @@
         # Magit-forge configuration
         github.user = "tlater";
         gitlab.user = "tlater";
-        "gitlab.gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
+        "gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
         url."ssh://git@".pushInsteadOf = "https://";
       };
     };
+
     gpg = {
       enable = true;
       settings = {
@@ -76,13 +69,10 @@
         no-emit-version = true;
       };
     };
+
     ssh = {
       enable = true;
       matchBlocks = {
-        "*" = {
-          identitiesOnly = true;
-          identityFile = "~/.ssh/tlater.pub";
-        };
         "tlater.net" = lib.hm.dag.entryAfter [ "*" ] {
           hostname = "tlater.net";
           user = "tlater";
@@ -98,11 +88,6 @@
       enableSshSupport = true;
       defaultCacheTtl = 86400;
       maxCacheTtl = 2592000;
-    };
-    mpd = {
-      enable = true;
-      musicDirectory = config.xdg.userDirs.music;
-      network.startWhenNeeded = true;
     };
   };
 }

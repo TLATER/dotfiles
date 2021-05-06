@@ -1,6 +1,8 @@
 { config, pkgs, ... }:
 
 {
+  imports = [ ./. ];
+
   accounts.email.accounts = {
     "codethink.co.uk" = {
       address = "tristan.maat@codethink.co.uk";
