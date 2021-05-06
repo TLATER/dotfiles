@@ -17,7 +17,7 @@
   xdg.configFile."emacs" = {
     onChange = ''
       # Recompile init files
-      SCANNING_PACKAGES=true ${pkgs.emacs}/bin/emacs --batch --quick \
+      SCANNING_PACKAGES=true ${pkgs.local.emacs}/bin/emacs --batch --quick \
         --eval "(byte-recompile-directory user-emacs-directory 0)"
     '';
     recursive = true;
