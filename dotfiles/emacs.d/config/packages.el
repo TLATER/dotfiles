@@ -158,6 +158,9 @@
   :bind
   ("C-c d" . helm-dash))
 
+;; Ripgrep; used in projectile
+(use-package ripgrep)
+
 ;; Project browser
 (use-package projectile
   :functions (projectile-discover-projects-in-search-path)
@@ -180,10 +183,6 @@
   ([remap projectile-switch-project] . helm-projectile-switch-project)
   ([remap projectile-recentf] . helm-projectile-recentf)
   ([remap projectile-switch-to-buffer] . helm-projectile-switch-to-buffer)
-  ([remap projectile-grep] . helm-projectile-grep)
-  ([remap projectile-ack] . helm-projectile-ack)
-  ([remap projectile-ag] . helm-projectile-ag)
-  ([remap projectile-ripgrep] . helm-projectile-rg)
   ([remap projectile-browse-dirty-projects] . helm-projectile-browse-dirty-projects)
   :config
   (helm-projectile-on))
