@@ -7,7 +7,7 @@
 export "NIX_PATH=${NIX_PATH:-$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH}"
 
 # Don't create .zcompdump files in $HOME
-compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"
+autoload -Uz compinit && compinit -d "${XDG_CACHE_HOME}/zsh/zcompdump-${ZSH_VERSION}"
 
 # Everything else is just for interactive shells
 if [[ -o interactive ]]; then
