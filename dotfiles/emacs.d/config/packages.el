@@ -171,6 +171,9 @@
   (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" data-dir))
   :config
   (projectile-discover-projects-in-search-path))
+
+(use-package helm-rg)
+
 (use-package helm-projectile
   :functions (helm-projectile-on)
   :after (helm projectile)
@@ -182,6 +185,7 @@
   ([remap projectile-find-dir] . helm-projectile-find-dir)
   ([remap projectile-switch-project] . helm-projectile-switch-project)
   ([remap projectile-recentf] . helm-projectile-recentf)
+  ([remap projectile-ripgrep] . helm-projectile-rg)
   ([remap projectile-switch-to-buffer] . helm-projectile-switch-to-buffer)
   ([remap projectile-browse-dirty-projects] . helm-projectile-browse-dirty-projects)
   :config
