@@ -19,6 +19,7 @@
       no-pdf-download
       react-devtools
       reduxdevtools
+      translate-web-pages
       ublock-origin
     ];
     profiles."tlater" = {
