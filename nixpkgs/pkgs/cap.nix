@@ -1,4 +1,4 @@
-{ stdenv, scrot, xorg, makeWrapper }:
+{ lib, stdenv, scrot, xorg, makeWrapper }:
 
 stdenv.mkDerivation rec {
   pname = "cap";
@@ -9,7 +9,7 @@ stdenv.mkDerivation rec {
     install cap $out/bin
   '';
   nativeBuildInputs = [ makeWrapper ];
-  wrapperPath = with stdenv.lib; makeBinPath [ scrot xorg.xprop ];
+  wrapperPath = with lib; makeBinPath [ scrot xorg.xprop ];
   postFixup = ''
     wrapProgram $out/bin/cap \
         --prefix PATH : "${wrapperPath}"
