@@ -31,6 +31,8 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
       - run: |
+          nix build .#gcs
+
           nix flake check \
               --no-write-lock-file \
               --override-input dotfiles "$(pwd)" \
