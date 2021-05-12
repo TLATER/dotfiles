@@ -1,4 +1,5 @@
-{ stdenv, fetchFromGitHub, jdk15, jre, makeWrapper, wrapGAppsHook }:
+{ stdenv, fetchFromGitHub, adoptopenjdk-hotspot-bin-15, jre, makeWrapper
+, wrapGAppsHook }:
 
 stdenv.mkDerivation rec {
   pname = "gcs";
@@ -11,7 +12,8 @@ stdenv.mkDerivation rec {
     sha256 = "azdjFuTm7yFbG3+Iwlkm9kCYZETwZAAfD2gp7A0avHc=";
   };
 
-  nativeBuildInputs = [ jdk15 jre.gtk3 makeWrapper wrapGAppsHook ];
+  nativeBuildInputs =
+    [ adoptopenjdk-hotspot-bin-15 jre.gtk3 makeWrapper wrapGAppsHook ];
 
   dontConfigure = true;
   dontInstall = true;
