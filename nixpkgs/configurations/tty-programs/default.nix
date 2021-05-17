@@ -36,7 +36,9 @@
         # Magit-forge configuration
         github.user = "tlater";
         gitlab.user = "tlater";
-        "gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
+        # gitlab.gitlab is intentional; tells magit-forge to use the
+        # gitlab API and *then* specifies the domain
+        "gitlab.gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
         url."ssh://git@".pushInsteadOf = "https://";
       };
     };
