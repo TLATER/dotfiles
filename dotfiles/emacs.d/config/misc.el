@@ -28,6 +28,12 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+;; Stop prompting whether we really want to stop when we have a
+;; running process (this just clogs up `systemctl --user stop emacs`
+;; without ever being useful, since emacs is running as a daemon
+;; anyway).
+(setq confirm-kill-processes 'nil)
+
 (use-package auth-source
   :after auth-source-pass
   :ensure nil
