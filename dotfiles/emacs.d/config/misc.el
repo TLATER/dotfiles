@@ -29,9 +29,26 @@
 (setq-default tab-width 4)
 
 (use-package auth-source
+  :after auth-source-pass
   :ensure nil
   :init
-  (setq auth-sources '("~/.local/share/authinfo.gpg")))
+  ;; Sadly, despite the general use of password-store, znc wants me to
+  ;; prepend some things to my IRC password, so I can't pull it from
+  ;; there without allowing partial plaintext attacks.
+  ;;
+  ;; There are also some passwords that are inherently
+  ;; machine-specific, which are best defined inside an authinfo file.
+  ;;
+  ;; Hence, add an authinfo file for those passwords, and give it
+  ;; priority so we can override the general matches.
+  (setq auth-sources '("~/.local/share/authinfo.gpg" password-store)))
+
+(use-package auth-source-pass
+  :ensure nil
+  :init
+  (setq auth-source-pass-filename "~/.local/share/password-store")
+  :config
+  (auth-source-pass-enable))
 
 (use-package recentf
   :ensure nil
