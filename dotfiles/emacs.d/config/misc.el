@@ -28,7 +28,10 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-(add-to-list 'auth-sources "~/.local/share/authinfo.gpg")
+(use-package auth-source
+  :ensure nil
+  :init
+  (setq auth-sources '("~/.local/share/authinfo.gpg")))
 
 (use-package recentf
   :ensure nil
