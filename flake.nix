@@ -2,15 +2,10 @@
   description = "tlater's home configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-20.09";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-20.09";
+      url = "github:nix-community/home-manager/release-21.05";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    home-manager-unstable = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nurpkgs = {
       url = "github:nix-community/NUR";
@@ -19,13 +14,9 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { nixpkgs, nixpkgs-unstable, home-manager, home-manager-unstable
-    , nurpkgs, flake-utils, ... }:
+  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, ... }:
     let
       overlays = [
-        (final: prev: {
-          unstable = import nixpkgs-unstable { system = prev.system; };
-        })
         (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
         nurpkgs.overlay
       ];
@@ -54,9 +45,7 @@
         #
         homeConfigurationFromProfile = profile:
           { system, username ? "tlater", homeDirectory ? "/home/${username}" }:
-          # The homeManagerConfiguration function is only available on
-          # unstable currently.
-          home-manager-unstable.lib.homeManagerConfiguration {
+          home-manager.lib.homeManagerConfiguration {
             inherit homeDirectory system username;
             configuration = nixosModuleFromProfile profile;
           };
@@ -91,7 +80,7 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nixfmt
-            home-manager-unstable.defaultPackage.${system}
+            home-manager.defaultPackage.${system}
           ];
         };
       }));

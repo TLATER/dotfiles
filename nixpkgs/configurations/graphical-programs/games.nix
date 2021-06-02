@@ -1,5 +1,5 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [ unstable.multimc jre8 ];
+  home.packages = with pkgs; [ multimc jre8 ];
 }
