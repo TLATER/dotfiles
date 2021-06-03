@@ -26,12 +26,3 @@ colors:
     magenta: '0x6c71c4'       # #6c71c4
     cyan: '0x8cf3ff'          # #8cf3ff
     white: '0xfdf6e3'         # #fdf6e3
-
-mouse:
-  url:
-    modifiers: Super
-    launcher:
-      program: webmacs
-      args:
-        - "-i"
-        - ''
