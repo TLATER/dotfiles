@@ -11,7 +11,7 @@
 
       userName = "tristanmaat";
       passwordCommand =
-        "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass work/codethink.co.uk | ${pkgs.coreutils}/bin/tr -d '\\n'";
+        "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass work/codethink.co.uk | head -n 1 | ${pkgs.coreutils}/bin/tr -d '\\n'";
       imap = {
         host = "mail.codethink.co.uk";
         port = 993;
