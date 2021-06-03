@@ -1,6 +1,29 @@
 { pkgs, ... }:
 
-{
+let
+  screenHeight = 1080;
+  screenWidth = 1920;
+
+  # Make an explicitly signed string from an int (e.g., "+2", "-1")
+  intToSignedString = int:
+    if int < 0 then (toString int) else "+${toString int}";
+
+  # Create a geometry string as dunst uses them.
+  #
+  # Args:
+  #    width: The width of the notification in pixels
+  #    maxShown: The max number of notifications to show at a time
+  #    marginLR: The margin from the sides. Positive numbers create a
+  #              left margin, negative numbers a right one.
+  #    marginTB: The margin from the top/bottom. Positive numbers
+  #              create a top margin, negative numbers a bottom one.
+  #
+  geometryString = width: maxShown: marginLR: marginTB:
+    "${toString width}x${toString maxShown}${intToSignedString marginLR}${
+      intToSignedString marginTB
+    }";
+
+in {
   services = {
     dunst = {
       enable = true;
@@ -9,7 +32,7 @@
           follow = "keyboard";
           indicate_hidden = "yes";
 
-          geometry = "${toString (1920 / 2)}x5+${toString (1920 / 4)}-28";
+          geometry = geometryString (screenWidth / 2) 5 (screenWidth / 4) (-28);
           notification_height = "0";
           separator_height = "2";
           padding = "8";
