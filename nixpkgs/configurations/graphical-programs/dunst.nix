@@ -21,6 +21,9 @@
           markup = "full";
           format = "<b>%s</b>\\n%b";
 
+          min_icon_size = "${toString (screenHeight / 10)}";
+          max_icon_size = "${toString (screenHeight / 10)}";
+
           frame_color = "#0a3749";
           separator_color = "frame";
         };
