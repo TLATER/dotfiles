@@ -158,6 +158,9 @@
   :bind
   ("C-c d" . helm-dash))
 
+;; A nice UI for ripgrep when not used with projectile
+(use-package deadgrep)
+
 ;; Ripgrep; used in projectile
 (use-package ripgrep)
 
