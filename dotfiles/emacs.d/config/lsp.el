@@ -29,9 +29,9 @@
   :hook ((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . lsp)
   :bind
   (:map lsp-mode-map
-   ("C-c r" . lsp-rename)
    ("C-c f" . lsp-format-buffer)
-   ("C-c h" . lsp-describe-thing-at-point))
+   ("C-c l r" . lsp-rename)
+   ("C-c l d" . lsp-describe-thing-at-point))
   :init
   (setq lsp-server-install-dir (expand-file-name "lsp/servers" data-dir))
   (setq lsp-session-file (expand-file-name "lsp-session-v1" data-dir)
