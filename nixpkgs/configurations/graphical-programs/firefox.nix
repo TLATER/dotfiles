@@ -35,6 +35,8 @@
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
           false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
+        "browser.newtabpage.activity-stream.showSponsored" = false;
+        "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" =
           "";
         "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" =
@@ -50,7 +52,10 @@
         "browser.urlbar.placeholderName" = "DuckDuckGo";
         "browser.urlbar.suggest.openpage" = false;
         "datareporting.policy.dataSubmissionPolicyAcceptedVersion" = 2;
+        "dom.security.https_only_mode" = true;
+        "dom.security.https_only_mode_ever_enabled" = true;
         "extensions.pocket.enabled" = false;
+        "identity.fxaccounts.enabled" = false;
         "privacy.trackingprotection.enabled" = true;
         "privacy.trackingprotection.socialtracking.enabled" = true;
       };
