@@ -8,6 +8,10 @@
   home.stateVersion = "20.09";
   programs.direnv = {
     enable = true;
-    enableNixDirenvIntegration = true;
+    nix-direnv = {
+      enable = true;
+      enableFlakes = true;
+    };
+
   };
 }
