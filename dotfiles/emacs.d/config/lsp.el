@@ -48,6 +48,7 @@
 
   ;;; Rust
   (setq lsp-rust-clippy-preference "on")
+  (setq lsp-rust-analyzer-proc-macro-enable 't)
 
   :config
   ;; Enable .dir-locals config loading
