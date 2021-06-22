@@ -11,6 +11,10 @@
     TryExec=firefox
   '';
 
+  home.file.".mozilla/firefox/tlater/chrome/icons" = {
+    source = "${pkgs.local.firefox-ui-fix}/icons";
+  };
+
   programs.firefox = {
     enable = true;
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
@@ -23,7 +27,19 @@
       ublock-origin
     ];
     profiles."tlater" = {
+      userChrome =
+        builtins.readFile "${pkgs.local.firefox-ui-fix}/userChrome.css";
+      userContent =
+        builtins.readFile "${pkgs.local.firefox-ui-fix}/userContent.css";
+
       settings = {
+        # Required for firefox-ui-fix
+        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+        "svg.context-properties.content.enabled" = true;
+        "layout.css.backdrop-filter.enabled" = true;
+        "browser.compactmode.show" = true;
+
+        # Actual settings
         "app.shield.optoutstudies.enabled" = false;
         "browser.bookmarks.restore_default_bookmarks" = false;
         "browser.contentblocking.category" = "strict";

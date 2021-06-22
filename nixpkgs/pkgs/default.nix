@@ -8,6 +8,7 @@ in {
   cap = callPackage ./cap.nix { };
   dump-ics = callPackage ./dump-ics.nix { };
   emacs = callPackage ./emacs.nix { };
+  firefox-ui-fix = callPackage ./firefox-ui-fix.nix { };
   gauth = callPackage ./gauth.nix { };
   gcs = callPackage ./gcs.nix { };
   oh-my-zsh-emacs = callPackage ./oh-my-zsh-emacs.nix { };
