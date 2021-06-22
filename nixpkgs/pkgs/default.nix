@@ -1,20 +1,21 @@
 { pkgs }:
 
-with pkgs;
-
-{
-  background = pkgs.callPackage ./background.nix { };
-  cap = pkgs.callPackage ./cap.nix { };
-  dump-ics = pkgs.callPackage ./dump-ics.nix { };
-  emacs = pkgs.callPackage ./emacs.nix { };
-  gauth = pkgs.callPackage ./gauth.nix { };
-  gcs = pkgs.callPackage ./gcs.nix { };
-  oh-my-zsh-emacs = pkgs.callPackage ./oh-my-zsh-emacs.nix { };
-  oh-my-zsh-require-tool = pkgs.callPackage ./oh-my-zsh-require-tool.nix { };
-  oh-my-zsh-screen = pkgs.callPackage ./oh-my-zsh-screen.nix { };
-  pass-rofi = pkgs.callPackage ./pass-rofi.nix { };
-  read-sops = pkgs.callPackage ./read-sops.nix { };
-  stumpwm = pkgs.callPackage ./stumpwm.nix { };
-  stumpwm-contrib = pkgs.callPackage ./stumpwm-contrib.nix { };
-  zsh-background-notify = pkgs.callPackage ./zsh-background-notify.nix { };
+let
+  sources = pkgs.callPackage ./sources.nix { };
+  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit sources; });
+in {
+  background = callPackage ./background.nix { };
+  cap = callPackage ./cap.nix { };
+  dump-ics = callPackage ./dump-ics.nix { };
+  emacs = callPackage ./emacs.nix { };
+  gauth = callPackage ./gauth.nix { };
+  gcs = callPackage ./gcs.nix { };
+  oh-my-zsh-emacs = callPackage ./oh-my-zsh-emacs.nix { };
+  oh-my-zsh-require-tool = callPackage ./oh-my-zsh-require-tool.nix { };
+  oh-my-zsh-screen = callPackage ./oh-my-zsh-screen.nix { };
+  pass-rofi = callPackage ./pass-rofi.nix { };
+  read-sops = callPackage ./read-sops.nix { };
+  stumpwm = callPackage ./stumpwm.nix { };
+  stumpwm-contrib = callPackage ./stumpwm-contrib.nix { };
+  zsh-background-notify = callPackage ./zsh-background-notify.nix { };
 }

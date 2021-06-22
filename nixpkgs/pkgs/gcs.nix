@@ -1,16 +1,8 @@
-{ stdenv, fetchFromGitHub, adoptopenjdk-hotspot-bin-15, jre, makeWrapper
-, wrapGAppsHook }:
+{ sources, stdenv, adoptopenjdk-hotspot-bin-15, jre, makeWrapper, wrapGAppsHook
+}:
 
 stdenv.mkDerivation rec {
-  pname = "gcs";
-  version = "4.28.0";
-
-  src = fetchFromGitHub {
-    owner = "richardwilkes";
-    repo = "gcs";
-    rev = "v${version}";
-    sha256 = "azdjFuTm7yFbG3+Iwlkm9kCYZETwZAAfD2gp7A0avHc=";
-  };
+  inherit (sources.gcs) pname version src;
 
   nativeBuildInputs =
     [ adoptopenjdk-hotspot-bin-15 jre.gtk3 makeWrapper wrapGAppsHook ];

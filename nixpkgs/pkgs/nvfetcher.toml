@@ -1,0 +1,25 @@
+[bauer]
+src.github_tag = "matthewbauer/bauer"
+fetch.github = "matthewbauer/bauer"
+
+[gauth]
+src.github_tag = "pcarrier/gauth"
+fetch.github = "pcarrier/gauth"
+
+[gcs]
+src.github = "richardwilkes/gcs"
+fetch.github = "richardwilkes/gcs"
+
+[ohmyzsh]
+src.git = "https://github.com/ohmyzsh/ohmyzsh"
+src.branch = "master"
+fetch.github = "ohmyzsh/ohmyzsh"
+
+[stumpwm-contrib]
+src.git = "https://github.com/stumpwm/stumpwm-contrib"
+src.branch = "master"
+fetch.github = "stumpwm/stumpwm-contrib"
+
+[zsh-background-notify]
+src.git = "https://github.com/t413/zsh-background-notify"
+fetch.github = "t413/zsh-background-notify"

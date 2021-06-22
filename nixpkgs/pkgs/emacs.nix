@@ -1,16 +1,10 @@
-{ stdenv, fetchgit, hostPlatform, emacsPackagesNgGen, emacsMacport, emacs
+{ sources, stdenv, hostPlatform, emacsPackagesNgGen, emacsMacport, emacs
 , runCommand }:
 
 let
   use-package-list = stdenv.mkDerivation rec {
+    inherit (sources.bauer) src version;
     pname = "use-package-list";
-    version = "v1.5.3";
-    src = fetchgit {
-      url = "https://github.com/matthewbauer/bauer.git";
-      rev = version;
-      sha256 = "IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=";
-      fetchSubmodules = false;
-    };
     installPhase = ''
       mkdir -p $out/
       cp site-lisp/use-package-list.el $out/

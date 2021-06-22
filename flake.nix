@@ -12,9 +12,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     flake-utils.url = "github:numtide/flake-utils";
+    nvfetcher = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, ... }:
+  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, nvfetcher, ... }:
     let
       overlays = [
         (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
@@ -81,6 +86,7 @@
           buildInputs = with pkgs; [
             nixfmt
             home-manager.defaultPackage.${system}
+            nvfetcher.defaultPackage.${system}
           ];
         };
       }));
