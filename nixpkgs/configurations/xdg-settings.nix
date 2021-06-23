@@ -29,6 +29,7 @@ in {
     CARGO_HOME = "${xdg.cacheHome}/cargo";
     RUSTUP_HOME = "${xdg.dataHome}/rustup";
     XCOMPOSECACHE = "${xdg.cacheHome}/X11/xcompose";
+    XCOMPOSEFILE = "${xdg.configHome}X11/xcompose";
     NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
 
     # See, this is exactly why things should follow the spec. I have
