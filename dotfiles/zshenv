@@ -1,0 +1,3 @@
+setopt no_global_rcs
+HISTFILE="$XDG_DATA_HOME/.zsh_history"
+ZDOTDIR="$XDG_CONFIG_HOME/zsh"

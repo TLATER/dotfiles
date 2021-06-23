@@ -4,12 +4,10 @@
   home.packages = with pkgs; [ zsh ];
 
   # Basic, local config
-  home.file.".zshrc".source = "${dotroot}/dotfiles/zshrc";
-  xdg.configFile = {
-    "zsh" = {
-      recursive = true;
-      source = "${dotroot}/dotfiles/zsh";
-    };
+  home.file.".zshenv".source = "${dotroot}/dotfiles/zshenv";
+  xdg.configFile."zsh" = {
+    recursive = true;
+    source = "${dotroot}/dotfiles/zsh";
   };
 
   # Plugins

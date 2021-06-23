@@ -14,8 +14,6 @@ for plugin in "$ZSH/plugins/"*; do
     fpath=($plugin $fpath)
 done
 
-autoload -U compaudit compinit
-
 for plugin in "$ZSH/plugins/"*; do
     source "$plugin/$(basename $plugin).plugin.zsh"
 done
