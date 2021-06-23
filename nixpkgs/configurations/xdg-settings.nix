@@ -32,6 +32,7 @@ in {
     XCOMPOSEFILE = "${xdg.configHome}X11/xcompose";
     NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
     MAILCAPS = "${xdg.configHome}/mailcap";
+    PYTHONSTARTUP = "${xdg.configHome}/python/startup.py";
 
     # See, this is exactly why things should follow the spec. I have
     # no intention of using gradle ever, but occasionally I need to
@@ -52,4 +53,12 @@ in {
     cache=${xdg.cacheHome}/npm
     tmp=$XDG_RUNTIME_DIR/npm
   '';
+
+  # Aaand python is configured using a python script. Wonderful.
+  xdg.configFile."python/startup.py" = {
+    text = ''
+      import readline
+      readline.set_auto_history(False)
+    '';
+  };
 }
