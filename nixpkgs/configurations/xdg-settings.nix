@@ -35,6 +35,7 @@ in {
     PYTHONSTARTUP = "${xdg.configHome}/python/startup.py";
     IPYTHONDIR = "${xdg.dataHome}/ipython";
     JUPYTER_CONFIG_DIR = "${xdg.dataHome}/ipython";
+    HISTFILE = "${xdg.dataHome}/histfile";
 
     # See, this is exactly why things should follow the spec. I have
     # no intention of using gradle ever, but occasionally I need to
