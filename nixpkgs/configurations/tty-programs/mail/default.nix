@@ -16,7 +16,7 @@ in {
     local.dump-ics
   ];
 
-  home.file.".mailcap".source = "${dotroot}/dotfiles/mailcap";
+  xdg.configFile."mailcap".source = "${dotroot}/dotfiles/mailcap";
 
   programs = {
     mbsync.enable = true;

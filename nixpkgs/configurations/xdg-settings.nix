@@ -31,6 +31,7 @@ in {
     XCOMPOSECACHE = "${xdg.cacheHome}/X11/xcompose";
     XCOMPOSEFILE = "${xdg.configHome}X11/xcompose";
     NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
+    MAILCAPS = "${xdg.configHome}/mailcap";
 
     # See, this is exactly why things should follow the spec. I have
     # no intention of using gradle ever, but occasionally I need to
