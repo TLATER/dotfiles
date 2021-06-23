@@ -3,9 +3,8 @@
 
 # Set emacsclient as a "browser" - xdg-open naively checks this
 # variable to open unknown file types, or otherwise tries to open
-# absolutely everything in firefox. Really need to find out who wrote
-# that script and slap them.
-export BROWSER="emacsclient --no-wait -c"
+# absolutely everything in firefox.
+export BROWSER="firefox"
 
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
