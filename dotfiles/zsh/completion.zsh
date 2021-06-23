@@ -2,3 +2,4 @@
 WORDCHARS='*?_[]~=&;!#$%^(){}'
 
 alias exa='nocorrect exa'
+alias fd='nocorrect fd'
