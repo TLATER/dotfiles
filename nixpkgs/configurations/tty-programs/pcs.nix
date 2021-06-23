@@ -12,7 +12,10 @@
 
     ncmpcpp = {
       enable = true;
-      settings.ncmpcpp_directory = "${config.xdg.dataHome}";
+      settings = {
+        ncmpcpp_directory = "${config.xdg.dataHome}/ncmpcpp";
+        lyrics_directory = "${config.xdg.dataHome}/lyrics";
+      };
     };
 
     password-store = {
