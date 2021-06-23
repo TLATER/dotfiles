@@ -5,10 +5,10 @@
 
   home.packages = with pkgs; [
     any-nix-shell
+    exa
     nixfmt # *.nix files are used to pull in project deps, so we always need this
     ripgrep
     screen
-    tree
   ];
 
   home.file = {
