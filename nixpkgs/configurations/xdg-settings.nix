@@ -33,6 +33,8 @@ in {
     NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
     MAILCAPS = "${xdg.configHome}/mailcap";
     PYTHONSTARTUP = "${xdg.configHome}/python/startup.py";
+    IPYTHONDIR = "${xdg.dataHome}/ipython";
+    JUPYTER_CONFIG_DIR = "${xdg.dataHome}/ipython";
 
     # See, this is exactly why things should follow the spec. I have
     # no intention of using gradle ever, but occasionally I need to
