@@ -10,8 +10,17 @@ cat <<EOF > "${TMPDIR}/commit-summary"
 sources.nix: Update
 
 EOF
-cat "${TMPDIR}/commit-summary" "${TMPDIR}/changelog" > "${TMPDIR}/commit-message"
 
-git commit _sources/ -F "${TMPDIR}/commit-message"
+if [ -s "${TMPDIR}/changelog" ]; then
+    cat "${TMPDIR}/commit-summary" "${TMPDIR}/changelog" > "${TMPDIR}/commit-message"
+    git commit _sources/ -F "${TMPDIR}/commit-message"
+else
+    # Clean up any debris nvfetcher may leave in its database.
+    #
+    # This should be "safe", since nvfetcher will override whatever
+    # the user had previously anyway, so at least it won't break
+    # anything further than running nvfetcher already did.
+    git restore _sources/
+fi
 
 rm -rf "${TMPDIR}"
