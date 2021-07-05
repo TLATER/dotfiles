@@ -16,14 +16,14 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "904485b99eb66dcc88443a781a8b87c9cc364d93";
+    version = "f92a5958bc815867a6777aa7d34f8f35b50041c9";
     src = fetchgit {
       url = "https://github.com/black7375/Firefox-UI-Fix";
-      rev = "904485b99eb66dcc88443a781a8b87c9cc364d93";
+      rev = "f92a5958bc815867a6777aa7d34f8f35b50041c9";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0jb7x0sa0zcgz3lilh3zxf92vc3dgvlqkbkjrpa2096q370apb30";
+      sha256 = "02gm0lnmymfrwvpq3n17zsqdy64f2z8jl8rkzlc7rcfahaxz9kl3";
     };
     
   };
