@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+set -eu
+
+TMPDIR="$(mktemp -d -t nvfetcher-XXXXXX)"
+
+cd "$(git rev-parse --show-toplevel)/nixpkgs/pkgs" || exit 1
+nvfetcher -l "${TMPDIR}/changelog"
+cat <<EOF > "${TMPDIR}/commit-summary"
+sources.nix: Update
+
+EOF
+cat "${TMPDIR}/commit-summary" "${TMPDIR}/changelog" > "${TMPDIR}/commit-message"
+
+git commit _sources/ -F "${TMPDIR}/commit-message"
+
+rm -rf "${TMPDIR}"

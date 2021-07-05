@@ -23,6 +23,7 @@
     let
       overlays = [
         (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
+        nvfetcher.overlay
         nurpkgs.overlay
       ];
 
@@ -86,7 +87,7 @@
           buildInputs = with pkgs; [
             nixfmt
             home-manager.defaultPackage.${system}
-            nvfetcher.defaultPackage.${system}
+            local.commit-nvfetcher
           ];
         };
       }));

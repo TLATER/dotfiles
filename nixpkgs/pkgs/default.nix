@@ -6,6 +6,7 @@ let
 in {
   background = callPackage ./background.nix { };
   cap = callPackage ./cap.nix { };
+  commit-nvfetcher = callPackage ./commit-nvfetcher.nix { };
   dump-ics = callPackage ./dump-ics.nix { };
   emacs = callPackage ./emacs.nix { };
   firefox-ui-fix = callPackage ./firefox-ui-fix.nix { };
