@@ -23,4 +23,4 @@ else
     git restore _sources/
 fi
 
-rm -rf "${TMPDIR}"
+rm -r "${TMPDIR}"
