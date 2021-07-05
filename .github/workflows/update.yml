@@ -25,6 +25,7 @@ jobs:
           git-committer-name: GitHub automation
           git-committer-email: tm@tlater.net
       - run: nix flake update --commit-lock-file --recreate-lock-file
+      - run: nix run .#commit-nvfetcher
       - uses: peter-evans/create-pull-request@v3
         with:
           branch: bot/update
