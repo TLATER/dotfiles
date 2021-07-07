@@ -90,13 +90,11 @@
 
 ;; web stuff
 
-;; Required because we need c-populate-syntax-table
 (use-package cc-mode
-  :mode "\\.cc\\'")
+  :ensure nil
+  :functions (c-populate-syntax-table))
 
-;; Mainly use js2-mode
 (use-package js2-mode
-  :after (cc-mode prettier-js)
   :mode "\\.js\\'"
   :interpreter "node"
   :bind
@@ -114,13 +112,13 @@
   (js2r-add-keybindings-with-prefix "C-c C-r"))
 
 (use-package web-mode
-  :after prettier-js
   :bind
   (:map web-mode-map
         ("C-c f" . prettier-js))
   :mode "\\.hbs\\'" "\\.tsx?\\'")
 
-(use-package prettier-js)
+(use-package prettier-js
+  :functions (prettier-js))
 
 (provide 'file-types)
 ;;; file-types.el ends here
