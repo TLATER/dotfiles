@@ -94,23 +94,6 @@
   :ensure nil
   :functions (c-populate-syntax-table))
 
-(use-package js2-mode
-  :mode "\\.js\\'"
-  :interpreter "node"
-  :bind
-  (:map js2-mode-map
-        ("C-c f" . prettier-js))
-  :init
-  (setq js2-basic-offset 4)
-  (setq-default js2-additional-externs
-                '("$" "define" "require")))
-
-(use-package js2-refactor
-  :after (js2-mode)
-  :hook js2-mode
-  :config
-  (js2r-add-keybindings-with-prefix "C-c C-r"))
-
 (use-package web-mode
   :bind
   (:map web-mode-map
