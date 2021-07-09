@@ -25,68 +25,69 @@
 ;;; Code:
 
 (use-package elm-mode
-  :mode ("\\.elm\\'"))
+  :mode (rx ".elm" string-end))
 
 (use-package lua-mode
-  :mode ("\\.lua\\'"))
-
-(use-package pug-mode
-  :mode ("\\.pug\\'"))
+  :mode (rx ".lua" string-end))
 
 (use-package markdown-mode
-  :mode ("\\.mdwn\\'" "/tmp/neomutt-.*")
+  :mode (rx (or (and (or ".md" ".mdwn") string-end) (and string-start "/tmp/neomutt-")))
   :init
   (setq markdown-command '("nix-shell" "-p" "pandoc" "--run" "pandoc --from=markdown --to=html5")))
 
 (use-package gnuplot
-  :mode ("\\.p\\'" "\\.gp\\'" "\\.gnuplot\\'")
+  :mode ((rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
   :init
   (setq gnuplot-program "gnuplot"))
 
 (use-package yaml-mode
-  :mode ("\\.bst\\'" "\\project.conf\\'"))
+  :mode (rx (or ".yaml" ".yml" ".bst" (and string-start "project.conf")) string-end))
 
 (use-package systemd
-  :mode ("\\.service\\'" . systemd-mode))
+  :mode ((rx (or".service" ".socket" ".device" ".mount" ".automount"
+                ".swap" ".target" ".path" ".timer" ".slice" ".scope")
+             string-end)
+         . systemd-mode))
 
 (use-package rustic
-  :mode ("\\.rs\\'" . rustic-mode)
+  :mode ((rx ".rs" string-end) . rustic-mode)
   :config
   (require 'smartparens-rust))
 
 (use-package cython-mode
-  :mode "\\.pyx\\'")
+  :mode (rx ".pyx" string-end))
 
 (use-package dockerfile-mode
-  :mode "\\`Dockerfile\\'")
+  :mode (rx string-start "Dockerfile" string-end))
 
 (use-package scss-mode
-  :mode ("\\.sass\\'" "\\.scss\\'"))
+  :mode (rx (or ".sass" ".scss") string-end))
 
 (use-package json-mode
-  :mode ("\\.json\\'"))
+  :mode (rx ".json" string-end))
 
 (use-package jsonnet-mode
-  :mode ("\\.jsonnet\\'"))
+  :mode (rx ".jsonnet" string-end))
 
 (use-package graphql-mode
-  :mode ("\\.graphql\\'" "\\.gql\\'"))
+  :mode (rx (or ".graphql" ".gql") string-end))
 
 (use-package protobuf-mode
-  :mode ("\\.proto\\'"))
+  :mode (rx ".proto" string-end))
 
 (use-package csv-mode
-  :mode ("\\.csv\\'"))
+  :mode (rx ".csv" string-end))
 
 (use-package nix-mode
-  :mode ("\\.nix\\'")
+  :mode (rx ".nix" string-end)
   :bind (:map nix-mode-map
               ("C-c f" . nix-format-buffer)))
 
-(use-package stumpwm-mode)
+(use-package stumpwm-mode
+  :mode (rx "stumpwm/" (* anychar) string-end))
 
 (use-package ahk-mode
-  :mode ("\\.ahk\\'"))
+  :mode (rx ".ahk" string-end))
 
 ;; web stuff
 
@@ -98,7 +99,7 @@
   :bind
   (:map web-mode-map
         ("C-c f" . prettier-js))
-  :mode "\\.hbs\\'" "\\.tsx?\\'")
+  :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
 
 (use-package prettier-js
   :functions (prettier-js))
