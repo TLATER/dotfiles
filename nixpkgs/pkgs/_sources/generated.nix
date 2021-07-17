@@ -76,6 +76,18 @@
       sha256 = "0ahk4irf5mfp7mf712mdbyh6dx4ip9hh5vz7m3zdfk3byvd38j59";
     };
   };
+  tridactyl-emacs = {
+    pname = "tridactyl-emacs";
+    version = "d1475505eead8e5bc70526190f3ff72c6d6ebbc2";
+    src = fetchgit {
+      url = "https://github.com/jumper047/tridactyl_emacs_config";
+      rev = "d1475505eead8e5bc70526190f3ff72c6d6ebbc2";
+      fetchSubmodules = false;
+      deepClone = false;
+      leaveDotGit = false;
+      sha256 = "1wwya75lpl48c5p1jmzwsy61mclcv6320dfvmchjpalpmfdf4av2";
+    };
+  };
   zsh-background-notify = {
     pname = "zsh-background-notify";
     version = "d5f0430cb052f82c433c17707816910da87e201e";

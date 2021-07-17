@@ -26,6 +26,11 @@ src.git = "https://github.com/stumpwm/stumpwm-contrib"
 src.branch = "master"
 fetch.github = "stumpwm/stumpwm-contrib"
 
+[tridactyl-emacs]
+src.git = "https://github.com/jumper047/tridactyl_emacs_config"
+src.branch = "main"
+fetch.github = "jumper047/tridactyl_emacs_config"
+
 [zsh-background-notify]
 src.git = "https://github.com/t413/zsh-background-notify"
 fetch.github = "t413/zsh-background-notify"

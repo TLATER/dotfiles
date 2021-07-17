@@ -11,12 +11,19 @@
     TryExec=firefox
   '';
 
+  xdg.configFile."tridactyl/tridactylrc".text = ''
+    source ${pkgs.local.tridactyl-emacs}/share/tridactyl/emacs_bindings
+    # Remove the update function; Really don't want this since it's nix-packaged
+    comclear emacs-bindings-update
+  '';
+
   home.file.".mozilla/firefox/tlater/chrome/icons" = {
     source = "${pkgs.local.firefox-ui-fix}/icons";
   };
 
   programs.firefox = {
     enable = true;
+    package = pkgs.firefox.override { cfg.enableTridactylNative = true; };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       buster-captcha-solver
       clearurls
@@ -24,6 +31,7 @@
       react-devtools
       reduxdevtools
       translate-web-pages
+      tridactyl
       ublock-origin
     ];
     profiles."tlater" = {
@@ -38,6 +46,9 @@
         "svg.context-properties.content.enabled" = true;
         "layout.css.backdrop-filter.enabled" = true;
         "browser.compactmode.show" = true;
+
+        # Re-bind ctrl to super (would interfere with tridactyl otherwise)
+        "ui.key.accelKey" = 91;
 
         # Actual settings
         "app.shield.optoutstudies.enabled" = false;
