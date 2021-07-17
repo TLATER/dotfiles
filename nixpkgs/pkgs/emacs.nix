@@ -1,5 +1,5 @@
 { sources, stdenv, hostPlatform, emacsPackagesNgGen, emacsMacport, emacs
-, runCommand }:
+, runCommand, runCommandLocal, fetchurl, lzip }:
 
 let
   use-package-list = stdenv.mkDerivation rec {
@@ -13,19 +13,36 @@ let
 
   emacsDistribution = (emacsPackagesNgGen
     (if hostPlatform.isDarwin then emacsMacport else emacs));
-  # Compute the list of use-package-d packages.
-  package-list =
-    runCommand "package-list" { buildInputs = [ emacsDistribution.emacs ]; } ''
-      HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
-            -L ${emacsDistribution.use-package}/share/emacs/site-lisp/elpa/use-package-* \
-            -L ${emacsDistribution.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
-            -l ${use-package-list}/use-package-list.el \
-            --eval "(use-package-list \"${../../dotfiles/emacs.d}/init.el\")" \
-            > $out
+
+  # Override some elpa sources - see
+  # https://github.com/NixOS/nixpkgs/issues/110796
+  unpackSource = source:
+    runCommandLocal (source.pname + source.version) { } ''
+      ${lzip}/bin/lzip -d -c ${source.src} > $out
     '';
+  emacsOverrides = self: super: rec {
+    spinner = super.spinner.override {
+      elpaBuild = args:
+        super.elpaBuild (args // { src = unpackSource sources.elpa-spinner; });
+    };
+  };
+
+  fixedEmacsDistribution = emacsDistribution.overrideScope' emacsOverrides;
+
+  # Compute the list of use-package-d packages.
+  package-list = runCommand "package-list" {
+    buildInputs = [ fixedEmacsDistribution.emacs ];
+  } ''
+    HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
+          -L ${fixedEmacsDistribution.use-package}/share/emacs/site-lisp/elpa/use-package-* \
+          -L ${fixedEmacsDistribution.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
+          -l ${use-package-list}/use-package-list.el \
+          --eval "(use-package-list \"${../../dotfiles/emacs.d}/init.el\")" \
+          > $out
+  '';
 
   required-packages = builtins.fromJSON (builtins.readFile package-list)
     ++ [ "use-package" ];
 
-in emacsDistribution.emacsWithPackages
+in fixedEmacsDistribution.emacsWithPackages
 (epkgs: map (required: builtins.getAttr required epkgs) required-packages)
