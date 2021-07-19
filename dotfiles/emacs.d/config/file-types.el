@@ -24,6 +24,11 @@
 
 ;;; Code:
 
+(use-package bazel)
+
+(use-package kotlin-mode
+  :mode (rx ".kt" string-end))
+
 (use-package elm-mode
   :mode (rx ".elm" string-end))
 
