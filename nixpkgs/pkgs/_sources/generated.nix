@@ -24,14 +24,14 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "9c8b53fdc27f5a20edcfc9248670adce222ba1f0";
+    version = "1c150b243242268f3c54b82a16bd33ba12f02dbb";
     src = fetchgit {
       url = "https://github.com/black7375/Firefox-UI-Fix";
-      rev = "9c8b53fdc27f5a20edcfc9248670adce222ba1f0";
+      rev = "1c150b243242268f3c54b82a16bd33ba12f02dbb";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "160q035gvs7sb5v2jcwd7fdy2cqvkfhckz4ghhx8wli39rciv406";
+      sha256 = "0ih99j69jims6hkrrahhbyb8vysjcamhlj2qn1gmwznlbdapbaf2";
     };
   };
   gauth = {
@@ -49,27 +49,26 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v4.32.1";
+    version = "v4.33.0";
     src = fetchgit {
       url = "https://github.com/richardwilkes/gcs";
-      rev = "v4.32.1";
+      rev = "v4.33.0";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0cqkc1q4apirnbs1wi1rmc26il48vnajdpm0gwdkrvxykgi9fwrd";
+      sha256 = "0i36h08kda861l210qrfh4xlyzidkxcl88rmz6q09v10g354jgdi";
     };
-    
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "dac3314c76e799cddbbe5cf63870d31861626059";
+    version = "d9ad99531f74df8b0d6622feeab5e253528b43d0";
     src = fetchgit {
       url = "https://github.com/ohmyzsh/ohmyzsh";
-      rev = "dac3314c76e799cddbbe5cf63870d31861626059";
+      rev = "d9ad99531f74df8b0d6622feeab5e253528b43d0";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "07r7mkp2qmdk4i03z730aq9fw6j1vh22wk2k8w3jv2hzkrb48mhq";
+      sha256 = "192wpifg8ylq149hy39qmwfks5jfp9zdyn43pdjnpf52fqqs42zm";
     };
   };
   stumpwm-contrib = {
@@ -86,14 +85,14 @@
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
-    version = "d1475505eead8e5bc70526190f3ff72c6d6ebbc2";
+    version = "abc05ae33d282dc8fb999f0706efe406766ed9dc";
     src = fetchgit {
       url = "https://github.com/jumper047/tridactyl_emacs_config";
-      rev = "d1475505eead8e5bc70526190f3ff72c6d6ebbc2";
+      rev = "abc05ae33d282dc8fb999f0706efe406766ed9dc";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "1wwya75lpl48c5p1jmzwsy61mclcv6320dfvmchjpalpmfdf4av2";
+      sha256 = "0gmp55kbdrhmdfdzij07jpblqgw6badfnsjgqxfrkhwdwkcgzm5r";
     };
   };
   zsh-background-notify = {
