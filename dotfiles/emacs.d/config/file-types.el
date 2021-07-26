@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package groovy-mode
+  :mode (rx ".groovy" string-end))
+
 (use-package bazel)
 
 (use-package kotlin-mode
