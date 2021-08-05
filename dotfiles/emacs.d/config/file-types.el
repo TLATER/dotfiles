@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(use-package haskell-mode
+  :mode (rx ".hs" string-end))
+
 (use-package groovy-mode
   :mode (rx ".groovy" string-end))
 
