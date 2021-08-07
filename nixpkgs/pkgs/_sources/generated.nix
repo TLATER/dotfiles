@@ -24,14 +24,14 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "3401b44e0bdd5ba2a62eaabd492e4c07b1330939";
+    version = "75709e2543c9da7fb65aa7affd6142e2a6e037ed";
     src = fetchgit {
       url = "https://github.com/black7375/Firefox-UI-Fix";
-      rev = "3401b44e0bdd5ba2a62eaabd492e4c07b1330939";
+      rev = "75709e2543c9da7fb65aa7affd6142e2a6e037ed";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "1n36gw4hpx04jj29qy587b6ivgimgh8ydr5nk7xvh78zspnnnl3h";
+      sha256 = "1cvijaj6izh3870jnx60j0qnrmk169zz7d0zyd10yyl7dcni43wj";
     };
   };
   gauth = {
@@ -49,26 +49,26 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v4.33.0";
+    version = "v4.34.0";
     src = fetchgit {
       url = "https://github.com/richardwilkes/gcs";
-      rev = "v4.33.0";
+      rev = "v4.34.0";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0i36h08kda861l210qrfh4xlyzidkxcl88rmz6q09v10g354jgdi";
+      sha256 = "079mqxi8v9jcg4xbgilli7r96rzpr80hkvmzkb8w8i9iw4dccbml";
     };
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "5377cc37c0f71fe22484303a4c6f387aa339f3f5";
+    version = "9c34c359c4c1ebb1bd0211d40c3bca0c6aa2ca97";
     src = fetchgit {
       url = "https://github.com/ohmyzsh/ohmyzsh";
-      rev = "5377cc37c0f71fe22484303a4c6f387aa339f3f5";
+      rev = "9c34c359c4c1ebb1bd0211d40c3bca0c6aa2ca97";
       fetchSubmodules = false;
       deepClone = false;
       leaveDotGit = false;
-      sha256 = "0r5kq18mk7s34dn8nymi3sw36354d1333af3xfw1x37f2y5y8zs9";
+      sha256 = "115i47d7dcpqhdc56ddarj52lwnadc2ybk4k59zh45fpp3sm9qhp";
     };
   };
   stumpwm-contrib = {
