@@ -50,10 +50,29 @@
   (setq lsp-rust-clippy-preference "on")
   (setq lsp-rust-analyzer-proc-macro-enable 't)
 
+  ;; See https://github.com/flycheck/flycheck/issues/1762#issuecomment-749789589
+  ;; Add buffer local Flycheck checkers after LSP for different major modes.
+  (defvar-local lsp-flycheck-local-cache nil)
+  (defun lsp-flycheck-local-checker-get (fn checker property)
+    ;; Only check the buffer local cache for the LSP checker, otherwise we get
+    ;; infinite loops.
+    (if (eq checker 'lsp)
+        (or (alist-get property lsp-flycheck-local-cache)
+            (funcall fn checker property))
+      (funcall fn checker property)))
+
+  (advice-add 'flycheck-checker-get
+              :around 'lsp-flycheck-local-checker-get)
+
   :config
   ;; Enable .dir-locals config loading
   (add-hook 'hack-local-variables-hook
-            (lambda () (when (derived-mode-p 'XXX-mode) (lsp)))))
+            (lambda () (when (derived-mode-p 'XXX-mode) (lsp))))
+
+  (add-hook 'lsp-managed-mode-hook
+            (lambda ()
+              (when (derived-mode-p 'sh-mode)
+                (setq lsp-flycheck-local-cache '((next-checkers . (sh-shellcheck))))))))
 
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
