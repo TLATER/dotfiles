@@ -14,12 +14,12 @@
     };
     
   };
-  elpa-spinner = {
-    pname = "elpa-spinner";
-    version = "1.7.3";
+  elpa-project = {
+    pname = "elpa-project";
+    version = "0.6.1";
     src = fetchurl {
-      sha256 = "188i2r7ixva78qd99ksyh3jagnijpvzzjvvx37n57x8nkp8jc4i4";
-      url = "https://elpa.gnu.org/packages/spinner-1.7.3.el.lz";
+      url = "https://elpa.gnu.org/packages/project-0.6.1.tar";
+      sha256 = "174fli3swbn67qcs9isv70vwrf6r41mak6dbs98gia89rlb71c8v";
     };
   };
   firefox-ui-fix = {

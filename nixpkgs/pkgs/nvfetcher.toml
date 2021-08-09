@@ -36,6 +36,6 @@ src.git = "https://github.com/t413/zsh-background-notify"
 fetch.github = "t413/zsh-background-notify"
 
 # Elpa packages that have moved to the compressed archive
-[elpa-spinner]
-src.manual = "1.7.3"
-fetch.url = "https://elpa.gnu.org/packages/spinner-1.7.3.el.lz"
+[elpa-project]
+src.manual = "0.6.1"
+fetch.url = "https://elpa.gnu.org/packages/project-$ver.tar"

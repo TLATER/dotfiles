@@ -16,14 +16,10 @@ let
 
   # Override some elpa sources - see
   # https://github.com/NixOS/nixpkgs/issues/110796
-  unpackSource = source:
-    runCommandLocal (source.pname + source.version) { } ''
-      ${lzip}/bin/lzip -d -c ${source.src} > $out
-    '';
   emacsOverrides = self: super: rec {
-    spinner = super.spinner.override {
+    spinner = super.project.override {
       elpaBuild = args:
-        super.elpaBuild (args // { src = unpackSource sources.elpa-spinner; });
+        super.elpaBuild (args // { src = sources.elpa-project.src; });
     };
   };
 
