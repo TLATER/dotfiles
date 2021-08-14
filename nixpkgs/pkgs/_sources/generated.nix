@@ -22,6 +22,14 @@
       sha256 = "174fli3swbn67qcs9isv70vwrf6r41mak6dbs98gia89rlb71c8v";
     };
   };
+  elpa-spinner = {
+    pname = "elpa-spinner";
+    version = "1.7.3";
+    src = fetchurl {
+      sha256 = "188i2r7ixva78qd99ksyh3jagnijpvzzjvvx37n57x8nkp8jc4i4";
+      url = "https://elpa.gnu.org/packages/spinner-1.7.3.el.lz";
+    };
+  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "75709e2543c9da7fb65aa7affd6142e2a6e037ed";

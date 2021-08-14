@@ -19,6 +19,13 @@ let
   emacsOverrides = self: super: rec {
     spinner = super.project.override {
       elpaBuild = args:
+        super.elpaBuild (args // {
+          buildInputs = [ lzip ];
+          src = sources.elpa-spinner.src;
+        });
+    };
+    project = super.project.override {
+      elpaBuild = args:
         super.elpaBuild (args // { src = sources.elpa-project.src; });
     };
   };
