@@ -1,9 +1,11 @@
 { pkgs, lib, ... }:
 
 let
-  inherit (pkgs) rnnoise-plugin pipewire;
-  json = pkgs.formats.json { };
-  pipewire-rnnoise-conf = ./filter-chain.conf;
+  inherit (pkgs) rnnoise-plugin pipewire writeText;
+  inherit (builtins) readFile replaceStrings;
+  pipewire-rnnoise-conf =
+    replaceStrings [ "\${rnnoise-plugin}" ] [ "${rnnoise-plugin}" ]
+    (readFile ./filter-chain.conf);
 in {
   systemd.user.services = {
     pipewire-rnnoise = {
@@ -13,7 +15,9 @@ in {
         Description = "rnnoise plugin for pipewire";
       };
       Service = {
-        ExecStart = "${pipewire}/bin/pipewire -c ${pipewire-rnnoise-conf}";
+        ExecStart = "${pipewire}/bin/pipewire -c ${
+            writeText "pipewire-rnnoise.conf" pipewire-rnnoise-conf
+          }";
       };
       Install = { WantedBy = [ "pipewire.service" ]; };
     };
