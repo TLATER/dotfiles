@@ -59,7 +59,9 @@
 (use-package recentf
   :ensure nil
   :init
-  (setq recentf-save-file (expand-file-name "recentf" data-dir)))
+  (setq recentf-save-file (expand-file-name "recentf" data-dir))
+  :config
+  (add-hook 'delete-frame-functions (lambda (terminal) (recentf-save-list))))
 
 (use-package tramp
   :ensure nil
