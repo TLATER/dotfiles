@@ -15,6 +15,8 @@
     source ${pkgs.local.tridactyl-emacs}/share/tridactyl/emacs_bindings
     # Remove the update function; Really don't want this since it's nix-packaged
     comclear emacs-bindings-update
+    # Remove annoying pre-defined "searchurls" - duckduckgo is just better
+    jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.then(_ => tri.config.set("searchurls", u, null)), Promise.resolve())
   '';
 
   home.file.".mozilla/firefox/tlater/chrome/icons" = {
