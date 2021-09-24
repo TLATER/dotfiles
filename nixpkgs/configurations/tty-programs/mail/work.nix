@@ -23,6 +23,7 @@
 
       mbsync = {
         create = "maildir";
+        expunge = "both";
         enable = true;
       };
       msmtp = {
