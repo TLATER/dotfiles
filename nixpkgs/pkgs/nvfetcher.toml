@@ -41,5 +41,5 @@ src.manual = "1.7.3"
 fetch.url = "https://elpa.gnu.org/packages/spinner-1.7.3.el.lz"
 
 [elpa-project]
-src.manual = "0.6.1"
+src.manual = "0.7.1"
 fetch.url = "https://elpa.gnu.org/packages/project-$ver.tar"
