@@ -39,6 +39,8 @@
         pull.ff = "only";
         push.default = "current";
 
+        init.defaultBranch = "main";
+
         # Magit-forge configuration
         github.user = "tlater";
         gitlab.user = "tlater";
