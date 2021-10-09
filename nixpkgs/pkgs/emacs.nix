@@ -17,7 +17,7 @@ let
   # Override some elpa sources - see
   # https://github.com/NixOS/nixpkgs/issues/110796
   emacsOverrides = self: super: rec {
-    spinner = super.project.override {
+    spinner = super.spinner.override {
       elpaBuild = args:
         super.elpaBuild (args // {
           buildInputs = [ lzip ];

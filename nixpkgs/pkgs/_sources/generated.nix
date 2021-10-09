@@ -16,10 +16,10 @@
   };
   elpa-project = {
     pname = "elpa-project";
-    version = "0.7.1";
+    version = "0.8.0";
     src = fetchurl {
-      url = "https://elpa.gnu.org/packages/project-0.7.1.tar";
-      sha256 = "1ip8s924n50mmh068p42zi0ylvv79a2pi9sji1c2pqj2q19d7jr6";
+      url = "https://elpa.gnu.org/packages/project-0.8.0.tar";
+      sha256 = "05q2zr661bn2h6pdvyv3apdajfxnsx0rb0n5np8cg98a7gw4zyxd";
     };
   };
   elpa-spinner = {
