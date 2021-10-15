@@ -35,6 +35,21 @@
   (interactive)
   (other-window -1))
 
+(defun autoformat ()
+  "Autoformat the current buffer."
+  (interactive)
+  (pcase major-mode
+    ('python-mode (progn
+                     (py-isort-buffer)
+                     (blacken-buffer)))
+    ('nix-mode (nix-format-buffer))
+    ('web-mode (prettier-js))
+    (_ (if (bound-and-true-p lsp-mode)
+           (lsp-format-buffer)
+         (message "No formatter for this file type")))))
+
+(global-set-key (kbd "C-c f") 'autoformat)
+
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)
 

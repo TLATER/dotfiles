@@ -90,9 +90,7 @@
   :mode (rx ".csv" string-end))
 
 (use-package nix-mode
-  :mode (rx ".nix" string-end)
-  :bind (:map nix-mode-map
-              ("C-c f" . nix-format-buffer)))
+  :mode (rx ".nix" string-end))
 
 (use-package stumpwm-mode
   :mode (rx "stumpwm/" (* anychar) string-end))
@@ -108,8 +106,6 @@
 
 (use-package web-mode
   :bind
-  (:map web-mode-map
-        ("C-c f" . prettier-js))
   :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
 
 (use-package prettier-js
