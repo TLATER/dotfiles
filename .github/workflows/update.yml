@@ -12,11 +12,16 @@ jobs:
         with:
           fetch-depth: 0
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
-      - uses: cachix/install-nix-action@v12
+      - uses: cachix/install-nix-action@v14
         with:
-          install_url: https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install
+          install_url: https://nixos-nix-install-tests.cachix.org/serve/vij683ly7sl95nnhb67bdjjfabclr85m/install
+          install_options: '--tarball-url-prefix https://nixos-nix-install-tests.cachix.org/serve'
           extra_nix_config: |
             experimental-features = nix-command flakes
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          # Used only for things like nix-prefetch-*, which do not yet
+          # seem to universally support flakes
+          nix_path: nixpkgs=channel:nixos-unstable
       - uses: crazy-max/ghaction-import-gpg@v3
         with:
           gpg-private-key: ${{ secrets.GIT_SIGNING_KEY }}
@@ -24,7 +29,7 @@ jobs:
           git-commit-gpgsign: true
           git-committer-name: GitHub automation
           git-committer-email: tm@tlater.net
-      - run: nix flake update --commit-lock-file --recreate-lock-file
+      - run: nix flake update --commit-lock-file
       - run: nix run .#commit-nvfetcher
       - uses: peter-evans/create-pull-request@v3
         with:
