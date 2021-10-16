@@ -14,22 +14,6 @@
     };
     
   };
-  elpa-project = {
-    pname = "elpa-project";
-    version = "0.8.0";
-    src = fetchurl {
-      url = "https://elpa.gnu.org/packages/project-0.8.0.tar";
-      sha256 = "05q2zr661bn2h6pdvyv3apdajfxnsx0rb0n5np8cg98a7gw4zyxd";
-    };
-  };
-  elpa-spinner = {
-    pname = "elpa-spinner";
-    version = "1.7.3";
-    src = fetchurl {
-      sha256 = "188i2r7ixva78qd99ksyh3jagnijpvzzjvvx37n57x8nkp8jc4i4";
-      url = "https://elpa.gnu.org/packages/spinner-1.7.3.el.lz";
-    };
-  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "ed437e953a85ac2087e391cfc41037dcb0b81bd1";
