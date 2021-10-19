@@ -81,7 +81,7 @@
           };
 
         # The default configuration is just the minimal profile
-        tlater = lib.homeConfigurationFromProfile profiles.minimal.graphical {
+        tlater = lib.homeConfigurationFromProfile profiles.minimal.text {
           system = "x86_64-linux";
         };
       };
