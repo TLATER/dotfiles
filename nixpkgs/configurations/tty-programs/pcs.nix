@@ -7,6 +7,8 @@
 # music players.
 
 {
+  imports = [ ./pipewire-rnnoise.nix ];
+
   programs = {
     git.signing.signByDefault = true;
 

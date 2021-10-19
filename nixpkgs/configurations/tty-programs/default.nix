@@ -1,7 +1,7 @@
 { config, lib, pkgs, dotroot, ... }:
 
 {
-  imports = [ ./emacs.nix ./zsh.nix ./pipewire-rnnoise.nix ];
+  imports = [ ./emacs.nix ./zsh.nix ];
 
   home.packages = with pkgs; [
     any-nix-shell
