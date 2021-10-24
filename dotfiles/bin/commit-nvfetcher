@@ -13,6 +13,7 @@ EOF
 
 if [ -s "${TMPDIR}/changelog" ]; then
     cat "${TMPDIR}/commit-summary" "${TMPDIR}/changelog" > "${TMPDIR}/commit-message"
+    git add _sources/
     git commit _sources/ -F "${TMPDIR}/commit-message"
 else
     # Clean up any debris nvfetcher may leave in its database.
