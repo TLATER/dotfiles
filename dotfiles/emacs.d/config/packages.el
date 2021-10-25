@@ -24,6 +24,15 @@
 
 ;;; Code:
 
+(use-package eldoc
+  :ensure nil
+  :init
+  (setq eldoc-echo-area-prefer-doc-buffer t)
+  (setq eldoc-echo-area-use-multiline-p 3)
+  :bind (("C-c l d" . 'eldoc-doc-buffer))
+  :config
+  (global-eldoc-mode))
+
 (use-package dashboard
   :init
   (setq initial-buffer-choice (lambda ()

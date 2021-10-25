@@ -63,7 +63,9 @@
 (use-package rustic
   :mode ((rx ".rs" string-end) . rustic-mode)
   :config
-  (require 'smartparens-rust))
+  (require 'smartparens-rust)
+  (setq rustic-lsp-client 'eglot)
+  (remove-hook 'rustic-mode-hook 'flycheck-mode))
 
 (use-package cython-mode
   :mode (rx ".pyx" string-end))
