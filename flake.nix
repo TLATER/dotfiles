@@ -28,10 +28,12 @@
     let
       overlays = [
         (final: prev: {
-          local = import ./nixpkgs/pkgs { pkgs = prev; };
-          emacsPacakgesNgGen =
-            nixpkgs-unstable.legacyPackages.${prev.system}.emacsPackagesNgGen;
+          emacs = nixpkgs-unstable.legacyPackages.${prev.system}.emacs;
+          emacsPort = nixpkgs-unstable.legacyPackages.${prev.system}.emacsPort;
+          emacsPacakgesFor =
+            nixpkgs-unstable.legacyPackages.${prev.system}.emacsPackagesFor;
         })
+        (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
         nvfetcher.overlay
         nurpkgs.overlay
       ];

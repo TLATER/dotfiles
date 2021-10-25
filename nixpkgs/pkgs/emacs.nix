@@ -1,4 +1,4 @@
-{ sources, stdenv, hostPlatform, emacsPackagesNgGen, emacsMacport, emacs
+{ sources, stdenv, hostPlatform, emacsPackagesFor, emacsMacport, emacs
 , runCommand, runCommandLocal, fetchurl, lzip }:
 
 let
@@ -11,8 +11,8 @@ let
     '';
   };
 
-  emacsDistribution = (emacsPackagesNgGen
-    (if hostPlatform.isDarwin then emacsMacport else emacs));
+  emacsDistribution =
+    (emacsPackagesFor (if hostPlatform.isDarwin then emacsMacport else emacs));
 
   # Compute the list of use-package-d packages.
   package-list =
@@ -28,5 +28,5 @@ let
   required-packages = builtins.fromJSON (builtins.readFile package-list)
     ++ [ "use-package" ];
 
-in emacsDistribution.emacsWithPackages
+in emacsDistribution.emacs.pkgs.withPackages
 (epkgs: map (required: builtins.getAttr required epkgs) required-packages)
