@@ -8,7 +8,7 @@
     aspellDicts.en-computers
 
     # Used for interactive python shells
-    python37Packages.ipython
+    python3Packages.ipython
 
     # Needed for magit-lfs
     git-lfs
