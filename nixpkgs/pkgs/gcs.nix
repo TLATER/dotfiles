@@ -1,11 +1,9 @@
-{ sources, lib, stdenv, adoptopenjdk-hotspot-bin-15, jre, makeWrapper
-, wrapGAppsHook }:
+{ sources, lib, stdenv, jdk17, jre, makeWrapper, wrapGAppsHook }:
 
 stdenv.mkDerivation rec {
   inherit (sources.gcs) pname version src;
 
-  nativeBuildInputs =
-    [ adoptopenjdk-hotspot-bin-15 jre.gtk3 makeWrapper wrapGAppsHook ];
+  nativeBuildInputs = [ jdk17 jre.gtk3 makeWrapper wrapGAppsHook ];
 
   dontConfigure = true;
   dontInstall = true;
@@ -22,7 +20,7 @@ stdenv.mkDerivation rec {
     cp -r out/dist/modules $out/share/java
 
     makeWrapperArgs+=("''${gappsWrapperArgs[@]}")
-    makeWrapper ${jre}/bin/java $out/bin/gcs \
+    makeWrapper ${jre}/bin/java $out/bin/gcs-${version} \
         ''${makeWrapperArgs[@]} \
           --add-flags "-cp $out/share/java/com.lowagie.text-2.1.7.jar -jar $out/share/java/com.trollworks.gcs-${v}.jar"
   '';
