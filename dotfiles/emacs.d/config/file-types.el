@@ -25,7 +25,10 @@
 ;;; Code:
 
 (use-package haskell-mode
-  :mode (rx ".hs" string-end))
+  :mode (rx ".hs" string-end)
+  :hook (haskell-mode . interactive-haskell-mode)
+  :bind (:map haskell-mode-map
+              ("C-c `" . haskell-interactive-bring)))
 
 (use-package groovy-mode
   :mode (rx ".groovy" string-end))

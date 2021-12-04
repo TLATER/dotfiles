@@ -59,6 +59,7 @@
     ('nix-mode (nix-format-buffer))
     ('web-mode (prettier-js))
     ('rustic-mode (rustic-format-buffer))
+    ('haskell-mode (haskell-mode-stylish-buffer))
     (_ (if (eglot-managed-p)
            (eglot-format)
          (message "No formatter for this file type")))))
