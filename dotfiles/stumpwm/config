@@ -123,6 +123,9 @@
 ;; Locking
 (define-key *root-map* (kbd "L") "exec light-locker-command -l")
 
+;; Notifications
+(define-key *root-map* (kbd "d") "exec dunstctl close-all")
+
 ;; Font
 
 ;; (push "/usr/local/share/fonts/" xft:*font-dirs*)
