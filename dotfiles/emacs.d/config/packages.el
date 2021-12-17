@@ -156,7 +156,7 @@
   ("C-x c" . nil) ; Unbind command map; I prefer doing my own thing
   ("C-c h i" . helm-imenu)
   ("C-c h s" . helm-occur)
-  ("C-c h i" . helm-ucs) ; Insert UTF-8 character
+  ("C-c h u" . helm-ucs) ; Insert UTF-8 character
   ("C-c h f" . helm-for-files)
   ("C-c h b" . helm-bookmarks)
   ("C-c h m" . helm-mark-ring))
