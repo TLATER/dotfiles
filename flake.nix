@@ -86,6 +86,7 @@
         devShell = pkgs.mkShell {
           buildInputs = with pkgs; [
             nixfmt
+            nvfetcher-bin
             home-manager.defaultPackage.${system}
             local.commit-nvfetcher
           ];
