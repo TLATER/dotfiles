@@ -14,13 +14,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "17062613adf2b21c3397f12ba84bd8309b858c93";
+    version = "fab118933e8594ecc017653bb04dd64d7235b398";
     src = fetchFromGitHub ({
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "17062613adf2b21c3397f12ba84bd8309b858c93";
+      rev = "fab118933e8594ecc017653bb04dd64d7235b398";
       fetchSubmodules = false;
-      sha256 = "sha256-G85yShA1kJNbMMqyUzPywhxHrXp98LkelYBYruMIhhQ=";
+      sha256 = "sha256-TUlVgfGNpSvrxBOLTlyHW0vbsQ6qWluC2nRO4BVAG3w=";
     });
   };
   gauth = {
@@ -36,35 +36,35 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v4.35.0";
+    version = "v4.36.0";
     src = fetchFromGitHub ({
       owner = "richardwilkes";
       repo = "gcs";
-      rev = "v4.35.0";
+      rev = "v4.36.0";
       fetchSubmodules = false;
-      sha256 = "sha256-9+sKBght5R6oi1MAvAFVPT2bikcJSZe/w5IBzGh1WuA=";
+      sha256 = "sha256-qWvLQEumi9W4V/OsyxCGkHRyT6rDUQwEW0X3mmUYfsA=";
     });
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "904f8685f75ff5dd3f544f8c6f2cabb8e5952e9a";
+    version = "78c91ccbf99c77bd4d9cdb74279a40776721f66d";
     src = fetchFromGitHub ({
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "904f8685f75ff5dd3f544f8c6f2cabb8e5952e9a";
+      rev = "78c91ccbf99c77bd4d9cdb74279a40776721f66d";
       fetchSubmodules = false;
-      sha256 = "sha256-Pos7LaNQllZrzBUx8a7QXi1sAVcIABQJOLUjIwGIP/U=";
+      sha256 = "sha256-mCZ6a8o6f8wjL+dJ6Yfc0wHAIFhbCmddy5b4EAVmhAs=";
     });
   };
   stumpwm-contrib = {
     pname = "stumpwm-contrib";
-    version = "d3101d72c350046962194b4fd408e7b5d908fb8f";
+    version = "5e717ce23820edcfce3e963998f16da5cf6bb14f";
     src = fetchFromGitHub ({
       owner = "stumpwm";
       repo = "stumpwm-contrib";
-      rev = "d3101d72c350046962194b4fd408e7b5d908fb8f";
+      rev = "5e717ce23820edcfce3e963998f16da5cf6bb14f";
       fetchSubmodules = false;
-      sha256 = "sha256-hj5Bt9JRQsw9snapjA6l3Mx3SxYBE+HGiW6rruKyYek=";
+      sha256 = "sha256-PXkn1Z1bSfgmbVs//e/u6dJ51Y6PLbyS1t68QHMrfzw=";
     });
   };
   tridactyl-emacs = {
