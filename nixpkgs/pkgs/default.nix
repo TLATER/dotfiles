@@ -19,6 +19,7 @@ in {
   read-sops = callPackage ./read-sops.nix { };
   stumpwm = callPackage ./stumpwm.nix { };
   stumpwm-contrib = callPackage ./stumpwm-contrib.nix { };
+  system-update = callPackage ./system-update.nix { };
   tridactyl-emacs = callPackage ./tridactyl-emacs.nix { };
   zsh-background-notify = callPackage ./zsh-background-notify.nix { };
 }

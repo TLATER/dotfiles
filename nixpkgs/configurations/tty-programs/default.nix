@@ -15,6 +15,8 @@
     # I just edit shell scripts often enough it makes sense to have
     # this by default
     shellcheck
+
+    local.system-update
   ];
 
   home.file = {

@@ -89,6 +89,22 @@
             nvfetcher-bin
             home-manager.defaultPackage.${system}
             local.commit-nvfetcher
+
+            # For python scripts
+            (python3.withPackages (ppkgs:
+              with ppkgs; [
+                python-lsp-server
+                python-lsp-black
+                pyls-isort
+                pylsp-mypy
+
+                rope
+                pyflakes
+                mccabe
+                pycodestyle
+                pydocstyle
+                yapf
+              ]))
           ];
         };
       }));
