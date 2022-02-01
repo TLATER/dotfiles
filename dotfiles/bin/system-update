@@ -159,7 +159,7 @@ def log(args: argparse.Namespace) -> int:
     failure = False
     for repo in (args.nixos_hosts, args.dotfiles):
         print(f"\033[4;32m{repo}:\033[00m")  # Green and underlined
-        if call(["git", "log", f"origin/master..{args.branch}"], cwd=repo) != 0:
+        if call(["git", "log", f"..{args.branch}"], cwd=repo) != 0:
             failure = True
         print()
     return 1 if failure else 0
