@@ -12,7 +12,7 @@ import os
 import sys
 from inspect import getdoc
 from pathlib import Path
-from subprocess import call
+from subprocess import call, check_output
 from typing import Optional
 
 
@@ -93,7 +93,7 @@ def pull(args: argparse.Namespace) -> int:
 
         # If there have been no updates upstream, we want to exit
         # before doing anything destructive.
-        if call(["git", "log", "--quiet", ".." + args.branch], cwd=repo) == 0:
+        if check_output(["git", "rev-list", "-1", f"..{args.branch}"], cwd=repo) == b"":
             print(f"No upstream changes to {repo}.")
             continue
 
