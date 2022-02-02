@@ -30,6 +30,29 @@
   :bind
   (:map eglot-mode-map
         ("C-c l r" . eglot-rename))
+  :init
+  (setq eglot-workspace-configuration
+        '((pylsp
+           (plugins
+            (pydocstyle
+             (enabled . t)
+             ;; Does not currently work:
+             ;; https://github.com/python-lsp/python-lsp-server/issues/159
+             (match . ".*"))
+            (pycodestyle
+             ;; Make compatible with black:
+             ;; https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length
+             (maxLineLength . 88)
+             ;; Only E203 is incompatible with black and enabled by
+             ;; default, but defining *any* ignore list will override
+             ;; the default ignore list, so we need to recreate the
+             ;; original.
+             ;;
+             ;; See also the small caveat under the huge table here:
+             ;; https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+             (ignore . ["E203" "E121" "E123" "E126" "E133" "E226"
+                        "E241" "E242" "E704" "W503" "W504" "W505"]))))))
+
   :config
   (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio"))))
 
