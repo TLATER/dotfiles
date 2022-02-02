@@ -89,12 +89,6 @@
   :init
   (setq company-idle-delay 0.1))
 
-;; In-line linting
-(use-package flycheck
-  :functions (global-flycheck-mode)
-  :config
-  (global-flycheck-mode))
-
 (use-package flyspell
   :ensure nil
   :bind (:map flyspell-mode-map
@@ -284,6 +278,14 @@
   :ensure nil
   :init
   (setq eshell-directory-name (expand-file-name "eshell" data-dir)))
+
+(use-package flymake
+  :ensure nil
+  :hook (prog-mode . flymake-mode))
+
+(use-package flymake-shellcheck
+  :commands flymake-shellcheck-load
+  :hook (sh-mode . flymake-shellcheck-load))
 
 (provide 'packages)
 ;;; packages.el ends here

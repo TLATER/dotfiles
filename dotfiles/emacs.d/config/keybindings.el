@@ -35,20 +35,6 @@
   (interactive)
   (other-window -1))
 
-(defun show-buffer-errors ()
-  "Show errors from flymake or flycheck.
-
-   This shows errors depending on which checker is responsible
-   for a given mode."
-  (interactive)
-  (pcase major-mode
-    ('rustic-mode (flymake-show-diagnostics-buffer))
-    (_ (if (bound-and-true-p eglot--managed-mode)
-           (flymake-show-diagnostics-buffer)
-         ;; If eglot-mode isn't enabled, assume flycheck because I'm
-         ;; probably using its backend
-         (flycheck-list-errors)))))
-
 (defun autoformat ()
   "Autoformat the current buffer."
   (interactive)
@@ -65,7 +51,7 @@
          (message "No formatter for this file type")))))
 
 (global-set-key (kbd "C-c l d") 'eldoc-doc-buffer)
-(global-set-key (kbd "C-c l e") 'show-buffer-errors)
+(global-set-key (kbd "C-c l e") 'flymake-show-buffer-diagnostics)
 (global-set-key (kbd "C-c l f") 'xref-find-definitions-other-window)
 
 (global-set-key (kbd "C-c f") 'autoformat)
