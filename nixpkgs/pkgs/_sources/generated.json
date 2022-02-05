@@ -1,0 +1,162 @@
+{
+    "gauth": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "gauth",
+        "version": "v1.1",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "pcarrier",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "gauth",
+            "type": "github",
+            "sha256": "sha256-Ia4x53CSgHYqoHpYWQ50r7QzSGjQ47xKB7ouY8XtMp0=",
+            "rev": "v1.1"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "firefox-ui-fix": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "firefox-ui-fix",
+        "version": "5610ee6b505ee4ac6f1c32051a42393006476630",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "black7375",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "Firefox-UI-Fix",
+            "type": "github",
+            "sha256": "sha256-BgvRGHPiitVhxi3w1EW47/hdPtYaA2ODUNMVUQnRJ0M=",
+            "rev": "5610ee6b505ee4ac6f1c32051a42393006476630"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "bauer": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "bauer",
+        "version": "v1.5.3",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "matthewbauer",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "bauer",
+            "type": "github",
+            "sha256": "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=",
+            "rev": "v1.5.3"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "tridactyl-emacs": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "tridactyl-emacs",
+        "version": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "jumper047",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "tridactyl_emacs_config",
+            "type": "github",
+            "sha256": "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=",
+            "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "zsh-background-notify": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "zsh-background-notify",
+        "version": "d5f0430cb052f82c433c17707816910da87e201e",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "t413",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "zsh-background-notify",
+            "type": "github",
+            "sha256": "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=",
+            "rev": "d5f0430cb052f82c433c17707816910da87e201e"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "gcs": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "gcs",
+        "version": "v4.37.1",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "richardwilkes",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "gcs",
+            "type": "github",
+            "sha256": "sha256-znN2tBUp0yAvM6E4eTcfmV3KmzyYlrRMLZgc/Fg9tFc=",
+            "rev": "v4.37.1"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "stumpwm-contrib": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "stumpwm-contrib",
+        "version": "6bdd5c6185667f1bc82619270d7c6d7cb9ef926a",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "stumpwm",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "stumpwm-contrib",
+            "type": "github",
+            "sha256": "sha256-3O8yt/8O6zExiM/pQ9zhPwcNVjol0MktBLcuS17WT4M=",
+            "rev": "6bdd5c6185667f1bc82619270d7c6d7cb9ef926a"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    },
+    "ohmyzsh": {
+        "pinned": false,
+        "cargoLock": null,
+        "name": "ohmyzsh",
+        "version": "2d3bae965a445ac0f6edeed0b277a15d09e6a261",
+        "passthru": null,
+        "src": {
+            "deepClone": false,
+            "leaveDotGit": false,
+            "owner": "ohmyzsh",
+            "fetchSubmodules": false,
+            "name": null,
+            "repo": "ohmyzsh",
+            "type": "github",
+            "sha256": "sha256-T4ea5yEBAgjsYGwTeIzwWezueWlxqROjom+UhvJBVBA=",
+            "rev": "2d3bae965a445ac0f6edeed0b277a15d09e6a261"
+        },
+        "extract": null,
+        "rustGitDeps": null
+    }
+}
