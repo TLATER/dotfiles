@@ -32,18 +32,18 @@
         # Create a module with correctly set overlays from a given
         # profile.
         #
-        nixosModuleFromProfile = profile:
+        nixosModuleFromProfile = profile: extras:
           { ... }@args:
           (profile args) // {
             nixpkgs.overlays = overlays;
-          };
+          } // extras;
 
         # Create a NixOS module that configures home-manager to use
         # the given profile.
         #
         nixosConfigurationFromProfile = profile: username:
           { ... }@args: {
-            home-manager.users.${username} = nixosModuleFromProfile profile;
+            home-manager.users.${username} = nixosModuleFromProfile profile { };
           };
 
         # Create a homeManagerConfiguration that can be installed
@@ -53,7 +53,15 @@
           { system, username ? "tlater", homeDirectory ? "/home/${username}" }:
           home-manager.lib.homeManagerConfiguration {
             inherit homeDirectory system username;
-            configuration = nixosModuleFromProfile profile;
+            configuration = nixosModuleFromProfile profile {
+              nix.registry.nixpkgs = {
+                from = {
+                  id = "nixpkgs";
+                  type = "indirect";
+                };
+                flake = nixpkgs;
+              };
+            };
           };
       };
 
