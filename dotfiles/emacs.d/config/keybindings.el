@@ -43,6 +43,9 @@
     ('web-mode (prettier-js))
     ('rustic-mode (rustic-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))
+    ((or 'bazel-mode
+         (app (lambda (m) (get m 'derived-mode-parent)) 'bazel-mode))
+     (bazel-buildifier))
     (_ (if (eglot-managed-p)
            (eglot-format)
          (message "No formatter for this file type")))))
