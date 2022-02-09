@@ -103,7 +103,6 @@
                 mccabe
                 pycodestyle
                 pydocstyle
-                yapf
               ]))
           ];
         };
