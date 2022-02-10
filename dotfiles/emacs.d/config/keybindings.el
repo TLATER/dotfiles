@@ -39,9 +39,6 @@
   "Autoformat the current buffer."
   (interactive)
   (pcase major-mode
-    ('python-mode (progn
-                     (py-isort-buffer)
-                     (blacken-buffer)))
     ('nix-mode (nix-format-buffer))
     ('web-mode (prettier-js))
     ('rustic-mode (rustic-format-buffer))

@@ -46,11 +46,5 @@
               ("C-c t a" . pytest-all)
               ("C-c t m" . pytest-module)))
 
-(use-package py-isort
-  :commands (py-isort-buffer))
-
-(use-package blacken
-  :commands (blacken-buffer))
-
 (provide 'python)
 ;;; python.el ends here
