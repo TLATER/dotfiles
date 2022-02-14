@@ -3,9 +3,7 @@
 {
   home.packages = with pkgs; [
     # Spell checks
-    aspell
-    aspellDicts.en
-    aspellDicts.en-computers
+    (aspellWithDicts (dicts: with dicts; [ af de en en-computers nl ]))
 
     # Used for interactive python shells
     python3Packages.ipython
