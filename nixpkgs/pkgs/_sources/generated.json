@@ -3,7 +3,7 @@
         "pinned": false,
         "cargoLock": null,
         "name": "gauth",
-        "version": "v1.1",
+        "version": "v1.2.1",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -13,8 +13,8 @@
             "name": null,
             "repo": "gauth",
             "type": "github",
-            "sha256": "sha256-Ia4x53CSgHYqoHpYWQ50r7QzSGjQ47xKB7ouY8XtMp0=",
-            "rev": "v1.1"
+            "sha256": "sha256-wy9pI28BNfQ5XlB+W+enw7o4GC2uLd/oCyd3RoBnvUY=",
+            "rev": "v1.2.1"
         },
         "extract": null,
         "rustGitDeps": null
@@ -23,7 +23,7 @@
         "pinned": false,
         "cargoLock": null,
         "name": "firefox-ui-fix",
-        "version": "1c35052d370da362791e7792c2d515fd04f20ef3",
+        "version": "a8020e5888d7830419cfba5399d25a052393047d",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -33,8 +33,8 @@
             "name": null,
             "repo": "Firefox-UI-Fix",
             "type": "github",
-            "sha256": "sha256-s7UP+0YLR5gf7dZr9miGmtuTuXw9wi6pUnpfE2/+pEk=",
-            "rev": "1c35052d370da362791e7792c2d515fd04f20ef3"
+            "sha256": "sha256-in3nukjoYc+NMLGImICZt2bUT2gEKmT7iQWfU3VBI8A=",
+            "rev": "a8020e5888d7830419cfba5399d25a052393047d"
         },
         "extract": null,
         "rustGitDeps": null
@@ -143,7 +143,7 @@
         "pinned": false,
         "cargoLock": null,
         "name": "ohmyzsh",
-        "version": "3427da4057dbe302933a7b5b19b4e23bfb9d0969",
+        "version": "c81804825c03e563ab748aae84c3f63458961208",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -153,8 +153,8 @@
             "name": null,
             "repo": "ohmyzsh",
             "type": "github",
-            "sha256": "sha256-h8yZnFBcpSey8/Gxr630Pl08cJEeQeP+3Hpl8QrNFvU=",
-            "rev": "3427da4057dbe302933a7b5b19b4e23bfb9d0969"
+            "sha256": "sha256-Wa7WG+4UyaNV007ZtltzGctwjP+fqscaju0MNYxHD94=",
+            "rev": "c81804825c03e563ab748aae84c3f63458961208"
         },
         "extract": null,
         "rustGitDeps": null
