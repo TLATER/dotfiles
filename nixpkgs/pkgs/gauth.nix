@@ -2,5 +2,6 @@
 
 buildGoModule rec {
   inherit (sources.gauth) pname version src;
-  vendorSha256 = "0mzfydmvv5z2aj4ni5zqdzh7j078gr7bnrz9p88lklk2banrgyyz";
+  vendorSha256 = "sha256-S0a8V7lgU1AvEKaI6sc1ZEC+acj650p7npl0ugByRSQ=";
+  meta.mainProgram = "${pname}";
 }
