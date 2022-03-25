@@ -3,7 +3,7 @@
   dotroot,
   ...
 }: {
-  imports = [./dunst.nix ./firefox.nix ./mime.nix];
+  imports = [./aria.nix ./dunst.nix ./firefox.nix ./mime.nix];
 
   home.packages = with pkgs; [
     alacritty
