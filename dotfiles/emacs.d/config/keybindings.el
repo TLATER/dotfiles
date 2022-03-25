@@ -35,26 +35,9 @@
   (interactive)
   (other-window -1))
 
-(defun autoformat ()
-  "Autoformat the current buffer."
-  (interactive)
-  (pcase major-mode
-    ('nix-mode (nix-format-buffer))
-    ('web-mode (prettier-js))
-    ('rustic-mode (rustic-format-buffer))
-    ('haskell-mode (haskell-mode-stylish-buffer))
-    ((or 'bazel-mode
-         (app (lambda (m) (get m 'derived-mode-parent)) 'bazel-mode))
-     (bazel-buildifier))
-    (_ (if (eglot-managed-p)
-           (eglot-format)
-         (message "No formatter for this file type")))))
-
 (global-set-key (kbd "C-c l d") 'eldoc-doc-buffer)
 (global-set-key (kbd "C-c l e") 'flymake-show-buffer-diagnostics)
 (global-set-key (kbd "C-c l f") 'xref-find-definitions-other-window)
-
-(global-set-key (kbd "C-c f") 'autoformat)
 
 (global-set-key (kbd "M-p") 'backward-paragraph)
 (global-set-key (kbd "M-n") 'forward-paragraph)

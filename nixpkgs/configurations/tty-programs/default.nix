@@ -4,11 +4,11 @@
   imports = [ ./emacs.nix ./zsh.nix ];
 
   home.packages = with pkgs; [
+    alejandra # *.nix files are used to pull in project deps, so we always need this
     any-nix-shell
     bat
     exa
     fd
-    nixfmt # *.nix files are used to pull in project deps, so we always need this
     ripgrep
     screen
 

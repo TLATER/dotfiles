@@ -17,12 +17,19 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
+    alejandra = {
+      url = "github:kamadorueda/alejandra/1.1.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, nvfetcher, ... }:
+  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, nvfetcher, alejandra, ... }:
     let
       overlays = [
-        (final: prev: { local = import ./nixpkgs/pkgs { pkgs = prev; }; })
+        (final: prev: {
+          local = import ./nixpkgs/pkgs { pkgs = prev; };
+          alejandra = alejandra.defaultPackage.${prev.system};
+        })
         nvfetcher.overlay
         nurpkgs.overlay
       ];
