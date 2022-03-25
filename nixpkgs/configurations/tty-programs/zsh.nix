@@ -1,7 +1,9 @@
-{ pkgs, dotroot, ... }:
-
 {
-  home.packages = with pkgs; [ zsh ];
+  pkgs,
+  dotroot,
+  ...
+}: {
+  home.packages = with pkgs; [zsh];
 
   # Basic, local config
   home.file.".zshenv".source = "${dotroot}/dotfiles/zshenv";

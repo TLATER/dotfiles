@@ -1,6 +1,8 @@
-{ pkgs, lib, ... }:
-
-let
+{
+  pkgs,
+  lib,
+  ...
+}: let
   inherit (lib.lists) reverseList;
   inherit (lib.strings) concatStringsSep;
   multimc = pkgs.multimc.override {
@@ -60,4 +62,4 @@ let
       "90793e4d"
     ]);
   };
-in { home.packages = with pkgs; [ multimc jre8 ]; }
+in {home.packages = with pkgs; [multimc jre8];}

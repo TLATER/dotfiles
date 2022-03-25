@@ -1,5 +1,8 @@
-{ sources, stdenv, libnotify }:
-
+{
+  sources,
+  stdenv,
+  libnotify,
+}:
 stdenv.mkDerivation {
   inherit (sources.zsh-background-notify) pname version src;
 

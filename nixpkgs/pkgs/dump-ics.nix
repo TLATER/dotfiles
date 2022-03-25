@@ -1,5 +1,7 @@
-{ stdenv, python3 }:
-
+{
+  stdenv,
+  python3,
+}:
 stdenv.mkDerivation {
   pname = "dump-ics";
   version = "1.0";
@@ -8,5 +10,5 @@ stdenv.mkDerivation {
     mkdir -p $out/bin
     install dump-ics $out/bin
   '';
-  buildInputs = [ (python3.withPackages (pypkgs: with pypkgs; [ ics ])) ];
+  buildInputs = [(python3.withPackages (pypkgs: with pypkgs; [ics]))];
 }

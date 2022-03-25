@@ -1,5 +1,9 @@
-{ lib, stdenv, feh, makeWrapper }:
-
+{
+  lib,
+  stdenv,
+  feh,
+  makeWrapper,
+}:
 stdenv.mkDerivation rec {
   pname = "background";
   version = "1.0";
@@ -8,8 +12,8 @@ stdenv.mkDerivation rec {
     mkdir -p $out/bin
     install background $out/bin
   '';
-  nativeBuildInputs = [ makeWrapper ];
-  wrapperPath = with lib; makeBinPath [ feh ];
+  nativeBuildInputs = [makeWrapper];
+  wrapperPath = with lib; makeBinPath [feh];
   postFixup = ''
     wrapProgram $out/bin/background \
         --prefix PATH : "${wrapperPath}"

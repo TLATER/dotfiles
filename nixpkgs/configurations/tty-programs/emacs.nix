@@ -1,9 +1,11 @@
-{ pkgs, dotroot, ... }:
-
 {
+  pkgs,
+  dotroot,
+  ...
+}: {
   home.packages = with pkgs; [
     # Spell checks
-    (aspellWithDicts (dicts: with dicts; [ af de en en-computers nl ]))
+    (aspellWithDicts (dicts: with dicts; [af de en en-computers nl]))
 
     # Used for interactive python shells
     python3Packages.ipython
@@ -31,7 +33,7 @@
     enable = true;
     client = {
       enable = true;
-      arguments = [ "--no-wait" "--create-frame" ];
+      arguments = ["--no-wait" "--create-frame"];
     };
     socketActivation.enable = true;
   };

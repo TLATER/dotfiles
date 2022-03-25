@@ -1,5 +1,7 @@
-{ sources, stdenv }:
-
+{
+  sources,
+  stdenv,
+}:
 stdenv.mkDerivation {
   inherit (sources.ohmyzsh) version src;
   pname = "oh-my-zsh-emacs";

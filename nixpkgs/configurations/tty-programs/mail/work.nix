@@ -1,7 +1,9 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./. ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./.];
 
   accounts.email.accounts = {
     "codethink.co.uk" = {
@@ -10,8 +12,7 @@
       realName = "Tristan Daniël Maat";
 
       userName = "tristanmaat";
-      passwordCommand =
-        "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass work/codethink.co.uk | ${pkgs.coreutils}/bin/head -n 1 | ${pkgs.coreutils}/bin/tr -d '\\n'";
+      passwordCommand = "PASSWORD_STORE_DIR=${config.xdg.dataHome}/password-store ${pkgs.pass}/bin/pass work/codethink.co.uk | ${pkgs.coreutils}/bin/head -n 1 | ${pkgs.coreutils}/bin/tr -d '\\n'";
       imap = {
         host = "mail.codethink.co.uk";
         port = 993;

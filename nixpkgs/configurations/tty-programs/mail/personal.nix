@@ -1,11 +1,12 @@
-{ config, pkgs, ... }:
-
 {
-  imports = [ ./. ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [./.];
 
   # Work around https://github.com/nix-community/home-manager/issues/249
-  systemd.user.services.mbsync.Service.Environment =
-    "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin";
+  systemd.user.services.mbsync.Service.Environment = "PATH=${pkgs.sops}/bin:${pkgs.gnupg}/bin";
 
   accounts.email.accounts = {
     "tlater.net" = {
@@ -60,7 +61,7 @@
     hydroxide = {
       Unit.Description = "Protonmail service proxy";
       Service.ExecStart = "${pkgs.hydroxide}/bin/hydroxide serve";
-      Install.WantedBy = [ "mbsync.service" ];
+      Install.WantedBy = ["mbsync.service"];
     };
   };
 

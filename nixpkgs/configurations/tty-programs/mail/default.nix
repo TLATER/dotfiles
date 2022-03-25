@@ -1,6 +1,9 @@
-{ config, pkgs, dotroot, ... }:
-
-let
+{
+  config,
+  pkgs,
+  dotroot,
+  ...
+}: let
   markdown-script = pkgs.writeScript "convert-mail.sh" ''
     #!${pkgs.bash}/bin/bash
     ${pkgs.pandoc}/bin/pandoc \

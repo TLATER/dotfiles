@@ -1,5 +1,11 @@
-{ lib, stdenv, xdotool, rofi, pass, use-xdotool ? true }:
-
+{
+  lib,
+  stdenv,
+  xdotool,
+  rofi,
+  pass,
+  use-xdotool ? true,
+}:
 stdenv.mkDerivation {
   pname = "pass-rofi";
   version = "1.0";

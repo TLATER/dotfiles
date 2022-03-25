@@ -1,9 +1,16 @@
-{ sources, lib, stdenv, jdk17, jre, makeWrapper, wrapGAppsHook }:
-
+{
+  sources,
+  lib,
+  stdenv,
+  jdk17,
+  jre,
+  makeWrapper,
+  wrapGAppsHook,
+}:
 stdenv.mkDerivation rec {
   inherit (sources.gcs) pname version src;
 
-  nativeBuildInputs = [ jdk17 jre.gtk3 makeWrapper wrapGAppsHook ];
+  nativeBuildInputs = [jdk17 jre.gtk3 makeWrapper wrapGAppsHook];
 
   dontConfigure = true;
   dontInstall = true;
@@ -14,7 +21,8 @@ stdenv.mkDerivation rec {
     ./bundle.sh --unpackaged
   '';
 
-  preFixup = let v = lib.removePrefix "v" version;
+  preFixup = let
+    v = lib.removePrefix "v" version;
   in ''
     mkdir -p $out/{bin,share}
     cp -r out/dist/modules $out/share/java

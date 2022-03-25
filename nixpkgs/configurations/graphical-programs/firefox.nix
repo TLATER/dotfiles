@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   xdg.dataFile."applications/whatsapp.desktop".text = ''
     [Desktop Entry]
     Version=1.0
@@ -25,7 +27,7 @@
 
   programs.firefox = {
     enable = true;
-    package = pkgs.firefox.override { cfg.enableTridactylNative = true; };
+    package = pkgs.firefox.override {cfg.enableTridactylNative = true;};
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       buster-captcha-solver
       clearurls
@@ -65,10 +67,8 @@
         "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
           false;
         "browser.newtabpage.activity-stream.feeds.snippets" = false;
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" =
-          "";
-        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" =
-          "";
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
+        "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
         "browser.newtabpage.activity-stream.section.highlights.includePocket" =
           false;
         "browser.newtabpage.activity-stream.showSponsored" = false;

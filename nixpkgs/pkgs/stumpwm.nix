@@ -1,6 +1,6 @@
-{ lispPackages }:
-
+{lispPackages}:
 lispPackages.stumpwm.overrideAttrs (oldAttrs: rec {
-  propagatedBuildInputs = [ lispPackages.clx-truetype lispPackages.xembed ]
-    ++ (oldAttrs.propagatedBuildInputs or [ ]);
+  propagatedBuildInputs =
+    [lispPackages.clx-truetype lispPackages.xembed]
+    ++ (oldAttrs.propagatedBuildInputs or []);
 })

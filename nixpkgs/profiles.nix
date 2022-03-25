@@ -9,26 +9,30 @@
       ./configurations/tty-programs/pcs.nix
     ];
   in {
-    personal = { ... }: {
-      imports = pc-modules ++ [
-        ./configurations/graphical-programs/games.nix
-        ./configurations/tty-programs/mail/personal.nix
-      ];
+    personal = {...}: {
+      imports =
+        pc-modules
+        ++ [
+          ./configurations/graphical-programs/games.nix
+          ./configurations/tty-programs/mail/personal.nix
+        ];
     };
 
-    work = { ... }: {
-      imports = pc-modules ++ [
-        ./configurations/tty-programs/mail/work.nix
-        ./configurations/tty-programs/work.nix
-      ];
+    work = {...}: {
+      imports =
+        pc-modules
+        ++ [
+          ./configurations/tty-programs/mail/work.nix
+          ./configurations/tty-programs/work.nix
+        ];
     };
   };
 
   # i.e. VMs, remote servers and such
   minimal = {
-    text = { ... }: { imports = [ ./. ./configurations/tty-programs ]; };
+    text = {...}: {imports = [./. ./configurations/tty-programs];};
 
-    graphical = { ... }: {
+    graphical = {...}: {
       imports = [
         ./.
         ./configurations/tty-programs
@@ -36,5 +40,4 @@
       ];
     };
   };
-
 }

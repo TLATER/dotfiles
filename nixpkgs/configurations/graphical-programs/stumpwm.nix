@@ -1,6 +1,8 @@
-{ pkgs, dotroot, ... }:
-
 {
+  pkgs,
+  dotroot,
+  ...
+}: {
   home.packages = with pkgs; [
     local.stumpwm
     local.stumpwm-contrib
@@ -18,7 +20,7 @@
     noto-fonts-emoji
   ];
 
-  home.file = { ".Xresources".source = "${dotroot}/dotfiles/Xresources"; };
+  home.file = {".Xresources".source = "${dotroot}/dotfiles/Xresources";};
 
   xdg.configFile = {
     "autostart/background.desktop".text = ''
@@ -34,8 +36,7 @@
     "fontconfig/fonts.conf".source = "${dotroot}/dotfiles/fonts.conf";
     "stumpwm/config" = {
       source = "${dotroot}/dotfiles/stumpwm/config";
-      onChange =
-        "${pkgs.local.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
+      onChange = "${pkgs.local.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
     };
   };
 

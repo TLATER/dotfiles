@@ -1,13 +1,15 @@
-{ pkgs, config, ... }:
-
+{
+  pkgs,
+  config,
+  ...
+}:
 # Configuration for "personal computers", i.e., physical computers in
 # front of me.
 #
 # These need things like access to encryption keys, passwords and
 # music players.
-
 {
-  imports = [ ./pipewire-rnnoise.nix ];
+  imports = [./pipewire-rnnoise.nix];
 
   programs = {
     git.signing.signByDefault = true;

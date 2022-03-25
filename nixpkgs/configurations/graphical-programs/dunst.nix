@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   screenHeight = 1080;
   screenWidth = 1920;
 in {

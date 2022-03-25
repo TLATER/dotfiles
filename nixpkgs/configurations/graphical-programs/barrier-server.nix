@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-let
+{pkgs, ...}: let
   screen-config = ''
     section: screens
     	ct-lt-02052:
@@ -9,7 +7,7 @@ let
     		halfDuplexScrollLock = false
     		xtestIsXineramaUnaware = false
     		preserveFocus = false
-    		switchCorners = none +top-left +bottom-left 
+    		switchCorners = none +top-left +bottom-left
     		switchCornerSize = 5
     	yui:
     		halfDuplexCapsLock = false
@@ -17,7 +15,7 @@ let
     		halfDuplexScrollLock = false
     		xtestIsXineramaUnaware = false
     		preserveFocus = false
-    		switchCorners = none 
+    		switchCorners = none
     		switchCornerSize = 0
     end
 
@@ -36,20 +34,19 @@ let
     	screenSaverSync = true
     	win32KeepForeground = false
     	clipboardSharing = true
-    	switchCorners = none 
+    	switchCorners = none
     	switchCornerSize = 0
     	keystroke(Alt+Left) = switchInDirection(left)
     	keystroke(Alt+Right) = switchInDirection(right)
     end
   '';
-
 in {
   systemd.user.services.barrier-server = {
     Unit = {
       Description = "Barrier: Open-source KVM software";
       Documentation = "https://github.com/debauchee/barrier/wiki";
-      BindsTo = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+      BindsTo = ["graphical-session.target"];
+      After = ["graphical-session.target"];
     };
 
     Service = {

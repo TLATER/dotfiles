@@ -1,7 +1,9 @@
-{ pkgs, dotroot, ... }:
-
 {
-  imports = [ ./dunst.nix ./firefox.nix ./mime.nix ];
+  pkgs,
+  dotroot,
+  ...
+}: {
+  imports = [./dunst.nix ./firefox.nix ./mime.nix];
 
   home.packages = with pkgs; [
     alacritty
@@ -25,7 +27,6 @@
   };
 
   xdg.configFile = {
-    "alacritty/alacritty.yml".source =
-      "${dotroot}/dotfiles/alacritty/alacritty.yml";
+    "alacritty/alacritty.yml".source = "${dotroot}/dotfiles/alacritty/alacritty.yml";
   };
 }

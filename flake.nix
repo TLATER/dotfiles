@@ -23,41 +23,50 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, nurpkgs, flake-utils, nvfetcher, alejandra, ... }:
-    let
-      overlays = [
-        (final: prev: {
-          local = import ./nixpkgs/pkgs { pkgs = prev; };
-          alejandra = alejandra.defaultPackage.${prev.system};
-        })
-        nvfetcher.overlay
-        nurpkgs.overlay
-      ];
-
-    in rec {
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nurpkgs,
+    flake-utils,
+    nvfetcher,
+    alejandra,
+    ...
+  }: let
+    overlays = [
+      (final: prev: {
+        local = import ./nixpkgs/pkgs {pkgs = prev;};
+        alejandra = alejandra.defaultPackage.${prev.system};
+      })
+      nvfetcher.overlay
+      nurpkgs.overlay
+    ];
+  in
+    rec {
       lib = rec {
         # Create a module with correctly set overlays from a given
         # profile.
         #
-        nixosModuleFromProfile = profile:
-          { ... }@args:
-          (profile args) // {
+        nixosModuleFromProfile = profile: {...} @ args:
+          (profile args)
+          // {
             nixpkgs.overlays = overlays;
           };
 
         # Create a NixOS module that configures home-manager to use
         # the given profile.
         #
-        nixosConfigurationFromProfile = profile: username:
-          { ... }@args: {
-            home-manager.users.${username} = nixosModuleFromProfile profile;
-          };
+        nixosConfigurationFromProfile = profile: username: {...} @ args: {
+          home-manager.users.${username} = nixosModuleFromProfile profile;
+        };
 
         # Create a homeManagerConfiguration that can be installed
         # using `home-manager --flake`.
         #
-        homeConfigurationFromProfile = profile:
-          { system, username ? "tlater", homeDirectory ? "/home/${username}" }:
+        homeConfigurationFromProfile = profile: {
+          system,
+          username ? "tlater",
+          homeDirectory ? "/home/${username}",
+        }:
           home-manager.lib.homeManagerConfiguration {
             inherit homeDirectory system username;
             configuration = nixosModuleFromProfile profile;
@@ -73,10 +82,9 @@
         # Sadly, this currently doesn't allow defining systems with
         # eachDefaultSystem, so we just assume everything is
         # x86_64-linux until it is not.
-        graphical =
-          lib.homeConfigurationFromProfile profiles.minimal.graphical {
-            system = "x86_64-linux";
-          };
+        graphical = lib.homeConfigurationFromProfile profiles.minimal.graphical {
+          system = "x86_64-linux";
+        };
 
         # The default configuration is just the minimal profile
         tlater = lib.homeConfigurationFromProfile profiles.minimal.text {
@@ -84,34 +92,33 @@
         };
       };
     }
-
     # Set up a "dev shell" that will work on all architectures
-    // (flake-utils.lib.eachDefaultSystem (system:
-      let pkgs = import nixpkgs { inherit overlays system; };
-      in {
-        packages = import ./nixpkgs/pkgs { inherit pkgs; };
-        devShell = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            nixfmt
-            nvfetcher-bin
-            home-manager.defaultPackage.${system}
-            local.commit-nvfetcher
+    // (flake-utils.lib.eachDefaultSystem (system: let
+      pkgs = import nixpkgs {inherit overlays system;};
+    in {
+      packages = import ./nixpkgs/pkgs {inherit pkgs;};
+      devShell = pkgs.mkShell {
+        buildInputs = with pkgs; [
+          nixfmt
+          nvfetcher-bin
+          home-manager.defaultPackage.${system}
+          local.commit-nvfetcher
 
-            # For python scripts
-            (python3.withPackages (ppkgs:
-              with ppkgs; [
-                python-lsp-server
-                python-lsp-black
-                pyls-isort
-                pylsp-mypy
+          # For python scripts
+          (python3.withPackages (ppkgs:
+            with ppkgs; [
+              python-lsp-server
+              python-lsp-black
+              pyls-isort
+              pylsp-mypy
 
-                rope
-                pyflakes
-                mccabe
-                pycodestyle
-                pydocstyle
-              ]))
-          ];
-        };
-      }));
+              rope
+              pyflakes
+              mccabe
+              pycodestyle
+              pydocstyle
+            ]))
+        ];
+      };
+    }));
 }

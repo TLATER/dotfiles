@@ -1,7 +1,11 @@
-{ config, lib, pkgs, dotroot, ... }:
-
 {
-  imports = [ ./emacs.nix ./zsh.nix ];
+  config,
+  lib,
+  pkgs,
+  dotroot,
+  ...
+}: {
+  imports = [./emacs.nix ./zsh.nix];
 
   home.packages = with pkgs; [
     alejandra # *.nix files are used to pull in project deps, so we always need this
@@ -32,7 +36,7 @@
       userName = "Tristan Daniël Maat";
       userEmail = "tm@tlater.net";
       signing.key = "0x49670FD774E43268";
-      ignores = [ ".envrc" ".direnv/" ];
+      ignores = [".envrc" ".direnv/"];
       extraConfig = {
         branch.autoSetupRebase = "always";
         checkout.defaultRemote = "origin";
@@ -59,9 +63,9 @@
         fixed-list-mode = true;
         keyid-format = "0xlong";
         personal-digest-preferences =
-          builtins.concatStringsSep " " [ "SHA512" "SHA384" "SHA256" ];
+          builtins.concatStringsSep " " ["SHA512" "SHA384" "SHA256"];
         personal-cipher-preferences =
-          builtins.concatStringsSep " " [ "AES256" "AES192" "AES" ];
+          builtins.concatStringsSep " " ["AES256" "AES192" "AES"];
         default-preference-list = builtins.concatStringsSep " " [
           "SHA512"
           "SHA384"
@@ -86,7 +90,7 @@
     ssh = {
       enable = true;
       matchBlocks = {
-        "tlater.net" = lib.hm.dag.entryAfter [ "*" ] {
+        "tlater.net" = lib.hm.dag.entryAfter ["*"] {
           hostname = "tlater.net";
           user = "tlater";
           port = 2222;

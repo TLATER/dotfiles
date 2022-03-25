@@ -1,12 +1,10 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   systemd.user.services."barrier-client@" = {
     Unit = {
       Description = "Barrier: Open-source KVM software";
       Documentation = "https://github.com/debauchee/barrier/wiki";
-      BindsTo = [ "graphical-session.target" ];
-      After = [ "graphical-session.target" ];
+      BindsTo = ["graphical-session.target"];
+      After = ["graphical-session.target"];
     };
 
     Service = {
