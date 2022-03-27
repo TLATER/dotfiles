@@ -63,11 +63,13 @@
              string-end)
          . systemd-mode))
 
-(use-package rustic
-  :mode ((rx ".rs" string-end) . rustic-mode)
-  :config
-  (require 'smartparens-rust)
-  (setq rustic-lsp-client 'eglot))
+(use-package rust-mode
+  :mode ((rx ".rs" string-end) . rust-mode))
+
+(use-package cargo-mode
+  :mode ((rx (or (and ".rs" string-end)
+                 (and string-start "Cargo.toml" string-end)))
+         . rust-mode))
 
 (use-package cython-mode
   :mode (rx ".pyx" string-end))
