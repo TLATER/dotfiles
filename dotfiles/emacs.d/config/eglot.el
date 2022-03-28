@@ -54,6 +54,16 @@
                         "E241" "E242" "E704" "W503" "W504" "W505"]))))))
 
   :config
+  ;; Rust-analyzer is "quirky", and doesn't support updating its
+  ;; configuration settings once it's running. This means that eglot
+  ;; has to configure it *before* it runs, which it doesn't do by
+  ;; default.
+  (cl-defmethod eglot-initialization-options ((server eglot-lsp-server))
+    (pcase (eglot--major-mode server)
+      ('rust-mode '(:checkOnSave
+                    (:command "clippy")))
+      (_ (eglot--{}))))
+
   (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio"))))
 
 ;;; eglot.el ends here
