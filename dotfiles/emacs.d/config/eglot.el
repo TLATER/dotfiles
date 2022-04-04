@@ -29,7 +29,8 @@
   :hook ((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . eglot-ensure)
   :bind
   (:map eglot-mode-map
-        ("C-c l r" . eglot-rename))
+        ("C-c l r" . eglot-rename)
+        ("C-c l a" . eglot-code-actions))
   :init
   (setq eglot-workspace-configuration
         '((pylsp
