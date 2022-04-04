@@ -54,6 +54,11 @@
         # Re-bind ctrl to super (would interfere with tridactyl otherwise)
         "ui.key.accelKey" = 91;
 
+        # Keep the reader button enabled at all times; really don't
+        # care if it doesn't work 20% of the time, most websites are
+        # crap and unreadable without this
+        "reader.parse-on-load.force-enabled" = true;
+
         # Actual settings
         "app.shield.optoutstudies.enabled" = false;
         "app.update.auto" = false;
