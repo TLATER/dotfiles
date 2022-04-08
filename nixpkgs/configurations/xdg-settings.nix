@@ -1,8 +1,10 @@
 {
+  pkgs,
   config,
   lib,
   ...
 }: let
+  inherit (pkgs) writeText;
   xdg = config.xdg;
 in {
   home.activation = {
@@ -32,14 +34,14 @@ in {
     CARGO_HOME = "${xdg.cacheHome}/cargo";
     RUSTUP_HOME = "${xdg.dataHome}/rustup";
     XCOMPOSECACHE = "${xdg.cacheHome}/X11/xcompose";
-    XCOMPOSEFILE = "${xdg.configHome}X11/xcompose";
-    NPM_CONFIG_USERCONFIG = "${xdg.configHome}/npm/npmrc";
+    XCOMPOSEFILE = "${xdg.configHome}/X11/xcompose";
     MAILCAPS = "${xdg.configHome}/mailcap";
     PYTHONSTARTUP = "${xdg.configHome}/python/startup.py";
     IPYTHONDIR = "${xdg.dataHome}/ipython";
     JUPYTER_CONFIG_DIR = "${xdg.dataHome}/ipython";
     HISTFILE = "${xdg.dataHome}/histfile";
     RLWRAP_HOME = "${xdg.dataHome}/rlwrap"; # stumpish and perhaps others
+    CUDA_CACHE_PATH = "${xdg.dataHome}/cuda";
 
     # See, this is exactly why things should follow the spec. I have
     # no intention of using gradle ever, but occasionally I need to
@@ -51,15 +53,14 @@ in {
     #
     # Grmbl.
     GRADLE_USER_HOME = "${xdg.cacheHome}/gradle";
-  };
 
-  # More hacks to avoid stupid package managers puking all over my
-  # $HOME, for this one I even need a permanent file in ~/.config!
-  xdg.configFile."npm/npmrc".text = ''
-    prefix=${xdg.cacheHome}/npm
-    cache=${xdg.cacheHome}/npm
-    tmp=$XDG_RUNTIME_DIR/npm
-  '';
+    NPM_CONFIG_USERCONFIG = writeText "npmrc" ''
+      prefix=${xdg.cacheHome}/npm
+      cache=${xdg.cacheHome}/npm
+      tmp=$XDG_RUNTIME_DIR/npm
+      init-module=${xdg.configHome}/npm/config/npm-init.js
+    '';
+  };
 
   # Aaand python is configured using a python script. Wonderful.
   xdg.configFile."python/startup.py" = {
