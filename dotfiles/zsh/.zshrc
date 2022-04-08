@@ -1,7 +1,5 @@
 # Load environment configuration first
 [ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
-[ -f "$HOME/.profile" ] && source "$HOME/.profile"
-[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
 [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [ -f "$HOME/.nix-profile/etc/profile.d/nix-daemon.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix-daemon.sh"
 export "NIX_PATH=${NIX_PATH:-$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH}"
