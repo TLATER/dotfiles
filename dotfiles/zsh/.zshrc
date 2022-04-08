@@ -1,5 +1,7 @@
+#shellcheck shell=bash disable=SC1091 disable=SC1090
+
 # Load environment configuration first
-[ -f "$HOME/.config/dir_colors" ] && eval `dircolors "$HOME/.config/dir_colors"`
+[ -f "$HOME/.config/dir_colors" ] && eval "$(dircolors "$HOME/.config/dir_colors")"
 [ -f "$HOME/.nix-profile/etc/profile.d/nix.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix.sh"
 [ -f "$HOME/.nix-profile/etc/profile.d/nix-daemon.sh" ] && source "$HOME/.nix-profile/etc/profile.d/nix-daemon.sh"
 export "NIX_PATH=${NIX_PATH:-$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH}"
@@ -37,13 +39,13 @@ if [[ -o interactive ]]; then
 
     # Start screen if...
     if \
-        # The command exists \
+        # The command exists
         (( $+commands[screen] )) && \
-            # The configuration file exists \
+            # The configuration file exists
             [ -f "$XDG_CONFIG_HOME/screen/config" ] && \
-            # Screen is not already running \
+            # Screen is not already running
             [ -z "$STY" ] && \
-            # And our terminal is acceptable \
+            # And our terminal is acceptable
             [ "$TERM" != "dumb" ] && \
             [ "$TERM" != "linux" ]; then
         exec screen -AxRR -c "$XDG_CONFIG_HOME/screen/config"
