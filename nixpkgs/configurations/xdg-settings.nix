@@ -36,7 +36,6 @@ in {
     XCOMPOSECACHE = "${xdg.cacheHome}/X11/xcompose";
     XCOMPOSEFILE = "${xdg.configHome}/X11/xcompose";
     MAILCAPS = "${xdg.configHome}/mailcap";
-    PYTHONSTARTUP = "${xdg.configHome}/python/startup.py";
     IPYTHONDIR = "${xdg.dataHome}/ipython";
     JUPYTER_CONFIG_DIR = "${xdg.dataHome}/ipython";
     HISTFILE = "${xdg.dataHome}/histfile";
@@ -60,13 +59,7 @@ in {
       tmp=$XDG_RUNTIME_DIR/npm
       init-module=${xdg.configHome}/npm/config/npm-init.js
     '';
-  };
 
-  # Aaand python is configured using a python script. Wonderful.
-  xdg.configFile."python/startup.py" = {
-    text = ''
-      import readline
-      readline.set_auto_history(False)
-    '';
+    PYTHONSTARTUP = ./history.py;
   };
 }
