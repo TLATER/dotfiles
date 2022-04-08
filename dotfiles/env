@@ -1,5 +1,19 @@
+#shellcheck shell=sh disable=SC1091 disable=SC1090
+
 # Set up home-manager
-[ -f "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ] && source "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+if [ -f "/etc/profiles/per-user/${USER}/etc/profile.d/hm-session-vars.sh" ]; then
+    # On NixOS with flakes, it seems the user profile is in
+    # /etc/profiles/per-user/
+    . "/etc/profiles/per-user/${USER}/etc/profile.d/hm-session-vars.sh"
+elif [ -f "${NIX_USER_PROFILE_DIR}/profile/etc/profile.d/hm-session-vars.sh" ]; then
+    # On non-NixOS, this might be the correct path? The path is almost
+    # entirely empty on NixOS.
+    . "${NIX_USER_PROFILE_DIR}/profile/etc/profile.d/hm-session-vars.sh"
+elif [ -f "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
+    # This is a fallback for non-NixOS, where the previous variable
+    # may not always be set.
+    . "${HOME}/.nix-profile/etc/profile.d/hm-session-vars.sh"
+fi
 
 # Set emacsclient as a "browser" - xdg-open naively checks this
 # variable to open unknown file types, or otherwise tries to open
