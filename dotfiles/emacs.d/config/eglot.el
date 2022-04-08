@@ -63,7 +63,7 @@
     (pcase (eglot--major-mode server)
       ('rust-mode '(:checkOnSave
                     (:command "clippy")))
-      (_ (eglot--{}))))
+      (_ eglot--{})))
 
   (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio"))))
 
