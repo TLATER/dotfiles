@@ -95,6 +95,15 @@
           user = "tlater";
           port = 2222;
         };
+
+        "console.gl-inet.com" = lib.hm.dag.entryAfter ["*"] {
+          hostname = "console.gl-inet.com";
+          user = "root";
+          extraOptions = {
+            PubkeyAcceptedAlgorithms = "+ssh-rsa";
+            HostkeyAlgorithms = "+ssh-rsa";
+          };
+        };
       };
     };
   };
