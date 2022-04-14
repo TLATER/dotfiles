@@ -24,9 +24,14 @@
 
 ;;; Code:
 
+(defun set-eldoc-compose ()
+  "Set eldoc's documentation strategy to compose to work around flymake interference."
+  (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose))
+
 (use-package eglot
   :functions (eglot)
-  :hook ((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . eglot-ensure)
+  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . eglot-ensure)
+         (eglot-managed-mode . set-eldoc-compose))
   :bind
   (:map eglot-mode-map
         ("C-c l r" . eglot-rename)

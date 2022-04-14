@@ -28,7 +28,8 @@
   :ensure nil
   :init
   (setq eldoc-echo-area-prefer-doc-buffer t)
-  (setq eldoc-echo-area-use-multiline-p 3)
+  (setq eldoc-echo-area-use-multiline-p .15)
+  (setq eldoc-echo-area-display-truncation-message 'nil)
   :bind (("C-c l d" . 'eldoc-doc-buffer))
   :config
   (global-eldoc-mode))
