@@ -108,6 +108,32 @@
   :custom
   (dired-dwim-target t))
 
+(use-package dired-hacks-utils
+  :after dired
+  :hook (dired-mode . dired-utils-format-information-line-mode))
+(use-package dired-filter
+  :after dired
+  :hook (dired-mode . dired-filter-mode)
+  :custom
+  (dired-filter-stack '((dot-files) (git-ignored)))
+  :config
+  ;; Work around https://github.com/jwiegley/use-package/issues/586
+  (define-key dired-mode-map (kbd "C-c f") dired-filter-map))
+(use-package dired-subtree
+  :after dired
+  :bind (:map dired-mode-map
+              ("RET" . dired-subtree-insert)
+              ("i" . dired-subtree-insert)
+              ("$" . dired-subtree-remove)
+              ("C-<up>" . dired-subtree-previous-sibling)
+              ("C-<down>" . dired-subtree-next-sibling)))
+(use-package dired-narrow
+  :after dired
+  :bind (:map dired-mode-map
+              ("C-s" . dired-narrow)))
+(use-package dired-collapse
+  :after dired
+  :hook (dired-mode . dired-collapse-mode))
 
 ;; Backdrop behind current line
 (use-package beacon
