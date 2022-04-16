@@ -105,8 +105,15 @@
 (use-package dired
   :commands dired
   :ensure nil
+  :bind (("C-x d" . dired)
+         :map dired-mode-map
+              ("e" . dired-find-alternate-file)
+              ("f" . dired-find-alternate-file)
+              ("^" . (lambda () (interactive) (find-alternate-file ".."))))
   :custom
-  (dired-dwim-target t))
+  (dired-dwim-target t)
+  :config
+  (put 'dired-find-alternate-file 'disabled nil))
 
 (use-package dired-hacks-utils
   :after dired
