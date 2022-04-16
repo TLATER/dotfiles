@@ -1,7 +1,7 @@
 {
     "gauth": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "gauth",
         "version": "v1.2.1",
         "passthru": null,
@@ -16,14 +16,13 @@
             "sha256": "sha256-wy9pI28BNfQ5XlB+W+enw7o4GC2uLd/oCyd3RoBnvUY=",
             "rev": "v1.2.1"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "firefox-ui-fix": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "firefox-ui-fix",
-        "version": "36e9c94844fee2417662251cbd50c2b874d5b576",
+        "version": "0f56d5062cb40f681f483b8fef6ba62d2ee7e352",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -33,15 +32,14 @@
             "name": null,
             "repo": "Firefox-UI-Fix",
             "type": "github",
-            "sha256": "sha256-dCjQFQGrgr2yifkAL5/ZvaltExDSfXL4S5Iekccjl7w=",
-            "rev": "36e9c94844fee2417662251cbd50c2b874d5b576"
+            "sha256": "sha256-67Jw0qXL6BPBskCSPyZ41UF7QHAQAqApXfNgOHNogyk=",
+            "rev": "0f56d5062cb40f681f483b8fef6ba62d2ee7e352"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "bauer": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "bauer",
         "version": "v1.5.3",
         "passthru": null,
@@ -56,12 +54,11 @@
             "sha256": "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=",
             "rev": "v1.5.3"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "tridactyl-emacs": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "tridactyl-emacs",
         "version": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
         "passthru": null,
@@ -76,12 +73,11 @@
             "sha256": "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=",
             "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "zsh-background-notify": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "zsh-background-notify",
         "version": "d5f0430cb052f82c433c17707816910da87e201e",
         "passthru": null,
@@ -96,12 +92,11 @@
             "sha256": "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=",
             "rev": "d5f0430cb052f82c433c17707816910da87e201e"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "gcs": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "gcs",
         "version": "v4.37.1",
         "passthru": null,
@@ -116,12 +111,11 @@
             "sha256": "sha256-znN2tBUp0yAvM6E4eTcfmV3KmzyYlrRMLZgc/Fg9tFc=",
             "rev": "v4.37.1"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "stumpwm-contrib": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "stumpwm-contrib",
         "version": "619c348e70f6dd023a115b4b4020e9d834e11895",
         "passthru": null,
@@ -136,14 +130,13 @@
             "sha256": "sha256-4b1TJk9NjAmzp43lXI3/SL+wiuU1ry5H+tL4z7JHgfE=",
             "rev": "619c348e70f6dd023a115b4b4020e9d834e11895"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     },
     "ohmyzsh": {
+        "cargoLocks": null,
         "pinned": false,
-        "cargoLock": null,
         "name": "ohmyzsh",
-        "version": "b3999a4b156185b617a5608317497399f88dc8fe",
+        "version": "eb00b95d26e8f264af80f508d50ac32e50619027",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -153,10 +146,9 @@
             "name": null,
             "repo": "ohmyzsh",
             "type": "github",
-            "sha256": "sha256-yXM+fLdNWOrUU03K7527NgtaAwSql5r0wPaWgUZqGhY=",
-            "rev": "b3999a4b156185b617a5608317497399f88dc8fe"
+            "sha256": "sha256-kEyvSBVgHuTaBQu2X9OJ+eu2serHq9IyfJHxTmpv2BU=",
+            "rev": "eb00b95d26e8f264af80f508d50ac32e50619027"
         },
-        "extract": null,
-        "rustGitDeps": null
+        "extract": null
     }
 }
