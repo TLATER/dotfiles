@@ -130,6 +130,7 @@
 (use-package helm
   :demand
   :commands helm-mode
+  :defines helm-boring-file-regexp-list
   :init
   (add-hook 'helm-mode-hook
             (lambda ()
@@ -149,13 +150,18 @@
   ([remap find-file] . helm-find-files)
   ([remap insert-char] . helm-ucs)
   ([remap apropos] . helm-apropos)
+  ([remap switch-to-buffer] . helm-buffers-list)
   ("C-x c" . nil) ; Unbind command map; I prefer doing my own thing
   ("C-c h i" . helm-imenu)
   ("C-c h s" . helm-occur)
   ("C-c h u" . helm-ucs) ; Insert UTF-8 character
   ("C-c h f" . helm-for-files)
   ("C-c h b" . helm-bookmarks)
-  ("C-c h m" . helm-mark-ring))
+  ("C-c h m" . helm-mark-ring)
+  :config
+  (setq helm-boring-buffer-regexp-list
+        (append helm-boring-buffer-regexp-list
+                '("magit-process:.*"))))
 
 (use-package helm-tramp
   :after helm
