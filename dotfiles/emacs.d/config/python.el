@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(eval-and-compile
+  (require 'use-package))
+
 (use-package python
   :after (dash-docs)
   :mode ("\\.py\\'" . python-mode)

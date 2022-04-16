@@ -24,11 +24,17 @@
 
 ;;; Code:
 
+(defvar data-dir)
+(eval-and-compile
+  (require 'use-package))
+
 (use-package erc
+  :defines erc-log-channels-directory
   :commands (erc-tls erc-buffer-list)
+  :custom
+  (erc-keywords '("NB ALL:"))
   :init
   (setq erc-log-channels-directory (expand-file-name "erc/logs" data-dir))
-  (setq erc-keywords '("NB ALL:"))
   (setq erc-modules '(autojoin button completion fill
                                irccontrols list log match menu
                                move-to-prompt netsplit networks
@@ -51,7 +57,6 @@
              :port 6502
              :nick "tristanmaat/exirc"
              :full-name user-full-name)))
-
 
 (provide 'erc)
 ;;; erc.el ends here

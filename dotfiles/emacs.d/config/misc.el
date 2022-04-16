@@ -24,6 +24,9 @@
 
 ;;; Code:
 
+(eval-and-compile
+  (require 'use-package))
+
 ;; The *best* indentation format
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -36,8 +39,9 @@
 
 (use-package auth-source
   :after auth-source-pass
+  :functions auth-sources
   :ensure nil
-  :init
+  :custom
   ;; Sadly, despite the general use of password-store, znc wants me to
   ;; prepend some things to my IRC password, so I can't pull it from
   ;; there without allowing partial plaintext attacks.
@@ -47,132 +51,129 @@
   ;;
   ;; Hence, add an authinfo file for those passwords, and give it
   ;; priority so we can override the general matches.
-  (setq auth-sources '("~/.local/share/authinfo.gpg" password-store)))
+  (auth-sources '("~/.local/share/authinfo.gpg" password-store)))
 
 (use-package auth-source-pass
   :ensure nil
-  :init
-  (setq auth-source-pass-filename "~/.local/share/password-store")
+  :custom
+  (auth-source-pass-filename "~/.local/share/password-store")
   :config
   (auth-source-pass-enable))
 
 (use-package recentf
   :ensure nil
-  :init
-  (setq recentf-save-file (expand-file-name "recentf" data-dir))
+  :demand
+  :commands recentf-save-list
+  :custom
+  (recentf-save-file (expand-file-name "recentf" data-dir))
   :config
-  (add-hook 'delete-frame-functions (lambda (terminal) (recentf-save-list))))
+  (add-hook 'delete-frame-functions (lambda (_) (recentf-save-list))))
 
 (use-package tramp
   :ensure nil
-  :init
-  (setq tramp-persistency-file-name (expand-file-name "tramp" data-dir)))
+  :custom
+  (tramp-persistency-file-name (expand-file-name "tramp" data-dir))
+  (tramp-default-method "scp"))
 
 (use-package url
   :ensure nil
-  :init
-  (setq url-configuration-directory (expand-file-name "url" data-dir)))
+  :custom
+  (url-configuration-directory (expand-file-name "url" data-dir)))
 
 ;; Ask if we want to add newlines to files
 (use-package files
   :ensure nil
-  :init
-  (setq require-final-newline "visit-save"))
+  :custom
+  (require-final-newline "visit-save"))
 
 ;; Set user name/email
 (setq user-full-name "Tristan Daniël Maat")
 (setq user-mail-address "tm@tlater.net")
 
+(use-package message
+  :ensure nil
+  :custom
+  (message-send-mail-function 'message-send-mail-with-sendmail))
+
 (use-package sendmail
   :ensure nil
-  :init
-  (require 'message)
-  (setq message-send-mail-function 'message-send-mail-with-sendmail
-        send-mail-function 'sendmail-send-it
-        sendmail-program "msmtp"))
+  :custom
+  (send-mail-function 'sendmail-send-it)
+  (sendmail-program "msmtp"))
 
 ;; Make dired hide hidden files
 (use-package dired
   :commands dired
   :ensure nil
-  :init
-  (setq dired-dwim-target t))
+  :custom
+  (dired-dwim-target t))
 
-(use-package dired-x
-  :ensure nil
-  :after (dired)
-  :init
-  (setq-default dired-omit-files-p t)
-  :config
-  (setq dired-omit-files (concat dired-omit-files "\\|^\\..+$")))
 
 ;; Backdrop behind current line
 (use-package beacon
-  :init
-  (setq beacon-color "#245361"))
+  :custom
+  (beacon-color "#245361"))
 
 ;; Spell checking
 (use-package ispell
-  :init
-  (setq ispell-dictionary "en_US"))
-
-;; Speed up tramp a bit
-;; Don't use-package tramp here because I'm not sure what function
-;; invokes tramp
-(setq tramp-default-method "scp")
+  :custom
+  (ispell-dictionary "en_US"))
 
 ;; Set default browser
 (use-package browse-url
   :commands browse-url
-  :init
-  (setq browse-url-browser-function 'browse-url-default-browser))
+  :custom
+  (browse-url-browser-function 'browse-url-default-browser))
 
 ;; Configure org-mode
 (use-package org
-  :functions (org-babel-do-load-languages)
+  :functions org-babel-do-load-languages
   :mode ("\\.org\\'" . org-mode)
-  :init
-  (defvar org-latex-listings t "Whether to use lstlistings for org latex exports")
+  :custom
+  (org-latex-listings t "Whether to use lstlistings for org latex exports")
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((gnuplot . t))))
 
 (use-package org-ref
-  :after (org))
+  :after org)
 
 ;; Show "wrong" whitespace
 (use-package whitespace
-  :functions (global-whitespace-mode)
-  :init
-  (setq whitespace-style '(face trailing indentation space-after-tab
-                                space-before-tab tab-mark))
-  (setq whitespace-global-modes '(not erc-mode))
+  :demand
+  :commands global-whitespace-mode
+  :custom
+  (whitespace-style '(face trailing indentation space-after-tab
+                           space-before-tab tab-mark))
+  (whitespace-global-modes '(not erc-mode))
   :config
   (global-whitespace-mode))
 
 ;; Remove trailing whitespace upon save
 (use-package whitespace-cleanup-mode
-  :functions (global-whitespace-cleanup-mode)
+  :demand
+  :commands global-whitespace-cleanup-mode
   :config
-  (global-whitespace-cleanup-mode))
+  (global-whitespace-cleanup-mode 1))
 
 (use-package alert
-  :init
-  (setq alert-default-style 'libnotify))
+  :commands alert
+  :custom
+  (alert-default-style 'libnotify))
 
 (use-package compile
   :after alert
   :ensure nil
-  :init
-  (setq compilation-finish-functions
-        (append compilation-finish-functions
-                (lambda (_ status)
-                  (alert status
-                         :title "Compilation finished"
-                         :id 'emacs-compilation
-                         :category 'compilation.complete))))
-  (setq compilation-scroll-output t))
+  :custom
+  (compilation-finish-functions
+   (append compilation-finish-functions
+           (lambda (_ status)
+             (alert status
+                    :title "Compilation finished"
+                    :id 'emacs-compilation
+                    :category 'compilation.complete))))
+  (compilation-scroll-output t))
 
 (when (member "Noto Emoji" (font-family-list))
   (set-fontset-font t 'unicode "Noto Emoji" nil 'prepend))

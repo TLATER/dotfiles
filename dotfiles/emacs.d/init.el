@@ -84,6 +84,11 @@ There are two things you can do about this warning:
   (setq use-package-ensure-function 'ignore)
   (setq package-enable-at-startup nil))
 
+;; Finally, make sure that flymake has all the relevant stuff in its
+;; load-path
+(setq elisp-flymake-byte-compile-load-path
+      (append load-path (list (file-name-directory load-file-name) config-dir)))
+
 ;; Disable the useless UI components
 (if (fboundp 'menu-bar-mode)
     (menu-bar-mode -1))
@@ -121,11 +126,12 @@ There are two things you can do about this warning:
 ;; Set the theme
 (use-package gotham-theme
   :ensure t
-  :load-path "themes"
-  :init
-  (setq gotham-tty-256-colors t)
-  (setq gotham-tty-16-colors t)
-
+  :defines gotham-tty-16-colors
+  :functions gotham-pick-color
+  :custom
+  (gotham-tty-256-colors t)
+  (gotham-tty-16-colors t)
+  :config
   (defun gotham-pick-color (color-256 color-16 color-8)
     (if gotham-tty-256-colors color-256 (if gotham-tty-16-colors color-16 color-8)))
 
@@ -147,20 +153,22 @@ There are two things you can do about this warning:
     (blue    "#195466" ,(gotham-pick-color "color-24"  "blue"          "blue"))
     (cyan    "#599cab" ,(gotham-pick-color "color-44"  "cyan"          "cyan"))
     (green   "#2aa889" ,(gotham-pick-color "color-78"  "green"         "green"))))
-  :config
   (load-theme 'gotham t))
 
 ;; Ensure that our exec path is set up correctly
 (use-package exec-path-from-shell
-  :functions (exec-path-from-shell-initialize)
+  :demand
+  :commands exec-path-from-shell-initialize
   :if (not (memq system-type '(cygwin windows-nt)))
-  :init
-  (setq exec-path-from-shell-arguments '("-l"))
+  :custom
+  (exec-path-from-shell-arguments '("-l"))
   :config
   (exec-path-from-shell-initialize))
 
 ;; Setup garbage collection
 (use-package gcmh
+  :demand
+  :commands gcmh-mode
   :config
   (gcmh-mode 1))
 

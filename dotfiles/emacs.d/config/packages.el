@@ -23,41 +23,40 @@
 ;;
 
 ;;; Code:
-
-(use-package eldoc
-  :ensure nil
-  :init
-  (setq eldoc-echo-area-prefer-doc-buffer t)
-  (setq eldoc-echo-area-use-multiline-p .15)
-  (setq eldoc-echo-area-display-truncation-message 'nil)
-  :bind (("C-c l d" . 'eldoc-doc-buffer))
-  :config
-  (global-eldoc-mode))
+(defvar using-external-packages)
+(defvar share-dir)
+(eval-and-compile
+  (require 'use-package))
 
 (use-package dashboard
-  :init
-  (setq initial-buffer-choice (lambda ()
-                                (or
-                                 (get-buffer "*dashboard*")
-                                 (get-buffer "*scratch*"))))
-  (setq dashboard-items '((recents . 5)
-                          (bookmarks . 5)
-                          (projects . 5)
-                          (registers . 5)))
+  :demand
+  :commands dashboard-setup-startup-hook
+  :custom
+  (initial-buffer-choice (lambda ()
+                           (or
+                            (get-buffer "*dashboard*")
+                            (get-buffer "*scratch*"))))
+  (dashboard-items '((recents . 5)
+                     (bookmarks . 5)
+                     (projects . 5)
+                     (registers . 5)))
   :config
   (dashboard-setup-startup-hook))
 
 ;; Use direnv variables for projects
 (use-package direnv
+  :demand
+  :commands direnv-mode
   :config
   (direnv-mode))
 
 ;; Automatically update packages every once in a while
 (use-package auto-package-update
-  :functions (auto-package-update-maybe)
-  :init
-  (setq auto-package-update-hide-results t
-        auto-package-update-last-update-day-path (expand-file-name ".update-day" data-dir))
+  :demand
+  :commands auto-package-update-maybe
+  :custom
+  (auto-package-update-hide-results t)
+  (auto-package-update-last-update-day-path (expand-file-name ".update-day" data-dir))
   :config
   (unless using-external-packages
     (auto-package-update-maybe)
@@ -87,16 +86,16 @@
 ;; Auto-completion
 (use-package company
   :hook (after-init . global-company-mode)
-  :init
-  (setq company-idle-delay 0.1))
+  :custom
+  (company-idle-delay 0.1))
 
 (use-package flyspell
   :ensure nil
   :bind (:map flyspell-mode-map
               ("C-;" . nil))
-  :init
-  (setq ispell-program-name "aspell"
-        ispell-extra-args '("--sug-mode=ultra"))
+  :custom
+  (ispell-program-name "aspell")
+  (ispell-extra-args '("--sug-mode=ultra"))
   :hook ((prog-mode . flyspell-prog-mode)
          (text-mode . flyspell-mode)))
 
@@ -112,16 +111,16 @@
 (use-package magit
   :bind ("C-c g s" . magit-status))
 (use-package transient
-  :init
-  (setq transient-levels-file (expand-file-name "transient/levels.el" data-dir)
-        transient-values-file (expand-file-name "transient/values.el" data-dir)
-        transient-history-file (expand-file-name "transient/history.el" data-dir)))
+  :custom
+  (transient-levels-file (expand-file-name "transient/levels.el" data-dir))
+  (transient-values-file (expand-file-name "transient/values.el" data-dir))
+  (transient-history-file (expand-file-name "transient/history.el" data-dir)))
 (use-package magit-lfs
   :after magit)
 (use-package forge
   :after magit
-  :init
-  (setq forge-database-file (expand-file-name "forge-database.sqlite" data-dir))
+  :custom
+  (forge-database-file (expand-file-name "forge-database.sqlite" data-dir))
   :config
   (add-to-list
    'forge-alist '("gitlab.codethink.co.uk" "gitlab.codethink.co.uk/api/v4"
@@ -129,6 +128,8 @@
 
 ;; Better prompts
 (use-package helm
+  :demand
+  :commands helm-mode
   :init
   (add-hook 'helm-mode-hook
             (lambda ()
@@ -163,9 +164,9 @@
 
 ;; Doc browser
 (use-package dash-docs
-  :init
-  (setq dash-docs-docsets-path (expand-file-name "docsets" data-dir))
-  (setq dash-docs-browser-func 'eww-browse-url))
+  :custom
+  (dash-docs-docsets-path (expand-file-name "docsets" data-dir))
+  (dash-docs-browser-func 'eww-browse-url))
 (use-package helm-dash
   :after (helm dash-docs)
   :bind
@@ -182,9 +183,9 @@
   :functions (projectile-discover-projects-in-search-path)
   :bind-keymap
   ("C-c p" . projectile-command-map)
-  :init
-  (setq projectile-use-git-grep t)
-  (setq projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" data-dir))
+  :custom
+  (projectile-use-git-grep t)
+  (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" data-dir))
   :config
   (projectile-discover-projects-in-search-path))
 
@@ -212,16 +213,18 @@
 
 ;; Better mode-line
 (use-package smart-mode-line
-  :functions (sml/setup)
+  :functions (sml/setup sml/faces-from-theme sml/theme-p)
+  :custom
+  (sml/no-confirm-load-theme t)
   :config
   (sml/setup))
 
 ;; Better snippets
 (use-package yasnippet
-  :functions (yas-global-mode)
+  :functions yas-global-mode
   :commands yas-expand-snippet
-  :init
-  (setq yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
+  :custom
+  (yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
   :config
   (make-directory (expand-file-name "snippets" share-dir) t)
   (yas-global-mode 1))
@@ -230,8 +233,8 @@
   :functions (yatemplate-fill-alist)
   :config
   (yatemplate-fill-alist)
-  :init
-  (setq yatemplate-dir (expand-file-name "yatemplate" share-dir)))
+  :custom
+  (yatemplate-dir (expand-file-name "yatemplate" share-dir)))
 
 ;; Project browser
 (use-package treemacs
@@ -255,20 +258,22 @@
   :after (treemacs magit))
 
 (use-package diff-hl
+  :demand
+  :commands diff-hl-flydiff-mode global-diff-hl-mode
   :custom-face
   (diff-hl-insert ((t (:inherit nil :foreground nil :background "#2aa889"))))
   (diff-hl-delete ((t (:inherit nil :foreground nil :background "#dc322f"))))
   (diff-hl-change ((t (:inherit nil :foreground nil :background "#d26937"))))
-  :init
-  (setq diff-hl-draw-borders nil)
+  :custom
+  (diff-hl-draw-borders nil)
   :config
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
   (diff-hl-flydiff-mode)
   (global-diff-hl-mode))
 
 (use-package shr
-  :init
-  (setq shr-use-colors nil))
+  :custom
+  (shr-use-colors nil))
 
 (use-package hl-line
   :ensure nil
@@ -277,8 +282,8 @@
 
 (use-package eshell
   :ensure nil
-  :init
-  (setq eshell-directory-name (expand-file-name "eshell" data-dir)))
+  :custom
+  (eshell-directory-name (expand-file-name "eshell" data-dir)))
 
 (use-package flymake
   :ensure nil

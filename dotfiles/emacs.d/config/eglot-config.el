@@ -24,12 +24,29 @@
 
 ;;; Code:
 
+(eval-and-compile
+  (require 'use-package))
+
+(use-package eldoc
+  :ensure nil
+  :defines eldoc-documentation-strategy
+  :functions eldoc-documentation-compose
+  :commands eldoc-doc-buffer
+  :bind (("C-c l d" . 'eldoc-doc-buffer))
+  :custom
+  (eldoc-echo-area-prefer-doc-buffer t)
+  (eldoc-echo-area-use-multiline-p .15)
+  (eldoc-echo-area-display-truncation-message 'nil)
+  :config
+  (global-eldoc-mode))
+
 (defun set-eldoc-compose ()
   "Set eldoc's documentation strategy to compose to work around flymake interference."
   (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose))
 
 (use-package eglot
-  :functions (eglot)
+  :commands (eglot eglot-format eglot--major-mode)
+  :defines eglot-managed-p
   :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
   :bind
@@ -72,4 +89,5 @@
 
   (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio"))))
 
-;;; eglot.el ends here
+(provide 'eglot-config)
+;;; eglot-config.el ends here

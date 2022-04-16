@@ -24,7 +24,12 @@
 
 ;;; Code:
 
+(eval-and-compile
+  (require 'use-package)
+  (require 'eglot-config))
+
 (use-package haskell-mode
+  :commands haskell-mode-stylish-buffer
   :mode (rx ".hs" string-end)
   :hook (haskell-mode . interactive-haskell-mode)
   :bind (:map haskell-mode-map
@@ -33,7 +38,10 @@
 (use-package groovy-mode
   :mode (rx ".groovy" string-end))
 
-(use-package bazel)
+(use-package bazel
+  :mode (((rx ".bzl" string-end) . bazel-starlark-mode)
+         ((rx (or "BUILD" "BUILD.bazel") string-end) . bazel-build-mode))
+  :commands bazel-buildifier)
 
 (use-package kotlin-mode
   :mode (rx ".kt" string-end))
@@ -96,6 +104,7 @@
   :mode (rx ".csv" string-end))
 
 (use-package nix-mode
+  :commands nix-format-buffer
   :mode (rx ".nix" string-end))
 
 (use-package stumpwm-mode
@@ -108,14 +117,58 @@
 
 (use-package cc-mode
   :ensure nil
-  :functions (c-populate-syntax-table))
+  :functions c-populate-syntax-table)
 
 (use-package web-mode
   :bind
   :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
 
 (use-package prettier-js
-  :functions (prettier-js))
+  :commands prettier-js)
+
+;; Autoformatting settings
+
+(use-package reformatter
+  :commands (alejandra-format-region alejandra-format-buffer)
+  :functions reformatter--do-region
+  :config
+  ;; Work around `make-variable-buffer-local' being called at a
+  ;; non-top-level.
+  ;;
+  ;; Note: Do not do this without first checking if no other warnings
+  ;; are thrown. In theory, we could use `with-suppressed-warnings',
+  ;; but it doesn't look like there's any documentation on how to
+  ;; disable this particular warning, and grepping the emacs source
+  ;; for `make-variable-buffer-local' didn't yield anything useful.
+  (with-no-warnings
+    (reformatter-define alejandra-format
+      :program "alejandra"
+      :group 'nix-mode
+      :lighter " AL")))
+
+(defcustom use-nixfmt nil
+  "Use nixfmt for formatting nix instead of alejandra."
+  :type 'boolean
+  :local 'booleanp
+  :group 'autoformat)
+
+(defun autoformat ()
+  "Autoformat the current buffer."
+  (interactive)
+  (pcase major-mode
+    ('nix-mode (if use-nixfmt
+                   (nix-format-buffer)
+                 (alejandra-format-buffer)))
+    ('web-mode (prettier-js))
+    ('haskell-mode (haskell-mode-stylish-buffer))
+    ((or 'bazel-mode
+         (app (lambda (m) (get m 'derived-mode-parent)) 'bazel-mode))
+     (bazel-buildifier))
+    (_ (if (eglot-managed-p)
+           (eglot-format)
+         (message "No formatter for this file type")))))
+
+(global-set-key (kbd "C-c f") 'autoformat)
 
 (provide 'file-types)
 ;;; file-types.el ends here
