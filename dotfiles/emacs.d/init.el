@@ -102,8 +102,13 @@ There are two things you can do about this warning:
 (setq ring-bell-function 'ignore)
 (fset 'yes-or-no-p 'y-or-n-p)
 (show-paren-mode 1)
-(when (display-graphic-p)
-  (put 'suspend-frame 'disabled t))
+(defun suspend-non-graphical-frame (orig &rest args)
+  "Suspend-frame, but don't do it to my graphical windows.
+
+   ORIG is the original function, ARGS the arguments passed to the invocation."
+  (when (not (display-graphic-p))
+    (apply orig args)))
+(advice-add 'suspend-frame :around #'suspend-non-graphical-frame)
 (setq load-prefer-newer t)
 (setq large-file-warning-threshold 100000000)
 
