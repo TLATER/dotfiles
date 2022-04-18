@@ -130,7 +130,7 @@
 (use-package helm
   :demand
   :commands helm-mode
-  :defines helm-boring-file-regexp-list
+  :defines helm-boring-buffer-regexp-list
   :init
   (add-hook 'helm-mode-hook
             (lambda ()
