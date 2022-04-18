@@ -161,7 +161,7 @@
   :config
   (setq helm-boring-buffer-regexp-list
         (append helm-boring-buffer-regexp-list
-                '("magit-process:.*"))))
+                '("magit-.*:.*" "*Flymake diagnostics*"))))
 
 (use-package helm-tramp
   :after helm
