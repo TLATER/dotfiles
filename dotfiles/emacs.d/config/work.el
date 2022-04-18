@@ -33,8 +33,11 @@
          (defvar log-dir (expand-file-name
                           "~/Documents/Work/Wikis/journal/log/"))
          (add-hook 'after-init-hook
-                      (lambda ()
-                        (find-file (expand-file-name (format-time-string "%Y/week-%W.org") log-dir)))))))
+                   (lambda ()
+                     (find-file
+                      (expand-file-name
+                       (format-time-string "%Y/week-%W.org")
+                       log-dir)))))))
 
 (provide 'work)
 ;;; work.el ends here

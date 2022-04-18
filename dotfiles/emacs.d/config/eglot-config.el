@@ -41,13 +41,16 @@
   (global-eldoc-mode))
 
 (defun set-eldoc-compose ()
-  "Set eldoc's documentation strategy to compose to work around flymake interference."
-  (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose))
+  "Set documentation strategy to compose to work around flymake interference."
+  ;; TODO: Find a nicer way to implement
+  (with-suppressed-warnings ((obsolete eldoc-documentation-strategy))
+    (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
 (use-package eglot
   :commands (eglot eglot-format eglot--major-mode)
   :defines eglot-managed-p
-  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) . eglot-ensure)
+  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) .
+          eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
   :bind
   (:map eglot-mode-map
@@ -87,7 +90,8 @@
                     (:command "clippy")))
       (_ eglot--{})))
 
-  (add-to-list 'eglot-server-programs '(web-mode . ("typescript-language-server" "--stdio"))))
+  (add-to-list 'eglot-server-programs
+               '(web-mode . ("typescript-language-server" "--stdio"))))
 
 (provide 'eglot-config)
 ;;; eglot-config.el ends here

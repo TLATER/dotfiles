@@ -53,9 +53,13 @@
   :mode (rx ".lua" string-end))
 
 (use-package markdown-mode
-  :mode (rx (or (and (or ".md" ".mdwn") string-end) (and string-start "/tmp/neomutt-")))
+  :mode (rx (or
+             (and (or ".md" ".mdwn") string-end)
+             (and string-start "/tmp/neomutt-")))
   :init
-  (setq markdown-command '("nix-shell" "-p" "pandoc" "--run" "pandoc --from=markdown --to=html5")))
+  (setq markdown-command '("nix-shell"
+                           "-p" "pandoc"
+                           "--run" "pandoc --from=markdown --to=html5")))
 
 (use-package gnuplot
   :mode ((rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
@@ -63,7 +67,8 @@
   (setq gnuplot-program "gnuplot"))
 
 (use-package yaml-mode
-  :mode (rx (or ".yaml" ".yml" ".bst" (and string-start "project.conf")) string-end))
+  :mode (rx (or ".yaml" ".yml" ".bst"
+                (and string-start "project.conf")) string-end))
 
 (use-package systemd
   :mode ((rx (or".service" ".socket" ".device" ".mount" ".automount"

@@ -107,9 +107,9 @@
   :ensure nil
   :bind (("C-x d" . dired)
          :map dired-mode-map
-              ("e" . dired-find-alternate-file)
-              ("f" . dired-find-alternate-file)
-              ("^" . (lambda () (interactive) (find-alternate-file ".."))))
+         ("e" . dired-find-alternate-file)
+         ("f" . dired-find-alternate-file)
+         ("^" . (lambda () (interactive) (find-alternate-file ".."))))
   :custom
   (dired-dwim-target t)
   :config

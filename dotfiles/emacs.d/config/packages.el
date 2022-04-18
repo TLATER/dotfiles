@@ -56,11 +56,13 @@
   :commands auto-package-update-maybe
   :custom
   (auto-package-update-hide-results t)
-  (auto-package-update-last-update-day-path (expand-file-name ".update-day" data-dir))
+  (auto-package-update-last-update-day-path
+   (expand-file-name ".update-day" data-dir))
   :config
   (unless using-external-packages
     (auto-package-update-maybe)
-    (add-hook 'auto-package-update-before-hook (lambda () (package-refresh-contents)))))
+    (add-hook 'auto-package-update-before-hook
+              (lambda () (package-refresh-contents)))))
 
 ;; Handy commands
 (use-package crux
@@ -124,7 +126,7 @@
   :config
   (add-to-list
    'forge-alist '("gitlab.codethink.co.uk" "gitlab.codethink.co.uk/api/v4"
-                "gitlab.codethink.co.uk" forge-gitlab-repository)))
+                  "gitlab.codethink.co.uk" forge-gitlab-repository)))
 
 ;; Better prompts
 (use-package helm
@@ -170,6 +172,9 @@
 
 ;; Doc browser
 (use-package dash-docs
+  :function dash-docs-activate-docset
+  :hook
+  (python-mode-hook . (lambda () (dash-docs-activate-docset "Python 3")))
   :custom
   (dash-docs-docsets-path (expand-file-name "docsets" data-dir))
   (dash-docs-browser-func 'eww-browse-url))
@@ -191,7 +196,8 @@
   ("C-c p" . projectile-command-map)
   :custom
   (projectile-use-git-grep t)
-  (projectile-known-projects-file (expand-file-name "projectile-bookmarks.eld" data-dir))
+  (projectile-known-projects-file
+   (expand-file-name "projectile-bookmarks.eld" data-dir))
   :config
   (projectile-discover-projects-in-search-path))
 
@@ -201,16 +207,26 @@
   :functions (helm-projectile-on)
   :after (helm projectile)
   :bind
-  ([remap projectile-find-other-file] . helm-projectile-find-other-file)
-  ([remap projectile-find-file] . helm-projectile-find-file)
-  ([remap projectile-find-file-in-known-projects] . helm-projectile-find-file-in-known-projects)
-  ([remap projectile-find-file-dwim] . helm-projectile-find-file-dwim)
-  ([remap projectile-find-dir] . helm-projectile-find-dir)
-  ([remap projectile-switch-project] . helm-projectile-switch-project)
-  ([remap projectile-recentf] . helm-projectile-recentf)
-  ([remap projectile-ripgrep] . helm-projectile-rg)
-  ([remap projectile-switch-to-buffer] . helm-projectile-switch-to-buffer)
-  ([remap projectile-browse-dirty-projects] . helm-projectile-browse-dirty-projects)
+  ([remap projectile-find-other-file] .
+   helm-projectile-find-other-file)
+  ([remap projectile-find-file] .
+   helm-projectile-find-file)
+  ([remap projectile-find-file-in-known-projects] .
+   helm-projectile-find-file-in-known-projects)
+  ([remap projectile-find-file-dwim] .
+   helm-projectile-find-file-dwim)
+  ([remap projectile-find-dir] .
+   helm-projectile-find-dir)
+  ([remap projectile-switch-project] .
+   helm-projectile-switch-project)
+  ([remap projectile-recentf] .
+   helm-projectile-recentf)
+  ([remap projectile-ripgrep] .
+   helm-projectile-rg)
+  ([remap projectile-switch-to-buffer] .
+   helm-projectile-switch-to-buffer)
+  ([remap projectile-browse-dirty-projects] .
+   helm-projectile-browse-dirty-projects)
   :config
   (helm-projectile-on))
 

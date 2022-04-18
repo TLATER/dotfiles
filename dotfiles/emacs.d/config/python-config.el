@@ -28,7 +28,6 @@
   (require 'use-package))
 
 (use-package python
-  :after (dash-docs)
   :mode ("\\.py\\'" . python-mode)
   :interpreter ("python" . python-mode)
   :init
@@ -37,17 +36,13 @@
           python-shell-interpreter-args "--simple-prompt -i"))
   (when (executable-find "ipython3")
     (setq python-shell-interpreter "ipython3"
-          python-shell-interpreter-args "--simple-prompt -i"))
-  (add-hook 'python-mode-hook
-            (lambda () (dash-docs-activate-docset "Python 3"))))
+          python-shell-interpreter-args "--simple-prompt -i")))
 
-(use-package pytest
+(use-package python-pytest
   :after (python)
   :defines (python-mode-map)
   :bind (:map python-mode-map
-              ("C-c t ." . pytest-one)
-              ("C-c t a" . pytest-all)
-              ("C-c t m" . pytest-module)))
+              ("C-c t" . python-pytest-dispatch)))
 
-(provide 'python)
-;;; python.el ends here
+(provide 'python-config)
+;;; python-config.el ends here

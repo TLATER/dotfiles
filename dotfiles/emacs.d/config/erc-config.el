@@ -58,5 +58,5 @@
              :nick "tristanmaat/exirc"
              :full-name user-full-name)))
 
-(provide 'erc)
-;;; erc.el ends here
+(provide 'erc-config)
+;;; erc-config.el ends here
