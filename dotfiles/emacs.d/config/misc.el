@@ -97,6 +97,7 @@
 
 (use-package sendmail
   :ensure nil
+  :command sendmail-send-it
   :custom
   (send-mail-function 'sendmail-send-it)
   (sendmail-program "msmtp"))
@@ -141,11 +142,6 @@
 (use-package dired-collapse
   :after dired
   :hook (dired-mode . dired-collapse-mode))
-
-;; Backdrop behind current line
-(use-package beacon
-  :custom
-  (beacon-color "#245361"))
 
 ;; Spell checking
 (use-package ispell

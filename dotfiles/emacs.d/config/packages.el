@@ -184,10 +184,8 @@
   ("C-c h d" . helm-dash))
 
 ;; A nice UI for ripgrep when not used with projectile
-(use-package deadgrep)
-
-;; Ripgrep; used in projectile
-(use-package ripgrep)
+(use-package deadgrep
+  :commands deadgrep)
 
 ;; Project browser
 (use-package projectile
@@ -201,7 +199,8 @@
   :config
   (projectile-discover-projects-in-search-path))
 
-(use-package helm-rg)
+(use-package helm-rg
+  :after projectile)
 
 (use-package helm-projectile
   :functions (helm-projectile-on)
@@ -231,7 +230,8 @@
   (helm-projectile-on))
 
 ;; Colorful color names :3
-(use-package rainbow-mode)
+(use-package rainbow-mode
+  :hook (prog-mode text-mode))
 
 ;; Better mode-line
 (use-package smart-mode-line
@@ -304,6 +304,7 @@
 
 (use-package eshell
   :ensure nil
+  :command eshell
   :custom
   (eshell-directory-name (expand-file-name "eshell" data-dir)))
 
