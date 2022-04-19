@@ -47,8 +47,7 @@
     (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
 (use-package eglot
-  :commands (eglot eglot-format eglot--major-mode)
-  :defines eglot-managed-p
+  :commands (eglot eglot-format eglot-managed-p eglot--major-mode)
   :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) .
           eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
