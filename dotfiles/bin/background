@@ -19,7 +19,7 @@ select-random() {
     count=$(echo "$list" | wc -w)
 
     # Assert that we have some kind of background
-    if [ $count -lt 1 ]; then
+    if [ "$count" -lt 1 ]; then
         echo "Error: No other background images found in '$BACKGROUND_HOME'"\
              > /dev/stderr
         exit 1

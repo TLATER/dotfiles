@@ -1,4 +1,4 @@
-#shellcheck shell=bash disable=SC1091 disable=SC1090
+#shellcheck shell=bash disable=SC1090,SC1091,SC2154
 
 # Load environment configuration first
 [ -f "$HOME/.config/dir_colors" ] && eval "$(dircolors "$HOME/.config/dir_colors")"
