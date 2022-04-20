@@ -254,13 +254,6 @@
   (make-directory (expand-file-name "snippets" share-dir) t)
   (yas-global-mode 1))
 
-(use-package yatemplate
-  :functions (yatemplate-fill-alist)
-  :config
-  (yatemplate-fill-alist)
-  :custom
-  (yatemplate-dir (expand-file-name "yatemplate" share-dir)))
-
 (use-package diff-hl
   :demand
   :commands diff-hl-flydiff-mode global-diff-hl-mode

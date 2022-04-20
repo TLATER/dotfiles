@@ -131,6 +131,28 @@
 (use-package prettier-js
   :commands prettier-js)
 
+;; Auto-insert settings
+
+(use-package autoinsert
+  :demand
+  :ensure nil
+  :custom
+  ;; Remove all the built-in auto-inserts (sorry, but while I appreciate the legal
+  ;; reasons for it, there's too much GPL-related copyright gunk that's hardly ever
+  ;; relevant for me).
+  ;; (auto-insert-alist nil)
+  (auto-insert-query nil)
+  :config
+  (auto-insert-mode t))
+
+(use-package yatemplate
+  :after yasnippet
+  :functions (yatemplate-fill-alist)
+  :config
+  (yatemplate-fill-alist)
+  :custom
+  (yatemplate-dir (expand-file-name "yatemplate" share-dir)))
+
 ;; Autoformatting settings
 
 (use-package reformatter
