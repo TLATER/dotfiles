@@ -261,27 +261,6 @@
   :custom
   (yatemplate-dir (expand-file-name "yatemplate" share-dir)))
 
-;; Project browser
-(use-package treemacs
-  :commands (treemacs-follow-mode
-             treemacs-filewatch-mode
-             treemacs-fringe-indicator-mode
-             treemacs-git-mode)
-  :config
-  (treemacs-follow-mode t)
-  (treemacs-filewatch-mode t)
-  (treemacs-fringe-indicator-mode t)
-  (treemacs-git-mode 'deferred)
-  :bind
-  ("C-c t b" . treemacs)
-  ("C-c t a" . treemacs-add-project-to-workspace)
-  ("C-c t w" . treemacs-switch-workspace)
-  ("C-c t n" . treemacs-create-workspace))
-(use-package treemacs-projectile
-  :after (treemacs projectile))
-(use-package treemacs-magit
-  :after (treemacs magit))
-
 (use-package diff-hl
   :demand
   :commands diff-hl-flydiff-mode global-diff-hl-mode
