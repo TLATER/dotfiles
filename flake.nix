@@ -63,33 +63,46 @@
         };
       };
     }
-    # Set up a "dev shell" that will work on all architectures
     // (flake-utils.lib.eachDefaultSystem (system: let
       pkgs = import nixpkgs {inherit overlays system;};
+      inherit (pkgs.lib.lists) optional optionals;
+      inherit (pkgs.lib.strings) hasSuffix;
     in {
-      packages = import ./nixpkgs/pkgs {inherit pkgs;};
-      devShell = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          nixfmt
-          nvfetcher-bin
-          home-manager.defaultPackage.${system}
-          local.commit-nvfetcher
+      packages = self.lib.localPackagesExcept system (
+        # Work around https://github.com/NixOS/nix/issues/4265
+        # TODO: Stop using IFD
+        optional (system != "x86_64-linux") "emacs"
+        ++ optionals (! hasSuffix "-linux" system) [
+          # Packages with Linux-only dependencies
+          "cap"
+          "gcs"
+          "pass-rofi"
+        ]
+      );
 
-          # For python scripts
-          (python3.withPackages (ppkgs:
+      devShell = pkgs.mkShell {
+        buildInputs = with pkgs;
+          [
+            nixfmt
+            nvfetcher-bin
+            home-manager.defaultPackage.${system}
+            local.commit-nvfetcher
+          ]
+          ++
+          # For actual development - largely broken on non-x86_64-linux, so
+          # we only install those there
+          optional (system == "x86_64-linux") (python3.withPackages (ppkgs:
             with ppkgs; [
               python-lsp-server
               python-lsp-black
               pyls-isort
               pylsp-mypy
-
               rope
               pyflakes
               mccabe
               pycodestyle
               pydocstyle
-            ]))
-        ];
+            ]));
       };
     }));
 }
