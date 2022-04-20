@@ -77,6 +77,7 @@
           "cap"
           "gcs"
           "pass-rofi"
+          "setup-wacom"
         ]
       );
 
