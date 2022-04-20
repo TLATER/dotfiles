@@ -42,36 +42,7 @@
     ];
   in
     rec {
-      lib = rec {
-        # Create a module with correctly set overlays from a given
-        # profile.
-        #
-        nixosModuleFromProfile = profile: {...} @ args:
-          (profile args)
-          // {
-            nixpkgs.overlays = overlays;
-          };
-
-        # Create a NixOS module that configures home-manager to use
-        # the given profile.
-        #
-        nixosConfigurationFromProfile = profile: username: {...} @ args: {
-          home-manager.users.${username} = nixosModuleFromProfile profile;
-        };
-
-        # Create a homeManagerConfiguration that can be installed
-        # using `home-manager --flake`.
-        #
-        homeConfigurationFromProfile = profile: {
-          system,
-          username ? "tlater",
-          homeDirectory ? "/home/${username}",
-        }:
-          home-manager.lib.homeManagerConfiguration {
-            inherit homeDirectory system username;
-            configuration = nixosModuleFromProfile profile;
-          };
-      };
+      lib = import ./nixpkgs/lib {inherit nixpkgs home-manager overlays;};
 
       # This defines home manager configurations that can either be
       # imported from the NixOS module, or used with home-manager's
