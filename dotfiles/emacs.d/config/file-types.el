@@ -26,6 +26,7 @@
 
 (eval-and-compile
   (require 'use-package)
+  (require 'misc)
   (require 'eglot-config))
 
 (use-package haskell-mode
@@ -137,17 +138,37 @@
   :demand
   :ensure nil
   :custom
-  ;; Remove all the built-in auto-inserts (sorry, but while I appreciate the legal
-  ;; reasons for it, there's too much GPL-related copyright gunk that's hardly ever
-  ;; relevant for me).
-  ;; (auto-insert-alist nil)
+  ;; Remove all the built-in auto-inserts, so we can replace them with yatemplate
+  ;; templates instead (more convenient to fill).
+  (auto-insert-alist nil)
   (auto-insert-query nil)
   :config
   (auto-insert-mode t))
 
+(use-package files
+  :ensure nil
+  :defer t)
+(use-package project
+  :ensure nil
+  :defer t
+  :functions project-root)
+
+;; Template helpers
+(defun get-c-guard-name ()
+  "Get the name for the current file as a C header guard.
+
+   Compliant with Google's C++ style guide."
+  (let* ((filename-no-ext (file-name-sans-extension (buffer-file-name)))
+         (filename (or (ignore-errors (file-relative-name
+                                       filename-no-ext
+                                       (project-root (project-current))))
+                       (file-name-nondirectory filename-no-ext))))
+    (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_")))
+
 (use-package yatemplate
+  :demand
   :after yasnippet
-  :functions (yatemplate-fill-alist)
+  :commands yatemplate-fill-alist
   :config
   (yatemplate-fill-alist)
   :custom

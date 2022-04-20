@@ -83,6 +83,7 @@
 ;; Ask if we want to add newlines to files
 (use-package files
   :ensure nil
+  :functions file-name-sans-extension
   :custom
   (require-final-newline "visit-save"))
 
