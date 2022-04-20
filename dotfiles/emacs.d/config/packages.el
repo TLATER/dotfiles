@@ -106,7 +106,17 @@
 
 ;; Better parens handling
 (use-package smartparens
+  :defer 5
   :functions (smartparens-global-mode sp-use-smartparens-bindings)
+  :bind (:map smartparens-mode-map
+              ("C-S-a" . sp-beginning-of-sexp)
+              ("C-S-e" . sp-end-of-sexp)
+              ("M-<left>" . sp-backward-up-sexp)
+              ("M-<right>" . sp-down-sexp)
+              ("M-<down>" . sp-forward-sexp)
+              ("M-<up>" . sp-backward-sexp))
+  :custom
+  (sp-navigate-interactive-always-progress-point t)
   :config
   (require 'smartparens-config)
   (smartparens-global-mode t)
@@ -246,6 +256,7 @@
 
 ;; Better snippets
 (use-package yasnippet
+  :demand
   :functions yas-global-mode
   :commands yas-expand-snippet
   :custom
