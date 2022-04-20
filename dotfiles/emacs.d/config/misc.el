@@ -143,11 +143,6 @@
   :after dired
   :hook (dired-mode . dired-collapse-mode))
 
-;; Spell checking
-(use-package ispell
-  :custom
-  (ispell-dictionary "en_US"))
-
 ;; Set default browser
 (use-package browse-url
   :commands browse-url

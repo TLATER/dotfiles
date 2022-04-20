@@ -91,15 +91,18 @@
   :custom
   (company-idle-delay 0.1))
 
+;; Spell checking
 (use-package flyspell
   :ensure nil
   :bind (:map flyspell-mode-map
               ("C-;" . nil))
+  :hook ((prog-mode . flyspell-prog-mode)
+         (text-mode . flyspell-mode)))
+(use-package ispell
   :custom
   (ispell-program-name "aspell")
   (ispell-extra-args '("--sug-mode=ultra"))
-  :hook ((prog-mode . flyspell-prog-mode)
-         (text-mode . flyspell-mode)))
+  (ispell-dictionary "en_US"))
 
 ;; Better parens handling
 (use-package smartparens
