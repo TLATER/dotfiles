@@ -24,13 +24,13 @@
   };
 
   outputs = {
+    self,
     nixpkgs,
     home-manager,
     nurpkgs,
     flake-utils,
     nvfetcher,
     alejandra,
-    ...
   }: let
     overlays = [
       (final: prev: {
@@ -61,6 +61,16 @@
         tlater = lib.homeConfigurationFromProfile profiles.minimal.text {
           system = "x86_64-linux";
         };
+      };
+
+      # Only run checks on x86_54-linux - currently only linters run
+      # anyway.
+      checks.x86_64-linux = import ./nixpkgs/checks {
+        pkgs = import nixpkgs {
+          inherit overlays;
+          system = "x86_64-linux";
+        };
+        inherit self;
       };
     }
     // (flake-utils.lib.eachDefaultSystem (system: let
