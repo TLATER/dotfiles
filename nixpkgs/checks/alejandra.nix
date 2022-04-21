@@ -1,13 +1,11 @@
 {
   self,
-  stdenv,
+  mkTest,
   alejandra,
 }:
-stdenv.mkDerivation {
+mkTest {
   name = "lint-alejandra";
   src = self;
-  dontInstall = true;
-  doCheck = true;
   checkInputs = [alejandra];
   checkPhase = ''
     mkdir -p $out

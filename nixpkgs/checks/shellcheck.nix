@@ -1,14 +1,12 @@
 {
   self,
-  stdenv,
+  mkTest,
   file,
   shellcheck,
 }:
-stdenv.mkDerivation {
+mkTest {
   name = "lint-shellcheck";
   src = self;
-  dontInstall = true;
-  doCheck = true;
   checkInputs = [file shellcheck];
   checkPhase = ''
     mkdir -p $out

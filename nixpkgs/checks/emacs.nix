@@ -1,6 +1,6 @@
 {
   self,
-  stdenv,
+  mkTest,
   fetchpatch,
   lib,
   local,
@@ -24,13 +24,11 @@
   package-lint = "${emacsPackages.package-lint}/share/emacs/site-lisp/elpa/package-lint-*";
   elisp-lint = "${elisp-lint-pkg}/share/emacs/site-lisp/elpa/elisp-lint-*";
 in
-  stdenv.mkDerivation {
+  mkTest {
     name = "lint-emacs";
 
     src = self;
 
-    dontInstall = true;
-    doCheck = true;
     checkInputs = [emacs git python3];
     checkPhase = ''
       mkdir -p $out
