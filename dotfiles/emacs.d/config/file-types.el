@@ -177,6 +177,16 @@
                                "++")))) ;; .h++
         eos)
     ["c-header" autoinsert-yas-expand])
+  (define-auto-insert
+    (rx "."
+        (or "C"                         ;; .C
+            (and "c"                    ;; .c
+                 (optional (or "c"      ;; .cc
+                               "pp"     ;; .cpp
+                               "xx"     ;; .cxx
+                               "++")))) ;; .c++
+        eos)
+    ["c-file" autoinsert-yas-expand])
 
   (auto-insert-mode t))
 
@@ -199,6 +209,15 @@
                                        (project-root (project-current))))
                        (file-name-nondirectory filename-no-ext))))
     (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_H_")))
+
+(defun get-c-header-for-file ()
+  "Get the name of the C header that is associated with this file."
+  (let ((stem (file-name-sans-extension (buffer-file-name)))
+        (ret nil))
+    (dolist
+        (ext '("H" "h" "hh" "hpp" "hxx" "h++") ret)
+      (when (file-exists-p (concat stem "." ext))
+        (setq ret (file-name-nondirectory (concat stem "." ext)))))))
 
 ;; Autoformatting settings
 

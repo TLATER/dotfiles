@@ -1,0 +1,3 @@
+#include "`(get-c-header-for-file)`"
+
+$0
