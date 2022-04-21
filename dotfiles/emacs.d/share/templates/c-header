@@ -1,4 +1,4 @@
-#ifndef ${1:`(get-c-guard-name)`_H_}
+#ifndef ${1:`(get-c-guard-name)`}
 #define $1
 
 $0

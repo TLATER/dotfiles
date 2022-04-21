@@ -198,7 +198,7 @@
                                        filename-no-ext
                                        (project-root (project-current))))
                        (file-name-nondirectory filename-no-ext))))
-    (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_")))
+    (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_H_")))
 
 ;; Autoformatting settings
 
