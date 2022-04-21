@@ -24,9 +24,9 @@
 
 ;;; Code:
 
+(defvar share-dir)
 (eval-and-compile
   (require 'use-package)
-  (require 'misc)
   (require 'eglot-config))
 
 (use-package haskell-mode
@@ -133,6 +133,18 @@
   :commands prettier-js)
 
 ;; Auto-insert settings
+(use-package yasnippet
+  :demand
+  :commands (yas-global-mode yas-expand-snippet)
+  :custom
+  (yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
+  :config
+  (make-directory (expand-file-name "snippets" share-dir) t)
+  (yas-global-mode 1))
+
+(defun autoinsert-yas-expand ()
+  "Expand yasnippet in current buffer."
+  (yas-expand-snippet (buffer-string) (point-min) (point-max)))
 
 (use-package autoinsert
   :demand
@@ -142,7 +154,30 @@
   ;; templates instead (more convenient to fill).
   (auto-insert-alist nil)
   (auto-insert-query nil)
+  (auto-insert-directory (expand-file-name "templates/" share-dir))
+
   :config
+  (define-auto-insert 'emacs-lisp-mode ["emacs-lisp-mode" autoinsert-yas-expand])
+  (define-auto-insert 'html-mode ["html" auto-insert-yas-expand])
+  (define-auto-insert (rx "flake.nix") ["flake.nix" autoinsert-yas-expand])
+  (define-auto-insert (rx "shell.nix") ["shell.nix" autoinsert-yas-expand])
+  (define-auto-insert
+    (rx bos "standup-" (one-or-more anything) ".mdwn" eos)
+    ["standup-notes" autoinsert-yas-expand])
+  (define-auto-insert
+    (rx bos "week-" (one-or-more anything) ".org" eos)
+    ["week-agenda" autoinsert-yas-expand])
+  (define-auto-insert
+    (rx "."
+        (or "H"                         ;; .H
+            (and "h"                    ;; .h
+                 (optional (or "h"      ;; .hh
+                               "pp"     ;; .hpp
+                               "xx"     ;; .hxx
+                               "++")))) ;; .h++
+        eos)
+    ["c-header" autoinsert-yas-expand])
+
   (auto-insert-mode t))
 
 (use-package files
@@ -164,15 +199,6 @@
                                        (project-root (project-current))))
                        (file-name-nondirectory filename-no-ext))))
     (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_")))
-
-(use-package yatemplate
-  :demand
-  :after yasnippet
-  :commands yatemplate-fill-alist
-  :config
-  (yatemplate-fill-alist)
-  :custom
-  (yatemplate-dir (expand-file-name "yatemplate" share-dir)))
 
 ;; Autoformatting settings
 

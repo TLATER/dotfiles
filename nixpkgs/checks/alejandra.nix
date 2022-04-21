@@ -13,7 +13,7 @@ in
     checkPhase = ''
       mkdir -p $out
       alejandra --check \
-          --exclude ./dotfiles/emacs.d/share/yatemplate/ \
+          --exclude ./dotfiles/emacs.d/share/templates/ \
           --exclude ./nixpkgs/pkgs/_sources/ \
           . \
       | tee $out/test.log

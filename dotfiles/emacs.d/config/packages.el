@@ -254,17 +254,6 @@
   :config
   (sml/setup))
 
-;; Better snippets
-(use-package yasnippet
-  :demand
-  :functions yas-global-mode
-  :commands yas-expand-snippet
-  :custom
-  (yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
-  :config
-  (make-directory (expand-file-name "snippets" share-dir) t)
-  (yas-global-mode 1))
-
 (use-package diff-hl
   :demand
   :commands diff-hl-flydiff-mode global-diff-hl-mode
