@@ -33,14 +33,14 @@
   :commands (erc-tls erc-buffer-list)
   :custom
   (erc-keywords '("NB ALL:"))
+  (erc-modules '(autojoin button completion fill
+                          irccontrols list log match menu
+                          move-to-prompt netsplit networks
+                          noncommands notifications
+                          readonly ring scrolltobottom
+                          stamp spelling track truncate))
   :init
   (setq erc-log-channels-directory (expand-file-name "erc/logs" data-dir))
-  (setq erc-modules '(autojoin button completion fill
-                               irccontrols list log match menu
-                               move-to-prompt netsplit networks
-                               noncommands notifications
-                               readonly ring scrolltobottom
-                               stamp spelling track truncate))
   :config
   (require 'erc-spelling)
   (erc-spelling-mode 1)

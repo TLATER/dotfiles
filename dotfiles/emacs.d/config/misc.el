@@ -98,7 +98,7 @@
 
 (use-package sendmail
   :ensure nil
-  :command sendmail-send-it
+  :commands sendmail-send-it
   :custom
   (send-mail-function 'sendmail-send-it)
   (sendmail-program "msmtp"))

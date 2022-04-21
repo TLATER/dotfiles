@@ -185,7 +185,7 @@
 
 ;; Doc browser
 (use-package dash-docs
-  :function dash-docs-activate-docset
+  :functions dash-docs-activate-docset
   :hook
   (python-mode-hook . (lambda () (dash-docs-activate-docset "Python 3")))
   :custom
@@ -290,7 +290,7 @@
 
 (use-package eshell
   :ensure nil
-  :command eshell
+  :commands eshell
   :custom
   (eshell-directory-name (expand-file-name "eshell" data-dir)))
 
