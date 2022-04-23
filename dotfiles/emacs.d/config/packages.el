@@ -68,17 +68,17 @@
 
 ;; Automatically update packages every once in a while
 (use-package auto-package-update
-  :demand
+  :defer 20
+  :unless using-external-packages
   :commands auto-package-update-maybe
   :custom
   (auto-package-update-hide-results t)
   (auto-package-update-last-update-day-path
    (expand-file-name ".update-day" data-dir))
   :config
-  (unless using-external-packages
-    (auto-package-update-maybe)
-    (add-hook 'auto-package-update-before-hook
-              (lambda () (package-refresh-contents)))))
+  (auto-package-update-maybe)
+  (add-hook 'auto-package-update-before-hook
+            (lambda () (package-refresh-contents))))
 
 ;; Handy commands
 (use-package crux
