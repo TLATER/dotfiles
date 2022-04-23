@@ -28,6 +28,22 @@
 (eval-and-compile
   (require 'use-package))
 
+(use-package fic-mode
+  :hook prog-mode
+  :custom-face
+  (fic-face ((t (:foreground "darkred" :weight bold))))
+  (fic-author-face ((t (:foreground "orangered" :underline t)))))
+
+(use-package separedit
+  :commands #'separedit
+  :bind (:map prog-mode-map
+              ("C-c ;" . #'separedit))
+  :custom
+  (separedit-default-mode 'markdown-mode)
+  (separedit-remove-trailing-spaces-in-comment t)
+  (separedit-continue-fill-column t)
+  (separedit-preserve-string-indentation t))
+
 (use-package dashboard
   :demand
   :commands dashboard-setup-startup-hook
