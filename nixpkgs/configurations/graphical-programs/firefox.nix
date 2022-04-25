@@ -31,6 +31,7 @@
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       buster-captcha-solver
       clearurls
+      libredirect
       no-pdf-download
       react-devtools
       reduxdevtools
