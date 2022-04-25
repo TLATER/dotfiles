@@ -142,8 +142,8 @@ def switch(args: argparse.Namespace) -> int:
     """Switch to the new nixos configuration."""
     return call(
         [
-            "sudo",
             "nixos-rebuild",
+            "--use-remote-sudo",  # Work around https://github.com/NixOS/nix/issues/6443
             "--override-input",
             "dotfiles",
             args.dotfiles,
