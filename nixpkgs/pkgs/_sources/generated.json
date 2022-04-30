@@ -22,7 +22,7 @@
         "cargoLocks": null,
         "pinned": false,
         "name": "firefox-ui-fix",
-        "version": "0f56d5062cb40f681f483b8fef6ba62d2ee7e352",
+        "version": "226c995823719fb1f7e6c10cf52feec2aca6fa8e",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -32,8 +32,8 @@
             "name": null,
             "repo": "Firefox-UI-Fix",
             "type": "github",
-            "sha256": "sha256-67Jw0qXL6BPBskCSPyZ41UF7QHAQAqApXfNgOHNogyk=",
-            "rev": "0f56d5062cb40f681f483b8fef6ba62d2ee7e352"
+            "sha256": "sha256-eKR3npd9fwPhNBwitUH7dj7b/sw3B1In1OxK6wWSLI4=",
+            "rev": "226c995823719fb1f7e6c10cf52feec2aca6fa8e"
         },
         "extract": null
     },
@@ -136,7 +136,7 @@
         "cargoLocks": null,
         "pinned": false,
         "name": "ohmyzsh",
-        "version": "a879ff1515b6bd80eea695c03e22289bd6743718",
+        "version": "8f56a8bdf39d7727ab0e220f0164f78c77f9c50e",
         "passthru": null,
         "src": {
             "deepClone": false,
@@ -146,8 +146,8 @@
             "name": null,
             "repo": "ohmyzsh",
             "type": "github",
-            "sha256": "sha256-GFIFxlKCU6XURqZxkCkgZB0a5PW/OuC9KePpmxLAIE4=",
-            "rev": "a879ff1515b6bd80eea695c03e22289bd6743718"
+            "sha256": "sha256-yxuvVDjNCH7r/g6ZoF8kEzwirBB0s+CRQizBwRR4Sp4=",
+            "rev": "8f56a8bdf39d7727ab0e220f0164f78c77f9c50e"
         },
         "extract": null
     }
