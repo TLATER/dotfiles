@@ -2,7 +2,23 @@
   config,
   pkgs,
   ...
-}: {
+}: let
+  inherit (pkgs) runCommandNoCC writeText;
+  inherit (pkgs.lib.strings) concatStrings;
+  inherit (pkgs.lib.attrsets) mapAttrsToList;
+  inherit (pkgs.local) firefox-ui-fix;
+
+  settings = writeText "user.js" (concatStrings (mapAttrsToList (
+      name: value: ''
+        user_pref("${name}", ${builtins.toJSON value});
+      ''
+    )
+    config.programs.firefox.profiles.tlater.settings));
+
+  settings-file = runCommandNoCC "firefox-settings" {} ''
+    cat '${pkgs.local.firefox-ui-fix}/user.js' '${settings}' > $out
+  '';
+in {
   xdg.dataFile."applications/whatsapp.desktop".text = ''
     [Desktop Entry]
     Version=1.0
@@ -40,17 +56,10 @@
     ];
     profiles."tlater" = {
       userChrome =
-        builtins.readFile "${pkgs.local.firefox-ui-fix}/userChrome.css";
+        builtins.readFile "${pkgs.local.firefox-ui-fix}/css/leptonChrome.css";
       userContent =
-        builtins.readFile "${pkgs.local.firefox-ui-fix}/userContent.css";
-
+        builtins.readFile "${pkgs.local.firefox-ui-fix}/css/leptonContent.css";
       settings = {
-        # Required for firefox-ui-fix
-        "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
-        "svg.context-properties.content.enabled" = true;
-        "layout.css.backdrop-filter.enabled" = true;
-        "browser.compactmode.show" = true;
-
         # Re-bind ctrl to super (would interfere with tridactyl otherwise)
         "ui.key.accelKey" = 91;
 
@@ -98,5 +107,9 @@
         "privacy.trackingprotection.socialtracking.enabled" = true;
       };
     };
+  };
+
+  home.file.".mozilla/firefox/${config.programs.firefox.profiles.tlater.path}/user.js" = {
+    source = settings-file;
   };
 }

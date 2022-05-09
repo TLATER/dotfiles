@@ -7,6 +7,6 @@ stdenv.mkDerivation rec {
 
   installPhase = ''
     mkdir -p $out/
-    cp -r icons/ userChrome.css userContent.css $out/
+    cp -r user.js icons/ css/ $out/
   '';
 }
