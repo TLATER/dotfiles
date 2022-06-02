@@ -99,6 +99,8 @@
 
 ;; Better undo
 (use-package undo-tree
+  :custom
+  (undo-tree-history-directory-alist `(("." . ,(expand-file-name "undo" back-dir))))
   :hook (after-init . global-undo-tree-mode))
 
 ;; Auto-completion

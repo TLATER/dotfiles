@@ -11,19 +11,8 @@
   inherit (local) emacs;
   inherit (lib.sources) sourceFilesBySuffices;
 
-  elisp-lint-pkg = emacsPackages.elisp-lint.overrideAttrs (_old: {
-    patches = [
-      # Patch to allow long lines if they contain URLs
-      (fetchpatch {
-        name = "long-urls.patch";
-        url = "https://patch-diff.githubusercontent.com/raw/gonewest818/elisp-lint/pull/29.patch";
-        sha256 = "sha256-mzJfHtT5Pe8jWni4rVYdGvigP/emGGDVi0ZAVYMkNq0=";
-      })
-    ];
-  });
-
   package-lint = "${emacsPackages.package-lint}/share/emacs/site-lisp/elpa/package-lint-*";
-  elisp-lint = "${elisp-lint-pkg}/share/emacs/site-lisp/elpa/elisp-lint-*";
+  elisp-lint = "${emacsPackages.elisp-lint}/share/emacs/site-lisp/elpa/elisp-lint-*";
 in
   mkTest {
     name = "lint-emacs";

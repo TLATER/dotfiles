@@ -24,18 +24,11 @@
   };
 
   overrides = self: super: {
-    project = super.project.overrideAttrs (old: {
-      src = fetchurl {
-        url = "https://elpa.gnu.org/packages/project-0.8.1.tar";
-        sha256 = "sha256-M7BzLw2jO0LZRDsSLGLGmurnRUoO9Cr6hQxSGDHSUmA=";
-      };
-    });
-
-    xref = super.xref.overrideAttrs (old: {
-      src = fetchurl {
-        url = "https://elpa.gnu.org/packages/xref-1.3.2.tar";
-        sha256 = "sha256-7d8t72xS4qaoo/ro0MKWwM5sPF/LQgIAfAY000Skm68=";
-      };
+    dashboard = super.dashboard.overrideAttrs (_old: {
+      patches = [
+        # See https://github.com/emacs-dashboard/emacs-dashboard/issues/81
+        ./fix-emacs-dashboard.patch
+      ];
     });
   };
 

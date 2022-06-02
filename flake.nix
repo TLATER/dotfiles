@@ -2,9 +2,9 @@
   description = "tlater's home configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.11";
+      url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nurpkgs = {
@@ -17,10 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    alejandra = {
-      url = "github:kamadorueda/alejandra/1.1.0";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -30,12 +26,10 @@
     nurpkgs,
     flake-utils,
     nvfetcher,
-    alejandra,
   }: let
     overlays = [
       (final: prev: {
         local = import ./nixpkgs/pkgs {pkgs = prev;};
-        alejandra = alejandra.defaultPackage.${prev.system};
       })
       nvfetcher.overlay
       nurpkgs.overlay
@@ -81,7 +75,10 @@
       packages = self.lib.localPackagesExcept system (
         # Work around https://github.com/NixOS/nix/issues/4265
         # TODO: Stop using IFD
-        optional (system != "x86_64-linux") "emacs"
+        optionals (system != "x86_64-linux") [
+          "emacs"
+          "gcs"
+        ]
         ++ optionals (! hasSuffix "-linux" system) [
           # Packages with Linux-only dependencies
           "cap"
@@ -91,7 +88,7 @@
         ]
       );
 
-      devShell = pkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         buildInputs = with pkgs;
           [
             nixfmt

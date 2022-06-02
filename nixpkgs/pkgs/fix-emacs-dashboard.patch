@@ -1,0 +1,11 @@
+--- a/dashboard.el	2022-04-16 16:06:37.233746464 +0200
++++ b/dashboard.el	2022-04-16 15:38:41.295226898 +0200
+@@ -458,7 +458,7 @@
+   "Setup post initialization hooks.
+ If a command line argument is provided, assume a filename and skip displaying
+ Dashboard."
+-  (when (< (length command-line-args) 2)
++  (when (not command-line-args-left)
+     (add-hook 'after-init-hook (lambda ()
+                                  ;; Display useful lists of items
+                                  (dashboard-insert-startupify-lists)))
