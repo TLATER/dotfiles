@@ -47,13 +47,13 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "e9e8c6b54d594109041bdd4bc3902b40f9ae8849";
+    version = "18e7e5d0339f3491a6c0324e2443415309b56173";
     src = fetchFromGitHub ({
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "e9e8c6b54d594109041bdd4bc3902b40f9ae8849";
+      rev = "18e7e5d0339f3491a6c0324e2443415309b56173";
       fetchSubmodules = false;
-      sha256 = "sha256-afSA6OJm1ydw0/yBZx9QLyt4z7nWjQBAb+77Gw6nR4g=";
+      sha256 = "sha256-NAVotL5RxpS/zKnO+ngMIjv787lqc1dj/c4blQrQcvU=";
     });
   };
   stumpwm-contrib = {

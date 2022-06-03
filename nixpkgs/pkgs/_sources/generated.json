@@ -1,154 +1,154 @@
 {
-    "gauth": {
+    "bauer": {
         "cargoLocks": null,
-        "pinned": false,
-        "name": "gauth",
-        "version": "v1.2.1",
+        "extract": null,
+        "name": "bauer",
         "passthru": null,
+        "pinned": false,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "pcarrier",
             "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "repo": "gauth",
-            "type": "github",
-            "sha256": "sha256-wy9pI28BNfQ5XlB+W+enw7o4GC2uLd/oCyd3RoBnvUY=",
-            "rev": "v1.2.1"
+            "owner": "matthewbauer",
+            "repo": "bauer",
+            "rev": "v1.5.3",
+            "sha256": "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=",
+            "type": "github"
         },
-        "extract": null
+        "version": "v1.5.3"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "pinned": false,
+        "extract": null,
         "name": "firefox-ui-fix",
-        "version": "c7fdfafeeda2b0d7dfd27fe3e29be45344a468f9",
         "passthru": null,
+        "pinned": false,
         "src": {
             "deepClone": false,
+            "fetchSubmodules": false,
             "leaveDotGit": false,
+            "name": null,
             "owner": "black7375",
-            "fetchSubmodules": false,
-            "name": null,
             "repo": "Firefox-UI-Fix",
-            "type": "github",
+            "rev": "c7fdfafeeda2b0d7dfd27fe3e29be45344a468f9",
             "sha256": "sha256-iW7vZY+Jez9CP+LoPIGf5mu2R4xzJQmiw4OUriKrltM=",
-            "rev": "c7fdfafeeda2b0d7dfd27fe3e29be45344a468f9"
+            "type": "github"
         },
-        "extract": null
+        "version": "c7fdfafeeda2b0d7dfd27fe3e29be45344a468f9"
     },
-    "bauer": {
+    "gauth": {
         "cargoLocks": null,
-        "pinned": false,
-        "name": "bauer",
-        "version": "v1.5.3",
+        "extract": null,
+        "name": "gauth",
         "passthru": null,
+        "pinned": false,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "matthewbauer",
             "fetchSubmodules": false,
-            "name": null,
-            "repo": "bauer",
-            "type": "github",
-            "sha256": "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=",
-            "rev": "v1.5.3"
-        },
-        "extract": null
-    },
-    "tridactyl-emacs": {
-        "cargoLocks": null,
-        "pinned": false,
-        "name": "tridactyl-emacs",
-        "version": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
-        "passthru": null,
-        "src": {
-            "deepClone": false,
             "leaveDotGit": false,
-            "owner": "jumper047",
-            "fetchSubmodules": false,
             "name": null,
-            "repo": "tridactyl_emacs_config",
-            "type": "github",
-            "sha256": "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=",
-            "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd"
+            "owner": "pcarrier",
+            "repo": "gauth",
+            "rev": "v1.2.1",
+            "sha256": "sha256-wy9pI28BNfQ5XlB+W+enw7o4GC2uLd/oCyd3RoBnvUY=",
+            "type": "github"
         },
-        "extract": null
-    },
-    "zsh-background-notify": {
-        "cargoLocks": null,
-        "pinned": false,
-        "name": "zsh-background-notify",
-        "version": "d5f0430cb052f82c433c17707816910da87e201e",
-        "passthru": null,
-        "src": {
-            "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "t413",
-            "fetchSubmodules": false,
-            "name": null,
-            "repo": "zsh-background-notify",
-            "type": "github",
-            "sha256": "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=",
-            "rev": "d5f0430cb052f82c433c17707816910da87e201e"
-        },
-        "extract": null
+        "version": "v1.2.1"
     },
     "gcs": {
         "cargoLocks": null,
-        "pinned": false,
+        "extract": null,
         "name": "gcs",
-        "version": "v4.37.1",
         "passthru": null,
-        "src": {
-            "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "richardwilkes",
-            "fetchSubmodules": false,
-            "name": null,
-            "repo": "gcs",
-            "type": "github",
-            "sha256": "sha256-znN2tBUp0yAvM6E4eTcfmV3KmzyYlrRMLZgc/Fg9tFc=",
-            "rev": "v4.37.1"
-        },
-        "extract": null
-    },
-    "stumpwm-contrib": {
-        "cargoLocks": null,
         "pinned": false,
-        "name": "stumpwm-contrib",
-        "version": "82c6f29c5aab18b8a0d3e05062008517b145c007",
-        "passthru": null,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "stumpwm",
             "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
-            "repo": "stumpwm-contrib",
-            "type": "github",
-            "sha256": "sha256-RMDALrokGU3lvKJkJkwl80rci6G4mXoRx6eEEsYXO/I=",
-            "rev": "82c6f29c5aab18b8a0d3e05062008517b145c007"
+            "owner": "richardwilkes",
+            "repo": "gcs",
+            "rev": "v4.37.1",
+            "sha256": "sha256-znN2tBUp0yAvM6E4eTcfmV3KmzyYlrRMLZgc/Fg9tFc=",
+            "type": "github"
         },
-        "extract": null
+        "version": "v4.37.1"
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "pinned": false,
+        "extract": null,
         "name": "ohmyzsh",
-        "version": "e9e8c6b54d594109041bdd4bc3902b40f9ae8849",
         "passthru": null,
+        "pinned": false,
         "src": {
             "deepClone": false,
-            "leaveDotGit": false,
-            "owner": "ohmyzsh",
             "fetchSubmodules": false,
+            "leaveDotGit": false,
             "name": null,
+            "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "type": "github",
-            "sha256": "sha256-afSA6OJm1ydw0/yBZx9QLyt4z7nWjQBAb+77Gw6nR4g=",
-            "rev": "e9e8c6b54d594109041bdd4bc3902b40f9ae8849"
+            "rev": "18e7e5d0339f3491a6c0324e2443415309b56173",
+            "sha256": "sha256-NAVotL5RxpS/zKnO+ngMIjv787lqc1dj/c4blQrQcvU=",
+            "type": "github"
         },
-        "extract": null
+        "version": "18e7e5d0339f3491a6c0324e2443415309b56173"
+    },
+    "stumpwm-contrib": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "stumpwm-contrib",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "stumpwm",
+            "repo": "stumpwm-contrib",
+            "rev": "82c6f29c5aab18b8a0d3e05062008517b145c007",
+            "sha256": "sha256-RMDALrokGU3lvKJkJkwl80rci6G4mXoRx6eEEsYXO/I=",
+            "type": "github"
+        },
+        "version": "82c6f29c5aab18b8a0d3e05062008517b145c007"
+    },
+    "tridactyl-emacs": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "tridactyl-emacs",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "jumper047",
+            "repo": "tridactyl_emacs_config",
+            "rev": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd",
+            "sha256": "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=",
+            "type": "github"
+        },
+        "version": "5674d6bb38abbe639dd8caaf3d81f33fc06f59fd"
+    },
+    "zsh-background-notify": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "zsh-background-notify",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "t413",
+            "repo": "zsh-background-notify",
+            "rev": "d5f0430cb052f82c433c17707816910da87e201e",
+            "sha256": "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=",
+            "type": "github"
+        },
+        "version": "d5f0430cb052f82c433c17707816910da87e201e"
     }
 }
