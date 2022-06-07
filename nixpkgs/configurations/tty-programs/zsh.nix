@@ -12,6 +12,8 @@
     source = "${dotroot}/dotfiles/zsh";
   };
 
+  programs.nix-index.enable = true;
+
   # Plugins
   xdg.configFile = {
     "zsh/plugins/zsh-background-notify" = {
