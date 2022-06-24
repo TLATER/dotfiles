@@ -222,7 +222,10 @@
 ;; Autoformatting settings
 
 (use-package reformatter
-  :commands (alejandra-format-region alejandra-format-buffer)
+  :commands (alejandra-format-region
+             alejandra-format-buffer
+             beautify-format-region
+             beautify-format-buffer)
   :functions reformatter--do-region
   :config
   ;; Work around `make-variable-buffer-local' being called at a
@@ -237,7 +240,12 @@
     (reformatter-define alejandra-format
       :program "alejandra"
       :group 'nix-mode
-      :lighter " AL")))
+      :lighter " AL")
+    (reformatter-define beautify-format
+      :program "js-beautify"
+      :args '("--type" "html")
+      :group 'mhtml-mode
+      :lighter " JSB")))
 
 (defcustom use-nixfmt nil
   "Use nixfmt for formatting nix instead of alejandra."
@@ -252,6 +260,7 @@
     ('nix-mode (if use-nixfmt
                    (nix-format-buffer)
                  (alejandra-format-buffer)))
+    ('mhtml-mode (beautify-format-buffer))
     ('web-mode (prettier-js))
     ('haskell-mode (haskell-mode-stylish-buffer))
     ((or 'bazel-mode
