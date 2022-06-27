@@ -49,6 +49,11 @@ def main():
     )
     switch_command.set_defaults(func=switch)
 
+    boot_command = subparsers.add_parser(
+        "boot", help=docsummary(boot), description=getdoc(boot)
+    )
+    boot_command.set_defaults(func=boot)
+
     log_command = subparsers.add_parser(
         "log", help=docsummary(log), description=getdoc(log)
     )
@@ -150,6 +155,22 @@ def switch(args: argparse.Namespace) -> int:
             "--flake",
             str(args.nixos_hosts) + "#",
             "switch",
+        ]
+    )
+
+
+def boot(args: argparse.Namespace) -> int:
+    """Switch to the new nixos configuration on next boot."""
+    return call(
+        [
+            "nixos-rebuild",
+            "--use-remote-sudo",  # Work around https://github.com/NixOS/nix/issues/6443
+            "--override-input",
+            "dotfiles",
+            args.dotfiles,
+            "--flake",
+            str(args.nixos_hosts) + "#",
+            "boot",
         ]
     )
 
