@@ -14,24 +14,24 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "94f20711f8fe49d3809951321fac39a37cd8492c";
+    version = "129051ca6c718853a74976b6b05505d2148467c2";
     src = fetchFromGitHub ({
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "94f20711f8fe49d3809951321fac39a37cd8492c";
+      rev = "129051ca6c718853a74976b6b05505d2148467c2";
       fetchSubmodules = false;
-      sha256 = "sha256-66z4TvG1XnKBnjABGZsRng888WIHTGn8MD2T7O7/WhE=";
+      sha256 = "sha256-aoZP5WeY3gymoJ5E5VjpbTlBuLEMB+iAmgIyV6GXv/8=";
     });
   };
   gauth = {
     pname = "gauth";
-    version = "v1.2.1";
+    version = "v1.2.2";
     src = fetchFromGitHub ({
       owner = "pcarrier";
       repo = "gauth";
-      rev = "v1.2.1";
+      rev = "v1.2.2";
       fetchSubmodules = false;
-      sha256 = "sha256-wy9pI28BNfQ5XlB+W+enw7o4GC2uLd/oCyd3RoBnvUY=";
+      sha256 = "sha256-EprxybxUEvpT4jUaI75Y4E3nzskjX8HA9qJap6/Ws+0=";
     });
   };
   gcs = {
