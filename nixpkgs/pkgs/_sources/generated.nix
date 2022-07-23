@@ -14,13 +14,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "129051ca6c718853a74976b6b05505d2148467c2";
+    version = "d89c2df8f4a1180b6826b4f64a94027605ae5dde";
     src = fetchFromGitHub ({
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "129051ca6c718853a74976b6b05505d2148467c2";
+      rev = "d89c2df8f4a1180b6826b4f64a94027605ae5dde";
       fetchSubmodules = false;
-      sha256 = "sha256-aoZP5WeY3gymoJ5E5VjpbTlBuLEMB+iAmgIyV6GXv/8=";
+      sha256 = "sha256-iGyFg+U9FaNafzQ396nKtfBxCAenpqhTEyO/ttqeMB4=";
     });
   };
   gauth = {

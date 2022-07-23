@@ -31,11 +31,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "129051ca6c718853a74976b6b05505d2148467c2",
-            "sha256": "sha256-aoZP5WeY3gymoJ5E5VjpbTlBuLEMB+iAmgIyV6GXv/8=",
+            "rev": "d89c2df8f4a1180b6826b4f64a94027605ae5dde",
+            "sha256": "sha256-iGyFg+U9FaNafzQ396nKtfBxCAenpqhTEyO/ttqeMB4=",
             "type": "github"
         },
-        "version": "129051ca6c718853a74976b6b05505d2148467c2"
+        "version": "d89c2df8f4a1180b6826b4f64a94027605ae5dde"
     },
     "gauth": {
         "cargoLocks": null,
