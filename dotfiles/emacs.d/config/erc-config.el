@@ -30,7 +30,7 @@
 
 (use-package erc
   :defines erc-log-channels-directory
-  :commands (erc-tls erc-buffer-list)
+  :commands (erc-tls erc-buffer-list erc-codethink erc-exirc)
   :custom
   (erc-keywords '("NB ALL:"))
   (erc-modules '(autojoin button completion fill
