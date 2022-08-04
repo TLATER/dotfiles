@@ -26,7 +26,17 @@
 (defvar using-external-packages)
 (defvar share-dir)
 (eval-and-compile
-  (require 'use-package))
+  (require 'use-package)
+  (require 'compile))
+
+(use-package xterm-color
+  :functions xterm-color-filter advice-compilation-filter
+  :init
+  (setq compilation-environment '("TERM=xterm-256color"))
+  (defun advice-compilation-filter (f proc string)
+    (funcall f proc (xterm-color-filter string)))
+  :config
+  (advice-add 'compilation-filter :around #'advice-compilation-filter))
 
 (use-package fic-mode
   :hook prog-mode
