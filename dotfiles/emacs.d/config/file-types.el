@@ -120,6 +120,9 @@
 (use-package ahk-mode
   :mode (rx ".ahk" string-end))
 
+(use-package glsl-mode
+  :mode (rx (or ".glsl" ".vert" ".frag" ".geom") string-end))
+
 ;; web stuff
 
 (use-package cc-mode
@@ -250,7 +253,9 @@
 
 (use-package reformatter
   :commands (alejandra-format-region
-             alejandra-format-buffer)
+             alejandra-format-buffer
+             clang-format-region
+             clang-format-buffer)
   :functions reformatter--do-region
   :config
   ;; Work around `make-variable-buffer-local' being called at a
@@ -265,7 +270,11 @@
     (reformatter-define alejandra-format
       :program "alejandra"
       :group 'nix-mode
-      :lighter " AL")))
+      :lighter " AL")
+    (reformatter-define clang-format
+      :program "clang-format"
+      :group 'glsl-mode
+      :lighter " CF")))
 
 (defcustom use-nixfmt nil
   "Use nixfmt for formatting nix instead of alejandra."
@@ -280,6 +289,8 @@
     ('nix-mode (if use-nixfmt
                    (nix-format-buffer)
                  (alejandra-format-buffer)))
+    ('glsl-mode
+     (clang-format-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode)
      (prettier-js))
     ('haskell-mode (haskell-mode-stylish-buffer))
