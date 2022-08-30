@@ -14,7 +14,6 @@ stdenv.mkDerivation rec {
   buildInputs = [glib];
 
   dontConfigure = true;
-  dontInstall = true;
 
   buildPhase = ''
     patchShebangs bundle.sh
@@ -22,15 +21,18 @@ stdenv.mkDerivation rec {
     ./bundle.sh --unpackaged
   '';
 
+  installPhase = ''
+    mkdir -p $out/{bin,share}
+    cp -r out/dist/modules $out/share/java
+  '';
+
   preFixup = let
     v = lib.removePrefix "v" version;
   in ''
-    mkdir -p $out/{bin,share}
-    cp -r out/dist/modules $out/share/java
-
     makeWrapper ${jdk17}/bin/java $out/bin/gcs \
         ''${gappsWrapperArgs[@]} \
-          --add-flags "-cp $out/share/java/com.lowagie.text-2.1.7.jar -jar $out/share/java/com.trollworks.gcs-${v}.jar"
+          --add-flags "-cp $out/share/java/com.lowagie.text-2.1.7.jar \
+                       -jar $out/share/java/com.trollworks.gcs-${v}.jar"
   '';
 
   dontWrapGApps = true;
