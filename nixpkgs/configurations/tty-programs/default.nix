@@ -8,7 +8,10 @@
   imports = [./emacs.nix ./zsh.nix];
 
   home.packages = with pkgs; [
-    alejandra # *.nix files are used to pull in project deps, so we always need this
+    # *.nix files are used to pull in project deps, so we always need these
+    alejandra
+    rnix-lsp
+
     any-nix-shell
     bat
     exa
