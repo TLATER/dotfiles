@@ -1,0 +1,4 @@
+((${1:nil} . ((indent-tabs-mode . ${2:nil})
+              (tab-width . ${3:4})
+              (fill-column . ${4:80})
+              (${0} . ))))

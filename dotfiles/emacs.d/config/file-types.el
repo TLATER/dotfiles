@@ -217,6 +217,7 @@
                                "++")))) ;; .c++
         eos)
     ["c-file" autoinsert-yas-expand])
+  (define-auto-insert (rx ".dir-locals.el") ["dir-locals" autoinsert-yas-expand])
 
   (auto-insert-mode t))
 
