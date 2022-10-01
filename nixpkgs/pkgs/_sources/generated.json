@@ -1,6 +1,7 @@
 {
     "bauer": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "bauer",
         "passthru": null,
@@ -20,6 +21,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
+        "date": "2022-09-29",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -31,14 +33,15 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "8c1f8449e1e0f8fc3f73f534b905bf765e86f793",
-            "sha256": "sha256-SemRsSEwNO902uEV1Jqbac7xtSkrlaxo1GvXY3pf3rk=",
+            "rev": "19530cc7eff02128db8bd5e000afbc45d5317a7b",
+            "sha256": "sha256-CH8A3WPLq5J1RpEuYGchWfrZaYG2PisQ2wsxCAtIp1Q=",
             "type": "github"
         },
-        "version": "8c1f8449e1e0f8fc3f73f534b905bf765e86f793"
+        "version": "19530cc7eff02128db8bd5e000afbc45d5317a7b"
     },
     "gauth": {
         "cargoLocks": null,
+        "date": null,
         "extract": null,
         "name": "gauth",
         "passthru": null,
@@ -58,6 +61,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
+        "date": "2022-09-10",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -69,14 +73,15 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "6d48309cd7da1b91038cf08be7865fb5bb9bc5ea",
-            "sha256": "sha256-YxAom6Qiq8oyRxDcjWsrYOJ1o9qqkph7DN++qWJ49RU=",
+            "rev": "7dcabbe6826073ef6069c8a4b6f9a943f00d2df0",
+            "sha256": "sha256-Mk2GQh7Yh0cyklSEIutIIUEQNMAcPC1i3QT5K6lCEt8=",
             "type": "github"
         },
-        "version": "6d48309cd7da1b91038cf08be7865fb5bb9bc5ea"
+        "version": "7dcabbe6826073ef6069c8a4b6f9a943f00d2df0"
     },
     "stumpwm-contrib": {
         "cargoLocks": null,
+        "date": "2022-08-19",
         "extract": null,
         "name": "stumpwm-contrib",
         "passthru": null,
@@ -96,6 +101,7 @@
     },
     "tridactyl-emacs": {
         "cargoLocks": null,
+        "date": "2021-11-01",
         "extract": null,
         "name": "tridactyl-emacs",
         "passthru": null,
@@ -115,6 +121,7 @@
     },
     "zsh-background-notify": {
         "cargoLocks": null,
+        "date": "2015-09-14",
         "extract": null,
         "name": "zsh-background-notify",
         "passthru": null,
