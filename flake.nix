@@ -77,12 +77,10 @@
         # TODO: Stop using IFD
         optionals (system != "x86_64-linux") [
           "emacs"
-          "gcs"
         ]
         ++ optionals (! hasSuffix "-linux" system) [
           # Packages with Linux-only dependencies
           "cap"
-          "gcs"
           "pass-rofi"
           "setup-wacom"
         ]

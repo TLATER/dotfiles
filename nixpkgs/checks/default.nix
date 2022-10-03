@@ -28,7 +28,4 @@ in {
   alejandra = callPackage ./alejandra.nix {};
   emacs = callPackage ./emacs.nix {};
   shellcheck = callPackage ./shellcheck.nix {};
-
-  # Ensure that gcs actually builds
-  gcs = pkgs.local.gcs;
 }
