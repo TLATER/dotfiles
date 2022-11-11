@@ -99,6 +99,7 @@
           hostname = "tlater.net";
           user = "tlater";
           port = 2222;
+          forwardAgent = true;
         };
 
         "console.gl-inet.com" = lib.hm.dag.entryAfter ["*"] {
