@@ -88,6 +88,8 @@
         throw-keyids = false;
         no-emit-version = true;
       };
+
+      scdaemonSettings.disable-ccid = true;
     };
 
     ssh = {
