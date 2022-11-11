@@ -123,6 +123,9 @@
 (use-package glsl-mode
   :mode (rx (or ".glsl" ".vert" ".frag" ".geom") string-end))
 
+(use-package nginx-mode
+  :mode (rx "nginx.conf" string-end))
+
 ;; web stuff
 
 (use-package cc-mode
