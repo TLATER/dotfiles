@@ -21,7 +21,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2022-10-28",
+        "date": "2022-11-09",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "af94a48997b15eb73502f0f0bc1cb06c902ab44f",
-            "sha256": "sha256-KFS7WSJqgeIQwXpTQWhQcVvRhFcNK8Izjl+8jy6ZO4Y=",
+            "rev": "f39405eb1bdfc98e0ff81173ec912f63f3f8f8ef",
+            "sha256": "sha256-2ZzM+6cqxha0ZhWf9CZELTNdAd6kAjsWQG2LGWUn54Y=",
             "type": "github"
         },
-        "version": "af94a48997b15eb73502f0f0bc1cb06c902ab44f"
+        "version": "f39405eb1bdfc98e0ff81173ec912f63f3f8f8ef"
     },
     "gauth": {
         "cargoLocks": null,
@@ -61,7 +61,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2022-10-25",
+        "date": "2022-11-11",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -73,15 +73,15 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "49691b58b3c1fbe64b927ec88d5e9697f76e2a80",
-            "sha256": "sha256-z6cwBsOxMEdm+3QeqeDPIya0jzvrcxrkl7ssd+dHkKo=",
+            "rev": "62929263fafd9e3c1da043bc9b40fa97fccfa7a1",
+            "sha256": "sha256-L+vKThR5/+MQqMXNsrnh0Qmp9PqvvlBS2uIs+jP+U50=",
             "type": "github"
         },
-        "version": "49691b58b3c1fbe64b927ec88d5e9697f76e2a80"
+        "version": "62929263fafd9e3c1da043bc9b40fa97fccfa7a1"
     },
     "stumpwm-contrib": {
         "cargoLocks": null,
-        "date": "2022-08-19",
+        "date": "2022-11-08",
         "extract": null,
         "name": "stumpwm-contrib",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "stumpwm",
             "repo": "stumpwm-contrib",
-            "rev": "6d4584f01dec0143a169186df1608860d1aa1ef0",
-            "sha256": "sha256-ts+MPFtLCjj6T2MuOxWSKfNCv9gvS348SV6IztUfx8M=",
+            "rev": "19c231b2518efe71cb6dade3ad4cf573377902c3",
+            "sha256": "sha256-osnjhCKsw8UOFbWXswFEGTcv6qLR9mMtFQKx+MPQNTE=",
             "type": "github"
         },
-        "version": "6d4584f01dec0143a169186df1608860d1aa1ef0"
+        "version": "19c231b2518efe71cb6dade3ad4cf573377902c3"
     },
     "tridactyl-emacs": {
         "cargoLocks": null,
