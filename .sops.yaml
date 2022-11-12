@@ -1,0 +1,11 @@
+keys:
+  - &tlater 535B61015823443941C744DD12264F6BBDFABA89
+  - &ct-lt-02052 1B8C754A4395ABC5B48902E5855160413A440925
+  - &yui 71132A2D171E79E6A20E81E6C33BC9C8C67C5948
+
+creation_rules:
+  - key_groups:
+      - pgp:
+          - *tlater
+          - *ct-lt-02052
+          - *yui

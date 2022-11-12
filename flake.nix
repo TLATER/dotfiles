@@ -1,8 +1,16 @@
 {
-  description = "tlater's home configuration";
+  description = "tlater's dotfiles";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    # NixOS related inputs
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # home-manager related inputs
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -11,104 +19,64 @@
       url = "github:nix-community/NUR";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
   };
 
   outputs = {
     self,
     nixpkgs,
     home-manager,
-    nurpkgs,
-    flake-utils,
-    nvfetcher,
-  }: let
-    overlays = [
-      (final: prev: {
-        local = import ./nixpkgs/pkgs {pkgs = prev;};
-      })
-      nvfetcher.overlay
-      nurpkgs.overlay
-    ];
-  in
-    rec {
-      lib = import ./nixpkgs/lib {inherit nixpkgs home-manager overlays;};
+    sops-nix,
+    ...
+  } @ inputs: {
+    nixosConfigurations = {
+      yui = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos-config
+          ./nixos-config/yui
+        ];
 
-      # This defines home manager configurations that can either be
-      # imported from the NixOS module, or used with home-manager's
-      # homeManagerConfiguration function.
-      profiles = import ./nixpkgs/profiles.nix;
-
-      homeConfigurations = {
-        # Sadly, this currently doesn't allow defining systems with
-        # eachDefaultSystem, so we just assume everything is
-        # x86_64-linux until it is not.
-        graphical = lib.homeConfigurationFromProfile profiles.minimal.graphical {
-          system = "x86_64-linux";
-        };
-
-        # The default configuration is just the minimal profile
-        tlater = lib.homeConfigurationFromProfile profiles.minimal.text {
-          system = "x86_64-linux";
-        };
+        specialArgs.flake-inputs = inputs;
       };
 
-      # Only run checks on x86_54-linux - currently only linters run
-      # anyway.
-      checks.x86_64-linux = import ./nixpkgs/checks {
-        pkgs = import nixpkgs {
-          inherit overlays;
-          system = "x86_64-linux";
-        };
-        inherit self;
-      };
-    }
-    // (flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = import nixpkgs {inherit overlays system;};
-      inherit (pkgs.lib.lists) optional optionals;
-      inherit (pkgs.lib.strings) hasSuffix;
-    in {
-      packages = self.lib.localPackagesExcept system (
-        # Work around https://github.com/NixOS/nix/issues/4265
-        # TODO: Stop using IFD
-        optionals (system != "x86_64-linux") [
-          "emacs"
-        ]
-        ++ optionals (! hasSuffix "-linux" system) [
-          # Packages with Linux-only dependencies
-          "cap"
-          "pass-rofi"
-          "setup-wacom"
-        ]
-      );
+      ct-lt-02052 = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos-config
+          ./nixos-config/ct-lt-02052
+        ];
 
-      devShells.default = pkgs.mkShell {
-        buildInputs = with pkgs;
-          [
-            nixfmt
-            nvfetcher-bin
-            home-manager.defaultPackage.${system}
-            local.commit-nvfetcher
-          ]
-          ++
-          # For actual development - largely broken on non-x86_64-linux, so
-          # we only install those there
-          optional (system == "x86_64-linux") (python3.withPackages (ppkgs:
-            with ppkgs; [
-              python-lsp-server
-              python-lsp-black
-              pyls-isort
-              pylsp-mypy
-              rope
-              pyflakes
-              mccabe
-              pycodestyle
-              pydocstyle
-            ]));
+        specialArgs.flake-inputs = inputs;
       };
-    }));
+    };
+
+    packages.x86_64-linux = import ./pkgs {
+      inherit self;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+    };
+
+    checks.x86_64-linux = import ./checks {
+      inherit self;
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      lib = nixpkgs.lib;
+    };
+
+    devShells.x86_64-linux.default = let
+      inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+      commit-nvfetcher = self.packages.x86_64-linux.commit-nvfetcher;
+      home-manager-bin = home-manager.packages.x86_64-linux.default;
+    in
+      nixpkgs.legacyPackages.x86_64-linux.mkShell {
+        packages = [
+          commit-nvfetcher
+          home-manager-bin
+          sops-init-gpg-key
+        ];
+
+        sopsPGPKeyDirs = ["./keys/hosts/" "./keys/users/"];
+        nativeBuildInputs = [
+          sops-import-keys-hook
+        ];
+      };
+  };
 }
