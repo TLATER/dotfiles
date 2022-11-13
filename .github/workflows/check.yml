@@ -11,10 +11,3 @@ jobs:
       - uses: cachix/install-nix-action@v16
       - run: |
           nix flake check -L
-          # Also run tests with nixos-hosts, so that we assert the
-          # actual system config resolves - `homeConfigurations` are
-          # currently not covered by `nix flake check`
-          nix flake check \
-              --no-write-lock-file \
-              --override-input dotfiles "$(pwd)" \
-              'github:tlater/nixos-hosts'
