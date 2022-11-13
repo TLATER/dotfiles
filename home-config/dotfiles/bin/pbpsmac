@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-ssh fs cat clipboard | xsel --clipboard --input

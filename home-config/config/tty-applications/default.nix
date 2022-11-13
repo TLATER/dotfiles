@@ -4,9 +4,7 @@
   pkgs,
   flake-inputs,
   ...
-}: let
-  inherit (flake-inputs.self.packages.${pkgs.system}) system-update;
-in {
+}: {
   imports = [
     ./aria.nix
     ./emacs.nix
@@ -22,8 +20,6 @@ in {
     fd
     ripgrep
     screen
-
-    system-update
   ];
 
   home.file.".profile".source = "${config._dotfiles}/env";

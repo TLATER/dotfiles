@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-clipboard=$(mktemp)
-cat /dev/stdin > "$clipboard"
-scp "$clipboard" fs:clipboard
