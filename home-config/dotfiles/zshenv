@@ -1,5 +1,0 @@
-#shellcheck shell=bash disable=SC1091,SC2034
-setopt no_global_rcs
-[ -f "$HOME/.profile" ] && source "$HOME/.profile"
-HISTFILE="$XDG_DATA_HOME/.zsh_history"
-ZDOTDIR="$XDG_CONFIG_HOME/zsh"

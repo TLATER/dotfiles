@@ -1,32 +1,84 @@
 {
   config,
+  lib,
   pkgs,
   flake-inputs,
   ...
 }: let
+  inherit (lib.strings) concatMapStringsSep;
   tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
 in {
-  home.packages = [pkgs.zsh];
+  home.packages = with pkgs; [
+    any-nix-shell
+  ];
 
-  # Basic, local config
-  home.file.".zshenv".source = "${config._dotfiles}/zshenv";
-  xdg.configFile."zsh". source = "${config._dotfiles}/zsh";
+  programs = {
+    direnv = {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+    };
 
-  programs.nix-index.enable = true;
+    zsh = {
+      enable = true;
+      dotDir = ".config/zsh";
+      history.path = "${config.xdg.dataHome}/zsh_history";
 
-  # Plugins
-  xdg.configFile = {
-    "zshplugins/zsh-background-notify" = {
-      source = tlaterpkgs.zsh-background-notify;
-    };
-    "zshplugins/oh-my-zsh-expat/plugins/emacs" = {
-      source = tlaterpkgs.oh-my-zsh-emacs;
-    };
-    "zshplugins/oh-my-zsh-expat/plugins/screen" = {
-      source = tlaterpkgs.oh-my-zsh-screen;
-    };
-    "zshplugins/oh-my-zsh-expat/tools/" = {
-      source = tlaterpkgs.oh-my-zsh-require-tool;
+      enableAutosuggestions = true;
+      enableCompletion = true;
+      enableSyntaxHighlighting = true;
+      enableVteIntegration = true;
+      defaultKeymap = "emacs";
+
+      plugins = [
+        {
+          name = "bgnotify";
+          src = tlaterpkgs.zsh-background-notify;
+        }
+        {
+          name = "emacs";
+          src = tlaterpkgs.oh-my-zsh-emacs;
+        }
+        {
+          name = "screen";
+          src = tlaterpkgs.oh-my-zsh-screen;
+        }
+      ];
+
+      shellAliases = {
+        "ls" = "exa";
+        "winetricks" = "winetricks -q";
+        "pbcopy" = "xsel --clipboard --input";
+        "pbpaste" = "xsel --clipboard";
+      };
+
+      initExtraFirst = ''
+        if [[ -o interactive ]] && \
+           (( $+commands[screen] )) && \
+           [ -f "$XDG_CONFIG_HOME/screen/config" ] && \
+           [ -z "$STY"  ] &&; then
+            exec screen -AxRR -c "$XDG_CONFIG_HOME/screen/config"
+        fi
+      '';
+
+      # Remove `/` from the word chars so we can jump through paths
+      # neatly
+      completionInit = ''WORDCHARS="''${WORDCHARS/\//}"'';
+
+      initExtra =
+        ''
+          # Disable C-s freezing the terminal
+          stty -ixon
+
+          # Source any-nix-shell
+          if (( $+commands[any-nix-shell] )); then
+              any-nix-shell zsh | source /dev/stdin
+          fi
+        ''
+        + concatMapStringsSep "\n" builtins.readFile [
+          "${config._dotfiles}/zsh/theme.zsh"
+          "${config._dotfiles}/zsh/functions.zsh"
+        ];
     };
   };
 }

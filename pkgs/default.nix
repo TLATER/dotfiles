@@ -13,7 +13,6 @@ in {
   firefox-ui-fix = callPackage ./firefox-ui-fix.nix {};
   gauth = callPackage ./gauth.nix {};
   oh-my-zsh-emacs = callPackage ./oh-my-zsh-emacs.nix {};
-  oh-my-zsh-require-tool = callPackage ./oh-my-zsh-require-tool.nix {};
   oh-my-zsh-screen = callPackage ./oh-my-zsh-screen.nix {};
   pass-rofi = callPackage ./pass-rofi.nix {};
   read-sops = callPackage ./read-sops.nix {};

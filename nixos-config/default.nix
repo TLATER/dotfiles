@@ -92,6 +92,10 @@
     unset -v SSH_ASKPASS
   '';
 
+  environment.pathsToLink = [
+    "/share/zsh"
+  ];
+
   programs = {
     dconf.enable = true;
     zsh.enable = true;

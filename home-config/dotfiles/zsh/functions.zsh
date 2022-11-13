@@ -13,7 +13,3 @@ function eproject {
         return 1
     fi
 }
-
-function ssh-unsafe {
-    ssh -o GlobalKnownHostsFile=/dev/null -o UserKnownHostsFile=/dev/null "$@"
-}

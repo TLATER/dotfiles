@@ -17,9 +17,7 @@ in {
   ];
 
   home.packages = with pkgs; [
-    any-nix-shell
     bat
-    direnv
     exa
     fd
     ripgrep
