@@ -200,6 +200,10 @@
                     :category 'compilation.complete))))
   (compilation-scroll-output t))
 
+(use-package project
+  :custom
+  (project-list-file (expand-file-name "projects" data-dir)))
+
 (when (member "Noto Emoji" (font-family-list))
   (set-fontset-font t 'unicode "Noto Emoji" nil 'prepend))
 
