@@ -63,8 +63,11 @@
   networking = {
     wireless.enable = true;
     useDHCP = false;
+    useNetworkd = true;
     hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
   };
+  systemd.network.wait-online.anyInterface = true;
+
   time.timeZone = "Europe/London";
 
   users = {
