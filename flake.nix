@@ -50,6 +50,21 @@
       };
     };
 
+    homeConfigurations = {
+      # NixOS home configuration setup lives in
+      # nixos-config/default.nix and their respective host-specific
+      # modules.
+
+      gnome-vm = home-manager.lib.homeManagerConfiguration {
+        system = "x86_64-linux";
+        username = "tlater";
+        homeDirectory = "/home/tlater";
+
+        configuration = ./home-config/hosts/gnome-vm.nix;
+        extraSpecialArgs.flake-inputs = inputs;
+      };
+    };
+
     packages.x86_64-linux = import ./pkgs {
       inherit self;
       pkgs = nixpkgs.legacyPackages.x86_64-linux;

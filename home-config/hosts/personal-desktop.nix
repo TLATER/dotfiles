@@ -10,5 +10,6 @@
     has-yubikey = true;
     is-work = false;
     software-kvm = true;
+    is-nixos = true;
   };
 }

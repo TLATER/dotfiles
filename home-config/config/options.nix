@@ -13,5 +13,6 @@ in {
     has-yubikey = mkEnableOption "Set up settings that require my yubikey to work";
     is-work = mkEnableOption "Set up settings for work computers";
     software-kvm = mkEnableOption "Set up software kvm";
+    is-nixos = mkEnableOption "Whether this is a NixOS configuration";
   };
 }
