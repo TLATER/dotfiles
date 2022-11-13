@@ -1,5 +1,6 @@
 {
   self,
+  flake-inputs,
   system,
   mkTest,
   fetchpatch,
@@ -9,7 +10,7 @@
   python3,
 }: let
   inherit (lib.sources) sourceFilesBySuffices;
-  inherit (self.packages.${system}) emacs;
+  inherit (flake-inputs.self.packages.${system}) emacs;
 
   package-lint = "${emacsPackages.package-lint}/share/emacs/site-lisp/elpa/package-lint-*";
   elisp-lint = "${emacsPackages.elisp-lint}/share/emacs/site-lisp/elpa/elisp-lint-*";
@@ -24,8 +25,8 @@ in
       mkdir -p $out
 
       export SCANNING_PACKAGES=true
-      find "$PWD/dotfiles/emacs.d/" \
-          -path "$PWD/dotfiles/emacs.d/share" -prune \
+      find "$PWD/home-config/dotfiles/emacs.d/" \
+          -path "$PWD/home-config/dotfiles/emacs.d/share" -prune \
           -o -type f -exec \
           emacs --batch -Q \
               -L ${package-lint} \

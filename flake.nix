@@ -56,9 +56,9 @@
     };
 
     checks.x86_64-linux = import ./checks {
-      inherit self;
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
+      flake-inputs = inputs;
     };
 
     devShells.x86_64-linux.default = let

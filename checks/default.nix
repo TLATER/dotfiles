@@ -1,7 +1,7 @@
 {
   pkgs,
-  self,
   lib,
+  flake-inputs,
 }: let
   inherit (lib) callPackageWith;
   mkTest = test:
@@ -15,13 +15,13 @@
       // test);
   callPackage = callPackageWith (pkgs
     // {
-      inherit mkTest;
+      inherit flake-inputs mkTest;
       # Work around `self` technically being a store path when
       # evaluated as a flake - `builtins.filter` can otherwise not be
       # called on it.
       self = builtins.path {
         name = "dotfiles";
-        path = self;
+        path = flake-inputs.self;
       };
     });
 in {

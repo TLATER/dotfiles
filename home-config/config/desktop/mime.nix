@@ -1,4 +1,8 @@
-{config, lib, ...}: {
+{
+  config,
+  lib,
+  ...
+}: {
   config = lib.mkIf config.custom.desktop-environment {
     xdg.mime.enable = true;
     xdg.mimeApps = {
