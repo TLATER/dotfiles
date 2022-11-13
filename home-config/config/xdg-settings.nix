@@ -60,6 +60,6 @@ in {
       init-module=${xdg.configHome}/npm/config/npm-init.js
     '';
 
-    PYTHONSTARTUP = ./history.py;
+    PYTHONSTARTUP = "${config._dotfiles}/bin/history.py";
   };
 }

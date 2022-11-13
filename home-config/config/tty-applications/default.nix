@@ -19,6 +19,7 @@ in {
   home.packages = with pkgs; [
     any-nix-shell
     bat
+    direnv
     exa
     fd
     ripgrep
@@ -27,6 +28,6 @@ in {
     system-update
   ];
 
-  home.file.".profile".source = "${config._dotfiles}/dotfiles/env";
-  xdg.configFile."screen/config".source = "${config._dotfiles}/dotfiles/screenrc";
+  home.file.".profile".source = "${config._dotfiles}/env";
+  xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
 }

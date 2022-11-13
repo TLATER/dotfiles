@@ -6,13 +6,11 @@
 }: let
   tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
 in {
-  home.packages = with pkgs; [zsh];
+  home.packages = [pkgs.zsh];
 
   # Basic, local config
-  home.file.".zshenv".source = "${config._dotfiles}/dotfiles/zshenv";
-  xdg.configFile."zsh" = {
-    source = "${config._dotfiles}/dotfiles/zsh";
-  };
+  home.file.".zshenv".source = "${config._dotfiles}/zshenv";
+  xdg.configFile."zsh". source = "${config._dotfiles}/zsh";
 
   programs.nix-index.enable = true;
 

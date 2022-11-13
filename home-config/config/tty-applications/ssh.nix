@@ -5,11 +5,16 @@
   ...
 }: {
   config = lib.mkIf config.custom.has-yubikey {
-    home.file.".ssh/tlater.pub".source = "${config._dotfiles}/keys/tlater.pub";
+    home.file.".ssh/tlater.pub".source = "${flake-inputs.self}/keys/tlater.pub";
 
     programs.ssh = {
       enable = true;
       matchBlocks = {
+        "*" = {
+          identitiesOnly = true;
+          identityFile = "~/.ssh/tlater.pub";
+        };
+
         "tlater.net" = lib.hm.dag.entryAfter ["*"] {
           hostname = "tlater.net";
           user = "tlater";

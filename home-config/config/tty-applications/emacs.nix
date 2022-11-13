@@ -32,7 +32,7 @@ in {
         --eval "(byte-recompile-directory user-emacs-directory 0)"
     '';
     recursive = true;
-    source = "${config._dotfiles}/dotfiles/emacs.d";
+    source = "${config._dotfiles}/emacs.d";
   };
 
   programs.emacs = {

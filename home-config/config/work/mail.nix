@@ -19,11 +19,10 @@ in {
     home.packages = with pkgs; [
       lynx
       neomutt
-
       dump-ics
     ];
 
-    xdg.configFile."mailcap".source = "${config._dotfiles}/dotfiles/mailcap";
+    xdg.configFile."mailcap".source = "${config._dotfiles}/mailcap";
 
     services.mbsync.enable = true;
 
@@ -34,7 +33,7 @@ in {
         enable = true;
         editor = "$EDITOR -c";
         extraConfig = ''
-          source "${config._dotfiles}/dotfiles/neomutt/neomuttrc"
+          source "${config._dotfiles}/neomutt/neomuttrc"
           set new_mail_command = "${pkgs.libnotify}/bin/notify-send 'New mail in %f' '%n new messages, %u unread.'"
           macro compose K "| ${markdown-script}<Enter><attach-file>/tmp/neomutt-alternative.html<Enter>"
         '';

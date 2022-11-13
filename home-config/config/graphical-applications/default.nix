@@ -16,8 +16,6 @@
       xsel
     ];
 
-    xdg.configFile = {
-      "alacritty/alacritty.yml".source = "${config._dotfiles}/dotfiles/alacritty/alacritty.yml";
-    };
+    xdg.configFile."alacritty/alacritty.yml".source = "${config._dotfiles}/alacritty/alacritty.yml";
   };
 }

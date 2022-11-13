@@ -28,7 +28,7 @@ in {
       noto-fonts-emoji
     ];
 
-    home.file = {".Xresources".source = "${config._dotfiles}/dotfiles/Xresources";};
+    home.file.".Xresources".source = "${config._dotfiles}/Xresources";
 
     xdg.configFile = {
       "autostart/background.desktop".text = ''
@@ -41,11 +41,8 @@ in {
         Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
         Exec=${tlaterpkgs.background}/bin/background
       '';
-      "fontconfig/fonts.conf".source = "${config._dotfiles}/dotfiles/fonts.conf";
-      "stumpwm/config" = {
-        source = "${config._dotfiles}/dotfiles/stumpwm/config";
-        onChange = "${tlaterpkgs.stumpwm-contrib}/share/stumpwm/modules/util/stumpish/stumpish loadrc";
-      };
+      "fontconfig/fonts.conf".source = "${config._dotfiles}/fonts.conf";
+      "stumpwm/config".source = "${config._dotfiles}/stumpwm/config";
     };
 
     fonts.fontconfig.enable = true;

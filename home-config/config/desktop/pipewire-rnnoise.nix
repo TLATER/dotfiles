@@ -4,11 +4,10 @@
   pkgs,
   ...
 }: let
-  inherit (pkgs) rnnoise-plugin pipewire writeText;
-  inherit (builtins) readFile replaceStrings;
+  inherit (pkgs) rnnoise-plugin pipewire;
   pipewire-rnnoise-conf =
-    replaceStrings ["\${rnnoise-plugin}"] ["${rnnoise-plugin}"]
-    (readFile ./filter-chain.conf);
+    builtins.replaceStrings ["\${rnnoise-plugin}"] ["${rnnoise-plugin}"]
+    (builtins.readFile "${config._dotfiles}/filter-chain.conf");
 in {
   config = lib.mkIf config.custom.desktop-environment {
     systemd.user.services = {
@@ -20,7 +19,7 @@ in {
         };
         Service = {
           ExecStart = "${pipewire}/bin/pipewire -c ${
-            writeText "pipewire-rnnoise.conf" pipewire-rnnoise-conf
+            pkgs.writeText "pipewire-rnnoise.conf" pipewire-rnnoise-conf
           }";
         };
         Install = {WantedBy = ["pipewire.service"];};
