@@ -6,11 +6,10 @@
   imports = [
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t490
+    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop
+    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
     ./hardware-configuration.nix
-    ../bluetooth.nix
-    ../power.nix
-    ../wifi.nix
   ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/work-desktop.nix";
@@ -87,7 +86,6 @@
   };
   users.users.tlater.extraGroups = ["docker" "libvirtd"];
 
-  hardware.cpu.intel.updateMicrocode = true;
   security.pki.certificates = [(builtins.readFile ./codethink-wifi.cert)];
 
   nixpkgs.config.allowUnfreePredicate = pkg:

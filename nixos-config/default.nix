@@ -5,8 +5,6 @@
 }: {
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
-
-    ./pipewire.nix
   ];
 
   nix = {
@@ -60,22 +58,20 @@
     };
   };
 
-  fileSystems = {"/nix".options = ["defaults" "noatime"];};
+  fileSystems."/nix".options = ["defaults" "noatime"];
+
   networking = {
+    wireless.enable = true;
     useDHCP = false;
-    hosts = {
-      "127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
-    };
+    hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
   };
   time.timeZone = "Europe/London";
 
   users = {
     defaultUserShell = pkgs.zsh;
-    users = {
-      tlater = {
-        isNormalUser = true;
-        extraGroups = ["wheel" "video"];
-      };
+    users.tlater = {
+      isNormalUser = true;
+      extraGroups = ["wheel" "video"];
     };
   };
 
@@ -101,7 +97,12 @@
   fonts = {
     enableDefaultFonts = true;
 
-    fonts = with pkgs; [hack-font noto-fonts noto-fonts-cjk noto-fonts-emoji];
+    fonts = with pkgs; [
+      hack-font
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+    ];
 
     fontconfig = {
       defaultFonts = {
@@ -145,14 +146,28 @@
       };
     };
 
-    udev.packages = with pkgs; [yubikey-personalization];
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      pulse.enable = true;
+    };
 
+    udev.packages = [pkgs.yubikey-personalization];
+
+    blueman.enable = true;
     chrony.enable = true;
     pcscd.enable = true;
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
   };
+
+  hardware = {
+    bluetooth.enable = true;
+    enableRedistributableFirmware = true;
+  };
+
+  security.rtkit.enable = true;
 
   xdg.portal = {
     enable = true;

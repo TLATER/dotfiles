@@ -4,7 +4,13 @@
   flake-inputs,
   ...
 }: {
-  imports = [./hardware-configuration.nix ../bluetooth.nix ../wifi.nix];
+  imports = [
+    flake-inputs.nixos-hardware.nixosModules.common-pc
+    flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+
+    ./hardware-configuration.nix
+  ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
@@ -54,7 +60,6 @@
   hardware = {
     nvidia.modesetting.enable = true;
     steam-hardware.enable = true;
-    cpu.amd.updateMicrocode = true;
   };
 
   # Necessary to correctly enable va-api (video codec hardware

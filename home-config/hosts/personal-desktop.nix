@@ -4,9 +4,9 @@
   ];
 
   custom = {
-    desktop-environmnet.enable = true;
-    download-manager.enable = true;
-    graphical-applications.enable = true;
+    desktop-environment = true;
+    download-manager = true;
+    graphical-applications = true;
     has-yubikey = true;
     is-work = false;
     software-kvm = true;
