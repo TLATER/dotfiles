@@ -61,9 +61,8 @@ in {
         fi
       '';
 
-      # Remove `/` from the word chars so we can jump through paths
-      # neatly
-      completionInit = ''WORDCHARS="''${WORDCHARS/\//}"'';
+      # Default is                 *?_-.[]~=/&;!#$%^(){}<>
+      completionInit = "WORDCHARS='*?_-[]~&;!#$%^(){}<>'";
 
       initExtra =
         ''
@@ -74,6 +73,10 @@ in {
           if (( $+commands[any-nix-shell] )); then
               any-nix-shell zsh | source /dev/stdin
           fi
+
+          # Make M-f and M-b work like emacs'
+          bindkey "^[f" emacs-forward-word
+          bindkey "^[b" emacs-backward-word
         ''
         + concatMapStringsSep "\n" builtins.readFile [
           "${config._dotfiles}/zsh/theme.zsh"
