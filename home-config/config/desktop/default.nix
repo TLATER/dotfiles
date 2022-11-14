@@ -15,6 +15,7 @@
   ];
 
   config = lib.mkIf config.custom.desktop-environment {
+    services.caffeine.enable = true;
     assertions = [
       {
         assertion = config.custom.graphical-applications;
