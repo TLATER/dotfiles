@@ -5,12 +5,17 @@
   pkgs,
   ...
 }: {
-  config = lib.mkIf config.custom.is-nixos {
+  config = lib.mkIf (!config.custom.is-nixos) {
+    targets.genericLinux.enable = true;
+
+    # zsh doesn't always load ~/.profile on other distros
+    programs.zsh.envExtra = ''
+      source "$HOME/.profile"
+    '';
+
     nix = {
       package = pkgs.nixFlakes;
-      extraOptions = ''
-        experimental-features = nix-command flakes
-      '';
+      settings.experimental-features = ["nix-command" "flakes"];
 
       registry.nixpkgs = {
         from = {
