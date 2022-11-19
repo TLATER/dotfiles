@@ -1,7 +1,6 @@
 {
     "bauer": {
         "cargoLocks": null,
-        "date": null,
         "extract": null,
         "name": "bauer",
         "passthru": null,
@@ -21,7 +20,6 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2022-10-28",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -33,15 +31,14 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "af94a48997b15eb73502f0f0bc1cb06c902ab44f",
-            "sha256": "sha256-KFS7WSJqgeIQwXpTQWhQcVvRhFcNK8Izjl+8jy6ZO4Y=",
+            "rev": "33f4194b94f7f876c2778370252ae134c610abf6",
+            "sha256": "sha256-hXCnv0owHGNWFw9rjiz7Wb2JtCrU9QP97uQVQ9dQFFE=",
             "type": "github"
         },
-        "version": "af94a48997b15eb73502f0f0bc1cb06c902ab44f"
+        "version": "33f4194b94f7f876c2778370252ae134c610abf6"
     },
     "gauth": {
         "cargoLocks": null,
-        "date": null,
         "extract": null,
         "name": "gauth",
         "passthru": null,
@@ -61,7 +58,6 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2022-10-25",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -73,15 +69,14 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "49691b58b3c1fbe64b927ec88d5e9697f76e2a80",
-            "sha256": "sha256-z6cwBsOxMEdm+3QeqeDPIya0jzvrcxrkl7ssd+dHkKo=",
+            "rev": "5ab517361a4215d2f777023fc1e772fe79496713",
+            "sha256": "sha256-9jM7ry+Z2+0KJQKI8yYEO8HyNoaSWeCLc+/L1yzIZOw=",
             "type": "github"
         },
-        "version": "49691b58b3c1fbe64b927ec88d5e9697f76e2a80"
+        "version": "5ab517361a4215d2f777023fc1e772fe79496713"
     },
     "stumpwm-contrib": {
         "cargoLocks": null,
-        "date": "2022-08-19",
         "extract": null,
         "name": "stumpwm-contrib",
         "passthru": null,
@@ -93,15 +88,14 @@
             "name": null,
             "owner": "stumpwm",
             "repo": "stumpwm-contrib",
-            "rev": "6d4584f01dec0143a169186df1608860d1aa1ef0",
-            "sha256": "sha256-ts+MPFtLCjj6T2MuOxWSKfNCv9gvS348SV6IztUfx8M=",
+            "rev": "19c231b2518efe71cb6dade3ad4cf573377902c3",
+            "sha256": "sha256-osnjhCKsw8UOFbWXswFEGTcv6qLR9mMtFQKx+MPQNTE=",
             "type": "github"
         },
-        "version": "6d4584f01dec0143a169186df1608860d1aa1ef0"
+        "version": "19c231b2518efe71cb6dade3ad4cf573377902c3"
     },
     "tridactyl-emacs": {
         "cargoLocks": null,
-        "date": "2021-11-01",
         "extract": null,
         "name": "tridactyl-emacs",
         "passthru": null,
@@ -121,7 +115,6 @@
     },
     "zsh-background-notify": {
         "cargoLocks": null,
-        "date": "2015-09-14",
         "extract": null,
         "name": "zsh-background-notify",
         "passthru": null,

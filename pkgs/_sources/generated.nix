@@ -14,15 +14,14 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "af94a48997b15eb73502f0f0bc1cb06c902ab44f";
+    version = "33f4194b94f7f876c2778370252ae134c610abf6";
     src = fetchFromGitHub ({
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "af94a48997b15eb73502f0f0bc1cb06c902ab44f";
+      rev = "33f4194b94f7f876c2778370252ae134c610abf6";
       fetchSubmodules = false;
-      sha256 = "sha256-KFS7WSJqgeIQwXpTQWhQcVvRhFcNK8Izjl+8jy6ZO4Y=";
+      sha256 = "sha256-hXCnv0owHGNWFw9rjiz7Wb2JtCrU9QP97uQVQ9dQFFE=";
     });
-    date = "2022-10-28";
   };
   gauth = {
     pname = "gauth";
@@ -37,27 +36,25 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "49691b58b3c1fbe64b927ec88d5e9697f76e2a80";
+    version = "5ab517361a4215d2f777023fc1e772fe79496713";
     src = fetchFromGitHub ({
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "49691b58b3c1fbe64b927ec88d5e9697f76e2a80";
+      rev = "5ab517361a4215d2f777023fc1e772fe79496713";
       fetchSubmodules = false;
-      sha256 = "sha256-z6cwBsOxMEdm+3QeqeDPIya0jzvrcxrkl7ssd+dHkKo=";
+      sha256 = "sha256-9jM7ry+Z2+0KJQKI8yYEO8HyNoaSWeCLc+/L1yzIZOw=";
     });
-    date = "2022-10-25";
   };
   stumpwm-contrib = {
     pname = "stumpwm-contrib";
-    version = "6d4584f01dec0143a169186df1608860d1aa1ef0";
+    version = "19c231b2518efe71cb6dade3ad4cf573377902c3";
     src = fetchFromGitHub ({
       owner = "stumpwm";
       repo = "stumpwm-contrib";
-      rev = "6d4584f01dec0143a169186df1608860d1aa1ef0";
+      rev = "19c231b2518efe71cb6dade3ad4cf573377902c3";
       fetchSubmodules = false;
-      sha256 = "sha256-ts+MPFtLCjj6T2MuOxWSKfNCv9gvS348SV6IztUfx8M=";
+      sha256 = "sha256-osnjhCKsw8UOFbWXswFEGTcv6qLR9mMtFQKx+MPQNTE=";
     });
-    date = "2022-08-19";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
@@ -69,7 +66,6 @@
       fetchSubmodules = false;
       sha256 = "sha256-qWajthIVkqDCwY1QkUs0DqSt+XFWwVzyI8N4s7G7tsI=";
     });
-    date = "2021-11-01";
   };
   zsh-background-notify = {
     pname = "zsh-background-notify";
@@ -81,6 +77,5 @@
       fetchSubmodules = false;
       sha256 = "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=";
     });
-    date = "2015-09-14";
   };
 }
