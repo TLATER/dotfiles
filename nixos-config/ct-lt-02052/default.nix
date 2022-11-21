@@ -6,7 +6,6 @@
   imports = [
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t490
-    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop
     flake-inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
     ./hardware-configuration.nix
