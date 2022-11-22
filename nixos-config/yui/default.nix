@@ -10,6 +10,7 @@ in {
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    flake-inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
     ./hardware-configuration.nix
   ];
@@ -58,8 +59,6 @@ in {
     # Allow barrier
     firewall.allowedTCPPorts = [24800];
   };
-
-  services.xserver.videoDrivers = ["nvidia"];
 
   hardware = {
     nvidia.modesetting.enable = true;
