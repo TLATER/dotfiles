@@ -9,7 +9,7 @@
     ./mime.nix
     ./ncmpcpp.nix
     ./password-store.nix
-    ./pipewire-rnnoise.nix
+    ./pipewire.nix
     ./rofi.nix
     ./stumpwm.nix
   ];
