@@ -63,11 +63,17 @@ in {
   hardware = {
     nvidia.modesetting.enable = true;
     steam-hardware.enable = true;
+
+    opengl.extraPackages = with pkgs; [
+      nvidia-vaapi-driver
+    ];
   };
 
   # Necessary to correctly enable va-api (video codec hardware
   # acceleration)
   environment.variables.LIBVA_DRIVER_NAME = "nvidia";
+  # Required to use it in Firefox
+  environment.variables.MOZ_DISABLE_RDD_SANDBOX = 1;
 
   # For random android-related things
   programs.adb.enable = true;

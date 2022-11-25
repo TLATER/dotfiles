@@ -66,6 +66,10 @@ in {
         userContent =
           builtins.readFile "${firefox-ui-fix}/css/leptonContent.css";
         settings = {
+          # Performance settings
+          "gfx.webrender.all" = true; # Force enable GPU acceleration
+          "media.ffmpeg.vaapi.enabled" = true;
+
           # Re-bind ctrl to super (would interfere with tridactyl otherwise)
           "ui.key.accelKey" = 91;
 
