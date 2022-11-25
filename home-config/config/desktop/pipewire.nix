@@ -22,7 +22,7 @@ in {
                     type = "ladspa";
                     name = "rnnoise";
                     plugin = "${rnnoise-plugin}/lib/ladspa/librnnoise_ladspa.so";
-                    label = "noise_suppressor_stereo";
+                    label = "noise_suppressor_mono";
                     control = {
                       "VAD Threshold (%)" = 80.0;
                       "VAD Grace Period (ms)" = 200;
