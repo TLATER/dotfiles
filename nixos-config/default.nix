@@ -83,6 +83,8 @@
     home-manager # To manage the actual user configuration
     lightlocker # Lock screen
     pavucontrol # In case the host doesn't have audio, this can't be in the user config
+
+    firefox
   ];
 
   environment.extraInit = ''

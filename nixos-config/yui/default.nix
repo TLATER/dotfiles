@@ -73,7 +73,7 @@ in {
   # acceleration)
   environment.variables.LIBVA_DRIVER_NAME = "nvidia";
   # Required to use it in Firefox
-  environment.variables.MOZ_DISABLE_RDD_SANDBOX = 1;
+  environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
 
   # For random android-related things
   programs.adb.enable = true;

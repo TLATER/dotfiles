@@ -16,6 +16,8 @@
 
   config = lib.mkIf config.custom.desktop-environment {
     services.caffeine.enable = true;
+    xsession.importedVariables = ["PATH"];
+
     assertions = [
       {
         assertion = config.custom.graphical-applications;
