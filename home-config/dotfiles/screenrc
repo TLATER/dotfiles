@@ -17,3 +17,9 @@ caption always "%{bK}%n %{B}%t%="
 # Scrollback
 defscrollback 10000
 compacthist on
+
+# Enable 256 colors
+term screen-256color
+attrcolor b ".I"
+termcapinfo alacritty 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce
