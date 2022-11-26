@@ -29,6 +29,16 @@
   (require 'use-package)
   (require 'compile))
 
+(use-package vterm
+  :hook (vterm-mode . (lambda ()
+                        (set (make-local-variable 'global-hl-line-mode) nil)))
+  :bind (:map vterm-mode-map
+              ("C-c C-j" . vterm-copy-mode))
+  :custom-face
+  (vterm-color-black ((t (:foreground "#0f0f0f" :background "#707880"))))
+  :config
+  (add-to-list 'vterm-eval-cmds '("magit" magit-status)))
+
 (use-package xterm-color
   :functions xterm-color-filter advice-compilation-filter
   :init

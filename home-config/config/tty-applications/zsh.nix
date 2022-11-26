@@ -55,8 +55,9 @@ in {
       initExtraFirst = ''
         if [[ -o interactive ]] && \
            (( $+commands[screen] )) && \
+           [ -z "$INSIDE_EMACS" ] && \
            [ -f "$XDG_CONFIG_HOME/screen/config" ] && \
-           [ -z "$STY"  ] &&; then
+           [ -z "$STY"  ]; then
             exec screen -AxRR -c "$XDG_CONFIG_HOME/screen/config"
         fi
       '';
@@ -81,6 +82,7 @@ in {
         + concatMapStringsSep "\n" builtins.readFile [
           "${config._dotfiles}/zsh/theme.zsh"
           "${config._dotfiles}/zsh/functions.zsh"
+          "${config._dotfiles}/zsh/emacs-vterm.zsh"
         ];
     };
   };
