@@ -1,4 +1,5 @@
 {
+  pkgs,
   config,
   lib,
   ...
@@ -6,6 +7,7 @@
   imports = [
     ./barrier.nix
     ./dunst.nix
+    ./gtk.nix
     ./mime.nix
     ./ncmpcpp.nix
     ./password-store.nix
