@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./firefox.nix
+    ./discord.nix
   ];
 
   config = lib.mkIf config.custom.graphical-applications {

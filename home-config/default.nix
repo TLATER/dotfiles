@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./config
+    ../home-modules/firefox-webapp.nix
   ];
 
   options._dotfiles = lib.mkOption {
