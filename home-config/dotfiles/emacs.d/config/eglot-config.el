@@ -48,7 +48,7 @@
 
 (use-package eglot
   :commands (eglot eglot-format eglot-managed-p eglot--major-mode)
-  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode) .
+  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode) .
           eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
   :bind
@@ -90,7 +90,9 @@
       (_ eglot--{})))
 
   (add-to-list 'eglot-server-programs
-               '(web-mode . ("typescript-language-server" "--stdio"))))
+               '(web-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               '(nix-mode . ("nil"))))
 
 (provide 'eglot-config)
 ;;; eglot-config.el ends here

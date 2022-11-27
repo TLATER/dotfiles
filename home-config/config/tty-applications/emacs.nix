@@ -18,7 +18,7 @@ in {
 
     # *.nix files are used to pull in project deps, so we always need these
     alejandra
-    rnix-lsp
+    flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.nil
 
     # I just edit shell scripts often enough it makes sense to have
     # this by default
