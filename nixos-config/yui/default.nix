@@ -61,19 +61,26 @@ in {
   };
 
   hardware = {
-    nvidia.modesetting.enable = true;
+    nvidia = {
+      modesetting.enable = true;
+      # Power management is required to get nvidia GPUs to behave on
+      # suspend, due to firmware bugs. Aren't nvidia great?
+      powerManagement.enable = true;
+    };
     steam-hardware.enable = true;
-
-    opengl.extraPackages = with pkgs; [
-      nvidia-vaapi-driver
-    ];
   };
 
-  # Necessary to correctly enable va-api (video codec hardware
-  # acceleration)
-  environment.variables.LIBVA_DRIVER_NAME = "nvidia";
-  # Required to use it in Firefox
-  environment.variables.MOZ_DISABLE_RDD_SANDBOX = "1";
+  environment.variables = {
+    # Necessary to correctly enable va-api (video codec hardware
+    # acceleration). If this isn't set, the libvdpau backend will be
+    # picked, and that one doesn't work with most things, including
+    # Firefox.
+    LIBVA_DRIVER_NAME = "nvidia";
+
+    # Required to use va-api it in Firefox. See
+    # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+  };
 
   # For random android-related things
   programs.adb.enable = true;
