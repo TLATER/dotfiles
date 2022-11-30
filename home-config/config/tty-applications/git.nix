@@ -23,6 +23,7 @@
       push.default = "current";
 
       init.defaultBranch = "main";
+      submodule.recurse = "true";
 
       # Magit-forge configuration
       github.user = "tlater";
