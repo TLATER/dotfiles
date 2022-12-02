@@ -3,9 +3,7 @@
   lib,
   flake-inputs,
   ...
-}: let
-  kernel = flake-inputs.nixpkgs-unfree.legacyPackages.${pkgs.system}.linuxPackages_latest;
-in {
+}: {
   imports = [
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -32,8 +30,6 @@ in {
       # by motherboard.
       "sp5100_tco"
     ];
-
-    kernelPackages = lib.mkForce kernel;
 
     initrd = {
       availableKernelModules = ["hid_roccat_ryos"];
