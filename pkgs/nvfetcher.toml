@@ -17,6 +17,10 @@ src.git = "https://github.com/ohmyzsh/ohmyzsh"
 src.branch = "master"
 fetch.github = "ohmyzsh/ohmyzsh"
 
+[stumpwm]
+src.git = "https://github.com/stumpwm/stumpwm"
+fetch.github = "stumpwm/stumpwm"
+
 [stumpwm-contrib]
 src.git = "https://github.com/stumpwm/stumpwm-contrib"
 src.branch = "master"
