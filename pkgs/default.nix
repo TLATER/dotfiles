@@ -16,8 +16,8 @@ in {
   oh-my-zsh-screen = callPackage ./oh-my-zsh-screen.nix {};
   pass-rofi = callPackage ./pass-rofi.nix {};
   setup-wacom = callPackage ./setup-wacom.nix {};
-  stumpwm = callPackage ./stumpwm.nix {};
-  stumpwm-contrib = callPackage ./stumpwm-contrib.nix {};
+  stumpwm = callPackage ./stumpwm {};
+  stumpwm-contrib = callPackage ./stumpwm/stumpwm-contrib.nix {};
   tridactyl-emacs = callPackage ./tridactyl-emacs.nix {};
   zsh-background-notify = callPackage ./zsh-background-notify.nix {};
 }

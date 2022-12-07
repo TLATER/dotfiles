@@ -54,12 +54,7 @@ in {
         export WM=stumpwm
         xrdb -merge ~/.Xresources
       '';
-      windowManager.command = ''
-        ${tlaterpkgs.stumpwm}/bin/stumpwm-lisp-launcher.sh \
-          --eval '(require :asdf)' \
-          --eval '(asdf:load-system :stumpwm)' \
-          --eval '(stumpwm:stumpwm)'
-      '';
+      windowManager.command = "${tlaterpkgs.stumpwm}/bin/stumpwm";
     };
   };
 }
