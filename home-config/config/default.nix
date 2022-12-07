@@ -9,6 +9,7 @@
 
     ./desktop
     ./graphical-applications
+    ./personal
     ./tty-applications
     ./work
     ./xdg-settings.nix
