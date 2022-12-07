@@ -13,8 +13,8 @@
   config = lib.mkIf config.custom.graphical-applications {
     home.packages = with pkgs; [
       alacritty
+      apvlv
       feh
-      llpp
       xsel
       yubioath-desktop
     ];
