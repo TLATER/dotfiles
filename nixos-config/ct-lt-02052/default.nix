@@ -13,7 +13,11 @@
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/work-desktop.nix";
 
-  boot.initrd.luks.devices.root.device = "/dev/disk/by-uuid/b3ac7dc6-cb0b-4350-bdfb-32329a5f61ff";
+  boot.initrd.luks.devices.root = {
+    device = "/dev/disk/by-uuid/b3ac7dc6-cb0b-4350-bdfb-32329a5f61ff";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
 
   networking = {
     hostName = "ct-lt-02052";
