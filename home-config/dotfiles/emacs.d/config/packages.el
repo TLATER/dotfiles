@@ -40,8 +40,9 @@
   (add-to-list 'vterm-eval-cmds '("magit" magit-status)))
 
 (use-package xterm-color
-  :functions xterm-color-filter advice-compilation-filter
+  :functions (xterm-color-filter advice-compilation-filter)
   :init
+  (declare-function xterm-color-filter "xterm-color")
   (setq compilation-environment '("TERM=xterm-256color"))
   (defun advice-compilation-filter (f proc string)
     (funcall f proc (xterm-color-filter string)))
