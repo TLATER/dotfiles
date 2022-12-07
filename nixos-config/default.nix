@@ -163,6 +163,7 @@
 
     udev.packages = [pkgs.yubikey-personalization];
 
+    nscd.enableNsncd = true;
     blueman.enable = true;
     chrony.enable = true;
     pcscd.enable = true;
