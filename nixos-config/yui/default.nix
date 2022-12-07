@@ -32,7 +32,6 @@
     ];
 
     initrd = {
-      availableKernelModules = ["hid_roccat_ryos"];
       luks.devices = {
         root.device = "/dev/disk/by-uuid/3c0d48f6-f051-4328-9919-677a7fcddae7";
         storage = {
