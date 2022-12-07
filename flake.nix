@@ -15,10 +15,7 @@
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurpkgs = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nurpkgs.url = "github:nix-community/NUR";
   };
 
   outputs = {
