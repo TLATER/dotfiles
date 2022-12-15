@@ -1,10 +1,10 @@
 {
+  config,
   pkgs,
   flake-inputs,
   ...
 }: {
   imports = [
-    flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t490
     flake-inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
 
@@ -28,21 +28,17 @@
     wireless.interfaces = ["wlp0s20f3"];
   };
 
-  sops = {
-    gnupg = {
-      home = "/var/lib/sops";
-      sshKeyPaths = [];
-    };
-
-    defaultSopsFile = "/etc/sops/secrets.yaml";
-    validateSopsFiles = false;
-  };
-
   sops.secrets = {
+    "peerix/ct-lt-02052" = {};
     codethink-vpn-ca = {};
     codethink-vpn-cert = {};
     codethink-vpn-key = {};
     codethink-vpn-static-key = {};
+  };
+
+  services.peerix = {
+    privateKeyFile = config.sops.secrets."peerix/ct-lt-02052".path;
+    publicKeyFile = ../../keys/peerix/ct-lt-02052.pub;
   };
 
   services.openvpn = {

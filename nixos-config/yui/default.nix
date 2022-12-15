@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   lib,
   flake-inputs,
@@ -83,6 +84,13 @@
     # Required to use va-api it in Firefox. See
     # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
     MOZ_DISABLE_RDD_SANDBOX = "1";
+  };
+
+  sops.secrets."peerix/yui" = {};
+
+  services.peerix = {
+    privateKeyFile = config.sops.secrets."peerix/yui".path;
+    publicKeyFile = ../../keys/peerix/yui.pub;
   };
 
   # For random android-related things

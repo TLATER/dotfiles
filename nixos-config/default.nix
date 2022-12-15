@@ -5,6 +5,8 @@
 }: {
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
+    flake-inputs.peerix.nixosModules.peerix
+    flake-inputs.sops-nix.nixosModules.sops
   ];
 
   nix = {
@@ -27,6 +29,26 @@
       };
       flake = flake-inputs.nixpkgs;
     };
+  };
+
+  sops = {
+    gnupg = {
+      home = "/var/lib/sops";
+      sshKeyPaths = [];
+    };
+
+    defaultSopsFile = "/etc/sops/secrets.yaml";
+    validateSopsFiles = false;
+  };
+
+  services.peerix = {
+    enable = true;
+    openFirewall = true;
+    user = "peerix";
+    group = "peerix";
+
+    # Work around https://github.com/cid-chan/peerix/issues/11
+    package = flake-inputs.peerix.packages.${pkgs.system}.peerix;
   };
 
   nixpkgs.overlays = [
@@ -72,9 +94,19 @@
 
   users = {
     defaultUserShell = pkgs.zsh;
-    users.tlater = {
-      isNormalUser = true;
-      extraGroups = ["wheel" "video"];
+
+    groups.peerix = {};
+
+    users = {
+      tlater = {
+        isNormalUser = true;
+        extraGroups = ["wheel" "video"];
+      };
+
+      peerix = {
+        group = "peerix";
+        isSystemUser = true;
+      };
     };
   };
 
