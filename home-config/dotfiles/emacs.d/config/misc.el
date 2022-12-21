@@ -37,6 +37,11 @@
 ;; anyway).
 (setq confirm-kill-processes 'nil)
 
+(use-package dabbrev
+  :ensure nil
+  :custom
+  (dabbrev-case-fold-search nil))
+
 (use-package auth-source
   :after auth-source-pass
   :functions auth-sources
