@@ -24,16 +24,6 @@
   '';
 in {
   config = lib.mkIf config.custom.graphical-applications {
-    xdg.dataFile."applications/whatsapp.desktop".text = ''
-      [Desktop Entry]
-      Version=1.0
-      Type=Application
-      Name=WhatsApp
-      Comment=Simple. Secure. Reliable messaging.
-      Exec=firefox -ssb https://web.whatsapp.com/
-      TryExec=firefox
-    '';
-
     xdg.configFile."tridactyl/tridactylrc".text = ''
       source ${tlaterpkgs.tridactyl-emacs}/share/tridactyl/emacs_bindings
       # Remove the update function; Really don't want this since it's nix-packaged

@@ -8,6 +8,7 @@
     ./firefox.nix
     ./discord.nix
     ./element.nix
+    ./whatsapp.nix
   ];
 
   config = lib.mkIf config.custom.graphical-applications {
