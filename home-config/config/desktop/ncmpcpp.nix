@@ -16,6 +16,13 @@
       enable = true;
       musicDirectory = config.xdg.userDirs.music;
       network.startWhenNeeded = true;
+
+      extraConfig = ''
+        audio_output {
+          type "pipewire"
+          name "Pipewire"
+        }
+      '';
     };
   };
 }
