@@ -8,18 +8,17 @@ jobs:
     name: Update flake inputs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
-          fetch-depth: 0
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
-      - uses: cachix/install-nix-action@v16
+      - uses: cachix/install-nix-action@v18
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
           # seem to universally support flakes
           nix_path: nixpkgs=channel:nixos-unstable
-      - uses: crazy-max/ghaction-import-gpg@v4
+      - uses: crazy-max/ghaction-import-gpg@v5
         with:
           gpg_private_key: ${{ secrets.GIT_SIGNING_KEY }}
           git_user_signingkey: true
@@ -28,7 +27,7 @@ jobs:
           git_committer_email: tm@tlater.net
       - run: nix flake update --commit-lock-file
       - run: nix run .#commit-nvfetcher
-      - uses: peter-evans/create-pull-request@v3
+      - uses: peter-evans/create-pull-request@v4
         with:
           branch: bot/update
           delete-branch: true
