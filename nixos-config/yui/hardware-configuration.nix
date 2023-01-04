@@ -43,6 +43,11 @@
       fsType = "ext4";
     };
 
+  fileSystems."/home/tlater/Documents/Music" =
+    { device = "/dev/disk/by-uuid/df349b4d-e387-470d-8335-32f58ddc5baa";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/e622a760-a23b-403c-91bd-5280edeb69f5"; }
     ];
