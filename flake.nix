@@ -71,6 +71,13 @@
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
     };
 
+    apps.x86_64-linux.commit-nvfetcher = {
+      type = "app";
+      program = toString (nixpkgs.legacyPackages.x86_64-linux.writeShellScript "commit-nvfetcher" ''
+        ${self.packages.x86_64-linux.commit-nvfetcher}/bin/commit-nvfetcher -k /tmp/github-key.toml
+      '');
+    };
+
     checks.x86_64-linux = import ./checks {
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
       lib = nixpkgs.lib;
