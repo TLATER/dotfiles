@@ -29,7 +29,10 @@
   };
 
   sops.secrets = {
-    "peerix/ct-lt-02052" = {};
+    "peerix/ct-lt-02052" = {
+      owner = config.users.users.peerix.name;
+      group = config.users.users.peerix.group;
+    };
     codethink-vpn-ca = {};
     codethink-vpn-cert = {};
     codethink-vpn-key = {};

@@ -15,6 +15,11 @@
       experimental-features = nix-command flakes
     '';
 
+    settings.trusted-public-keys = [
+      (builtins.readFile ../keys/peerix/yui.pub)
+      (builtins.readFile ../keys/peerix/ct-lt-02052.pub)
+    ];
+
     gc = {
       automatic = true;
       dates = "Thu";

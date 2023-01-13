@@ -86,7 +86,10 @@
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };
 
-  sops.secrets."peerix/yui" = {};
+  sops.secrets."peerix/yui" = {
+    owner = config.users.users.peerix.name;
+    group = config.users.users.peerix.group;
+  };
 
   services.peerix = {
     privateKeyFile = config.sops.secrets."peerix/yui".path;
