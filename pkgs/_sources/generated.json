@@ -69,11 +69,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "0f71cfd3c1b82cbc6b2ddd8782e193f38cf343f9",
-            "sha256": "sha256-GUh25hdfCGxlT1GN9Au75e8iQEFROVaPwM23QocYoaw=",
+            "rev": "ca0acf31ef163fd2a6bf562c9b9d6077975b41f8",
+            "sha256": "sha256-5G89anJ5+3/GmbgFZbpUGgWLXNDHbTb6o+gJTVnt9S0=",
             "type": "github"
         },
-        "version": "0f71cfd3c1b82cbc6b2ddd8782e193f38cf343f9"
+        "version": "ca0acf31ef163fd2a6bf562c9b9d6077975b41f8"
     },
     "stumpwm": {
         "cargoLocks": null,
