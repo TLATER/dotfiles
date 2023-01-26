@@ -24,4 +24,8 @@ if [[ "$INSIDE_EMACS" = 'vterm' ]]; then
     function magit() {
         vterm_cmd magit
     }
+
+    function man() {
+        vterm_cmd woman
+    }
 fi
