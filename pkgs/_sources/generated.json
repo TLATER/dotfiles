@@ -31,11 +31,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "f0cb60ffb9ba03bc6eb1779bc5c1950bf0be6a33",
-            "sha256": "sha256-C7PKlbbNGPeCbC1hW3sHG7lU4zgdOodyIBB8Iwt8xnw=",
+            "rev": "f1a5fd4357a7ec3d0eb6962a2686543b3a448135",
+            "sha256": "sha256-xQeLA0N5EYrefX6Fnbz2gWkiXESHSg6F5xdxygHRQj4=",
             "type": "github"
         },
-        "version": "f0cb60ffb9ba03bc6eb1779bc5c1950bf0be6a33"
+        "version": "f1a5fd4357a7ec3d0eb6962a2686543b3a448135"
     },
     "gauth": {
         "cargoLocks": null,
@@ -69,11 +69,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "bf57b4ff3d53726a1317459b0f48853e90d7a6e4",
-            "sha256": "sha256-gvv7x47XCn926KWZqx0wBsKqWAiWMAh/sp5XoObycmg=",
+            "rev": "b0bffcaf865434711d98b63eddd0aa52be0fbeb1",
+            "sha256": "sha256-LIWMJHdXmYFDrrmFhV+I+NW6GmdsSzqQgBFOrqJ06/0=",
             "type": "github"
         },
-        "version": "bf57b4ff3d53726a1317459b0f48853e90d7a6e4"
+        "version": "b0bffcaf865434711d98b63eddd0aa52be0fbeb1"
     },
     "stumpwm": {
         "cargoLocks": null,
