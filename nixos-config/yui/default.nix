@@ -74,6 +74,10 @@
     steam-hardware.enable = true;
   };
 
+  # For unruly applications that can't handle being run under tiling
+  # window managers.
+  services.xserver.windowManager.evilwm.enable = true;
+
   environment.variables = {
     # Necessary to correctly enable va-api (video codec hardware
     # acceleration). If this isn't set, the libvdpau backend will be
