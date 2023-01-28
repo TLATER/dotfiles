@@ -51,10 +51,19 @@ in {
       enable = true;
       initExtra = ''
         export STUMPWM_CONTRIB_DIR=${tlaterpkgs.stumpwm-contrib}/share/stumpwm/modules
-        export WM=stumpwm
         xrdb -merge ~/.Xresources
+
+        if [ "$XDG_CURRENT_DESKTOP" = "default" ]; then
+            export XDG_CURRENT_DESKTOP=stumpwm
+        fi
       '';
-      windowManager.command = "${tlaterpkgs.stumpwm}/bin/stumpwm";
+      windowManager.command = ''
+        if [ "$XDG_CURRENT_DESKTOP" = "stumpwm" ]; then
+            ${tlaterpkgs.stumpwm}/bin/stumpwm
+        else
+            eval "$@"
+        fi
+      '';
     };
   };
 }
