@@ -25,6 +25,12 @@
             visibility: collapse !important;
           }
 
+          #nav-bar {
+            margin-top: 0;
+            margin-bottom: -42px;
+            z-index: -100;
+          }
+
           #main-window[windowtype="navigator:browser"] {
             background-color: transparent !important;
           }
