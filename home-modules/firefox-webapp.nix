@@ -15,12 +15,22 @@
         id = cfg.id;
 
         userChrome = ''
-          #nav-bar, #identity-box, #tabbrowser-tabs, #TabsToolbar {
+          @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+          browser {
+            margin-right: 0px; margin-bottom: 0px;
+          }
+
+          #TabsToolbar {
             visibility: collapse !important;
           }
 
-          #tabbrowser-tabpanels {
-            background-color: ${cfg.backgroundColor} !important;
+          #main-window[windowtype="navigator:browser"] {
+            background-color: transparent !important;
+          }
+
+          .tab-background[selected="true"] {
+            background: ${cfg.backgroundColor} !important;
           }
         '';
 
@@ -35,7 +45,7 @@
             "browser.cache.disk.smart_size.enabled" = false;
             "browser.cache.disk.smart_size.first_run" = false;
             "browser.cache.disk.smart_size.use_old_max" = false;
-            "browser.ctrlTab.previews" = false;
+            "browser.ctrlTab.previews" = true;
             "browser.tabs.warnOnClose" = false;
             "plugin.state.flash" = 2;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
