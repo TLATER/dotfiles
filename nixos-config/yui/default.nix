@@ -74,6 +74,8 @@
     steam-hardware.enable = true;
   };
 
+  services.joycond.enable = true;
+
   # For unruly applications that can't handle being run under tiling
   # window managers.
   services.xserver.windowManager.evilwm.enable = true;
