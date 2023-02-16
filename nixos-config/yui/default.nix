@@ -32,6 +32,9 @@
       "sp5100_tco"
     ];
 
+    # Star citizen needs more
+    kernel.sysctl."vm.max_map_count" = 16777216;
+
     initrd.luks.devices = let
       ssdOptimization = {
         allowDiscards = true;
