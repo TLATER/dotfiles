@@ -85,6 +85,42 @@
         "type": "github"
       }
     },
+    "nixpkgs-unfree": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1673793037,
+        "narHash": "sha256-ucCgyG4lpX2nVntqmDMUT9V3X61QMj53tllfAgS1HKo=",
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "rev": "f5476e5e46466e7cfe63f69b3d7f8a64b463e705",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "nixpkgs-unfree",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1674641431,
+        "narHash": "sha256-qfo19qVZBP4qn5M5gXc/h1MDgAtPA5VxJm9s8RUAkVk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "9b97ad7b4330aacda9b2343396eb3df8a853b4fc",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nurpkgs": {
       "locked": {
         "lastModified": 1674871779,
@@ -127,6 +163,8 @@
         "home-manager": "home-manager",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-unfree": "nixpkgs-unfree",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "nurpkgs": "nurpkgs",
         "peerix": "peerix",
         "sops-nix": "sops-nix"

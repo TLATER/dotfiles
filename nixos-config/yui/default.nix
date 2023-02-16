@@ -32,6 +32,8 @@
       "sp5100_tco"
     ];
 
+    kernelPackages = lib.mkForce flake-inputs.nixpkgs-unfree.legacyPackages.${pkgs.system}.linuxPackages_latest;
+
     # Star citizen needs more
     kernel.sysctl."vm.max_map_count" = 16777216;
 
