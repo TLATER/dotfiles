@@ -7,6 +7,7 @@
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.peerix.nixosModules.peerix
     flake-inputs.sops-nix.nixosModules.sops
+    ./wireguard.nix
   ];
 
   nix = {
