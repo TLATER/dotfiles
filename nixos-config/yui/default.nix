@@ -12,6 +12,7 @@
     flake-inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
     ./hardware-configuration.nix
+    ../networks/personal.nix
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg:
@@ -67,6 +68,9 @@
 
     # Allow barrier
     firewall.allowedTCPPorts = [24800];
+
+    # Work around EAC
+    hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
   };
 
   hardware = {

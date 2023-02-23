@@ -1,4 +1,5 @@
 {
+  config,
   pkgs,
   flake-inputs,
   ...
@@ -89,10 +90,17 @@
   fileSystems."/nix".options = ["defaults" "noatime"];
 
   networking = {
-    wireless.enable = true;
+    wireless = {
+      enable = true;
+
+      allowAuxiliaryImperativeNetworks = true;
+      userControlled = {
+        enable = true;
+        group = "network";
+      };
+    };
     useDHCP = false;
     useNetworkd = true;
-    hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
   };
   systemd.network.wait-online.anyInterface = true;
 
@@ -101,12 +109,15 @@
   users = {
     defaultUserShell = pkgs.zsh;
 
-    groups.peerix = {};
+    groups = {
+      peerix = {};
+      network = {};
+    };
 
     users = {
       tlater = {
         isNormalUser = true;
-        extraGroups = ["wheel" "video"];
+        extraGroups = ["wheel" "video" "network"];
       };
 
       peerix = {
@@ -121,6 +132,7 @@
     home-manager # To manage the actual user configuration
     lightlocker # Lock screen
     pavucontrol # In case the host doesn't have audio, this can't be in the user config
+    wpa_supplicant_gui # For managing wireless networks
 
     firefox
   ];
