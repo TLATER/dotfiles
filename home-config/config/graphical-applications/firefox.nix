@@ -49,6 +49,10 @@ in {
         translate-web-pages
         tridactyl
         ublock-origin
+        # # Missing:
+        # aria2-integration
+        # devtools-adb-extension
+        # firefox-sticky-window-containers
       ];
       profiles."tlater" = {
         userChrome =
