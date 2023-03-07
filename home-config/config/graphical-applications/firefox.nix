@@ -42,6 +42,7 @@ in {
       extensions = with pkgs.nur.repos.rycee.firefox-addons; [
         buster-captcha-solver
         clearurls
+        decentraleyes
         libredirect
         no-pdf-download
         react-devtools
@@ -49,8 +50,10 @@ in {
         translate-web-pages
         tridactyl
         ublock-origin
+
         # # Missing:
         # aria2-integration
+        # cloudhole
         # devtools-adb-extension
         # firefox-sticky-window-containers
       ];
