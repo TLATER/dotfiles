@@ -6,14 +6,6 @@
 }: let
   screen-config = ''
     section: screens
-    	ct-lt-02052:
-    		halfDuplexCapsLock = false
-    		halfDuplexNumLock = false
-    		halfDuplexScrollLock = false
-    		xtestIsXineramaUnaware = false
-    		preserveFocus = false
-    		switchCorners = none +top-left +bottom-left
-    		switchCornerSize = 5
     	yui:
     		halfDuplexCapsLock = false
     		halfDuplexNumLock = false
@@ -28,10 +20,6 @@
     end
 
     section: links
-    	ct-lt-02052:
-    		right = yui
-    	yui:
-    		left = ct-lt-02052
     end
 
     section: options

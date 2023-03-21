@@ -46,16 +46,6 @@
 
         specialArgs.flake-inputs = inputs;
       };
-
-      ct-lt-02052 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./nixos-config
-          ./nixos-config/ct-lt-02052
-        ];
-
-        specialArgs.flake-inputs = inputs;
-      };
     };
 
     homeConfigurations = {
