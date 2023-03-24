@@ -9,6 +9,8 @@
     flake-inputs.peerix.nixosModules.peerix
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.hyprland.nixosModules.default
+
+    ./greeter.nix
     ./wireguard.nix
   ];
 
@@ -134,7 +136,6 @@
   environment.systemPackages = with pkgs; [
     git # To manage the nixos configuration, all users need git
     home-manager # To manage the actual user configuration
-    lightlocker # Lock screen
     pavucontrol # In case the host doesn't have audio, this can't be in the user config
     wpa_supplicant_gui # For managing wireless networks
 
@@ -193,26 +194,6 @@
       libinput = {
         enable = true;
         mouse.middleEmulation = false;
-      };
-
-      displayManager = {
-        lightdm = {
-          enable = true;
-          extraConfig = ''
-            # Create .Xauthority in /var/run/user instead of $HOME
-            user-authority-in-system-dir = true
-          '';
-        };
-        defaultSession = "default";
-        session = [
-          # This session doesn't do anything, but lightdm will fail to
-          # start a session if we don't have at least one set
-          {
-            manage = "desktop";
-            name = "default";
-            start = "";
-          }
-        ];
       };
     };
 
