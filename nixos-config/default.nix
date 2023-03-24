@@ -8,6 +8,7 @@
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.peerix.nixosModules.peerix
     flake-inputs.sops-nix.nixosModules.sops
+    flake-inputs.hyprland.nixosModules.default
     ./wireguard.nix
   ];
 
@@ -18,7 +19,9 @@
     '';
 
     settings = {
+      substituters = ["https://hyprland.cachix.org"];
       trusted-public-keys = [
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         (builtins.readFile ../keys/peerix/yui.pub)
       ];
     };
@@ -152,6 +155,12 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
+
+    hyprland = {
+      enable = true;
+      xwayland.hidpi = false;
+      nvidiaPatches = true;
+    };
   };
 
   fonts = {
@@ -230,11 +239,6 @@
   };
 
   security.rtkit.enable = true;
-
-  xdg.portal = {
-    enable = true;
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
-  };
 
   # Necessary for opening links in gnome under certain conditions
   services.gvfs.enable = true;

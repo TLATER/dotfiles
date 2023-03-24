@@ -8,6 +8,7 @@
     ./barrier.nix
     ./dunst.nix
     ./gtk.nix
+    ./hyprland.nix
     ./mime.nix
     ./ncmpcpp.nix
     ./password-store.nix

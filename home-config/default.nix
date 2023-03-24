@@ -5,6 +5,7 @@
   ...
 }: {
   imports = [
+    flake-inputs.hyprland.homeManagerModules.default
     ./config
     ../home-modules/firefox-webapp.nix
   ];

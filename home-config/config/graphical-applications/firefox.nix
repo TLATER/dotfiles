@@ -75,6 +75,10 @@ in {
           # crap and unreadable without this
           "reader.parse-on-load.force-enabled" = true;
 
+          # Hide the "sharing indicator", it's especially annoying
+          # with tiling WMs on wayland
+          "privacy.webrtc.legacyGlobalIndicator" = false;
+
           # Actual settings
           "app.shield.optoutstudies.enabled" = false;
           "app.update.auto" = false;
