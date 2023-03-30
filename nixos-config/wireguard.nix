@@ -35,10 +35,27 @@
         }
       ];
     };
+
+    wg-pvpn-hk-41 = {
+      autostart = false;
+
+      privateKeyFile = config.sops.secrets."protonvpn/hk-41".path;
+      address = ["10.2.0.2/32"];
+      dns = ["10.2.0.1"];
+
+      peers = [
+        {
+          publicKey = "/AEriTfHYyrhW+bj1cDy9RroL4j4o1tv9sw4m+aB8lA=";
+          endpoint = "146.70.113.98:51820";
+          allowedIPs = ["0.0.0.0/0"];
+        }
+      ];
+    };
   };
 
   sops.secrets = {
     "protonvpn/hk-6" = {};
     "protonvpn/hk-21" = {};
+    "protonvpn/hk-41" = {};
   };
 }
