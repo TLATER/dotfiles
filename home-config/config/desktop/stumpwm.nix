@@ -51,7 +51,6 @@ in {
       enable = true;
       initExtra = ''
         export STUMPWM_CONTRIB_DIR=${tlaterpkgs.stumpwm-contrib}/share/stumpwm/modules
-        xrdb -merge ~/.Xresources
 
         if [ "$XDG_CURRENT_DESKTOP" = "default" ]; then
             export XDG_CURRENT_DESKTOP=stumpwm
