@@ -59,11 +59,6 @@
 
   networking = {
     hostName = "yui";
-    interfaces = {
-      eno1.useDHCP = true;
-      wlp6s0.useDHCP = true;
-    };
-
     wireless.interfaces = ["wlp6s0"];
 
     # Allow barrier
@@ -71,6 +66,43 @@
 
     # Work around EAC
     hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
+  };
+
+  systemd.network = {
+    netdevs = {
+      "10-bond0" = {
+        netdevConfig = {
+          Name = "bond0";
+          Kind = "bond";
+        };
+
+        bondConfig = {
+          Mode = "active-backup";
+          PrimaryReselectPolicy = "always";
+          MIIMonitorSec = "100ms";
+        };
+      };
+    };
+
+    networks = {
+      "10-bond0" = {
+        matchConfig.Name = "bond0";
+        networkConfig.DHCP = "yes";
+      };
+
+      "40-eno1" = {
+        matchConfig.Name = "eno1";
+        networkConfig = {
+          Bond = "bond0";
+          PrimarySlave = true;
+        };
+      };
+
+      "40-wlp6s0" = {
+        matchConfig.Name = "wlp6s0";
+        networkConfig.Bond = "bond0";
+      };
+    };
   };
 
   hardware = {
