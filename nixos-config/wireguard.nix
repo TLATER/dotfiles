@@ -21,7 +21,7 @@
     };
 
     wg-pvpn-hk-21 = {
-      autostart = true;
+      autostart = false;
 
       privateKeyFile = config.sops.secrets."protonvpn/hk-21".path;
       address = ["10.2.0.2/32"];
