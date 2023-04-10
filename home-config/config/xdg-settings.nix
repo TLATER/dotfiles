@@ -5,6 +5,7 @@
   ...
 }: let
   inherit (pkgs) writeText;
+  inherit (lib.strings) concatStringsSep;
   xdg = config.xdg;
 in {
   home.activation = {
@@ -27,7 +28,10 @@ in {
   };
 
   home.sessionVariables = {
-    _JAVA_OPTIONS = "-Djava.util.prefs.userRoot='${xdg.configHome}'/java";
+    _JAVA_OPTIONS = concatStringsSep " " [
+      "-Djava.util.prefs.userRoot='${xdg.configHome}'/java"
+      "-Djavafx.cachedir='${xdg.cacheHome}/openjfx'"
+    ];
     LESSKEY = "${xdg.cacheHome}/less/key";
     LESSHISTFILE = "${xdg.cacheHome}/less/history";
     PYLINTHOME = "${xdg.cacheHome}/pylint";
