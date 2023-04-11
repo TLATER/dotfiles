@@ -45,6 +45,17 @@
       sha256 = "sha256-x2UPZ99LOl34JzsKGlcpUHATMRFk2rcC5Scq1qjhrdA=";
     });
   };
+  phosphor-icons = {
+    pname = "phosphor-icons";
+    version = "d3b385a38acbb8b16a068e8e2515660af6978cf9";
+    src = fetchFromGitHub ({
+      owner = "phosphor-icons";
+      repo = "web";
+      rev = "d3b385a38acbb8b16a068e8e2515660af6978cf9";
+      fetchSubmodules = false;
+      sha256 = "sha256-zq7z2IEH6Cfv/3O1jYe1MYbvZKb+FicGf4QFDlbseTI=";
+    });
+  };
   stumpwm = {
     pname = "stumpwm";
     version = "9b5e0cfd19d0dfb18e284ac140431a2685afbe3e";

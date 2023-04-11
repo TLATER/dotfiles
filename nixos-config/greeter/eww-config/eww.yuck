@@ -1,0 +1,25 @@
+(defwindow powermenu
+  :monitor 0
+  :geometry (geometry
+              :width "0%"
+              :height "0%"
+              :anchor "bottom right")
+  :stacking "overlay"
+  :focusable false
+  :exclusive false
+  :namespace "powermenu"
+  (_buttons))
+
+(defwidget _buttons []
+  (box
+    :class "btns-box"
+    :spacing 5
+    :vexpand true
+    :hexpand true
+    :valign "end"
+    :halign "end"
+    :space-evenly false
+    (button :onclick "systemctl hibernate" "")
+    (button :onclick "systemctl suspend" "")
+    (button :onclick "systemctl reboot" "")
+    (button :onclick "systemctl poweroff" "")))

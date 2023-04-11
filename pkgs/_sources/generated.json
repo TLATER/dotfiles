@@ -75,6 +75,25 @@
         },
         "version": "14978859c5b8d9385c9b836cd09c97cc08b6035b"
     },
+    "phosphor-icons": {
+        "cargoLocks": null,
+        "extract": null,
+        "name": "phosphor-icons",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "phosphor-icons",
+            "repo": "web",
+            "rev": "d3b385a38acbb8b16a068e8e2515660af6978cf9",
+            "sha256": "sha256-zq7z2IEH6Cfv/3O1jYe1MYbvZKb+FicGf4QFDlbseTI=",
+            "type": "github"
+        },
+        "version": "d3b385a38acbb8b16a068e8e2515660af6978cf9"
+    },
     "stumpwm": {
         "cargoLocks": null,
         "extract": null,

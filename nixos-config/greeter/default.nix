@@ -6,6 +6,9 @@
   ...
 }: let
   hyprland-gtkgreet = pkgs.writeText "hyprland-gtkgreet" ''
+    env = XDG_CACHE_HOME,/tmp
+
+    exec-once = eww -c ${./eww-config} open powermenu
     exec-once = gtkgreet -l; hyprctl dispatch exit
   '';
 
@@ -14,6 +17,7 @@
     runtimeInputs = [
       flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
       pkgs.greetd.gtkgreet
+      pkgs.eww-wayland
     ];
     text = ''
       export LIBVA_DRIVER_NAME=nvidia
@@ -44,9 +48,14 @@ in {
     };
   };
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
+    eww-wayland
     hyprland
-    pkgs.pciutils
+    pciutils
+  ];
+
+  fonts.fonts = [
+    flake-inputs.self.packages.${pkgs.system}.phosphor-icons
   ];
 
   environment.etc."greetd/environments".text = ''

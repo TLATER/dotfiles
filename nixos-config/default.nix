@@ -10,7 +10,7 @@
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.hyprland.nixosModules.default
 
-    ./greeter.nix
+    ./greeter
     ./wireguard.nix
   ];
 

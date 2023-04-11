@@ -17,6 +17,11 @@ src.git = "https://github.com/ohmyzsh/ohmyzsh"
 src.branch = "master"
 fetch.github = "ohmyzsh/ohmyzsh"
 
+[phosphor-icons]
+src.git = "https://github.com/phosphor-icons/web"
+src.branch = "master"
+fetch.github = "phosphor-icons/web"
+
 [stumpwm]
 src.git = "https://github.com/stumpwm/stumpwm"
 fetch.github = "stumpwm/stumpwm"
