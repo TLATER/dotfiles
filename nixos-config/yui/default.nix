@@ -4,7 +4,9 @@
   lib,
   flake-inputs,
   ...
-}: {
+}: let
+  inherit (lib.strings) concatStringsSep;
+in {
   imports = [
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -144,6 +146,22 @@
     privateKeyFile = config.sops.secrets."peerix/yui".path;
     publicKeyFile = ../../keys/peerix/yui.pub;
   };
+
+  # Fix broken suspend on b550i motherboard
+  #
+  # The rule is a bit overzealous, as it disables wake from *either*
+  # NVME drive, but I don't see why anyone would want to wake from
+  # NVME drives anyway.
+  #
+  # At least I *think* that's what the GPP bridge maps to, at least
+  # this fixes the immediate resume from suspend on my board.
+  services.udev.extraRules = concatStringsSep ", " [
+    ''ACTION=="add"''
+    ''SUBSYSTEM=="pci"''
+    ''ATTR{vendor}=="0x1022"''
+    ''ATTR{device}=="0x1483"''
+    ''ATTR{power/wakeup}="disabled"''
+  ];
 
   # For random android-related things
   programs.adb.enable = true;
