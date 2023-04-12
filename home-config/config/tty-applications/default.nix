@@ -22,6 +22,5 @@
     screen
   ];
 
-  home.file.".profile".source = "${config._dotfiles}/env";
   xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
 }

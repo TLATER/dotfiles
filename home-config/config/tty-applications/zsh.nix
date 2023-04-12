@@ -12,6 +12,26 @@ in {
     any-nix-shell
   ];
 
+  home.file.".profile".text = ''
+    source "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
+
+    export BROWSER="firefox"
+
+    export XDG_CONFIG_HOME="$HOME/.config"
+    export XDG_DATA_HOME="$HOME/.local/share"
+    export XDG_BIN_HOME="$HOME/.local/bin"
+    export XDG_LIB_HOME="$HOME/.local/lib"
+    export XDG_CACHE_HOME="$HOME/.cache"
+
+    export PATH="$PATH:$HOME/.local/bin"
+    export PATH="$PATH:$HOME/.local/usr/bin"
+
+    export VISUAL='emacsclient'
+    export EDITOR='emacsclient'
+    export ALTERNATE_EDITOR='emacs'
+    export VTERM='alacritty'
+  '';
+
   programs = {
     direnv = {
       enable = true;
