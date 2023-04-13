@@ -1,4 +1,4 @@
-;;; `(file-name-nondirectory (buffer-file-name))` --- $1
+;;; `(file-name-nondirectory (buffer-file-name))` --- $1      -*- lexical-binding: t; -*-
 
 ;; Copyright (C) `(format-time-string "%Y")`  `(or (getenv "ORGANIZATION") (user-full-name))`
 
