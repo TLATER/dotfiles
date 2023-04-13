@@ -23,6 +23,10 @@ in {
     # I just edit shell scripts often enough it makes sense to have
     # this by default
     shellcheck
+
+    # Required for markdown-mode (though could be replaced with a
+    # different markdown implementation at some point)
+    pandoc
   ];
 
   xdg.configFile."emacs" = {

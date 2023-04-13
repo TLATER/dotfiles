@@ -1,6 +1,6 @@
 ;;; init.el --- Emacs configuration entry point      -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2019  Tristan Daniël Maat
+;; Copyright (C) 2023  Tristan Daniël Maat
 
 ;; Author: Tristan Daniël Maat <tm@tlater.net>
 ;; Keywords: convenience
@@ -20,11 +20,17 @@
 
 ;;; Commentary:
 
-;;
+;; Sets up some basic variables (directory paths etc.), as well as packages and features
+;; that need to be set at the very start of initialization.  After that, load the rest
+;; of the configuration files.
 
 ;;; Code:
 
-;; Set configuration locations
+;; ----------------------------------------------------------------------------------
+;;; Basic path setup
+;; ----------------------------------------------------------------------------------
+
+
 (defvar config-dir (expand-file-name
                     "config"
                     (file-name-directory load-file-name)))
@@ -37,150 +43,47 @@
 (defvar share-dir (expand-file-name
                    "share"
                    (file-name-directory load-file-name)))
-(setq custom-file (expand-file-name "custom.el" data-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
-;; Set up package loading
+;; ----------------------------------------------------------------------------------
+;;; Package management
+;; ----------------------------------------------------------------------------------
+
 (require 'package)
 (setq package-user-dir (expand-file-name "elpa" data-dir))
 (setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
-(defvar using-external-packages (or (getenv "SCANNING_PACKAGES")
-                                    (fboundp 'nix--profile-paths)))
 
-;; Make sure use-package is installed if it's not installed externally
-(unless using-external-packages
-  (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                      (not (gnutls-available-p))))
-         (proto (if no-ssl "http" "https")))
-    (when no-ssl
-      (warn "\
-Your version of Emacs does not support SSL connections,
-which is unsafe because it allows man-in-the-middle attacks.
-There are two things you can do about this warning:
-1. Install an Emacs version that does support SSL and be safe.
-2. Remove this warning from your init file so you won't see it again."))
-    ;; Comment/uncomment these two lines to enable/disable MELPA and MELPA
-    ;; Stable as desired
-    (add-to-list 'package-archives
-                 (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-    (when (< emacs-major-version 24)
-      ;; For important compatibility libraries like cl-lib
-      (add-to-list 'package-archives
-                   (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))))
-
-  (unless package--initialized (package-initialize))
-  (unless (package-installed-p 'use-package)
-    (package-refresh-contents)
-    (package-install 'use-package)))
-
-;; Setup use-package, regardless of how it is installed
+;; Setup use-package
 ;; bind-key is a dependency...
 (require 'bind-key)
 (require 'use-package)
 
-;; If packages are installed externally, we want to turn "ensure" off
-(setq use-package-always-ensure (not using-external-packages))
-(setq use-package-compute-statistics t)
-(when using-external-packages
-  (setq use-package-ensure-function 'ignore)
-  (setq package-enable-at-startup nil))
+;; Make sure emacs doesn't try to randomly fetch packages itself; nix is in charge of
+;; that
+(setq package-enable-at-startup nil)
+(setq use-package-always-ensure nil)
+(setq use-package-ensure-function 'ignore)
 
-;; Finally, make sure that flymake has all the relevant stuff in its
-;; load-path
-(setq elisp-flymake-byte-compile-load-path
-      (append load-path (list (file-name-directory load-file-name) config-dir)))
+;; Avoid all kinds of byte compilation warnings - see
+;; https://github.com/jwiegley/use-package/issues/590
+(eval-when-compile
+  (setq use-package-expand-minimally byte-compile-current-file))
 
-;; Disable the useless UI components
-(if (fboundp 'menu-bar-mode)
-    (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode)
-    (tool-bar-mode -1))
-(if (fboundp 'scroll-bar-mode)
-    (scroll-bar-mode -1))
+;; ----------------------------------------------------------------------------------
+;;; Set up improved garbage collection for better startup and runtime performance.
+;; ----------------------------------------------------------------------------------
 
-;; Set some other annoyances that need to be rid of in all cases
-(setq inhibit-startup-screen t)
-(setq ring-bell-function 'ignore)
-(fset 'yes-or-no-p 'y-or-n-p)
-(show-paren-mode 1)
-(defun suspend-non-graphical-frame (orig &rest args)
-  "Suspend-frame, but don't do it to my graphical windows.
-
-   ORIG is the original function, ARGS the arguments passed to the invocation."
-  (when (not (display-graphic-p))
-    (apply orig args)))
-(advice-add 'suspend-frame :around #'suspend-non-graphical-frame)
-(setq load-prefer-newer t)
-(setq large-file-warning-threshold 100000000)
-
-;; Don't litter backup files everywhere
-(setq backup-by-copying t
-      backup-directory-alist `(("." . ,back-dir))
-      delete-old-versions t
-      kept-new-versions 6
-      kept-old-versions 2
-      version-control t)
-(setq auto-save-list-file-prefix
-      (expand-file-name "auto-save-list/" back-dir))
-(setq auto-save-file-name-transforms
-      `((".*/\\(.*\\)" ,(expand-file-name "\\1" back-dir) t)))
-(setq create-lockfiles nil)
-
-;; Might not want to do the following if we're not in a normal
-;; environment, i.e., if we're *not* invoked as a daemon. Maybe set
-;; some minimal components for daemon mode and stop here if we're
-;; root?
-
-;; Set the theme
-(use-package gotham-theme
-  :ensure t
-  :defines gotham-tty-16-colors
-  :functions gotham-pick-color
-  :custom
-  (gotham-tty-256-colors t)
-  (gotham-tty-16-colors t)
-  :config
-  (defun gotham-pick-color (color-256 color-16 color-8)
-    (if gotham-tty-256-colors color-256
-      (if gotham-tty-16-colors color-16 color-8)))
-
-  (setq gotham-color-alist
-        `((base0   "#0f0f0f" ,(gotham-pick-color "color-232" "black"        "black"))
-          (base1   "#11151c" ,(gotham-pick-color "color-233" "brightblack"  "black"))
-          (base2   "#091f2e" ,(gotham-pick-color "color-17"  "brightgreen"  "black"))
-          (base3   "#0a3749" ,(gotham-pick-color "color-18"  "brightblue"   "blue"))
-          (base4   "#245361" ,(gotham-pick-color "color-24"  "brightyellow" "cyan"))
-          (base5   "#268bd2" ,(gotham-pick-color "color-81"  "brightcyan"   "cyan"))
-          (base6   "#99d1ce" ,(gotham-pick-color "color-122" "white"        "white"))
-          (base7   "#d3ebe9" ,(gotham-pick-color "color-194" "brightwhite"  "white"))
-
-          (red     "#dc322f" ,(gotham-pick-color "color-124" "red"           "red"))
-          (orange  "#d26937" ,(gotham-pick-color "color-166" "brightred"     "yellow"))
-          (yellow  "#b58900" ,(gotham-pick-color "color-214" "yellow"        "yellow"))
-          (magenta "#707880" ,(gotham-pick-color "color-67"  "brightmagenta" "white"))
-          (violet  "#4e5166" ,(gotham-pick-color "color-60"  "magenta"       "blue"))
-          (blue    "#195466" ,(gotham-pick-color "color-24"  "blue"          "blue"))
-          (cyan    "#599cab" ,(gotham-pick-color "color-44"  "cyan"          "cyan"))
-          (green   "#2aa889" ,(gotham-pick-color "color-78"  "green"         "green"))))
-  (load-theme 'gotham t))
-
-;; Ensure that our exec path is set up correctly
-(use-package exec-path-from-shell
-  :demand
-  :commands exec-path-from-shell-initialize
-  :if (not (memq system-type '(cygwin windows-nt)))
-  :custom
-  (exec-path-from-shell-arguments '("-l"))
-  :config
-  (exec-path-from-shell-initialize))
-
-;; Setup garbage collection
 (use-package gcmh
-  :demand
-  :commands gcmh-mode
   :config
   (gcmh-mode 1))
+
+;; ----------------------------------------------------------------------------------
+;;; Load other configuration files
+;; ----------------------------------------------------------------------------------
+
+;; Make sure we load the *newer* config files, be they .elc or .el files, instead of
+;; always trying to load compiled files and confusing the hell out of me when I try to
+;; make config changes and they don't apply.
+(setq load-prefer-newer t)
 
 ;; Load everything in the config directory
 (when (file-exists-p config-dir)
@@ -188,5 +91,10 @@ There are two things you can do about this warning:
           (load file nil nil t))
         (directory-files config-dir 't "^[^#\.].*\\.el$")))
 
-(provide 'init)
+;; Finally load `custom.el'' for any declarative settings; there *should* be none, but
+;; occasionally I need something a bit less rigid than my nix config for a little while.
+(setq custom-file (expand-file-name "custom.el" data-dir))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;;; init.el ends here
