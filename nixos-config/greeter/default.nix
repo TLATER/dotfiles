@@ -20,22 +20,13 @@
       pkgs.eww-wayland
     ];
     text = ''
-      export LIBVA_DRIVER_NAME=nvidia
       export XDG_SESSION_TYPE=wayland
-      export GBM_BACKEND=nvidia-drm
-      export __GLX_VENDOR_LIBRARY_NAME=nvidia
-      export WLR_NO_HARDWARE_CURSORS=1
       Hyprland -c ${hyprland-gtkgreet}
     '';
   };
 
   hyprland = pkgs.writeShellScriptBin "hyprland-run" ''
-    export LIBVA_DRIVER_NAME=nvidia
     export XDG_SESSION_TYPE=wayland
-    export GBM_BACKEND=nvidia-drm
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export WLR_NO_HARDWARE_CURSORS=1
-
     systemd-cat -t xsession Hyprland
   '';
 in {
