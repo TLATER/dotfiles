@@ -126,6 +126,9 @@
 (use-package nginx-mode
   :mode (rx "nginx.conf" string-end))
 
+(use-package yuck-mode
+  :mode (rx ".yuck" string-end))
+
 ;; web stuff
 
 (use-package cc-mode
