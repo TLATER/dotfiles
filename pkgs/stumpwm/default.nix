@@ -12,7 +12,7 @@
 
     systems = [
       "stumpwm"
-      "dynamic-mixins"
+      "dynamic-mixins-swm"
     ];
 
     lispLibs = with lispPackages_new.sbclPackages; [
