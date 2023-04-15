@@ -66,7 +66,6 @@
   :custom
   (yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
   :config
-  (make-directory (expand-file-name "snippets" share-dir) t)
   (yas-global-mode 1))
 
 (defun autoinsert-yas-expand ()

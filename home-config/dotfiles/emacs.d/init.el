@@ -43,6 +43,18 @@
 (defvar share-dir (expand-file-name
                    "share"
                    (file-name-directory load-file-name)))
+(defvar cache-dir (expand-file-name
+                   "emacs"
+                   (or (getenv "XDG_CACHE_HOME") "~/.cache")))
+
+;; Ensure emacs' native compilation doesn't try to write to the
+;; read-only dotfiles directory
+;;
+;; TODO(tlater): Flip this on when emacs 29 is released, and stop
+;; using recursive copy mode for the dotfiles
+;;
+;; (when (boundp 'native-comp-eln-load-path)
+;;   (startup-redirect-eln-cache (expand-file-name "eln-cache" )))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Package management
@@ -80,16 +92,11 @@
 ;;; Load other configuration files
 ;; ----------------------------------------------------------------------------------
 
-;; Make sure we load the *newer* config files, be they .elc or .el files, instead of
-;; always trying to load compiled files and confusing the hell out of me when I try to
-;; make config changes and they don't apply.
-(setq load-prefer-newer t)
-
 ;; Load everything in the config directory
 (when (file-exists-p config-dir)
   (mapc (lambda (file)
-          (load file nil nil t))
-        (directory-files config-dir 't "^[^#\.].*\\.el$")))
+          (load (file-name-sans-extension file) nil nil nil t))
+        (directory-files config-dir t "^[^#\.].*\\.el$")))
 
 ;; Finally load `custom.el'' for any declarative settings; there *should* be none, but
 ;; occasionally I need something a bit less rigid than my nix config for a little while.

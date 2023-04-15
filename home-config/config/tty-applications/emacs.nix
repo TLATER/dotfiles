@@ -31,6 +31,7 @@ in {
 
   xdg.configFile."emacs" = {
     source = emacs.dotfiles;
+    recursive = true;
   };
 
   programs.emacs = {
