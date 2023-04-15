@@ -27,6 +27,5 @@
 in {
   # Linters and formatters
   alejandra = callPackage ./alejandra.nix {};
-  emacs = callPackage ./emacs.nix {};
   shellcheck = callPackage ./shellcheck.nix {};
 }
