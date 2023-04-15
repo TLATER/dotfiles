@@ -15,7 +15,8 @@
     if hostPlatform.isDarwin
     then emacsMacport
     else emacs;
-  use-package-list = stdenv.mkDerivation rec {
+
+  use-package-list = stdenv.mkDerivation {
     inherit (sources.bauer) src version;
     pname = "use-package-list";
     installPhase = ''
@@ -48,6 +49,19 @@
   required-packages =
     builtins.fromJSON (builtins.readFile package-list)
     ++ ["use-package"];
+
+  custom-emacs =
+    emacsPkgs.emacs.pkgs.withPackages
+    (epkgs: map (package: builtins.getAttr package epkgs) required-packages);
+
+  compiled-dotfiles = runCommand "compiled-init" {buildInputs = [custom-emacs];} ''
+    cp -r '${self}/home-config/dotfiles/emacs.d/' "$out"
+    chmod -R u+w "$out"
+
+    HOME=/tmp emacs --batch \
+        --eval "(setq byte-compile-error-on-warn t)" \
+        -f batch-byte-compile \
+        "$out/init.el" "$out/config/"*
+  '';
 in
-  emacsPkgs.emacs.pkgs.withPackages
-  (epkgs: map (package: builtins.getAttr package epkgs) required-packages)
+  custom-emacs // (custom-emacs.passthru // {dotfiles = compiled-dotfiles;})

@@ -30,13 +30,7 @@ in {
   ];
 
   xdg.configFile."emacs" = {
-    onChange = ''
-      # Recompile init files
-      SCANNING_PACKAGES=true ${emacs}/bin/emacs --batch --quick \
-        --eval "(byte-recompile-directory user-emacs-directory 0)"
-    '';
-    recursive = true;
-    source = "${config._dotfiles}/emacs.d";
+    source = emacs.dotfiles;
   };
 
   programs.emacs = {
