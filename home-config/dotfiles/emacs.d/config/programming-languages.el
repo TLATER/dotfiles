@@ -146,6 +146,28 @@
    '((emacs-lisp . t)
      (gnuplot . t))))
 
+(use-package org-roam
+  :demand
+  :custom
+  (org-roam-db-location (expand-file-name "org-roam.db" data-dir))
+  (org-roam-directory "~/Documents/Notes/")
+  (org-roam-dailies-directory "Journal") ; Relative to org-roam-directory
+  (org-agenda-files '("~/Documents/Notes/Journal/"))
+  :bind
+  ("C-c n f" . org-roam-node-find)
+  ("C-c n i" . org-roam-node-insert)
+  :bind-keymap
+  ("C-c n d" . org-roam-dailies-map)
+  :config
+  (require 'org-roam-dailies)
+  (declare-function org-roam-db-autosync-mode nil)
+  (org-roam-db-autosync-mode 1))
+
+;; Used by org-agenda to store the TODO mark
+(use-package bookmark
+  :custom
+  (bookmark-file (expand-file-name "bookmarks" data-dir)))
+
 ;; ----------------------------------------------------------------------------------
 ;;; Protobuf
 ;; ----------------------------------------------------------------------------------
