@@ -93,6 +93,24 @@
                   "gitlab.codethink.co.uk" forge-gitlab-repository)))
 
 ;; ----------------------------------------------------------------------------------
+;; Show keymaps as the prefix is entered
+;; ----------------------------------------------------------------------------------
+
+(use-package which-key
+  :demand
+  :custom
+  (which-key-idle-delay 0.5)
+  (which-key-popup-type 'minibuffer)
+  (which-key-sort-order 'which-key-prefix-then-key-order)
+  (which-key-show-prefix 'left)
+  (which-key-use-C-h-commands t)
+  (which-key-max-description-length 60)
+  (which-key-show-docstrings t)
+  :config
+  (which-key-setup-side-window-bottom)
+  (which-key-mode 1))
+
+;; ----------------------------------------------------------------------------------
 ;; Much improved prompts
 ;; ----------------------------------------------------------------------------------
 
