@@ -192,19 +192,10 @@
 ;; ----------------------------------------------------------------------------------
 
 ;; TODO(tlater): Figure out how to preinstall docsets
-(use-package dash-docs
-  :functions dash-docs-activate-docset
-  :hook
-  (python-mode-hook . (lambda () (dash-docs-activate-docset "Python 3")))
+(use-package devdocs
+  :bind ("C-h D" . devdocs-lookup)
   :custom
-  (dash-docs-docsets-path (expand-file-name "docsets" data-dir))
-  (dash-docs-browser-func 'eww-browse-url)
-  :init
-  (declare-function dash-docs-activate-docset nil))
-(use-package helm-dash
-  :after (helm dash-docs)
-  :bind
-  ("C-c h d" . helm-dash))
+  (devdocs-data-dir (expand-file-name "docsets" data-dir)))
 
 ;; ----------------------------------------------------------------------------------
 ;; Project management

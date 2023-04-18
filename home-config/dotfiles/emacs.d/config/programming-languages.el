@@ -56,7 +56,8 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package dockerfile-mode
-  :mode (rx string-start "Dockerfile" string-end))
+  :mode (rx string-start "Dockerfile" string-end)
+  :hook (dockerfile-mode . (lambda () (setq-local devdocs-current-docs '("docker")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; GLSL
@@ -70,7 +71,8 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package gnuplot
-  :mode ((rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode))
+  :mode ((rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
+  :hook (gnuplot-mode . (lambda () (setq-local devdocs-current-docs '("gnuplot")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; GraphQL
@@ -87,6 +89,7 @@
   :commands haskell-mode-stylish-buffer
   :mode (rx ".hs" string-end)
   :hook (haskell-mode . interactive-haskell-mode)
+  :hook (haskell-mode . (lambda () (setq-local devdocs-current-docs '("haskell~9"))))
   :bind (:map haskell-mode-map
               ("C-c `" . haskell-interactive-bring)))
 
@@ -109,6 +112,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package markdown-mode
+  :hook (markdown-mode . (lambda () (setq-local devdocs-current-docs '("markdown"))))
   :mode (rx (or
              (and (or ".md" ".mdwn") string-end)
              (and string-start "/tmp/neomutt-")))
@@ -120,7 +124,8 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package nginx-mode
-  :mode (rx "nginx.conf" string-end))
+  :mode (rx "nginx.conf" string-end)
+  :hook (markdown-mode . (lambda () (setq-local devdocs-current-docs '("nginx")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Nix
@@ -128,7 +133,8 @@
 
 (use-package nix-mode
   :commands nix-format-buffer
-  :mode (rx ".nix" string-end))
+  :mode (rx ".nix" string-end)
+  :hook (nix-mode . (lambda () (setq-local devdocs-current-docs '("nix")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; org
@@ -182,6 +188,7 @@
 (use-package python
   :mode ((rx ".py" string-end) . python-mode)
   :interpreter ("python" . python-mode)
+  :hook (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
   :init
   (when (executable-find "ipython")
     (setq python-shell-interpreter "ipython"
@@ -191,7 +198,8 @@
           python-shell-interpreter-args "--simple-prompt -i")))
 
 (use-package cython-mode
-  :mode ((rx (or ".pyx" ".pxd" ".pxi") string-end)))
+  :mode ((rx (or ".pyx" ".pxd" ".pxi") string-end))
+  :hook (cython-mode . (lambda () (setq-local devdocs-current-docs '("python~3.11")))))
 
 (use-package python-pytest
   :after (python)
@@ -203,9 +211,11 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package rust-mode
-  :mode ((rx ".rs" string-end) . rust-mode))
+  :mode ((rx ".rs" string-end) . rust-mode)
+  :hook (rust-mode . (lambda () (setq-local devdocs-current-docs '("rust")))))
 
 (use-package cargo-mode
+  :hook (rust-mode . (lambda () (setq-local devdocs-current-docs '("rust"))))
   :mode ((rx (or (and ".rs" string-end)
                  (and string-start "Cargo.toml" string-end)))
          . rust-mode))
@@ -215,7 +225,8 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package scss-mode
-  :mode (rx (or ".sass" ".scss") string-end))
+  :mode (rx (or ".sass" ".scss") string-end)
+  :hook (scss-mode . (lambda () (setq-local devdocs-current-docs '("css" "sass")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; *sh
@@ -223,7 +234,8 @@
 
 (use-package flymake-shellcheck
   :commands flymake-shellcheck-load
-  :hook (sh-mode . flymake-shellcheck-load))
+  :hook (sh-mode . flymake-shellcheck-load)
+  :hook (sh-mode . (lambda () (setq-local devdocs-current-docs '("bash")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Systemd
@@ -241,7 +253,13 @@
 
 (use-package web-mode
   :bind
-  :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
+  :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end)
+  :hook (web-mode . (lambda () (setq-local devdocs-current-docs
+                                           '("html"
+                                             "typescript"
+                                             "css"
+                                             "javascript"
+                                             "dom")))))
 
 (use-package prettier-js
   :commands prettier-js)
