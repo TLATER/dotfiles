@@ -150,9 +150,11 @@
 
 ;; Spell checking
 (use-package flyspell
-  :ensure nil
   :bind (:map flyspell-mode-map
-              ("C-;" . nil))
+              ("C-;" . nil)
+              ("C-." . nil)
+              ("C-," . nil)
+              ("C-c $" . nil))
   :hook ((prog-mode . flyspell-prog-mode)
          (text-mode . flyspell-mode)))
 (use-package ispell
