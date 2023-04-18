@@ -133,6 +133,10 @@
     };
   };
 
+  # Ensure that we can find stuff with `man -k` (used with emacs a
+  # lot)
+  documentation.man.generateCaches = true;
+
   environment.systemPackages = with pkgs; [
     git # To manage the nixos configuration, all users need git
     home-manager # To manage the actual user configuration

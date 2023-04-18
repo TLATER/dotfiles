@@ -114,78 +114,113 @@
 ;; Much improved prompts
 ;; ----------------------------------------------------------------------------------
 
-(use-package helm
+(use-package vertico
   :demand
-  :commands helm-mode
-  :defines helm-boring-buffer-regexp-list
-  :init
-  (add-hook 'helm-mode-hook
-            (lambda ()
-              (setq completion-styles
-                    (cond ((assq 'helm-flex completion-styles-alist)
-                           '(helm-flex))
-                          ((assq 'flex completion-styles-alist)
-                           '(flex))))))
-  :config
-  (require 'helm-config)
-  (helm-mode 1)
   :custom
-  (helm-ff-lynx-style-map t)
-  (helm-completion-style 'emacs)
-  :bind
-  ([remap execute-extended-command] . helm-M-x)
-  ([remap find-file] . helm-find-files)
-  ([remap insert-char] . helm-ucs)
-  ([remap apropos] . helm-apropos)
-  ([remap switch-to-buffer] . helm-buffers-list)
-  ("C-x c" . nil) ; Unbind command map; I prefer doing my own thing
-  ("C-c h i" . helm-imenu)
-  ("C-c h s" . helm-occur)
-  ("C-c h u" . helm-ucs) ; Insert UTF-8 character
-  ("C-c h f" . helm-for-files)
-  ("C-c h b" . helm-bookmarks)
-  ("C-c h m" . helm-mark-ring)
+  (vertico-count 15)
+  (vertico-multiform-commands '((consult-imenu buffer)
+                                (consult-imenu-multi buffer)))
+  (vertico-multiform-categories '((consult-grep buffer)))
   :config
-  (setq helm-boring-buffer-regexp-list
-        (append helm-boring-buffer-regexp-list
-                '("magit-.*:.*" "*Flymake diagnostics*"))))
+  (require 'vertico-multiform)
+  (vertico-mode 1)
+  (vertico-multiform-mode 1))
 
-(use-package helm-tramp
-  :after helm
-  :bind
-  ("C-c h t" . helm-tramp))
+(use-package savehist
+  :demand
+  :custom
+  (savehist-file (expand-file-name "history" data-dir))
+  :config
+  (savehist-mode 1))
 
-(use-package helm-rg
-  :after projectile)
+(use-package orderless
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles basic partial-completion)))))
 
-(use-package helm-projectile
-  :functions helm-projectile-on
-  :after (helm projectile)
-  :bind
-  ([remap projectile-find-other-file] .
-   helm-projectile-find-other-file)
-  ([remap projectile-find-file] .
-   helm-projectile-find-file)
-  ([remap projectile-find-file-in-known-projects] .
-   helm-projectile-find-file-in-known-projects)
-  ([remap projectile-find-file-dwim] .
-   helm-projectile-find-file-dwim)
-  ([remap projectile-find-dir] .
-   helm-projectile-find-dir)
-  ([remap projectile-switch-project] .
-   helm-projectile-switch-project)
-  ([remap projectile-recentf] .
-   helm-projectile-recentf)
-  ([remap projectile-ripgrep] .
-   helm-projectile-rg)
-  ([remap projectile-switch-to-buffer] .
-   helm-projectile-switch-to-buffer)
-  ([remap projectile-browse-dirty-projects] .
-   helm-projectile-browse-dirty-projects)
+(use-package marginalia
+  :demand
+  :config
+  (marginalia-mode 1))
+
+(defun embark-which-key-indicator ()
+  "An embark indicator that displays keymaps using which-key.
+
+   The which-key help message will show the type and value of the
+   current target followed by an ellipsis if there are further
+   targets."
+  (lambda (&optional keymap targets prefix)
+    (if (null keymap)
+        (which-key--hide-popup-ignore-command)
+      (which-key--show-keymap
+       (if (eq (plist-get (car targets) :type) 'embark-become)
+           "Become"
+         (format "Act on %s '%s'%s"
+                 (plist-get (car targets) :type)
+                 (embark--truncate-target (plist-get (car targets) :target))
+                 (if (cdr targets) "…" "")))
+       (if prefix
+           (pcase (lookup-key keymap prefix 'accept-default)
+             ((and (pred keymapp) km) km)
+             (_ (key-binding prefix 'accept-default)))
+         keymap)
+       nil nil t (lambda (binding)
+                   (not (string-suffix-p "-argument" (cdr binding))))))))
+
+(use-package embark
+  :functions embark--truncate-target
+  :bind (("C-." . embark-act)
+         ("M-." . embark-dwim)
+         ("C-h B" . embark-bindings))
+  :hook (eldoc-documentation-functions . embark-eldoc-first-target)
+  :custom
+  (prefix-help-command 'embark-prefix-help-command)
+  (embark-indicators '(embark-which-key-indicator
+                       embark-highlight-indicator
+                       embark-isearch-highlight-indicator))
+  :preface
+  (declare-function embark-completing-read-prompter nil)
+
+  (defun embark-hide-which-key-indicator (fn &rest args)
+    "Alternate which-key based indicator.
+
+     Hide the which-key indicator immediately when using the
+     'completing-read' prompter.  FN ARGS."
+    (which-key--hide-popup-ignore-command)
+    (let ((embark-indicators
+           (remq #'embark-which-key-indicator embark-indicators)))
+      (apply fn args)))
+
+  :config
+  (advice-add #'embark-completing-read-prompter
+              :around #'embark-hide-which-key-indicator))
+
+(use-package embark-consult
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package emacs
   :init
-  (declare-function helm-projectile-on nil)
-  :config
-  (helm-projectile-on))
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [select-multiple<separator>], e.g., [select-multiple,]
+  ;; if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[select-multiple%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+  ;; Vertico commands are hidden in normal buffers.
+  (setq read-extended-command-predicate #'command-completion-default-include-p))
 
 ;; ----------------------------------------------------------------------------------
 ;; Non-man documentation browser
@@ -210,6 +245,7 @@
   (projectile-known-projects-file
    (expand-file-name "projectile-bookmarks.eld" data-dir))
   :config
+  (declare-function projectile-discover-projects-in-search-path nil)
   (projectile-discover-projects-in-search-path))
 
 ;; ----------------------------------------------------------------------------------

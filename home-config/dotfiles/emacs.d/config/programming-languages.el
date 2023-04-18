@@ -312,7 +312,8 @@
   :bind
   (:map eglot-mode-map
         ("C-c l r" . eglot-rename)
-        ("C-c l a" . eglot-code-actions))
+        ("C-c l a" . eglot-code-actions)
+        ("C-c l i" . consult-eglot-symbols))
   :init
   (setq eglot-workspace-configuration
         '((pylsp
