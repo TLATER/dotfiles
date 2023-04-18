@@ -201,9 +201,40 @@
 ;; Nicer undo UI
 ;; ----------------------------------------------------------------------------------
 
-(use-package undo-tree
+(use-package vundo
+  :bind
+  ("C-x u" . vundo)
+  (:map vundo-mode-map
+        ("C-f" . vundo-forward)
+        ("<right>" . vundo-forward)
+        ("C-b" . vundo-backward)
+        ("<left>" . vundo-backward)
+        ("C-n" . vundo-next)
+        ("<down>" . vundo-next)
+        ("C-p" . vundo-previous)
+        ("<up>" . vundo-previous)
+        ("C-a" . vundo-stem-root)
+        ("C-e" . vundo-stem-end)
+        ("C-g" . vundo-quit)
+        ("q" . vundo-confirm)
+        ("RET" . vundo-confirm))
+  :config
+  (defun vundo-set-symbols-for-frame ()
+    "Set symbols based on whether we are in a graphical display or not."
+    (setq vundo-glyph-alist
+          (if (display-graphic-p)
+              vundo-unicode-symbols
+            vundo-ascii-symbols)))
+  (setq vundo-pre-enter-hook '(vundo-set-symbols-for-frame)))
+
+(use-package undo-fu-session
+  :demand
+  :functions global-undo-fu-session-mode
   :custom
-  (undo-tree-history-directory-alist `(("." . ,(expand-file-name "undo" back-dir))))
-  :hook (after-init . global-undo-tree-mode))
+  (undo-fu-session-directory (expand-file-name "undo-fu-session" back-dir))
+  (undo-fu-session-compression 'xz)
+  (undo-fu-session-file-limit 20)
+  :config
+  (global-undo-fu-session-mode 1))
 
 ;;; editing.el ends here

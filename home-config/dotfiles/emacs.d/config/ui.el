@@ -42,6 +42,15 @@
 (define-key global-map (kbd "<XF86Forward>") nil)
 
 ;; ----------------------------------------------------------------------------------
+;;; Unbind keys I don't like
+;; ----------------------------------------------------------------------------------
+
+;; Remove undo keybindings; Undoing is handled using vundo instead
+(define-key global-map (kbd "C-/") nil)
+(define-key global-map (kbd "C-_") nil)
+(define-key global-map (kbd "C-?") nil)
+
+;; ----------------------------------------------------------------------------------
 ;;; Other various useful keybindings
 ;; ----------------------------------------------------------------------------------
 
