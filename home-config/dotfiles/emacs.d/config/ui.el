@@ -105,6 +105,8 @@
          ("M-y" . consult-yank-pop)
 
          ;; 'goto-map'
+         ("M-g e" . consult-compile-error)
+         ("M-g f" . consult-flymake)
          ("M-g g" . consult-goto-line)
          ("M-g M-g" . consult-goto-line)
          ("M-g o" . consult-outline)
@@ -120,8 +122,8 @@
          ("M-s r" . consult-ripgrep)
          ("M-s f" . consult-find)
          ("M-s m" . consult-man)
-         ;; Consider keep-lines, focus-lines Remember to bind isearch
-         ;; things somewhere, consult-line has some interactions
+         ("M-s e" . consult-isearch-history)
+         ;; Consider keep-lines, focus-lines
          )
   :config
   (advice-add #'register-preview :override #'consult-register-window))
