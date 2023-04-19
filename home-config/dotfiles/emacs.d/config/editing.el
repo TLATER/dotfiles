@@ -121,8 +121,7 @@
 
 ;; Some helpers for the templates
 
-(use-package project
-  :functions project-root)
+(declare-function project-root "project.el")
 
 (defun get-c-guard-name ()
   "Get the name for the current file as a C header guard.

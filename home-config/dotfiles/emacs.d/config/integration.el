@@ -73,7 +73,7 @@
   :custom
   (browse-url-browser-function 'browse-url-default-browser))
 
-;; A nice UI for ripgrep when not used with projectile
+;; A nice UI for ripgrep when not used with project.el
 (use-package deadgrep
   :commands deadgrep)
 
@@ -91,10 +91,6 @@
   :commands eshell
   :custom
   (eshell-directory-name (expand-file-name "eshell" data-dir)))
-
-(use-package project
-  :custom
-  (project-list-file (expand-file-name "projects" data-dir)))
 
 (use-package recentf
   :demand

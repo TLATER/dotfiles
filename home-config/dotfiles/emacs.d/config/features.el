@@ -59,6 +59,7 @@
   :custom
   (dashboard-set-init-info t)
   (dashboard-set-footer nil)
+  (dashboard-projects-backend 'project-el)
   (initial-buffer-choice (lambda ()
                            (or
                             (get-buffer "*dashboard*")
@@ -75,7 +76,10 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package magit
-  :bind ("C-c g s" . magit-status))
+  :bind
+  ("C-c g s" . magit-status)
+  (:map project-prefix-map
+        ("m" . magit-project-status)))
 (use-package transient
   :custom
   (transient-levels-file (expand-file-name "transient/levels.el" data-dir))
@@ -236,17 +240,36 @@
 ;; Project management
 ;; ----------------------------------------------------------------------------------
 
-(use-package projectile
-  :functions projectile-discover-projects-in-search-path
-  :bind-keymap
-  ("C-c p" . projectile-command-map)
+(use-package project
+  :bind (:map project-prefix-map
+         ("f" . consult-project-extra-find)
+         ("v" . nil)
+         ("x" . nil)
+         ("s" . nil)
+         ("e" . nil)
+         ("x v" . project-vterm)
+         ("x e" . project-eshell)
+         ("x s" . project-shell))
   :custom
-  (projectile-use-git-grep t)
-  (projectile-known-projects-file
-   (expand-file-name "projectile-bookmarks.eld" data-dir))
+  (project-list-file (expand-file-name "projects" data-dir))
+  :preface
+  (declare-function project-root "project.el")
+  (declare-function project-prefixed-buffer-name "project.el")
   :config
-  (declare-function projectile-discover-projects-in-search-path nil)
-  (projectile-discover-projects-in-search-path))
+  (require 'vterm)
+  (declare-function vterm "vterm.el")
+
+  (defun project-vterm ()
+    "Open or switch to a vterm buffer for the current project.
+
+     If the prefix ARG is set, open another vterm buffer."
+  (interactive)
+  (let* ((default-directory (project-root (project-current t)))
+         (default-project-vterm-name (project-prefixed-buffer-name "vterm"))
+         (vterm-buffer (get-buffer default-project-vterm-name)))
+    (if (and vterm-buffer (not current-prefix-arg))
+        (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
+      (vterm (generate-new-buffer-name default-project-vterm-name))))))
 
 ;; ----------------------------------------------------------------------------------
 ;; More mode-line info
