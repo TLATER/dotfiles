@@ -124,31 +124,30 @@
     ["c-file" autoinsert-yas-expand])
   (define-auto-insert (rx ".dir-locals.el") ["dir-locals" autoinsert-yas-expand])
 
+  ;; Various helpers for the templates
+  (require 'project)
+  (declare-function project-root "project.el")
+  (defun get-c-guard-name ()
+    "Get the name for the current file as a C header guard.
+
+     Compliant with Google's C++ style guide."
+    (let* ((filename-no-ext (file-name-sans-extension (buffer-file-name)))
+           (filename (or (ignore-errors (file-relative-name
+                                         filename-no-ext
+                                         (project-root (project-current))))
+                         (file-name-nondirectory filename-no-ext))))
+      (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_H_")))
+
+  (defun get-c-header-for-file ()
+    "Get the name of the C header that is associated with this file."
+    (let ((stem (file-name-sans-extension (buffer-file-name)))
+          (ret nil))
+      (dolist
+          (ext '("H" "h" "hh" "hpp" "hxx" "h++") ret)
+        (when (file-exists-p (concat stem "." ext))
+          (setq ret (file-name-nondirectory (concat stem "." ext)))))))
+
   (auto-insert-mode t))
-
-;; Some helpers for the templates
-
-(declare-function project-root "project.el")
-
-(defun get-c-guard-name ()
-  "Get the name for the current file as a C header guard.
-
-   Compliant with Google's C++ style guide."
-  (let* ((filename-no-ext (file-name-sans-extension (buffer-file-name)))
-         (filename (or (ignore-errors (file-relative-name
-                                       filename-no-ext
-                                       (project-root (project-current))))
-                       (file-name-nondirectory filename-no-ext))))
-    (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_H_")))
-
-(defun get-c-header-for-file ()
-  "Get the name of the C header that is associated with this file."
-  (let ((stem (file-name-sans-extension (buffer-file-name)))
-        (ret nil))
-    (dolist
-        (ext '("H" "h" "hh" "hpp" "hxx" "h++") ret)
-      (when (file-exists-p (concat stem "." ext))
-        (setq ret (file-name-nondirectory (concat stem "." ext)))))))
 
 ;; ----------------------------------------------------------------------------------
 ;; Spell checking
@@ -185,9 +184,10 @@
               ("M-<up>" . sp-backward-sexp))
   :custom
   (sp-navigate-interactive-always-progress-point t)
+  :preface
+  (declare-function smartparens-global-mode "smartparens.el")
+  (declare-function sp-use-smartparens-bindings "smartparens.el")
   :config
-  (declare-function smartparens-global-mode nil)
-  (declare-function sp-use-smartparens-bindings nil)
   (smartparens-global-mode t)
   (sp-use-smartparens-bindings))
 
@@ -237,11 +237,12 @@
 
 (use-package undo-fu-session
   :demand
-  :functions global-undo-fu-session-mode
   :custom
   (undo-fu-session-directory (expand-file-name "undo-fu-session" back-dir))
   (undo-fu-session-compression 'xz)
   (undo-fu-session-file-limit 20)
+  :preface
+  (declare-function global-undo-fu-session-mode "undo-fu-session.el")
   :config
   (global-undo-fu-session-mode 1))
 

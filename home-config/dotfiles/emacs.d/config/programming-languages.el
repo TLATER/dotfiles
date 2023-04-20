@@ -164,9 +164,10 @@
   ("C-c n i" . org-roam-node-insert)
   :bind-keymap
   ("C-c n d" . org-roam-dailies-map)
+  :preface
+  (declare-function org-roam-db-autosync-mode "org-roam.el")
   :config
   (require 'org-roam-dailies)
-  (declare-function org-roam-db-autosync-mode nil)
   (org-roam-db-autosync-mode 1))
 
 ;; Used by org-agenda to store the TODO mark

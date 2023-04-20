@@ -28,33 +28,27 @@
   (require 'use-package))
 
 (use-package gotham-theme
-  :defines gotham-tty-16-colors
-  :custom
-  (gotham-tty-256-colors t)
-  (gotham-tty-16-colors t)
-  :config
-  (defun gotham-pick-color (color-256 color-16 color-8)
-    (if gotham-tty-256-colors color-256
-      (if gotham-tty-16-colors color-16 color-8)))
+  :init
+  (setq gotham-tty-256-colors t)
 
   (setq gotham-color-alist
-        `((base0   "#0f0f0f" ,(gotham-pick-color "color-232" "black"        "black"))
-          (base1   "#11151c" ,(gotham-pick-color "color-233" "brightblack"  "black"))
-          (base2   "#091f2e" ,(gotham-pick-color "color-17"  "brightgreen"  "black"))
-          (base3   "#0a3749" ,(gotham-pick-color "color-18"  "brightblue"   "blue"))
-          (base4   "#245361" ,(gotham-pick-color "color-24"  "brightyellow" "cyan"))
-          (base5   "#268bd2" ,(gotham-pick-color "color-81"  "brightcyan"   "cyan"))
-          (base6   "#99d1ce" ,(gotham-pick-color "color-122" "white"        "white"))
-          (base7   "#d3ebe9" ,(gotham-pick-color "color-194" "brightwhite"  "white"))
+        `((base0   "#0f0f0f" ,(if gotham-tty-256-colors "color-232" "black"))
+          (base1   "#11151c" ,(if gotham-tty-256-colors "color-233" "brightblack"))
+          (base2   "#091f2e" ,(if gotham-tty-256-colors "color-17"  "brightgreen"))
+          (base3   "#0a3749" ,(if gotham-tty-256-colors "color-18"  "brightblue"))
+          (base4   "#245361" ,(if gotham-tty-256-colors "color-24"  "brightyellow"))
+          (base5   "#268bd2" ,(if gotham-tty-256-colors "color-81"  "brightcyan"))
+          (base6   "#99d1ce" ,(if gotham-tty-256-colors "color-122" "white"))
+          (base7   "#d3ebe9" ,(if gotham-tty-256-colors "color-194" "brightwhite"))
 
-          (red     "#dc322f" ,(gotham-pick-color "color-124" "red"           "red"))
-          (orange  "#d26937" ,(gotham-pick-color "color-166" "brightred"     "yellow"))
-          (yellow  "#b58900" ,(gotham-pick-color "color-214" "yellow"        "yellow"))
-          (magenta "#707880" ,(gotham-pick-color "color-67"  "brightmagenta" "white"))
-          (violet  "#4e5166" ,(gotham-pick-color "color-60"  "magenta"       "blue"))
-          (blue    "#195466" ,(gotham-pick-color "color-24"  "blue"          "blue"))
-          (cyan    "#599cab" ,(gotham-pick-color "color-44"  "cyan"          "cyan"))
-          (green   "#2aa889" ,(gotham-pick-color "color-78"  "green"         "green"))))
+          (red     "#dc322f" ,(if gotham-tty-256-colors "color-124" "red"))
+          (orange  "#d26937" ,(if gotham-tty-256-colors "color-166" "brightred"))
+          (yellow  "#b58900" ,(if gotham-tty-256-colors "color-214" "yellow"))
+          (magenta "#707880" ,(if gotham-tty-256-colors "color-67"  "brightmagenta"))
+          (violet  "#4e5166" ,(if gotham-tty-256-colors "color-60"  "magenta"))
+          (blue    "#195466" ,(if gotham-tty-256-colors "color-24"  "blue"))
+          (cyan    "#599cab" ,(if gotham-tty-256-colors "color-44"  "cyan"))
+          (green   "#2aa889" ,(if gotham-tty-256-colors "color-78"  "green"))))
   (load-theme 'gotham t))
 
 ;;; theme.el ends here

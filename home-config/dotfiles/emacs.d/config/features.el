@@ -110,6 +110,9 @@
   (which-key-use-C-h-commands t)
   (which-key-max-description-length 60)
   (which-key-show-docstrings t)
+  :preface
+  (declare-function which-key-setup-side-window-bottom "which-key.el")
+  (declare-function which-key-mode "which-key.el")
   :config
   (which-key-setup-side-window-bottom)
   (which-key-mode 1))
@@ -125,6 +128,9 @@
   (vertico-multiform-commands '((consult-imenu buffer)
                                 (consult-imenu-multi buffer)))
   (vertico-multiform-categories '((consult-grep buffer)))
+  :preface
+  (declare-function vertico-mode "vertico.el")
+  (declare-function vertico-multiform-mode "vertico-multiform.el")
   :config
   (require 'vertico-multiform)
   (vertico-mode 1)
@@ -145,32 +151,10 @@
 
 (use-package marginalia
   :demand
+  :preface
+  (declare-function marginalia-mode "marginalia.el")
   :config
   (marginalia-mode 1))
-
-(defun embark-which-key-indicator ()
-  "An embark indicator that displays keymaps using which-key.
-
-   The which-key help message will show the type and value of the
-   current target followed by an ellipsis if there are further
-   targets."
-  (lambda (&optional keymap targets prefix)
-    (if (null keymap)
-        (which-key--hide-popup-ignore-command)
-      (which-key--show-keymap
-       (if (eq (plist-get (car targets) :type) 'embark-become)
-           "Become"
-         (format "Act on %s '%s'%s"
-                 (plist-get (car targets) :type)
-                 (embark--truncate-target (plist-get (car targets) :target))
-                 (if (cdr targets) "…" "")))
-       (if prefix
-           (pcase (lookup-key keymap prefix 'accept-default)
-             ((and (pred keymapp) km) km)
-             (_ (key-binding prefix 'accept-default)))
-         keymap)
-       nil nil t (lambda (binding)
-                   (not (string-suffix-p "-argument" (cdr binding))))))))
 
 (use-package embark
   :functions embark--truncate-target
@@ -184,7 +168,35 @@
                        embark-highlight-indicator
                        embark-isearch-highlight-indicator))
   :preface
-  (declare-function embark-completing-read-prompter nil)
+  (declare-function embark-completing-read-prompter "embark.el")
+  (declare-function embark--truncate-target "embark.el")
+  (declare-function which-key--hide-popup-ignore-command "which-key.el")
+  (declare-function which-key--show-keymap "which-key.el")
+
+
+  (defun embark-which-key-indicator ()
+    "An embark indicator that displays keymaps using which-key.
+
+   The which-key help message will show the type and value of the
+   current target followed by an ellipsis if there are further
+   targets."
+    (lambda (&optional keymap targets prefix)
+      (if (null keymap)
+          (which-key--hide-popup-ignore-command)
+        (which-key--show-keymap
+         (if (eq (plist-get (car targets) :type) 'embark-become)
+             "Become"
+           (format "Act on %s '%s'%s"
+                   (plist-get (car targets) :type)
+                   (embark--truncate-target (plist-get (car targets) :target))
+                   (if (cdr targets) "…" "")))
+         (if prefix
+             (pcase (lookup-key keymap prefix 'accept-default)
+               ((and (pred keymapp) km) km)
+               (_ (key-binding prefix 'accept-default)))
+           keymap)
+         nil nil t (lambda (binding)
+                     (not (string-suffix-p "-argument" (cdr binding))))))))
 
   (defun embark-hide-which-key-indicator (fn &rest args)
     "Alternate which-key based indicator.
@@ -204,27 +216,25 @@
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package emacs
-  :init
-  ;; Add prompt indicator to `completing-read-multiple'.
-  ;; We display [select-multiple<separator>], e.g., [select-multiple,]
-  ;; if the separator is a comma.
-  (defun crm-indicator (args)
-    (cons (format "[select-multiple%s] %s"
-                  (replace-regexp-in-string
-                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                   crm-separator)
-                  (car args))
-          (cdr args)))
-  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
-
+  :hook (minibuffer-setup-hook . cursor-intangible-mode)
+  :custom
   ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
-
+  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
   ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
-  (setq read-extended-command-predicate #'command-completion-default-include-p))
+  (read-extended-command-predicate #'command-completion-default-include-p))
+
+;; Add prompt indicator to `completing-read-multiple'.
+;; We display [select-multiple<separator>], e.g., [select-multiple,]
+;; if the separator is a comma.
+(define-advice completing-read-multiple
+    (:around (&rest args) crm-indicator)
+  (cons (format "[select-multiple%s] %s"
+                (replace-regexp-in-string
+                 "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                 crm-separator)
+                (car args))
+        (cdr args)))
 
 ;; ----------------------------------------------------------------------------------
 ;; Non-man documentation browser
@@ -279,8 +289,8 @@
   :functions (sml/setup sml/faces-from-theme sml/theme-p)
   :custom
   (sml/no-confirm-load-theme t)
-  :init
-  (declare-function sml/setup nil)
+  :preface
+  (declare-function sml/setup "smart-mode-line")
   :config
   (sml/setup))
 
@@ -377,11 +387,12 @@
 (use-package xterm-color
   :after compile
   :functions (xterm-color-filter compilation-filter)
+  :preface
+  (declare-function xterm-color-filter "xterm-color.el")
   :init
-  (declare-function xterm-color-filter "xterm-color")
   (setq compilation-environment '("TERM=xterm-256color"))
   :config
-  (declare-function compilation-filter@advice-compilation-filter nil)
+  (declare-function compilation-filter@advice-compilation-filter "features.el")
   (define-advice compilation-filter
       (:around (orig proc string) advice-compilation-filter)
     (funcall orig proc (xterm-color-filter string))))

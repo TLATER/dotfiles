@@ -67,7 +67,6 @@
 
 (use-package crux
   :demand
-  :functions (crux-reopen-as-root-mode)
   :bind
   ("C-c o" . crux-open-with)
   ([remap kill-line] . crux-smart-kill-line)
@@ -77,6 +76,8 @@
   ("C-c C" . crux-copy-file-preserve-attributes)
   ("C-c R" . crux-rename-file-and-buffer)
   ([remap delete-indentation] . crux-top-join-line)
+  :preface
+  (declare-function crux-reopen-as-root-mode "crux.el")
   :config
   (crux-with-region-or-buffer comment-or-uncomment-region)
   (crux-reopen-as-root-mode))
@@ -141,6 +142,8 @@
   :custom
   (consult-org-roam-grep-func #'consult-ripgrep)
   (consult-org-roam-buffer-after-buffers t)
+  :preface
+  (declare-function consult-org-roam-mode "consult-org-roam.el")
   :config
   (consult-org-roam-mode 1))
 
