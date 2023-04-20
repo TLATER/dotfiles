@@ -202,11 +202,6 @@
   :mode ((rx (or ".pyx" ".pxd" ".pxi") string-end))
   :hook (cython-mode . (lambda () (setq-local devdocs-current-docs '("python~3.11")))))
 
-(use-package python-pytest
-  :after (python)
-  :bind (:map python-mode-map
-              ("C-c t" . python-pytest-dispatch)))
-
 ;; ----------------------------------------------------------------------------------
 ;;; Rust
 ;; ----------------------------------------------------------------------------------
