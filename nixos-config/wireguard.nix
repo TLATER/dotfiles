@@ -15,7 +15,7 @@
         {
           publicKey = "nkXNip76ZowVBdPQMeQUe6uLXRFFHVbdhn3n+CaI8j4=";
           endpoint = "193.239.86.2:51820";
-          allowedIPs = ["0.0.0.0/0"];
+          allowedIPs = ["0.0.0.0/0" "::/0"];
         }
       ];
     };
@@ -31,7 +31,7 @@
         {
           publicKey = "b04WYLiUOie4OkYbneVXdqnmoGKZyU7Vpfb9N+Qf31c=";
           endpoint = "156.146.45.129:51820";
-          allowedIPs = ["0.0.0.0/0"];
+          allowedIPs = ["0.0.0.0/0" "::/0"];
         }
       ];
     };
@@ -47,7 +47,7 @@
         {
           publicKey = "/AEriTfHYyrhW+bj1cDy9RroL4j4o1tv9sw4m+aB8lA=";
           endpoint = "146.70.113.98:51820";
-          allowedIPs = ["0.0.0.0/0"];
+          allowedIPs = ["0.0.0.0/0" "::/0"];
         }
       ];
     };
@@ -57,6 +57,13 @@
 
       privateKeyFile = config.sops.secrets."wireguard/tlaternet".path;
       address = ["10.45.249.2/32"];
+      # This is the minimum MTU possible (for IPv6 traffic), so should
+      # be the most generally supported.
+      #
+      # Better connections should support more, but my home connection
+      # only seems to support 1310 anyway, and this computer will
+      # likely travel, so for set-it-and-forget-it reasons let's set
+      # it to the minimum.
       mtu = 1280;
 
       peers = [
