@@ -63,8 +63,17 @@ in {
     hostName = "yui";
     wireless.interfaces = ["wlp6s0"];
 
-    # Allow barrier
-    firewall.allowedTCPPorts = [24800];
+    firewall.allowedTCPPorts = [
+      # Allow barrier
+      24800
+      # Allow minecraft for when I'm running a minecraft server
+      # locally
+      25565
+    ];
+
+    firewall.allowedUDPPorts = [
+      25565
+    ];
 
     # Work around EAC
     hosts."127.0.0.1" = ["modules-cdn.eac-prod.on.epicgames.com"];
