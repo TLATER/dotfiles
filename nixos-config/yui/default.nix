@@ -172,5 +172,7 @@ in {
 
   # For random android-related things
   programs.adb.enable = true;
+  # TODO(tlater): Swap out with whatever Android 14 introduces
+  programs.droidcam.enable = true;
   users.users.tlater.extraGroups = ["adbusers"];
 }
