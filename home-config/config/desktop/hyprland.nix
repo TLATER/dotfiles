@@ -20,6 +20,7 @@ in {
     home.packages = with pkgs; [
       slurp
       grim
+      flake-inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
 
     wayland.windowManager.hyprland = {
