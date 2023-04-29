@@ -25,6 +25,9 @@ in {
     pictures = "${config.xdg.userDirs.documents}/Pictures";
     publicShare = "${config.xdg.userDirs.documents}/Public";
     templates = "${config.xdg.userDirs.documents}/Templates";
+    extraConfig = {
+      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+    };
   };
 
   home.sessionVariables = {
