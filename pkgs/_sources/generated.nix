@@ -14,13 +14,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "fea9d8cb11b533ef04df57844dd953cba9bf4ee6";
+    version = "ef708145be2f4f38c53ad6e06ed121ffbd4834ea";
     src = fetchFromGitHub ({
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "fea9d8cb11b533ef04df57844dd953cba9bf4ee6";
+      rev = "ef708145be2f4f38c53ad6e06ed121ffbd4834ea";
       fetchSubmodules = false;
-      sha256 = "sha256-fvtq14bCiOG+Kcw9TkK7D5YP9K8/6oqcxF7AuEHukJs=";
+      sha256 = "sha256-hzUlPf9tGpfZ6I4u4W8j0Gp9XATSAUQN61G9c14mOq4=";
     });
   };
   gauth = {
@@ -36,13 +36,13 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "2e7a247cab663fbc0aafdefa15bf10eb4dd64563";
+    version = "5a3f565e7d4371db92ba574f231b396c2c8c9a19";
     src = fetchFromGitHub ({
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "2e7a247cab663fbc0aafdefa15bf10eb4dd64563";
+      rev = "5a3f565e7d4371db92ba574f231b396c2c8c9a19";
       fetchSubmodules = false;
-      sha256 = "sha256-iAt93CsVuiptkyb0iMiNmXflKubAg9IUg3bhOyXMi1Y=";
+      sha256 = "sha256-MqnaTHXylMafWI3cKMl5WhNF+by07teYnvh4bGS586c=";
     });
   };
   phosphor-icons = {
@@ -58,13 +58,13 @@
   };
   stumpwm = {
     pname = "stumpwm";
-    version = "05ec1a92bd4d4a81f2dff023cbf9916982157a6d";
+    version = "9072f22e1b0fa6a9ce0e7658713fb61a9ddb1469";
     src = fetchFromGitHub ({
       owner = "stumpwm";
       repo = "stumpwm";
-      rev = "05ec1a92bd4d4a81f2dff023cbf9916982157a6d";
+      rev = "9072f22e1b0fa6a9ce0e7658713fb61a9ddb1469";
       fetchSubmodules = false;
-      sha256 = "sha256-gOtYR5W5HZgknTG+jiUyZK9k3vnSkvAGfs9i2h4tiAw=";
+      sha256 = "sha256-GjTFUQ+qr6zXCxhSi8PqsWuBCKkb/RRfDkhzoBo9lBA=";
     });
   };
   stumpwm-contrib = {
