@@ -151,6 +151,11 @@ in {
     MOZ_DISABLE_RDD_SANDBOX = "1";
   };
 
+  programs.hyprland = {
+    xwayland.hidpi = false;
+    nvidiaPatches = true;
+  };
+
   sops.secrets = {
     "peerix/yui" = {
       owner = config.users.users.peerix.name;

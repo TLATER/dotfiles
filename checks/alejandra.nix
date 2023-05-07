@@ -16,6 +16,7 @@ in
           --exclude ./home-config/dotfiles/emacs.d/share/templates/ \
           --exclude ./pkgs/_sources/ \
           --exclude ./nixos-config/yui/hardware-configuration.nix \
+          --exclude ./nixos-config/ren/hardware-configuration.nix \
           . \
       | tee $out/test.log
     '';

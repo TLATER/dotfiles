@@ -25,6 +25,20 @@
       url = "github:cid-chan/peerix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impermanence.url = "github:nix-community/impermanence";
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixos-anywhere = {
+      url = "github:numtide/nixos-anywhere";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        disko.follows = "disko";
+      };
+    };
 
     # home-manager related inputs
     home-manager = {
@@ -53,6 +67,16 @@
         modules = [
           ./nixos-config
           ./nixos-config/yui
+        ];
+
+        specialArgs.flake-inputs = inputs;
+      };
+
+      ren = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos-config
+          ./nixos-config/ren
         ];
 
         specialArgs.flake-inputs = inputs;

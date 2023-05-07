@@ -78,8 +78,6 @@
     plymouth.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
 
-    initrd.luks.devices.root.allowDiscards = true;
-
     loader = {
       timeout = 0;
       efi.canTouchEfiVariables = true;
@@ -159,12 +157,7 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
-
-    hyprland = {
-      enable = true;
-      xwayland.hidpi = false;
-      nvidiaPatches = true;
-    };
+    hyprland.enable = true;
   };
 
   fonts = {
