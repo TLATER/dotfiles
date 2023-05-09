@@ -15,11 +15,30 @@
     mkdir -p $out/wpaperd
     cp ${(pkgs.formats.toml {}).generate "wallpaper.toml" wpaperd-config} $out/wpaperd/wallpaper.toml
   '';
+
+  keepassxc-copy = pkgs.writeShellApplication {
+    name = "keepassxc-copy";
+    runtimeInputs = with pkgs; [
+      jq
+      libsecret
+      wl-clipboard
+      flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
+    ];
+
+    text = ''
+      WINDOW_TITLE="$(hyprctl -j activewindow | jq -r '.title')"
+      secret-tool lookup KP2A_URL "title://$WINDOW_TITLE" | wl-copy
+      # Wait 45 seconds before clearing the clipboard
+      sleep 45
+      wl-copy -c
+    '';
+  };
 in {
   config = lib.mkIf config.custom.desktop-environment {
     home.packages = with pkgs; [
       slurp
       grim
+      keepassxc-copy
       flake-inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
     ];
 

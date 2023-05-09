@@ -56,6 +56,7 @@ in {
         # cloudhole
         # devtools-adb-extension
         # firefox-sticky-window-containers
+        # keepassxc-browser
       ];
       profiles."tlater" = {
         userChrome =
