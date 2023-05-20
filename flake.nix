@@ -32,6 +32,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nurpkgs.url = "github:nix-community/NUR";
+
+    # Other project inputs
+    nvfetcher = {
+      url = "github:berberman/nvfetcher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -71,6 +77,7 @@
     packages.x86_64-linux = import ./pkgs {
       inherit self;
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      flake-inputs = inputs;
     };
 
     apps.x86_64-linux.commit-nvfetcher = {

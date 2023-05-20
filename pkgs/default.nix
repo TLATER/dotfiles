@@ -1,9 +1,10 @@
 {
   self,
   pkgs,
+  flake-inputs,
 }: let
   sources = pkgs.callPackage ./sources.nix {};
-  callPackage = pkgs.lib.callPackageWith (pkgs // {inherit self sources;});
+  callPackage = pkgs.lib.callPackageWith (pkgs // {inherit self sources flake-inputs;});
 in {
   background = callPackage ./background.nix {};
   cap = callPackage ./cap.nix {};
