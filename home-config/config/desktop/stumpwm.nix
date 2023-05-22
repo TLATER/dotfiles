@@ -18,9 +18,6 @@ in {
       # Manages autostarts
       dex
 
-      # Takes screenshots
-      tlaterpkgs.cap
-
       # Fonts
       hack-font
       noto-fonts
@@ -31,16 +28,6 @@ in {
     home.file.".Xresources".source = "${config._dotfiles}/Xresources";
 
     xdg.configFile = {
-      "autostart/background.desktop".text = ''
-        [Desktop Entry]
-        Version=1.1
-        Type=Application
-        Name=Background
-        GenericName=Background setter
-        NoDisplay=true
-        Comment=Set a desktop background; necessary because stumpwm overrides xprofile-set backgrounds
-        Exec=${tlaterpkgs.background}/bin/background
-      '';
       "fontconfig/fonts.conf".source = "${config._dotfiles}/fonts.conf";
       "stumpwm/config".source = "${config._dotfiles}/stumpwm/config";
     };

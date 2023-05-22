@@ -6,19 +6,20 @@
   sources = pkgs.callPackage ./sources.nix {};
   callPackage = pkgs.lib.callPackageWith (pkgs // {inherit self sources flake-inputs;});
 in {
-  background = callPackage ./background.nix {};
-  cap = callPackage ./cap.nix {};
-  commit-nvfetcher = callPackage ./commit-nvfetcher.nix {};
-  dump-ics = callPackage ./dump-ics.nix {};
-  emacs = callPackage ./emacs.nix {};
-  firefox-ui-fix = callPackage ./firefox-ui-fix.nix {};
-  gauth = callPackage ./gauth.nix {};
-  oh-my-zsh-emacs = callPackage ./oh-my-zsh-emacs.nix {};
-  oh-my-zsh-screen = callPackage ./oh-my-zsh-screen.nix {};
-  phosphor-icons = callPackage ./phosphor-icons.nix {};
-  setup-wacom = callPackage ./setup-wacom.nix {};
-  stumpwm = callPackage ./stumpwm {};
-  stumpwm-contrib = callPackage ./stumpwm/stumpwm-contrib.nix {};
-  tridactyl-emacs = callPackage ./tridactyl-emacs.nix {};
-  zsh-background-notify = callPackage ./zsh-background-notify.nix {};
+  # "Packages" that really just contain configuration settings
+  firefox-ui-fix = callPackage ./configuration/firefox-ui-fix.nix {};
+  oh-my-zsh-emacs = callPackage ./configuration/oh-my-zsh-emacs.nix {};
+  oh-my-zsh-screen = callPackage ./configuration/oh-my-zsh-screen.nix {};
+  phosphor-icons = callPackage ./configuration/phosphor-icons.nix {};
+  tridactyl-emacs = callPackage ./configuration/tridactyl-emacs.nix {};
+  zsh-background-notify = callPackage ./configuration/zsh-background-notify.nix {};
+
+  # "Packages" that just contain utility scripts
+  commit-nvfetcher = callPackage ./scripts/commit-nvfetcher {};
+
+  # Proper packages
+  emacs = callPackage ./applications/emacs {};
+  gauth = callPackage ./applications/gauth.nix {};
+  stumpwm = callPackage ./applications/stumpwm {};
+  stumpwm-contrib = callPackage ./applications/stumpwm/stumpwm-contrib.nix {};
 }
