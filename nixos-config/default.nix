@@ -220,6 +220,7 @@
   hardware = {
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
+    opentabletdriver.enable = true;
   };
 
   security.rtkit.enable = true;
