@@ -2,17 +2,9 @@
   config,
   lib,
   pkgs,
-  flake-inputs,
   ...
-}: let
-  inherit (flake-inputs.self.packages.${pkgs.system}) pass-rofi;
-in {
+}: {
   config = lib.mkIf config.custom.desktop-environment {
-    home.packages = [
-      pass-rofi
-      pkgs.wl-clipboard # Required for password stuff on wayland
-    ];
-
     programs.rofi = {
       enable = true;
       font = "mono 11";

@@ -11,7 +11,6 @@
     ./hyprland.nix
     ./mime.nix
     ./ncmpcpp.nix
-    ./password-store.nix
     ./pipewire.nix
     ./rofi.nix
     ./stumpwm.nix

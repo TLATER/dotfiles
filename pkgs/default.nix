@@ -15,7 +15,6 @@ in {
   gauth = callPackage ./gauth.nix {};
   oh-my-zsh-emacs = callPackage ./oh-my-zsh-emacs.nix {};
   oh-my-zsh-screen = callPackage ./oh-my-zsh-screen.nix {};
-  pass-rofi = callPackage ./pass-rofi.nix {};
   phosphor-icons = callPackage ./phosphor-icons.nix {};
   setup-wacom = callPackage ./setup-wacom.nix {};
   stumpwm = callPackage ./stumpwm {};
