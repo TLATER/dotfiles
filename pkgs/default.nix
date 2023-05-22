@@ -22,4 +22,5 @@ in {
   gauth = callPackage ./applications/gauth.nix {};
   stumpwm = callPackage ./applications/stumpwm {};
   stumpwm-contrib = callPackage ./applications/stumpwm/stumpwm-contrib.nix {};
+  nextcloudcmd = callPackage ./applications/nextcloudcmd.nix {};
 }
