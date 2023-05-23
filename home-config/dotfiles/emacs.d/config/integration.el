@@ -41,12 +41,7 @@
 (use-package auth-source
   :functions auth-sources
   :custom
-  ;; There some passwords that are inherently machine-specific, which
-  ;; are best defined inside an authinfo file.
-  ;;
-  ;; Hence, add an authinfo file for those passwords, and give it
-  ;; priority so we can override the general matches.
-  (auth-sources '("~/.local/share/authinfo.gpg" password-store)))
+  (auth-sources '("secrets:Personal")))
 
 ;; ----------------------------------------------------------------------------------
 ;;; External applications
