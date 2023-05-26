@@ -44,6 +44,7 @@ in {
     systemd.user.timers.keepass-sync = {
       Unit.Description = "Periodic KeepassXC synchronization";
       Timer.OnCalendar = "hourly";
+      Install.WantedBy = ["timers.target"];
     };
   };
 }
