@@ -21,7 +21,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2023-05-15",
+        "date": "2023-05-25",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "f6676df5cf05000b1b5ea30b1a6245c743694823",
-            "sha256": "sha256-zyW/nZPoee/S0f4KLH1sveeYjuWJetlChpwCfeSXomM=",
+            "rev": "9f12ff23cc1b7389aa8bb51ab9c4c54445e2cf3f",
+            "sha256": "sha256-Kty2OhU65G8ximejBbfBOGnUfvtBjqlD7e1cXYPQLIQ=",
             "type": "github"
         },
-        "version": "f6676df5cf05000b1b5ea30b1a6245c743694823"
+        "version": "9f12ff23cc1b7389aa8bb51ab9c4c54445e2cf3f"
     },
     "gauth": {
         "cargoLocks": null,
@@ -61,7 +61,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2023-05-15",
+        "date": "2023-05-26",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -73,11 +73,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "7a030f6bd6c15259052c7007020cf3ecf8a3f299",
-            "sha256": "sha256-OU64SkhZiDBs5sip8INrlbwPGffX1qrcpc8E7WizH9k=",
+            "rev": "fb4213c34ff8ec83cbe6251f432fdac383378562",
+            "sha256": "sha256-JALSansXg1Mgv2cX778xBXE0HzSpvNRzloAH/WroSTs=",
             "type": "github"
         },
-        "version": "7a030f6bd6c15259052c7007020cf3ecf8a3f299"
+        "version": "fb4213c34ff8ec83cbe6251f432fdac383378562"
     },
     "phosphor-icons": {
         "cargoLocks": null,
