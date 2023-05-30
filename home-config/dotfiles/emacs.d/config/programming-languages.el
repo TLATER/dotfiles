@@ -375,7 +375,11 @@
     (reformatter-define clang-format
       :program "clang-format"
       :group 'glsl-mode
-      :lighter " CF")))
+      :lighter " CF")
+    (reformatter-define latexindent
+      :program "latexindent"
+      :group 'latex-mode
+      :lighter " LF")))
 
 (defcustom use-nixfmt nil
   "Use nixfmt for formatting nix instead of alejandra."
@@ -392,6 +396,8 @@
                  (alejandra-format-buffer)))
     ('glsl-mode
      (clang-format-buffer))
+    ('latex-mode
+     (latexindent-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode)
      (prettier-js))
     ('haskell-mode (haskell-mode-stylish-buffer))
