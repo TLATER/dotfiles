@@ -31,6 +31,7 @@
     name = "launch-gtkgreet";
     runtimeInputs = [
       flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
+      pkgs.hypr
       pkgs.greetd.gtkgreet
       pkgs.eww-wayland
     ];
@@ -44,6 +45,11 @@
     export XDG_SESSION_TYPE=wayland
     systemd-cat -t xsession Hyprland
   '';
+
+  hypr = pkgs.writeShellScriptBin "hypr-run" ''
+    export XDG_SESSION_TYPE=x11
+    ${config.services.xserver.displayManager.sessionData.wrapper} ${pkgs.hypr}/bin/Hypr
+  '';
 in {
   services.xserver.displayManager.lightdm.enable = false;
 
@@ -56,6 +62,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     eww-wayland
+    hypr
     hyprland
     pciutils
   ];
@@ -66,6 +73,7 @@ in {
 
   environment.etc."greetd/environments".text = ''
     hyprland-run
+    hypr-run
   '';
 
   systemd.tmpfiles.rules = let
@@ -73,13 +81,5 @@ in {
   in [
     "d /var/log/gtkgreet 0755 greeter ${user} - -"
     "d /var/cache/gtkgreet 0755 greeter ${user} - -"
-  ];
-
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "user-defined";
-      start = config.services.xserver.displayManager.sessionData.wrapper;
-    }
   ];
 }
