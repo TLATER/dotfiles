@@ -41,9 +41,11 @@ in {
       package = pkgs.firefox.override {cfg.enableTridactylNative = true;};
       profiles."tlater" = {
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          aria2-integration
           buster-captcha-solver
           clearurls
           decentraleyes
+          keepassxc-browser
           libredirect
           no-pdf-download
           react-devtools
@@ -53,11 +55,9 @@ in {
           ublock-origin
 
           # # Missing:
-          # aria2-integration
           # cloudhole
           # devtools-adb-extension
           # firefox-sticky-window-containers
-          # keepassxc-browser
         ];
 
         userChrome =
