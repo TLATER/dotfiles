@@ -39,26 +39,27 @@ in {
     programs.firefox = {
       enable = true;
       package = pkgs.firefox.override {cfg.enableTridactylNative = true;};
-      extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-        buster-captcha-solver
-        clearurls
-        decentraleyes
-        libredirect
-        no-pdf-download
-        react-devtools
-        reduxdevtools
-        translate-web-pages
-        tridactyl
-        ublock-origin
-
-        # # Missing:
-        # aria2-integration
-        # cloudhole
-        # devtools-adb-extension
-        # firefox-sticky-window-containers
-        # keepassxc-browser
-      ];
       profiles."tlater" = {
+        extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+          buster-captcha-solver
+          clearurls
+          decentraleyes
+          libredirect
+          no-pdf-download
+          react-devtools
+          reduxdevtools
+          translate-web-pages
+          tridactyl
+          ublock-origin
+
+          # # Missing:
+          # aria2-integration
+          # cloudhole
+          # devtools-adb-extension
+          # firefox-sticky-window-containers
+          # keepassxc-browser
+        ];
+
         userChrome =
           builtins.readFile "${firefox-ui-fix}/css/leptonChrome.css";
         userContent =

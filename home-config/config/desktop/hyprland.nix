@@ -58,7 +58,7 @@ in {
       };
 
       Service = {
-        ExecStart = "${flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.wpaperd}/bin/wpaperd --no-daemon";
+        ExecStart = "${pkgs.wpaperd}/bin/wpaperd --no-daemon";
         Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
       };
 

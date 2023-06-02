@@ -18,7 +18,7 @@
       apvlv
       feh
       xsel
-      yubioath-desktop
+      yubioath-flutter
     ];
 
     xdg.configFile."alacritty/alacritty.yml".source = "${config._dotfiles}/alacritty/alacritty.yml";

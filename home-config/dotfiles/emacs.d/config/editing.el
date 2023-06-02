@@ -242,8 +242,8 @@
   (undo-fu-session-compression 'xz)
   (undo-fu-session-file-limit 20)
   :preface
-  (declare-function global-undo-fu-session-mode "undo-fu-session.el")
+  (declare-function undo-fu-session-global-mode "undo-fu-session.el")
   :config
-  (global-undo-fu-session-mode 1))
+  (undo-fu-session-global-mode 1))
 
 ;;; editing.el ends here

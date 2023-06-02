@@ -357,7 +357,9 @@
   :commands (alejandra-format-region
              alejandra-format-buffer
              clang-format-region
-             clang-format-buffer)
+             clang-format-buffer
+             latexindent-format-region
+             latexindent-format-buffer)
   :config
   ;; Work around `make-variable-buffer-local' being called at a
   ;; non-top-level.
@@ -397,7 +399,7 @@
     ('glsl-mode
      (clang-format-buffer))
     ('latex-mode
-     (latexindent-buffer))
+     (latexindent-format-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode)
      (prettier-js))
     ('haskell-mode (haskell-mode-stylish-buffer))

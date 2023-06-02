@@ -23,11 +23,13 @@ stdenv.mkDerivation {
     libsForQt5.qtbase
     libsForQt5.qtkeychain
     libsForQt5.qtwebsockets
+    libsForQt5.qtwebengine
   ];
 
   cmakeFlags = [
     "-DCMAKE_INSTALL_LIBDIR=lib"
     "-DBUILD_UPDATER=off"
     "-DBUILD_GUI=off"
+    "-DBUILD_SHELL_INTEGRATION=off"
   ];
 }
