@@ -28,6 +28,8 @@ in {
     # Required for markdown-mode (though could be replaced with a
     # different markdown implementation at some point)
     pandoc
+
+    sqlite.dev
   ];
 
   xdg.configFile."emacs" = {

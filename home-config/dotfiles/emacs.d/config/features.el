@@ -87,6 +87,7 @@
   (transient-history-file (expand-file-name "transient/history.el" data-dir)))
 (use-package magit-lfs
   :after magit)
+(use-package sqlite3)                   ; Required for forge
 (use-package forge
   :after magit
   :custom
