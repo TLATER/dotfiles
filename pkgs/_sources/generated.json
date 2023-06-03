@@ -21,7 +21,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2023-05-15",
+        "date": "2023-05-29",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -33,11 +33,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "f6676df5cf05000b1b5ea30b1a6245c743694823",
-            "sha256": "sha256-zyW/nZPoee/S0f4KLH1sveeYjuWJetlChpwCfeSXomM=",
+            "rev": "396f06b45c4bf33fd2b68ddf86373395b95b4401",
+            "sha256": "sha256-XYHME+ByUNdGEi8iMrfOXVp98AbTWRU2VHFyDCt8Hp0=",
             "type": "github"
         },
-        "version": "f6676df5cf05000b1b5ea30b1a6245c743694823"
+        "version": "396f06b45c4bf33fd2b68ddf86373395b95b4401"
     },
     "gauth": {
         "cargoLocks": null,
@@ -61,7 +61,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2023-05-15",
+        "date": "2023-06-02",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -73,11 +73,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "7a030f6bd6c15259052c7007020cf3ecf8a3f299",
-            "sha256": "sha256-OU64SkhZiDBs5sip8INrlbwPGffX1qrcpc8E7WizH9k=",
+            "rev": "6101106916147b1716ff2d5de4a53260e7607bae",
+            "sha256": "sha256-0ACCQfeV9oMQCcGEtp3XaMuQxjNQWhrQn5AiX9AWazg=",
             "type": "github"
         },
-        "version": "7a030f6bd6c15259052c7007020cf3ecf8a3f299"
+        "version": "6101106916147b1716ff2d5de4a53260e7607bae"
     },
     "phosphor-icons": {
         "cargoLocks": null,
@@ -121,7 +121,7 @@
     },
     "stumpwm-contrib": {
         "cargoLocks": null,
-        "date": "2023-04-04",
+        "date": "2023-05-27",
         "extract": null,
         "name": "stumpwm-contrib",
         "passthru": null,
@@ -133,11 +133,11 @@
             "name": null,
             "owner": "stumpwm",
             "repo": "stumpwm-contrib",
-            "rev": "36daccd715e1cc6c1badab7cd87e34a8514f3b6b",
-            "sha256": "sha256-oW01W3ICwFdnDtO6y4aWXDIthw9iWU+lntNGcS80TXU=",
+            "rev": "7d1e57ca1e011e0e56059ebf6e833e0976904d2a",
+            "sha256": "sha256-EVjl3m6dfyT/84SJ5Qp95odkMRXwerSut524Is4IV8k=",
             "type": "github"
         },
-        "version": "36daccd715e1cc6c1badab7cd87e34a8514f3b6b"
+        "version": "7d1e57ca1e011e0e56059ebf6e833e0976904d2a"
     },
     "tridactyl-emacs": {
         "cargoLocks": null,

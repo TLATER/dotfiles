@@ -14,15 +14,15 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "f6676df5cf05000b1b5ea30b1a6245c743694823";
+    version = "396f06b45c4bf33fd2b68ddf86373395b95b4401";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "f6676df5cf05000b1b5ea30b1a6245c743694823";
+      rev = "396f06b45c4bf33fd2b68ddf86373395b95b4401";
       fetchSubmodules = false;
-      sha256 = "sha256-zyW/nZPoee/S0f4KLH1sveeYjuWJetlChpwCfeSXomM=";
+      sha256 = "sha256-XYHME+ByUNdGEi8iMrfOXVp98AbTWRU2VHFyDCt8Hp0=";
     };
-    date = "2023-05-15";
+    date = "2023-05-29";
   };
   gauth = {
     pname = "gauth";
@@ -37,15 +37,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "7a030f6bd6c15259052c7007020cf3ecf8a3f299";
+    version = "6101106916147b1716ff2d5de4a53260e7607bae";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "7a030f6bd6c15259052c7007020cf3ecf8a3f299";
+      rev = "6101106916147b1716ff2d5de4a53260e7607bae";
       fetchSubmodules = false;
-      sha256 = "sha256-OU64SkhZiDBs5sip8INrlbwPGffX1qrcpc8E7WizH9k=";
+      sha256 = "sha256-0ACCQfeV9oMQCcGEtp3XaMuQxjNQWhrQn5AiX9AWazg=";
     };
-    date = "2023-05-15";
+    date = "2023-06-02";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
@@ -73,15 +73,15 @@
   };
   stumpwm-contrib = {
     pname = "stumpwm-contrib";
-    version = "36daccd715e1cc6c1badab7cd87e34a8514f3b6b";
+    version = "7d1e57ca1e011e0e56059ebf6e833e0976904d2a";
     src = fetchFromGitHub {
       owner = "stumpwm";
       repo = "stumpwm-contrib";
-      rev = "36daccd715e1cc6c1badab7cd87e34a8514f3b6b";
+      rev = "7d1e57ca1e011e0e56059ebf6e833e0976904d2a";
       fetchSubmodules = false;
-      sha256 = "sha256-oW01W3ICwFdnDtO6y4aWXDIthw9iWU+lntNGcS80TXU=";
+      sha256 = "sha256-EVjl3m6dfyT/84SJ5Qp95odkMRXwerSut524Is4IV8k=";
     };
-    date = "2023-04-04";
+    date = "2023-05-27";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
