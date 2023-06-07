@@ -29,6 +29,8 @@
     # Required to use va-api it in Firefox. See
     # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
     MOZ_DISABLE_RDD_SANDBOX = "1";
+    NVD_BACKEND = "direct"; #
+    EGL_PLATFORM = "wayland"; #
   };
 
   programs.hyprland.nvidiaPatches = true;

@@ -68,6 +68,7 @@ in {
           # Performance settings
           "gfx.webrender.all" = true; # Force enable GPU acceleration
           "media.ffmpeg.vaapi.enabled" = true;
+          "widget.dmabuf.force-enabled" = true; # Required in recent Firefoxes
 
           # Re-bind ctrl to super (would interfere with tridactyl otherwise)
           "ui.key.accelKey" = 91;
