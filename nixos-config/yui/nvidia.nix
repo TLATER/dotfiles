@@ -29,6 +29,13 @@
     # Required to use va-api it in Firefox. See
     # https://github.com/elFarto/nvidia-vaapi-driver/issues/96
     MOZ_DISABLE_RDD_SANDBOX = "1";
+    # It appears that the normal rendering mode is broken on recent
+    # nvidia drivers:
+    # https://github.com/elFarto/nvidia-vaapi-driver/issues/213#issuecomment-1585584038
+    NVD_BACKEND = "direct";
+    # Required for firefox 98+, see:
+    # https://github.com/elFarto/nvidia-vaapi-driver#firefox
+    EGL_PLATFORM = "wayland";
   };
 
   programs.hyprland.nvidiaPatches = true;
