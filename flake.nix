@@ -59,6 +59,7 @@
     nixpkgs,
     home-manager,
     sops-nix,
+    nvfetcher,
     ...
   } @ inputs: {
     nixosConfigurations = {
@@ -124,6 +125,7 @@
     in
       nixpkgs.legacyPackages.x86_64-linux.mkShell {
         packages = [
+          nvfetcher.packages.x86_64-linux.default
           commit-nvfetcher
           home-manager-bin
           sops-init-gpg-key
