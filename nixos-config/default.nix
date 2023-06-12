@@ -90,8 +90,6 @@
     };
   };
 
-  fileSystems."/nix".options = ["defaults" "noatime"];
-
   networking = {
     wireless = {
       enable = true;
