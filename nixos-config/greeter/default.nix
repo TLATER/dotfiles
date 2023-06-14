@@ -10,6 +10,20 @@
 
     exec-once = eww -c ${./eww-config} open powermenu
     exec-once = gtkgreet -l; hyprctl dispatch exit
+
+    decoration {
+      blur = false
+      drop_shadow = false
+    }
+
+    animations {
+      enabled = false
+    }
+
+    misc {
+      disable_hyprland_logo = yes
+      disable_splash_rendering = yes
+    }
   '';
 
   launch-gtkgreet = pkgs.writeShellApplication {
