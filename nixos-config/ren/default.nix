@@ -138,4 +138,17 @@
   };
 
   programs.hyprland.xwayland.hidpi = true;
+
+  # Automatic brightness/gamma adjustment
+  #
+  # Geolocation is used for gamma adjustment, permissions are quite
+  # good so let's not block it.
+  location.provider = "geoclue2";
+  services.clight = {
+    enable = true;
+    settings = {
+      resumedelay = 30;
+      sensor.devname = "iio:device0";
+    };
+  };
 }
