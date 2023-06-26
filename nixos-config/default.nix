@@ -12,6 +12,7 @@
 
     ./greeter
     ./wireguard.nix
+    ../modules
   ];
 
   nix = {
@@ -137,9 +138,12 @@
     home-manager # To manage the actual user configuration
     pavucontrol # In case the host doesn't have audio, this can't be in the user config
     wpa_supplicant_gui # For managing wireless networks
+    bibata-cursors
 
     firefox
   ];
+
+  theming.cursor.theme = "Bibata-Original-Ice";
 
   environment.extraInit = ''
     # Do not want this in the environment. NixOS always sets it and does not

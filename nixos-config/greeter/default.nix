@@ -8,6 +8,7 @@
   hyprland-gtkgreet = pkgs.writeText "hyprland-gtkgreet" ''
     env = XDG_CACHE_HOME,/tmp
 
+    exec-once = ${config.theming._hyprland-theme-init}/bin/hyprland-theme-init
     exec-once = eww -c ${./eww-config} open powermenu
     exec-once = gtkgreet -l; hyprctl dispatch exit
 

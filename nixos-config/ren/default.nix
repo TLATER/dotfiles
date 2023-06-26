@@ -138,6 +138,7 @@
   };
 
   programs.hyprland.xwayland.hidpi = true;
+  theming.cursor.x-scaling = 2.0;
 
   # Automatic brightness/gamma adjustment
   #

@@ -4,8 +4,6 @@ Xft.hintstyle:  hintfull
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-Xcursor.theme: pixelfun3
-Xcursor.size: 32
 
 XTerm*foreground: rgb:fa/fa/fa
 XTerm*background: rgb:0f/0f/0f
