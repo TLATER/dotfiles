@@ -19,6 +19,26 @@
         },
         "version": "v1.5.3"
     },
+    "deepfilternet": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "deepfilternet",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "Rikorose",
+            "repo": "DeepFilterNet",
+            "rev": "v0.5.0",
+            "sha256": "sha256-q+SB6lxDd7V+UJW5WCGu0xfDIq4IFUQR6l4R4/lozmE=",
+            "type": "github"
+        },
+        "version": "v0.5.0"
+    },
     "firefox-ui-fix": {
         "cargoLocks": null,
         "date": "2023-06-26",
