@@ -12,6 +12,17 @@
       sha256 = "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=";
     };
   };
+  deepfilternet = {
+    pname = "deepfilternet";
+    version = "v0.5.0";
+    src = fetchFromGitHub {
+      owner = "Rikorose";
+      repo = "DeepFilterNet";
+      rev = "v0.5.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-q+SB6lxDd7V+UJW5WCGu0xfDIq4IFUQR6l4R4/lozmE=";
+    };
+  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "4ee131b29b5e52cd0da09cfb5a61d81838e5be9c";
