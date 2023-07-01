@@ -13,6 +13,7 @@ in {
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
     flake-inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
+    ./games.nix
     ./hardware-configuration.nix
     ../networks/personal.nix
     ./wireguard.nix
@@ -22,6 +23,8 @@ in {
 
   nixpkgs.config.allowUnfreePredicate = pkg:
     builtins.elem (pkgs.lib.getName pkg) [
+      "steam"
+      "steam-run"
       # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
       "steam-original"
       "nvidia-x11"
@@ -39,9 +42,6 @@ in {
     ];
 
     kernelPackages = lib.mkForce flake-inputs.nixpkgs-unfree.legacyPackages.${pkgs.system}.linuxPackages_latest;
-
-    # Star citizen needs more
-    kernel.sysctl."vm.max_map_count" = 16777216;
 
     initrd.luks.devices = let
       ssdOptimization = {
@@ -91,10 +91,6 @@ in {
     ''ATTR{device}=="0x1483"''
     ''ATTR{power/wakeup}="disabled"''
   ];
-
-  # Make steam controller work
-  hardware.steam-hardware.enable = true;
-  services.joycond.enable = true;
 
   # For random android-related things
   programs.adb.enable = true;
