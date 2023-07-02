@@ -41,7 +41,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package editorconfig
-  :hook prog-mode)
+  :hook (prog-mode . editorconfig-mode))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Clean up whitespace automatically
