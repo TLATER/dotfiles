@@ -110,7 +110,7 @@
   };
   systemd.network.wait-online.anyInterface = true;
 
-  time.timeZone = "Europe/London";
+  time.timeZone = "Europe/Amsterdam";
 
   users = {
     defaultUserShell = pkgs.zsh;
