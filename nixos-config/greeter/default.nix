@@ -13,8 +13,10 @@
     exec-once = gtkgreet -l; hyprctl dispatch exit
 
     decoration {
-      blur = false
       drop_shadow = false
+      blur {
+        enabled = false
+      }
     }
 
     animations {
