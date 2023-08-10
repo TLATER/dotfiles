@@ -33,15 +33,15 @@
             "name": null,
             "owner": "Rikorose",
             "repo": "DeepFilterNet",
-            "rev": "v0.5.0",
-            "sha256": "sha256-q+SB6lxDd7V+UJW5WCGu0xfDIq4IFUQR6l4R4/lozmE=",
+            "rev": "v0.5.3",
+            "sha256": "sha256-i/q/i/Mhy+h+n41A0gFiwobehl+3Owc3hWfe0tIoLzA=",
             "type": "github"
         },
-        "version": "v0.5.0"
+        "version": "v0.5.3"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2023-06-26",
+        "date": "2023-08-07",
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -53,11 +53,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "8a3d8f5a38dd0584fab36cf5b6bed0753e798421",
-            "sha256": "sha256-8uu6GaaCRwqseMwJ64kGZvGHBYpAvxXcwYJ9zhsuCWw=",
+            "rev": "bf37686eb3bb18e62442502f44828c4724b3087c",
+            "sha256": "sha256-bzY+LcSbIcbB7VSjYPDmK/xTWu9yY0NhFZf3Q24Jn+0=",
             "type": "github"
         },
-        "version": "8a3d8f5a38dd0584fab36cf5b6bed0753e798421"
+        "version": "bf37686eb3bb18e62442502f44828c4724b3087c"
     },
     "gauth": {
         "cargoLocks": null,
@@ -81,7 +81,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2023-06-30",
+        "date": "2023-08-10",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "fe4b5659863c388786986d70fa6d1bb66b00afb6",
-            "sha256": "sha256-fzAFlYQ5fkECnAUHx3JkNlJTMYNaB248OJxiEFiuLis=",
+            "rev": "fd219a94ab585fa699a0e842335a9f33dcbb613b",
+            "sha256": "sha256-ydkcOLK36HCG/RH/JUAFrFviVmkOhZ4HaAsjkDg6Z/0=",
             "type": "github"
         },
-        "version": "fe4b5659863c388786986d70fa6d1bb66b00afb6"
+        "version": "fd219a94ab585fa699a0e842335a9f33dcbb613b"
     },
     "phosphor-icons": {
         "cargoLocks": null,
