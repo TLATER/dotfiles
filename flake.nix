@@ -32,6 +32,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-anywhere = {
       url = "github:numtide/nixos-anywhere";
       inputs = {

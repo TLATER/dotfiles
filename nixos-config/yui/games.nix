@@ -1,4 +1,11 @@
-{
+{flake-inputs, ...}: {
+  imports = [
+    flake-inputs.nix-gaming.nixosModules.default
+  ];
+
+  # Appears to resolve issues with crackling audio under high load
+  services.pipewire.lowLatency.enable = true;
+
   programs.steam.enable = true;
 
   # Make steam controller work

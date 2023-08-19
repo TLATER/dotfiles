@@ -75,6 +75,24 @@
     },
     "flake-parts": {
       "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1688254665,
+        "narHash": "sha256-8FHEgBrr7gYNiS/NzCxIO3m4hvtLRW9YY1nYo1ivm3o=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "267149c58a14d15f7f81b4d737308421de9d7152",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
+    "flake-parts_2": {
+      "inputs": {
         "nixpkgs-lib": [
           "nixos-anywhere",
           "nixpkgs"
@@ -231,6 +249,27 @@
         "type": "github"
       }
     },
+    "nix-gaming": {
+      "inputs": {
+        "flake-parts": "flake-parts",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1692406242,
+        "narHash": "sha256-pLvYG7qg/NXGM5H/NfDsuyT02wWGriJ4rUQ0+0n5bis=",
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "rev": "f40e549abf1463729ee2749045821ff8aa2b7aed",
+        "type": "github"
+      },
+      "original": {
+        "owner": "fufexan",
+        "repo": "nix-gaming",
+        "type": "github"
+      }
+    },
     "nixos-2305": {
       "locked": {
         "lastModified": 1687938137,
@@ -252,7 +291,7 @@
         "disko": [
           "disko"
         ],
-        "flake-parts": "flake-parts",
+        "flake-parts": "flake-parts_2",
         "nixos-2305": "nixos-2305",
         "nixos-images": "nixos-images",
         "nixpkgs": [
@@ -325,6 +364,24 @@
         "type": "github"
       },
       "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lib": {
+      "locked": {
+        "dir": "lib",
+        "lastModified": 1688049487,
+        "narHash": "sha256-100g4iaKC9MalDjUW9iN6Jl/OocTDtXdeAj7pEGIRh4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4bc72cae107788bf3f24f30db2e2f685c9298dc9",
+        "type": "github"
+      },
+      "original": {
+        "dir": "lib",
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
@@ -450,6 +507,7 @@
         "hyprland": "hyprland",
         "hyprland-contrib": "hyprland-contrib",
         "impermanence": "impermanence",
+        "nix-gaming": "nix-gaming",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_2",
