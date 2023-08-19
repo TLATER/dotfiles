@@ -81,7 +81,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2023-08-10",
+        "date": "2023-08-16",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -93,11 +93,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "fd219a94ab585fa699a0e842335a9f33dcbb613b",
-            "sha256": "sha256-ydkcOLK36HCG/RH/JUAFrFviVmkOhZ4HaAsjkDg6Z/0=",
+            "rev": "b81915d3293cc4657cec64202b9fd991b96b4ba2",
+            "sha256": "sha256-xx8eVmu6gP1YQ3TnNhZI4dfmKZoQ3MFa+28WCL8rsyQ=",
             "type": "github"
         },
-        "version": "fd219a94ab585fa699a0e842335a9f33dcbb613b"
+        "version": "b81915d3293cc4657cec64202b9fd991b96b4ba2"
     },
     "phosphor-icons": {
         "cargoLocks": null,
@@ -141,7 +141,7 @@
     },
     "stumpwm-contrib": {
         "cargoLocks": null,
-        "date": "2023-05-27",
+        "date": "2023-08-13",
         "extract": null,
         "name": "stumpwm-contrib",
         "passthru": null,
@@ -153,11 +153,11 @@
             "name": null,
             "owner": "stumpwm",
             "repo": "stumpwm-contrib",
-            "rev": "7d1e57ca1e011e0e56059ebf6e833e0976904d2a",
-            "sha256": "sha256-EVjl3m6dfyT/84SJ5Qp95odkMRXwerSut524Is4IV8k=",
+            "rev": "472bdef0acaac8893c9c5a38d4319da86f10c876",
+            "sha256": "sha256-WHM/0VY3GPGqHPqYrzenk9v5lvwGOzlFSVZfJPvCGbE=",
             "type": "github"
         },
-        "version": "7d1e57ca1e011e0e56059ebf6e833e0976904d2a"
+        "version": "472bdef0acaac8893c9c5a38d4319da86f10c876"
     },
     "tridactyl-emacs": {
         "cargoLocks": null,
