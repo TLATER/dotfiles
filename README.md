@@ -53,8 +53,7 @@ Then set up:
 2. Hyprland will need some small tweaks, usually these settings need to be twiddled:
    ```nix
    programs.hyprland = {
-     xwayland.hidpi = true;
-     nvidiaPatches = false;
+     enableNvidiaPatches = false;
    };
    ```
    - If using nvidia, *lots* of things need to be twiddled, look at
