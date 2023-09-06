@@ -1,7 +1,13 @@
-{flake-inputs, ...}: {
+{
+  pkgs,
+  flake-inputs,
+  ...
+}: {
   imports = [
     flake-inputs.nix-gaming.nixosModules.default
   ];
+
+  environment.systemPackages = [pkgs.mangohud];
 
   # Appears to resolve issues with crackling audio under high load
   services.pipewire.lowLatency.enable = true;
