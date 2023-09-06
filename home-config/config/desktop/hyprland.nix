@@ -5,6 +5,8 @@
   flake-inputs,
   ...
 }: let
+  hyprctl = "${flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia}/bin/hyprctl";
+
   wpaperd-config = {
     default = {
       path = "~/Documents/Pictures/Backgrounds";
@@ -22,11 +24,10 @@
       jq
       libsecret
       wl-clipboard
-      flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
     ];
 
     text = ''
-      WINDOW_TITLE="$(hyprctl -j activewindow | jq -r '.title')"
+      WINDOW_TITLE="$('${hyprctl}' -j activewindow | jq -r '.title')"
       secret-tool lookup KP2A_URL "title://$WINDOW_TITLE" | wl-copy
       # Wait 45 seconds before clearing the clipboard
       sleep 45
@@ -48,6 +49,18 @@ in {
       enableNvidiaPatches = true;
 
       extraConfig = builtins.readFile ../../dotfiles/hyprland.conf;
+    };
+
+    services.swayidle = {
+      enable = true;
+      systemdTarget = "graphical-session.target";
+
+      timeouts = [
+        {
+          timeout = 5 * 60;
+          command = "${hyprctl} dispatch dpms off";
+        }
+      ];
     };
 
     systemd.user.services.wpaperd = {
