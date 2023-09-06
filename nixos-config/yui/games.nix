@@ -18,11 +18,6 @@
   hardware.steam-hardware.enable = true;
   services.joycond.enable = true;
 
-  # This sets up gamescope as an independent compositor through a
-  # .desktop file.
-  #
-  # TODO(tlater): Figure out how to make this actually usable from
-  # greetd.
   programs.gamescope = {
     enable = true;
     capSysNice = true;
