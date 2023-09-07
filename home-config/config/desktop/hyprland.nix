@@ -6,6 +6,7 @@
   ...
 }: let
   hyprctl = "${flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia}/bin/hyprctl";
+  loginctl = "${pkgs.systemd}/bin/loginctl";
 
   wpaperd-config = {
     default = {
@@ -55,12 +56,36 @@ in {
       enable = true;
       systemdTarget = "graphical-session.target";
 
+      events = [
+        {
+          event = "lock";
+          command = "${config.programs.swaylock.package}/bin/swaylock";
+        }
+      ];
+
       timeouts = [
         {
           timeout = 5 * 60;
           command = "${hyprctl} dispatch dpms off";
         }
+        {
+          timeout = 6 * 60;
+          command = "${loginctl} lock-session";
+        }
       ];
+    };
+
+    programs.swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        screenshots = true;
+        clock = true;
+        indicator = true;
+        indicator-radius = 100;
+        indicator-thickness = 7;
+        effect-blur = "7x5";
+      };
     };
 
     systemd.user.services.wpaperd = {

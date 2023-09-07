@@ -146,6 +146,8 @@
     hyprland.enable = true;
   };
 
+  security.pam.services.swaylock = {};
+
   fonts = {
     enableDefaultFonts = true;
 
