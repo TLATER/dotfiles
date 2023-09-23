@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    flake-inputs.nix-gaming.nixosModules.default
+    flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
   ];
 
   environment.systemPackages = [pkgs.mangohud];
