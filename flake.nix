@@ -21,10 +21,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-    peerix = {
-      url = "github:cid-chan/peerix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     impermanence.url = "github:nix-community/impermanence";
 
     disko = {

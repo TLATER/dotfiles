@@ -67,18 +67,6 @@ in {
 
   fileSystems."/nix".options = ["defaults" "noatime"];
 
-  sops.secrets = {
-    "peerix/yui" = {
-      owner = config.users.users.peerix.name;
-      group = config.users.users.peerix.group;
-    };
-  };
-
-  services.peerix = {
-    privateKeyFile = config.sops.secrets."peerix/yui".path;
-    publicKeyFile = ../../keys/peerix/yui.pub;
-  };
-
   # Fix broken suspend on b550i motherboard
   #
   # The rule is a bit overzealous, as it disables wake from *either*

@@ -6,7 +6,6 @@
 }: {
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
-    flake-inputs.peerix.nixosModules.peerix
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.hyprland.nixosModules.default
 
@@ -28,7 +27,6 @@
       trusted-public-keys = [
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        (builtins.readFile ../keys/peerix/yui.pub)
       ];
     };
 
@@ -56,16 +54,6 @@
 
     defaultSopsFile = "/etc/sops/secrets.yaml";
     validateSopsFiles = false;
-  };
-
-  services.peerix = {
-    enable = true;
-    openFirewall = true;
-    user = "peerix";
-    group = "peerix";
-
-    # Work around https://github.com/cid-chan/peerix/issues/11
-    package = flake-inputs.peerix.packages.${pkgs.system}.peerix;
   };
 
   nixpkgs.overlays = [
@@ -115,20 +103,12 @@
   users = {
     defaultUserShell = pkgs.zsh;
 
-    groups = {
-      peerix = {};
-      network = {};
-    };
+    groups.network = {};
 
     users = {
       tlater = {
         isNormalUser = true;
         extraGroups = ["wheel" "video" "network"];
-      };
-
-      peerix = {
-        group = "peerix";
-        isSystemUser = true;
       };
     };
   };
