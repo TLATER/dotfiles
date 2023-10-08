@@ -50,7 +50,6 @@ in {
           no-pdf-download
           react-devtools
           reduxdevtools
-          translate-web-pages
           tridactyl
           ublock-origin
 
