@@ -5,7 +5,7 @@
   flake-inputs,
   ...
 }: let
-  hyprctl = "${flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia}/bin/hyprctl";
+  hyprctl = "${flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland}/bin/hyprctl";
   loginctl = "${pkgs.systemd}/bin/loginctl";
 
   wpaperd-config = {
@@ -41,15 +41,32 @@ in {
       slurp
       grim
       keepassxc-copy
-      flake-inputs.hyprland-contrib.packages.${pkgs.system}.grimblast
+      flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.grimblast
     ];
 
-    wayland.windowManager.hyprland = {
-      enable = true;
-      systemdIntegration = true;
-      enableNvidiaPatches = true;
+    systemd.user.targets.hyprland-session = {
+      Unit = {
+        Description = "Hyprland compositor session";
+        Documentation = ["man:systemd.special(7)"];
+        BindsTo = ["graphical-session.target"];
+        Wants = ["graphical-session-pre.target"];
+        After = ["graphical-session-pre.target"];
+      };
+    };
 
-      extraConfig = builtins.readFile ../../dotfiles/hyprland.conf;
+    xdg.configFile."hypr/hyprland.conf" = {
+      source = ../../dotfiles/hyprland.conf;
+      onChange = let
+        hyprland = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+      in ''
+        (  # execute in subshell so that `shopt` won't affect other scripts
+          shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty
+          for instance in /tmp/hypr/*; do
+            HYPRLAND_INSTANCE_SIGNATURE=''${instance##*/} ${hyprland}/bin/hyprctl reload config-only \
+              || true  # ignore dead instance(s)
+          done
+        )
+      '';
     };
 
     services.swayidle = {

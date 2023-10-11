@@ -34,7 +34,7 @@ in {
         runtimeInputs = [
           pkgs.glib
           pkgs.xorg.xsetroot
-          flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
+          flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland
         ];
         text = ''
           xsetroot -cursor_name left_ptr

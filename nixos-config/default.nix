@@ -1,4 +1,5 @@
 {
+  lib,
   config,
   pkgs,
   flake-inputs,
@@ -7,7 +8,6 @@
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
-    flake-inputs.hyprland.nixosModules.default
 
     ./greeter
     ./wireguard.nix
@@ -21,11 +21,9 @@
       auto-optimise-store = true;
       experimental-features = ["nix-command" "flakes"];
       substituters = [
-        "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
@@ -143,8 +141,17 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      package = lib.mkDefault flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+    };
   };
+
+  # Override the default xdg portal set by the hyprland module
+  # TODO(tlater): Starting with 23.11 there will be an option for this
+  xdg.portal.extraPortals = lib.mkForce [
+    flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland
+  ];
 
   security.pam.services.swaylock = {};
 

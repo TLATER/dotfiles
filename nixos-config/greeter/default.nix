@@ -32,7 +32,7 @@
   launch-gtkgreet = pkgs.writeShellApplication {
     name = "launch-gtkgreet";
     runtimeInputs = [
-      flake-inputs.hyprland.packages.${pkgs.system}.hyprland-nvidia
+      flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland
       pkgs.greetd.gtkgreet
       pkgs.eww-wayland
     ];
@@ -42,7 +42,7 @@
     '';
   };
 
-  hyprland = pkgs.writeShellScriptBin "hyprland-run" ''
+  hyprland-run = pkgs.writeShellScriptBin "hyprland-run" ''
     export XDG_SESSION_TYPE=wayland
     systemd-cat -t xsession Hyprland
   '';
@@ -58,7 +58,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     eww-wayland
-    hyprland
+    hyprland-run
     pciutils
   ];
 

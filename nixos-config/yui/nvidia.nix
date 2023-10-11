@@ -56,7 +56,23 @@
     EGL_PLATFORM = "wayland";
   };
 
-  programs.hyprland.enableNvidiaPatches = true;
+  programs.hyprland.package = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland.override {
+    enableNvidiaPatches = true;
+  };
+
+  # Downgrade to 0.5.0 because 1.2.2 doesn't currently work on nvidia
+  # (for me)
+  xdg.portal.extraPortals = lib.mkOverride 49 [
+    (pkgs.xdg-desktop-portal-hyprland.overrideAttrs (old: {
+      version = "0.5.0";
+      src = pkgs.fetchFromGitHub {
+        owner = "hyprwm";
+        repo = "xdg-desktop-portal-hyprland";
+        rev = "v0.5.0";
+        hash = "sha256-C5AO0KnyAFJaCkOn+5nJfWm0kyiPn/Awh0lKTjhgr7Y=";
+      };
+    }))
+  ];
 
   # Ugly hack to fix a bug in egl-wayland, see
   # https://github.com/NixOS/nixpkgs/issues/202454
