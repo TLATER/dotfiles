@@ -205,6 +205,60 @@
     fwupd.enable = true;
   };
 
+  # Disable the HFP bluetooth profile, because I always use external
+  # microphones anyway. It sucks and sometimes devices end up caught
+  # in it even if I have another microphone.
+  environment.etc."wireplumber/bluetooth.lua.d/50-bluez-config.lua".text = ''
+    bluez_monitor.enabled = true
+
+    bluez_monitor.properties = {
+      ["bluez5.headset-roles"] = "[ ]",
+      ["bluez5.hfphsp-backend"] = "none",
+    }
+
+    bluez_monitor.rules = {
+      {
+        matches = {
+          {
+            -- This matches all cards.
+            { "device.name", "matches", "bluez_card.*" },
+          },
+        },
+
+        apply_properties = {
+          -- Auto-connect device profiles on start up or when only partial
+          -- profiles have connected. Disabled by default if the property
+          -- is not specified.
+          --["bluez5.auto-connect"] = "[ hfp_hf hsp_hs a2dp_sink hfp_ag hsp_ag a2dp_source ]",
+          ["bluez5.auto-connect"]  = "[ a2dp_sink a2dp_source ]",
+
+          -- Hardware volume control (default: [ hfp_ag hsp_ag a2dp_source ])
+          --["bluez5.hw-volume"] = "[ hfp_hf hsp_hs a2dp_sink hfp_ag hsp_ag a2dp_source ]",
+          ["bluez5.hw-volume"] = "[ a2dp_sink a2dp_source ]",
+
+          -- LDAC encoding quality
+          -- Available values: auto (Adaptive Bitrate, default)
+          --                   hq   (High Quality, 990/909kbps)
+          --                   sq   (Standard Quality, 660/606kbps)
+          --                   mq   (Mobile use Quality, 330/303kbps)
+          --["bluez5.a2dp.ldac.quality"] = "auto",
+
+          -- AAC variable bitrate mode
+          -- Available values: 0 (cbr, default), 1-5 (quality level)
+          --["bluez5.a2dp.aac.bitratemode"] = 0,
+
+          -- Profile connected first
+          -- Available values: a2dp-sink (default), headset-head-unit
+          --["device.profile"] = "a2dp-sink",
+
+          -- Opus Pro Audio encoding mode: audio, voip, lowdelay
+          --["bluez5.a2dp.opus.pro.application"] = "audio",
+          --["bluez5.a2dp.opus.pro.bidi.application"] = "audio",
+        },
+      },
+    }
+  '';
+
   hardware = {
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
