@@ -28,6 +28,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix?rev=0c9d93bdb311f7948f9fb0e98d869316d78eec12";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nixos-anywhere = {
       url = "github:numtide/nixos-anywhere";
       inputs = {
