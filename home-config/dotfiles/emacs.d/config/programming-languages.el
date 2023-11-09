@@ -108,6 +108,14 @@
                 (and string-start "project.conf")) string-end))
 
 ;; ----------------------------------------------------------------------------------
+;;; Kotlin
+;; ----------------------------------------------------------------------------------
+
+(use-package kotlin-mode
+  :hook (kotlin-mode . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
+  :mode (rx ".kt" (optional "s") string-end))
+
+;; ----------------------------------------------------------------------------------
 ;;; Markdown
 ;; ----------------------------------------------------------------------------------
 
@@ -302,7 +310,7 @@
 
 (use-package eglot
   :commands (eglot eglot-format eglot-managed-p eglot--major-mode)
-  :hook (((web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode) .
+  :hook (((kotlin-mode web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode) .
           eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
   :bind
