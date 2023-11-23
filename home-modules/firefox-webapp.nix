@@ -11,7 +11,7 @@
   make-app-profiles = cfg:
     mapAttrs' (name: cfg:
       nameValuePair "home-manager-webapp-${name}" {
-        id = cfg.id;
+        inherit (cfg) id;
 
         userChrome = ''
           @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");

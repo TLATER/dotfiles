@@ -119,14 +119,14 @@
     };
 
     checks.x86_64-linux = import ./checks {
+      inherit (nixpkgs) lib;
       pkgs = nixpkgs.legacyPackages.x86_64-linux;
-      lib = nixpkgs.lib;
       flake-inputs = inputs;
     };
 
     devShells.x86_64-linux.default = let
       inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-      commit-nvfetcher = self.packages.x86_64-linux.commit-nvfetcher;
+      inherit (self.packages.x86_64-linux) commit-nvfetcher;
       home-manager-bin = home-manager.packages.x86_64-linux.default;
     in
       nixpkgs.legacyPackages.x86_64-linux.mkShell {

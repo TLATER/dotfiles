@@ -1,4 +1,4 @@
-{...}: let
+_: let
   disks = [
     "/dev/sda"
   ];

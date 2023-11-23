@@ -71,7 +71,7 @@ in {
   '';
 
   systemd.tmpfiles.rules = let
-    user = config.services.greetd.settings.default_session.user;
+    inherit (config.services.greetd.settings.default_session) user;
   in [
     "d /var/log/gtkgreet 0755 greeter ${user} - -"
     "d /var/cache/gtkgreet 0755 greeter ${user} - -"

@@ -57,7 +57,7 @@ in {
     xdg.configFile."hypr/hyprland.conf" = {
       source = ../../dotfiles/hyprland.conf;
       onChange = let
-        hyprland = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
+        inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) hyprland;
       in ''
         (  # execute in subshell so that `shopt` won't affect other scripts
           shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty

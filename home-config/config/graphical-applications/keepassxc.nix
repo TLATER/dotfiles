@@ -5,7 +5,7 @@
   flake-inputs,
   ...
 }: let
-  nextcloudcmd = flake-inputs.self.packages.${pkgs.system}.nextcloudcmd;
+  inherit (flake-inputs.self.packages.${pkgs.system}) nextcloudcmd;
 in {
   config = lib.mkIf config.custom.graphical-applications {
     home.packages = with pkgs; [

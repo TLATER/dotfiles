@@ -14,7 +14,7 @@
   # Need to use unstable rust platform until this is resolved:
   # https://github.com/rust-lang/rust/issues/63292
   rustPlatform = let
-    toolchain = flake-inputs.fenix.packages.${system}.minimal.toolchain;
+    inherit (flake-inputs.fenix.packages.${system}.minimal) toolchain;
   in
     makeRustPlatform {
       cargo = toolchain;

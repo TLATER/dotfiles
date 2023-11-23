@@ -6,7 +6,7 @@
 }: let
   inherit (pkgs) writeText;
   inherit (lib.strings) concatStringsSep;
-  xdg = config.xdg;
+  inherit (config) xdg;
 in {
   home.activation = {
     xdg-dir-prep = lib.hm.dag.entryAfter ["writeBoundary"] ''

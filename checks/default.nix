@@ -38,4 +38,5 @@ in {
   alejandra = callPackage ./alejandra.nix {};
   deadnix = callPackage ./deadnix.nix {};
   shellcheck = callPackage ./shellcheck.nix {};
+  statix = callPackage ./statix.nix {};
 }
