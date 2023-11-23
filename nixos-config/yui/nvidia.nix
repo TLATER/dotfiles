@@ -10,6 +10,7 @@
     # Power management is required to get nvidia GPUs to behave on
     # suspend, due to firmware bugs. Aren't nvidia great?
     powerManagement.enable = true;
+    open = true;
   };
 
   boot.extraModprobeConfig =
