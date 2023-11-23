@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   flake-inputs,
   ...
 }: {

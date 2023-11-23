@@ -6,10 +6,7 @@
   emacsPackagesFor,
   emacsMacport,
   emacs,
-  runCommand,
   runCommandLocal,
-  fetchurl,
-  lzip,
 }: let
   emacsPlatform =
     if hostPlatform.isDarwin
@@ -25,7 +22,7 @@
     '';
   };
 
-  overrides = self: super: {
+  overrides = _self: super: {
     dashboard = super.dashboard.overrideAttrs (_old: {
       patches = [
         # See https://github.com/emacs-dashboard/emacs-dashboard/issues/81
@@ -37,7 +34,7 @@
   emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope' overrides;
 
   # Compute the list of use-package-d packages.
-  package-list = runCommand "package-list" {buildInputs = [emacsPkgs.emacs];} ''
+  package-list = runCommandLocal "package-list" {buildInputs = [emacsPkgs.emacs];} ''
     HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
           -L ${emacsPkgs.use-package}/share/emacs/site-lisp/elpa/use-package-* \
           -L ${emacsPkgs.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
@@ -54,7 +51,7 @@
     emacsPkgs.emacs.pkgs.withPackages
     (epkgs: map (package: builtins.getAttr package epkgs) required-packages);
 
-  compiled-dotfiles = runCommand "compiled-init" {buildInputs = [custom-emacs];} ''
+  compiled-dotfiles = runCommandLocal "compiled-init" {buildInputs = [custom-emacs];} ''
     cp -r '${self}/home-config/dotfiles/emacs.d/' "$out"
     chmod -R u+w "$out"
 

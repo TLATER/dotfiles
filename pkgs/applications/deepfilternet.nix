@@ -21,7 +21,7 @@
       rustc = toolchain;
     };
 
-  hdf5-12 = hdf5.overrideAttrs (old: {
+  hdf5-12 = hdf5.overrideAttrs (_old: {
     version = "1.12.2";
 
     src = fetchurl {

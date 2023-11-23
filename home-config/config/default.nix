@@ -1,8 +1,4 @@
 {
-  config,
-  lib,
-  ...
-}: {
   imports = [
     ./options.nix
     ./non-nixos.nix

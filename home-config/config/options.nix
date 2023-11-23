@@ -1,10 +1,5 @@
-{
-  config,
-  lib,
-  ...
-}: let
+{lib, ...}: let
   inherit (lib) mkEnableOption;
-  cfg = config.custom;
 in {
   options.custom = {
     desktop-environment = mkEnableOption "Set up a stumpwm-based desktop environment";

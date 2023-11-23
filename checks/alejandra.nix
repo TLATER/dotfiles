@@ -3,8 +3,11 @@
   mkTest,
   lib,
   alejandra,
+  generatedFiles,
 }: let
+  inherit (lib) concatStringsSep;
   inherit (lib.sources) sourceFilesBySuffices;
+  excludes = concatStringsSep " " (map (f: "--exclude ./${f}") generatedFiles);
 in
   mkTest {
     name = "lint-alejandra";
@@ -12,12 +15,7 @@ in
     checkInputs = [alejandra];
     checkPhase = ''
       mkdir -p $out
-      alejandra --check \
-          --exclude ./home-config/dotfiles/emacs.d/share/templates/ \
-          --exclude ./pkgs/_sources/ \
-          --exclude ./nixos-config/yui/hardware-configuration.nix \
-          --exclude ./nixos-config/ren/hardware-configuration.nix \
-          . \
-      | tee $out/test.log
+      echo alejandra --check ${excludes} . | tee $out/test.log
+      alejandra --check ${excludes} . | tee $out/test.log
     '';
   }

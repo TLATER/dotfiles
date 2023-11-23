@@ -1,8 +1,6 @@
 {
-  lib,
   sources,
   stdenv,
-  fetchFromGitHub,
 }:
 stdenv.mkDerivation {
   inherit (sources.phosphor-icons) pname version src;

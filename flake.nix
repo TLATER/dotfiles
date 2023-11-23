@@ -57,6 +57,7 @@
       url = "github:berberman/nvfetcher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    deadnix.url = "github:astro/deadnix";
   };
 
   outputs = {
