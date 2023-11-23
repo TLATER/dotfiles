@@ -41,11 +41,6 @@ in {
       "sp5100_tco"
     ];
 
-    kernelPackages = let
-      nixpkgs-unfree = flake-inputs.nixpkgs-unfree.legacyPackages.${pkgs.system};
-    in
-      lib.mkForce nixpkgs-unfree.linuxKernel.packages.linux_xanmod_latest;
-
     initrd.luks.devices = let
       ssdOptimization = {
         allowDiscards = true;

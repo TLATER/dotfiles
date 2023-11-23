@@ -67,7 +67,7 @@
   boot = {
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
-    kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
 
     loader = {
       timeout = 0;
