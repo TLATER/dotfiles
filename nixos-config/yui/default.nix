@@ -17,7 +17,7 @@ in {
     ./hardware-configuration.nix
     ../networks/personal.nix
     ./wireguard.nix
-    ./nvidia.nix
+    ./nvidia
     ./networking.nix
   ];
 
