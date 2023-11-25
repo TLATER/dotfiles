@@ -7,12 +7,12 @@
     ./barrier.nix
     ./dunst.nix
     ./gtk.nix
-    ./hyprland.nix
     ./mime.nix
     ./ncmpcpp.nix
     ./pipewire.nix
     ./rofi.nix
     ./stumpwm.nix
+    ./sway.nix
   ];
 
   config = lib.mkIf config.custom.desktop-environment {

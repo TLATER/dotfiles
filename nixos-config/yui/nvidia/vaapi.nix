@@ -42,10 +42,6 @@ in {
         MOZ_DISABLE_RDD_SANDBOX = "1";
       };
 
-    # TODO(tlater): When 23.11 finally hits, the nvidia driver shipped
-    # with it will contain the correct version of egl-wayland.
-    boot.kernelPackages = lib.mkOverride 1 flake-inputs.nixpkgs-unfree.legacyPackages.${pkgs.system}.linuxKernel.packages.linux_xanmod_latest;
-
     # TODO(tlater): Find a way to properly integrate this so we can
     # upstream it.
     home-manager.users.tlater.programs.firefox.profiles.tlater.settings = lib.mkIf cfg.firefox.enable {

@@ -50,21 +50,13 @@ Then set up:
 
 1. Basic networking. Typically a bond config, see ren/yui for
    examples.
-2. Hyprland will need some small tweaks, usually these settings need to be twiddled:
-   ```nix
-   programs.hyprland = {
-     enableNvidiaPatches = false;
-   };
-   ```
-   - If using nvidia, *lots* of things need to be twiddled, look at
-     the yui config.
-3. Make sure to include one of the network modules so that wireless
+2. Make sure to include one of the network modules so that wireless
    networking is set up on first boot.
-4. Generate and include a new `hardware-configuration.nix`:
+3. Generate and include a new `hardware-configuration.nix`:
     ```console
     nixos-generate-config --no-filesystems --show-hardware-config
     ```
-5. Set up a new sops target.
+4. Set up a new sops target.
    1. Firstly, create a new gpg dir according to [these
       instructions](https://github.com/Mic92/sops-nix#use-with-gpg-instead-of-ssh-keys).
    2. Then, add the generated fingerprint to `.sops.yaml`, and

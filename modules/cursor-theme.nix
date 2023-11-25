@@ -2,7 +2,6 @@
   config,
   lib,
   pkgs,
-  flake-inputs,
   ...
 }: let
   inherit (lib.types) string nullOr number;
@@ -27,32 +26,30 @@ in {
         description = "How much to scale the cursor size by on xwayland applications";
       };
     };
+  };
 
-    _hyprland-theme-init = lib.mkOption {
-      default = pkgs.writeShellApplication {
-        name = "hyprland-theme-init";
-        runtimeInputs = [
-          pkgs.glib
-          pkgs.xorg.xsetroot
-          flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland
+  config = lib.mkIf (config.theming.cursor.theme != null) {
+    programs.sway.extraSessionCommands = let
+      cursorThemeInit = pkgs.writeShellApplication {
+        name = "cursor-theme-init";
+        runtimeInputs = with pkgs; [
+          glib
+          xorg.xsetroot
         ];
         text = ''
           xsetroot -cursor_name left_ptr
-          hyprctl setcursor '${config.theming.cursor.theme}' ${toString config.theming.cursor.size}
           export XDG_DATA_DIRS=${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/gsettings-desktop-schemas-44.0
           gsettings set org.gnome.desktop.interface cursor-theme '${config.theming.cursor.theme}'
           gsettings set org.gnome.desktop.interface cursor-size '${toString config.theming.cursor.size}'
         '';
       };
-    };
-  };
-
-  config = lib.mkIf (config.theming.cursor.theme != null) {
-    environment.etc."hyprland-theme-init".source = "${config.theming._hyprland-theme-init}/bin/hyprland-theme-init";
-
-    environment.extraInit = ''
-      export XCURSOR_THEME='${config.theming.cursor.theme}'
-      export XCURSOR_SIZE=${toString (builtins.floor (config.theming.cursor.size * config.theming.cursor.x-scaling))}
-    '';
+    in
+      lib.concatStringsSep "\n" [
+        ''
+          export XCURSOR_THEME='${config.theming.cursor.theme}'
+          export XCURSOR_SIZE=${toString (builtins.floor (config.theming.cursor.size * config.theming.cursor.x-scaling))}
+        ''
+        cursorThemeInit
+      ];
   };
 }

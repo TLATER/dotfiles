@@ -43,22 +43,4 @@
     # Hardware cursors are currently broken on nvidia
     WLR_NO_HARDWARE_CURSORS = "1";
   };
-
-  programs.hyprland.package = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland.override {
-    enableNvidiaPatches = true;
-  };
-
-  # Downgrade to 0.5.0 because 1.2.2 doesn't currently work on nvidia
-  # (for me)
-  xdg.portal.extraPortals = lib.mkOverride 49 [
-    (pkgs.xdg-desktop-portal-hyprland.overrideAttrs (_old: {
-      version = "0.5.0";
-      src = pkgs.fetchFromGitHub {
-        owner = "hyprwm";
-        repo = "xdg-desktop-portal-hyprland";
-        rev = "v0.5.0";
-        hash = "sha256-C5AO0KnyAFJaCkOn+5nJfWm0kyiPn/Awh0lKTjhgr7Y=";
-      };
-    }))
-  ];
 }

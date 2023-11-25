@@ -1,12 +1,13 @@
 {
   config,
-  lib,
+  nixos-config ? {},
   pkgs,
-  flake-inputs,
+  lib,
   ...
 }: let
-  hyprctl = "${flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland}/bin/hyprctl";
   loginctl = "${pkgs.systemd}/bin/loginctl";
+  swaymsg = "${nixos-config.programs.sway.package or pkgs.sway}/bin/swaymsg";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
 
   wpaperd-config = {
     default = {
@@ -26,9 +27,8 @@
       libsecret
       wl-clipboard
     ];
-
     text = ''
-      WINDOW_TITLE="$('${hyprctl}' -j activewindow | jq -r '.title')"
+      WINDOW_TITLE="$(${swaymsg} --type get_tree | jq -r 'recurse(.nodes[]) | select(.focused)  | .app_id // .window_properties.title')"
       secret-tool lookup KP2A_URL "title://$WINDOW_TITLE" | wl-copy
       # Wait 45 seconds before clearing the clipboard
       sleep 45
@@ -37,36 +37,15 @@
   };
 in {
   config = lib.mkIf config.custom.desktop-environment {
-    home.packages = with pkgs; [
-      slurp
-      grim
+    home.packages = [
       keepassxc-copy
-      flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.grimblast
     ];
 
-    systemd.user.targets.hyprland-session = {
-      Unit = {
-        Description = "Hyprland compositor session";
-        Documentation = ["man:systemd.special(7)"];
-        BindsTo = ["graphical-session.target"];
-        Wants = ["graphical-session-pre.target"];
-        After = ["graphical-session-pre.target"];
-      };
-    };
-
-    xdg.configFile."hypr/hyprland.conf" = {
-      source = ../../dotfiles/hyprland.conf;
-      onChange = let
-        inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) hyprland;
-      in ''
-        (  # execute in subshell so that `shopt` won't affect other scripts
-          shopt -s nullglob  # so that nothing is done if /tmp/hypr/ does not exist or is empty
-          for instance in /tmp/hypr/*; do
-            HYPRLAND_INSTANCE_SIGNATURE=''${instance##*/} ${hyprland}/bin/hyprctl reload config-only \
-              || true  # ignore dead instance(s)
-          done
-        )
-      '';
+    wayland.windowManager.sway = {
+      enable = true;
+      package = null;
+      config = null;
+      extraConfig = lib.fileContents ../../dotfiles/sway.conf;
     };
 
     services.swayidle = {
@@ -76,14 +55,15 @@ in {
       events = [
         {
           event = "lock";
-          command = "${config.programs.swaylock.package}/bin/swaylock";
+          command = "${systemctl} --user start swaylock";
         }
       ];
 
       timeouts = [
         {
           timeout = 5 * 60;
-          command = "${hyprctl} dispatch dpms off";
+          command = "${swaymsg} 'output * power off'";
+          resumeCommand = "${swaymsg} 'output * power on'";
         }
         {
           timeout = 6 * 60;
@@ -103,6 +83,11 @@ in {
         indicator-thickness = 7;
         effect-blur = "7x5";
       };
+    };
+
+    systemd.user.services.swaylock = {
+      Unit.Description = "Lock screen";
+      Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
     };
 
     systemd.user.services.wpaperd = {

@@ -5,46 +5,33 @@
   flake-inputs,
   ...
 }: let
-  hyprland-gtkgreet = pkgs.writeText "hyprland-gtkgreet" ''
-    env = XDG_CACHE_HOME,/tmp
+  sway = config.programs.sway.package;
+  unsupported-gpu = lib.elem "nvidia" config.services.xserver.videoDrivers;
 
-    exec-once = ${config.theming._hyprland-theme-init}/bin/hyprland-theme-init
-    exec-once = eww -c ${./eww-config} open powermenu
-    exec-once = gtkgreet -l; hyprctl dispatch exit
+  sway-gtkgreet = pkgs.writeText "sway-gtkgreet" ''
+    output '*' background #fafafa solid_color
 
-    decoration {
-      drop_shadow = false
-      blur {
-        enabled = false
-      }
-    }
-
-    animations {
-      enabled = false
-    }
-
-    misc {
-      disable_hyprland_logo = yes
-      disable_splash_rendering = yes
-    }
+    exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+    exec ${pkgs.eww-wayland}/bin/eww -c ${./eww-config} open powermenu
+    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${sway}/bin/swaymsg exit"
   '';
 
   launch-gtkgreet = pkgs.writeShellApplication {
     name = "launch-gtkgreet";
     runtimeInputs = [
-      flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland
-      pkgs.greetd.gtkgreet
-      pkgs.eww-wayland
+      sway
     ];
     text = ''
       export XDG_SESSION_TYPE=wayland
-      Hyprland -c ${hyprland-gtkgreet}
+      export HOME=/var/run/gtkgreet
+      mkdir -p "$HOME/.cache"
+      sway ${lib.optionalString unsupported-gpu "--unsupported-gpu"} -c ${sway-gtkgreet}
     '';
   };
 
-  hyprland-run = pkgs.writeShellScriptBin "hyprland-run" ''
+  sway-run = pkgs.writeShellScriptBin "sway-run" ''
     export XDG_SESSION_TYPE=wayland
-    systemd-cat -t xsession Hyprland
+    systemd-cat -t xsession sway ${lib.optionalString unsupported-gpu "--unsupported-gpu"}
   '';
 in {
   services.xserver.displayManager.lightdm.enable = false;
@@ -58,7 +45,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     eww-wayland
-    hyprland-run
+    sway-run
     pciutils
   ];
 
@@ -67,21 +54,14 @@ in {
   ];
 
   environment.etc."greetd/environments".text = ''
-    hyprland-run
+    sway-run
   '';
 
   systemd.tmpfiles.rules = let
     inherit (config.services.greetd.settings.default_session) user;
   in [
+    "d /run/gtkgreet 0755 greeter ${user} - -"
     "d /var/log/gtkgreet 0755 greeter ${user} - -"
     "d /var/cache/gtkgreet 0755 greeter ${user} - -"
-  ];
-
-  services.xserver.displayManager.session = [
-    {
-      manage = "desktop";
-      name = "user-defined";
-      start = config.services.xserver.displayManager.sessionData.wrapper;
-    }
   ];
 }

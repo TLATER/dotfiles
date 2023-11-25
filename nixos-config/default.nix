@@ -1,5 +1,5 @@
 {
-  lib,
+  config,
   pkgs,
   flake-inputs,
   ...
@@ -9,6 +9,7 @@
     flake-inputs.sops-nix.nixosModules.sops
 
     ./greeter
+    ./sway.nix
     ./wireguard.nix
     ../modules
   ];
@@ -60,7 +61,10 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs.flake-inputs = flake-inputs;
+    extraSpecialArgs = {
+      inherit flake-inputs;
+      nixos-config = config;
+    };
   };
 
   boot = {
@@ -119,12 +123,9 @@
     home-manager # To manage the actual user configuration
     pavucontrol # In case the host doesn't have audio, this can't be in the user config
     wpa_supplicant_gui # For managing wireless networks
-    bibata-cursors
 
     firefox
   ];
-
-  theming.cursor.theme = "Bibata-Original-Ice";
 
   environment.extraInit = ''
     # Do not want this in the environment. NixOS always sets it and does not
@@ -140,17 +141,7 @@
   programs = {
     dconf.enable = true;
     zsh.enable = true;
-    hyprland = {
-      enable = true;
-      package = lib.mkDefault flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.hyprland;
-    };
   };
-
-  # Override the default xdg portal set by the hyprland module
-  # TODO(tlater): Starting with 23.11 there will be an option for this
-  xdg.portal.extraPortals = lib.mkForce [
-    flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.xdg-desktop-portal-hyprland
-  ];
 
   security.pam.services.swaylock = {};
 
