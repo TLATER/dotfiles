@@ -5,13 +5,13 @@
   hostPlatform,
   emacsPackagesFor,
   emacsMacport,
-  emacs,
+  emacs29-pgtk,
   runCommandLocal,
 }: let
   emacsPlatform =
     if hostPlatform.isDarwin
     then emacsMacport
-    else emacs;
+    else emacs29-pgtk;
 
   use-package-list = stdenv.mkDerivation {
     inherit (sources.bauer) src version;

@@ -203,7 +203,7 @@
     "Alternate which-key based indicator.
 
      Hide the which-key indicator immediately when using the
-     'completing-read' prompter.  FN ARGS."
+     \\='completing-read\\=' prompter.  FN ARGS."
     (which-key--hide-popup-ignore-command)
     (let ((embark-indicators
            (remq #'embark-which-key-indicator embark-indicators)))
