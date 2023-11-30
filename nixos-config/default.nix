@@ -119,12 +119,8 @@
 
   environment = {
     systemPackages = with pkgs; [
-      git # To manage the nixos configuration, all users need git
-      home-manager # To manage the actual user configuration
-      pavucontrol # In case the host doesn't have audio, this can't be in the user config
-      wpa_supplicant_gui # For managing wireless networks
-
-      firefox
+      pavucontrol
+      wpa_supplicant_gui
     ];
 
     extraInit = ''
@@ -195,6 +191,7 @@
 
   programs = {
     dconf.enable = true;
+    git.enable = true;
     zsh.enable = true;
     nano.enable = false;
   };
