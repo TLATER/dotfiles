@@ -31,6 +31,7 @@
 
   sway-run = pkgs.writeShellScriptBin "sway-run" ''
     export XDG_SESSION_TYPE=wayland
+    export XDG_CURRENT_DESKTOP=sway
     systemd-cat -t xsession sway ${lib.optionalString unsupported-gpu "--unsupported-gpu"}
   '';
 in {
