@@ -15,10 +15,10 @@
   # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167
   boot.initrd.systemd.enable = true;
 
-  fileSystems = {
-    "/persist/data".neededForBoot = true;
-    "/persist/state".neededForBoot = true;
-  };
+  # fileSystems = {
+  #   "/persist/data".neededForBoot = true;
+  #   "/persist/state".neededForBoot = true;
+  # };
 
   # /etc/sops/ won't be available during early boot because
   # impermanence runs after the sops secrets setup.

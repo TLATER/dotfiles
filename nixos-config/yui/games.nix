@@ -13,25 +13,27 @@
   # Appears to resolve issues with crackling audio under high load
   services.pipewire.lowLatency.enable = true;
 
-  programs.steam.enable = true;
-
   # Make steam controller work
   hardware.steam-hardware.enable = true;
   services.joycond.enable = true;
 
-  programs.gamescope = {
-    enable = true;
-    capSysNice = true;
-    args = [
-      "--steam"
-      "--expose-wayland"
-      "--rt"
-      "-W 1920"
-      "-H 1080"
-      "--force-grab-cursor"
-      "--grab"
-      "--fullscreen"
-    ];
+  programs = {
+    steam.enable = true;
+    anime-game-launcher.enable = true;
+    gamescope = {
+      enable = true;
+      capSysNice = true;
+      args = [
+        "--steam"
+        "--expose-wayland"
+        "--rt"
+        "-W 1920"
+        "-H 1080"
+        "--force-grab-cursor"
+        "--grab"
+        "--fullscreen"
+      ];
+    };
   };
 
   # Star citizen needs more
@@ -39,5 +41,4 @@
 
   # AAGL
   nix.settings = flake-inputs.aagl.nixConfig;
-  programs.anime-game-launcher.enable = true;
 }

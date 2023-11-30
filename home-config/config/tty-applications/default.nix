@@ -14,7 +14,7 @@
 
   home.packages = with pkgs; [
     bat
-    exa
+    eza
     fd
     ripgrep
     screen

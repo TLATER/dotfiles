@@ -22,14 +22,7 @@
     '';
   };
 
-  overrides = _self: super: {
-    dashboard = super.dashboard.overrideAttrs (_old: {
-      patches = [
-        # See https://github.com/emacs-dashboard/emacs-dashboard/issues/81
-        ./fix-emacs-dashboard.patch
-      ];
-    });
-  };
+  overrides = _self: _super: {};
 
   emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope' overrides;
 

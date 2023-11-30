@@ -46,9 +46,10 @@ in {
 
       enableAutosuggestions = true;
       enableCompletion = true;
-      enableSyntaxHighlighting = true;
       enableVteIntegration = true;
       defaultKeymap = "emacs";
+
+      syntaxHighlighting.enable = true;
 
       plugins = [
         {
@@ -66,7 +67,7 @@ in {
       ];
 
       shellAliases = {
-        "ls" = "exa";
+        "ls" = "eza";
         "winetricks" = "winetricks -q";
         "pbcopy" = "xsel --clipboard --input";
         "pbpaste" = "xsel --clipboard";

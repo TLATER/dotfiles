@@ -87,7 +87,7 @@ in {
           };
 
           extraArgs = mkOption {
-            type = listOf string;
+            type = listOf str;
             default = [];
             description = "Extra args to launch Firefox with.";
           };

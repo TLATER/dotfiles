@@ -38,13 +38,18 @@ in {
 
     programs.firefox = {
       enable = true;
-      package = pkgs.firefox.override {cfg.enableTridactylNative = true;};
+      package = pkgs.firefox.override {
+        nativeMessagingHosts = [
+          pkgs.tridactyl-native
+        ];
+      };
       profiles."tlater" = {
         extensions = with pkgs.nur.repos.rycee.firefox-addons; [
           aria2-integration
           buster-captcha-solver
           clearurls
           decentraleyes
+          indie-wiki-buddy
           keepassxc-browser
           libredirect
           no-pdf-download
@@ -57,6 +62,7 @@ in {
           # cloudhole
           # devtools-adb-extension
           # firefox-sticky-window-containers
+          # warframe-reliquary-prime
         ];
 
         userChrome =

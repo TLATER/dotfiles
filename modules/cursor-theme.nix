@@ -4,13 +4,13 @@
   pkgs,
   ...
 }: let
-  inherit (lib.types) string nullOr number;
+  inherit (lib.types) str nullOr number;
 in {
   options.theming = {
     cursor = {
       theme = lib.mkOption {
         default = null;
-        type = nullOr string;
+        type = nullOr str;
         description = "The default cursor theme to use. Package must be installed separately";
       };
 

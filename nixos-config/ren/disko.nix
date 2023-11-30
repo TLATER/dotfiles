@@ -1,41 +1,39 @@
-_: let
-  disks = [
-    "/dev/sda"
-  ];
-in {
+{
   disko.devices = {
     disk = {
       sda = {
         type = "disk";
-        device = builtins.elemAt disks 0;
+        device = "/dev/sda";
         content = {
-          type = "table";
-          format = "gpt";
-          partitions = [
-            {
-              name = "ESP";
+          type = "gpt";
+          partitions = {
+            ESP = {
               start = "1MiB";
               end = "128MiB";
-              fs-type = "fat32";
-              bootable = true;
+              type = "EF00";
               content = {
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
+                mountOptions = [
+                  "defaults"
+                ];
               };
-            }
-            {
-              name = "main";
+            };
+
+            main = {
               start = "128MiB";
               end = "-4G";
               content = {
                 type = "luks";
                 name = "main";
-                extraOpenArgs = ["--allow-discards"];
-                keyFile = "/tmp/secret.key";
+                settings = {
+                  keyFile = "/tmp/secret.key";
+                  allowDiscards = true;
+                };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"]; # Override existing partition
+                  extraArgs = ["-f"];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
@@ -56,22 +54,22 @@ in {
                   };
                 };
               };
-            }
-            {
-              name = "swap";
+            };
+
+            swap = {
               start = "-4G";
               end = "100%";
               content = {
                 type = "luks";
                 name = "swap";
-                extraOpenArgs = ["--allow-discards"];
-                keyFile = "/tmp/secret.key";
-                content = {
-                  type = "swap";
+                settings = {
+                  keyFile = "/tmp/secret.key";
+                  allowDiscards = true;
                 };
+                content.type = "swap";
               };
-            }
-          ];
+            };
+          };
         };
       };
     };

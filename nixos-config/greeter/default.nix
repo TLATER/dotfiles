@@ -49,7 +49,7 @@ in {
     pciutils
   ];
 
-  fonts.fonts = [
+  fonts.packages = [
     flake-inputs.self.packages.${pkgs.system}.phosphor-icons
   ];
 
