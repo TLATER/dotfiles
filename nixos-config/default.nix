@@ -7,6 +7,7 @@
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
+    flake-inputs.musnix.nixosModules.musnix
 
     ./greeter
     ./sway.nix
@@ -14,6 +15,11 @@
     ./yubikey.nix
     ../modules
   ];
+
+  musnix = {
+    enable = true;
+    soundcardPciId = "09:00.4";
+  };
 
   nix = {
     package = pkgs.nixFlakes;
@@ -71,7 +77,7 @@
   boot = {
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
 
     loader = {
       timeout = 0;
@@ -109,7 +115,7 @@
     users = {
       tlater = {
         isNormalUser = true;
-        extraGroups = ["wheel" "video" "network"];
+        extraGroups = ["wheel" "video" "network" "audio"];
       };
     };
   };

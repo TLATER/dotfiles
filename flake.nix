@@ -41,6 +41,11 @@
       };
     };
 
+    musnix = {
+      url = "github:musnix/musnix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager related inputs
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
