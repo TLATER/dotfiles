@@ -240,6 +240,7 @@
       pulse.enable = true;
     };
 
+    udisks2.enable = true;
     nscd.enableNsncd = true;
     blueman.enable = true;
     chrony.enable = true;
