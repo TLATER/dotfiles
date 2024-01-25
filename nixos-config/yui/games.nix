@@ -11,7 +11,10 @@
   environment.systemPackages = [pkgs.mangohud];
 
   # Appears to resolve issues with crackling audio under high load
-  services.pipewire.lowLatency.enable = true;
+  services.pipewire.lowLatency = {
+    enable = true;
+    quantum = 128;
+  };
 
   # Make steam controller work
   hardware.steam-hardware.enable = true;

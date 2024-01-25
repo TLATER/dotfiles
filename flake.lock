@@ -207,6 +207,26 @@
         "type": "github"
       }
     },
+    "musnix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1702456985,
+        "narHash": "sha256-mnjCk8mINY4t5uIwP2eR19FOQXHTCO68+KsgKFTv1NI=",
+        "owner": "musnix",
+        "repo": "musnix",
+        "rev": "cf93a72da8ad677864045e9a5dd32170378d9a62",
+        "type": "github"
+      },
+      "original": {
+        "owner": "musnix",
+        "repo": "musnix",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": [
@@ -465,6 +485,7 @@
         "fenix": "fenix",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
+        "musnix": "musnix",
         "nix-gaming": "nix-gaming",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-hardware": "nixos-hardware",
