@@ -8,8 +8,8 @@
         src = prev.fetchFromGitHub {
           owner = "emersion";
           repo = old.pname;
-          rev = "b5f387821800e32d4f82001504668d819f02bb4b";
-          hash = "sha256-TeTDJVFW0NHZpmTm8PAXTzbzk6kolvY7Vd55YQfJV20=";
+          rev = "1eaa02eb18ab783b64dc89f1681909dc30baa805";
+          hash = "sha256-vRMNkMFidNmSQkhz5n+EBg7IkRjMYqrhdhM80G3K3WI=";
         };
       });
     })

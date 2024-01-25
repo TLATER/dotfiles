@@ -54,6 +54,7 @@
       wlroots_0_16 = final.wlroots_0_16.overrideAttrs (_: {
         patches = [
           ./wlroots-nvidia.patch
+          ./wlroots-screenshare.patch
         ];
       });
     })

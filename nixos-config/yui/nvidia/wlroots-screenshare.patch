@@ -1,0 +1,29 @@
+diff --git a/types/output/render.c b/types/output/render.c
+index 5d4dccc1..7fea66e3 100644
+--- a/types/output/render.c
++++ b/types/output/render.c
+@@ -330,22 +330,8 @@ struct wlr_drm_format *output_pick_format(struct wlr_output *output,
+ }
+ 
+ uint32_t wlr_output_preferred_read_format(struct wlr_output *output) {
+-	struct wlr_renderer *renderer = output->renderer;
+-	assert(renderer != NULL);
+-
+-	if (!renderer->impl->preferred_read_format || !renderer->impl->read_pixels) {
+-		return DRM_FORMAT_INVALID;
+-	}
+-
+-	if (!output_attach_back_buffer(output, &output->pending, NULL)) {
+-		return false;
+-	}
+-
+-	uint32_t fmt = renderer->impl->preferred_read_format(renderer);
+-
+-	output_clear_back_buffer(output);
+-
+-	return fmt;
++	// Hack for Nvidia screen sharing, might break other gpus (and maybe even some stuff in nvidia itself)
++	return DRM_FORMAT_XRGB8888;
+ }
+ 
+ bool output_is_direct_scanout(struct wlr_output *output,
