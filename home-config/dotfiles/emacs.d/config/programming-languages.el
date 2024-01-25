@@ -309,7 +309,7 @@
     (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
 (use-package eglot
-  :commands (eglot eglot-format eglot-managed-p eglot--major-mode)
+  :commands (eglot eglot-format eglot-managed-p eglot--major-mode eglot-alternatives)
   :hook (((kotlin-mode web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode) .
           eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
@@ -348,7 +348,9 @@
                               (:checkOnSave
                                (:command "clippy")))))
   (add-to-list 'eglot-server-programs
-               '(web-mode . ("typescript-language-server" "--stdio")))
+               `(web-mode . ,(eglot-alternatives
+                              '(("biome" "lsp-proxy")
+                                ("typescript-language-server" "--stdio")))))
   (add-to-list 'eglot-server-programs
                '(nix-mode . ("nil"))))
 
@@ -364,6 +366,8 @@
 (use-package reformatter
   :commands (alejandra-format-region
              alejandra-format-buffer
+             biome-format-region
+             biome-format-buffer
              clang-format-region
              clang-format-buffer
              latexindent-region
@@ -382,6 +386,11 @@
       :program "alejandra"
       :group 'nix-mode
       :lighter " AL")
+    (reformatter-define biome-typescript-format
+      :program "biome"
+      :args '("format" "--stdin-file-path=test.ts")
+      :group 'web-mode
+      :lighter " BT")
     (reformatter-define clang-format
       :program "clang-format"
       :group 'glsl-mode
@@ -409,7 +418,7 @@
     ('latex-mode
      (latexindent-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode)
-     (prettier-js))
+     (biome-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))
     ((or 'bazel-mode
          (app (lambda (m) (get m 'derived-mode-parent)) 'bazel-mode))
