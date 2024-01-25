@@ -9,6 +9,15 @@ in {
   config = lib.mkIf config.custom.desktop-environment {
     xdg.configFile."pipewire/pipewire.conf.d/99-rnnoise.conf" = {
       text = builtins.toJSON {
+        "context.properties" = {
+          "link.max-buffers" = 16;
+          "core.daemon" = true;
+          "core.name" = "pipewire-0";
+          "module.x11.bell" = false;
+          "module.access" = true;
+          "module.jackdbus-detect" = false;
+        };
+
         "context.modules" = [
           {
             name = "libpipewire-module-filter-chain";
