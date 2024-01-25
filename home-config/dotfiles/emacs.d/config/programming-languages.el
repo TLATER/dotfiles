@@ -275,6 +275,9 @@
 (use-package yuck-mode
   :mode (rx ".yuck" string-end))
 
+(use-package zen-mode
+  :mode (rx ".zs"))
+
 ;; ----------------------------------------------------------------------------------
 ;; ----------------------------------------------------------------------------------
 ;;; More generic programming-language support features
