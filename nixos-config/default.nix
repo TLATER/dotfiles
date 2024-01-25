@@ -198,6 +198,8 @@
 
   security.sudo-rs.enable = true;
 
+  fileSystems."/boot".options = ["umask=0077"];
+
   fonts = {
     enableDefaultPackages = true;
 
