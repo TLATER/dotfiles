@@ -11,6 +11,7 @@
     ./greeter
     ./sway.nix
     ./wireguard.nix
+    ./yubikey.nix
     ../modules
   ];
 
@@ -239,12 +240,9 @@
       pulse.enable = true;
     };
 
-    udev.packages = [pkgs.yubikey-personalization];
-
     nscd.enableNsncd = true;
     blueman.enable = true;
     chrony.enable = true;
-    pcscd.enable = true;
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
