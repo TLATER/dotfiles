@@ -16,6 +16,7 @@
     bat
     eza
     fd
+    ouch
     ripgrep
     screen
   ];
