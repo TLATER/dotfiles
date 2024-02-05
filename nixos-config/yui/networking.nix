@@ -39,6 +39,7 @@
       "10-bond0" = {
         matchConfig.Name = "bond0";
         networkConfig.DHCP = "yes";
+        linkConfig.RequiredForOnline = "yes";
       };
 
       "40-eno1" = {
@@ -47,11 +48,13 @@
           Bond = "bond0";
           PrimarySlave = true;
         };
+        linkConfig.RequiredForOnline = "no";
       };
 
       "40-wlp6s0" = {
         matchConfig.Name = "wlp6s0";
         networkConfig.Bond = "bond0";
+        linkConfig.RequiredForOnline = "no";
       };
     };
   };
