@@ -8,10 +8,19 @@
   ];
 
   hardware.nvidia = {
+    package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      version = "550.54.14";
+      sha256_64bit = "sha256-jEl/8c/HwxD7h1FJvDD6pP0m0iN7LLps0uiweAFXz+M=";
+      sha256_aarch64 = "sha256-sProBhYziFwk9rDAR2SbRiSaO7RMrf+/ZYryj4BkLB0=";
+      openSha256 = "sha256-F+9MWtpIQTF18F2CftCJxQ6WwpA8BVmRGEq3FhHLuYw=";
+      settingsSha256 = "sha256-m2rNASJp0i0Ez2OuqL+JpgEF0Yd8sYVCyrOoo/ln2a4=";
+      persistencedSha256 = "sha256-XaPN8jVTjdag9frLPgBtqvO/goB5zxeGzaTU0CdL6C4=";
+    };
+
     # The current stable nvidia driver is utterly broken. Use
     # production for now to work around stuff like this:
     # https://forums.developer.nvidia.com/t/535-86-05-low-framerate-vulkan-apps-stutter-under-wayland-xwayland/26147
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    # package = config.boot.kernelPackages.nvidiaPackages.production;
     modesetting.enable = true;
     # Power management is required to get nvidia GPUs to behave on
     # suspend, due to firmware bugs. Aren't nvidia great?
