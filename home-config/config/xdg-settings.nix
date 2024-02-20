@@ -14,7 +14,7 @@ in {
     '';
   };
 
-  xdg.userDirs = lib.mkIf config.custom.desktop-environment {
+  xdg.userDirs = {
     enable = true;
     # Work around firefox creating a "Desktop" directory
     desktop = "${config.home.homeDirectory}";

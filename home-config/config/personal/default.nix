@@ -1,10 +1,3 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
-  config = lib.mkIf (!config.custom.is-work) {
-    home.packages = with pkgs; [prismlauncher];
-  };
+{pkgs, ...}: {
+  home.packages = with pkgs; [prismlauncher];
 }

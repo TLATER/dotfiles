@@ -1,8 +1,4 @@
 {
-  config,
-  lib,
-  ...
-}: {
   programs.git = {
     enable = true;
     userName = "Tristan Daniël Maat";
@@ -10,7 +6,7 @@
 
     signing = {
       key = "0x49670FD774E43268";
-      signByDefault = config.custom.has-yubikey;
+      signByDefault = true;
     };
 
     ignores = [".envrc" ".direnv/"];
@@ -31,7 +27,7 @@
       # gitlab.gitlab is intentional; tells magit-forge to use the
       # gitlab API and *then* specifies the domain
       "gitlab.gitlab.codethink.co.uk/api/v4".user = "tristanmaat";
-      url."ssh://git@".pushInsteadOf = lib.mkIf config.custom.has-yubikey "https://";
+      url."ssh://git@".pushInsteadOf = "https://";
     };
   };
 }

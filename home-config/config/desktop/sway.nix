@@ -36,73 +36,71 @@
     '';
   };
 in {
-  config = lib.mkIf config.custom.desktop-environment {
-    home.packages = [
-      keepassxc-copy
+  home.packages = [
+    keepassxc-copy
+  ];
+
+  wayland.windowManager.sway = {
+    enable = true;
+    package = null;
+    config = null;
+    extraConfig = lib.fileContents ../../dotfiles/sway.conf;
+  };
+
+  services.swayidle = {
+    enable = true;
+    systemdTarget = "graphical-session.target";
+
+    events = [
+      {
+        event = "lock";
+        command = "${systemctl} --user start swaylock";
+      }
     ];
 
-    wayland.windowManager.sway = {
-      enable = true;
-      package = null;
-      config = null;
-      extraConfig = lib.fileContents ../../dotfiles/sway.conf;
+    timeouts = [
+      {
+        timeout = 5 * 60;
+        command = "${swaymsg} 'output * power off'";
+        resumeCommand = "${swaymsg} 'output * power on'";
+      }
+      {
+        timeout = 6 * 60;
+        command = "${loginctl} lock-session";
+      }
+    ];
+  };
+
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      screenshots = true;
+      clock = true;
+      indicator = true;
+      indicator-radius = 100;
+      indicator-thickness = 7;
+      effect-blur = "7x5";
+    };
+  };
+
+  systemd.user.services.swaylock = {
+    Unit.Description = "Lock screen";
+    Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
+  };
+
+  systemd.user.services.wpaperd = {
+    Unit = {
+      Description = "Wallpaper daemon";
+      After = ["graphical-session-pre.target"];
+      PartOf = ["graphical-session.target"];
     };
 
-    services.swayidle = {
-      enable = true;
-      systemdTarget = "graphical-session.target";
-
-      events = [
-        {
-          event = "lock";
-          command = "${systemctl} --user start swaylock";
-        }
-      ];
-
-      timeouts = [
-        {
-          timeout = 5 * 60;
-          command = "${swaymsg} 'output * power off'";
-          resumeCommand = "${swaymsg} 'output * power on'";
-        }
-        {
-          timeout = 6 * 60;
-          command = "${loginctl} lock-session";
-        }
-      ];
+    Service = {
+      ExecStart = "${pkgs.wpaperd}/bin/wpaperd --no-daemon";
+      Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
     };
 
-    programs.swaylock = {
-      enable = true;
-      package = pkgs.swaylock-effects;
-      settings = {
-        screenshots = true;
-        clock = true;
-        indicator = true;
-        indicator-radius = 100;
-        indicator-thickness = 7;
-        effect-blur = "7x5";
-      };
-    };
-
-    systemd.user.services.swaylock = {
-      Unit.Description = "Lock screen";
-      Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
-    };
-
-    systemd.user.services.wpaperd = {
-      Unit = {
-        Description = "Wallpaper daemon";
-        After = ["graphical-session-pre.target"];
-        PartOf = ["graphical-session.target"];
-      };
-
-      Service = {
-        ExecStart = "${pkgs.wpaperd}/bin/wpaperd --no-daemon";
-        Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
-      };
-
-      Install.WantedBy = ["graphical-session.target"];
-    };
+    Install.WantedBy = ["graphical-session.target"];
   };
 }

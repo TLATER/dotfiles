@@ -1,6 +1,5 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
@@ -12,15 +11,13 @@
     ./whatsapp.nix
   ];
 
-  config = lib.mkIf config.custom.graphical-applications {
-    home.packages = with pkgs; [
-      alacritty
-      apvlv
-      feh
-      xsel
-      yubioath-flutter
-    ];
+  home.packages = with pkgs; [
+    alacritty
+    apvlv
+    feh
+    xsel
+    yubioath-flutter
+  ];
 
-    xdg.configFile."alacritty/alacritty.yml".source = "${config._dotfiles}/alacritty/alacritty.yml";
-  };
+  xdg.configFile."alacritty/alacritty.yml".source = "${config._dotfiles}/alacritty/alacritty.yml";
 }
