@@ -12,10 +12,6 @@ in {
     # Used for interactive python shells
     python3Packages.ipython
 
-    # Needed for magit
-    git
-    git-lfs
-
     # *.nix files are used to pull in project deps, so we always need these
     alejandra
     nil

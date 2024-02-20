@@ -32,7 +32,7 @@ in {
       "nvidia-persistenced"
     ];
 
-  home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/personal-desktop.nix";
+  home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
 
   boot = {
     blacklistedKernelModules = [

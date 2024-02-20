@@ -9,7 +9,7 @@
     ../networks/personal.nix
   ];
 
-  home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/personal-desktop.nix";
+  home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/ren.nix";
 
   # In the future, set up a roolback in early init:
   # https://discourse.nixos.org/t/impermanence-vs-systemd-initrd-w-tpm-unlocking/25167

@@ -4,8 +4,6 @@
     wireless.interfaces = ["wlp6s0"];
 
     firewall.allowedTCPPorts = [
-      # Allow barrier
-      24800
       # Allow minecraft for when I'm running a minecraft server
       # locally
       25565
