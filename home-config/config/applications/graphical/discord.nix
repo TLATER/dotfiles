@@ -1,5 +1,7 @@
 {config, ...}: {
   programs.firefox.webapps.discord = {
+    enable = true;
+
     url = "https://discord.com/app";
     id = 1;
 

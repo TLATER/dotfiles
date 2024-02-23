@@ -4,8 +4,8 @@
   ...
 }: let
   inherit (builtins) getAttr stringLength substring;
-  inherit (lib) mkOption;
-  inherit (lib.attrsets) mapAttrs mapAttrs' nameValuePair;
+  inherit (lib) mkOption mkEnableOption;
+  inherit (lib.attrsets) mapAttrs mapAttrs' nameValuePair filterAttrs;
   inherit (lib.strings) concatStringsSep toUpper;
 
   make-app-profiles = cfg:
@@ -73,6 +73,8 @@ in {
     type = with lib.types;
       attrsOf (submodule {
         options = {
+          enable = mkEnableOption "webapp";
+
           ####################
           # Firefox settings #
           ####################
@@ -198,6 +200,6 @@ in {
           StartupWMClass = "WebApp-${name}";
         };
       })
-      config.programs.firefox.webapps;
+      (filterAttrs (_: webapp: webapp.enable) config.programs.firefox.webapps);
   };
 }
