@@ -16,11 +16,6 @@
     ../modules
   ];
 
-  musnix = {
-    enable = true;
-    soundcardPciId = "09:00.4";
-  };
-
   nix = {
     package = pkgs.nixFlakes;
 

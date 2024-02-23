@@ -62,6 +62,11 @@ in {
 
   fileSystems."/nix".options = ["defaults" "noatime"];
 
+  musnix = {
+    enable = true;
+    soundcardPciId = "09:00.4";
+  };
+
   # Fix broken suspend on b550i motherboard
   #
   # The rule is a bit overzealous, as it disables wake from *either*
