@@ -4,9 +4,9 @@
   ...
 }: {
   imports = [
-    ./firefox.nix
     ./discord.nix
     ./element.nix
+    ./firefox.nix
     ./keepassxc.nix
     ./whatsapp.nix
   ];

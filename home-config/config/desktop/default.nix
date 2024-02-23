@@ -3,8 +3,6 @@
     ./dunst.nix
     ./gtk.nix
     ./mime.nix
-    ./ncmpcpp.nix
-    ./pipewire.nix
     ./rofi.nix
     ./sway.nix
   ];
