@@ -4,6 +4,7 @@
   ];
 
   home.packages = with pkgs; [prismlauncher];
+  programs.firefox.enableThirdPartyRepositories = true;
 
   programs.git = {
     userEmail = "tm@tlater.net";

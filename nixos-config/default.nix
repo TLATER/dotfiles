@@ -10,7 +10,6 @@
 
     ./greeter
     ./sway.nix
-    ./wireguard.nix
     ./yubikey.nix
     ../modules
   ];
@@ -46,11 +45,6 @@
   };
 
   sops = {
-    gnupg = {
-      home = "/var/lib/sops";
-      sshKeyPaths = [];
-    };
-
     defaultSopsFile = "/etc/sops/secrets.yaml";
     validateSopsFiles = false;
   };

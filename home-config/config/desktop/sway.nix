@@ -44,6 +44,7 @@ in {
     enable = true;
     package = null;
     config = null;
+    systemd.xdgAutostart = true;
     extraConfig = lib.fileContents ../../dotfiles/sway.conf;
   };
 

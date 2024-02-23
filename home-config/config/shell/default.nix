@@ -15,6 +15,7 @@
     fd
     ouch
     ripgrep
+    screen
   ];
 
   services.gpg-agent = {

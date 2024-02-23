@@ -8,8 +8,9 @@
   generatedFiles = [
     "home-config/dotfiles/emacs.d/share/templates"
     "pkgs/_sources"
-    "nixos-config/yui/hardware-configuration.nix"
-    "nixos-config/ren/hardware-configuration.nix"
+    "nixos-config/hosts/yui/hardware-configuration.nix"
+    "nixos-config/hosts/ren/hardware-configuration.nix"
+    "nixos-config/hosts/rin/hardware-configuration.nix"
   ];
 
   mkTest = test:

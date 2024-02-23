@@ -6,7 +6,8 @@
     ./hardware-configuration.nix
     ./nixos-hardware-precursor.nix
     ./disko.nix
-    ../networks/personal.nix
+    ../../networks/personal.nix
+    ../../wireguard.nix
   ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/ren.nix";
@@ -25,6 +26,11 @@
   #
   # Hence, access it directly from the persistent volume.
   # sops.defaultSopsFile = lib.mkForce "/persist/state/etc/sops/secrets.yaml";
+
+  sops.gnupg = {
+    home = "/var/lib/sops";
+    sshKeyPaths = [];
+  };
 
   environment.persistence = {
     "/persist/state" = {

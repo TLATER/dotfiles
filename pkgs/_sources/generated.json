@@ -39,6 +39,21 @@
         },
         "version": "v0.5.6"
     },
+    "drivestrike": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "drivestrike",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=",
+            "type": "url",
+            "url": "https://app.drivestrike.com/static/yum/drivestrike.rpm"
+        },
+        "version": "2.1.22-31"
+    },
     "firefox-ui-fix": {
         "cargoLocks": null,
         "date": "2024-01-31",

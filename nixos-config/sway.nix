@@ -1,17 +1,14 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  flake-inputs,
+  ...
+}: {
   nixpkgs.overlays = [
     (_: prev: {
       # Fix issues with nvidia screencapture bit depth
       # See https://github.com/emersion/xdg-desktop-portal-wlr/issues/190
-      # TODO(tlater): stop doing this when there's a new release.
-      xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (old: {
-        src = prev.fetchFromGitHub {
-          owner = "emersion";
-          repo = old.pname;
-          rev = "1eaa02eb18ab783b64dc89f1681909dc30baa805";
-          hash = "sha256-vRMNkMFidNmSQkhz5n+EBg7IkRjMYqrhdhM80G3K3WI=";
-        };
-      });
+      # TODO(tlater): stop doing this when stable bumps this version.
+      inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${prev.system}) xdg-desktop-portal-wlr;
     })
   ];
 
