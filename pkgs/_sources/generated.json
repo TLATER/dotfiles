@@ -178,25 +178,5 @@
             "type": "github"
         },
         "version": "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb"
-    },
-    "zsh-background-notify": {
-        "cargoLocks": null,
-        "date": "2015-09-14",
-        "extract": null,
-        "name": "zsh-background-notify",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "t413",
-            "repo": "zsh-background-notify",
-            "rev": "d5f0430cb052f82c433c17707816910da87e201e",
-            "sha256": "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=",
-            "type": "github"
-        },
-        "version": "d5f0430cb052f82c433c17707816910da87e201e"
     }
 }

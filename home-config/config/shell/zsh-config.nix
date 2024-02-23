@@ -54,7 +54,7 @@ in {
       plugins = [
         {
           name = "bgnotify";
-          src = tlaterpkgs.zsh-background-notify;
+          src = tlaterpkgs.oh-my-zsh-bgnotify;
         }
         {
           name = "emacs";

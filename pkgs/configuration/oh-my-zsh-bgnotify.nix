@@ -4,7 +4,8 @@
   libnotify,
 }:
 stdenv.mkDerivation {
-  inherit (sources.zsh-background-notify) pname version src;
+  inherit (sources.ohmyzsh) version src;
+  pname = "oh-my-zsh-bgnotify";
 
   # FIXME: This breaks the notification-application detection
   # "algorithm". Notably, since libnotify will always be "detected",
@@ -13,8 +14,8 @@ stdenv.mkDerivation {
   # It'd make more sense to add a final default implementation.
   installPhase = ''
     mkdir -p $out/
-    substitute bgnotify.plugin.zsh $out/bgnotify.plugin.zsh \
-        --replace 'hash notify-send' 'true' \
+    substitute plugins/bgnotify/bgnotify.plugin.zsh $out/bgnotify.plugin.zsh \
+        --replace '(( $${+commands[notify-send]} ))' 'true' \
         --replace 'notify-send' '${libnotify}/bin/notify-send'
   '';
 }

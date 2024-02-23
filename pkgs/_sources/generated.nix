@@ -106,16 +106,4 @@
     };
     date = "2023-12-22";
   };
-  zsh-background-notify = {
-    pname = "zsh-background-notify";
-    version = "d5f0430cb052f82c433c17707816910da87e201e";
-    src = fetchFromGitHub {
-      owner = "t413";
-      repo = "zsh-background-notify";
-      rev = "d5f0430cb052f82c433c17707816910da87e201e";
-      fetchSubmodules = false;
-      sha256 = "sha256-NhDAOKCkNItODP8d68FVySZghTvPKXG2eBPlvkCZDl0=";
-    };
-    date = "2015-09-14";
-  };
 }
