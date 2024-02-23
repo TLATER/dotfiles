@@ -78,7 +78,7 @@
         system = "x86_64-linux";
         modules = [
           ./nixos-config
-          ./nixos-config/yui
+          ./nixos-config/hosts/yui
         ];
 
         specialArgs.flake-inputs = inputs;
@@ -88,7 +88,17 @@
         system = "x86_64-linux";
         modules = [
           ./nixos-config
-          ./nixos-config/ren
+          ./nixos-config/hosts/ren
+        ];
+
+        specialArgs.flake-inputs = inputs;
+      };
+
+      rin = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        modules = [
+          ./nixos-config
+          ./nixos-config/hosts/rin
         ];
 
         specialArgs.flake-inputs = inputs;
@@ -132,11 +142,13 @@
     devShells.x86_64-linux.default = let
       inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
       inherit (self.packages.x86_64-linux) commit-nvfetcher;
+      inherit (nixpkgs.legacyPackages.x86_64-linux) nvchecker;
       home-manager-bin = home-manager.packages.x86_64-linux.default;
     in
       nixpkgs.legacyPackages.x86_64-linux.mkShell {
         packages = [
           nvfetcher.packages.x86_64-linux.default
+          nvchecker
           commit-nvfetcher
           home-manager-bin
           sops-init-gpg-key

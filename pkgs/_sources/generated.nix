@@ -23,6 +23,14 @@
       sha256 = "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=";
     };
   };
+  drivestrike = {
+    pname = "drivestrike";
+    version = "2.1.22-31";
+    src = fetchurl {
+      url = "https://app.drivestrike.com/static/yum/drivestrike.rpm";
+      sha256 = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
+    };
+  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "772cba205f20a447bed636ab85ba5332822f4fc4";

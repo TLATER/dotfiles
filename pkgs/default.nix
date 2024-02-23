@@ -19,6 +19,7 @@ in {
 
   # Proper packages
   deepfilternet = callPackage ./applications/deepfilternet.nix {};
+  drivestrike = callPackage ./applications/drivestrike.nix {};
   emacs = callPackage ./applications/emacs {};
   gauth = callPackage ./applications/gauth.nix {};
   stumpwm = callPackage ./applications/stumpwm {};

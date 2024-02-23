@@ -11,7 +11,6 @@
 
     ./greeter
     ./sway.nix
-    ./wireguard.nix
     ./yubikey.nix
     ../modules
   ];

@@ -2,6 +2,8 @@ keys:
   - &tlater 535B61015823443941C744DD12264F6BBDFABA89
   - &yui 71132A2D171E79E6A20E81E6C33BC9C8C67C5948
   - &ren 4F82D975EFA78365B552A8B7A0FEFBBAE3259F52
+  - &tlater-famedly E3A01E05CDB7D42E9909 B9394D863FBF16FE6D51
+  - &rin age1qne0ry5pxn4pfqzney9hxy9dedst02qtvfrmnf2p7dhr560mgcusg3tpz6
 
 creation_rules:
   - key_groups:
@@ -9,3 +11,9 @@ creation_rules:
           - *tlater
           - *yui
           - *ren
+  - path_regex: secrets/work/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+      - pgp:
+          - *tlater-famedly
+        age:
+          - *rin

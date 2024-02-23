@@ -1,15 +1,17 @@
-{
+{lib, flake-inputs, ...}: {
   programs.git = {
     userEmail = "t.maat@famedly.com";
 
     signing = {
-      key = "";
+      key = "0x4D863FBF16FE6D51";
       signByDefault = true;
     };
 
     # For magit
     extraConfig.github.user = "famedly-tlater";
   };
+
+  home.file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
 
   programs.ssh.matchBlocks = {
     "*" = {
@@ -19,8 +21,8 @@
   };
 
   programs.firefox.webapps = {
-    discord.enable = false;
-    whatsapp.enable = false;
-    element.enable = false;
+    discord.enable = lib.mkForce false;
+    whatsapp.enable = lib.mkForce false;
+    element.enable = lib.mkForce false;
   };
 }

@@ -6,7 +6,8 @@
     ./hardware-configuration.nix
     ./nixos-hardware-precursor.nix
     ./disko.nix
-    ../networks/personal.nix
+    ../../networks/personal.nix
+    ../../wireguard.nix
   ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/personal-desktop.nix";
