@@ -183,7 +183,7 @@
   :commands global-whitespace-mode
   :custom
   (whitespace-style '(face trailing indentation space-after-tab
-                           space-before-tab tab-mark))
+                           space-before-tab))
   (whitespace-global-modes '(not erc-mode))
   :config
   (global-whitespace-mode))
