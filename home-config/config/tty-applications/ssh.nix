@@ -30,6 +30,13 @@
             HostkeyAlgorithms = "+ssh-rsa";
           };
         };
+
+        "hetzner-1" = lib.hm.dag.entryAfter ["*"] {
+          hostname = "116.202.158.55";
+          user = "tlater";
+          port = 2222;
+          forwardAgent = true;
+        };
       };
     };
 
