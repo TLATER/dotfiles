@@ -93,45 +93,9 @@
   networking = {
     hostName = "ren";
     hostId = "0d418d09";
-    wireless.interfaces = ["wlp2s0"];
   };
 
-  systemd.network = {
-    netdevs = {
-      "10-bond0" = {
-        netdevConfig = {
-          Name = "bond0";
-          Kind = "bond";
-        };
-
-        bondConfig = {
-          Mode = "active-backup";
-          PrimaryReselectPolicy = "always";
-          MIIMonitorSec = "100ms";
-        };
-      };
-    };
-
-    networks = {
-      "10-bond0" = {
-        matchConfig.Name = "bond0";
-        networkConfig.DHCP = "yes";
-      };
-
-      "40-enp3s0" = {
-        matchConfig.Name = "enp3s0";
-        networkConfig = {
-          Bond = "bond0";
-          PrimarySlave = true;
-        };
-      };
-
-      "40-wlp2s0" = {
-        matchConfig.Name = "wlp2s0";
-        networkConfig.Bond = "bond0";
-      };
-    };
-  };
+  networking.networkmanager.ensureProfiles.profiles.bond.bond.primary = "enp3s0";
 
   theming.cursor.x-scaling = 2.0;
 

@@ -86,17 +86,8 @@
   };
 
   networking = {
-    wireless = {
-      enable = true;
-
-      allowAuxiliaryImperativeNetworks = true;
-      userControlled = {
-        enable = true;
-        group = "network";
-      };
-    };
     useDHCP = false;
-    useNetworkd = true;
+    networkmanager.enable = true;
   };
 
   time.timeZone = "Europe/Amsterdam";
