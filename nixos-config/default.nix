@@ -106,7 +106,6 @@
   environment = {
     systemPackages = with pkgs; [
       pavucontrol
-      wpa_supplicant_gui
     ];
 
     extraInit = ''
