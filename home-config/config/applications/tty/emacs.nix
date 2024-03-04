@@ -24,6 +24,10 @@ in {
     # different markdown implementation at some point)
     pandoc
 
+    # Technically only for web dev, but it does lsp stuff for JSON,
+    # so...
+    biome
+
     sqlite.dev
   ];
 

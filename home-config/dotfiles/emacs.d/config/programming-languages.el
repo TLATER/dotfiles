@@ -313,7 +313,7 @@
 
 (use-package eglot
   :commands (eglot eglot-format eglot-managed-p eglot--major-mode eglot-alternatives)
-  :hook (((kotlin-mode web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode) .
+  :hook (((kotlin-mode web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode json-mode) .
           eglot-ensure)
          (eglot-managed-mode . set-eldoc-compose))
   :bind
@@ -355,6 +355,8 @@
                               '(("biome" "lsp-proxy")
                                 ("typescript-language-server" "--stdio")))))
   (add-to-list 'eglot-server-programs
+               '(json-mode . ("biome" "lsp-proxy")))
+  (add-to-list 'eglot-server-programs
                '(nix-mode . ("nil"))))
 
 (use-package flymake
@@ -389,11 +391,9 @@
       :program "alejandra"
       :group 'nix-mode
       :lighter " AL")
-    (reformatter-define biome-typescript-format
+    (reformatter-define biome-format
       :program "biome"
-      :args '("format" "--stdin-file-path=test.ts")
-      :group 'web-mode
-      :lighter " BT")
+      :args (list "format" (concat "--stdin-file-path=" buffer-file-name)))
     (reformatter-define clang-format
       :program "clang-format"
       :group 'glsl-mode
@@ -420,7 +420,7 @@
      (clang-format-buffer))
     ('latex-mode
      (latexindent-buffer))
-    ((or 'mhtml-mode 'web-mode 'scss-mode)
+    ((or 'mhtml-mode 'web-mode 'scss-mode 'json-mode)
      (biome-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))
     ((or 'bazel-mode
