@@ -4,14 +4,15 @@
   ...
 }: {
   imports = [
-    flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
+    # flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
     flake-inputs.aagl.nixosModules.default
   ];
 
   environment.systemPackages = [pkgs.mangohud];
 
   # Appears to resolve issues with crackling audio under high load
-  services.pipewire.lowLatency.enable = true;
+  # TODO(tlater): Borked due to recent nixpkgs patch: https://github.com/fufexan/nix-gaming/issues/161
+  # services.pipewire.lowLatency.enable = true;
 
   # Make steam controller work
   hardware.steam-hardware.enable = true;
