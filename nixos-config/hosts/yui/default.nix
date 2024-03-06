@@ -15,7 +15,7 @@ in {
 
     ./games.nix
     ./hardware-configuration.nix
-    ../../networks/personal.nix
+    ../../networking/personal.nix
     ./wireguard.nix
     ../../wireguard.nix
     ./nvidia

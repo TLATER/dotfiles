@@ -5,7 +5,7 @@
 }: {
   imports = [
     flake-inputs.disko.nixosModules.disko
-    ../../networks/work.nix
+    ../../networking/work.nix
 
     ./hardware-configuration.nix
     ./disko.nix

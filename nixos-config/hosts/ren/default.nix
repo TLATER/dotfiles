@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
     ./nixos-hardware-precursor.nix
     ./disko.nix
-    ../../networks/personal.nix
+    ../../networking/personal.nix
     ../../wireguard.nix
   ];
 

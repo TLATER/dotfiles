@@ -9,6 +9,7 @@
     flake-inputs.sops-nix.nixosModules.sops
 
     ./greeter
+    ./networking
     ./sway.nix
     ./yubikey.nix
     ../modules
@@ -79,22 +80,15 @@
     };
   };
 
-  networking = {
-    useDHCP = false;
-    networkmanager.enable = true;
-  };
-
   time.timeZone = "Europe/Amsterdam";
 
   users = {
     defaultUserShell = pkgs.zsh;
 
-    groups.network = {};
-
     users = {
       tlater = {
         isNormalUser = true;
-        extraGroups = ["wheel" "video" "network"];
+        extraGroups = ["wheel" "video"];
       };
     };
   };
