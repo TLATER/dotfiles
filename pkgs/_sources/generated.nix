@@ -56,15 +56,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "f17aa2ffa8c12b71518f1b0233edca3a0dd7cade";
+    version = "32d4389aa6e896b27d9786d142a5c44163104056";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "f17aa2ffa8c12b71518f1b0233edca3a0dd7cade";
+      rev = "32d4389aa6e896b27d9786d142a5c44163104056";
       fetchSubmodules = false;
-      sha256 = "sha256-PetFqoHL/9IihIdCRBd6xw9qQGhP1mKvjkjvvACVKEo=";
+      sha256 = "sha256-UVAHAgvz8dZEbAbbfSq9fxmGf368GK9K9c1LhPamRRQ=";
     };
-    date = "2024-03-03";
+    date = "2024-03-07";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
