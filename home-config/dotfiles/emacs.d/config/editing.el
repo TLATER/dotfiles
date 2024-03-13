@@ -209,6 +209,19 @@
 ;; Nicer undo UI
 ;; ----------------------------------------------------------------------------------
 
+;; The change group at which this size is exceeded is the last one
+;; kept.
+(setq undo-limit         (* 2 1024 1024))
+;; The change group at which this size is exceeded is discarded itself
+;; (along with all older change groups). There is one exception: the
+;; very latest change group is only discarded if it exceeds
+;; ‘undo-outer-limit’.
+(setq undo-strong-limit (* 10 1024 1024))
+;; If at garbage collection time the undo info for the current command
+;; exceeds this limit, Emacs discards the info and displays a
+;; warning. This is a last ditch limit to prevent memory overflow.
+(setq undo-outer-limit (* 50 1024 1024))
+
 (use-package vundo
   :bind
   ("C-x u" . vundo)
@@ -240,7 +253,6 @@
   :custom
   (undo-fu-session-directory (expand-file-name "undo-fu-session" back-dir))
   (undo-fu-session-compression 'xz)
-  (undo-fu-session-file-limit 20)
   :preface
   (declare-function undo-fu-session-global-mode "undo-fu-session.el")
   :config
