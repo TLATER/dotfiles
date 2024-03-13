@@ -22,6 +22,7 @@ in {
   drivestrike = callPackage ./applications/drivestrike.nix {};
   emacs = callPackage ./applications/emacs {};
   gauth = callPackage ./applications/gauth.nix {};
+  gcs = callPackage ./applications/gcs.nix {};
   stumpwm = callPackage ./applications/stumpwm {};
   stumpwm-contrib = callPackage ./applications/stumpwm/stumpwm-contrib.nix {};
   nextcloudcmd = callPackage ./applications/nextcloudcmd.nix {};

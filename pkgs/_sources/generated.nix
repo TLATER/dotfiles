@@ -54,6 +54,17 @@
       sha256 = "sha256-GU6HKha7Y01HJX6pyYHORUkFKgl9mWtDd65d+3pYxjI=";
     };
   };
+  gcs = {
+    pname = "gcs";
+    version = "v5.20.4";
+    src = fetchFromGitHub {
+      owner = "richardwilkes";
+      repo = "gcs";
+      rev = "v5.20.4";
+      fetchSubmodules = false;
+      sha256 = "sha256-aoU2wRz2XB6+3e6am/dLjRbcDmWTjtDtTBwc6c4n3DE=";
+    };
+  };
   ohmyzsh = {
     pname = "ohmyzsh";
     version = "d157fc60c93fa59e757921b503e9594bd23b422c";

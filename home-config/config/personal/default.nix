@@ -1,9 +1,16 @@
-{pkgs, ...}: {
+{
+  flake-inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./ssh-servers.nix
   ];
 
-  home.packages = with pkgs; [prismlauncher];
+  home.packages = with pkgs; [
+    prismlauncher
+    flake-inputs.self.packages.${pkgs.system}.gcs
+  ];
   programs.firefox.enableThirdPartyRepositories = true;
 
   programs.git = {

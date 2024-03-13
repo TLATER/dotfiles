@@ -20,6 +20,10 @@ fetch.github = "black7375/Firefox-UI-Fix"
 src.github_tag = "pcarrier/gauth"
 fetch.github = "pcarrier/gauth"
 
+[gcs]
+src.github = "richardwilkes/gcs"
+fetch.github = "richardwilkes/gcs"
+
 [ohmyzsh]
 src.git = "https://github.com/ohmyzsh/ohmyzsh"
 src.branch = "master"

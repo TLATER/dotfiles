@@ -94,6 +94,26 @@
         },
         "version": "v1.3.0"
     },
+    "gcs": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "gcs",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "richardwilkes",
+            "repo": "gcs",
+            "rev": "v5.20.4",
+            "sha256": "sha256-aoU2wRz2XB6+3e6am/dLjRbcDmWTjtDtTBwc6c4n3DE=",
+            "type": "github"
+        },
+        "version": "v5.20.4"
+    },
     "ohmyzsh": {
         "cargoLocks": null,
         "date": "2024-03-21",
