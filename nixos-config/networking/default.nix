@@ -10,9 +10,7 @@
     enable = true;
 
     settings = {
-      server = {
-        qname-minimisation = true;
-      };
+      server.qname-minimisation = true;
 
       forward-zone = [
         {

@@ -8,6 +8,7 @@
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
 
+    ./dev.nix
     ./greeter
     ./networking
     ./sway.nix
