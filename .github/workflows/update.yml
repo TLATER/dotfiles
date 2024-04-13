@@ -30,7 +30,7 @@ jobs:
       - run: |
           echo -e '[keys]\ngithub = "${{ secrets.GITHUB_TOKEN }}"' > /tmp/github-key.toml
           nix run .#commit-nvfetcher -L
-      - uses: peter-evans/create-pull-request@v4
+      - uses: peter-evans/create-pull-request@v6
         with:
           branch: bot/update
           delete-branch: true
