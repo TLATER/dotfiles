@@ -24,6 +24,7 @@ stdenv.mkDerivation {
     libsForQt5.qtkeychain
     libsForQt5.qtwebsockets
     libsForQt5.qtwebengine
+    libsForQt5.karchive
   ];
 
   cmakeFlags = [
