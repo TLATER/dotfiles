@@ -118,9 +118,14 @@ in {
       };
     };
 
-    home.file.".mozilla/firefox/${config.programs.firefox.profiles.tlater.path}/user.js" =
-      lib.mkIf thirdParty
-      {source = settings-file;};
+    home.file = let
+      profileDir = ".mozilla/firefox/${config.programs.firefox.profiles.tlater.path}";
+    in
+      lib.mkIf thirdParty {
+        "${profileDir}/user.js".source = settings-file;
+        "${profileDir}/icons".source = "${firefox-ui-fix}/icons";
+        "${profileDir}/css".source = "${firefox-ui-fix}/css";
+      };
 
     xdg.configFile."tridactyl/tridactylrc" = lib.mkIf thirdParty {
       text = ''
@@ -131,7 +136,5 @@ in {
         jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.then(_ => tri.config.set("searchurls", u, null)), Promise.resolve())
       '';
     };
-
-    home.file.".mozilla/firefox/tlater/chrome/icons" = lib.mkIf thirdParty {source = "${firefox-ui-fix}/icons";};
   };
 }
