@@ -39,7 +39,7 @@ in {
     group = "qemu";
     mode = "0640";
     text = ''
-      allow bridgeName
+      allow ${bridgeName}
     '';
   };
 
