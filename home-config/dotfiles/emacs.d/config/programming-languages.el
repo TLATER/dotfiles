@@ -330,7 +330,10 @@
         ("C-c l i" . consult-eglot-symbols))
   :init
   (setq eglot-workspace-configuration
-        '((pylsp
+        '((nixd
+           (formatting
+            (command . ["nixfmt"])))
+          (pylsp
            (plugins
             (pydocstyle
              (enabled . t)
@@ -364,7 +367,7 @@
   (add-to-list 'eglot-server-programs
                '(json-mode . ("biome" "lsp-proxy")))
   (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nil"))))
+               '(nix-mode . ("nixd"))))
 
 (use-package flymake
   :hook (prog-mode . flymake-mode)
@@ -376,9 +379,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (use-package reformatter
-  :commands (alejandra-format-region
-             alejandra-format-buffer
-             biome-format-region
+  :commands (biome-format-region
              biome-format-buffer
              clang-format-region
              clang-format-buffer
@@ -394,10 +395,6 @@
   ;; disable this particular warning, and grepping the emacs source
   ;; for `make-variable-buffer-local' didn't yield anything useful.
   (with-no-warnings
-    (reformatter-define alejandra-format
-      :program "alejandra"
-      :group 'nix-mode
-      :lighter " AL")
     (reformatter-define biome-format
       :program "biome"
       :args (list "format" (concat "--stdin-file-path=" buffer-file-name)))
@@ -410,19 +407,10 @@
       :group 'latex-mode
       :lighter " LF")))
 
-(defcustom use-nixfmt nil
-  "Use nixfmt for formatting nix instead of alejandra."
-  :type 'boolean
-  :local 'booleanp
-  :group 'autoformat)
-
 (defun autoformat ()
   "Autoformat the current buffer."
   (interactive)
   (pcase major-mode
-    ('nix-mode (if use-nixfmt
-                   (nix-format-buffer)
-                 (alejandra-format-buffer)))
     ('glsl-mode
      (clang-format-buffer))
     ('latex-mode

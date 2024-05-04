@@ -51,6 +51,7 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixd.url = "github:nix-community/nixd";
 
     # Other project inputs
     nvfetcher = {

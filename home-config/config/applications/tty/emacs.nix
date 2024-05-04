@@ -1,35 +1,46 @@
-{
-  pkgs,
-  flake-inputs,
-  ...
-}: let
+{ pkgs, flake-inputs, ... }:
+let
   inherit (flake-inputs.self.packages.${pkgs.system}) emacs;
-in {
-  home.packages = with pkgs; [
-    # Spell checks
-    (aspellWithDicts (dicts: with dicts; [af de en en-computers nl]))
+  inherit (flake-inputs.nixd.packages.${pkgs.system}) nixd;
+  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) nixfmt-rfc-style;
+in
+{
+  home.packages =
+    (with pkgs; [
+      # Spell checks
+      (aspellWithDicts (
+        dicts: with dicts; [
+          af
+          de
+          en
+          en-computers
+          nl
+        ]
+      ))
 
-    # Used for interactive python shells
-    python3Packages.ipython
+      # Used for interactive python shells
+      python3Packages.ipython
 
-    # *.nix files are used to pull in project deps, so we always need these
-    alejandra
-    nil
+      # I just edit shell scripts often enough it makes sense to have
+      # this by default
+      shellcheck
 
-    # I just edit shell scripts often enough it makes sense to have
-    # this by default
-    shellcheck
+      # Required for markdown-mode (though could be replaced with a
+      # different markdown implementation at some point)
+      pandoc
 
-    # Required for markdown-mode (though could be replaced with a
-    # different markdown implementation at some point)
-    pandoc
+      # Technically only for web dev, but it does lsp stuff for JSON,
+      # so...
+      biome
 
-    # Technically only for web dev, but it does lsp stuff for JSON,
-    # so...
-    biome
+      sqlite.dev
+    ])
+    ++ [
 
-    sqlite.dev
-  ];
+      # *.nix files are used to pull in project deps, so we always need these
+      nixfmt-rfc-style
+      nixd
+    ];
 
   xdg.configFile."emacs" = {
     source = emacs.dotfiles;
@@ -45,7 +56,10 @@ in {
     enable = true;
     client = {
       enable = true;
-      arguments = ["--no-wait" "--create-frame"];
+      arguments = [
+        "--no-wait"
+        "--create-frame"
+      ];
     };
     socketActivation.enable = true;
   };
