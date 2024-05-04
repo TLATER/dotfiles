@@ -1,8 +1,5 @@
+{ pkgs, flake-inputs, ... }:
 {
-  pkgs,
-  flake-inputs,
-  ...
-}: {
   imports = [
     flake-inputs.disko.nixosModules.disko
     ../../networking/work.nix
@@ -25,7 +22,7 @@
 
   # Used extensively for testing at work
   virtualisation.docker.enable = true;
-  users.users.tlater.extraGroups = ["docker"];
+  users.users.tlater.extraGroups = [ "docker" ];
   # Install rustup system-wide for convenience
-  environment.systemPackages = [pkgs.rustup];
+  environment.systemPackages = [ pkgs.rustup ];
 }

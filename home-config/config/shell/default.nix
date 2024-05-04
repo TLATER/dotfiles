@@ -1,11 +1,6 @@
+{ config, pkgs, ... }:
 {
-  config,
-  pkgs,
-  ...
-}: {
-  imports = [
-    ./zsh-config.nix
-  ];
+  imports = [ ./zsh-config.nix ];
 
   xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
 
@@ -33,7 +28,10 @@
       lfs.enable = true;
       userName = "Tristan Daniël Maat";
 
-      ignores = [".envrc" ".direnv/"];
+      ignores = [
+        ".envrc"
+        ".direnv/"
+      ];
       extraConfig = {
         branch.autoSetupRebase = "always";
         checkout.defaultRemote = "origin";
@@ -54,10 +52,16 @@
       settings = {
         fixed-list-mode = true;
         keyid-format = "0xlong";
-        personal-digest-preferences =
-          builtins.concatStringsSep " " ["SHA512" "SHA384" "SHA256"];
-        personal-cipher-preferences =
-          builtins.concatStringsSep " " ["AES256" "AES192" "AES"];
+        personal-digest-preferences = builtins.concatStringsSep " " [
+          "SHA512"
+          "SHA384"
+          "SHA256"
+        ];
+        personal-cipher-preferences = builtins.concatStringsSep " " [
+          "AES256"
+          "AES192"
+          "AES"
+        ];
         default-preference-list = builtins.concatStringsSep " " [
           "SHA512"
           "SHA384"

@@ -3,7 +3,8 @@
   lib,
   flake-inputs,
   ...
-}: {
+}:
+{
   programs = {
     git = {
       userEmail = "t.maat@famedly.com";
@@ -43,17 +44,19 @@
 
   home.file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
 
-  xdg.configFile."autostart/work-sites.desktop".source = let
-    desktopItem = pkgs.makeDesktopItem {
-      name = "work-sites";
-      desktopName = "Work site autostartup";
-      exec = lib.concatStringsSep " " [
-        "firefox"
-        "https://calendar.google.com"
-        "https://mail.google.com"
-        "https://app.factorialhr.com/attendance/clock-in"
-        "https://messenger.famedly.de"
-      ];
-    };
-  in "${desktopItem}/share/applications/work-sites.desktop";
+  xdg.configFile."autostart/work-sites.desktop".source =
+    let
+      desktopItem = pkgs.makeDesktopItem {
+        name = "work-sites";
+        desktopName = "Work site autostartup";
+        exec = lib.concatStringsSep " " [
+          "firefox"
+          "https://calendar.google.com"
+          "https://mail.google.com"
+          "https://app.factorialhr.com/attendance/clock-in"
+          "https://messenger.famedly.de"
+        ];
+      };
+    in
+    "${desktopItem}/share/applications/work-sites.desktop";
 }

@@ -3,14 +3,16 @@
   lib,
   pkgs,
   ...
-}: let
+}:
+let
   inherit (lib) concatStringsSep;
   inherit (pkgs) runtimeShell writeScript;
   inherit (config.xdg) configHome dataHome;
   aria2-bin = "${pkgs.aria2}/bin/aria2c";
   coreutils-bin = "${pkgs.coreutils}/bin";
   sessionFile = "${dataHome}/aria2/session";
-in {
+in
+{
   programs.aria2 = {
     enable = true;
     settings = {
@@ -36,16 +38,18 @@ in {
   systemd.user.services.aria2 = {
     Unit.Description = "aria2 download manager";
     Service = {
-      ExecStartPre = let
-        prestart = writeScript "aria2-prestart" ''
-          #!${runtimeShell}
-          ${coreutils-bin}/mkdir -p ${dataHome}/aria2
+      ExecStartPre =
+        let
+          prestart = writeScript "aria2-prestart" ''
+            #!${runtimeShell}
+            ${coreutils-bin}/mkdir -p ${dataHome}/aria2
 
-          if [ ! -e "${sessionFile}" ]; then
-              ${coreutils-bin}/touch ${sessionFile}
-          fi
-        '';
-      in "${prestart}";
+            if [ ! -e "${sessionFile}" ]; then
+                ${coreutils-bin}/touch ${sessionFile}
+            fi
+          '';
+        in
+        "${prestart}";
 
       ExecStart = concatStringsSep " " [
         "${aria2-bin}"
@@ -69,6 +73,6 @@ in {
       ProtectSystem = "full";
     };
 
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

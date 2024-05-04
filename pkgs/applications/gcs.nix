@@ -22,9 +22,7 @@ buildGoModule {
     "-w"
   ];
 
-  nativeBuildInputs = with pkgs; [
-    pkg-config
-  ];
+  nativeBuildInputs = with pkgs; [ pkg-config ];
 
   buildInputs = with pkgs; [
     libGL
@@ -40,25 +38,27 @@ buildGoModule {
     xorg.libXxf86vm
   ];
 
-  postInstall = let
-    # TODO(tlater): Add mimetypes
-    desktop = ''
-      [Desktop Entry]
-      Name=GCS
-      Comment=GCS (GURPS Character Sheet) is a stand-alone, interactive, character sheet editor that allows you to build characters for the GURPS 4th Edition roleplaying game system.
-      Exec=gcs
-      Icon=gcs
-      Terminal=false
-      Type=Application
-      Catgories=Game;Utility;RolePlaying
-    '';
-  in ''
-    mkdir -p $out/share/{applications,icons/hicolor/1024x1024/apps}
-    echo -n '${desktop}' > $out/share/applications/com.trollworks.gcs.desktop
-    cp packaging/internal/embedded/app-1024.png $out/share/icons/hicolor/1024x1024/apps/gcs.png
+  postInstall =
+    let
+      # TODO(tlater): Add mimetypes
+      desktop = ''
+        [Desktop Entry]
+        Name=GCS
+        Comment=GCS (GURPS Character Sheet) is a stand-alone, interactive, character sheet editor that allows you to build characters for the GURPS 4th Edition roleplaying game system.
+        Exec=gcs
+        Icon=gcs
+        Terminal=false
+        Type=Application
+        Catgories=Game;Utility;RolePlaying
+      '';
+    in
+    ''
+      mkdir -p $out/share/{applications,icons/hicolor/1024x1024/apps}
+      echo -n '${desktop}' > $out/share/applications/com.trollworks.gcs.desktop
+      cp packaging/internal/embedded/app-1024.png $out/share/icons/hicolor/1024x1024/apps/gcs.png
 
-    rm $out/bin/{gen,packaging,scr}
-  '';
+      rm $out/bin/{gen,packaging,scr}
+    '';
 
   vendorHash = "sha256-7uIS/Q+xwUYcdaqzXffZUUFWJ/WOGpYdDnNRHQ4UIaU=";
   meta.mainProgram = "${sources.gcs.pname}";

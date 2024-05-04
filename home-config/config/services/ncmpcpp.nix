@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.ncmpcpp = {
     enable = true;
     settings = {

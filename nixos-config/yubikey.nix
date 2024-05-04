@@ -1,6 +1,7 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   services = {
-    udev.packages = [pkgs.yubikey-personalization];
+    udev.packages = [ pkgs.yubikey-personalization ];
     pcscd.enable = true;
   };
 
@@ -10,10 +11,10 @@
   # alive and prevent the yubikey from working with any users that log
   # in later.
   systemd.services.shutdownSopsGpg = {
-    path = [pkgs.gnupg];
+    path = [ pkgs.gnupg ];
     script = ''
       gpgconf --homedir /var/lib/sops --kill gpg-agent
     '';
-    wantedBy = ["multi-user.target"];
+    wantedBy = [ "multi-user.target" ];
   };
 }

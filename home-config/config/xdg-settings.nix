@@ -3,13 +3,15 @@
   config,
   lib,
   ...
-}: let
+}:
+let
   inherit (pkgs) writeText;
   inherit (lib.strings) concatStringsSep;
   inherit (config) xdg;
-in {
+in
+{
   home.activation = {
-    xdg-dir-prep = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    xdg-dir-prep = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD mkdir $VERBOSE_ARG -p '${xdg.cacheHome}/less' '${xdg.cacheHome}/zsh'
     '';
   };

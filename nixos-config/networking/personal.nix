@@ -1,6 +1,7 @@
-{config, ...}: {
+{ config, ... }:
+{
   networking.networkmanager = {
-    ensureProfiles.environmentFiles = [config.sops.secrets.wireless-env.path];
+    ensureProfiles.environmentFiles = [ config.sops.secrets.wireless-env.path ];
 
     ensureProfiles.profiles = {
       bond = {
@@ -60,5 +61,5 @@
     };
   };
 
-  sops.secrets.wireless-env = {};
+  sops.secrets.wireless-env = { };
 }

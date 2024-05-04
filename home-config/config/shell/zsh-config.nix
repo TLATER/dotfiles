@@ -4,13 +4,13 @@
   pkgs,
   flake-inputs,
   ...
-}: let
+}:
+let
   inherit (lib.strings) concatMapStringsSep;
   tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
-in {
-  home.packages = with pkgs; [
-    any-nix-shell
-  ];
+in
+{
+  home.packages = with pkgs; [ any-nix-shell ];
 
   home.file.".profile".text = ''
     source "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"

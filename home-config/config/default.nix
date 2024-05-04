@@ -1,11 +1,6 @@
+{ flake-inputs, lib, ... }:
 {
-  flake-inputs,
-  lib,
-  ...
-}: {
-  imports = [
-    ../../home-modules/firefox-webapp.nix
-  ];
+  imports = [ ../../home-modules/firefox-webapp.nix ];
 
   options._dotfiles = lib.mkOption {
     type = lib.types.str;

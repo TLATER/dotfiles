@@ -1,7 +1,4 @@
-{
-  sources,
-  stdenv,
-}:
+{ sources, stdenv }:
 stdenv.mkDerivation {
   inherit (sources.stumpwm-contrib) pname version src;
   installPhase = ''

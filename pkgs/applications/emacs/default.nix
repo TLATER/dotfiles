@@ -7,11 +7,9 @@
   emacsMacport,
   emacs29-pgtk,
   runCommandLocal,
-}: let
-  emacsPlatform =
-    if hostPlatform.isDarwin
-    then emacsMacport
-    else emacs29-pgtk;
+}:
+let
+  emacsPlatform = if hostPlatform.isDarwin then emacsMacport else emacs29-pgtk;
 
   use-package-list = stdenv.mkDerivation {
     inherit (sources.bauer) src version;
@@ -22,12 +20,12 @@
     '';
   };
 
-  overrides = _self: _super: {};
+  overrides = _self: _super: { };
 
   emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope' overrides;
 
   # Compute the list of use-package-d packages.
-  package-list = runCommandLocal "package-list" {buildInputs = [emacsPkgs.emacs];} ''
+  package-list = runCommandLocal "package-list" { buildInputs = [ emacsPkgs.emacs ]; } ''
     HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
           -L ${emacsPkgs.use-package}/share/emacs/site-lisp/elpa/use-package-* \
           -L ${emacsPkgs.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
@@ -36,15 +34,13 @@
           > $out
   '';
 
-  required-packages =
-    builtins.fromJSON (builtins.readFile package-list)
-    ++ ["use-package"];
+  required-packages = builtins.fromJSON (builtins.readFile package-list) ++ [ "use-package" ];
 
-  custom-emacs =
-    emacsPkgs.emacs.pkgs.withPackages
-    (epkgs: map (package: builtins.getAttr package epkgs) required-packages);
+  custom-emacs = emacsPkgs.emacs.pkgs.withPackages (
+    epkgs: map (package: builtins.getAttr package epkgs) required-packages
+  );
 
-  compiled-dotfiles = runCommandLocal "compiled-init" {buildInputs = [custom-emacs];} ''
+  compiled-dotfiles = runCommandLocal "compiled-init" { buildInputs = [ custom-emacs ]; } ''
     cp -r '${self}/home-config/dotfiles/emacs.d/' "$out"
     chmod -R u+w "$out"
 
@@ -54,4 +50,4 @@
         "$out/init.el" "$out/config/"*
   '';
 in
-  custom-emacs // (custom-emacs.passthru // {dotfiles = compiled-dotfiles;})
+custom-emacs // (custom-emacs.passthru // { dotfiles = compiled-dotfiles; })

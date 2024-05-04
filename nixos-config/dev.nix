@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   bridgeName = "br0";
-in {
+in
+{
   # Module to help with developing in VMs.
   # Sets up a bridge network and domain name for a qemu VM.
   #
@@ -44,8 +46,8 @@ in {
   };
 
   users = {
-    users.tlater.extraGroups = ["qemu"];
-    groups.qemu = {};
+    users.tlater.extraGroups = [ "qemu" ];
+    groups.qemu = { };
   };
 
   # Add local DNS zone for VMs

@@ -4,7 +4,8 @@
   lib,
   flake-inputs,
   ...
-}: let
+}:
+let
   sway = config.programs.sway.package;
   unsupported-gpu = lib.elem "nvidia" config.services.xserver.videoDrivers;
 
@@ -18,9 +19,7 @@
 
   launch-gtkgreet = pkgs.writeShellApplication {
     name = "launch-gtkgreet";
-    runtimeInputs = [
-      sway
-    ];
+    runtimeInputs = [ sway ];
     text = ''
       export XDG_SESSION_TYPE=wayland
       export HOME=/var/run/gtkgreet
@@ -34,7 +33,8 @@
     export XDG_CURRENT_DESKTOP=sway
     systemd-cat -t xsession sway ${lib.optionalString unsupported-gpu "--unsupported-gpu"}
   '';
-in {
+in
+{
   services.xserver.displayManager.lightdm.enable = false;
 
   services.greetd = {
@@ -50,19 +50,19 @@ in {
     pciutils
   ];
 
-  fonts.packages = [
-    flake-inputs.self.packages.${pkgs.system}.phosphor-icons
-  ];
+  fonts.packages = [ flake-inputs.self.packages.${pkgs.system}.phosphor-icons ];
 
   environment.etc."greetd/environments".text = ''
     sway-run
   '';
 
-  systemd.tmpfiles.rules = let
-    inherit (config.services.greetd.settings.default_session) user;
-  in [
-    "d /run/gtkgreet 0755 greeter ${user} - -"
-    "d /var/log/gtkgreet 0755 greeter ${user} - -"
-    "d /var/cache/gtkgreet 0755 greeter ${user} - -"
-  ];
+  systemd.tmpfiles.rules =
+    let
+      inherit (config.services.greetd.settings.default_session) user;
+    in
+    [
+      "d /run/gtkgreet 0755 greeter ${user} - -"
+      "d /var/log/gtkgreet 0755 greeter ${user} - -"
+      "d /var/cache/gtkgreet 0755 greeter ${user} - -"
+    ];
 }

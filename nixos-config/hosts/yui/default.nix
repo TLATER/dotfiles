@@ -4,9 +4,11 @@
   lib,
   flake-inputs,
   ...
-}: let
+}:
+let
   inherit (lib.strings) concatStringsSep;
-in {
+in
+{
   imports = [
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -22,7 +24,8 @@ in {
     ./networking.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (pkgs.lib.getName pkg) [
       "steam"
       "steam-run"
@@ -37,7 +40,7 @@ in {
 
   sops.gnupg = {
     home = "/var/lib/sops";
-    sshKeyPaths = [];
+    sshKeyPaths = [ ];
   };
 
   boot = {
@@ -47,26 +50,27 @@ in {
       "sp5100_tco"
     ];
 
-    initrd.luks.devices = let
-      ssdOptimization = {
-        allowDiscards = true;
-        bypassWorkqueues = true;
-      };
-    in {
-      root =
-        {
+    initrd.luks.devices =
+      let
+        ssdOptimization = {
+          allowDiscards = true;
+          bypassWorkqueues = true;
+        };
+      in
+      {
+        root = {
           device = "/dev/disk/by-uuid/3c0d48f6-f051-4328-9919-677a7fcddae7";
-        }
-        // ssdOptimization;
-      storage =
-        {
+        } // ssdOptimization;
+        storage = {
           device = "/dev/disk/by-uuid/dd17e735-fac4-467f-b1ee-8bb214bc2b08";
-        }
-        // ssdOptimization;
-    };
+        } // ssdOptimization;
+      };
   };
 
-  fileSystems."/nix".options = ["defaults" "noatime"];
+  fileSystems."/nix".options = [
+    "defaults"
+    "noatime"
+  ];
 
   # Fix broken suspend on b550i motherboard
   #
@@ -86,5 +90,5 @@ in {
 
   # For random android-related things
   programs.adb.enable = true;
-  users.users.tlater.extraGroups = ["adbusers"];
+  users.users.tlater.extraGroups = [ "adbusers" ];
 }

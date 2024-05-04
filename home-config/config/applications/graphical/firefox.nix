@@ -4,7 +4,8 @@
   pkgs,
   flake-inputs,
   ...
-}: let
+}:
+let
   inherit (pkgs) runCommandNoCC writeText;
   inherit (pkgs.lib.strings) concatStrings;
   inherit (pkgs.lib.attrsets) mapAttrsToList;
@@ -12,31 +13,32 @@
   tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
   inherit (flake-inputs.self.packages.${pkgs.system}) firefox-ui-fix;
 
-  settings = writeText "user.js" (concatStrings (mapAttrsToList (
-      name: value: ''
+  settings = writeText "user.js" (
+    concatStrings (
+      mapAttrsToList (name: value: ''
         user_pref("${name}", ${builtins.toJSON value});
-      ''
+      '') config.programs.firefox.profiles.tlater.settings
     )
-    config.programs.firefox.profiles.tlater.settings));
+  );
 
-  settings-file = runCommandNoCC "firefox-settings" {} ''
+  settings-file = runCommandNoCC "firefox-settings" { } ''
     cat '${firefox-ui-fix}/user.js' '${settings}' > $out
   '';
 
   thirdParty = config.programs.firefox.enableThirdPartyRepositories;
-in {
+in
+{
   options.programs.firefox.enableThirdPartyRepositories = lib.mkEnableOption "third party repositories";
 
   config = {
     programs.firefox = {
       enable = true;
-      package = lib.mkIf thirdParty (pkgs.firefox.override {
-        nativeMessagingHosts = [
-          pkgs.tridactyl-native
-        ];
-      });
+      package = lib.mkIf thirdParty (
+        pkgs.firefox.override { nativeMessagingHosts = [ pkgs.tridactyl-native ]; }
+      );
       profiles."tlater" = {
-        extensions = with pkgs.nur.repos.rycee.firefox-addons;
+        extensions =
+          with pkgs.nur.repos.rycee.firefox-addons;
           lib.mkIf thirdParty [
             aria2-integration
             buster-captcha-solver
@@ -58,12 +60,8 @@ in {
             # warframe-reliquary-prime
           ];
 
-        userChrome =
-          lib.mkIf thirdParty
-          (builtins.readFile "${firefox-ui-fix}/css/leptonChrome.css");
-        userContent =
-          lib.mkIf thirdParty
-          (builtins.readFile "${firefox-ui-fix}/css/leptonContent.css");
+        userChrome = lib.mkIf thirdParty (builtins.readFile "${firefox-ui-fix}/css/leptonChrome.css");
+        userContent = lib.mkIf thirdParty (builtins.readFile "${firefox-ui-fix}/css/leptonContent.css");
         settings = {
           # Re-bind ctrl to super (would interfere with tridactyl otherwise)
           "ui.key.accelKey" = 91;
@@ -85,15 +83,12 @@ in {
           "browser.ctrlTab.recentlyUsedOrder" = false;
           "browser.discovery.enabled" = false;
           "browser.laterrun.enabled" = false;
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" =
-            false;
-          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" =
-            false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.addons" = false;
+          "browser.newtabpage.activity-stream.asrouter.userprefs.cfr.features" = false;
           "browser.newtabpage.activity-stream.feeds.snippets" = false;
           "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.havePinned" = "";
           "browser.newtabpage.activity-stream.improvesearch.topSiteSearchShortcuts.searchEngines" = "";
-          "browser.newtabpage.activity-stream.section.highlights.includePocket" =
-            false;
+          "browser.newtabpage.activity-stream.section.highlights.includePocket" = false;
           "browser.newtabpage.activity-stream.showSponsored" = false;
           "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
           "browser.newtabpage.pinned" = false;
@@ -118,9 +113,10 @@ in {
       };
     };
 
-    home.file = let
-      profileDir = ".mozilla/firefox/${config.programs.firefox.profiles.tlater.path}";
-    in
+    home.file =
+      let
+        profileDir = ".mozilla/firefox/${config.programs.firefox.profiles.tlater.path}";
+      in
       lib.mkIf thirdParty {
         "${profileDir}/user.js".source = settings-file;
         "${profileDir}/icons".source = "${firefox-ui-fix}/icons";

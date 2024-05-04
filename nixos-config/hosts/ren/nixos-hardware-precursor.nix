@@ -1,4 +1,5 @@
-{flake-inputs, ...}: {
+{ flake-inputs, ... }:
+{
   imports = [
     flake-inputs.nixos-hardware.nixosModules.common-hidpi
     flake-inputs.nixos-hardware.nixosModules.common-pc-laptop

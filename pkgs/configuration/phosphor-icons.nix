@@ -1,7 +1,4 @@
-{
-  sources,
-  stdenv,
-}:
+{ sources, stdenv }:
 stdenv.mkDerivation {
   inherit (sources.phosphor-icons) pname version src;
 

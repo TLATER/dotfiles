@@ -8,5 +8,5 @@
   ];
 
   services.caffeine.enable = true;
-  xsession.importedVariables = ["PATH"];
+  xsession.importedVariables = [ "PATH" ];
 }

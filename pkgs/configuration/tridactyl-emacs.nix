@@ -1,7 +1,4 @@
-{
-  sources,
-  stdenv,
-}:
+{ sources, stdenv }:
 stdenv.mkDerivation {
   inherit (sources.tridactyl-emacs) pname version src;
   dontBuild = true;

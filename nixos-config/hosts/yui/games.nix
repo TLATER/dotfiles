@@ -1,14 +1,11 @@
+{ pkgs, flake-inputs, ... }:
 {
-  pkgs,
-  flake-inputs,
-  ...
-}: {
   imports = [
     # flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
     flake-inputs.aagl.nixosModules.default
   ];
 
-  environment.systemPackages = [pkgs.mangohud];
+  environment.systemPackages = [ pkgs.mangohud ];
 
   # Appears to resolve issues with crackling audio under high load
   # TODO(tlater): Borked due to recent nixpkgs patch: https://github.com/fufexan/nix-gaming/issues/161

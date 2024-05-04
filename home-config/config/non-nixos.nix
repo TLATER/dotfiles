@@ -1,8 +1,5 @@
+{ flake-inputs, pkgs, ... }:
 {
-  flake-inputs,
-  pkgs,
-  ...
-}: {
   targets.genericLinux.enable = true;
 
   # zsh doesn't always load ~/.profile on other distros
@@ -12,7 +9,10 @@
 
   nix = {
     package = pkgs.nixFlakes;
-    settings.experimental-features = ["nix-command" "flakes"];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
 
     registry.nixpkgs = {
       from = {
@@ -23,9 +23,7 @@
     };
   };
 
-  nixpkgs.overlays = [
-    flake-inputs.nurpkgs.overlay
-  ];
+  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlay ];
 
   home.sessionVariables = {
     NIX_PATH = "nixpkgs=${flake-inputs.nixpkgs}";

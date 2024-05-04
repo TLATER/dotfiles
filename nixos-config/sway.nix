@@ -1,8 +1,5 @@
+{ pkgs, flake-inputs, ... }:
 {
-  pkgs,
-  flake-inputs,
-  ...
-}: {
   nixpkgs.overlays = [
     (_: prev: {
       # Fix issues with nvidia screencapture bit depth
@@ -12,15 +9,15 @@
     })
   ];
 
-  environment.systemPackages = with pkgs; [
-    bibata-cursors
-  ];
+  environment.systemPackages = with pkgs; [ bibata-cursors ];
 
   theming.cursor.theme = "Bibata-Original-Ice";
 
   programs.sway = {
     enable = true;
-    package = pkgs.swayfx.overrideAttrs (_: {passthru.providedSessions = ["sway"];});
+    package = pkgs.swayfx.overrideAttrs (_: {
+      passthru.providedSessions = [ "sway" ];
+    });
     wrapperFeatures.gtk = true;
   };
 

@@ -1,10 +1,11 @@
 {
   config,
-  nixos-config ? {},
+  nixos-config ? { },
   pkgs,
   lib,
   ...
-}: let
+}:
+let
   loginctl = "${pkgs.systemd}/bin/loginctl";
   swaymsg = "${nixos-config.programs.sway.package or pkgs.sway}/bin/swaymsg";
   systemctl = "${pkgs.systemd}/bin/systemctl";
@@ -15,9 +16,9 @@
     };
   };
 
-  wpaperd-config-dir = pkgs.runCommand "wpaperd-config" {} ''
+  wpaperd-config-dir = pkgs.runCommand "wpaperd-config" { } ''
     mkdir -p $out/wpaperd
-    cp ${(pkgs.formats.toml {}).generate "wallpaper.toml" wpaperd-config} $out/wpaperd/wallpaper.toml
+    cp ${(pkgs.formats.toml { }).generate "wallpaper.toml" wpaperd-config} $out/wpaperd/wallpaper.toml
   '';
 
   keepassxc-copy = pkgs.writeShellApplication {
@@ -35,10 +36,9 @@
       wl-copy -c
     '';
   };
-in {
-  home.packages = [
-    keepassxc-copy
-  ];
+in
+{
+  home.packages = [ keepassxc-copy ];
 
   wayland.windowManager.sway = {
     enable = true;
@@ -93,8 +93,8 @@ in {
   systemd.user.services.wpaperd = {
     Unit = {
       Description = "Wallpaper daemon";
-      After = ["graphical-session-pre.target"];
-      PartOf = ["graphical-session.target"];
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
     };
 
     Service = {
@@ -102,6 +102,6 @@ in {
       Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
     };
 
-    Install.WantedBy = ["graphical-session.target"];
+    Install.WantedBy = [ "graphical-session.target" ];
   };
 }

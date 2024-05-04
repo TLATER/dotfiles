@@ -1,6 +1,8 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   inherit (pkgs) rnnoise-plugin;
-in {
+in
+{
   xdg.configFile."pipewire/pipewire.conf.d/99-rnnoise.conf" = {
     text = builtins.toJSON {
       "context.properties" = {

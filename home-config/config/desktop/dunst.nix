@@ -1,7 +1,8 @@
 let
   screenHeight = 1080;
   screenWidth = 1920;
-in {
+in
+{
   services = {
     dunst = {
       enable = true;

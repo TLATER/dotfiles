@@ -1,5 +1,5 @@
 {
-  users.users.tlater.extraGroups = ["networking"];
+  users.users.tlater.extraGroups = [ "networking" ];
 
   networking = {
     useDHCP = false;

@@ -13,8 +13,14 @@
 stdenv.mkDerivation (finalAttrs: {
   inherit (sources.drivestrike) pname version src;
 
-  nativeBuildInputs = [autoPatchelfHook wrapGAppsHook glib glib-networking rpmextract];
-  buildInputs = [libsoup];
+  nativeBuildInputs = [
+    autoPatchelfHook
+    wrapGAppsHook
+    glib
+    glib-networking
+    rpmextract
+  ];
+  buildInputs = [ libsoup ];
 
   unpackCmd = ''
     mkdir ${finalAttrs.pname}-${finalAttrs.version} && pushd ${finalAttrs.pname}-${finalAttrs.version}
@@ -29,7 +35,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   preFixup = ''
     gappsWrapperArgs+=(
-      --prefix PATH : ${lib.makeBinPath [dmidecode]}
+      --prefix PATH : ${lib.makeBinPath [ dmidecode ]}
     )
   '';
 

@@ -1,7 +1,4 @@
-{
-  sources,
-  stdenv,
-}:
+{ sources, stdenv }:
 stdenv.mkDerivation rec {
   inherit (sources.firefox-ui-fix) pname version src;
 

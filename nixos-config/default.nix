@@ -3,7 +3,8 @@
   pkgs,
   flake-inputs,
   ...
-}: {
+}:
+{
   imports = [
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
@@ -21,13 +22,12 @@
 
     settings = {
       auto-optimise-store = true;
-      experimental-features = ["nix-command" "flakes"];
-      substituters = [
-        "https://nix-community.cachix.org"
+      experimental-features = [
+        "nix-command"
+        "flakes"
       ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
+      substituters = [ "https://nix-community.cachix.org" ];
+      trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
     };
 
     gc = {
@@ -36,7 +36,7 @@
     };
 
     # Make the nixpkgs flake input be used for various nix commands
-    nixPath = ["nixpkgs=${flake-inputs.nixpkgs}"];
+    nixPath = [ "nixpkgs=${flake-inputs.nixpkgs}" ];
     registry.nixpkgs = {
       from = {
         id = "nixpkgs";
@@ -51,9 +51,7 @@
     validateSopsFiles = false;
   };
 
-  nixpkgs.overlays = [
-    flake-inputs.nurpkgs.overlay
-  ];
+  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlay ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -89,7 +87,10 @@
     users = {
       tlater = {
         isNormalUser = true;
-        extraGroups = ["wheel" "video"];
+        extraGroups = [
+          "wheel"
+          "video"
+        ];
       };
     };
   };
@@ -99,9 +100,7 @@
   documentation.man.generateCaches = true;
 
   environment = {
-    systemPackages = with pkgs; [
-      pavucontrol
-    ];
+    systemPackages = with pkgs; [ pavucontrol ];
 
     extraInit = ''
       # Do not want this in the environment. NixOS always sets it and does not
@@ -110,9 +109,7 @@
       unset -v SSH_ASKPASS
     '';
 
-    pathsToLink = [
-      "/share/zsh"
-    ];
+    pathsToLink = [ "/share/zsh" ];
 
     # Disable the HFP bluetooth profile, because I always use external
     # microphones anyway. It sucks and sometimes devices end up caught
@@ -178,7 +175,7 @@
 
   security.sudo-rs.enable = true;
 
-  fileSystems."/boot".options = ["umask=0077"];
+  fileSystems."/boot".options = [ "umask=0077" ];
 
   fonts = {
     enableDefaultPackages = true;
@@ -192,9 +189,9 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = ["NotoSerif"];
-        sansSerif = ["NotoSans"];
-        monospace = ["Hack"];
+        serif = [ "NotoSerif" ];
+        sansSerif = [ "NotoSans" ];
+        monospace = [ "Hack" ];
       };
     };
   };

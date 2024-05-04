@@ -1,4 +1,5 @@
-{flake-inputs, ...}: {
+{ flake-inputs, ... }:
+{
   imports = [
     flake-inputs.impermanence.nixosModules.impermanence
     flake-inputs.disko.nixosModules.disko
@@ -29,7 +30,7 @@
 
   sops.gnupg = {
     home = "/var/lib/sops";
-    sshKeyPaths = [];
+    sshKeyPaths = [ ];
   };
 
   environment.persistence = {

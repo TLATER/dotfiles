@@ -1,10 +1,7 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
   networking.networkmanager.ensureProfiles = lib.mkForce {
-    environmentFiles = [config.sops.secrets.wireless-env.path];
+    environmentFiles = [ config.sops.secrets.wireless-env.path ];
 
     profiles = {
       mikan-guest = {
@@ -35,5 +32,5 @@
     };
   };
 
-  sops.secrets.wireless-env = {};
+  sops.secrets.wireless-env = { };
 }

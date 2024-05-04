@@ -15,9 +15,7 @@
                 type = "filesystem";
                 format = "vfat";
                 mountpoint = "/boot";
-                mountOptions = [
-                  "defaults"
-                ];
+                mountOptions = [ "defaults" ];
               };
             };
 
@@ -33,23 +31,28 @@
                 };
                 content = {
                   type = "btrfs";
-                  extraArgs = ["-f"];
+                  extraArgs = [ "-f" ];
                   subvolumes = {
                     "/root" = {
                       mountpoint = "/";
-                      mountOptions = ["compress=zstd"];
+                      mountOptions = [ "compress=zstd" ];
                     };
                     "/persist" = {
-                      mountOptions = ["compress=zstd"];
+                      mountOptions = [ "compress=zstd" ];
                     };
                     "/persist/state" = {
-                      mountOptions = ["compress=zstd"];
+                      mountOptions = [ "compress=zstd" ];
                     };
                     "/persist/data" = {
-                      mountOptions = ["compress=zstd"];
+                      mountOptions = [ "compress=zstd" ];
                     };
                     "/nix" = {
-                      mountOptions = ["compress=zstd" "noatime" "noxattr" "noacl"];
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                        "noxattr"
+                        "noacl"
+                      ];
                     };
                   };
                 };

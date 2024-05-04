@@ -1,11 +1,6 @@
+{ config, lib, ... }:
 {
-  config,
-  lib,
-  ...
-}: {
-  imports = [
-    ./vaapi.nix
-  ];
+  imports = [ ./vaapi.nix ];
 
   hardware.nvidia = {
     package = config.boot.kernelPackages.nvidiaPackages.mkDriver {

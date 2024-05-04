@@ -4,7 +4,8 @@
   lib,
   config,
   ...
-}: {
+}:
+{
   services.osquery = {
     enable = true;
 
@@ -58,8 +59,11 @@
           SyslogIdentifier = "drivestrike";
         };
 
-        after = ["network.target" "drivestrike-lock.service"];
-        wantedBy = ["multi-user.target"];
+        after = [
+          "network.target"
+          "drivestrike-lock.service"
+        ];
+        wantedBy = [ "multi-user.target" ];
       };
 
       # Famedly's osquery checks for a process name of `clamd` and
@@ -75,7 +79,7 @@
           Type = lib.mkForce "simple";
           ExecStart = lib.mkForce "@${pkgs.clamav}/bin/freshclam freshclam --daemon --foreground";
         };
-        wantedBy = ["clamav-daemon.service"];
+        wantedBy = [ "clamav-daemon.service" ];
       };
     };
 
@@ -94,25 +98,26 @@
     # DO NOT USE NFTABLES
 
     # Allow docker containers to communicate
-    extraCommands = let
-      # Either get the docker daemon setting *or* the default value
-      dockerAddressPools =
-        config.virtualisation.docker.daemon.settings.default-address-pools
-        or [
-          {
-            base = "172.30.0.0/16";
-            size = 24;
-          }
-          {
-            base = "172.31.0.0/16";
-            size = 24;
-          }
-        ];
-      addresses = lib.concatMapStringsSep "," (pool: pool.base) dockerAddressPools;
-    in ''
-      iptables -A INPUT -s ${addresses} -d ${addresses} -j ACCEPT
-    '';
+    extraCommands =
+      let
+        # Either get the docker daemon setting *or* the default value
+        dockerAddressPools =
+          config.virtualisation.docker.daemon.settings.default-address-pools or [
+            {
+              base = "172.30.0.0/16";
+              size = 24;
+            }
+            {
+              base = "172.31.0.0/16";
+              size = 24;
+            }
+          ];
+        addresses = lib.concatMapStringsSep "," (pool: pool.base) dockerAddressPools;
+      in
+      ''
+        iptables -A INPUT -s ${addresses} -d ${addresses} -j ACCEPT
+      '';
   };
 
-  sops.secrets."osquery/enroll" = {};
+  sops.secrets."osquery/enroll" = { };
 }

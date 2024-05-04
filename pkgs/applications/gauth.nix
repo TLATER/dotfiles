@@ -1,7 +1,4 @@
-{
-  sources,
-  buildGoModule,
-}:
+{ sources, buildGoModule }:
 buildGoModule rec {
   inherit (sources.gauth) pname version src;
   vendorHash = null;

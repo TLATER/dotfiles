@@ -1,5 +1,1 @@
-{
-  imports = [
-    ./cursor-theme.nix
-  ];
-}
+{ imports = [ ./cursor-theme.nix ]; }

@@ -2,7 +2,8 @@
   pkgs,
   lib,
   flake-inputs,
-}: let
+}:
+let
   inherit (lib) callPackageWith;
 
   generatedFiles = [
@@ -13,17 +14,21 @@
     "nixos-config/hosts/rin/hardware-configuration.nix"
   ];
 
-  mkTest = test:
-    pkgs.stdenv.mkDerivation ({
+  mkTest =
+    test:
+    pkgs.stdenv.mkDerivation (
+      {
         dontPatch = true;
         dontConfigure = true;
         dontBuild = true;
         dontInstall = true;
         doCheck = true;
       }
-      // test);
+      // test
+    );
 
-  callPackage = callPackageWith (pkgs
+  callPackage = callPackageWith (
+    pkgs
     // {
       inherit flake-inputs mkTest generatedFiles;
       # Work around `self` technically being a store path when
@@ -33,11 +38,13 @@
         name = "dotfiles";
         path = flake-inputs.self;
       };
-    });
-in {
+    }
+  );
+in
+{
   # Linters and formatters
-  alejandra = callPackage ./alejandra.nix {};
-  deadnix = callPackage ./deadnix.nix {};
-  shellcheck = callPackage ./shellcheck.nix {};
-  statix = callPackage ./statix.nix {};
+  deadnix = callPackage ./deadnix.nix { };
+  nixfmt = callPackage ./nixfmt.nix { };
+  shellcheck = callPackage ./shellcheck.nix { };
+  statix = callPackage ./statix.nix { };
 }

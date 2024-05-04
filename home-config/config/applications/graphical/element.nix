@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.firefox.webapps.element = {
     enable = true;
 
@@ -7,7 +8,12 @@
     extraSettings = config.programs.firefox.profiles."tlater".settings;
     # backgroundColor = "#";
 
-    mimeType = ["x-scheme-handler/element"];
-    categories = ["Network" "InstantMessaging" "Chat" "VideoConference"];
+    mimeType = [ "x-scheme-handler/element" ];
+    categories = [
+      "Network"
+      "InstantMessaging"
+      "Chat"
+      "VideoConference"
+    ];
   };
 }

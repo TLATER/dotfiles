@@ -1,4 +1,5 @@
-{config, ...}: {
+{ config, ... }:
+{
   programs.firefox.webapps.whatsapp = {
     enable = true;
 
@@ -6,6 +7,9 @@
     id = 3;
     extraSettings = config.programs.firefox.profiles."tlater".settings;
 
-    categories = ["Network" "InstantMessaging"];
+    categories = [
+      "Network"
+      "InstantMessaging"
+    ];
   };
 }
