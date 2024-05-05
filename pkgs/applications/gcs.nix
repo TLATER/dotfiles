@@ -1,8 +1,24 @@
 {
-  pkgs,
   sources,
   buildGoModule,
+  buildNpmPackage,
+  pkg-config,
+  libGL,
+  fontconfig,
+  freetype,
+  mupdf,
+  xorg,
 }:
+let
+  frontend = buildNpmPackage {
+    inherit (sources.gcs) pname version src;
+    sourceRoot = "source/server/frontend";
+    npmDepsHash = "sha256-wP6sjdcjljzmTs0GUMbF2BPo83LKpfdn15sUuMEIn6E=";
+    postInstall = ''
+      cp -r dist $out
+    '';
+  };
+in
 buildGoModule {
   inherit (sources.gcs) pname version src;
 
@@ -22,9 +38,9 @@ buildGoModule {
     "-w"
   ];
 
-  nativeBuildInputs = with pkgs; [ pkg-config ];
+  nativeBuildInputs = [ pkg-config ];
 
-  buildInputs = with pkgs; [
+  buildInputs = [
     libGL
     fontconfig
     freetype
@@ -37,6 +53,10 @@ buildGoModule {
     xorg.libXi
     xorg.libXxf86vm
   ];
+
+  preBuild = ''
+    cp -r ${frontend}/dist server/frontend/dist
+  '';
 
   postInstall =
     let
@@ -60,6 +80,6 @@ buildGoModule {
       rm $out/bin/{gen,packaging,scr}
     '';
 
-  vendorHash = "sha256-7uIS/Q+xwUYcdaqzXffZUUFWJ/WOGpYdDnNRHQ4UIaU=";
+  vendorHash = "sha256-Mi/6dI1N6UZNJuH7Fzr/AGHcHE0s7LiYHZheBH5CADg=";
   meta.mainProgram = "${sources.gcs.pname}";
 }
