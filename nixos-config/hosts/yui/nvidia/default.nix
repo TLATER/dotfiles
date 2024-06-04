@@ -12,10 +12,6 @@
       persistencedSha256 = "sha256-3ae31/egyMKpqtGEqgtikWcwMwfcqMv2K4MVFa70Bqs=";
     };
 
-    # The current stable nvidia driver is utterly broken. Use
-    # production for now to work around stuff like this:
-    # https://forums.developer.nvidia.com/t/535-86-05-low-framerate-vulkan-apps-stutter-under-wayland-xwayland/26147
-    # package = config.boot.kernelPackages.nvidiaPackages.production;
     modesetting.enable = true;
     # Power management is required to get nvidia GPUs to behave on
     # suspend, due to firmware bugs. Aren't nvidia great?
@@ -45,23 +41,6 @@
       # When (if!) I get another nvidia GPU, check for resizeable bar
       # settings
     ];
-
-  # Replace a glFlush() with a glFinish() - this prevents stuttering
-  # and glitching in all kinds of circumstances for the moment.
-  #
-  # Apparently I'm waiting for "explicit sync" support, which needs to
-  # land as a wayland thing. I've seen this work reasonably with VRR
-  # before, but emacs continued to stutter, so for now this is
-  # staying.
-  nixpkgs.overlays = [
-    (_: final: {
-      wlroots_0_16 = final.wlroots_0_16.overrideAttrs (_: {
-        patches = [
-          ./wlroots-nvidia.patch
-        ];
-      });
-    })
-  ];
 
   environment.variables = {
     # Required to run the correct GBM backend for nvidia GPUs on wayland
