@@ -104,8 +104,6 @@
 
   networking.networkmanager.ensureProfiles.profiles.bond.bond.primary = "enp3s0";
 
-  theming.cursor.x-scaling = 2.0;
-
   # Automatic brightness/gamma adjustment
   #
   # Geolocation is used for gamma adjustment, permissions are quite

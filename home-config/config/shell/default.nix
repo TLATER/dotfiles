@@ -18,6 +18,7 @@
     enableSshSupport = true;
     defaultCacheTtl = 86400;
     maxCacheTtl = 2592000;
+    pinentryPackage = pkgs.pinentry-gnome3;
   };
 
   programs = {

@@ -38,13 +38,19 @@ let
   };
 in
 {
-  home.packages = [ keepassxc-copy ];
+  home.packages = [
+    keepassxc-copy
+    pkgs.glib
+  ];
 
   wayland.windowManager.sway = {
     enable = true;
     package = null;
     config = null;
     systemd.xdgAutostart = true;
+    extraConfigEarly = ''
+      seat seat0 xcursor_theme Bibata-Original-Ice 24
+    '';
     extraConfig = lib.fileContents ../../dotfiles/sway.conf;
   };
 
@@ -98,7 +104,7 @@ in
     };
 
     Service = {
-      ExecStart = "${pkgs.wpaperd}/bin/wpaperd --no-daemon";
+      ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
       Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
     };
 

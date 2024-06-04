@@ -11,9 +11,10 @@ let
 
   sway-gtkgreet = pkgs.writeText "sway-gtkgreet" ''
     output '*' background #fafafa solid_color
+    seat seat0 xcursor_theme Bibata-Original-Ice 24
 
     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-    exec ${pkgs.eww-wayland}/bin/eww -c ${./eww-config} open powermenu
+    exec ${pkgs.eww}/bin/eww -c ${./eww-config} open powermenu
     exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${sway}/bin/swaymsg exit"
   '';
 
@@ -45,7 +46,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    eww-wayland
+    eww
     sway-run
     pciutils
   ];

@@ -16,5 +16,5 @@
     yubioath-flutter
   ];
 
-  xdg.configFile."alacritty/alacritty.yml".source = "${config._dotfiles}/alacritty/alacritty.yml";
+  xdg.configFile."alacritty/alacritty.toml".source = "${config._dotfiles}/alacritty/alacritty.toml";
 }

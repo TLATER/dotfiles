@@ -1,1 +1,0 @@
-{ imports = [ ./cursor-theme.nix ]; }

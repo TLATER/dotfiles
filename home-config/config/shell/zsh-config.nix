@@ -44,7 +44,7 @@ in
       dotDir = ".config/zsh";
       history.path = "${config.xdg.dataHome}/zsh_history";
 
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       enableCompletion = true;
       enableVteIntegration = true;
       defaultKeymap = "emacs";
