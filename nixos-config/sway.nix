@@ -1,14 +1,5 @@
-{ pkgs, flake-inputs, ... }:
+{ pkgs, ... }:
 {
-  nixpkgs.overlays = [
-    (_: prev: {
-      # Fix issues with nvidia screencapture bit depth
-      # See https://github.com/emersion/xdg-desktop-portal-wlr/issues/190
-      # TODO(tlater): stop doing this when stable bumps this version.
-      inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${prev.system}) xdg-desktop-portal-wlr;
-    })
-  ];
-
   environment.systemPackages = with pkgs; [ bibata-cursors ];
 
   theming.cursor.theme = "Bibata-Original-Ice";

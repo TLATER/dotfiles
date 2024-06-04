@@ -2,7 +2,6 @@
 let
   inherit (flake-inputs.self.packages.${pkgs.system}) emacs;
   inherit (flake-inputs.nixd.packages.${pkgs.system}) nixd;
-  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) nixfmt-rfc-style;
 in
 {
   home.packages =
@@ -17,6 +16,9 @@ in
           nl
         ]
       ))
+
+      # *.nix files are used to pull in project deps, so we always need these
+      nixfmt-rfc-style
 
       # Used for interactive python shells
       python3Packages.ipython
@@ -37,9 +39,6 @@ in
       sqlite.dev
     ])
     ++ [
-
-      # *.nix files are used to pull in project deps, so we always need these
-      nixfmt-rfc-style
       nixd
     ];
 
