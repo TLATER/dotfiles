@@ -16,7 +16,10 @@
   services.joycond.enable = true;
 
   programs = {
-    steam.enable = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+    };
     anime-game-launcher.enable = true;
     gamescope = {
       enable = true;
