@@ -3,7 +3,7 @@
 
   inputs = {
     # NixOS related inputs
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-unfree = {
       url = "github:numtide/nixpkgs-unfree";
@@ -29,7 +29,7 @@
     };
 
     aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-23.11";
+      url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -43,7 +43,7 @@
 
     # home-manager related inputs
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nurpkgs.url = "github:nix-community/NUR";

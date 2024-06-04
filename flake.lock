@@ -8,16 +8,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1715815873,
-        "narHash": "sha256-vXMdK8fQMhxS8Ufle3KOJgafNmU1LJmfVHOIgfWnxVA=",
+        "lastModified": 1716664097,
+        "narHash": "sha256-eOYkjzuPpcOd5tqo8GNc4eHThm/ir0YkTlooqgV6h3s=",
         "owner": "ezKEa",
         "repo": "aagl-gtk-on-nix",
-        "rev": "cba889774421a2aa262dd894e3f92585054da582",
+        "rev": "3c9722c9c69fba29adad10069b15a91e2ce8cc13",
         "type": "github"
       },
       "original": {
         "owner": "ezKEa",
-        "ref": "release-23.11",
+        "ref": "release-24.05",
         "repo": "aagl-gtk-on-nix",
         "type": "github"
       }
@@ -212,16 +212,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1715381426,
-        "narHash": "sha256-wPuqrAQGdv3ISs74nJfGb+Yprm23U/rFpcHFFNWgM94=",
+        "lastModified": 1717527182,
+        "narHash": "sha256-vWSkg6AMok1UUQiSYVdGMOXKD2cDFnajITiSi0Zjd1A=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "ab5542e9dbd13d0100f8baae2bc2d68af901f4b4",
+        "rev": "845a5c4c073f74105022533907703441e0464bc3",
         "type": "github"
       },
       "original": {
         "owner": "nix-community",
-        "ref": "release-23.11",
+        "ref": "release-24.05",
         "repo": "home-manager",
         "type": "github"
       }
@@ -488,16 +488,16 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1715668745,
-        "narHash": "sha256-xp62OkRkbUDNUc6VSqH02jB0FbOS+MsfMb7wL1RJOfA=",
+        "lastModified": 1717281328,
+        "narHash": "sha256-evZPzpf59oNcDUXxh2GHcxHkTEG4fjae2ytWP85jXRo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "9ddcaffecdf098822d944d4147dd8da30b4e6843",
+        "rev": "b3b2b28c1daa04fe2ae47c21bb76fd226eac4ca1",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixos-23.11",
+        "ref": "nixos-24.05",
         "repo": "nixpkgs",
         "type": "github"
       }
