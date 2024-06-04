@@ -4,9 +4,6 @@
 
   programs.sway = {
     enable = true;
-    package = pkgs.swayfx.overrideAttrs (_: {
-      passthru.providedSessions = [ "sway" ];
-    });
     wrapperFeatures.gtk = true;
   };
 
