@@ -33,6 +33,7 @@ in
       # so...
       biome
 
+      libnotify
       sqlite.dev
     ])
     ++ [

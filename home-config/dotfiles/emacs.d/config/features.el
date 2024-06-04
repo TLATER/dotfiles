@@ -405,7 +405,7 @@
     (funcall orig proc (xterm-color-filter string))))
 
 (use-package compile
-  :after alert
+  :commands (alert)
   :custom
   (compilation-finish-functions
    (append compilation-finish-functions
@@ -427,6 +427,14 @@
           ,typescript-tsc-pretty-error-regexp
           1 2 3 2)))
     (add-to-list 'compilation-error-regexp-alist-alist regexp)
-    (add-to-list 'compilation-error-regexp-alist (car regexp))))
+    (add-to-list 'compilation-error-regexp-alist (car regexp))
+    (add-to-list 'compilation-finish-functions (lambda (_ status)
+                                                 (pcase status
+                                                   ('interrupted nil)
+                                                   (status
+                                                    (alert status
+                                                           :title "Compilation finished"
+                                                           :id 'emacs-completion
+                                                           :category 'compilation.complete)))))))
 
 ;;; features.el ends here
