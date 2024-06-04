@@ -48,7 +48,7 @@ in
     IPYTHONDIR = "${xdg.dataHome}/ipython";
     JUPYTER_CONFIG_DIR = "${xdg.dataHome}/ipython";
     HISTFILE = "${xdg.dataHome}/histfile";
-    RLWRAP_HOME = "${xdg.dataHome}/rlwrap"; # stumpish and perhaps others
+    RLWRAP_HOME = "${xdg.dataHome}/rlwrap";
     CUDA_CACHE_PATH = "${xdg.dataHome}/cuda";
 
     # See, this is exactly why things should follow the spec. I have

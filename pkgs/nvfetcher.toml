@@ -34,15 +34,6 @@ src.git = "https://github.com/phosphor-icons/web"
 src.branch = "master"
 fetch.github = "phosphor-icons/web"
 
-[stumpwm]
-src.git = "https://github.com/stumpwm/stumpwm"
-fetch.github = "stumpwm/stumpwm"
-
-[stumpwm-contrib]
-src.git = "https://github.com/stumpwm/stumpwm-contrib"
-src.branch = "master"
-fetch.github = "stumpwm/stumpwm-contrib"
-
 [tridactyl-emacs]
 src.git = "https://github.com/jumper047/tridactyl_emacs_config"
 src.branch = "main"

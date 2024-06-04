@@ -89,30 +89,6 @@
     };
     date = "2024-05-02";
   };
-  stumpwm = {
-    pname = "stumpwm";
-    version = "11be454df8f01f2ed7aa20cffe23f16f1d7b7bd6";
-    src = fetchFromGitHub {
-      owner = "stumpwm";
-      repo = "stumpwm";
-      rev = "11be454df8f01f2ed7aa20cffe23f16f1d7b7bd6";
-      fetchSubmodules = false;
-      sha256 = "sha256-aEacyvOv0mOCoPyrPOoZHhCsLNCMp+VSLr9mfamuk8A=";
-    };
-    date = "2024-04-18";
-  };
-  stumpwm-contrib = {
-    pname = "stumpwm-contrib";
-    version = "042a9fcb053839f4b1527d2e6f4baf33e2d16434";
-    src = fetchFromGitHub {
-      owner = "stumpwm";
-      repo = "stumpwm-contrib";
-      rev = "042a9fcb053839f4b1527d2e6f4baf33e2d16434";
-      fetchSubmodules = false;
-      sha256 = "sha256-idSdD/IXPOJXAsZSJgXbpRBH7DelEVz3xUTYh/9ZtLk=";
-    };
-    date = "2024-04-18";
-  };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
     version = "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb";
