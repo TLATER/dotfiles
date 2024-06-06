@@ -19,7 +19,7 @@
     :valign "end"
     :halign "end"
     :space-evenly false
-    (button :onclick "systemctl hibernate" "")
-    (button :onclick "systemctl suspend" "")
-    (button :onclick "systemctl reboot" "")
-    (button :onclick "systemctl poweroff" "")))
+    (button :onclick "systemctl hibernate" "")
+    (button :onclick "systemctl suspend" "")
+    (button :onclick "systemctl reboot" "")
+    (button :onclick "systemctl poweroff" "")))
