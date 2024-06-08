@@ -1,4 +1,6 @@
 {
+  unzip,
+  fetchurl,
   sources,
   buildGoModule,
   buildNpmPackage,
@@ -13,11 +15,19 @@ let
   frontend = buildNpmPackage {
     inherit (sources.gcs) pname version src;
     sourceRoot = "source/server/frontend";
-    npmDepsHash = "sha256-wP6sjdcjljzmTs0GUMbF2BPo83LKpfdn15sUuMEIn6E=";
+    npmDepsHash = "sha256-6hKrp6hbDqPpKXlzS7nvosDBiadPWKl6WSQ2J8+8WPY=";
     postInstall = ''
       cp -r dist $out
     '';
   };
+  pdfjs =
+    let
+      version = "4.3.136";
+    in
+    fetchurl {
+      url = "https://github.com/mozilla/pdf.js/releases/download/v${version}/pdfjs-${version}-dist.zip";
+      hash = "sha256-L0VFmQGUGKmj691KZIPc9LdrpsZwVxqias+wyrVLOXs=";
+    };
 in
 buildGoModule {
   inherit (sources.gcs) pname version src;
@@ -38,7 +48,10 @@ buildGoModule {
     "-w"
   ];
 
-  nativeBuildInputs = [ pkg-config ];
+  nativeBuildInputs = [
+    pkg-config
+    unzip
+  ];
 
   buildInputs = [
     libGL
@@ -56,6 +69,10 @@ buildGoModule {
 
   preBuild = ''
     cp -r ${frontend}/dist server/frontend/dist
+    # Use a pdfjs zip downloaded by nix instead
+    sed 's|/bin/rm|rm|' -i server/pdf/refresh-pdf.js.sh
+    sed '/curl/c\cp ${pdfjs} ''${ARCHIVE}' -i server/pdf/refresh-pdf.js.sh
+    (cd server/pdf && bash refresh-pdf.js.sh)
   '';
 
   postInstall =
@@ -80,6 +97,6 @@ buildGoModule {
       rm $out/bin/{gen,packaging,scr}
     '';
 
-  vendorHash = "sha256-Mi/6dI1N6UZNJuH7Fzr/AGHcHE0s7LiYHZheBH5CADg=";
+  vendorHash = "sha256-3T3wHGIFnXqC6dY40kOuiKkwpeN3FwUef73JFCa5p2k=";
   meta.mainProgram = "${sources.gcs.pname}";
 }
