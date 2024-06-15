@@ -31,6 +31,17 @@
       sha256 = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
     };
   };
+  edopro = {
+    pname = "edopro";
+    version = "40.1.4";
+    src = fetchFromGitHub {
+      owner = "edo9300";
+      repo = "edopro";
+      rev = "40.1.4";
+      fetchSubmodules = true;
+      sha256 = "sha256-2E1cjG0FONu/fbr67/3qRCKQ1W/wPznClEWsMa1FAzo=";
+    };
+  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "811e970678c3d67c10bcecafbc54d09332afba9c";

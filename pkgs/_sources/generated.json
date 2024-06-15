@@ -54,6 +54,26 @@
         },
         "version": "2.1.22-31"
     },
+    "edopro": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "edopro",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": true,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "edo9300",
+            "repo": "edopro",
+            "rev": "40.1.4",
+            "sha256": "sha256-2E1cjG0FONu/fbr67/3qRCKQ1W/wPznClEWsMa1FAzo=",
+            "type": "github"
+        },
+        "version": "40.1.4"
+    },
     "firefox-ui-fix": {
         "cargoLocks": null,
         "date": "2024-06-01",
