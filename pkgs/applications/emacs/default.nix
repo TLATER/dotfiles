@@ -20,9 +20,9 @@ let
     '';
   };
 
-  overrides = _self: _super: { };
+  overrides = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
 
-  emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope' overrides;
+  emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope overrides;
 
   # Compute the list of use-package-d packages.
   package-list = runCommandLocal "package-list" { buildInputs = [ emacsPkgs.emacs ]; } ''

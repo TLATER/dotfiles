@@ -369,6 +369,13 @@
   (add-to-list 'eglot-server-programs
                '(nix-mode . ("nixd"))))
 
+(use-package eglot-x
+  :after eglot
+  :commands eglot-x-setup
+  :demand t
+  :config
+  (eglot-x-setup))
+
 (use-package flymake
   :hook (prog-mode . flymake-mode)
   :bind (:map flymake-mode-map

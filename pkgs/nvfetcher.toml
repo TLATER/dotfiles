@@ -10,6 +10,10 @@ fetch.github = "Rikorose/DeepFilterNet"
 src.cmd = "./get-drivestrike-version.sh"
 fetch.url = "https://app.drivestrike.com/static/yum/drivestrike.rpm"
 
+[eglot-x]
+src.git = "https://github.com/nemethf/eglot-x"
+fetch.github = "nemethf/eglot-x"
+
 [firefox-ui-fix]
 src.github = "black7375/Firefox-UI-Fix"
 fetch.github = "black7375/Firefox-UI-Fix"

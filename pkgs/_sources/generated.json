@@ -56,6 +56,26 @@
         },
         "version": "2.1.22-31"
     },
+    "eglot-x": {
+        "cargoLocks": null,
+        "date": "2024-04-27",
+        "extract": null,
+        "name": "eglot-x",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "nemethf",
+            "repo": "eglot-x",
+            "rev": "cc6a198945211bd20a6e1e2f448fecdc18ca5c88",
+            "sha256": "sha256-BKXJvODdqqNjO4XyH/HH6CRPRVhmuJt67cRJWQ3WKAQ=",
+            "type": "github"
+        },
+        "version": "cc6a198945211bd20a6e1e2f448fecdc18ca5c88"
+    },
     "firefox-ui-fix": {
         "cargoLocks": null,
         "date": null,

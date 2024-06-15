@@ -31,6 +31,18 @@
       sha256 = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
     };
   };
+  eglot-x = {
+    pname = "eglot-x";
+    version = "cc6a198945211bd20a6e1e2f448fecdc18ca5c88";
+    src = fetchFromGitHub {
+      owner = "nemethf";
+      repo = "eglot-x";
+      rev = "cc6a198945211bd20a6e1e2f448fecdc18ca5c88";
+      fetchSubmodules = false;
+      sha256 = "sha256-BKXJvODdqqNjO4XyH/HH6CRPRVhmuJt67cRJWQ3WKAQ=";
+    };
+    date = "2024-04-27";
+  };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
     version = "v8.6.1";
