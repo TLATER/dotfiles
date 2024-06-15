@@ -27,14 +27,13 @@ let
   # Compute the list of use-package-d packages.
   package-list = runCommandLocal "package-list" { buildInputs = [ emacsPkgs.emacs ]; } ''
     HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
-          -L ${emacsPkgs.use-package}/share/emacs/site-lisp/elpa/use-package-* \
           -L ${emacsPkgs.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
           -l ${use-package-list}/use-package-list.el \
           --eval "(use-package-list \"${self}/home-config/dotfiles/emacs.d/init.el\")" \
           > $out
   '';
 
-  required-packages = builtins.fromJSON (builtins.readFile package-list) ++ [ "use-package" ];
+  required-packages = builtins.fromJSON (builtins.readFile package-list);
 
   custom-emacs = emacsPkgs.emacs.pkgs.withPackages (
     epkgs: map (package: builtins.getAttr package epkgs) required-packages
