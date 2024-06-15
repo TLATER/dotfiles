@@ -7,6 +7,7 @@
   emacsMacport,
   emacs29,
   runCommandLocal,
+  git,
 }:
 let
   emacsPlatform = if hostPlatform.isDarwin then emacsMacport else emacs29;
@@ -39,14 +40,22 @@ let
     epkgs: map (package: builtins.getAttr package epkgs) required-packages
   );
 
-  compiled-dotfiles = runCommandLocal "compiled-init" { buildInputs = [ custom-emacs ]; } ''
-    cp -r '${self}/home-config/dotfiles/emacs.d/' "$out"
-    chmod -R u+w "$out"
+  compiled-dotfiles =
+    runCommandLocal "compiled-init"
+      {
+        buildInputs = [
+          git
+          custom-emacs
+        ];
+      }
+      ''
+        cp -r '${self}/home-config/dotfiles/emacs.d/' "$out"
+        chmod -R u+w "$out"
 
-    HOME=/tmp emacs --batch \
-        --eval "(setq byte-compile-error-on-warn t)" \
-        -f batch-byte-compile \
-        "$out/init.el" "$out/config/"*
-  '';
+        HOME=/tmp emacs --batch \
+            --eval "(setq byte-compile-error-on-warn t)" \
+            -f batch-byte-compile \
+            "$out/init.el" "$out/config/"*
+      '';
 in
 custom-emacs // (custom-emacs.passthru // { dotfiles = compiled-dotfiles; })
