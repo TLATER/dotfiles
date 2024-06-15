@@ -25,7 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;; Render emoji
@@ -38,13 +38,14 @@
 ;;; In-emacs terminal
 ;; ----------------------------------------------------------------------------------
 
-(use-package vterm
-  :hook (vterm-mode . (lambda ()
-                        (set (make-local-variable 'global-hl-line-mode) nil)))
-  :bind (:map vterm-mode-map
-              ("C-c C-j" . vterm-copy-mode))
+(leaf vterm
+  :hook (vterm-mode-hook . (lambda ()
+                             (set (make-local-variable 'global-hl-line-mode) nil)))
+  :bind (:vterm-mode-map
+         ("C-c C-j" . vterm-copy-mode))
   :custom-face
-  (vterm-color-black ((t (:foreground "#0f0f0f" :background "#707880"))))
+  (vterm-color-black . '((t (:foreground "#0f0f0f" :background "#707880"))))
+  :defvar vterm-eval-cmds
   :config
   (add-to-list 'vterm-eval-cmds '("magit" magit-status))
   (add-to-list 'vterm-eval-cmds '("woman" woman)))
@@ -53,21 +54,20 @@
 ;; Startup dashboard
 ;; ----------------------------------------------------------------------------------
 
-(use-package dashboard
-  :demand
-  :commands dashboard-setup-startup-hook
+(leaf dashboard
   :custom
-  (dashboard-set-init-info t)
-  (dashboard-set-footer nil)
-  (dashboard-projects-backend 'project-el)
-  (initial-buffer-choice (lambda ()
-                           (or
-                            (get-buffer "*dashboard*")
-                            (get-buffer "*scratch*"))))
-  (dashboard-items '((recents . 5)
-                     (bookmarks . 5)
-                     (projects . 5)
-                     (registers . 5)))
+  (dashboard-set-init-info . t)
+  (dashboard-set-footer . nil)
+  (dashboard-projects-backend . 'project-el)
+  (initial-buffer-choice . (lambda ()
+                             (or
+                              (get-buffer "*dashboard*")
+                              (get-buffer "*scratch*"))))
+  (dashboard-items . '((recents . 5)
+                       (bookmarks . 5)
+                       (projects . 5)
+                       (registers . 5)))
+  :defun dashboard-setup-startup-hook
   :config
   (dashboard-setup-startup-hook))
 
@@ -75,23 +75,24 @@
 ;; Git porcelain
 ;; ----------------------------------------------------------------------------------
 
-(use-package magit
+(leaf magit
   :bind
   ("C-c g s" . magit-status)
-  (:map project-prefix-map
-        ("m" . magit-project-status)))
-(use-package transient
+  (:project-prefix-map
+   ("m" . magit-project-status)))
+(leaf transient
   :custom
-  (transient-levels-file (expand-file-name "transient/levels.el" data-dir))
-  (transient-values-file (expand-file-name "transient/values.el" data-dir))
-  (transient-history-file (expand-file-name "transient/history.el" data-dir)))
-(use-package magit-lfs
+  `(transient-levels-file . ,(expand-file-name "transient/levels.el" data-dir))
+  `(transient-values-file . ,(expand-file-name "transient/values.el" data-dir))
+  `(transient-history-file . ,(expand-file-name "transient/history.el" data-dir)))
+(leaf magit-lfs
   :after magit)
-(use-package sqlite3)                   ; Required for forge
-(use-package forge
-  :after magit
+(leaf sqlite3)                   ; Required for forge
+(leaf forge
+  :after (magit sqlite3)
   :custom
-  (forge-database-file (expand-file-name "forge-database.sqlite" data-dir))
+  `(forge-database-file . ,(expand-file-name "forge-database.sqlite" data-dir))
+  :defvar forge-alist
   :config
   (add-to-list
    'forge-alist '("gitlab.codethink.co.uk" "gitlab.codethink.co.uk/api/v4"
@@ -101,80 +102,75 @@
 ;; Show keymaps as the prefix is entered
 ;; ----------------------------------------------------------------------------------
 
-(use-package which-key
-  :demand
+(leaf which-key
   :custom
-  (which-key-idle-delay 0.5)
-  (which-key-popup-type 'minibuffer)
-  (which-key-sort-order 'which-key-prefix-then-key-order)
-  (which-key-show-prefix 'left)
-  (which-key-use-C-h-commands t)
-  (which-key-max-description-length 60)
-  (which-key-show-docstrings t)
-  :preface
-  (declare-function which-key-setup-side-window-bottom "which-key.el")
-  (declare-function which-key-mode "which-key.el")
+  (which-key-idle-delay . 0.5)
+  (which-key-popup-type . 'minibuffer)
+  (which-key-sort-order . 'which-key-prefix-then-key-order)
+  (which-key-show-prefix . 'left)
+  (which-key-use-C-h-commands . t)
+  (which-key-max-description-length . 60)
+  (which-key-show-docstrings . t)
+  :defun which-key-setup-side-window-bottom
   :config
   (which-key-setup-side-window-bottom)
-  (which-key-mode 1))
+  :global-minor-mode which-key-mode)
 
 ;; ----------------------------------------------------------------------------------
 ;; Much improved prompts
 ;; ----------------------------------------------------------------------------------
 
-(use-package vertico
-  :demand
+(leaf vertico
   :custom
-  (vertico-count 15)
-  (vertico-multiform-commands '((consult-imenu buffer)
-                                (consult-imenu-multi buffer)))
-  (vertico-multiform-categories '((consult-grep buffer)))
-  :preface
-  (declare-function vertico-mode "vertico.el")
-  (declare-function vertico-multiform-mode "vertico-multiform.el")
-  :config
-  (require 'vertico-multiform)
-  (vertico-mode 1)
-  (vertico-multiform-mode 1))
+  (vertico-count . 15)
+  :global-minor-mode vertico-mode)
 
-(use-package savehist
-  :demand
+;; Config to make minibuffer search (e.g. for find-file) show up
+;; differently - this is what makes M-s r g show up in a separate
+;; buffer, for example.
+(leaf vertico-multiform
+  :ensure nil
+  :after vertico
   :custom
-  (savehist-file (expand-file-name "history" data-dir))
-  :config
-  (savehist-mode 1))
+  (vertico-multiform-commands . '((consult-imenu buffer)
+                                  (consult-imenu-multi buffer)
+                                  (consult-project-extra-find buffer)))
+  (vertico-multiform-categories . '((consult-grep buffer)
+                                    (file (vertico-sort-function . vertico-sort-alpha))))
+  :global-minor-mode vertico-multiform-mode)
 
-(use-package orderless
+(leaf savehist
   :custom
-  (completion-styles '(orderless basic))
-  (completion-category-defaults nil)
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  `(savehist-file . ,(expand-file-name "history" data-dir))
+  :global-minor-mode savehist-mode)
 
-(use-package marginalia
-  :demand
-  :preface
-  (declare-function marginalia-mode "marginalia.el")
-  :config
-  (marginalia-mode 1))
+(leaf orderless
+  :custom
+  (completion-styles . '(orderless basic))
+  (completion-category-defaults . nil)
+  (completion-category-overrides . '((file (styles basic partial-completion)))))
 
-(use-package embark
-  :functions embark--truncate-target
+(leaf marginalia
+  :global-minor-mode marginalia-mode )
+
+(leaf embark
+  :defun embark--truncate-target
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
          ("C-h B" . embark-bindings))
   :hook (eldoc-documentation-functions . embark-eldoc-first-target)
   :custom
-  (prefix-help-command 'embark-prefix-help-command)
-  (embark-indicators '(embark-which-key-indicator
-                       embark-highlight-indicator
-                       embark-isearch-highlight-indicator))
-  :preface
-  (declare-function embark-completing-read-prompter "embark.el")
-  (declare-function embark--truncate-target "embark.el")
-  (declare-function which-key--hide-popup-ignore-command "which-key.el")
-  (declare-function which-key--show-keymap "which-key.el")
-
-
+  (prefix-help-command . 'embark-prefix-help-command)
+  (embark-indicators . '(embark-which-key-indicator
+                         embark-highlight-indicator
+                         embark-isearch-highlight-indicator))
+  :defun (embark-completing-read-prompter
+          embark--truncate-target
+          embark-which-key-indicator
+          which-key--hide-popup-ignore-command
+          which-key--show-keymap)
+  :defvar embark-indicators
+  :config
   (defun embark-which-key-indicator ()
     "An embark indicator that displays keymaps using which-key.
 
@@ -205,54 +201,55 @@
      Hide the which-key indicator immediately when using the
      \\='completing-read\\=' prompter.  FN ARGS."
     (which-key--hide-popup-ignore-command)
-    (let ((embark-indicators
-           (remq #'embark-which-key-indicator embark-indicators)))
+    (let ((embark-indicators (remq #'embark-which-key-indicator embark-indicators)))
+      (ignore embark-indicators)
       (apply fn args)))
 
-  :config
-  (advice-add #'embark-completing-read-prompter
-              :around #'embark-hide-which-key-indicator))
+  :advice (:around embark-completing-read-prompter #'embark-hide-which-key-indicator))
 
-(use-package embark-consult
+(leaf embark-consult
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package emacs
+(leaf emacs
   :hook (minibuffer-setup-hook . cursor-intangible-mode)
   :custom
   ;; Do not allow the cursor in the minibuffer prompt
-  (minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
+  (minibuffer-prompt-properties . '(read-only t cursor-intangible t face minibuffer-prompt))
   ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
-  (read-extended-command-predicate #'command-completion-default-include-p))
+  (read-extended-command-predicate . #'command-completion-default-include-p)
+  :defvar crm-separator
+  :config
+  ;; https://github.com/minad/vertico/blob/main/README.org?plain=1#L112
+  (defun crm-indicator (args)
+    "Add prompt indicator to `completing-read-multiple' (silence ARGS warning).
 
-;; Add prompt indicator to `completing-read-multiple'.
-;; We display [select-multiple<separator>], e.g., [select-multiple,]
-;; if the separator is a comma.
-(define-advice completing-read-multiple
-    (:around (&rest args) crm-indicator)
-  (cons (format "[select-multiple%s] %s"
-                (replace-regexp-in-string
-                 "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                 crm-separator)
-                (car args))
-        (cdr args)))
+    We display [CRM<separator>], e.g., [CRM,] if the separator is a comma."
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+
+  :advice (:filter-args completing-read-multiple crm-indicator))
 
 ;; ----------------------------------------------------------------------------------
 ;; Non-man documentation browser
 ;; ----------------------------------------------------------------------------------
 
 ;; TODO(tlater): Figure out how to preinstall docsets
-(use-package devdocs
+(leaf devdocs
   :bind ("C-h D" . devdocs-lookup)
   :custom
-  (devdocs-data-dir (expand-file-name "docsets" data-dir)))
+  `(devdocs-data-dir . ,(expand-file-name "docsets" data-dir)))
 
 ;; ----------------------------------------------------------------------------------
 ;; Project management
 ;; ----------------------------------------------------------------------------------
 
-(use-package project
-  :bind (:map project-prefix-map
+(leaf project
+  :bind (:project-prefix-map
          ("f" . consult-project-extra-find)
          ("v" . nil)
          ("x" . nil)
@@ -262,36 +259,31 @@
          ("x e" . project-eshell)
          ("x s" . project-shell))
   :custom
-  (project-list-file (expand-file-name "projects" data-dir))
-  :preface
-  (declare-function project-root "project.el")
-  (declare-function project-prefixed-buffer-name "project.el")
+  `(project-list-file . ,(expand-file-name "projects" data-dir))
+  :defun project-root project-prefixed-buffer-name vterm
   :config
   (require 'vterm)
-  (declare-function vterm "vterm.el")
 
   (defun project-vterm ()
     "Open or switch to a vterm buffer for the current project.
 
      If the prefix ARG is set, open another vterm buffer."
-  (interactive)
-  (let* ((default-directory (project-root (project-current t)))
-         (default-project-vterm-name (project-prefixed-buffer-name "vterm"))
-         (vterm-buffer (get-buffer default-project-vterm-name)))
-    (if (and vterm-buffer (not current-prefix-arg))
-        (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
-      (vterm (generate-new-buffer-name default-project-vterm-name))))))
+    (interactive)
+    (let* ((default-directory (project-root (project-current t)))
+           (default-project-vterm-name (project-prefixed-buffer-name "vterm"))
+           (vterm-buffer (get-buffer default-project-vterm-name)))
+      (if (and vterm-buffer (not current-prefix-arg))
+          (pop-to-buffer vterm-buffer (bound-and-true-p display-comint-buffer-action))
+        (vterm (generate-new-buffer-name default-project-vterm-name))))))
 
 ;; ----------------------------------------------------------------------------------
 ;; More mode-line info
 ;; ----------------------------------------------------------------------------------
 
-(use-package smart-mode-line
-  :functions (sml/setup sml/faces-from-theme sml/theme-p)
+(leaf smart-mode-line
+  :defun (sml/setup sml/faces-from-theme sml/theme-p)
   :custom
-  (sml/no-confirm-load-theme t)
-  :preface
-  (declare-function sml/setup "smart-mode-line")
+  (sml/no-confirm-load-theme . t)
   :config
   (sml/setup))
 
@@ -299,71 +291,71 @@
 ;; Version control hints
 ;; ----------------------------------------------------------------------------------
 
-(use-package diff-hl
+(leaf diff-hl
   :demand
   :commands diff-hl-flydiff-mode global-diff-hl-mode
   :custom-face
-  (diff-hl-insert ((t (:inherit nil :foreground nil :background "#2aa889"))))
-  (diff-hl-delete ((t (:inherit nil :foreground nil :background "#dc322f"))))
-  (diff-hl-change ((t (:inherit nil :foreground nil :background "#d26937"))))
+  (diff-hl-insert . '((t (:inherit nil :foreground unspecified :background "#2aa889"))))
+  (diff-hl-delete . '((t (:inherit nil :foreground unspecified :background "#dc322f"))))
+  (diff-hl-change . '((t (:inherit nil :foreground unspecified :background "#d26937"))))
   :custom
-  (diff-hl-draw-borders nil)
-  :config
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
-  (diff-hl-flydiff-mode)
-  (global-diff-hl-mode))
+  (diff-hl-draw-borders . nil)
+  :hook (magit-post-refresh-hook . diff-hl-magit-post-refresh)
+  :global-minor-mode global-diff-hl-mode diff-hl-flydiff-mode)
 
 ;; ----------------------------------------------------------------------------------
 ;; Nicer HTML rendering
 ;; ----------------------------------------------------------------------------------
 
-(use-package shr
+(leaf shr
   :custom
-  (shr-use-colors nil))
+  (shr-use-colors . nil))
 
 ;; ----------------------------------------------------------------------------------
 ;; Directory listings
 ;; ----------------------------------------------------------------------------------
 
-(use-package dired
-  :commands dired
+(leaf dired
   :ensure nil
+  :commands dired
   :bind (("C-x d" . dired)
-         :map dired-mode-map
-         ("e" . dired-find-alternate-file)
-         ("f" . dired-find-alternate-file)
-         ("^" . (lambda () (interactive) (find-alternate-file ".."))))
+         (:dired-mode-map
+          ("e" . dired-find-alternate-file)
+          ("f" . dired-find-alternate-file)
+          ("^" . (lambda () (interactive) (find-alternate-file "..")))))
   :custom
-  (dired-dwim-target t)
+  (dired-dwim-target . t)
   :config
   (put 'dired-find-alternate-file 'disabled nil))
 
-(use-package dired-hacks-utils
+(leaf dired-hacks-utils
   :after dired
-  :hook (dired-mode . dired-utils-format-information-line-mode))
-(use-package dired-filter
+  :hook (dired-mode-hook . dired-utils-format-information-line-mode))
+(leaf dired-filter
   :after dired
-  :hook (dired-mode . dired-filter-mode)
+  :hook (dired-mode-hook . dired-filter-mode)
   :custom
-  (dired-filter-stack '((dot-files) (git-ignored)))
-  :config
-  ;; Work around https://github.com/jwiegley/use-package/issues/586
-  (define-key dired-mode-map (kbd "C-c f") dired-filter-map))
-(use-package dired-subtree
+  (dired-filter-stack . '((dot-files) (git-ignored)))
+  :bind-keymap
+  (:dired-mode-map
+   ("C-c f" . dired-filter-map)))
+(leaf dired-subtree
   :after dired
-  :bind (:map dired-mode-map
-              ("RET" . dired-subtree-insert)
-              ("i" . dired-subtree-insert)
-              ("$" . dired-subtree-remove)
-              ("C-<up>" . dired-subtree-previous-sibling)
-              ("C-<down>" . dired-subtree-next-sibling)))
-(use-package dired-narrow
+  :bind (:dired-mode-map
+         :package dired
+         ("RET" . dired-subtree-insert)
+         ("i" . dired-subtree-insert)
+         ("$" . dired-subtree-remove)
+         ("C-<up>" . dired-subtree-previous-sibling)
+         ("C-<down>" . dired-subtree-next-sibling)))
+(leaf dired-narrow
   :after dired
-  :bind (:map dired-mode-map
-              ("C-s" . dired-narrow)))
-(use-package dired-collapse
+  :bind (:dired-mode-map
+         :package dired
+         ("C-s" . dired-narrow)))
+(leaf dired-collapse
   :after dired
-  :hook (dired-mode . dired-collapse-mode))
+  :hook (dired-mode-hook . dired-collapse-mode))
 
 
 (defconst typescript-tsc-error-regexp
@@ -382,8 +374,8 @@
 ;;
 ;; REST browsing
 ;;
-(use-package restclient)
-(use-package restclient-jq
+(leaf restclient)
+(leaf restclient-jq
   :after restclient)
 
 ;; ----------------------------------------------------------------------------------
@@ -391,30 +383,23 @@
 ;; ----------------------------------------------------------------------------------
 
 ;; Ensure proper ANSI code handling
-(use-package xterm-color
+(leaf xterm-color
   :after compile
-  :functions (xterm-color-filter compilation-filter)
-  :preface
-  (declare-function xterm-color-filter "xterm-color.el")
-  :init
-  (setq compilation-environment '("TERM=xterm-256color"))
-  :config
-  (declare-function compilation-filter@advice-compilation-filter "features.el")
-  (define-advice compilation-filter
-      (:around (orig proc string) advice-compilation-filter)
-    (funcall orig proc (xterm-color-filter string))))
-
-(use-package compile
-  :commands (alert)
+  :defun xterm-color-filter compilation-filter compilation-filter@advice-compilation-filter
   :custom
-  (compilation-finish-functions
-   (append compilation-finish-functions
-           (lambda (_ status)
-             (alert status
-                    :title "Compilation finished"
-                    :id 'emacs-compilation
-                    :category 'compilation.complete))))
-  (compilation-scroll-output t)
+  (compilation-environment . '("TERM=xterm-256color"))
+  :advice (:around compilation-filter (lambda (orig proc string)
+                                         (funcall orig proc (xterm-color-filter string)))))
+
+(leaf alert
+  :commands alert
+  :custom
+  (alert-default-style . 'libnotify))
+
+(leaf compile
+  :custom
+  (compilation-scroll-output . t)
+  :defvar (compilation-error-regexp-alist compilation-error-regexp-alist-alist compilation-finish-functions)
   :config
   ;; Make sure typescript output is handled correctly in compilation buffers
   (dolist

@@ -25,8 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package)
-  (defvar back-dir))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Remove pointless UI components
@@ -56,6 +55,7 @@
   "Suspend-frame, but don't do it to my graphical windows.
 
    ORIG is the original function, ARGS the arguments passed to the invocation."
+  (interactive)
   (when (not (display-graphic-p))
     (suspend-frame)))
 
@@ -83,8 +83,8 @@
 ;;; Fix auto-completion completing everything lowercase
 ;; ----------------------------------------------------------------------------------
 
-(use-package dabbrev
+(leaf dabbrev
   :custom
-  (dabbrev-case-fold-search nil))
+  (dabbrev-case-fold-search . nil))
 
 ;;; sane-defaults.el ends here

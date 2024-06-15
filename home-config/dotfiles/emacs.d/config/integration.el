@@ -25,7 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;;; User settings
@@ -38,59 +38,46 @@
 ;;; Authentication
 ;; ----------------------------------------------------------------------------------
 
-(use-package auth-source
-  :functions auth-sources
+(leaf auth-source
   :custom
-  (auth-sources '("secrets:Personal")))
+  (auth-sources . '("secrets:Personal")))
 
 ;; ----------------------------------------------------------------------------------
 ;;; External applications
 ;; ----------------------------------------------------------------------------------
 
-(use-package alert
-  :commands alert
-  :custom
-  (alert-default-style 'libnotify))
-
-(use-package browse-url
+(leaf browse-url
   :commands browse-url
   :custom
-  (browse-url-browser-function 'browse-url-default-browser))
+  (browse-url-browser-function . 'browse-url-default-browser))
 
-;; A nice UI for ripgrep when not used with project.el
-(use-package deadgrep
-  :commands deadgrep)
-
-(use-package direnv
-  :demand
-  :commands direnv-mode
-  :config
-  (direnv-mode))
+(leaf direnv
+  :global-minor-mode direnv-mode)
 
 ;; ----------------------------------------------------------------------------------
 ;;; XDG dirs
 ;; ----------------------------------------------------------------------------------
 
-(use-package eshell
+(leaf eshell
   :commands eshell
+  :defvar data-dir
   :custom
-  (eshell-directory-name (expand-file-name "eshell" data-dir)))
+  `(eshell-directory-name . ,(expand-file-name "eshell" data-dir)))
 
-(use-package recentf
-  :demand
-  :commands recentf-save-list
+(leaf recentf
+  :defun recentf-save-list
   :custom
-  (recentf-save-file (expand-file-name "recentf" data-dir))
+  `(recentf-save-file . ,(expand-file-name "recentf" data-dir))
   :config
   (add-hook 'delete-frame-functions (lambda (_) (recentf-save-list))))
 
-(use-package tramp
+(leaf tramp
   :custom
-  (tramp-persistency-file-name (expand-file-name "tramp" data-dir))
-  (tramp-default-method "scp"))
+  `(tramp-persistency-file-name . ,(expand-file-name "tramp" data-dir))
+  (tramp-default-method . "scp"))
 
-(use-package url
+(leaf url
   :custom
-  (url-configuration-directory (expand-file-name "url" data-dir)))
+  `(url-configuration-directory . ,(expand-file-name "url" data-dir)))
 
 ;;; integration.el ends here

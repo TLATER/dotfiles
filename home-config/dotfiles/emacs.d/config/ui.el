@@ -25,7 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Custom navigation and text editing keybinds
@@ -65,8 +65,7 @@
 ;;; Other various useful keybindings
 ;; ----------------------------------------------------------------------------------
 
-(use-package crux
-  :demand
+(leaf crux
   :bind
   ("C-c o" . crux-open-with)
   ([remap kill-line] . crux-smart-kill-line)
@@ -76,21 +75,17 @@
   ("C-c C" . crux-copy-file-preserve-attributes)
   ("C-c R" . crux-rename-file-and-buffer)
   ([remap delete-indentation] . crux-top-join-line)
-  :preface
-  (declare-function crux-reopen-as-root-mode "crux.el")
-  :config
-  (crux-with-region-or-buffer comment-or-uncomment-region)
-  (crux-reopen-as-root-mode))
+  :global-minor-mode crux-reopen-as-root-mode)
 
-(use-package consult
-  :functions (consult-register-window consult-xref consult-register-format)
+(leaf consult
+  :defun (consult-register-window consult-xref consult-register-format)
   :custom
-  (register-preview-delay 0.5)
-  (register-preview-function #'consult-register-format)
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref)
+  (register-preview-delay . 0.5)
+  (register-preview-function . #'consult-register-format)
+  (xref-show-xrefs-function . #'consult-xref)
+  (xref-show-definitions-function . #'consult-xref)
 
-  (consult-buffer-filter
+  (consult-buffer-filter .
    `(,(rx string-start " ")
      ,(rx string-start "*Completions*" string-end)
      ,(rx string-start "*Flymake log*" string-end)
@@ -123,31 +118,27 @@
          ("M-s r" . consult-ripgrep)
          ("M-s f" . consult-find)
          ("M-s m" . consult-man)
-         ("M-s e" . consult-isearch-history)
+         ("M-s h" . consult-isearch-history)
          ;; Consider keep-lines, focus-lines
          )
-  :config
-  (advice-add #'register-preview :override #'consult-register-window))
+  :advice (:override register-preview consult-register-window))
 
-(use-package consult-eglot
-  :commands consult-eglot-symbols)
+(leaf consult-eglot
+  :after eglot
+  :bind ("M-s e" . consult-eglot-symbols))
 
-(use-package consult-org-roam
-  :demand
+(leaf consult-org-roam
   :after org-roam
   :bind
   ("C-c n b" . consult-org-roam-backlinks)
   ("C-c n l" . consult-org-roam-forward-links)
   ("C-c n s" . consult-org-roam-search)
   :custom
-  (consult-org-roam-grep-func #'consult-ripgrep)
-  (consult-org-roam-buffer-after-buffers t)
-  :preface
-  (declare-function consult-org-roam-mode "consult-org-roam.el")
-  :config
-  (consult-org-roam-mode 1))
+  (consult-org-roam-grep-func . #'consult-ripgrep)
+  (consult-org-roam-buffer-after-buffers . t)
+  :global-minor-mode consult-org-roam-mode)
 
-(use-package consult-project-extra
+(leaf consult-project-extra
   :bind
   ([remap project-find-file] . consult-project-extra-find)
   ("C-x p 4 f" . consult-project-extra-find-other-window))
@@ -157,35 +148,30 @@
 ;; ----------------------------------------------------------------------------------
 
 ;; Make pairs of parens highlight
-(use-package paren
-  :config
-  (show-paren-mode 1))
+(leaf paren
+  :global-minor-mode show-paren-mode)
 
 ;; Highlight TODO notes
-(use-package fic-mode
-  :hook prog-mode
+(leaf fic-mode
+  :hook prog-mode-hook
   :custom-face
-  (fic-face ((t (:foreground "darkred" :weight bold))))
-  (fic-author-face ((t (:foreground "orangered" :underline t)))))
+  (fic-face . '((t (:foreground "darkred" :weight bold))))
+  (fic-author-face . '((t (:foreground "orangered" :underline t)))))
 
 ;; Colorful color names :3
-(use-package rainbow-mode
-  :hook (prog-mode text-mode))
+(leaf rainbow-mode
+  :hook (prog-mode-hook text-mode-hook))
 
 ;; Highlight the current line
-(use-package hl-line
-  :config
-  (global-hl-line-mode 1))
+(leaf hl-line
+  :global-minor-mode global-hl-line-mode)
 
 ;; Show whitespace when it isn't correct
-(use-package whitespace
-  :demand
-  :commands global-whitespace-mode
+(leaf whitespace
   :custom
-  (whitespace-style '(face trailing indentation space-after-tab
+  (whitespace-style . '(face trailing indentation space-after-tab
                            space-before-tab))
-  (whitespace-global-modes '(not erc-mode))
-  :config
-  (global-whitespace-mode))
+  (whitespace-global-modes . '(not erc-mode))
+  :global-minor-mode global-whitespace-mode)
 
 ;;; ui.el ends here

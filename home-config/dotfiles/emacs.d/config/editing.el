@@ -25,8 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package)
-  (defvar share-dir))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;; Indentation
@@ -40,57 +39,52 @@
 ;;; Read project .editorconfig files for when the above doesn't apply
 ;; ----------------------------------------------------------------------------------
 
-(use-package editorconfig
-  :hook (prog-mode . editorconfig-mode))
+(leaf editorconfig
+  :hook (prog-mode-hook . editorconfig-mode))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Clean up whitespace automatically
 ;; ----------------------------------------------------------------------------------
 
-(use-package whitespace-cleanup-mode
-  :demand
+(leaf whitespace-cleanup-mode
   :commands global-whitespace-cleanup-mode
-  :config
-  (global-whitespace-cleanup-mode 1))
+  :global-minor-mode global-whitespace-cleanup-mode)
 
 ;; ----------------------------------------------------------------------------------
 ;;; Add newlines to files automatically
 ;; ----------------------------------------------------------------------------------
 
-(use-package files
+(leaf files
   :ensure nil
-  :functions file-name-sans-extension
-  :custom
-  (require-final-newline "visit-save"))
+  :custom (require-final-newline . "visit-save"))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Snippets
 ;; ----------------------------------------------------------------------------------
 
-(use-package yasnippet
-  :demand
-  :commands (yas-global-mode yas-expand-snippet)
+(leaf yasnippet
   :custom
-  (yas-snippet-dirs (list (expand-file-name "snippets" share-dir)))
+  `(yas-snippet-dirs . '(,(expand-file-name "snippets" share-dir)))
+  :global-minor-mode yas-global-mode
+  :defun yas-expand-snippet
   :config
-  (yas-global-mode 1))
-
-(defun autoinsert-yas-expand ()
-  "Expand yasnippet in current buffer."
-  (yas-expand-snippet (buffer-string) (point-min) (point-max)))
+  (defun autoinsert-yas-expand ()
+    "Expand yasnippet in current buffer."
+    (yas-expand-snippet (buffer-string) (point-min) (point-max))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Autoinserts
 ;; ----------------------------------------------------------------------------------
 
-(use-package autoinsert
+(leaf autoinsert
+  :after yasnippet
   :custom
   ;; Remove all the built-in auto-inserts, so we can replace them with yatemplate
   ;; templates instead (more convenient to fill).
-  (auto-insert-alist nil)
-  (auto-insert-query nil)
-  (auto-insert-directory (expand-file-name "templates/" share-dir))
-
+  (auto-insert-alist . nil)
+  (auto-insert-query . nil)
+  `(auto-insert-directory . ,(expand-file-name "templates/" share-dir))
+  :global-minor-mode auto-insert-mode
   :config
   (define-auto-insert 'emacs-lisp-mode ["emacs-lisp-mode" autoinsert-yas-expand])
   (define-auto-insert 'html-mode ["html" auto-insert-yas-expand])
@@ -145,65 +139,59 @@
       (dolist
           (ext '("H" "h" "hh" "hpp" "hxx" "h++") ret)
         (when (file-exists-p (concat stem "." ext))
-          (setq ret (file-name-nondirectory (concat stem "." ext)))))))
-
-  (auto-insert-mode t))
+          (setq ret (file-name-nondirectory (concat stem "." ext))))))))
 
 ;; ----------------------------------------------------------------------------------
 ;; Spell checking
 ;; ----------------------------------------------------------------------------------
 
 ;; Spell checking
-(use-package flyspell
-  :bind (:map flyspell-mode-map
-              ("C-;" . nil)
-              ("C-." . nil)
-              ("C-," . nil)
-              ("C-c $" . nil))
-  :hook ((prog-mode . flyspell-prog-mode)
-         (text-mode . flyspell-mode)))
-(use-package ispell
+(leaf flyspell
+  :bind (:flyspell-mode-map
+         ("C-;" . nil)
+         ("C-." . nil)
+         ("C-," . nil)
+         ("C-c $" . nil))
+  :hook ((prog-mode-hook . flyspell-prog-mode)
+         (text-mode-hook . flyspell-mode)))
+(leaf ispell
   :custom
-  (ispell-program-name "aspell")
-  (ispell-extra-args '("--sug-mode=ultra"))
-  (ispell-dictionary "en_US"))
+  (ispell-program-name . "aspell")
+  (ispell-extra-args . '("--sug-mode=ultra"))
+  (ispell-dictionary . "en_US"))
 
 ;; ----------------------------------------------------------------------------------
 ;; Better paren handling
 ;; ----------------------------------------------------------------------------------
 
-(use-package smartparens
-  :defer 5
-  :functions (smartparens-global-mode sp-use-smartparens-bindings)
-  :bind (:map smartparens-mode-map
-              ("C-S-a" . sp-beginning-of-sexp)
-              ("C-S-e" . sp-end-of-sexp)
-              ("M-<left>" . sp-backward-up-sexp)
-              ("M-<right>" . sp-down-sexp)
-              ("M-<down>" . sp-forward-sexp)
-              ("M-<up>" . sp-backward-sexp))
+(leaf smartparens
+  :defun sp-use-smartparens-bindings
+  :bind (:smartparens-mode-map
+         ("C-S-a" . sp-beginning-of-sexp)
+         ("C-S-e" . sp-end-of-sexp)
+         ("M-<left>" . sp-backward-up-sexp)
+         ("M-<right>" . sp-down-sexp)
+         ("M-<down>" . sp-forward-sexp)
+         ("M-<up>" . sp-backward-sexp))
   :custom
-  (sp-navigate-interactive-always-progress-point t)
-  :preface
-  (declare-function smartparens-global-mode "smartparens.el")
-  (declare-function sp-use-smartparens-bindings "smartparens.el")
+  (sp-navigate-interactive-always-progress-point . t)
+  :global-minor-mode smartparens-global-mode
   :config
-  (smartparens-global-mode t)
   (sp-use-smartparens-bindings))
 
 ;; ----------------------------------------------------------------------------------
 ;; Editing comments in a separate buffer
 ;; ----------------------------------------------------------------------------------
 
-(use-package separedit
-  :commands #'separedit
-  :bind (:map prog-mode-map
-              ("C-c ;" . #'separedit))
+(leaf separedit
+  :bind (:prog-mode-map
+         :package prog-mode
+         ("C-c ;" . #'separedit))
   :custom
-  (separedit-default-mode 'markdown-mode)
-  (separedit-remove-trailing-spaces-in-comment t)
-  (separedit-continue-fill-column t)
-  (separedit-preserve-string-indentation t))
+  (separedit-default-mode . 'markdown-mode)
+  (separedit-remove-trailing-spaces-in-comment . t)
+  (separedit-continue-fill-column . t)
+  (separedit-preserve-string-indentation . t))
 
 ;; ----------------------------------------------------------------------------------
 ;; Nicer undo UI
@@ -222,23 +210,24 @@
 ;; warning. This is a last ditch limit to prevent memory overflow.
 (setq undo-outer-limit (* 50 1024 1024))
 
-(use-package vundo
+(leaf vundo
   :bind
   ("C-x u" . vundo)
-  (:map vundo-mode-map
-        ("C-f" . vundo-forward)
-        ("<right>" . vundo-forward)
-        ("C-b" . vundo-backward)
-        ("<left>" . vundo-backward)
-        ("C-n" . vundo-next)
-        ("<down>" . vundo-next)
-        ("C-p" . vundo-previous)
-        ("<up>" . vundo-previous)
-        ("C-a" . vundo-stem-root)
-        ("C-e" . vundo-stem-end)
-        ("C-g" . vundo-quit)
-        ("q" . vundo-confirm)
-        ("RET" . vundo-confirm))
+  (:vundo-mode-map
+   ("C-f" . vundo-forward)
+   ("<right>" . vundo-forward)
+   ("C-b" . vundo-backward)
+   ("<left>" . vundo-backward)
+   ("C-n" . vundo-next)
+   ("<down>" . vundo-next)
+   ("C-p" . vundo-previous)
+   ("<up>" . vundo-previous)
+   ("C-a" . vundo-stem-root)
+   ("C-e" . vundo-stem-end)
+   ("C-g" . vundo-quit)
+   ("q" . vundo-confirm)
+   ("RET" . vundo-confirm))
+  :defvar (vundo-glyph-alist vundo-unicode-symbols vundo-ascii-symbols vundo-pre-enter-hook)
   :config
   (defun vundo-set-symbols-for-frame ()
     "Set symbols based on whether we are in a graphical display or not."
@@ -248,14 +237,10 @@
             vundo-ascii-symbols)))
   (setq vundo-pre-enter-hook '(vundo-set-symbols-for-frame)))
 
-(use-package undo-fu-session
-  :demand
+(leaf undo-fu-session
   :custom
-  (undo-fu-session-directory (expand-file-name "undo-fu-session" back-dir))
-  (undo-fu-session-compression 'xz)
-  :preface
-  (declare-function undo-fu-session-global-mode "undo-fu-session.el")
-  :config
-  (undo-fu-session-global-mode 1))
+  `(undo-fu-session-directory . ,(expand-file-name "undo-fu-session" back-dir))
+  (undo-fu-session-compression . 'xz)
+  :global-minor-mode undo-fu-session-global-mode)
 
 ;;; editing.el ends here

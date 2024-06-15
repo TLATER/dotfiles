@@ -25,9 +25,7 @@
 ;;; Code:
 
 (eval-and-compile
-  (require 'use-package)
-  (defvar config-dir)
-  (defvar share-dir))
+  (require 'leaf))
 
 ;; ----------------------------------------------------------------------------------
 ;; ----------------------------------------------------------------------------------
@@ -39,221 +37,210 @@
 ;;; Bazel
 ;; ----------------------------------------------------------------------------------
 
-(use-package bazel
-  :mode (((rx ".bzl" string-end) . bazel-starlark-mode)
-         ((rx (or "BUILD" "BUILD.bazel") string-end) . bazel-build-mode))
+(leaf bazel
+  :mode `((,(rx ".bzl" string-end) . bazel-starlark-mode)
+         (,(rx (or "BUILD" "BUILD.bazel") string-end) . bazel-build-mode))
   :commands bazel-buildifier)
 
 ;; ----------------------------------------------------------------------------------
 ;;; CSV
 ;; ----------------------------------------------------------------------------------
 
-(use-package csv-mode
-  :mode (rx ".csv" string-end))
+(leaf csv-mode
+  :mode `(,(rx ".csv" string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Dockerfile
 ;; ----------------------------------------------------------------------------------
 
-(use-package dockerfile-mode
-  :mode (rx string-start "Dockerfile" string-end)
-  :hook (dockerfile-mode . (lambda () (setq-local devdocs-current-docs '("docker")))))
+(leaf dockerfile-mode
+  :mode `(,(rx string-start "Dockerfile" string-end))
+  :hook (dockerfile-mode-hook . (lambda () (setq-local devdocs-current-docs '("docker")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; GLSL
 ;; ----------------------------------------------------------------------------------
 
-(use-package glsl-mode
-  :mode (rx (or ".glsl" ".vert" ".frag" ".geom") string-end))
+(leaf glsl-mode
+  :mode `(,(rx (or ".glsl" ".vert" ".frag" ".geom") string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Gnuplot
 ;; ----------------------------------------------------------------------------------
 
-(use-package gnuplot
-  :mode ((rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
-  :hook (gnuplot-mode . (lambda () (setq-local devdocs-current-docs '("gnuplot")))))
+(leaf gnuplot
+  :mode `(,(rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
+  :hook (gnuplot-mode-hook . (lambda () (setq-local devdocs-current-docs '("gnuplot")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; GraphQL
 ;; ----------------------------------------------------------------------------------
 
-(use-package graphql-mode
-  :mode (rx (or ".graphql" ".gql") string-end))
+(leaf graphql-mode
+  :mode `(,(rx (or ".graphql" ".gql") string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Haskell
 ;; ----------------------------------------------------------------------------------
 
-(use-package haskell-mode
+(leaf haskell-mode
   :commands haskell-mode-stylish-buffer
-  :mode (rx ".hs" string-end)
-  :hook (haskell-mode . interactive-haskell-mode)
-  :hook (haskell-mode . (lambda () (setq-local devdocs-current-docs '("haskell~9"))))
-  :bind (:map haskell-mode-map
-              ("C-c `" . haskell-interactive-bring)))
+  :mode `(,(rx ".hs" string-end))
+  :hook (haskell-mode-hook . interactive-haskell-mode)
+  :hook (haskell-mode-hook . (lambda () (setq-local devdocs-current-docs '("haskell~9"))))
+  :bind (:haskell-mode-map
+         ("C-c `" . haskell-interactive-bring)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; JSON & co.
 ;; ----------------------------------------------------------------------------------
 
-(use-package json-mode
-  :mode (rx ".json" string-end))
+(leaf json-mode
+  :mode `(,(rx ".json" string-end)))
 
-(use-package jsonnet-mode
-  :mode (rx ".jsonnet" string-end))
+(leaf jsonnet-mode
+  :mode `(,(rx ".jsonnet" string-end)))
 
-(use-package yaml-mode
-  :mode (rx (or ".yaml" ".yml" ".bst"
-                (and string-start "project.conf")) string-end))
+(leaf yaml-mode
+  :mode `(,(rx (or ".yaml" ".yml" ".bst"
+                (and string-start "project.conf")) string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Kotlin
 ;; ----------------------------------------------------------------------------------
 
-(use-package kotlin-mode
-  :hook (kotlin-mode . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
-  :mode (rx ".kt" (optional "s") string-end))
+(leaf kotlin-mode
+  :hook (kotlin-mode-hook . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
+  :mode `(,(rx ".kt" (optional "s") string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Markdown
 ;; ----------------------------------------------------------------------------------
 
-(use-package markdown-mode
-  :hook (markdown-mode . (lambda () (setq-local devdocs-current-docs '("markdown"))))
-  :mode (rx (or
+(leaf markdown-mode
+  :hook (markdown-mode-hook . (lambda () (setq-local devdocs-current-docs '("markdown"))))
+  :mode `(,(rx (or
              (and (or ".md" ".mdwn") string-end)
-             (and string-start "/tmp/neomutt-")))
+             (and string-start "/tmp/neomutt-"))))
   :custom
-  (markdown-command '("pandoc" "--from=markdown" "--to=html5")))
+  (markdown-command . '("pandoc" "--from=markdown" "--to=html5")))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Mermaid
 ;; ----------------------------------------------------------------------------------
 
-(use-package mermaid-mode
-  :mode (rx ".mermaid" string-end))
+(leaf mermaid-mode
+  :mode `(,(rx ".mermaid" string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; nginx config files
 ;; ----------------------------------------------------------------------------------
 
-(use-package nginx-mode
-  :mode (rx "nginx.conf" string-end)
-  :hook (markdown-mode . (lambda () (setq-local devdocs-current-docs '("nginx")))))
+(leaf nginx-mode
+  :mode `(,(rx "nginx.conf" string-end))
+  :hook (markdown-mode-hook . (lambda () (setq-local devdocs-current-docs '("nginx")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Nix
 ;; ----------------------------------------------------------------------------------
 
-(use-package nix-mode
-  :commands nix-format-buffer
-  :mode (rx ".nix" string-end)
-  :hook (nix-mode . (lambda () (setq-local devdocs-current-docs '("nix")))))
+(leaf nix-mode
+  :mode `(,(rx ".nix" string-end))
+  :hook (nix-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; org
 ;; ----------------------------------------------------------------------------------
 
 ;; Configure org-mode
-(use-package org
-  :functions org-babel-do-load-languages
-  :mode ((rx ".org" string-end) . org-mode)
+(leaf org
+  :mode `(,(rx ".org" string-end) . org-mode)
   :custom
-  (org-latex-listings t "Whether to use lstlistings for org latex exports")
-  :config
+  (org-latex-listings . t)
+  :defer-config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((emacs-lisp . t)
      (gnuplot . t))))
 
-(use-package org-roam
-  :demand
+(leaf org-roam
   :custom
-  (org-roam-db-location (expand-file-name "org-roam.db" data-dir))
-  (org-roam-directory "~/Documents/Notes/")
-  (org-roam-dailies-directory "Journal") ; Relative to org-roam-directory
-  (org-agenda-files '("~/Documents/Notes/Journal/"))
+  `(org-roam-db-location . ,(expand-file-name "org-roam.db" data-dir))
+  (org-roam-directory . "~/Documents/Notes/")
+  (org-roam-dailies-directory . "Journal") ; Relative to org-roam-directory
+  (org-agenda-files . '("~/Documents/Notes/Journal/"))
   :bind
-  ("C-c n f" . org-roam-node-find)
-  ("C-c n i" . org-roam-node-insert)
-  :bind-keymap
-  ("C-c n d" . org-roam-dailies-map)
-  :preface
-  (declare-function org-roam-db-autosync-mode "org-roam.el")
+  (("C-c n f" . org-roam-node-find)
+   ("C-c n i" . org-roam-node-insert))
+  :global-minor-mode org-roam-db-autosync-mode
+  :defvar org-roam-dailies-map
   :config
   (require 'org-roam-dailies)
-  (org-roam-db-autosync-mode 1))
+  (bind-key "C-c n d" 'org-roam-dailies-map))
 
 ;; Used by org-agenda to store the TODO mark
-(use-package bookmark
+(leaf bookmark
   :custom
-  (bookmark-file (expand-file-name "bookmarks" data-dir)))
+  `(bookmark-file . ,(expand-file-name "bookmarks" data-dir)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Protobuf
 ;; ----------------------------------------------------------------------------------
 
-(use-package protobuf-mode
-  :mode (rx ".proto" string-end))
+(leaf protobuf-mode
+  :mode `(,(rx ".proto" string-end)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Python
 ;; ----------------------------------------------------------------------------------
 
-(use-package python
-  :mode ((rx ".py" string-end) . python-mode)
+(leaf python
+  :mode `(,(rx ".py" string-end) . python-mode)
   :interpreter ("python" . python-mode)
-  :hook (python-mode . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
-  :init
-  (when (executable-find "ipython")
-    (setq python-shell-interpreter "ipython"
-          python-shell-interpreter-args "--simple-prompt -i"))
-  (when (executable-find "ipython3")
-    (setq python-shell-interpreter "ipython3"
-          python-shell-interpreter-args "--simple-prompt -i")))
+  :hook (python-mode-hook . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
+  :custom
+  (python-shell-interpreter . '(cond
+                                ((executable-find "ipython") "ipython")
+                                ((executable-find "ipython3") "ipython3")
+                                ((executable-find "python3") "python3")))
+  (python-shell-interpreter-args . "--simple-prompt -i"))
 
-(use-package cython-mode
-  :mode ((rx (or ".pyx" ".pxd" ".pxi") string-end))
-  :hook (cython-mode . (lambda () (setq-local devdocs-current-docs '("python~3.11")))))
+(leaf cython-mode
+  :mode `(,(rx (or ".pyx" ".pxd" ".pxi") string-end))
+  :hook (cython-mode-hook . (lambda () (setq-local devdocs-current-docs '("python~3.11")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Rust
 ;; ----------------------------------------------------------------------------------
 
-(use-package rust-mode
-  :mode ((rx ".rs" string-end) . rust-mode)
-  :hook (rust-mode . (lambda () (setq-local devdocs-current-docs '("rust")))))
-
-(use-package cargo-mode
-  :hook (rust-mode . (lambda () (setq-local devdocs-current-docs '("rust"))))
-  :mode ((rx (or (and ".rs" string-end)
-                 (and string-start "Cargo.toml" string-end)))
-         . rust-mode))
+(leaf rust-mode
+  :mode `(,(rx (or (and ".rs" string-end)
+                 (and string-start "Cargo.toml" string-end))) . rust-mode)
+  :hook (rust-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; SCSS
 ;; ----------------------------------------------------------------------------------
 
-(use-package scss-mode
-  :mode (rx (or ".sass" ".scss") string-end)
-  :hook (scss-mode . (lambda () (setq-local devdocs-current-docs '("css" "sass")))))
+(leaf scss-mode
+  :mode `(,(rx (or ".sass" ".scss") string-end))
+  :hook (scss-mode-hook . (lambda () (setq-local devdocs-current-docs '("css" "sass")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; *sh
 ;; ----------------------------------------------------------------------------------
 
-(use-package flymake-shellcheck
+(leaf flymake-shellcheck
   :commands flymake-shellcheck-load
-  :hook (sh-mode . flymake-shellcheck-load)
-  :hook (sh-mode . (lambda () (setq-local devdocs-current-docs '("bash")))))
+  :hook (sh-mode-hook . flymake-shellcheck-load)
+  :hook (sh-mode-hook . (lambda () (setq-local devdocs-current-docs '("bash")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Systemd
 ;; ----------------------------------------------------------------------------------
 
-(use-package systemd
-  :mode ((rx (or".service" ".socket" ".device" ".mount" ".automount"
+(leaf systemd
+  :mode `(,(rx (or".service" ".socket" ".device" ".mount" ".automount"
                 ".swap" ".target" ".path" ".timer" ".slice" ".scope")
              string-end)
          . systemd-mode))
@@ -262,28 +249,24 @@
 ;;; TypeScript (and other web-related DSLs)
 ;; ----------------------------------------------------------------------------------
 
-(use-package web-mode
-  :bind
-  :mode (rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end)
-  :hook (web-mode . (lambda () (setq-local devdocs-current-docs
-                                           '("html"
-                                             "typescript"
-                                             "css"
-                                             "javascript"
-                                             "dom")))))
-
-(use-package prettier-js
-  :commands prettier-js)
+(leaf web-mode
+  :mode `(,(rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
+  :hook (web-mode-hook . (lambda () (setq-local devdocs-current-docs
+                                                '("html"
+                                                  "typescript"
+                                                  "css"
+                                                  "javascript"
+                                                  "dom")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; yuck - widget markup for eww
 ;; ----------------------------------------------------------------------------------
 
-(use-package yuck-mode
-  :mode (rx ".yuck" string-end))
+(leaf yuck-mode
+  :mode `(,(rx ".yuck" string-end)))
 
-(use-package zen-mode
-  :mode (rx ".zs"))
+(leaf zen-mode
+  :mode `(,(rx ".zs")))
 
 ;; ----------------------------------------------------------------------------------
 ;; ----------------------------------------------------------------------------------
@@ -295,21 +278,21 @@
 ;;; Language servers
 ;; ----------------------------------------------------------------------------------
 
-(use-package company
-  :hook (after-init . global-company-mode)
+(leaf company
+  :hook (after-init-hook . global-company-mode)
   :custom
-  (company-idle-delay 0.1))
+  (company-idle-delay . 0.1))
 
-(use-package eldoc
+(leaf eldoc
   :bind (("C-c l d" . 'eldoc-doc-buffer))
   :custom
-    (eldoc-echo-area-prefer-doc-buffer t)
-  (eldoc-echo-area-use-multiline-p .15)
-  (eldoc-echo-area-display-truncation-message 'nil)
+  (eldoc-echo-area-prefer-doc-buffer . t)
+  (eldoc-echo-area-use-multiline-p . .15)
+  (eldoc-echo-area-display-truncation-message . 'nil)
   :config
   (global-eldoc-mode 1))
 
-(use-package xref
+(leaf xref
   :bind (("C-c l f" . xref-find-definitions-other-window)))
 
 (defun set-eldoc-compose ()
@@ -318,43 +301,44 @@
   (with-suppressed-warnings ((obsolete eldoc-documentation-strategy))
     (setq-local eldoc-documentation-strategy #'eldoc-documentation-compose)))
 
-(use-package eglot
-  :commands (eglot eglot-format eglot-managed-p eglot--major-mode eglot-alternatives)
-  :hook (((kotlin-mode web-mode rust-mode python-mode sh-mode c-mode c++-mode nix-mode json-mode) .
-          eglot-ensure)
-         (eglot-managed-mode . set-eldoc-compose))
-  :bind
-  (:map eglot-mode-map
-        ("C-c l r" . eglot-rename)
-        ("C-c l a" . eglot-code-actions)
-        ("C-c l i" . consult-eglot-symbols))
-  :init
-  (setq eglot-workspace-configuration
-        '((nixd
-           (formatting
-            (command . ["nixfmt"])))
-          (pylsp
-           (plugins
-            (pydocstyle
-             (enabled . t)
-             ;; Does not currently work:
-             ;; https://github.com/python-lsp/python-lsp-server/issues/159
-             (match . ".*"))
-            (pycodestyle
-             ;; Make compatible with black:
-             ;; https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length
-             (maxLineLength . 88)
-             ;; Only E203 is incompatible with black and enabled by
-             ;; default, but defining *any* ignore list will override
-             ;; the default ignore list, so we need to recreate the
-             ;; original.
-             ;;
-             ;; See also the small caveat under the huge table here:
-             ;; https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
-             (ignore . ["E203" "E121" "E123" "E126" "E133" "E226"
-                        "E241" "E242" "E704" "W503" "W504" "W505"]))))))
+(leaf eglot
+  :commands (eglot eglot-format eglot-managed-p)
+  :hook (((kotlin-mode-hook web-mode-hook rust-mode-hook python-mode-hook
+           sh-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook) .
+           eglot-ensure)
+         (eglot-managed-mode-hook . set-eldoc-compose))
+  :bind (:eglot-mode-map
+         ("C-c l r" . eglot-rename)
+         ("C-c l a" . eglot-code-actions)
+         ("C-c l i" . consult-eglot-symbols))
+  :defun eglot-alternatives
+  :defvar eglot-workspace-configuration eglot-server-programs
+  :setq (eglot-workspace-configuration .
+    '((nixd
+       (formatting
+        (command . ["nixfmt"])))
+      (pylsp
+       (plugins
+        (pydocstyle
+         (enabled . t)
+         ;; Does not currently work:
+         ;; https://github.com/python-lsp/python-lsp-server/issues/159
+         (match . ".*"))
+        (pycodestyle
+         ;; Make compatible with black:
+         ;; https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#line-length
+         (maxLineLength . 88)
+         ;; Only E203 is incompatible with black and enabled by
+         ;; default, but defining *any* ignore list will override
+         ;; the default ignore list, so we need to recreate the
+         ;; original.
+         ;;
+         ;; See also the small caveat under the huge table here:
+         ;; https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
+         (ignore . ["E203" "E121" "E123" "E126" "E133" "E226"
+                    "E241" "E242" "E704" "W503" "W504" "W505"]))))))
 
-  :config
+  :defer-config
   (add-to-list 'eglot-server-programs
                '(rust-mode . ("rust-analyzer"
                               :initializationOptions
@@ -369,30 +353,30 @@
   (add-to-list 'eglot-server-programs
                '(nix-mode . ("nixd"))))
 
-(use-package eglot-x
+(leaf eglot-x
   :after eglot
-  :commands eglot-x-setup
-  :demand t
+  :require t
+  :defun eglot-x-setup
   :config
   (eglot-x-setup))
 
-(use-package flymake
-  :hook (prog-mode . flymake-mode)
-  :bind (:map flymake-mode-map
+(leaf flymake
+  :hook (prog-mode-hook . flymake-mode)
+  :bind (:flymake-mode-map
               ("C-c l e" . flymake-show-buffer-diagnostics)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Autoformatting
 ;; ----------------------------------------------------------------------------------
 
-(use-package reformatter
+(leaf reformatter
   :commands (biome-format-region
              biome-format-buffer
              clang-format-region
              clang-format-buffer
              latexindent-region
              latexindent-buffer)
-  :config
+  :defer-config
   ;; Work around `make-variable-buffer-local' being called at a
   ;; non-top-level.
   ;;

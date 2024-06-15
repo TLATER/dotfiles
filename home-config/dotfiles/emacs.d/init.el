@@ -31,9 +31,6 @@
 ;; ----------------------------------------------------------------------------------
 
 
-(defvar config-dir (expand-file-name
-                    "config"
-                    (file-name-directory load-file-name)))
 (defvar data-dir (expand-file-name
                   "emacs"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
@@ -41,8 +38,8 @@
                   "emacs/backups"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
 (defvar share-dir (expand-file-name
-                   "share"
-                   (file-name-directory load-file-name)))
+                   "emacs/share"
+                   (or (getenv "XDG_CONFIG_HOME") "~/.config")))
 (defvar cache-dir (expand-file-name
                    "emacs"
                    (or (getenv "XDG_CACHE_HOME") "~/.cache")))
@@ -64,39 +61,29 @@
 (setq package-user-dir (expand-file-name "elpa" data-dir))
 (setq package-gnupghome-dir (expand-file-name "gnupg" package-user-dir))
 
-;; Setup use-package
-;; bind-key is a dependency...
-(require 'bind-key)
-(require 'use-package)
+(require 'leaf)
 
 ;; Make sure emacs doesn't try to randomly fetch packages itself; nix is in charge of
 ;; that
 (setq package-enable-at-startup nil)
-(setq use-package-always-ensure nil)
-(setq use-package-ensure-function 'ignore)
-
-;; Avoid all kinds of byte compilation warnings - see
-;; https://github.com/jwiegley/use-package/issues/590
-(eval-when-compile
-  (setq use-package-expand-minimally byte-compile-current-file))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Set up improved garbage collection for better startup and runtime performance.
 ;; ----------------------------------------------------------------------------------
 
-(use-package gcmh
-  :config
-  (gcmh-mode 1))
+(leaf gcmh
+  :global-minor-mode t)
 
 ;; ----------------------------------------------------------------------------------
 ;;; Load other configuration files
 ;; ----------------------------------------------------------------------------------
 
 ;; Load everything in the config directory
-(when (file-exists-p config-dir)
-  (mapc (lambda (file)
-          (load (file-name-sans-extension file) nil nil nil t))
-        (directory-files config-dir t "^[^#\.].*\\.el$")))
+(let ((config-dir (expand-file-name "config" (file-name-directory load-file-name))))
+  (when (file-exists-p config-dir)
+    (mapc (lambda (file)
+            (load (file-name-sans-extension file) nil nil nil t))
+          (directory-files config-dir t "^[^#\.].*\\.el$"))))
 
 ;; Finally load `custom.el'' for any declarative settings; there *should* be none, but
 ;; occasionally I need something a bit less rigid than my nix config for a little while.
