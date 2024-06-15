@@ -31,6 +31,45 @@
       sha256 = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
     };
   };
+  edopro = {
+    pname = "edopro";
+    version = "dd5c5626f50c698f0e5d9ec7b90eefb5e10093ff";
+    src = fetchFromGitHub {
+      owner = "edo9300";
+      repo = "edopro";
+      rev = "dd5c5626f50c698f0e5d9ec7b90eefb5e10093ff";
+      fetchSubmodules = true;
+      sha256 = "sha256-6EEwJD5CB0IkWvz/rGAKHhkDJb0BpXG1Ejq8exIsuOg=";
+    };
+    date = "2024-06-22";
+  };
+  edopro-distribution = {
+    pname = "edopro-distribution";
+    version = "286db345033c79cab6e36a8f06de3468008ff8cd";
+    src = fetchFromGitHub {
+      owner = "ProjectIgnis";
+      repo = "Distribution";
+      rev = "286db345033c79cab6e36a8f06de3468008ff8cd";
+      fetchSubmodules = true;
+      deepClone = false;
+      leaveDotGit = true;
+      sparseCheckout = [ ];
+      sha256 = "sha256-ocC1LdAGnKfNqsAHAEudn1XeG3WdFRHASIndrxTGq0g=";
+    };
+    date = "2024-06-13";
+  };
+  edopro-irrlicht = {
+    pname = "edopro-irrlicht";
+    version = "ba76104ccb104d769cdccda014e0a3966f7c40ac";
+    src = fetchFromGitHub {
+      owner = "edo9300";
+      repo = "irrlicht1-8-4";
+      rev = "ba76104ccb104d769cdccda014e0a3966f7c40ac";
+      fetchSubmodules = false;
+      sha256 = "sha256-xVlVt9zv7SenEYhBQSop4UnNS5g4N5aPgiqSHhhajD8=";
+    };
+    date = "2024-03-16";
+  };
   eglot-x = {
     pname = "eglot-x";
     version = "ada0c9f32deac90038661f461966aae51707abff";

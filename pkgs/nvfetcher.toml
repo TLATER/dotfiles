@@ -14,6 +14,21 @@ fetch.url = "https://app.drivestrike.com/static/yum/drivestrike.rpm"
 src.git = "https://github.com/nemethf/eglot-x"
 fetch.github = "nemethf/eglot-x"
 
+[edopro]
+src.git = "https://github.com/edo9300/edopro.git"
+fetch.github = "edo9300/edopro"
+git.fetchSubmodules = true
+
+[edopro-distribution]
+src.git = "https://github.com/ProjectIgnis/Distribution.git"
+fetch.github = "ProjectIgnis/Distribution"
+git.fetchSubmodules = true
+git.leaveDotGit = true
+
+[edopro-irrlicht]
+src.git = "https://github.com/edo9300/irrlicht1-8-4.git"
+fetch.github = "edo9300/irrlicht1-8-4"
+
 [firefox-ui-fix]
 src.github = "black7375/Firefox-UI-Fix"
 fetch.github = "black7375/Firefox-UI-Fix"
