@@ -9,6 +9,12 @@
 
     ./firefox.nix
     ./hardware-policy.nix
+
+    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop
+    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
+    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
   ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/rin.nix";
