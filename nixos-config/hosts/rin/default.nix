@@ -17,6 +17,8 @@
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
   ];
 
+  boot.extraModprobeConfig = "options snd-hda-intel model=thinkpad,dmic-thinkpad\n";
+
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/rin.nix";
 
   sops.age.keyFile = "/var/lib/sops/host.age";
