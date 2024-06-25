@@ -58,7 +58,7 @@
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
-        "date": "2024-06-19",
+        "date": null,
         "extract": null,
         "name": "firefox-ui-fix",
         "passthru": null,
@@ -70,12 +70,12 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "5861dbaaf4e5e6671cb230ef7da0b3ae4e7d49d1",
-            "sha256": "sha256-1DfRgmcjkDedIF+R8cOkA8A2uZ2CU8vI0f6Q0gxlyvY=",
+            "rev": "v8.6.1",
+            "sha256": "sha256-OP+gD4sJWfGSjZu2yGkkWct7A0YqVcwE+EmNDixAVGs=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "5861dbaaf4e5e6671cb230ef7da0b3ae4e7d49d1"
+        "version": "v8.6.1"
     },
     "gauth": {
         "cargoLocks": null,

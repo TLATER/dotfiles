@@ -11,9 +11,7 @@ src.cmd = "./get-drivestrike-version.sh"
 fetch.url = "https://app.drivestrike.com/static/yum/drivestrike.rpm"
 
 [firefox-ui-fix]
-src.git = "https://github.com/black7375/Firefox-UI-Fix"
-# For the time being, until this project figures out its releasening
-src.branch = "master"
+src.github = "black7375/Firefox-UI-Fix"
 fetch.github = "black7375/Firefox-UI-Fix"
 
 [gauth]

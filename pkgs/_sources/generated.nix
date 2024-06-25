@@ -33,15 +33,14 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "5861dbaaf4e5e6671cb230ef7da0b3ae4e7d49d1";
+    version = "v8.6.1";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "5861dbaaf4e5e6671cb230ef7da0b3ae4e7d49d1";
+      rev = "v8.6.1";
       fetchSubmodules = false;
-      sha256 = "sha256-1DfRgmcjkDedIF+R8cOkA8A2uZ2CU8vI0f6Q0gxlyvY=";
+      sha256 = "sha256-OP+gD4sJWfGSjZu2yGkkWct7A0YqVcwE+EmNDixAVGs=";
     };
-    date = "2024-06-19";
   };
   gauth = {
     pname = "gauth";
