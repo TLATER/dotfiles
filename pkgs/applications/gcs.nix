@@ -97,6 +97,6 @@ buildGoModule {
       rm $out/bin/{gen,packaging,scr}
     '';
 
-  vendorHash = "sha256-3T3wHGIFnXqC6dY40kOuiKkwpeN3FwUef73JFCa5p2k=";
+  vendorHash = "sha256-jRWi3pWC9Vu29BFLHtEcr2mzU0CBZc6AoP9k3sY+Qzc=";
   meta.mainProgram = "${sources.gcs.pname}";
 }
