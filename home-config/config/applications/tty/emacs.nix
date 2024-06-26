@@ -1,5 +1,6 @@
 { pkgs, flake-inputs, ... }:
 let
+  inherit (flake-inputs) self;
   inherit (flake-inputs.self.packages.${pkgs.system}) emacs;
   inherit (flake-inputs.nixd.packages.${pkgs.system}) nixd;
 in
@@ -43,7 +44,7 @@ in
     ];
 
   xdg.configFile."emacs" = {
-    source = emacs.dotfiles;
+    source = "${self}/home-config/dotfiles/emacs.d/";
     recursive = true;
   };
 
