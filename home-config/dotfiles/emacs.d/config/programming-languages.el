@@ -249,8 +249,11 @@
 ;;; TypeScript (and other web-related DSLs)
 ;; ----------------------------------------------------------------------------------
 
+(leaf typescript-ts-mode
+  :mode `(,(rx ".ts" (? "x") string-end)))
+
 (leaf web-mode
-  :mode `(,(rx (or ".pug" ".hbs" (and ".ts" (? "x"))) string-end))
+  :mode `(,(rx (or ".pug" ".hbs") string-end))
   :hook (web-mode-hook . (lambda () (setq-local devdocs-current-docs
                                                 '("html"
                                                   "typescript"
@@ -345,9 +348,10 @@
                               (:checkOnSave
                                (:command "clippy")))))
   (add-to-list 'eglot-server-programs
-               `(web-mode . ,(eglot-alternatives
-                              '(("biome" "lsp-proxy")
-                                ("typescript-language-server" "--stdio")))))
+               `((typescript-ts-mode :language-id "typescriptreact")
+                 . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs
+               `(web-mode . ("biome" "lsp-proxy")))
   (add-to-list 'eglot-server-programs
                '(json-mode . ("biome" "lsp-proxy")))
   (add-to-list 'eglot-server-programs

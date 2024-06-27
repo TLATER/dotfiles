@@ -26,7 +26,12 @@ let
   required-packages = builtins.fromJSON (builtins.readFile package-list) ++ [ "leaf" ];
 
   custom-emacs = emacsPkgs.emacs.pkgs.withPackages (
-    epkgs: map (package: builtins.getAttr package epkgs) required-packages
+    epkgs: (map (package: builtins.getAttr package epkgs) required-packages) ++ [
+      (epkgs.treesit-grammars.with-grammars (grammars: with grammars; [
+        tree-sitter-typescript
+        tree-sitter-tsx
+      ]))
+    ]
   );
 in
 custom-emacs
