@@ -115,7 +115,7 @@
         addresses = lib.concatMapStringsSep "," (pool: pool.base) dockerAddressPools;
       in
       ''
-        iptables -A INPUT -s ${addresses} -d ${addresses} -j ACCEPT
+        iptables -A INPUT -s ${addresses} -d ${addresses},172.17.0.1 -j ACCEPT
       '';
   };
 
