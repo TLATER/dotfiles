@@ -13,12 +13,12 @@
             "name": null,
             "owner": "matthewbauer",
             "repo": "bauer",
-            "rev": "v1.5.3",
-            "sha256": "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=",
+            "rev": "v2.0.1",
+            "sha256": "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v1.5.3"
+        "version": "v2.0.1"
     },
     "deepfilternet": {
         "cargoLocks": null,
@@ -58,7 +58,7 @@
     },
     "eglot-x": {
         "cargoLocks": null,
-        "date": "2024-04-27",
+        "date": "2024-07-02",
         "extract": null,
         "name": "eglot-x",
         "passthru": null,
@@ -70,11 +70,12 @@
             "name": null,
             "owner": "nemethf",
             "repo": "eglot-x",
-            "rev": "cc6a198945211bd20a6e1e2f448fecdc18ca5c88",
-            "sha256": "sha256-BKXJvODdqqNjO4XyH/HH6CRPRVhmuJt67cRJWQ3WKAQ=",
+            "rev": "14aa967a431f0b4d4f9e787c98b208e28f488c0b",
+            "sha256": "sha256-/a4sMkQ7AUXMtOADuKKLhI1HLLCHRYms3H90xij/tm0=",
+            "sparseCheckout": [],
             "type": "github"
         },
-        "version": "cc6a198945211bd20a6e1e2f448fecdc18ca5c88"
+        "version": "14aa967a431f0b4d4f9e787c98b208e28f488c0b"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
@@ -90,12 +91,12 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "v8.6.1",
-            "sha256": "sha256-OP+gD4sJWfGSjZu2yGkkWct7A0YqVcwE+EmNDixAVGs=",
+            "rev": "v8.6.2",
+            "sha256": "sha256-19aivAOvXeFOnsP5XhitK3+xk1lwUyXoTK8BE84qbFQ=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "v8.6.1"
+        "version": "v8.6.2"
     },
     "gauth": {
         "cargoLocks": null,
@@ -141,7 +142,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2024-06-20",
+        "date": "2024-07-03",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -153,12 +154,12 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "a87e9c715b2d3249681f9cc8f8d9718030674d50",
-            "sha256": "sha256-5eE3tBYBw8nkmmSR32SM8z0I01MSQAtIP2pEkE3bgRs=",
+            "rev": "057f3ec67e65661d3c01b757ec5cad0a3718453e",
+            "sha256": "sha256-gRQ1F13/CZaxLmDT5L+seUPldP7pBy3n3AcnfBnpcO8=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "a87e9c715b2d3249681f9cc8f8d9718030674d50"
+        "version": "057f3ec67e65661d3c01b757ec5cad0a3718453e"
     },
     "phosphor-icons": {
         "cargoLocks": null,

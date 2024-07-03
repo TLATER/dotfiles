@@ -3,13 +3,13 @@
 {
   bauer = {
     pname = "bauer";
-    version = "v1.5.3";
+    version = "v2.0.1";
     src = fetchFromGitHub {
       owner = "matthewbauer";
       repo = "bauer";
-      rev = "v1.5.3";
+      rev = "v2.0.1";
       fetchSubmodules = false;
-      sha256 = "sha256-IBzX7WASluoxXVdWkoJHRIQQF4Fi7IJOvRfRl+W3YZI=";
+      sha256 = "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=";
     };
   };
   deepfilternet = {
@@ -33,25 +33,25 @@
   };
   eglot-x = {
     pname = "eglot-x";
-    version = "cc6a198945211bd20a6e1e2f448fecdc18ca5c88";
+    version = "14aa967a431f0b4d4f9e787c98b208e28f488c0b";
     src = fetchFromGitHub {
       owner = "nemethf";
       repo = "eglot-x";
-      rev = "cc6a198945211bd20a6e1e2f448fecdc18ca5c88";
+      rev = "14aa967a431f0b4d4f9e787c98b208e28f488c0b";
       fetchSubmodules = false;
-      sha256 = "sha256-BKXJvODdqqNjO4XyH/HH6CRPRVhmuJt67cRJWQ3WKAQ=";
+      sha256 = "sha256-/a4sMkQ7AUXMtOADuKKLhI1HLLCHRYms3H90xij/tm0=";
     };
-    date = "2024-04-27";
+    date = "2024-07-02";
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.6.1";
+    version = "v8.6.2";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.6.1";
+      rev = "v8.6.2";
       fetchSubmodules = false;
-      sha256 = "sha256-OP+gD4sJWfGSjZu2yGkkWct7A0YqVcwE+EmNDixAVGs=";
+      sha256 = "sha256-19aivAOvXeFOnsP5XhitK3+xk1lwUyXoTK8BE84qbFQ=";
     };
   };
   gauth = {
@@ -78,15 +78,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "a87e9c715b2d3249681f9cc8f8d9718030674d50";
+    version = "057f3ec67e65661d3c01b757ec5cad0a3718453e";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "a87e9c715b2d3249681f9cc8f8d9718030674d50";
+      rev = "057f3ec67e65661d3c01b757ec5cad0a3718453e";
       fetchSubmodules = false;
-      sha256 = "sha256-5eE3tBYBw8nkmmSR32SM8z0I01MSQAtIP2pEkE3bgRs=";
+      sha256 = "sha256-gRQ1F13/CZaxLmDT5L+seUPldP7pBy3n3AcnfBnpcO8=";
     };
-    date = "2024-06-20";
+    date = "2024-07-03";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
