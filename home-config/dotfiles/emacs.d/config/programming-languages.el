@@ -316,7 +316,7 @@
          ("C-c l i" . consult-eglot-symbols))
   :defun eglot-alternatives
   :defvar eglot-workspace-configuration eglot-server-programs
-  :setq (eglot-workspace-configuration .
+  :setq-default (eglot-workspace-configuration .
     '((nixd
        (formatting
         (command . ["nixfmt"])))
