@@ -8,18 +8,17 @@ jobs:
     name: Update flake inputs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
-      - uses: cachix/install-nix-action@v18
+      - uses: cachix/install-nix-action@v27
         with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
           # seem to universally support flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - uses: DeterminateSystems/magic-nix-cache-action@main
-      - uses: crazy-max/ghaction-import-gpg@v5
+      - uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GIT_SIGNING_KEY }}
           git_user_signingkey: true
