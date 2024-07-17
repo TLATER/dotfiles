@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: git-conventional-commit
+# key: c
+# condition: (git-commit-mode)
+# --
+${1:type$(yas-choose-value '( "feat" "fix" "test" "chore" "refactor" "doc" "style" "release" "update" "bump" "perf" "ci"))}${2:(scope)}: ${3:Commit message}
+
+$0
