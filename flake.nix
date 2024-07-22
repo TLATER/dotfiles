@@ -4,11 +4,6 @@
   inputs = {
     # NixOS related inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-unfree = {
-      url = "github:numtide/nixpkgs-unfree";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix = {
@@ -25,11 +20,6 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    aagl = {
-      url = "github:ezKEa/aagl-gtk-on-nix/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -53,11 +43,6 @@
     };
     nixd.url = "github:nix-community/nixd";
 
-    # Other project inputs
-    nvfetcher = {
-      url = "github:berberman/nvfetcher";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     deadnix.url = "github:astro/deadnix";
   };
 
@@ -67,7 +52,6 @@
       nixpkgs,
       home-manager,
       sops-nix,
-      nvfetcher,
       ...
     }@inputs:
     {
@@ -143,12 +127,12 @@
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
           inherit (self.packages.x86_64-linux) commit-nvfetcher;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nvchecker;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nvchecker nvfetcher;
           home-manager-bin = home-manager.packages.x86_64-linux.default;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
           packages = [
-            nvfetcher.packages.x86_64-linux.default
+            nvfetcher
             nvchecker
             commit-nvfetcher
             home-manager-bin

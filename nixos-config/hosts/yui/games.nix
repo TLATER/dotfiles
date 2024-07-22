@@ -1,8 +1,7 @@
-{ pkgs, flake-inputs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     # flake-inputs.nix-gaming.nixosModules.pipewireLowLatency
-    flake-inputs.aagl.nixosModules.default
   ];
 
   environment.systemPackages = [ pkgs.mangohud ];
@@ -20,7 +19,6 @@
       enable = true;
       gamescopeSession.enable = true;
     };
-    anime-game-launcher.enable = true;
     gamescope = {
       enable = true;
       capSysNice = true;
@@ -39,7 +37,4 @@
 
   # Star citizen needs more
   boot.kernel.sysctl."vm.max_map_count" = 16777216;
-
-  # AAGL
-  nix.settings = flake-inputs.aagl.nixConfig;
 }

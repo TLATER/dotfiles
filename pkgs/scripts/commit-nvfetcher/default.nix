@@ -1,15 +1,14 @@
 {
-  system,
   writeShellApplication,
   git,
   mktemp,
-  flake-inputs,
+  nvfetcher,
 }:
 writeShellApplication {
   name = "commit-nvfetcher";
 
   runtimeInputs = [
-    flake-inputs.nvfetcher.packages.${system}.default
+    nvfetcher
     git
     mktemp
   ];
