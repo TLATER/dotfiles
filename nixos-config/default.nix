@@ -79,6 +79,7 @@
         extraGroups = [
           "wheel"
           "video"
+          "unbound"
         ];
       };
     };
