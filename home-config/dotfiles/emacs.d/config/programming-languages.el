@@ -232,8 +232,8 @@
 
 (leaf flymake-shellcheck
   :commands flymake-shellcheck-load
-  :hook (sh-mode-hook . flymake-shellcheck-load)
-  :hook (sh-mode-hook . (lambda () (setq-local devdocs-current-docs '("bash")))))
+  :hook ((sh-mode-hook bash-ts-mode-hook) . flymake-shellcheck-load)
+  :hook ((sh-mode-hook bash-ts-mode-hook) . (lambda () (setq-local devdocs-current-docs '("bash")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Systemd
@@ -307,7 +307,7 @@
 (leaf eglot
   :commands (eglot eglot-format eglot-managed-p)
   :hook (((kotlin-mode-hook web-mode-hook rust-mode-hook python-mode-hook
-           sh-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook) .
+           sh-mode-hook bash-ts-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook) .
            eglot-ensure)
          (eglot-managed-mode-hook . set-eldoc-compose))
   :bind (:eglot-mode-map

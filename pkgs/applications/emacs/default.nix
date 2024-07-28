@@ -28,6 +28,7 @@ let
   custom-emacs = emacsPkgs.emacs.pkgs.withPackages (
     epkgs: (map (package: builtins.getAttr package epkgs) required-packages) ++ [
       (epkgs.treesit-grammars.with-grammars (grammars: with grammars; [
+        tree-sitter-bash
         tree-sitter-typescript
         tree-sitter-tsx
       ]))
