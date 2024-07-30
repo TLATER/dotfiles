@@ -15,7 +15,6 @@
             "repo": "bauer",
             "rev": "v2.0.1",
             "sha256": "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v2.0.1"
@@ -36,7 +35,6 @@
             "repo": "DeepFilterNet",
             "rev": "v0.5.6",
             "sha256": "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v0.5.6"
@@ -58,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2024-06-22",
+        "date": "2024-07-18",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -70,12 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "dd5c5626f50c698f0e5d9ec7b90eefb5e10093ff",
-            "sha256": "sha256-6EEwJD5CB0IkWvz/rGAKHhkDJb0BpXG1Ejq8exIsuOg=",
-            "sparseCheckout": [],
+            "rev": "473af98e3f5eb015a2b481481abbcc8c8027b484",
+            "sha256": "sha256-orAFzOHPrJ4BzQ+6sBljkiBZjbSSPiIelH12fdytRT4=",
             "type": "github"
         },
-        "version": "dd5c5626f50c698f0e5d9ec7b90eefb5e10093ff"
+        "version": "473af98e3f5eb015a2b481481abbcc8c8027b484"
     },
     "edopro-distribution": {
         "cargoLocks": null,
@@ -92,8 +89,7 @@
             "owner": "ProjectIgnis",
             "repo": "Distribution",
             "rev": "286db345033c79cab6e36a8f06de3468008ff8cd",
-            "sha256": "sha256-ulolyrOw6bBySIRi1LEDwGASuUjO1OzRdmdx+VlcW+8=",
-            "sparseCheckout": [],
+            "sha256": "sha256-ojbN+QH1nS2NCXDp4kwvEKWTxU+PO94gs9hbTGM0i70=",
             "type": "github"
         },
         "version": "286db345033c79cab6e36a8f06de3468008ff8cd"
@@ -114,14 +110,13 @@
             "repo": "irrlicht1-8-4",
             "rev": "ba76104ccb104d769cdccda014e0a3966f7c40ac",
             "sha256": "sha256-xVlVt9zv7SenEYhBQSop4UnNS5g4N5aPgiqSHhhajD8=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "ba76104ccb104d769cdccda014e0a3966f7c40ac"
     },
     "eglot-x": {
         "cargoLocks": null,
-        "date": "2024-07-07",
+        "date": "2024-07-30",
         "extract": null,
         "name": "eglot-x",
         "passthru": null,
@@ -133,12 +128,11 @@
             "name": null,
             "owner": "nemethf",
             "repo": "eglot-x",
-            "rev": "ada0c9f32deac90038661f461966aae51707abff",
-            "sha256": "sha256-qZrJkGUBnSvH6w2MuIdYg/2Vb7eowAU0CqTw2LleDhM=",
-            "sparseCheckout": [],
+            "rev": "34eb04fcd456158f486b59f4e3b3ad8f95f9fbaa",
+            "sha256": "sha256-/YXoZhySujtQhcmi74Tdv7Hp/DAz5UEnujUcucusMzg=",
             "type": "github"
         },
-        "version": "ada0c9f32deac90038661f461966aae51707abff"
+        "version": "34eb04fcd456158f486b59f4e3b3ad8f95f9fbaa"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
@@ -156,7 +150,6 @@
             "repo": "Firefox-UI-Fix",
             "rev": "v8.6.2",
             "sha256": "sha256-19aivAOvXeFOnsP5XhitK3+xk1lwUyXoTK8BE84qbFQ=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v8.6.2"
@@ -177,7 +170,6 @@
             "repo": "gauth",
             "rev": "v1.3.0",
             "sha256": "sha256-GU6HKha7Y01HJX6pyYHORUkFKgl9mWtDd65d+3pYxjI=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v1.3.0"
@@ -196,16 +188,15 @@
             "name": null,
             "owner": "richardwilkes",
             "repo": "gcs",
-            "rev": "v5.23.0",
-            "sha256": "sha256-nxVTteft7cKs6vgMgMIavZJnq8T64we7AiihSFHc0nc=",
-            "sparseCheckout": [],
+            "rev": "v5.26.0",
+            "sha256": "sha256-ZXC0LHdkeibXYdjQ3HZ76cT0cMARdSe/z++nfIzfF08=",
             "type": "github"
         },
-        "version": "v5.23.0"
+        "version": "v5.26.0"
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2024-07-12",
+        "date": "2024-07-28",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -217,12 +208,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "fa583cfb87b80e3f7d7577c8b62b7d1385c01337",
-            "sha256": "sha256-EwHlPe+UL37ogcnjh4nw9T3BXHw58/CeCkT7VzQ1ro8=",
-            "sparseCheckout": [],
+            "rev": "01a955657408c8396fc947075a912ee868d5e2a7",
+            "sha256": "sha256-eL+pXfC0jzwb+BszCvFVls7orMijFtv35E2X2zY/NbI=",
             "type": "github"
         },
-        "version": "fa583cfb87b80e3f7d7577c8b62b7d1385c01337"
+        "version": "01a955657408c8396fc947075a912ee868d5e2a7"
     },
     "phosphor-icons": {
         "cargoLocks": null,
@@ -240,7 +230,6 @@
             "repo": "web",
             "rev": "9634e6f3bccabbc1bf2c59dc283abd283d00946d",
             "sha256": "sha256-Ul0UtnsrJ4pUY+rozU7W6DIpIq7DstQN69sOql4x6Yc=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "9634e6f3bccabbc1bf2c59dc283abd283d00946d"
@@ -261,7 +250,6 @@
             "repo": "tridactyl_emacs_config",
             "rev": "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb",
             "sha256": "sha256-OGSVKUoZ9E5yqJQfTnfx6QW4vLbdQ5/V3VX65TuQG4k=",
-            "sparseCheckout": [],
             "type": "github"
         },
         "version": "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb"
