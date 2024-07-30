@@ -7,6 +7,7 @@
   writeShellScriptBin,
   makeDesktopItem,
   symlinkJoin,
+  imagemagick,
 
   # edopro deps
   bzip2,
@@ -169,7 +170,10 @@ symlinkJoin {
   ];
 
   postBuild = ''
-    install -D ${sources.edopro-distribution.src}/textures/AppIcon.png \
-        $out/share/icons/hicolor/1024x1024/apps/EDOPro.png
+    mkdir -p $out/share/icons/hicolor/256x256/apps/
+    ${imagemagick}/bin/magick \
+        ${sources.edopro-distribution.src}/textures/AppIcon.png \
+        -resize 256x256 \
+        $out/share/icons/hicolor/256x256/apps/EDOPro.png
   '';
 }

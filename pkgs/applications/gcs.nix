@@ -5,6 +5,7 @@
   buildGoModule,
   buildNpmPackage,
   pkg-config,
+  imagemagick,
   libGL,
   fontconfig,
   freetype,
@@ -90,9 +91,12 @@ buildGoModule {
       '';
     in
     ''
-      mkdir -p $out/share/{applications,icons/hicolor/1024x1024/apps}
+      mkdir -p $out/share/{applications,icons/hicolor/256x256/apps}
       echo -n '${desktop}' > $out/share/applications/com.trollworks.gcs.desktop
-      cp packaging/internal/embedded/app-1024.png $out/share/icons/hicolor/1024x1024/apps/gcs.png
+      ${imagemagick}/bin/magick \
+          packaging/internal/embedded/app-1024.png \
+          -resize 256x256 \
+          $out/share/icons/hicolor/256x256/apps/gcs.png
 
       rm $out/bin/{gen,packaging,scr}
     '';
