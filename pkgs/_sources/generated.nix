@@ -53,7 +53,7 @@
       fetchSubmodules = true;
       deepClone = false;
       leaveDotGit = true;
-      sha256 = "sha256-ojbN+QH1nS2NCXDp4kwvEKWTxU+PO94gs9hbTGM0i70=";
+      sha256 = "sha256-3I5gRE+TPcLjosb7azaY8ycq58SRqQC2qGC4fGSYza4=";
     };
     date = "2024-06-13";
   };
