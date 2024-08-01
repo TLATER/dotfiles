@@ -43,19 +43,13 @@
     };
     date = "2024-07-18";
   };
-  edopro-distribution = {
-    pname = "edopro-distribution";
-    version = "286db345033c79cab6e36a8f06de3468008ff8cd";
-    src = fetchFromGitHub {
-      owner = "ProjectIgnis";
-      repo = "Distribution";
-      rev = "286db345033c79cab6e36a8f06de3468008ff8cd";
-      fetchSubmodules = true;
-      deepClone = false;
-      leaveDotGit = true;
-      sha256 = "sha256-3I5gRE+TPcLjosb7azaY8ycq58SRqQC2qGC4fGSYza4=";
+  edopro-assets = {
+    pname = "edopro-assets";
+    version = "40.1.4";
+    src = fetchTarball {
+      url = "https://github.com/ProjectIgnis/edopro-assets/releases/download/40.1.4/ProjectIgnis-EDOPro-40.1.4-linux.tar.gz";
+      sha256 = "sha256-vZhkWJ1ZoNEwdc5kM1S0hyXnWmupiTOanCi9DCuqw/k=";
     };
-    date = "2024-06-13";
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";

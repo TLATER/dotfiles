@@ -19,11 +19,10 @@ src.git = "https://github.com/edo9300/edopro.git"
 fetch.github = "edo9300/edopro"
 git.fetchSubmodules = true
 
-[edopro-distribution]
-src.git = "https://github.com/ProjectIgnis/Distribution.git"
-fetch.github = "ProjectIgnis/Distribution"
-git.fetchSubmodules = true
-git.leaveDotGit = true
+[edopro-assets]
+src.webpage = "https://projectignis.github.io/download.html"
+src.regex = 'https://github\.com/ProjectIgnis/edopro-assets/releases/download/(?P<version>\d+\.\d+\.\d+)/ProjectIgnis-EDOPro-\1-linux\.tar\.gz'
+fetch.tarball = "https://github.com/ProjectIgnis/edopro-assets/releases/download/$ver/ProjectIgnis-EDOPro-$ver-linux.tar.gz"
 
 [edopro-irrlicht]
 src.git = "https://github.com/edo9300/irrlicht1-8-4.git"

@@ -74,25 +74,19 @@
         },
         "version": "473af98e3f5eb015a2b481481abbcc8c8027b484"
     },
-    "edopro-distribution": {
+    "edopro-assets": {
         "cargoLocks": null,
-        "date": "2024-06-13",
+        "date": null,
         "extract": null,
-        "name": "edopro-distribution",
+        "name": "edopro-assets",
         "passthru": null,
         "pinned": false,
         "src": {
-            "deepClone": false,
-            "fetchSubmodules": true,
-            "leaveDotGit": true,
-            "name": null,
-            "owner": "ProjectIgnis",
-            "repo": "Distribution",
-            "rev": "286db345033c79cab6e36a8f06de3468008ff8cd",
-            "sha256": "sha256-ojbN+QH1nS2NCXDp4kwvEKWTxU+PO94gs9hbTGM0i70=",
-            "type": "github"
+            "sha256": "sha256-vZhkWJ1ZoNEwdc5kM1S0hyXnWmupiTOanCi9DCuqw/k=",
+            "type": "tarball",
+            "url": "https://github.com/ProjectIgnis/edopro-assets/releases/download/40.1.4/ProjectIgnis-EDOPro-40.1.4-linux.tar.gz"
         },
-        "version": "286db345033c79cab6e36a8f06de3468008ff8cd"
+        "version": "40.1.4"
     },
     "edopro-irrlicht": {
         "cargoLocks": null,
