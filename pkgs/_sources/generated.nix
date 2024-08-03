@@ -53,15 +53,15 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "ba76104ccb104d769cdccda014e0a3966f7c40ac";
+    version = "9df7c6d23c808a25ea4126ae6fed2212a5d59961";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "ba76104ccb104d769cdccda014e0a3966f7c40ac";
+      rev = "9df7c6d23c808a25ea4126ae6fed2212a5d59961";
       fetchSubmodules = false;
-      sha256 = "sha256-xVlVt9zv7SenEYhBQSop4UnNS5g4N5aPgiqSHhhajD8=";
+      sha256 = "sha256-U75XOv0eqO5tvm4GxUCdspFj70VcLGuh4OG1NWyRw8c=";
     };
-    date = "2024-03-16";
+    date = "2024-08-01";
   };
   eglot-x = {
     pname = "eglot-x";
@@ -99,26 +99,26 @@
   };
   gcs = {
     pname = "gcs";
-    version = "v5.26.0";
+    version = "v5.26.1";
     src = fetchFromGitHub {
       owner = "richardwilkes";
       repo = "gcs";
-      rev = "v5.26.0";
+      rev = "v5.26.1";
       fetchSubmodules = false;
-      sha256 = "sha256-ZXC0LHdkeibXYdjQ3HZ76cT0cMARdSe/z++nfIzfF08=";
+      sha256 = "sha256-bTzOpioT/O9ACl+dJlVif67KvQEG9mjP/KAJsm6YEc8=";
     };
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "01a955657408c8396fc947075a912ee868d5e2a7";
+    version = "3b5f018f7025a347e4888408b566caeaef2fabd7";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "01a955657408c8396fc947075a912ee868d5e2a7";
+      rev = "3b5f018f7025a347e4888408b566caeaef2fabd7";
       fetchSubmodules = false;
-      sha256 = "sha256-eL+pXfC0jzwb+BszCvFVls7orMijFtv35E2X2zY/NbI=";
+      sha256 = "sha256-iD8wKlrytTI8Ohyl7A8vwDkHDku23zod/B+vheRcHJ8=";
     };
-    date = "2024-07-28";
+    date = "2024-08-02";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
