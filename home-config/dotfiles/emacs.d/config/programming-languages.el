@@ -247,6 +247,14 @@
          . systemd-mode))
 
 ;; ----------------------------------------------------------------------------------
+;;; Dart
+;; ----------------------------------------------------------------------------------
+
+(leaf dart-mode
+  :mode `(,(rx ".dart" string-end))
+  :hook (dart-mode-hook . (lambda () (set (make-local-variable 'eglot-x-client-commands) '()))))
+
+;; ----------------------------------------------------------------------------------
 ;;; TypeScript (and other web-related DSLs)
 ;; ----------------------------------------------------------------------------------
 
@@ -308,7 +316,8 @@
 (leaf eglot
   :commands (eglot eglot-format eglot-managed-p)
   :hook (((kotlin-mode-hook web-mode-hook rust-mode-hook python-mode-hook
-           sh-mode-hook bash-ts-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook) .
+           sh-mode-hook bash-ts-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook
+           dart-mode-hook) .
            eglot-ensure)
          (eglot-managed-mode-hook . set-eldoc-compose))
   :bind (:eglot-mode-map
@@ -401,7 +410,10 @@
     (reformatter-define latexindent
       :program "latexindent"
       :group 'latex-mode
-      :lighter " LF")))
+      :lighter " LF")
+    (reformatter-define dart-format
+      :program "dart"
+      :args '("format"))))
 
 (defun autoformat ()
   "Autoformat the current buffer."
@@ -411,6 +423,8 @@
      (clang-format-buffer))
     ('latex-mode
      (latexindent-buffer))
+    ('dart-mode
+     (dart-format-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode 'json-mode)
      (biome-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))
