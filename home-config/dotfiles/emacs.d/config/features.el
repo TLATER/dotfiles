@@ -245,6 +245,20 @@
   `(devdocs-data-dir . ,(expand-file-name "docsets" data-dir)))
 
 ;; ----------------------------------------------------------------------------------
+;; Code coverage
+;; ----------------------------------------------------------------------------------
+
+(leaf cov
+  :hook (prog-mode-hook . cov-mode)
+  :custom
+  (cov-lcov-patterns . '((lambda (dir name)
+                           (expand-file-name "lcov.info"
+                                             (project-root (project-current dir))))))
+  :custom-face
+  (cov-none-face . '((t (:foreground "red"))))
+  (cov-heavy-face . '((t (:foreground "green")))))
+
+;; ----------------------------------------------------------------------------------
 ;; Project management
 ;; ----------------------------------------------------------------------------------
 
