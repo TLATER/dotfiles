@@ -16,7 +16,7 @@ let
   frontend = buildNpmPackage {
     inherit (sources.gcs) pname version src;
     sourceRoot = "source/server/frontend";
-    npmDepsHash = "sha256-6hKrp6hbDqPpKXlzS7nvosDBiadPWKl6WSQ2J8+8WPY=";
+    npmDepsHash = "sha256-VWTJg/pluRYVVBDiJ+t2uhyodRuIFfHpzCZMte1krDM=";
     postInstall = ''
       cp -r dist $out
     '';
@@ -101,6 +101,6 @@ buildGoModule {
       rm $out/bin/{gen,packaging,scr}
     '';
 
-  vendorHash = "sha256-A+8NOyoTYMLOc38e+EgU7cfLtPB1nJ0pVR9IOrCAcXE=";
+  vendorHash = "sha256-KEAkA5uvEDkbAyGlntsOiI1hjCZsU1ejO+UNpDX6e4E=";
   meta.mainProgram = "${sources.gcs.pname}";
 }
