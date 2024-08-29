@@ -1,4 +1,7 @@
-{ config, lib, ... }:
+{ pkgs, flake-inputs, config, lib, ... }:
+let
+  unstable = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system};
+in
 {
   imports = [ ./vaapi.nix ];
 
@@ -28,6 +31,40 @@
       firefox.enable = true;
     };
   };
+
+  nixpkgs.overlays = [
+    (final: _prev: {
+      sway-unwrapped = unstable.sway-unwrapped.overrideAttrs (attrs: {
+        version = "0-unstable-2024-08-28";
+        src = final.fetchFromGitHub {
+          owner = "swaywm";
+          repo = "sway";
+          rev = "980a4e02113789d0cca94aa023557c6f6e87ec73";
+          hash = "sha256-qciZeQghlLV5aMuOnex3LvFU9vTa941RMlUkdvj0QTU=";
+        };
+        buildInputs = attrs.buildInputs ++ [ final.wlroots ];
+        mesonFlags =
+          let
+            inherit (lib.strings) mesonEnable mesonOption;
+          in
+          [
+            (mesonOption "sd-bus-provider" "libsystemd")
+            (mesonEnable "tray" attrs.trayEnabled)
+          ];
+      });
+
+      wlroots = unstable.wlroots.overrideAttrs (_attrs: {
+        version = "0-unstable-2024-08-29";
+        src = final.fetchFromGitLab {
+          domain = "gitlab.freedesktop.org";
+          owner = "wlroots";
+          repo = "wlroots";
+          rev = "beb9a9ad0a38867154b7606911c33ffa5ecf759f";
+          hash = "sha256-ZlNFxwj3c5zKiSfokA27zhJ+Yar8cma4fj6N/ulI0VM=";
+        };
+      });
+    })
+  ];
 
   boot = {
     kernelParams = [
