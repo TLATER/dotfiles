@@ -4,7 +4,6 @@
   inputs = {
     # NixOS related inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     sops-nix = {
@@ -18,6 +17,8 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
