@@ -1,4 +1,10 @@
-{ pkgs, flake-inputs, config, lib, ... }:
+{
+  pkgs,
+  flake-inputs,
+  config,
+  lib,
+  ...
+}:
 {
   imports = [ ./vaapi.nix ];
 
@@ -34,9 +40,7 @@
   };
 
   boot = {
-    kernelParams = [
-      "nvidia-drm.fbdev=1"
-    ];
+    kernelParams = [ "nvidia-drm.fbdev=1" ];
 
     extraModprobeConfig =
       "options nvidia "

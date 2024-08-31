@@ -39,9 +39,7 @@ in
       libnotify
       sqlite.dev
     ])
-    ++ [
-      nixd
-    ];
+    ++ [ nixd ];
 
   xdg.configFile."emacs" = {
     source = "${self}/home-config/dotfiles/emacs.d/";

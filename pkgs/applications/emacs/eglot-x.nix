@@ -1,4 +1,1 @@
-{ sources, trivialBuild }:
-trivialBuild {
-  inherit (sources.eglot-x) pname version src;
-}
+{ sources, trivialBuild }: trivialBuild { inherit (sources.eglot-x) pname version src; }
