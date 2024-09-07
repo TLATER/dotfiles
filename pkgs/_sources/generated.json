@@ -56,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2024-08-21",
+        "date": "2024-09-06",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -68,11 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "29216bd54ec0ad72d93e527cda0adb5763442140",
-            "sha256": "sha256-13mBGtbtEWQAf+sgmoK54wY+XpOtuB/Y+8ZqmvQ+2Ps=",
+            "rev": "20e78cd316abd45b9d7e108df860021ef5c939bd",
+            "sha256": "sha256-IpEeoo1y94ejzDoBvHc1fPE7uPVrFk0o3LzkA7km64k=",
             "type": "github"
         },
-        "version": "29216bd54ec0ad72d93e527cda0adb5763442140"
+        "version": "20e78cd316abd45b9d7e108df860021ef5c939bd"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2024-08-30",
+        "date": "2024-09-05",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,11 +202,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "c68ff8aeedc2b779ae42d745457ecd443e22e212",
-            "sha256": "sha256-RGomSLwXoQDFkq1kFWfFMRdMmpW4dlLQ4JR5EDXW3/8=",
+            "rev": "80fa5e137672a529f65a05e396b40f0d133b2432",
+            "sha256": "sha256-OJ4cZMJ83lYuwmZW2xuNIThFTBhZpZb9+SCn+czLmug=",
             "type": "github"
         },
-        "version": "c68ff8aeedc2b779ae42d745457ecd443e22e212"
+        "version": "80fa5e137672a529f65a05e396b40f0d133b2432"
     },
     "phosphor-icons": {
         "cargoLocks": null,
