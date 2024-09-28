@@ -56,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2024-09-13",
+        "date": "2024-09-23",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -68,11 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "9cd08442fd759b7545aceb4702638be0ae4a8398",
-            "sha256": "sha256-KTYRuD1WWBhNWpIpLCZLIu0U3t9fE6kKFy//UGz7njk=",
+            "rev": "cb165fd2f886cf78e8c3de37a9814f2f2544a67e",
+            "sha256": "sha256-58GMk2/LngY9DQB7R4+kY3Mu3P5o04S+/atsj5O+5jE=",
             "type": "github"
         },
-        "version": "9cd08442fd759b7545aceb4702638be0ae4a8398"
+        "version": "cb165fd2f886cf78e8c3de37a9814f2f2544a67e"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -142,11 +142,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "v8.6.2",
-            "sha256": "sha256-19aivAOvXeFOnsP5XhitK3+xk1lwUyXoTK8BE84qbFQ=",
+            "rev": "v8.6.3",
+            "sha256": "sha256-Id3YphCYrnw1vWy/z2psAEM71Tvy0t5q8pVdxneKYRg=",
             "type": "github"
         },
-        "version": "v8.6.2"
+        "version": "v8.6.3"
     },
     "gauth": {
         "cargoLocks": null,
@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2024-09-10",
+        "date": "2024-09-27",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,11 +202,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "f6cd6a776993b584f4abbdd204c6e4011b7d2f93",
-            "sha256": "sha256-DmEeorRfYdGTbXchxnzvr/iLgMx1DJMUmkYNMwjXqBM=",
+            "rev": "a72a26406ad3aa9a47c3f5227291bad23494bed0",
+            "sha256": "sha256-uAn1YFMNzBgse2GyqHmaTXGBPGJJCyfPvOp1lhtcpEs=",
             "type": "github"
         },
-        "version": "f6cd6a776993b584f4abbdd204c6e4011b7d2f93"
+        "version": "a72a26406ad3aa9a47c3f5227291bad23494bed0"
     },
     "phosphor-icons": {
         "cargoLocks": null,

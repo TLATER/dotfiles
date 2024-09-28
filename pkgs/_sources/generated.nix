@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "9cd08442fd759b7545aceb4702638be0ae4a8398";
+    version = "cb165fd2f886cf78e8c3de37a9814f2f2544a67e";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "9cd08442fd759b7545aceb4702638be0ae4a8398";
+      rev = "cb165fd2f886cf78e8c3de37a9814f2f2544a67e";
       fetchSubmodules = true;
-      sha256 = "sha256-KTYRuD1WWBhNWpIpLCZLIu0U3t9fE6kKFy//UGz7njk=";
+      sha256 = "sha256-58GMk2/LngY9DQB7R4+kY3Mu3P5o04S+/atsj5O+5jE=";
     };
-    date = "2024-09-13";
+    date = "2024-09-23";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -77,13 +77,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.6.2";
+    version = "v8.6.3";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.6.2";
+      rev = "v8.6.3";
       fetchSubmodules = false;
-      sha256 = "sha256-19aivAOvXeFOnsP5XhitK3+xk1lwUyXoTK8BE84qbFQ=";
+      sha256 = "sha256-Id3YphCYrnw1vWy/z2psAEM71Tvy0t5q8pVdxneKYRg=";
     };
   };
   gauth = {
@@ -110,15 +110,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "f6cd6a776993b584f4abbdd204c6e4011b7d2f93";
+    version = "a72a26406ad3aa9a47c3f5227291bad23494bed0";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "f6cd6a776993b584f4abbdd204c6e4011b7d2f93";
+      rev = "a72a26406ad3aa9a47c3f5227291bad23494bed0";
       fetchSubmodules = false;
-      sha256 = "sha256-DmEeorRfYdGTbXchxnzvr/iLgMx1DJMUmkYNMwjXqBM=";
+      sha256 = "sha256-uAn1YFMNzBgse2GyqHmaTXGBPGJJCyfPvOp1lhtcpEs=";
     };
-    date = "2024-09-10";
+    date = "2024-09-27";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
