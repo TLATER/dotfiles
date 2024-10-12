@@ -40,6 +40,7 @@
   };
 
   boot = {
+    kernelPackages = lib.mkForce pkgs.linuxKernel.packages.linux_xanmod;
     kernelParams = [ "nvidia-drm.fbdev=1" ];
 
     extraModprobeConfig =
