@@ -182,11 +182,11 @@
             "name": null,
             "owner": "richardwilkes",
             "repo": "gcs",
-            "rev": "v5.28.0",
-            "sha256": "sha256-VfWRLfyK4RMF16ck5p+dXkMnrMjJw7DSlQvPMT1By+c=",
+            "rev": "v5.27.0",
+            "sha256": "sha256-N4a+7a1XpDXsZTDiTh1AZIzXfk/A+gV4uBZdGZh+S5I=",
             "type": "github"
         },
-        "version": "v5.28.0"
+        "version": "v5.27.0"
     },
     "ohmyzsh": {
         "cargoLocks": null,

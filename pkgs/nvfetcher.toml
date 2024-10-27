@@ -37,7 +37,8 @@ src.github_tag = "pcarrier/gauth"
 fetch.github = "pcarrier/gauth"
 
 [gcs]
-src.github = "richardwilkes/gcs"
+# src.github = "richardwilkes/gcs"
+src.manual = "v5.27.0"
 fetch.github = "richardwilkes/gcs"
 
 [ohmyzsh]
