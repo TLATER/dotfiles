@@ -36,6 +36,7 @@ in
     _JAVA_OPTIONS = concatStringsSep " " [
       "-Djava.util.prefs.userRoot='${xdg.configHome}'/java"
       "-Djavafx.cachedir='${xdg.cacheHome}/openjfx'"
+      "-Dorg.lwjgl.glfw.libname='${pkgs.glfw-wayland-minecraft}/lib/libglfw.so'"
     ];
     LESSKEY = "${xdg.cacheHome}/less/key";
     LESSHISTFILE = "${xdg.cacheHome}/less/history";
