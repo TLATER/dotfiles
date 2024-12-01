@@ -41,6 +41,7 @@ in
   home.packages = [
     keepassxc-copy
     pkgs.glib
+    pkgs.sway-contrib.grimshot
   ];
 
   wayland.windowManager.sway = {

@@ -66,6 +66,8 @@ let
             system = 2;
           };
         };
+
+        extensions = cfg.extensions;
       }
     ) cfg;
 in
@@ -102,6 +104,12 @@ in
             type = attrsOf (either bool (either int str));
             default = { };
             description = "Additional Firefox profile settings.";
+          };
+
+          extensions = mkOption {
+            type = listOf package;
+            default = [ ];
+            description = "Additional Firefox profile extensions.";
           };
 
           backgroundColor = mkOption {
