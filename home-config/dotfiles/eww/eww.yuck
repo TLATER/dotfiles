@@ -1,0 +1,48 @@
+(defwindow tray
+           :monitor 0
+           :geometry (geometry :height "0%"
+                               :width "0%"
+                               :anchor "bottom left")
+           :stacking "bottom"
+           :exclusive true
+           :focusable false
+
+           (_tray_items))
+
+(defwidget _tray_items []
+           (box :class "tray-items"
+
+                :spacing 3
+                :vexpand true
+                :hexpand true
+                :valign "center"
+                :halign "start"
+                :space-evenly false
+
+                (_battery_icon)
+                (_clock)
+                "|"
+                (systray :spacing 5
+                         :orientation "horizontal"
+                         :space-evenly false)))
+
+(defvar battery_icons `[
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+]`)
+
+(defwidget _battery_icon []
+           (label :text {
+                    jq(EWW_BATTERY, "first(.[])").status == "Charging" ?
+                    "" :
+                    battery_icons[round(jq(EWW_BATTERY, "first(.[])").capacity / 20, 0)]
+                    }
+                  :tooltip "${jq(EWW_BATTERY, "first(.[])").capacity}%"))
+
+(defwidget _clock []
+           (label :text { formattime(EWW_TIME, "%R") }
+                  :tooltip { formattime(EWW_TIME, "%F") }))
