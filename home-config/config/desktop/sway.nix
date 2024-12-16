@@ -91,6 +91,25 @@ in
     };
   };
 
+  programs.eww = {
+    enable = true;
+    configDir = ../../dotfiles/eww;
+  };
+
+  systemd.user.services.eww = {
+    Unit = {
+      Description = "System tray";
+      After = [ "graphical-session-pre.target" ];
+      PartOf = [ "graphical-session.target" ];
+    };
+
+    Service = {
+      ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
+      ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
+    };
+    Install.WantedBy = [ "graphical-session.target" ];
+  };
+
   systemd.user.services.swaylock = {
     Unit.Description = "Lock screen";
     Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
