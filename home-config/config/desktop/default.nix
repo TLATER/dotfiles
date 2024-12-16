@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
   imports = [
     ./dunst.nix
@@ -7,6 +8,9 @@
     ./sway.nix
   ];
 
+  home.packages = with pkgs; [
+    caffeine-ng
+  ];
   services.caffeine.enable = true;
   xsession.importedVariables = [ "PATH" ];
 }
