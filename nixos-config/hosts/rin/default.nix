@@ -33,4 +33,7 @@
   users.users.tlater.extraGroups = [ "docker" ];
   # Install rustup system-wide for convenience
   environment.systemPackages = [ pkgs.rustup ];
+
+  programs.adb.enable = true;
+  programs.nix-ld.enable = true;
 }
