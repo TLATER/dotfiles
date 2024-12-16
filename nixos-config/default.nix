@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   flake-inputs,
   ...
 }:
@@ -68,7 +69,9 @@
     };
   };
 
-  time.timeZone = "Europe/Amsterdam";
+  time.timeZone = lib.mkDefault "Asia/Hong_Kong";
+  services.automatic-timezoned.enable = true;
+  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
   users = {
     defaultUserShell = pkgs.zsh;
