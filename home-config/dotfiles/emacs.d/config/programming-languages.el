@@ -223,6 +223,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf scss-mode
+  :ensure nil
   :mode `(,(rx (or ".sass" ".scss") string-end))
   :hook (scss-mode-hook . (lambda () (setq-local devdocs-current-docs '("css" "sass")))))
 
