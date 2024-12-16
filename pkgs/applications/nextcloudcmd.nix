@@ -1,7 +1,7 @@
 {
   nextcloud-client,
   stdenv,
-  libsForQt5,
+  kdePackages,
   cmake,
   pkg-config,
   openssl,
@@ -14,17 +14,18 @@ stdenv.mkDerivation {
   nativeBuildInputs = [
     cmake
     pkg-config
-    libsForQt5.wrapQtAppsHook
+    kdePackages.wrapQtAppsHook
   ];
 
   buildInputs = [
     openssl
     zlib
-    libsForQt5.qtbase
-    libsForQt5.qtkeychain
-    libsForQt5.qtwebsockets
-    libsForQt5.qtwebengine
-    libsForQt5.karchive
+    kdePackages.qtbase
+    kdePackages.qtkeychain
+    kdePackages.qtwebsockets
+    kdePackages.qtsvg
+    kdePackages.qt5compat
+    kdePackages.karchive
   ];
 
   cmakeFlags = [
@@ -32,5 +33,6 @@ stdenv.mkDerivation {
     "-DBUILD_UPDATER=off"
     "-DBUILD_GUI=off"
     "-DBUILD_SHELL_INTEGRATION=off"
+    "-DBUILD_WITH_WEBENGINE=off"
   ];
 }

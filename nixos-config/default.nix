@@ -18,8 +18,6 @@
   ];
 
   nix = {
-    package = pkgs.nixFlakes;
-
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -122,7 +120,7 @@
     packages = with pkgs; [
       hack-font
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
     ];
 
