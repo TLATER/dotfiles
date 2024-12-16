@@ -57,7 +57,8 @@
 (leaf files
   :ensure nil
   :custom (require-final-newline . "visit-save")
-  :custom (major-mode-remap-alist . '((sh-mode . bash-ts-mode))))
+  :custom (major-mode-remap-alist . '((sh-mode . bash-ts-mode)
+                                      (css-mode . css-ts-mode))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Snippets

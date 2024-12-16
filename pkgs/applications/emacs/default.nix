@@ -32,6 +32,7 @@ let
       (epkgs.treesit-grammars.with-grammars (
         grammars: with grammars; [
           tree-sitter-bash
+          tree-sitter-css
           tree-sitter-typescript
           tree-sitter-tsx
         ]
