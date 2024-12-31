@@ -32,7 +32,6 @@ in
       "steam-unwrapped"
       "nvidia-x11"
       "nvidia-settings"
-      "nvidia-persistenced"
     ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
