@@ -10,4 +10,9 @@
 
     ../config/work/famedly.nix
   ];
+
+  # Adaptive sync doesn't work on rin
+  wayland.windowManager.sway.extraConfig = ''
+    output "*" adaptive_sync off
+  '';
 }
