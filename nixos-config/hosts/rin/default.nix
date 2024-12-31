@@ -23,6 +23,23 @@
 
   sops.age.keyFile = "/var/lib/sops/host.age";
 
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+    ];
+
+  easyNvidia = {
+    enable = true;
+    withIntegratedGPU = true;
+  };
+
+  hardware.nvidia.prime = {
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:C5:0:0";
+  };
+
   networking = {
     hostName = "rin";
     hostId = "e6aaf496";

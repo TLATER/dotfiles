@@ -89,6 +89,10 @@
         };
       };
 
+      nixosModules = {
+        nvidia = import ./nixos-modules/nvidia;
+      };
+
       homeConfigurations = {
         # NixOS home configuration setup lives in
         # nixos-config/default.nix and their respective host-specific

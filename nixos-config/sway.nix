@@ -1,10 +1,22 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  flake-inputs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [ bibata-cursors ];
 
   programs.sway = {
     enable = true;
     wrapperFeatures.gtk = true;
+
+    package = lib.mkIf config.easyNvidia.enable (
+      pkgs.sway.override {
+        inherit (flake-inputs.nixpkgs-wayland.packages.${pkgs.system}) sway-unwrapped;
+      }
+    );
   };
 
   xdg.portal = {
