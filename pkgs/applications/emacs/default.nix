@@ -4,11 +4,11 @@
   hostPlatform,
   emacsPackagesFor,
   emacsMacport,
-  emacs29,
+  emacs29-pgtk,
   runCommandLocal,
 }:
 let
-  emacsPlatform = if hostPlatform.isDarwin then emacsMacport else emacs29;
+  emacsPlatform = if hostPlatform.isDarwin then emacsMacport else emacs29-pgtk;
 
   overrides = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
 
