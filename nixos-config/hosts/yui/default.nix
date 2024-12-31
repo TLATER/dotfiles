@@ -13,14 +13,12 @@ in
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    flake-inputs.nixos-hardware.nixosModules.common-gpu-nvidia-nonprime
 
     ./games.nix
     ./hardware-configuration.nix
     ../../networking/personal.nix
     ./wireguard.nix
     ../../wireguard.nix
-    ./nvidia
     ./networking.nix
   ];
 
@@ -31,6 +29,7 @@ in
       "steam-run"
       # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
       "steam-original"
+      "steam-unwrapped"
       "nvidia-x11"
       "nvidia-settings"
       "nvidia-persistenced"
@@ -41,6 +40,12 @@ in
   sops.gnupg = {
     home = "/var/lib/sops";
     sshKeyPaths = [ ];
+  };
+
+  easyNvidia = {
+    enable = true;
+    withIntegratedGPU = false;
+    vaapi.firefox.av1Support = true;
   };
 
   boot = {

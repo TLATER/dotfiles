@@ -7,6 +7,8 @@
 }:
 {
   imports = [
+    flake-inputs.self.nixosModules.nvidia
+
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
 
@@ -53,7 +55,10 @@
   boot = {
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
-    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
+    kernelPackages = lib.mkMerge [
+      (lib.mkIf config.easyNvidia.enable pkgs.linuxKernel.packages.linux_xanmod)
+      (lib.mkIf (!config.easyNvidia.enable) pkgs.linuxKernel.packages.linux_xanmod_latest)
+    ];
 
     loader = {
       timeout = 0;
@@ -108,6 +113,7 @@
     git.enable = true;
     zsh.enable = true;
     nano.enable = false;
+    firefox.enable = true;
   };
 
   security.sudo-rs.enable = true;
