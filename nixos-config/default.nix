@@ -73,8 +73,6 @@
   };
 
   time.timeZone = lib.mkDefault "Asia/Hong_Kong";
-  services.automatic-timezoned.enable = true;
-  services.geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
 
   users = {
     defaultUserShell = pkgs.zsh;
@@ -222,6 +220,8 @@
     flatpak.enable = true;
     fstrim.enable = true;
     fwupd.enable = true;
+    automatic-timezoned.enable = true;
+    geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   };
 
   hardware = {

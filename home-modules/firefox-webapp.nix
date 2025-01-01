@@ -15,7 +15,7 @@ let
     mapAttrs' (
       name: cfg:
       nameValuePair "home-manager-webapp-${name}" {
-        inherit (cfg) id;
+        inherit (cfg) extensions id;
 
         userChrome = ''
           @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
@@ -66,8 +66,6 @@ let
             system = 2;
           };
         };
-
-        extensions = cfg.extensions;
       }
     ) cfg;
 in

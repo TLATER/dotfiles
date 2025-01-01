@@ -97,37 +97,39 @@ in
     configDir = ../../dotfiles/eww;
   };
 
-  systemd.user.services.eww = {
-    Unit = {
-      Description = "System tray";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+  systemd.user.services = {
+    eww = {
+      Unit = {
+        Description = "System tray";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
+
+      Service = {
+        ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
+        ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
     };
 
-    Service = {
-      ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
-      ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
-    };
-    Install.WantedBy = [ "graphical-session.target" ];
-  };
-
-  systemd.user.services.swaylock = {
-    Unit.Description = "Lock screen";
-    Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
-  };
-
-  systemd.user.services.wpaperd = {
-    Unit = {
-      Description = "Wallpaper daemon";
-      After = [ "graphical-session-pre.target" ];
-      PartOf = [ "graphical-session.target" ];
+    swaylock = {
+      Unit.Description = "Lock screen";
+      Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
     };
 
-    Service = {
-      ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
-      Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
-    };
+    wpaperd = {
+      Unit = {
+        Description = "Wallpaper daemon";
+        After = [ "graphical-session-pre.target" ];
+        PartOf = [ "graphical-session.target" ];
+      };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+      Service = {
+        ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
+        Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
+      };
+
+      Install.WantedBy = [ "graphical-session.target" ];
+    };
   };
 }
