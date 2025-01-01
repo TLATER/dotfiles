@@ -11,7 +11,7 @@ in
   options.easyNvidia.offload = with lib.types; {
     enable = lib.mkOption {
       type = bool;
-      enable = config.easyNvidia.prime.withIntegratedGPU;
+      enable = config.easyNvidia.enable && config.easyNvidia.prime.withIntegratedGPU;
       description = ''
         Whether to configure prime offload.
 

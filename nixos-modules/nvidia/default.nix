@@ -47,7 +47,7 @@ in
       # https://download.nvidia.com/XFree86/Linux-x86_64/565.57.01/README/kernel_open.html
       open = true;
 
-      dynamicBoost.enable = cfg.withIntegratedGPU;
+      dynamicBoost.enable = cfg.enable && cfg.withIntegratedGPU;
     };
 
     boot = {
