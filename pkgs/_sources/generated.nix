@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "cb165fd2f886cf78e8c3de37a9814f2f2544a67e";
+    version = "c08a9392492bdf2a9ccfd3fcaa99a5161a6e9f32";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "cb165fd2f886cf78e8c3de37a9814f2f2544a67e";
+      rev = "c08a9392492bdf2a9ccfd3fcaa99a5161a6e9f32";
       fetchSubmodules = true;
-      sha256 = "sha256-58GMk2/LngY9DQB7R4+kY3Mu3P5o04S+/atsj5O+5jE=";
+      sha256 = "sha256-qco8o+QgbLJvR/UHzKgyLJCKqKRr+9JMsjG/5XwvSMs=";
     };
-    date = "2024-09-23";
+    date = "2024-12-21";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -53,15 +53,15 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "da9ea3485be31e11d964cd90f68d8f29d3910b7e";
+    version = "6d633bcd3744d85da97386ae737ab7d69da80585";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "da9ea3485be31e11d964cd90f68d8f29d3910b7e";
+      rev = "6d633bcd3744d85da97386ae737ab7d69da80585";
       fetchSubmodules = false;
-      sha256 = "sha256-81RWQyoFwtlYWkK4WUrrW1/xdVQUtcmTN4TZuPKGISU=";
+      sha256 = "sha256-2+3IeQ4eRWXF5pT6buN+91GFB0ctjRM6HWKeayIdWVk=";
     };
-    date = "2024-10-26";
+    date = "2024-12-03";
   };
   eglot-x = {
     pname = "eglot-x";
@@ -77,13 +77,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.6.3";
+    version = "v8.6.5";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.6.3";
+      rev = "v8.6.5";
       fetchSubmodules = false;
-      sha256 = "sha256-Id3YphCYrnw1vWy/z2psAEM71Tvy0t5q8pVdxneKYRg=";
+      sha256 = "sha256-8sRUGrKcSBDzqIjACR7eRfn4VzFbL3zfRB8GDsNKO5A=";
     };
   };
   gauth = {
@@ -110,27 +110,27 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "c690f731618959cba3b85500acee20ebf43e51c1";
+    version = "d82669199b5d900b50fd06dd3518c277f0def869";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "c690f731618959cba3b85500acee20ebf43e51c1";
+      rev = "d82669199b5d900b50fd06dd3518c277f0def869";
       fetchSubmodules = false;
-      sha256 = "sha256-HMYLUUq2slR2sh1rdAlAjH2L2ZTe3InyT+K5T1WpGFs=";
+      sha256 = "sha256-NPFrqbyCet8CFxD2BM3DzU0ybUAWIGVJCXf0AKaJdgY=";
     };
-    date = "2024-10-27";
+    date = "2024-12-30";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "9634e6f3bccabbc1bf2c59dc283abd283d00946d";
+    version = "57f6308198d20afb39dee3a9c12f255b1f4edc65";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "9634e6f3bccabbc1bf2c59dc283abd283d00946d";
+      rev = "57f6308198d20afb39dee3a9c12f255b1f4edc65";
       fetchSubmodules = false;
-      sha256 = "sha256-Ul0UtnsrJ4pUY+rozU7W6DIpIq7DstQN69sOql4x6Yc=";
+      sha256 = "sha256-S7RgTWX6fUgs2bjMufIoHfqW/cBv8R/LHYPnvP11cdY=";
     };
-    date = "2024-05-02";
+    date = "2024-12-29";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
