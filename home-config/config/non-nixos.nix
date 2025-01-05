@@ -23,7 +23,7 @@
     };
   };
 
-  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlay ];
+  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlays.default ];
 
   home.sessionVariables = {
     NIX_PATH = "nixpkgs=${flake-inputs.nixpkgs}";

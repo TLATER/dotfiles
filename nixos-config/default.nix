@@ -41,7 +41,7 @@
     validateSopsFiles = false;
   };
 
-  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlay ];
+  nixpkgs.overlays = [ flake-inputs.nurpkgs.overlays.default ];
 
   home-manager = {
     useGlobalPkgs = true;
