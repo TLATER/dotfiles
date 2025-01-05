@@ -143,7 +143,17 @@
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
           inherit (self.packages.x86_64-linux) commit-nvfetcher;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nvchecker nvfetcher;
+          inherit (nixpkgs.legacyPackages.x86_64-linux)
+            cargo
+            clippy
+            dbus
+            nvchecker
+            nvfetcher
+            pkg-config
+            rust-analyzer
+            rustc
+            rustfmt
+            ;
           home-manager-bin = home-manager.packages.x86_64-linux.default;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
@@ -153,6 +163,14 @@
             commit-nvfetcher
             home-manager-bin
             sops-init-gpg-key
+
+            cargo
+            clippy
+            dbus
+            rust-analyzer
+            rustc
+            rustfmt
+            pkg-config
           ];
 
           sopsPGPKeyDirs = [
