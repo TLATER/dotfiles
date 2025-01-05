@@ -1,0 +1,15 @@
+[package]
+name = "utils"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lazy-regex = "3.4.1"
+log = { version = "0.4.22", features = ["kv", "kv_std"] }
+pretty_env_logger = "0.5.0"
+serde = { version = "1.0.217", features = ["serde_derive"] }
+serde_json = "1.0.134"
+thiserror = "2.0.9"
+tokio = { version = "1.42.0", features = ["macros"] }
+tokio-stream = { version = "0.1.17", features = ["sync"] }
+zbus = { version = "5.2.0", features = ["tokio"] }
