@@ -16,8 +16,7 @@ let
 
   # Compute the list of leaf-d packages.
   package-list = runCommandLocal "package-list" { buildInputs = [ emacsPkgs.emacs ]; } ''
-    HOME=/tmp SCANNING_PACKAGES=true emacs --batch --quick \
-          -L ${emacsPkgs.bind-key}/share/emacs/site-lisp/elpa/bind-key-* \
+    HOME=/tmp emacs --batch --quick \
           -l ${./leaf-package-list.el} \
           --eval "(leaf-package-list \"${self}/home-config/dotfiles/emacs.d/init.el\")" \
           > $out

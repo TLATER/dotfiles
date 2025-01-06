@@ -30,7 +30,6 @@
 (defun leaf-package-list (script)
   "List packages configured with leaf in SCRIPT."
 
-  (defvar leaf-package-list-running-p t)
   (defvar leaf-package-list--packages nil)
 
   (defmacro leaf (package &rest args)
