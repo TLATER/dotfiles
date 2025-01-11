@@ -34,7 +34,7 @@ in
     programs.firefox = {
       enable = true;
       package = lib.mkIf thirdParty (
-        pkgs.firefox.override { nativeMessagingHosts = [ pkgs.tridactyl-native ]; }
+        pkgs.firefox-bin.override { nativeMessagingHosts = [ pkgs.tridactyl-native ]; }
       );
       profiles."tlater" = {
         extensions =
