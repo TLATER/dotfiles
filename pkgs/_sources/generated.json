@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2025-01-10",
+        "date": "2025-01-15",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,15 +202,15 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "cae2e451933ffe1108bfd00fa67ff5d63741ab85",
-            "sha256": "sha256-jmw6esjGU8MemFmlFo7CzU+3e5tqBwO7HLKWdV65sr8=",
+            "rev": "028d65363230b4aa54f3aaa14e03237243a2f1d8",
+            "sha256": "sha256-z7Ya2eWf7tZo03XDE/B+eg0u73NNiG2rSH7FponHDTo=",
             "type": "github"
         },
-        "version": "cae2e451933ffe1108bfd00fa67ff5d63741ab85"
+        "version": "028d65363230b4aa54f3aaa14e03237243a2f1d8"
     },
     "phosphor-icons": {
         "cargoLocks": null,
-        "date": "2024-12-29",
+        "date": "2025-01-10",
         "extract": null,
         "name": "phosphor-icons",
         "passthru": null,
@@ -222,11 +222,11 @@
             "name": null,
             "owner": "phosphor-icons",
             "repo": "web",
-            "rev": "57f6308198d20afb39dee3a9c12f255b1f4edc65",
-            "sha256": "sha256-S7RgTWX6fUgs2bjMufIoHfqW/cBv8R/LHYPnvP11cdY=",
+            "rev": "e4cf0eab6ca56cfd9078598745f0672a9007a2fd",
+            "sha256": "sha256-+IVQOIAj49hLfKok587vINvFwcDmPn5GOWOorVPNPDw=",
             "type": "github"
         },
-        "version": "57f6308198d20afb39dee3a9c12f255b1f4edc65"
+        "version": "e4cf0eab6ca56cfd9078598745f0672a9007a2fd"
     },
     "tridactyl-emacs": {
         "cargoLocks": null,

@@ -110,27 +110,27 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "cae2e451933ffe1108bfd00fa67ff5d63741ab85";
+    version = "028d65363230b4aa54f3aaa14e03237243a2f1d8";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "cae2e451933ffe1108bfd00fa67ff5d63741ab85";
+      rev = "028d65363230b4aa54f3aaa14e03237243a2f1d8";
       fetchSubmodules = false;
-      sha256 = "sha256-jmw6esjGU8MemFmlFo7CzU+3e5tqBwO7HLKWdV65sr8=";
+      sha256 = "sha256-z7Ya2eWf7tZo03XDE/B+eg0u73NNiG2rSH7FponHDTo=";
     };
-    date = "2025-01-10";
+    date = "2025-01-15";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "57f6308198d20afb39dee3a9c12f255b1f4edc65";
+    version = "e4cf0eab6ca56cfd9078598745f0672a9007a2fd";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "57f6308198d20afb39dee3a9c12f255b1f4edc65";
+      rev = "e4cf0eab6ca56cfd9078598745f0672a9007a2fd";
       fetchSubmodules = false;
-      sha256 = "sha256-S7RgTWX6fUgs2bjMufIoHfqW/cBv8R/LHYPnvP11cdY=";
+      sha256 = "sha256-+IVQOIAj49hLfKok587vINvFwcDmPn5GOWOorVPNPDw=";
     };
-    date = "2024-12-29";
+    date = "2025-01-10";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
