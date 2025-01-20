@@ -4,13 +4,13 @@
   ...
 }:
 let
-  cfg = config.easyNvidia.prime;
+  cfg = config.easyNvidia.offload;
 in
 {
   options.easyNvidia.offload = with lib.types; {
     enable = lib.mkOption {
       type = bool;
-      enable = config.easyNvidia.enable && config.easyNvidia.prime.withIntegratedGPU;
+      default = config.easyNvidia.enable && config.easyNvidia.withIntegratedGPU;
       description = ''
         Whether to configure prime offload.
 
@@ -28,7 +28,7 @@ in
     };
   };
 
-  config = lib.mkIf cfg.easyNvidia.offload.enable {
+  config = lib.mkIf cfg.enable {
     hardware.nvidia.prime.offload.enable = true;
     hardware.nvidia.powerManagement.finegrained = true;
   };
