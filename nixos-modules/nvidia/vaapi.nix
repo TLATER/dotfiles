@@ -29,9 +29,7 @@ in
         and require more power, so this is disabled there by default -
         it may still make sense from time to time, so feel free to
         experiment.
-
       '';
-
     };
 
     maxInstances = lib.mkOption {

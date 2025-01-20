@@ -54,6 +54,12 @@
     };
   };
 
+  easyNvidia = {
+    # Apparently xanmod isn't available for LTS at the moment, oh well
+    advanced.forceKernel = true;
+    desktopEnvironment = "wlroots";
+  };
+
   boot = {
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
