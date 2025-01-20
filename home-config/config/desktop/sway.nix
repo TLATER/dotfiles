@@ -115,6 +115,58 @@ in
       Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
     };
 
+    way-displays =
+      let
+        builtin = "eDP-1";
+        home-1 = "Dell Inc. DELL G2723HN 5B0C3H3";
+        work-1 = "DELL U3219Q";
+
+        way-displays-config = (pkgs.formats.yaml { }).generate "way-display-cfg.yaml" {
+          ARRANGE = "COLUMN";
+
+          ORDER = [
+            work-1
+            home-1
+            builtin
+          ];
+
+          SCALING = true;
+
+          SCALE = [
+            {
+              NAME_DESC = "eDP-1";
+              SCALE = 1.0;
+            }
+          ];
+
+          MODE = [
+            {
+              NAME_DESC = home-1;
+              WIDTH = 1920;
+              HEIGHT = 1080;
+              Hz = 164.997;
+            }
+          ];
+
+          VRR_OFF = [ home-1 ];
+          LOG_THRESHOLD = "INFO";
+        };
+      in
+      {
+        Unit = {
+          Description = "Display manager";
+          After = [ "graphical-session-pre.target" ];
+          Before = [ "wpaperd.service" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          ExecStart = "${lib.getExe pkgs.way-displays} -c ${way-displays-config}";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
     wpaperd = {
       Unit = {
         Description = "Wallpaper daemon";
