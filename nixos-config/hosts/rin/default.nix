@@ -37,7 +37,8 @@
 
   hardware.nvidia.prime = {
     nvidiaBusId = "PCI:1:0:0";
-    amdgpuBusId = "PCI:C5:0:0";
+    # Apparently, xorg requires bus IDs to be *decimal*
+    amdgpuBusId = "PCI:197:0:0";
   };
 
   services = {

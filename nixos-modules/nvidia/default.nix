@@ -8,7 +8,10 @@ let
   cfg = config.easyNvidia;
 in
 {
-  imports = [ ./vaapi.nix ];
+  imports = [
+    ./vaapi.nix
+    ./prime.nix
+  ];
 
   options.easyNvidia = with lib.types; {
     enable = lib.mkEnableOption "easyNvidia";
