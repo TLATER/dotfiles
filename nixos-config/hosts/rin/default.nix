@@ -52,6 +52,14 @@
     auto-cpufreq.enable = true;
   };
 
+  environment.variables = {
+    # For wlroots, order the AMD card *before* the NVIDIA card.
+    #
+    # In practice, this assignment is probably not static; see the
+    # sway wiki for some udev hacks to resolve this.
+    WLR_DRM_DEVICES = "/dev/dri/card2:/dev/dri/card1";
+  };
+
   networking = {
     hostName = "rin";
     hostId = "e6aaf496";
