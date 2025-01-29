@@ -11,7 +11,8 @@ in
   # - -device virtio-net,netdev=n1
   # - -netdev bridge,id=n1,br=br0,helper=$(which qemu-bridge-helper)
   #
-  # Also set up a static IP address of 192.168.9.2/24.
+  # Also set up a static IP address of 192.168.9.2/24, with a gateway
+  # of 192.168.9.1.
 
   # Add bridge network to connect VMs to
   networking.networkmanager.ensureProfiles.profiles.bridge = {
@@ -48,6 +49,19 @@ in
   users = {
     users.tlater.extraGroups = [ "qemu" ];
     groups.qemu = { };
+  };
+
+  # # Set up firewall to forward requests to the internet from the
+  # # bridge network
+  boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
+  networking.nftables.tables.dev-nat = {
+    family = "inet";
+    content = ''
+      chain postrouting {
+        type nat hook postrouting priority 100;
+        ip saddr 192.168.9.0/24 oifname bond0 masquerade
+      }
+    '';
   };
 
   # Add local DNS zone for VMs
