@@ -205,6 +205,7 @@
               "opus_05_duplex"
               "aac"
               "sbc_xq"
+              "sbc"
             ];
 
             "bluez5.hfphsp-backend" = "none";
