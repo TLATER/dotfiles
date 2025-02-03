@@ -39,6 +39,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf vterm
+  :ensure t
   :hook (vterm-mode-hook . (lambda ()
                              (set (make-local-variable 'global-hl-line-mode) nil)))
   :bind (:vterm-mode-map
@@ -55,6 +56,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf dashboard
+  :ensure t
   :custom
   (dashboard-set-init-info . t)
   (dashboard-set-footer . nil)
@@ -76,19 +78,24 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf magit
+  :ensure t
   :bind
   ("C-c g s" . magit-status)
   (:project-prefix-map
    ("m" . magit-project-status)))
 (leaf transient
+  :ensure t
   :custom
   `(transient-levels-file . ,(expand-file-name "transient/levels.el" data-dir))
   `(transient-values-file . ,(expand-file-name "transient/values.el" data-dir))
   `(transient-history-file . ,(expand-file-name "transient/history.el" data-dir)))
 (leaf magit-lfs
+  :ensure t
   :after magit)
-(leaf sqlite3)                   ; Required for forge
+(leaf sqlite3
+  :ensure t)                   ; Required for forge
 (leaf forge
+  :ensure t
   :after (magit sqlite3)
   :custom
   `(forge-database-file . ,(expand-file-name "forge-database.sqlite" data-dir))
@@ -103,6 +110,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf which-key
+  :ensure t
   :custom
   (which-key-idle-delay . 0.5)
   (which-key-popup-type . 'minibuffer)
@@ -121,6 +129,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf vertico
+  :ensure t
   :custom
   (vertico-count . 15)
   :global-minor-mode vertico-mode)
@@ -129,7 +138,6 @@
 ;; differently - this is what makes M-s r g show up in a separate
 ;; buffer, for example.
 (leaf vertico-multiform
-  :ensure nil
   :after vertico
   :custom
   (vertico-multiform-commands . '((consult-imenu buffer)
@@ -145,15 +153,18 @@
   :global-minor-mode savehist-mode)
 
 (leaf orderless
+  :ensure t
   :custom
   (completion-styles . '(orderless basic))
   (completion-category-defaults . nil)
   (completion-category-overrides . '((file (styles basic partial-completion)))))
 
 (leaf marginalia
+  :ensure t
   :global-minor-mode marginalia-mode )
 
 (leaf embark
+  :ensure t
   :defun embark--truncate-target
   :bind (("C-." . embark-act)
          ("M-." . embark-dwim)
@@ -208,6 +219,7 @@
   :advice (:around embark-completing-read-prompter #'embark-hide-which-key-indicator))
 
 (leaf embark-consult
+  :ensure t
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (leaf emacs
@@ -240,6 +252,7 @@
 
 ;; TODO(tlater): Figure out how to preinstall docsets
 (leaf devdocs
+  :ensure t
   :bind ("C-h D" . devdocs-lookup)
   :custom
   `(devdocs-data-dir . ,(expand-file-name "docsets" data-dir)))
@@ -249,6 +262,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf cov
+  :ensure t
   :hook (prog-mode-hook . cov-mode)
   :custom
   (cov-lcov-patterns . '((lambda (dir name)
@@ -295,6 +309,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf smart-mode-line
+  :ensure t
   :defun (sml/setup sml/faces-from-theme sml/theme-p)
   :custom
   (sml/no-confirm-load-theme . t)
@@ -306,6 +321,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf diff-hl
+  :ensure t
   :demand
   :commands diff-hl-flydiff-mode global-diff-hl-mode
   :custom-face
@@ -330,7 +346,6 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf dired
-  :ensure nil
   :commands dired
   :bind (("C-x d" . dired)
          (:dired-mode-map
@@ -343,9 +358,11 @@
   (put 'dired-find-alternate-file 'disabled nil))
 
 (leaf dired-hacks-utils
+  :ensure t
   :after dired
   :hook (dired-mode-hook . dired-utils-format-information-line-mode))
 (leaf dired-filter
+  :ensure t
   :after dired
   :hook (dired-mode-hook . dired-filter-mode)
   :custom
@@ -354,6 +371,7 @@
   (:dired-mode-map
    ("C-c f" . dired-filter-map)))
 (leaf dired-subtree
+  :ensure t
   :after dired
   :bind (:dired-mode-map
          :package dired
@@ -363,11 +381,13 @@
          ("C-<up>" . dired-subtree-previous-sibling)
          ("C-<down>" . dired-subtree-next-sibling)))
 (leaf dired-narrow
+  :ensure t
   :after dired
   :bind (:dired-mode-map
          :package dired
          ("C-s" . dired-narrow)))
 (leaf dired-collapse
+  :ensure t
   :after dired
   :hook (dired-mode-hook . dired-collapse-mode))
 
@@ -388,8 +408,10 @@
 ;;
 ;; REST browsing
 ;;
-(leaf restclient)
+(leaf restclient
+  :ensure t)
 (leaf restclient-jq
+  :ensure t
   :after restclient)
 
 ;; ----------------------------------------------------------------------------------
@@ -398,6 +420,7 @@
 
 ;; Ensure proper ANSI code handling
 (leaf xterm-color
+  :ensure t
   :after compile
   :defun xterm-color-filter compilation-filter compilation-filter@advice-compilation-filter
   :custom
@@ -406,6 +429,7 @@
                                          (funcall orig proc (xterm-color-filter string)))))
 
 (leaf alert
+  :ensure t
   :commands alert
   :custom
   (alert-default-style . 'libnotify))

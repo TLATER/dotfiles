@@ -28,6 +28,7 @@
   (require 'leaf))
 
 (leaf gotham-theme
+  :ensure t
   :defvar gotham-tty-256-colors
   :custom
   (gotham-tty-256-colors . t)

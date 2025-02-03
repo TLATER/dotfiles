@@ -38,6 +38,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf bazel
+  :ensure t
   :mode `((,(rx ".bzl" string-end) . bazel-starlark-mode)
          (,(rx (or "BUILD" "BUILD.bazel") string-end) . bazel-build-mode))
   :commands bazel-buildifier)
@@ -47,6 +48,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf csv-mode
+  :ensure t
   :mode `(,(rx ".csv" string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -54,6 +56,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf dockerfile-mode
+  :ensure t
   :mode `(,(rx string-start "Dockerfile" string-end))
   :hook (dockerfile-mode-hook . (lambda () (setq-local devdocs-current-docs '("docker")))))
 
@@ -62,6 +65,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf glsl-mode
+  :ensure t
   :mode `(,(rx (or ".glsl" ".vert" ".frag" ".geom") string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -69,6 +73,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf gnuplot
+  :ensure t
   :mode `(,(rx (or ".p" ".gp" ".gnuplot") string-end) . gnuplot-mode)
   :hook (gnuplot-mode-hook . (lambda () (setq-local devdocs-current-docs '("gnuplot")))))
 
@@ -77,6 +82,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf graphql-mode
+  :ensure t
   :mode `(,(rx (or ".graphql" ".gql") string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -84,6 +90,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf haskell-mode
+  :ensure t
   :commands haskell-mode-stylish-buffer
   :mode `(,(rx ".hs" string-end))
   :hook (haskell-mode-hook . interactive-haskell-mode)
@@ -96,12 +103,15 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf json-mode
+  :ensure t
   :mode `(,(rx ".json" string-end)))
 
 (leaf jsonnet-mode
+  :ensure t
   :mode `(,(rx ".jsonnet" string-end)))
 
 (leaf yaml-mode
+  :ensure t
   :mode `(,(rx (or ".yaml" ".yml" ".bst"
                 (and string-start "project.conf")) string-end)))
 
@@ -110,6 +120,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf kotlin-mode
+  :ensure t
   :hook (kotlin-mode-hook . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
   :mode `(,(rx ".kt" (optional "s") string-end)))
 
@@ -118,6 +129,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf markdown-mode
+  :ensure t
   :hook (markdown-mode-hook . (lambda () (setq-local devdocs-current-docs '("markdown"))))
   :mode `(,(rx (or
              (and (or ".md" ".mdwn") string-end)
@@ -130,6 +142,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf mermaid-mode
+  :ensure t
   :mode `(,(rx ".mermaid" string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -137,6 +150,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf nginx-mode
+  :ensure t
   :mode `(,(rx "nginx.conf" string-end))
   :hook (markdown-mode-hook . (lambda () (setq-local devdocs-current-docs '("nginx")))))
 
@@ -145,6 +159,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf nix-mode
+  :ensure t
   :mode `(,(rx ".nix" string-end))
   :hook (nix-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix")))))
 
@@ -164,6 +179,7 @@
      (gnuplot . t))))
 
 (leaf org-roam
+  :ensure t
   :custom
   `(org-roam-db-location . ,(expand-file-name "org-roam.db" data-dir))
   (org-roam-directory . "~/Documents/Notes/")
@@ -188,6 +204,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf protobuf-mode
+  :ensure t
   :mode `(,(rx ".proto" string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -206,6 +223,7 @@
   (python-shell-interpreter-args . "--simple-prompt -i"))
 
 (leaf cython-mode
+  :ensure t
   :mode `(,(rx (or ".pyx" ".pxd" ".pxi") string-end))
   :hook (cython-mode-hook . (lambda () (setq-local devdocs-current-docs '("python~3.11")))))
 
@@ -214,6 +232,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf rust-mode
+  :ensure t
   :mode `(,(rx (or (and ".rs" string-end)
                  (and string-start "Cargo.toml" string-end))) . rust-mode)
   :hook (rust-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust")))))
@@ -223,7 +242,6 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf scss-mode
-  :ensure nil
   :mode `(,(rx (or ".sass" ".scss") string-end))
   :hook (scss-mode-hook . (lambda () (setq-local devdocs-current-docs '("css" "sass")))))
 
@@ -232,6 +250,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf flymake-shellcheck
+  :ensure t
   :commands flymake-shellcheck-load
   :hook ((sh-mode-hook bash-ts-mode-hook) . flymake-shellcheck-load)
   :hook ((sh-mode-hook bash-ts-mode-hook) . (lambda () (setq-local devdocs-current-docs '("bash")))))
@@ -241,6 +260,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf systemd
+  :ensure t
   :mode `(,(rx (or".service" ".socket" ".device" ".mount" ".automount"
                 ".swap" ".target" ".path" ".timer" ".slice" ".scope")
              string-end)
@@ -251,6 +271,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf dart-mode
+  :ensure t
   :mode `(,(rx ".dart" string-end))
   :hook (dart-mode-hook . (lambda () (set (make-local-variable 'eglot-x-client-commands) '()))))
 
@@ -262,6 +283,7 @@
   :mode `(,(rx ".ts" (? "x") string-end)))
 
 (leaf web-mode
+  :ensure t
   :mode `(,(rx (or ".pug" ".hbs") string-end))
   :hook (web-mode-hook . (lambda () (setq-local devdocs-current-docs
                                                 '("html"
@@ -275,9 +297,11 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf yuck-mode
+  :ensure t
   :mode `(,(rx ".yuck" string-end)))
 
 (leaf zen-mode
+  :ensure t
   :mode `(,(rx ".zs")))
 
 ;; ----------------------------------------------------------------------------------
@@ -291,6 +315,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf company
+  :ensure t
   :hook (after-init-hook . global-company-mode)
   :custom
   (company-idle-delay . 0.1))
@@ -368,6 +393,7 @@
                '(nix-mode . ("nixd"))))
 
 (leaf eglot-x
+  :ensure t
   :after eglot
   :require t
   :defun eglot-x-setup
@@ -384,6 +410,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf reformatter
+  :ensure t
   :commands (biome-format-region
              biome-format-buffer
              clang-format-region

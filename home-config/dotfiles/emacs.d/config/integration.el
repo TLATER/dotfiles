@@ -52,6 +52,7 @@
   (browse-url-browser-function . 'browse-url-default-browser))
 
 (leaf direnv
+  :ensure t
   :global-minor-mode direnv-mode)
 
 ;; ----------------------------------------------------------------------------------

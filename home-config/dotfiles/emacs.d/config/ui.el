@@ -66,6 +66,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf crux
+  :ensure t
   :bind
   ("C-c o" . crux-open-with)
   ([remap kill-line] . crux-smart-kill-line)
@@ -78,6 +79,7 @@
   :global-minor-mode crux-reopen-as-root-mode)
 
 (leaf consult
+  :ensure t
   :defun (consult-register-window consult-xref consult-register-format)
   :custom
   (register-preview-delay . 0.5)
@@ -124,10 +126,12 @@
   :advice (:override register-preview consult-register-window))
 
 (leaf consult-eglot
+  :ensure t
   :after eglot
   :bind ("M-s e" . consult-eglot-symbols))
 
 (leaf consult-org-roam
+  :ensure t
   :after org-roam
   :bind
   ("C-c n b" . consult-org-roam-backlinks)
@@ -139,6 +143,7 @@
   :global-minor-mode consult-org-roam-mode)
 
 (leaf consult-project-extra
+  :ensure t
   :bind
   ([remap project-find-file] . consult-project-extra-find)
   ("C-x p 4 f" . consult-project-extra-find-other-window))
@@ -153,6 +158,7 @@
 
 ;; Highlight TODO notes
 (leaf fic-mode
+  :ensure t
   :hook prog-mode-hook
   :custom-face
   (fic-face . '((t (:foreground "darkred" :weight bold))))
@@ -160,6 +166,7 @@
 
 ;; Colorful color names :3
 (leaf rainbow-mode
+  :ensure t
   :hook (prog-mode-hook text-mode-hook))
 
 ;; Highlight the current line

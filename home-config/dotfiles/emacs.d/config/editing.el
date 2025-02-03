@@ -40,6 +40,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf editorconfig
+  :ensure t
   :hook (prog-mode-hook . editorconfig-mode))
 
 ;; ----------------------------------------------------------------------------------
@@ -47,6 +48,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf whitespace-cleanup-mode
+  :ensure t
   :commands global-whitespace-cleanup-mode
   :global-minor-mode global-whitespace-cleanup-mode)
 
@@ -55,7 +57,6 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf files
-  :ensure nil
   :custom (require-final-newline . "visit-save")
   :custom (major-mode-remap-alist . '((sh-mode . bash-ts-mode)
                                       (css-mode . css-ts-mode))))
@@ -65,6 +66,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf yasnippet
+  :ensure t
   :custom
   `(yas-snippet-dirs . '(,(expand-file-name "snippets" share-dir)))
   :global-minor-mode yas-global-mode
@@ -167,6 +169,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf smartparens
+  :ensure t
   :defun sp-use-smartparens-bindings
   :bind (:smartparens-mode-map
          ("C-S-a" . sp-beginning-of-sexp)
@@ -186,6 +189,7 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf separedit
+  :ensure t
   :bind (:prog-mode-map
          :package prog-mode
          ("C-c ;" . #'separedit))
@@ -213,6 +217,7 @@
 (setq undo-outer-limit (* 50 1024 1024))
 
 (leaf vundo
+  :ensure t
   :bind
   ("C-x u" . vundo)
   (:vundo-mode-map
@@ -240,6 +245,7 @@
   (setq vundo-pre-enter-hook '(vundo-set-symbols-for-frame)))
 
 (leaf undo-fu-session
+  :ensure t
   :custom
   `(undo-fu-session-directory . ,(expand-file-name "undo-fu-session" back-dir))
   (undo-fu-session-compression . 'xz)

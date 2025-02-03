@@ -1,42 +1,42 @@
 {
+  pkgs,
   self,
+  flake-inputs,
   sources,
+  lib,
   hostPlatform,
-  emacsPackagesFor,
   emacsMacport,
   emacs29-pgtk,
-  runCommandLocal,
 }:
 let
-  emacsPlatform = if hostPlatform.isDarwin then emacsMacport else emacs29-pgtk;
+  emacsDotfiles = "${self}/home-config/dotfiles/emacs.d";
 
-  overrides = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
-
-  emacsPkgs = (emacsPackagesFor emacsPlatform).overrideScope overrides;
+  emacsWithPackagesFromUsePackage = import "${flake-inputs.emacs-overlay}/elisp.nix" {
+    inherit pkgs;
+  };
 
   # Compute the list of leaf-d packages.
-  package-list = runCommandLocal "package-list" { buildInputs = [ emacsPkgs.emacs ]; } ''
-    HOME=/tmp emacs --batch --quick \
-          -l ${./leaf-package-list.el} \
-          --eval "(leaf-package-list \"${self}/home-config/dotfiles/emacs.d/init.el\")" \
-          > $out
-  '';
-
-  required-packages = builtins.fromJSON (builtins.readFile package-list) ++ [ "leaf" ];
-
-  custom-emacs = emacsPkgs.emacs.pkgs.withPackages (
-    epkgs:
-    (map (package: builtins.getAttr package epkgs) required-packages)
-    ++ [
-      (epkgs.treesit-grammars.with-grammars (
-        grammars: with grammars; [
-          tree-sitter-bash
-          tree-sitter-css
-          tree-sitter-typescript
-          tree-sitter-tsx
-        ]
-      ))
+  emacsConfigs =
+    [
+      "${emacsDotfiles}/init.el"
     ]
-  );
+    ++ (lib.mapAttrsToList (fname: _: "${emacsDotfiles}/config/${fname}") (
+      lib.filterAttrs (_: type: type == "regular") (builtins.readDir "${emacsDotfiles}/config/")
+    ));
 in
-custom-emacs
+emacsWithPackagesFromUsePackage {
+  # TODO(tlater): Consider adding multi-file support upstream.
+  config = lib.concatMapStringsSep "\n" builtins.readFile emacsConfigs;
+  extraEmacsPackages = epkgs: [
+    (epkgs.treesit-grammars.with-grammars (
+      grammars: with grammars; [
+        tree-sitter-bash
+        tree-sitter-css
+        tree-sitter-typescript
+        tree-sitter-tsx
+      ]
+    ))
+  ];
+  package = if hostPlatform.isDarwin then emacsMacport else emacs29-pgtk;
+  override = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
+}
