@@ -1,30 +1,50 @@
-{ config, ... }:
+{ pkgs, config, ... }:
 {
-  networking.wg-quick.interfaces.wg-tlaternet = {
-    autostart = true;
+  networking.networkmanager = {
+    ensureProfiles = {
+      environmentFiles = [ config.sops.secrets.wireguard-env.path ];
 
-    privateKeyFile = config.sops.secrets."wireguard/tlaternet".path;
-    address = [ "10.45.249.2/32" ];
-    # This is the minimum MTU possible (for IPv6 traffic), so should
-    # be the most generally supported.
-    #
-    # Better connections should support more, but my home connection
-    # only seems to support 1310 anyway, and this computer will
-    # likely travel, so for set-it-and-forget-it reasons let's set
-    # it to the minimum.
-    mtu = 1280;
+      profiles.wg-tlaternet = {
+        connection = {
+          id = "wg-tlaternet";
+          type = "wireguard";
+          interface-name = "wgt0";
+        };
 
-    peers = [
+        ipv4 = {
+          address = "10.45.249.2/32";
+          method = "manual";
+        };
+
+        wireguard = {
+          mtu = 1280;
+          private-key = "$WG_KEY_TLATERNET";
+        };
+
+        "wireguard-peer.73z3Pga/2BCxETYM/qCT2FM1JUCUvQ+Cp+8ROxjhu0w=" = {
+          endpoint = "116.202.158.55:51820";
+          allowed-ips = "10.45.249.0/24";
+          persistentKeepalive = 25;
+        };
+      };
+    };
+
+    dispatcherScripts = [
       {
-        publicKey = "73z3Pga/2BCxETYM/qCT2FM1JUCUvQ+Cp+8ROxjhu0w=";
-        endpoint = "178.79.137.55:51820";
-        allowedIPs = [ "10.45.249.0/24" ];
-        persistentKeepalive = 25;
+        source = pkgs.writeShellScript "wgDomainHook" ''
+          if [ "$1" == "wgt0" ] && [ "$2" == "up" ]; then
+              ${pkgs.unbound}/bin/unbound-control local_zone tlater.net. redirect
+              ${pkgs.unbound}/bin/unbound-control local_data tlater.net. A 10.45.249.1
+          fi
+
+          if [ "$1" == "wgt0" ] && [ "$2" == "down" ]; then
+              ${pkgs.unbound}/bin/unbound-control local_zone_remove tlater.net.
+          fi
+        '';
+        type = "basic";
       }
     ];
   };
 
-  sops.secrets = {
-    "wireguard/tlaternet" = { };
-  };
+  sops.secrets.wireguard-env = { };
 }
