@@ -40,10 +40,23 @@
     amdgpuBusId = "PCI:C5:0:0";
   };
 
+  services = {
+    xserver.videoDrivers = [ "amdgpu" ];
+
+    upower = {
+      enable = true;
+      noPollBatteries = true;
+    };
+
+    auto-cpufreq.enable = true;
+  };
+
   networking = {
     hostName = "rin";
     hostId = "e6aaf496";
   };
+
+  powerManagement.enable = true;
 
   # Used extensively for testing at work
   virtualisation.docker.enable = true;
