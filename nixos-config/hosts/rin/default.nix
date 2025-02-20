@@ -62,5 +62,9 @@
   virtualisation.docker.enable = true;
   users.users.tlater.extraGroups = [ "docker" ];
   # Install rustup system-wide for convenience
-  environment.systemPackages = [ pkgs.rustup ];
+  environment.systemPackages = with pkgs; [
+    rustup
+    cargo-nextest
+    cargo-llvm-cov
+  ];
 }
