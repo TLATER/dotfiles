@@ -32,11 +32,11 @@
                     EWW_BATTERY == "" ? "" :
                     jq(EWW_BATTERY, "first(.[])").status == "Charging" ?
                     "" :
-                    jq(EWW_BATTERY, "first(.[])").capacity > 75 ?
+                    jq(EWW_BATTERY, "first(.[])").capacity > 80 ?
                     "" :
                     jq(EWW_BATTERY, "first(.[])").capacity > 50 ?
                     "" :
-                    jq(EWW_BATTERY, "first(.[])").capacity > 25 ?
+                    jq(EWW_BATTERY, "first(.[])").capacity > 20 ?
                     "" :
                     jq(EWW_BATTERY, "first(.[])").capacity > 5 ?
                     "" :
