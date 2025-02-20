@@ -45,6 +45,14 @@
     hostId = "e6aaf496";
   };
 
+  powerManagement.enable = true;
+  services.upower = {
+    enable = true;
+    noPollBatteries = true;
+  };
+
+  services.auto-cpufreq.enable = true;
+
   # Used extensively for testing at work
   virtualisation.docker.enable = true;
   users.users.tlater.extraGroups = [ "docker" ];
