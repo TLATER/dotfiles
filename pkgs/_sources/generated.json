@@ -56,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2025-01-31",
+        "date": "2025-02-21",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -68,11 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "beca90574d90e23a7aa837f8a49b2b4d731722fe",
-            "sha256": "sha256-9RvXe8ZAFt6s7SmQLgeckce6Nq4bTHikmm26kh1GAKU=",
+            "rev": "2eea2b7e92db7bdc6d3746373202e145fbe00410",
+            "sha256": "sha256-524ZLBwJ6wv69wP3upbmTn99igtMfzKuPmnPYD+xw8c=",
             "type": "github"
         },
-        "version": "beca90574d90e23a7aa837f8a49b2b4d731722fe"
+        "version": "2eea2b7e92db7bdc6d3746373202e145fbe00410"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -90,7 +90,7 @@
     },
     "edopro-irrlicht": {
         "cargoLocks": null,
-        "date": "2024-12-03",
+        "date": "2025-02-09",
         "extract": null,
         "name": "edopro-irrlicht",
         "passthru": null,
@@ -102,15 +102,15 @@
             "name": null,
             "owner": "edo9300",
             "repo": "irrlicht1-8-4",
-            "rev": "6d633bcd3744d85da97386ae737ab7d69da80585",
-            "sha256": "sha256-2+3IeQ4eRWXF5pT6buN+91GFB0ctjRM6HWKeayIdWVk=",
+            "rev": "c869c15209e5151f44a8606c04d2028abb0ac73c",
+            "sha256": "sha256-Xq+YPY8ekodfeXJL4cHcowfDn5ainuJ9Wn9zga1ibLM=",
             "type": "github"
         },
-        "version": "6d633bcd3744d85da97386ae737ab7d69da80585"
+        "version": "c869c15209e5151f44a8606c04d2028abb0ac73c"
     },
     "eglot-x": {
         "cargoLocks": null,
-        "date": "2025-01-22",
+        "date": "2025-02-16",
         "extract": null,
         "name": "eglot-x",
         "passthru": null,
@@ -122,11 +122,11 @@
             "name": null,
             "owner": "nemethf",
             "repo": "eglot-x",
-            "rev": "82c315c052e5a08c5307df4a4624049ee0e219e8",
-            "sha256": "sha256-ceyUan/hyguChyhITSYgc5lXhoeLaDM+if3bLbqSMoo=",
+            "rev": "5b5a56ddf8a087520f5e25a7343ec6503338e35b",
+            "sha256": "sha256-6FY/Y5ahA82N0uJ0Dvb5e390UoVBEi8E8kKGfyknM/k=",
             "type": "github"
         },
-        "version": "82c315c052e5a08c5307df4a4624049ee0e219e8"
+        "version": "5b5a56ddf8a087520f5e25a7343ec6503338e35b"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
@@ -162,11 +162,11 @@
             "name": null,
             "owner": "pcarrier",
             "repo": "gauth",
-            "rev": "v1.3.0",
-            "sha256": "sha256-GU6HKha7Y01HJX6pyYHORUkFKgl9mWtDd65d+3pYxjI=",
+            "rev": "v1.5.0",
+            "sha256": "sha256-t5hvbJ8Oqqq52SHFxl6jmNOTC+6fQOJ+jyWoQyY008Q=",
             "type": "github"
         },
-        "version": "v1.3.0"
+        "version": "v1.5.0"
     },
     "gcs": {
         "cargoLocks": null,
@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2025-01-30",
+        "date": "2025-02-19",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,11 +202,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "1c34b0e67d4f1dff36a079f31d7dafe8bcf92f6e",
-            "sha256": "sha256-+y8fN1A+wb24H4s/KJ8VpuauCvwoItoruDwXlIw8ed4=",
+            "rev": "6e7ac0544e71c7b777746cb50f70de68c6495b86",
+            "sha256": "sha256-d4w15ja5qe4axOwNyIoXZdVcgUedAIgZQrhINmNNJFw=",
             "type": "github"
         },
-        "version": "1c34b0e67d4f1dff36a079f31d7dafe8bcf92f6e"
+        "version": "6e7ac0544e71c7b777746cb50f70de68c6495b86"
     },
     "phosphor-icons": {
         "cargoLocks": null,
