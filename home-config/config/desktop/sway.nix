@@ -108,6 +108,7 @@ in
       Service = {
         ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
         ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
+        Environment = "PATH=${config.programs.eww.package}/bin:${pkgs.systemd}/bin:${pkgs.coreutils}/bin";
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };
