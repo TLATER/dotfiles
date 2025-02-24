@@ -39,9 +39,18 @@
 
 (leaf bazel
   :ensure t
+  :defvar package-selected-packages package-archive-contents
   :mode `((,(rx ".bzl" string-end) . bazel-starlark-mode)
          (,(rx (or "BUILD" "BUILD.bazel") string-end) . bazel-build-mode))
   :commands bazel-buildifier)
+
+;; ----------------------------------------------------------------------------------
+;;; C
+;; ----------------------------------------------------------------------------------
+
+(leaf cc-mode
+  :require eglot
+  :hook (c-mode-common-hook . eglot-ensure))
 
 ;; ----------------------------------------------------------------------------------
 ;;; CSV
@@ -104,7 +113,13 @@
 
 (leaf json-mode
   :ensure t
-  :mode `(,(rx ".json" string-end)))
+  :require eglot
+  :mode `(,(rx ".json" string-end))
+  :hook (json-mode-hook . eglot-ensure)
+  :defvar eglot-server-programs
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               '(json-mode . ("biome" "lsp-proxy"))))
 
 (leaf jsonnet-mode
   :ensure t
@@ -112,8 +127,10 @@
 
 (leaf yaml-mode
   :ensure t
+  :require eglot
   :mode `(,(rx (or ".yaml" ".yml" ".bst"
-                (and string-start "project.conf")) string-end)))
+                   (and string-start "project.conf")) string-end))
+  :hook (yaml-mode-hook . eglot-ensure))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Kotlin
@@ -121,7 +138,10 @@
 
 (leaf kotlin-mode
   :ensure t
-  :hook (kotlin-mode-hook . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
+  :require eglot
+  :hook
+  (kotlin-mode-hook . (lambda () (setq-local devdocs-current-docs '("kotlin~1.9"))))
+  (kotlin-mode-hook . eglot-ensure)
   :mode `(,(rx ".kt" (optional "s") string-end)))
 
 ;; ----------------------------------------------------------------------------------
@@ -160,8 +180,14 @@
 
 (leaf nix-mode
   :ensure t
+  :require eglot
   :mode `(,(rx ".nix" string-end))
-  :hook (nix-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix")))))
+  :hook
+  (nix-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix"))))
+  (nix-mode-hook . eglot-ensure)
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               '(nix-mode . ("nixd"))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; org
@@ -212,9 +238,12 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf python
+  :require eglot
   :mode `(,(rx ".py" string-end) . python-mode)
   :interpreter ("python" . python-mode)
-  :hook (python-mode-hook . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
+  :hook
+  ((python-mode-hook python-ts-mode-hook) . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
+  ((python-mode-hook python-ts-mode-hook) . eglot-ensure)
   :custom
   (python-shell-interpreter . '(cond
                                 ((executable-find "ipython") "ipython")
@@ -235,9 +264,18 @@
 
 (leaf rust-mode
   :ensure t
+  :require eglot
   :mode `(,(rx (or (and ".rs" string-end)
                  (and string-start "Cargo.toml" string-end))) . rust-mode)
-  :hook (rust-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust")))))
+  :hook
+  (rust-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust"))))
+  (rust-mode-hook . eglot-ensure)
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               '(rust-mode . ("rust-analyzer"
+                              :initializationOptions
+                              (:checkOnSave
+                               (:command "clippy"))))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; SCSS
@@ -251,11 +289,11 @@
 ;;; *sh
 ;; ----------------------------------------------------------------------------------
 
-(leaf flymake-shellcheck
-  :ensure t
-  :commands flymake-shellcheck-load
-  :hook ((sh-mode-hook bash-ts-mode-hook) . flymake-shellcheck-load)
-  :hook ((sh-mode-hook bash-ts-mode-hook) . (lambda () (setq-local devdocs-current-docs '("bash")))))
+(leaf sh-script
+  :mode (`,(rx (or ".sh" ".bash" ".zsh")))
+  :hook
+  ((bash-ts-mode-hook sh-mode-hook) . eglot-ensure)
+  ((bash-ts-mode-hook sh-mode-hook) . (lambda () (setq-local devdocs-current-docs '("bash")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Systemd
@@ -274,8 +312,11 @@
 
 (leaf dart-mode
   :ensure t
+  :require eglot
   :mode `(,(rx ".dart" string-end))
-  :hook (dart-mode-hook . (lambda () (set (make-local-variable 'eglot-x-client-commands) '()))))
+  :hook
+  (dart-mode-hook . (lambda () (set (make-local-variable 'eglot-x-client-commands) '())))
+  (dart-mode-hook . eglot-ensure))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Terraform
@@ -292,17 +333,28 @@
 ;; ----------------------------------------------------------------------------------
 
 (leaf typescript-ts-mode
-  :mode `(,(rx ".ts" (? "x") string-end)))
+  :require eglot
+  :mode `(,(rx ".ts" (? "x") string-end))
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               `((typescript-ts-mode :language-id "typescriptreact")
+                 . ("typescript-language-server" "--stdio"))))
 
 (leaf web-mode
   :ensure t
+  :require eglot
   :mode `(,(rx (or ".pug" ".hbs") string-end))
-  :hook (web-mode-hook . (lambda () (setq-local devdocs-current-docs
-                                                '("html"
-                                                  "typescript"
-                                                  "css"
-                                                  "javascript"
-                                                  "dom")))))
+  :hook
+  (web-mode-hook . (lambda () (setq-local devdocs-current-docs
+                                          '("html"
+                                            "typescript"
+                                            "css"
+                                            "javascript"
+                                            "dom"))))
+  (web-mode-hook . eglot-ensure)
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               `(web-mode . ("biome" "lsp-proxy"))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; yuck - widget markup for eww
@@ -352,17 +404,13 @@
 
 (leaf eglot
   :commands (eglot eglot-format eglot-managed-p)
-  :hook (((kotlin-mode-hook web-mode-hook rust-mode-hook python-mode-hook
-           sh-mode-hook bash-ts-mode-hook c-mode-hook c++-mode-hook nix-mode-hook json-mode-hook
-           dart-mode-hook) .
-           eglot-ensure)
-         (eglot-managed-mode-hook . set-eldoc-compose))
+  :hook (eglot-managed-mode-hook . set-eldoc-compose)
   :bind (:eglot-mode-map
          ("C-c l r" . eglot-rename)
          ("C-c l a" . eglot-code-actions)
          ("C-c l i" . consult-eglot-symbols))
   :defun eglot-alternatives
-  :defvar eglot-workspace-configuration eglot-server-programs
+  :defvar eglot-workspace-configuration
   :setq-default (eglot-workspace-configuration .
     '((nixd
        (formatting
@@ -386,23 +434,7 @@
          ;; See also the small caveat under the huge table here:
          ;; https://pycodestyle.pycqa.org/en/latest/intro.html#error-codes
          (ignore . ["E203" "E121" "E123" "E126" "E133" "E226"
-                    "E241" "E242" "E704" "W503" "W504" "W505"]))))))
-
-  :defer-config
-  (add-to-list 'eglot-server-programs
-               '(rust-mode . ("rust-analyzer"
-                              :initializationOptions
-                              (:checkOnSave
-                               (:command "clippy")))))
-  (add-to-list 'eglot-server-programs
-               `((typescript-ts-mode :language-id "typescriptreact")
-                 . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs
-               `(web-mode . ("biome" "lsp-proxy")))
-  (add-to-list 'eglot-server-programs
-               '(json-mode . ("biome" "lsp-proxy")))
-  (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nixd"))))
+                    "E241" "E242" "E704" "W503" "W504" "W505"])))))))
 
 (leaf eglot-x
   :ensure t
