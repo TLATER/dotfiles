@@ -220,7 +220,9 @@
                                 ((executable-find "ipython") "ipython")
                                 ((executable-find "ipython3") "ipython3")
                                 ((executable-find "python3") "python3")))
-  (python-shell-interpreter-args . "--simple-prompt -i"))
+  (python-shell-interpreter-args . "--simple-prompt -i")
+  :defer-config
+  (add-to-list 'eglot-server-programs '((python-mode python-ts-mode) . ("ruff" "server"))))
 
 (leaf cython-mode
   :ensure t
