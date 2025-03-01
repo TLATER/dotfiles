@@ -56,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2025-02-21",
+        "date": "2025-02-24",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -68,11 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "2eea2b7e92db7bdc6d3746373202e145fbe00410",
-            "sha256": "sha256-524ZLBwJ6wv69wP3upbmTn99igtMfzKuPmnPYD+xw8c=",
+            "rev": "e7d36b0505ff1e3cc49785b467a33ee5c270f399",
+            "sha256": "sha256-D1qKCJPUkoYcjtKJOsKOWXlIlXEkegk6V47cUDPn71U=",
             "type": "github"
         },
-        "version": "2eea2b7e92db7bdc6d3746373202e145fbe00410"
+        "version": "e7d36b0505ff1e3cc49785b467a33ee5c270f399"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -90,7 +90,7 @@
     },
     "edopro-irrlicht": {
         "cargoLocks": null,
-        "date": "2025-02-09",
+        "date": "2025-02-22",
         "extract": null,
         "name": "edopro-irrlicht",
         "passthru": null,
@@ -102,11 +102,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "irrlicht1-8-4",
-            "rev": "c869c15209e5151f44a8606c04d2028abb0ac73c",
-            "sha256": "sha256-Xq+YPY8ekodfeXJL4cHcowfDn5ainuJ9Wn9zga1ibLM=",
+            "rev": "cc821564e5d8c0bb437c4cbf10831f7858ab7122",
+            "sha256": "sha256-cflKFUSo1NQ+9EEAyq2VDgWdnT7t3d4Y0lyjkfQgiNI=",
             "type": "github"
         },
-        "version": "c869c15209e5151f44a8606c04d2028abb0ac73c"
+        "version": "cc821564e5d8c0bb437c4cbf10831f7858ab7122"
     },
     "eglot-x": {
         "cargoLocks": null,
