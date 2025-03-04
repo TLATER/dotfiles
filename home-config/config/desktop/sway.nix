@@ -10,16 +10,13 @@ let
   swaymsg = "${nixos-config.programs.sway.package or pkgs.sway}/bin/swaymsg";
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
-  wpaperd-config = {
+  wpaperd-config = (pkgs.formats.toml { }).generate "wallpaper.toml" {
     default = {
       path = "~/Documents/Pictures/Backgrounds";
+      group = 1;
+      queue-size = 1;
     };
   };
-
-  wpaperd-config-dir = pkgs.runCommand "wpaperd-config" { } ''
-    mkdir -p $out/wpaperd
-    cp ${(pkgs.formats.toml { }).generate "wallpaper.toml" wpaperd-config} $out/wpaperd/wallpaper.toml
-  '';
 
   keepassxc-copy = pkgs.writeShellApplication {
     name = "keepassxc-copy";
@@ -123,12 +120,10 @@ in
         Description = "Wallpaper daemon";
         After = [ "graphical-session-pre.target" ];
         PartOf = [ "graphical-session.target" ];
+        X-Restart-Triggers = [ wpaperd-config ];
       };
 
-      Service = {
-        ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
-        Environment = "XDG_CONFIG_HOME=${wpaperd-config-dir}";
-      };
+      Service.ExecStart = "${pkgs.wpaperd}/bin/wpaperd -c ${wpaperd-config}";
 
       Install.WantedBy = [ "graphical-session.target" ];
     };
