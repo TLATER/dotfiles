@@ -311,6 +311,10 @@
 (leaf smart-mode-line
   :ensure t
   :defun (sml/setup sml/faces-from-theme sml/theme-p)
+  :custom
+  (sml/replacer-regexp-list . `((,(rx string-start "~/Documents/Projects/") ":PRJ:")
+                                (,(rx string-start "~/.local/src/dotfiles/") ":DTF:")
+                                (,(rx string-start "/sudo:" (zero-or-more anything) ":") ":SU:")))
   :config
   (sml/setup))
 
