@@ -316,6 +316,26 @@
   :config
   (sml/setup))
 
+(leaf rich-minority
+  :ensure t
+  :custom
+  `(rm-blacklist . ,(rx
+                     (or
+                      "ARev"
+                      "EditorConfig"
+                      (and "Fly/" (zero-or-more anything))
+                      "cov"
+                      "Rbow"
+                      "company"
+                      "cor"
+                      "WK"
+                      "SP"
+                      "yas"
+                      "WSC"
+                      "WS"
+                      "GCMH"
+                      "Eldoc"))))
+
 ;; ----------------------------------------------------------------------------------
 ;; Version control hints
 ;; ----------------------------------------------------------------------------------
