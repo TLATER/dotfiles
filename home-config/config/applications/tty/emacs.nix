@@ -24,17 +24,19 @@ in
       # Used for interactive python shells
       python3Packages.ipython
 
-      # I just edit shell scripts often enough it makes sense to have
-      # this by default
-      shellcheck
-
       # Required for markdown-mode (though could be replaced with a
       # different markdown implementation at some point)
       pandoc
 
-      # Technically only for web dev, but it does lsp stuff for JSON,
-      # so...
-      biome
+      # Language servers and linters for super generic stuff
+      biome # json/web stuff
+      nixd # nix
+      ruff # python
+      # *sh
+      bash-language-server
+      shellcheck
+      shfmt
+      yaml-language-server # yaml
 
       libnotify
       sqlite.dev
