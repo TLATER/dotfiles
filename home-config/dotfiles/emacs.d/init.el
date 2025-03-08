@@ -44,6 +44,14 @@
                    "emacs"
                    (or (getenv "XDG_CACHE_HOME") "~/.cache")))
 
+;; Load `custom.el'' for any imperative settings; This sets safe
+;; themes and variables, which is important to get out of the way
+;; early.
+(setq custom-file (expand-file-name "custom.el" data-dir))
+(if (file-exists-p custom-file)
+    (load custom-file)
+  (custom-set-variables))
+
 ;; Ensure emacs' native compilation doesn't try to write to the
 ;; read-only dotfiles directory
 ;;
@@ -85,11 +93,5 @@
     (mapc (lambda (file)
             (load (file-name-sans-extension file) nil nil nil t))
           (directory-files config-dir t "^[^#\.].*\\.el$"))))
-
-;; Finally load `custom.el'' for any declarative settings; there *should* be none, but
-;; occasionally I need something a bit less rigid than my nix config for a little while.
-(setq custom-file (expand-file-name "custom.el" data-dir))
-(when (file-exists-p custom-file)
-  (load custom-file))
 
 ;;; init.el ends here

@@ -311,8 +311,6 @@
 (leaf smart-mode-line
   :ensure t
   :defun (sml/setup sml/faces-from-theme sml/theme-p)
-  :custom
-  (sml/no-confirm-load-theme . t)
   :config
   (sml/setup))
 
