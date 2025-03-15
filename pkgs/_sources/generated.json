@@ -56,7 +56,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2025-02-24",
+        "date": "2025-03-11",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -68,11 +68,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "e7d36b0505ff1e3cc49785b467a33ee5c270f399",
-            "sha256": "sha256-D1qKCJPUkoYcjtKJOsKOWXlIlXEkegk6V47cUDPn71U=",
+            "rev": "f638489aa6c15ed9d40d369635077f4b2135be1e",
+            "sha256": "sha256-v6J2wXzNsLTArxyRqHdjwOxj6mTlKlOLmrIRg6JDwJM=",
             "type": "github"
         },
-        "version": "e7d36b0505ff1e3cc49785b467a33ee5c270f399"
+        "version": "f638489aa6c15ed9d40d369635077f4b2135be1e"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -90,7 +90,7 @@
     },
     "edopro-irrlicht": {
         "cargoLocks": null,
-        "date": "2025-02-22",
+        "date": "2025-03-12",
         "extract": null,
         "name": "edopro-irrlicht",
         "passthru": null,
@@ -102,11 +102,11 @@
             "name": null,
             "owner": "edo9300",
             "repo": "irrlicht1-8-4",
-            "rev": "cc821564e5d8c0bb437c4cbf10831f7858ab7122",
-            "sha256": "sha256-cflKFUSo1NQ+9EEAyq2VDgWdnT7t3d4Y0lyjkfQgiNI=",
+            "rev": "bac10cfd2538cc6a571207842a11be6df0e2c33a",
+            "sha256": "sha256-LL4fveUC6/Tt7W14oGNPfAMwgq64mbwH9IM+40sxRT4=",
             "type": "github"
         },
-        "version": "cc821564e5d8c0bb437c4cbf10831f7858ab7122"
+        "version": "bac10cfd2538cc6a571207842a11be6df0e2c33a"
     },
     "eglot-x": {
         "cargoLocks": null,
@@ -142,11 +142,11 @@
             "name": null,
             "owner": "black7375",
             "repo": "Firefox-UI-Fix",
-            "rev": "v8.6.6",
-            "sha256": "sha256-9pNphWnxiIe0bCpPdNQk/7y/zPvFKBM/djQoED+PJJ0=",
+            "rev": "v8.7.0",
+            "sha256": "sha256-NBPSKIxTNSuJahySyLqD45R/UmeyvkJBKehUIE/dI0I=",
             "type": "github"
         },
-        "version": "v8.6.6"
+        "version": "v8.7.0"
     },
     "gauth": {
         "cargoLocks": null,
@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2025-02-19",
+        "date": "2025-03-11",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,11 +202,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "6e7ac0544e71c7b777746cb50f70de68c6495b86",
-            "sha256": "sha256-d4w15ja5qe4axOwNyIoXZdVcgUedAIgZQrhINmNNJFw=",
+            "rev": "f97e871c33da57d20e1b0411da6b1674126192a9",
+            "sha256": "sha256-L2g9kw5mFfIz+IwTSfdHN4O48tew6D807gJvrgtkjJM=",
             "type": "github"
         },
-        "version": "6e7ac0544e71c7b777746cb50f70de68c6495b86"
+        "version": "f97e871c33da57d20e1b0411da6b1674126192a9"
     },
     "phosphor-icons": {
         "cargoLocks": null,
