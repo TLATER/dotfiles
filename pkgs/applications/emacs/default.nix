@@ -6,9 +6,10 @@
   lib,
   hostPlatform,
   emacsMacport,
-  emacs29-pgtk,
+  emacs30-pgtk,
 }:
 let
+  package = if hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
   emacsDotfiles = "${self}/home-config/dotfiles/emacs.d";
 
   emacsWithPackagesFromUsePackage = import "${flake-inputs.emacs-overlay}/elisp.nix" {
@@ -25,6 +26,8 @@ let
     ));
 in
 emacsWithPackagesFromUsePackage {
+  inherit package;
+
   # TODO(tlater): Consider adding multi-file support upstream.
   config = lib.concatMapStringsSep "\n" builtins.readFile emacsConfigs;
   extraEmacsPackages = epkgs: [
@@ -37,6 +40,5 @@ emacsWithPackagesFromUsePackage {
       ]
     ))
   ];
-  package = if hostPlatform.isDarwin then emacsMacport else emacs29-pgtk;
   override = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
 }
