@@ -318,7 +318,9 @@
   (sml/replacer-regexp-list . `((,(rx string-start "~/Documents/Projects/") ":PRJ:")
                                 (,(rx string-start "~/.local/src/dotfiles/") ":DTF:")
                                 (,(rx string-start "/sudo:" (zero-or-more anything) ":") ":SU:")))
+  (sml/mode-width . 16) ; To make space for eglot
   :config
+  ;; TODO(tlater): SML needs eglot and project.el support
   (sml/setup))
 
 (leaf rich-minority
