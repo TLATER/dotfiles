@@ -53,15 +53,15 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "bac10cfd2538cc6a571207842a11be6df0e2c33a";
+    version = "1fd024281fc5c007beff5c2c0002fe23f2fc397a";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "bac10cfd2538cc6a571207842a11be6df0e2c33a";
+      rev = "1fd024281fc5c007beff5c2c0002fe23f2fc397a";
       fetchSubmodules = false;
-      sha256 = "sha256-LL4fveUC6/Tt7W14oGNPfAMwgq64mbwH9IM+40sxRT4=";
+      sha256 = "sha256-OjHwiO5C6SjGcsuvdqLNOEM6Q5sPU+9NZYPQHFCasFo=";
     };
-    date = "2025-03-12";
+    date = "2025-03-16";
   };
   eglot-x = {
     pname = "eglot-x";
@@ -110,27 +110,27 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "f97e871c33da57d20e1b0411da6b1674126192a9";
+    version = "899af6328b395f1db2e74d09880a1af435a188ca";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "f97e871c33da57d20e1b0411da6b1674126192a9";
+      rev = "899af6328b395f1db2e74d09880a1af435a188ca";
       fetchSubmodules = false;
-      sha256 = "sha256-L2g9kw5mFfIz+IwTSfdHN4O48tew6D807gJvrgtkjJM=";
+      sha256 = "sha256-1Lps6VjP/Hi4Brx6tgk7hoSmhacQC/6TfdamC2Hbo28=";
     };
-    date = "2025-03-11";
+    date = "2025-03-21";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "b8f00b5ad3d91471afec6a81c69154cf87e6e233";
+    version = "c966e6f969b2840b04062539075281c9067b3b8a";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "b8f00b5ad3d91471afec6a81c69154cf87e6e233";
+      rev = "c966e6f969b2840b04062539075281c9067b3b8a";
       fetchSubmodules = false;
-      sha256 = "sha256-hio7aUN1tg5qXHNqi9PzbwBOPrFD9jnPA2/qXJ8Li8I=";
+      sha256 = "sha256-SnpVEEGCJR2S5mNW555S7hGMZ+3rTijYM2YSxeMAfNo=";
     };
-    date = "2025-01-30";
+    date = "2025-03-15";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
