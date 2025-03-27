@@ -61,6 +61,4 @@
   # Used extensively for testing at work
   virtualisation.docker.enable = true;
   users.users.tlater.extraGroups = [ "docker" ];
-  # Install rustup system-wide for convenience
-  environment.systemPackages = [ pkgs.rustup ];
 }
