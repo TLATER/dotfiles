@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "c75b5369beb1e29e5b5925823c9566435023d54a";
+    version = "f06feb70d7ea5b5d4a148be1a4ab300ca1b8876b";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "c75b5369beb1e29e5b5925823c9566435023d54a";
+      rev = "f06feb70d7ea5b5d4a148be1a4ab300ca1b8876b";
       fetchSubmodules = true;
-      sha256 = "sha256-HajiQo3w8wxkbZ7rdP0LycDIGXSMZD83PaVVYfIixBo=";
+      sha256 = "sha256-7TJA1xTCKGlG4LaV3/Bdiy9mLlmGyxhJlkHPVDT202Q=";
     };
-    date = "2025-03-23";
+    date = "2025-03-30";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -53,15 +53,15 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "1fd024281fc5c007beff5c2c0002fe23f2fc397a";
+    version = "47264fc2bc3223d110c589c9ffe4339d696a3dd0";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "1fd024281fc5c007beff5c2c0002fe23f2fc397a";
+      rev = "47264fc2bc3223d110c589c9ffe4339d696a3dd0";
       fetchSubmodules = false;
-      sha256 = "sha256-OjHwiO5C6SjGcsuvdqLNOEM6Q5sPU+9NZYPQHFCasFo=";
+      sha256 = "sha256-AwUCHQOivNgSnYe8kG6JxDIz7H5PC6RoozGiOGUejTI=";
     };
-    date = "2025-03-16";
+    date = "2025-03-30";
   };
   eglot-x = {
     pname = "eglot-x";
@@ -110,27 +110,27 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "fa396ad7718af77e896472772bffd4a7e9110193";
+    version = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "fa396ad7718af77e896472772bffd4a7e9110193";
+      rev = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
       fetchSubmodules = false;
-      sha256 = "sha256-9K5SzFCMQZLdiYYGDOfvG6jD88xX/3gJzGhPw0pmFs8=";
+      sha256 = "sha256-f0pwEhxCsPuGhkSQW4A/KTffwLzKMaVCKQ8o4ZFfVhM=";
     };
-    date = "2025-03-25";
+    date = "2025-04-03";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "13c6652fe9940ff0c1af3a55d86a0684eece25c8";
+    version = "70854726d7bd82ae21f0dc81b5b5c35240a77066";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "13c6652fe9940ff0c1af3a55d86a0684eece25c8";
+      rev = "70854726d7bd82ae21f0dc81b5b5c35240a77066";
       fetchSubmodules = false;
-      sha256 = "sha256-FskJTs21HivuZljxH4GSlomLXmnhZNlCnupsOVDeQwY=";
+      sha256 = "sha256-96ivFjm0cBhqDKNB50klM7D3fevt8X9Zzm82KkJKMtU=";
     };
-    date = "2025-03-25";
+    date = "2025-03-31";
   };
   tridactyl-emacs = {
     pname = "tridactyl-emacs";
