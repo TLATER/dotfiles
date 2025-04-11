@@ -42,6 +42,18 @@
 (define-key global-map (kbd "<XF86Forward>") nil)
 
 ;; ----------------------------------------------------------------------------------
+;;; Window management
+;; ----------------------------------------------------------------------------------
+
+(leaf shackle
+  :ensure t
+  :global-minor-mode shackle-mode
+  :custom
+  (shackle-rules
+   . '((compilation-mode :popup t :align 'right :size 100)
+       (vterm-mode :popup t :align 'right :size 100))))
+
+;; ----------------------------------------------------------------------------------
 ;;; Unbind keys I don't like
 ;; ----------------------------------------------------------------------------------
 
