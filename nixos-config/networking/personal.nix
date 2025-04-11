@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   networking = {
     nftables.enable = true;
@@ -62,6 +67,33 @@
           };
         };
       };
+
+      dispatcherScripts =
+        let
+          nmcli = lib.getExe' pkgs.networkmanager "nmcli";
+          unbound-control = lib.getExe' pkgs.unbound-with-systemd "unbound-control";
+        in
+        [
+          {
+            source = pkgs.writeShellScript "mikanDNSHook" ''
+              if [ "$2" == "dns-change" ] || [ "$2" == "dhcp4-change" ] || [ "$2" == "dhcp6-change" ]; then
+                  mikan_p=$(${nmcli} -g GENERAL.STATE c s mikan | grep -qE '\bactiv')
+                  nameservers="$(grep 'nameserver' /run/NetworkManager/resolv.conf | cut -d ' ' -f 2)"
+
+                  # Trust my local intranet's DNS servers
+                  if $mikan_p; then
+                      # Deliberate word splitting
+                      logger "Switching to DNS servers: " $nameservers
+                      ${unbound-control} forward $nameservers
+                  else
+                      logger "Resetting to default unbound configuration"
+                      ${unbound-control} reload
+                  fi
+              fi
+            '';
+            type = "basic";
+          }
+        ];
     };
   };
 
