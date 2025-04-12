@@ -1,16 +1,13 @@
 {
-  pkgs,
   self,
   mkTest,
   lib,
-  flake-inputs,
   generatedFiles,
+  deadnix,
 }:
 let
   inherit (lib) concatStringsSep;
   inherit (lib.sources) sourceFilesBySuffices;
-
-  deadnix = flake-inputs.deadnix.packages.${pkgs.system}.default;
 
   excludes = "--exclude ${concatStringsSep " " (map (f: "./${f}") generatedFiles)}";
 in

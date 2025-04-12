@@ -2,7 +2,6 @@
   description = "tlater's dotfiles";
 
   inputs = {
-    # NixOS related inputs
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -33,27 +32,30 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         disko.follows = "disko";
+        nixos-stable.follows = "nixpkgs";
       };
     };
 
-    # home-manager related inputs
     home-manager = {
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nurpkgs.url = "github:nix-community/NUR";
+
+    nurpkgs = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixd.url = "github:nix-community/nixd";
+
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
-
-    deadnix.url = "github:astro/deadnix";
   };
 
   outputs =
