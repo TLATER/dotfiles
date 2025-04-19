@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "9de11a68b846e9b83b7ff3eae2b477b9a9082644";
+    version = "6bd4b6a546294efc83074c8ae0df3b2555423f36";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "9de11a68b846e9b83b7ff3eae2b477b9a9082644";
+      rev = "6bd4b6a546294efc83074c8ae0df3b2555423f36";
       fetchSubmodules = true;
-      sha256 = "sha256-SdQXFY05Hrc7qCrovgY+Cj/6ZyywaVMLiS6il+lp5NM=";
+      sha256 = "sha256-Ff0XMEwFKpDSmjuVAXwJMmuBUnzZwqtC208HAij12YE=";
     };
-    date = "2025-04-10";
+    date = "2025-04-18";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -110,15 +110,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
+    version = "c1e5ff31693f391a0bbb30b12c8e7bc1cc976b7b";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
+      rev = "c1e5ff31693f391a0bbb30b12c8e7bc1cc976b7b";
       fetchSubmodules = false;
-      sha256 = "sha256-f0pwEhxCsPuGhkSQW4A/KTffwLzKMaVCKQ8o4ZFfVhM=";
+      sha256 = "sha256-5iG1Dh6gJk9xQTMC9f27/K8t7JDYGERp8bC8aM9dCBo=";
     };
-    date = "2025-04-03";
+    date = "2025-04-17";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
