@@ -28,6 +28,10 @@ fetch.tarball = "https://github.com/ProjectIgnis/edopro-assets/releases/download
 src.git = "https://github.com/edo9300/irrlicht1-8-4.git"
 fetch.github = "edo9300/irrlicht1-8-4"
 
+[ocgcore]
+src.github = "edo9300/ygopro-core"
+fetch.github = "edo9300/ygopro-core"
+
 [firefox-ui-fix]
 src.github = "black7375/Firefox-UI-Fix"
 fetch.github = "black7375/Firefox-UI-Fix"

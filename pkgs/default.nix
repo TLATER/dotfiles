@@ -20,9 +20,9 @@ in
   commit-nvfetcher = callPackage ./scripts/commit-nvfetcher { };
 
   # Proper packages
+  inherit (callPackage ./applications/edopro { }) edopro;
   deepfilternet = callPackage ./applications/deepfilternet.nix { };
   drivestrike = callPackage ./applications/drivestrike.nix { };
-  edopro = callPackage ./applications/edopro.nix { };
   emacs = callPackage ./applications/emacs { };
   gauth = callPackage ./applications/gauth.nix { };
   gcs = callPackage ./applications/gcs.nix { };

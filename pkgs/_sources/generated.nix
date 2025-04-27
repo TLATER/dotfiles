@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "547358dc1446edee976f155c75abbca36e2c64d0";
+    version = "e5c0578aa504d0831dcbe29dbacd018f7b885b2c";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "547358dc1446edee976f155c75abbca36e2c64d0";
+      rev = "e5c0578aa504d0831dcbe29dbacd018f7b885b2c";
       fetchSubmodules = true;
-      sha256 = "sha256-RaN/WzDlBkDRwR5996ymHy+U1UdTFMu5F8s0FF4N1Lo=";
+      sha256 = "sha256-ZkQXWt73S3Nn+RnkG+e91BId7keI5OpM3NSeDMJWlZY=";
     };
-    date = "2025-04-26";
+    date = "2025-04-27";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -65,15 +65,15 @@
   };
   eglot-x = {
     pname = "eglot-x";
-    version = "ca565df30d8e207c00471a3723d7bd5803497a95";
+    version = "5b5a56ddf8a087520f5e25a7343ec6503338e35b";
     src = fetchFromGitHub {
       owner = "nemethf";
       repo = "eglot-x";
-      rev = "ca565df30d8e207c00471a3723d7bd5803497a95";
+      rev = "5b5a56ddf8a087520f5e25a7343ec6503338e35b";
       fetchSubmodules = false;
-      sha256 = "sha256-pJSBG84G+uRWEeoyHrsajNxIsfqlcwQM7rCsxBsn3Jc=";
+      sha256 = "sha256-6FY/Y5ahA82N0uJ0Dvb5e390UoVBEi8E8kKGfyknM/k=";
     };
-    date = "2025-04-19";
+    date = "2025-02-16";
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
@@ -108,17 +108,28 @@
       sha256 = "sha256-N4a+7a1XpDXsZTDiTh1AZIzXfk/A+gV4uBZdGZh+S5I=";
     };
   };
+  ocgcore = {
+    pname = "ocgcore";
+    version = "v11.0";
+    src = fetchFromGitHub {
+      owner = "edo9300";
+      repo = "ygopro-core";
+      rev = "v11.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-q11xofN4hKg+onHxmhRz+jdBz3pcUr/Slp+RCg5cjk8=";
+    };
+  };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "959b6cf5eed78f108dc6e0f46b53816f5168dd3a";
+    version = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "959b6cf5eed78f108dc6e0f46b53816f5168dd3a";
+      rev = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
       fetchSubmodules = false;
-      sha256 = "sha256-s5lvs1FKIQbOf83U5tzJ4VSV0rfdtVq1XIwKGWKTe04=";
+      sha256 = "sha256-f0pwEhxCsPuGhkSQW4A/KTffwLzKMaVCKQ8o4ZFfVhM=";
     };
-    date = "2025-04-24";
+    date = "2025-04-03";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
