@@ -247,25 +247,5 @@
             "type": "github"
         },
         "version": "16678d40a0f34b99f4c48b8bf7b1a49ce0c9c1a1"
-    },
-    "tridactyl-emacs": {
-        "cargoLocks": null,
-        "date": "2023-12-22",
-        "extract": null,
-        "name": "tridactyl-emacs",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "jumper047",
-            "repo": "tridactyl_emacs_config",
-            "rev": "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb",
-            "sha256": "sha256-OGSVKUoZ9E5yqJQfTnfx6QW4vLbdQ5/V3VX65TuQG4k=",
-            "type": "github"
-        },
-        "version": "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb"
     }
 }

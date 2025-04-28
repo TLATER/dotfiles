@@ -54,8 +54,3 @@ fetch.github = "ohmyzsh/ohmyzsh"
 src.git = "https://github.com/phosphor-icons/web"
 src.branch = "master"
 fetch.github = "phosphor-icons/web"
-
-[tridactyl-emacs]
-src.git = "https://github.com/jumper047/tridactyl_emacs_config"
-src.branch = "main"
-fetch.github = "jumper047/tridactyl_emacs_config"

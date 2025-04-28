@@ -9,8 +9,6 @@ let
   inherit (pkgs) runCommandNoCC writeText;
   inherit (pkgs.lib.strings) concatStrings;
   inherit (pkgs.lib.attrsets) mapAttrsToList;
-
-  tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
   inherit (flake-inputs.self.packages.${pkgs.system}) firefox-ui-fix;
 
   settings = writeText "user.js" (
@@ -33,9 +31,6 @@ in
   config = {
     programs.firefox = {
       enable = true;
-      package = lib.mkIf thirdParty (
-        pkgs.firefox.override { nativeMessagingHosts = [ pkgs.tridactyl-native ]; }
-      );
       profiles."tlater" = {
         extensions =
           with pkgs.nur.repos.rycee.firefox-addons;
@@ -50,7 +45,6 @@ in
             no-pdf-download
             react-devtools
             reduxdevtools
-            tridactyl
             ublock-origin
 
             # # Missing:
@@ -63,9 +57,6 @@ in
         userChrome = lib.mkIf thirdParty (builtins.readFile "${firefox-ui-fix}/css/leptonChrome.css");
         userContent = lib.mkIf thirdParty (builtins.readFile "${firefox-ui-fix}/css/leptonContent.css");
         settings = {
-          # Re-bind ctrl to super (would interfere with tridactyl otherwise)
-          "ui.key.accelKey" = 91;
-
           # Keep the reader button enabled at all times; really don't
           # care if it doesn't work 20% of the time, most websites are
           # crap and unreadable without this
@@ -122,15 +113,5 @@ in
         "${profileDir}/icons".source = "${firefox-ui-fix}/icons";
         "${profileDir}/css".source = "${firefox-ui-fix}/css";
       };
-
-    xdg.configFile."tridactyl/tridactylrc" = lib.mkIf thirdParty {
-      text = ''
-        source ${tlaterpkgs.tridactyl-emacs}/share/tridactyl/emacs_bindings
-        # Remove the update function; Really don't want this since it's nix-packaged
-        comclear emacs-bindings-update
-        # Remove annoying pre-defined "searchurls" - duckduckgo is just better
-        jsb Object.keys(tri.config.get("searchurls")).reduce((prev, u) => prev.then(_ => tri.config.set("searchurls", u, null)), Promise.resolve())
-      '';
-    };
   };
 }

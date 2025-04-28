@@ -14,7 +14,6 @@ in
   oh-my-zsh-emacs = callPackage ./configuration/oh-my-zsh-emacs.nix { };
   oh-my-zsh-screen = callPackage ./configuration/oh-my-zsh-screen.nix { };
   phosphor-icons = callPackage ./configuration/phosphor-icons.nix { };
-  tridactyl-emacs = callPackage ./configuration/tridactyl-emacs.nix { };
 
   # "Packages" that just contain utility scripts
   commit-nvfetcher = callPackage ./scripts/commit-nvfetcher { };

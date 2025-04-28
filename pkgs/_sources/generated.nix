@@ -143,16 +143,4 @@
     };
     date = "2025-04-11";
   };
-  tridactyl-emacs = {
-    pname = "tridactyl-emacs";
-    version = "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb";
-    src = fetchFromGitHub {
-      owner = "jumper047";
-      repo = "tridactyl_emacs_config";
-      rev = "ee82f3de875e7cda518cfd2c469ec21ed94c3cfb";
-      fetchSubmodules = false;
-      sha256 = "sha256-OGSVKUoZ9E5yqJQfTnfx6QW4vLbdQ5/V3VX65TuQG4k=";
-    };
-    date = "2023-12-22";
-  };
 }
