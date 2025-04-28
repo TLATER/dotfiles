@@ -13,5 +13,5 @@ writeShellApplication {
     mktemp
   ];
 
-  text = builtins.readFile ./commit-nvfetcher;
+  text = builtins.readFile ./commit-nvfetcher.sh;
 }

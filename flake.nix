@@ -133,8 +133,6 @@
       };
 
       checks.x86_64-linux = import ./checks {
-        inherit (nixpkgs) lib;
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         flake-inputs = inputs;
       };
 

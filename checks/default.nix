@@ -1,36 +1,25 @@
-{
-  pkgs,
-  lib,
-  flake-inputs,
-}:
+{ flake-inputs }:
 let
-  inherit (lib) callPackageWith;
-
-  generatedFiles = [
-    "home-config/dotfiles/emacs.d/share/templates"
-    "pkgs/_sources"
-    "nixos-config/hosts/yui/hardware-configuration.nix"
-    "nixos-config/hosts/ren/hardware-configuration.nix"
-    "nixos-config/hosts/rin/hardware-configuration.nix"
-  ];
+  pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
 
   mkTest =
     test:
-    pkgs.stdenv.mkDerivation (
+    pkgs.stdenvNoCC.mkDerivation (
       {
         dontPatch = true;
         dontConfigure = true;
         dontBuild = true;
         dontInstall = true;
+        dontFixup = true;
         doCheck = true;
       }
       // test
     );
 
-  callPackage = callPackageWith (
+  callPackage = pkgs.lib.callPackageWith (
     pkgs
     // {
-      inherit flake-inputs mkTest generatedFiles;
+      inherit flake-inputs mkTest;
       # Work around `self` technically being a store path when
       # evaluated as a flake - `builtins.filter` can otherwise not be
       # called on it.
@@ -42,9 +31,5 @@ let
   );
 in
 {
-  # Linters and formatters
-  deadnix = callPackage ./deadnix.nix { };
-  nixfmt = callPackage ./nixfmt.nix { };
-  shellcheck = callPackage ./shellcheck.nix { };
-  statix = callPackage ./statix.nix { };
+  lints = callPackage ./lints.nix { };
 }
