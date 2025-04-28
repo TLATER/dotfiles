@@ -295,6 +295,16 @@
   ((bash-ts-mode-hook sh-mode-hook) . eglot-ensure)
   ((bash-ts-mode-hook sh-mode-hook) . (lambda () (setq-local devdocs-current-docs '("bash")))))
 
+(leaf nushell-ts-mode
+  :ensure t
+  :require eglot
+  :mode `(,(rx ".nu" string-end))
+  :hook
+  (nushell-ts-mode-hook . eglot-ensure)
+  :defer-config
+  (add-to-list 'eglot-server-programs
+               '(nushell-ts-mode . ("nu" "--lsp"))))
+
 ;; ----------------------------------------------------------------------------------
 ;;; Systemd
 ;; ----------------------------------------------------------------------------------

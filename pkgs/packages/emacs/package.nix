@@ -32,6 +32,7 @@ emacsWithPackagesFromUsePackage {
       grammars: with grammars; [
         tree-sitter-bash
         tree-sitter-css
+        tree-sitter-nu
         tree-sitter-typescript
         tree-sitter-tsx
       ]
