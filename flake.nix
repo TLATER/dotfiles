@@ -138,11 +138,12 @@
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
           inherit (self.packages.x86_64-linux) commit-nvfetcher;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nvchecker nvfetcher;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvchecker nvfetcher;
           home-manager-bin = home-manager.packages.x86_64-linux.default;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
           packages = [
+            nushell
             nvfetcher
             nvchecker
             commit-nvfetcher

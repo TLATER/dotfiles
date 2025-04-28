@@ -7,6 +7,7 @@
 
   deadnix,
   fd,
+  nushell,
   shellcheck,
   statix,
 }:
@@ -19,6 +20,7 @@ mkTest {
 
   checkInputs = [
     fd
+    nushell
 
     deadnix
     nixfmt-rfc-style
@@ -26,5 +28,7 @@ mkTest {
     statix
   ];
 
-  checkPhase = builtins.readFile ./lints.sh;
+  checkPhase = ''
+    nu ${./lints.nu}
+  '';
 }
