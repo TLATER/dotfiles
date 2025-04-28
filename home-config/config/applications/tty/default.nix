@@ -17,16 +17,9 @@
       # Using unstable because version 0.6.0 introduced an
       # important fix to the gitattributes format
       inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) mergiraf;
-      mergiraf-attributes =
-        pkgs.runCommandLocal "gitattributes"
-          {
-            nativeBuildInputs = [
-              mergiraf
-            ];
-          }
-          ''
-            mergiraf languages --gitattributes >> $out
-          '';
+      mergiraf-attributes = pkgs.runCommandLocal "gitattributes" { nativeBuildInputs = [ mergiraf ]; } ''
+        mergiraf languages --gitattributes >> $out
+      '';
     in
     {
       core.attributesfile = mergiraf-attributes.outPath;

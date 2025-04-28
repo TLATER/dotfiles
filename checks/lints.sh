@@ -21,5 +21,5 @@ for_nix_files() {
         --exec-batch "$@"
 }
 
-for_nix_files nixfmt --check | tee "$out/nixfmt.log"
+for_nix_files nixfmt --check --strict | tee "$out/nixfmt.log"
 for_nix_files deadnix --fail | tee "$out/nixfmt.log"

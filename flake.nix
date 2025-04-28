@@ -132,9 +132,7 @@
         );
       };
 
-      checks.x86_64-linux = import ./checks {
-        flake-inputs = inputs;
-      };
+      checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
       devShells.x86_64-linux.default =
         let

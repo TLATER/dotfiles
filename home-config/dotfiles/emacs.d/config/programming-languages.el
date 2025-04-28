@@ -414,7 +414,7 @@
   :setq-default (eglot-workspace-configuration .
     '((nixd
        (formatting
-        (command . ["nixfmt"])))
+        (command . ["nixfmt" "--strict"])))
       (pylsp
        (plugins
         (pydocstyle

@@ -1,7 +1,4 @@
-{
-  pkgs,
-  flake-inputs,
-}:
+{ pkgs, flake-inputs }:
 let
   sources = pkgs.callPackage ./sources.nix { };
 in

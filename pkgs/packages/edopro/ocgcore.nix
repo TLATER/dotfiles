@@ -11,9 +11,7 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [ premake5 ];
 
-  buildInputs = [
-    luacxx
-  ];
+  buildInputs = [ luacxx ];
 
   buildFlags = [ "verbose=true config=release ocgcoreshared" ];
 
