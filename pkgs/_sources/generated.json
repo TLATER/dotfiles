@@ -82,11 +82,11 @@
         "passthru": null,
         "pinned": false,
         "src": {
-            "sha256": "sha256-2Vpi0rZa9TbeC2Ag9LyCoa/TKbwt9bNkF0igTorRYqc=",
+            "sha256": "sha256-cta4k6yxrdaFFfum0eshEzLODExBfA+oVPqcOpXG9uk=",
             "type": "tarball",
-            "url": "https://github.com/ProjectIgnis/edopro-assets/releases/download/41.0.1/ProjectIgnis-EDOPro-41.0.1-linux.tar.gz"
+            "url": "https://github.com/ProjectIgnis/edopro-assets/releases/download/41.0.2/ProjectIgnis-EDOPro-41.0.2-linux.tar.gz"
         },
-        "version": "41.0.1"
+        "version": "41.0.2"
     },
     "edopro-irrlicht": {
         "cargoLocks": null,
@@ -110,7 +110,7 @@
     },
     "eglot-x": {
         "cargoLocks": null,
-        "date": "2025-02-16",
+        "date": "2025-04-19",
         "extract": null,
         "name": "eglot-x",
         "passthru": null,
@@ -122,11 +122,11 @@
             "name": null,
             "owner": "nemethf",
             "repo": "eglot-x",
-            "rev": "5b5a56ddf8a087520f5e25a7343ec6503338e35b",
-            "sha256": "sha256-6FY/Y5ahA82N0uJ0Dvb5e390UoVBEi8E8kKGfyknM/k=",
+            "rev": "ca565df30d8e207c00471a3723d7bd5803497a95",
+            "sha256": "sha256-pJSBG84G+uRWEeoyHrsajNxIsfqlcwQM7rCsxBsn3Jc=",
             "type": "github"
         },
-        "version": "5b5a56ddf8a087520f5e25a7343ec6503338e35b"
+        "version": "ca565df30d8e207c00471a3723d7bd5803497a95"
     },
     "firefox-ui-fix": {
         "cargoLocks": null,
@@ -210,7 +210,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2025-04-03",
+        "date": "2025-04-27",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -222,11 +222,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8",
-            "sha256": "sha256-f0pwEhxCsPuGhkSQW4A/KTffwLzKMaVCKQ8o4ZFfVhM=",
+            "rev": "137bfbbfd1e39897f02ca47e9f010b0d81cc15ef",
+            "sha256": "sha256-jfY1rF8Uhk+OFDZPm8QCCNMB2H5ZLzi7hp9W9RGL+HM=",
             "type": "github"
         },
-        "version": "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8"
+        "version": "137bfbbfd1e39897f02ca47e9f010b0d81cc15ef"
     },
     "phosphor-icons": {
         "cargoLocks": null,
