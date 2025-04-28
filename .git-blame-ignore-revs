@@ -1,2 +1,4 @@
 # Some lines stopped being formatted with nixfmt somehow
 62a605b7c5ce7f9334dd946ef3de8fedfb4cdfaa
+# Enabled strict formatting with nixfmt
+ba4f3ffb1956acd35a2d4a71a8775d2f520497d1
