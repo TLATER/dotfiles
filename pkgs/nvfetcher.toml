@@ -36,10 +36,6 @@ fetch.github = "edo9300/ygopro-core"
 src.github = "black7375/Firefox-UI-Fix"
 fetch.github = "black7375/Firefox-UI-Fix"
 
-[gauth]
-src.github_tag = "pcarrier/gauth"
-fetch.github = "pcarrier/gauth"
-
 [gcs]
 # src.github = "richardwilkes/gcs"
 src.manual = "v5.27.0"

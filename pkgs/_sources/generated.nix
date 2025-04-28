@@ -86,17 +86,6 @@
       sha256 = "sha256-NBPSKIxTNSuJahySyLqD45R/UmeyvkJBKehUIE/dI0I=";
     };
   };
-  gauth = {
-    pname = "gauth";
-    version = "v1.5.0";
-    src = fetchFromGitHub {
-      owner = "pcarrier";
-      repo = "gauth";
-      rev = "v1.5.0";
-      fetchSubmodules = false;
-      sha256 = "sha256-t5hvbJ8Oqqq52SHFxl6jmNOTC+6fQOJ+jyWoQyY008Q=";
-    };
-  };
   gcs = {
     pname = "gcs";
     version = "v5.27.0";

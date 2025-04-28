@@ -148,26 +148,6 @@
         },
         "version": "v8.7.0"
     },
-    "gauth": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "gauth",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "pcarrier",
-            "repo": "gauth",
-            "rev": "v1.5.0",
-            "sha256": "sha256-t5hvbJ8Oqqq52SHFxl6jmNOTC+6fQOJ+jyWoQyY008Q=",
-            "type": "github"
-        },
-        "version": "v1.5.0"
-    },
     "gcs": {
         "cargoLocks": null,
         "date": null,
