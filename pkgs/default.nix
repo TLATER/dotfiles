@@ -10,9 +10,7 @@ in
 {
   # "Packages" that really just contain configuration settings
   firefox-ui-fix = callPackage ./configuration/firefox-ui-fix.nix { };
-  oh-my-zsh-bgnotify = callPackage ./configuration/oh-my-zsh-bgnotify.nix { };
-  oh-my-zsh-emacs = callPackage ./configuration/oh-my-zsh-emacs.nix { };
-  oh-my-zsh-screen = callPackage ./configuration/oh-my-zsh-screen.nix { };
+  oh-my-zsh-plugins = callPackage ./configuration/oh-my-zsh-plugins.nix { };
   phosphor-icons = callPackage ./configuration/phosphor-icons.nix { };
 
   # "Packages" that just contain utility scripts

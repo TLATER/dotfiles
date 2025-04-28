@@ -53,16 +53,12 @@ in
 
       plugins = [
         {
-          name = "bgnotify";
-          src = tlaterpkgs.oh-my-zsh-bgnotify;
-        }
-        {
           name = "emacs";
-          src = tlaterpkgs.oh-my-zsh-emacs;
+          src = "${tlaterpkgs.oh-my-zsh-plugins}/emacs";
         }
         {
           name = "screen";
-          src = tlaterpkgs.oh-my-zsh-screen;
+          src = "${tlaterpkgs.oh-my-zsh-plugins}/screen";
         }
       ];
 
