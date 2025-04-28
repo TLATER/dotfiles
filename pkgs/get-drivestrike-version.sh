@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 NVCHECKER_CONFIG="$(mktemp)"
 cat > "$NVCHECKER_CONFIG" <<EOF

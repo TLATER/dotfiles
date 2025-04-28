@@ -1,6 +1,5 @@
 {
   pkgs,
-  self,
   flake-inputs,
   sources,
   lib,
@@ -10,7 +9,7 @@
 }:
 let
   package = if hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
-  emacsDotfiles = "${self}/home-config/dotfiles/emacs.d";
+  emacsDotfiles = "${flake-inputs.self}/home-config/dotfiles/emacs.d";
 
   emacsWithPackagesFromUsePackage = import "${flake-inputs.emacs-overlay}/elisp.nix" {
     inherit pkgs;

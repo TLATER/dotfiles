@@ -1,27 +1,11 @@
 {
-  self,
   pkgs,
   flake-inputs,
 }:
 let
   sources = pkgs.callPackage ./sources.nix { };
-  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit self sources flake-inputs; });
 in
-{
-  # "Packages" that really just contain configuration settings
-  firefox-ui-fix = callPackage ./configuration/firefox-ui-fix.nix { };
-  oh-my-zsh-plugins = callPackage ./configuration/oh-my-zsh-plugins.nix { };
-  phosphor-icons = callPackage ./configuration/phosphor-icons.nix { };
-
-  # "Packages" that just contain utility scripts
-  commit-nvfetcher = callPackage ./scripts/commit-nvfetcher { };
-
-  # Proper packages
-  inherit (callPackage ./applications/edopro { }) edopro;
-  deepfilternet = callPackage ./applications/deepfilternet.nix { };
-  drivestrike = callPackage ./applications/drivestrike.nix { };
-  emacs = callPackage ./applications/emacs { };
-  gauth = callPackage ./applications/gauth.nix { };
-  gcs = callPackage ./applications/gcs.nix { };
-  nextcloudcmd = callPackage ./applications/nextcloudcmd.nix { };
+pkgs.lib.packagesFromDirectoryRecursive {
+  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit sources flake-inputs; });
+  directory = ./packages;
 }

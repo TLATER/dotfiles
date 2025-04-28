@@ -119,7 +119,6 @@
       };
 
       packages.x86_64-linux = import ./pkgs {
-        inherit self;
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         flake-inputs = inputs;
       };

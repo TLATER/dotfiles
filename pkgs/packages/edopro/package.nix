@@ -5,7 +5,7 @@
   flake-inputs,
   sources,
 }:
-lib.makeScope (extra: lib.callPackageWith (pkgs // extra // { inherit flake-inputs sources; }))
+(lib.makeScope (extra: lib.callPackageWith (pkgs // extra // { inherit flake-inputs sources; }))
   (self: {
     luacxx = self.callPackage ./luacxx.nix { };
     irrlicht-edopro = self.callPackage ./irrlicht.nix { };
@@ -14,3 +14,4 @@ lib.makeScope (extra: lib.callPackageWith (pkgs // extra // { inherit flake-inpu
 
     edopro = self.callPackage ./edopro.nix { };
   })
+).edopro

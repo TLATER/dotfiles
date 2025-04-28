@@ -17,7 +17,7 @@ mkTest {
       path: type:
       type == "directory"
       || hasInfix "dotfiles/zsh" path
-      || hasInfix "pkgs/scripts" path
+      || hasInfix "pkgs/packages/commit-nvfetcher" path
       || any (ext: hasSuffix ext (baseNameOf path)) [
         ".zsh"
         ".bash"
@@ -33,7 +33,7 @@ mkTest {
   checkPhase = ''
     mkdir -p $out
 
-    scripts=$(find pkgs/scripts -exec file --mime-type {} + \
+    scripts=$(find pkgs/ -exec file --mime-type {} + \
       | grep -e 'text/x-shellscript' \
       | cut -d ':' -f 1)
 
