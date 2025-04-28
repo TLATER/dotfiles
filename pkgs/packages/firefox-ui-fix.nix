@@ -1,5 +1,5 @@
-{ sources, stdenv }:
-stdenv.mkDerivation rec {
+{ sources, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   inherit (sources.firefox-ui-fix) pname version src;
 
   installPhase = ''

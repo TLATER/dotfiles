@@ -1,5 +1,5 @@
-{ sources, stdenv }:
-stdenv.mkDerivation {
+{ sources, stdenvNoCC }:
+stdenvNoCC.mkDerivation {
   inherit (sources.phosphor-icons) pname version src;
 
   installPhase = ''
