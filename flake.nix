@@ -103,33 +103,9 @@
         nvidia = import ./nixos-modules/nvidia;
       };
 
-      homeConfigurations = {
-        # NixOS home configuration setup lives in
-        # nixos-config/default.nix and their respective host-specific
-        # modules.
-
-        gnome-vm = home-manager.lib.homeManagerConfiguration {
-          system = "x86_64-linux";
-          username = "tlater";
-          homeDirectory = "/home/tlater";
-
-          configuration = ./home-config/hosts/gnome-vm.nix;
-          extraSpecialArgs.flake-inputs = inputs;
-        };
-      };
-
       packages.x86_64-linux = import ./pkgs {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;
         flake-inputs = inputs;
-      };
-
-      apps.x86_64-linux.commit-nvfetcher = {
-        type = "app";
-        program = toString (
-          nixpkgs.legacyPackages.x86_64-linux.writeShellScript "commit-nvfetcher" ''
-            ${self.packages.x86_64-linux.commit-nvfetcher}/bin/commit-nvfetcher -k /tmp/github-key.toml
-          ''
-        );
       };
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
@@ -137,16 +113,13 @@
       devShells.x86_64-linux.default =
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-          inherit (self.packages.x86_64-linux) commit-nvfetcher;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvchecker nvfetcher;
+          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
           home-manager-bin = home-manager.packages.x86_64-linux.default;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
           packages = [
             nushell
             nvfetcher
-            nvchecker
-            commit-nvfetcher
             home-manager-bin
             sops-init-gpg-key
           ];
