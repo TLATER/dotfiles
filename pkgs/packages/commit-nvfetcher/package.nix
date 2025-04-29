@@ -1,17 +1,20 @@
 {
-  writeShellApplication,
+  lib,
+  writers,
+
   git,
-  mktemp,
+  nushell,
   nvfetcher,
 }:
-writeShellApplication {
-  name = "commit-nvfetcher";
-
-  runtimeInputs = [
-    nvfetcher
-    git
-    mktemp
+writers.writeNuBin "commit-nvfetcher" {
+  makeWrapperArgs = [
+    "--prefix"
+    "PATH"
+    ":"
+    "${lib.makeBinPath [
+      git
+      nushell
+      nvfetcher
+    ]}"
   ];
-
-  text = builtins.readFile ./commit-nvfetcher.sh;
-}
+} ./commit-nvfetcher.nu
