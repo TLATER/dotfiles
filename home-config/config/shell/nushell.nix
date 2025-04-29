@@ -11,6 +11,7 @@
     # option will be available, as well as better shellIntegration
     # settings both for nushell and zsh
     configFile.source = "${config._dotfiles}/nushell/config.nu";
+    envFile.source = "${config._dotfiles}/nushell/env.nu";
 
     # TODO(tlater): Next home-manager release adds
     # `enableNuShellIntegration` for carapace
