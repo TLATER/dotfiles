@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 {
-  imports = [ ./zsh-config.nix ];
+  imports = [
+    ./nushell.nix
+    ./zsh-config.nix
+  ];
 
   xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
 
@@ -23,6 +26,13 @@
 
   programs = {
     ssh.enable = true;
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
+      enableNushellIntegration = true;
+    };
 
     git = {
       enable = true;

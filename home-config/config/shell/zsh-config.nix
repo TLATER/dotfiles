@@ -33,12 +33,6 @@ in
   '';
 
   programs = {
-    direnv = {
-      enable = true;
-      enableZshIntegration = true;
-      nix-direnv.enable = true;
-    };
-
     zsh = {
       enable = true;
       dotDir = ".config/zsh";
@@ -86,6 +80,8 @@ in
         ''
           # Disable C-s freezing the terminal
           stty -ixon
+
+          exec nu
 
           # Source any-nix-shell
           if (( $+commands[any-nix-shell] )); then

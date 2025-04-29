@@ -3,7 +3,7 @@
 termcapinfo alacritty "hs@:ts@:fs@:ds@"
 
 # Set the window title to commands automagically
-shelltitle "$ |bash"
+shelltitle "$ |nu"
 
 # Bind the command key to C-o for emacs (and muscle memory) compatability
 escape ^Oo
