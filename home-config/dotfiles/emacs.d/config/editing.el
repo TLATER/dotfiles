@@ -132,7 +132,8 @@
     (let* ((filename-no-ext (file-name-sans-extension (buffer-file-name)))
            (filename (or (ignore-errors (file-relative-name
                                          filename-no-ext
-                                         (project-root (project-current))))
+                                         (if (project-current nil)
+                                             (project-root (project-current)))))
                          (file-name-nondirectory filename-no-ext))))
       (concat (replace-regexp-in-string "[^A-Z0-9]" "_" (upcase filename)) "_H_")))
 

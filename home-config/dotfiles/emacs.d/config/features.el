@@ -267,8 +267,8 @@
   :custom
   (cov-lcov-patterns . '((lambda (dir name)
                            (expand-file-name "lcov.info"
-                                             (if (project-current dir)
-                                                 (project-root (project-current dir))
+                                             (if (project-current nil dir)
+                                                 (project-root (project-current t dir))
                                                dir)))))
   :custom-face
   (cov-none-face . '((t (:foreground "red"))))
