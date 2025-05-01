@@ -76,6 +76,18 @@
 
   time.timeZone = lib.mkDefault "Asia/Hong_Kong";
 
+  i18n = {
+    supportedLocales = [
+      "en_US.UTF-8/UTF-8"
+      "en_DK.UTF-8/UTF-8"
+    ];
+
+    extraLocaleSettings = {
+      LC_MESSAGES = "en_US.UTF-8";
+      LC_TIME = "en_DK.UTF-8";
+    };
+  };
+
   users = {
     defaultUserShell = pkgs.zsh;
 
