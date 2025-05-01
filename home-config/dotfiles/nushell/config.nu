@@ -261,6 +261,21 @@ $env.config = {
     }
 
     hooks: {
+        pre_execution: [{||
+            $env.repl_commandline = (commandline)
+            # Using external echo since nushell doesn't support
+            # printing raw bytes, and its `ansi` command is too
+            # limited
+            #
+            # The bytes to send are 0x21 + k and 0x21 + \, however
+            # nushell only supports 0x21 + ]
+
+            # Sets the tab status (title shown in screen's menus)
+            ^echo -en $'\x1bk(readable-pwd) $ ($env.repl_commandline)\x1b\\'
+
+            # Sets the hardstatus (title shown in window manager)
+            ^echo -en $'\x1b]0;(readable-pwd) $ ($env.repl_commandline)\a'
+        }]
         display_output: "if (term size).columns >= 100 { table -e } else { table }"
     }
 
