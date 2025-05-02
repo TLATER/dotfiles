@@ -33,22 +33,22 @@
   };
   edopro = {
     pname = "edopro";
-    version = "e5c0578aa504d0831dcbe29dbacd018f7b885b2c";
+    version = "1c40a9750acce02563cc211d4d2c2e49c75ac674";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "e5c0578aa504d0831dcbe29dbacd018f7b885b2c";
+      rev = "1c40a9750acce02563cc211d4d2c2e49c75ac674";
       fetchSubmodules = true;
-      sha256 = "sha256-ZkQXWt73S3Nn+RnkG+e91BId7keI5OpM3NSeDMJWlZY=";
+      sha256 = "sha256-tRG/mNPFkU9+KUjhxcjo/vzraA2lqtUyGLDdenf5uPA=";
     };
-    date = "2025-04-27";
+    date = "2025-05-02";
   };
   edopro-assets = {
     pname = "edopro-assets";
-    version = "41.0.1";
+    version = "41.0.2";
     src = fetchTarball {
-      url = "https://github.com/ProjectIgnis/edopro-assets/releases/download/41.0.1/ProjectIgnis-EDOPro-41.0.1-linux.tar.gz";
-      sha256 = "sha256-2Vpi0rZa9TbeC2Ag9LyCoa/TKbwt9bNkF0igTorRYqc=";
+      url = "https://github.com/ProjectIgnis/edopro-assets/releases/download/41.0.2/ProjectIgnis-EDOPro-41.0.2-linux.tar.gz";
+      sha256 = "sha256-cta4k6yxrdaFFfum0eshEzLODExBfA+oVPqcOpXG9uk=";
     };
   };
   edopro-irrlicht = {
@@ -65,15 +65,15 @@
   };
   eglot-x = {
     pname = "eglot-x";
-    version = "5b5a56ddf8a087520f5e25a7343ec6503338e35b";
+    version = "ca565df30d8e207c00471a3723d7bd5803497a95";
     src = fetchFromGitHub {
       owner = "nemethf";
       repo = "eglot-x";
-      rev = "5b5a56ddf8a087520f5e25a7343ec6503338e35b";
+      rev = "ca565df30d8e207c00471a3723d7bd5803497a95";
       fetchSubmodules = false;
-      sha256 = "sha256-6FY/Y5ahA82N0uJ0Dvb5e390UoVBEi8E8kKGfyknM/k=";
+      sha256 = "sha256-pJSBG84G+uRWEeoyHrsajNxIsfqlcwQM7rCsxBsn3Jc=";
     };
-    date = "2025-02-16";
+    date = "2025-04-19";
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
@@ -110,15 +110,15 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
+    version = "f6a7bbf81a18d30f75bad72de3398d0f55c8792b";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "750d3ac4b493dca13ef0ced55fa6a2cd02dc7ee8";
+      rev = "f6a7bbf81a18d30f75bad72de3398d0f55c8792b";
       fetchSubmodules = false;
-      sha256 = "sha256-f0pwEhxCsPuGhkSQW4A/KTffwLzKMaVCKQ8o4ZFfVhM=";
+      sha256 = "sha256-2SoiItbJ/WQ+Kv8gM+nBjco0BiX+CYoJ4d+yj71XckE=";
     };
-    date = "2025-04-03";
+    date = "2025-04-29";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
