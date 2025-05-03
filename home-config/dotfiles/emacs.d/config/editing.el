@@ -183,6 +183,7 @@
   (sp-navigate-interactive-always-progress-point . t)
   :global-minor-mode smartparens-global-mode
   :config
+  (require 'smartparens-config)
   (sp-use-smartparens-bindings))
 
 ;; ----------------------------------------------------------------------------------
