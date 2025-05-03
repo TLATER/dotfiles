@@ -40,10 +40,7 @@ in
     sqlite.dev
   ];
 
-  xdg.configFile."emacs" = {
-    source = "${self}/home-config/dotfiles/emacs.d/";
-    recursive = true;
-  };
+  xdg.configFile."emacs".source = "${self}/home-config/dotfiles/emacs.d/";
 
   programs.emacs = {
     enable = true;

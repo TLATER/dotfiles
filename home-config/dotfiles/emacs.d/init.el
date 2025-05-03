@@ -31,9 +31,6 @@
 ;; ----------------------------------------------------------------------------------
 
 
-(defvar data-dir (expand-file-name
-                  "emacs"
-                  (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
 (defvar back-dir (expand-file-name
                   "emacs/backups"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))
@@ -51,15 +48,6 @@
 (if (file-exists-p custom-file)
     (load custom-file)
   (custom-set-variables))
-
-;; Ensure emacs' native compilation doesn't try to write to the
-;; read-only dotfiles directory
-;;
-;; TODO(tlater): Flip this on when emacs 29 is released, and stop
-;; using recursive copy mode for the dotfiles
-;;
-;; (when (boundp 'native-comp-eln-load-path)
-;;   (startup-redirect-eln-cache (expand-file-name "eln-cache" )))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Package management
