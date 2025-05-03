@@ -444,14 +444,12 @@
 ;; ----------------------------------------------------------------------------------
 
 ;; Ensure proper ANSI code handling
-(leaf xterm-color
+(leaf fancy-compilation
   :ensure t
   :after compile
-  :defun xterm-color-filter compilation-filter compilation-filter@advice-compilation-filter
   :custom
-  (compilation-environment . '("TERM=xterm-256color"))
-  :advice (:around compilation-filter (lambda (orig proc string)
-                                         (funcall orig proc (xterm-color-filter string)))))
+  (fancy-compilation-override-colors . nil)
+  :global-minor-mode t)
 
 (leaf alert
   :ensure t
