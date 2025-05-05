@@ -518,4 +518,29 @@
 
 (define-key global-map (kbd "C-c f") 'autoformat)
 
+;; ----------------------------------------------------------------------------------
+;;; Documentation
+;; ----------------------------------------------------------------------------------
+
+(defun open-docs ()
+  "Open docs at point."
+  (interactive)
+
+  (let ((searchterm (symbol-name (symbol-at-point))))
+    (pcase major-mode
+      ('emacs-lisp-mode
+       (describe-symbol (symbol-at-point)))
+      (mode
+       (cond ((and (eglot-managed-p) (eglot-server-capable :experimental :externalDocs))
+              (cl-letf (((symbol-function 'browse-url) #'eww-browse-url))
+                (eglot-x-open-external-documentation)))
+             (devdocs-current-docs (devdocs-lookup))
+             (t
+              (eww-browse-url (concat "https://duckduckgo.com/lite/?q=%21"
+                                      (string-trim-right (symbol-name mode) (rx (opt "-ts") "-mode" string-end))
+                                      "%20"
+                                      searchterm))))))))
+
+(define-key global-map (kbd "C-h D") 'open-docs)
+
 ;;; programming-languages.el ends here

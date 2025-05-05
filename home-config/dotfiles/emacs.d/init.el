@@ -30,7 +30,6 @@
 ;;; Basic path setup
 ;; ----------------------------------------------------------------------------------
 
-
 (defvar back-dir (expand-file-name
                   "emacs/backups"
                   (or (getenv "XDG_DATA_HOME") "~/.local/share/")))

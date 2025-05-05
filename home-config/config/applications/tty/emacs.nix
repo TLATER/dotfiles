@@ -26,6 +26,9 @@ in
     # different markdown implementation at some point)
     pandoc
 
+    # To convert websites to readable text
+    rdrview
+
     # Language servers and linters for super generic stuff
     biome # json/web stuff
     nixd # nix

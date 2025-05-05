@@ -253,7 +253,6 @@
 ;; TODO(tlater): Figure out how to preinstall docsets
 (leaf devdocs
   :ensure t
-  :bind ("C-h D" . devdocs-lookup)
   :custom
   `(devdocs-data-dir . ,(expand-file-name "docsets" data-dir)))
 
@@ -365,6 +364,11 @@
 (leaf shr
   :custom
   (shr-use-colors . nil))
+
+(leaf eww-rdrview
+  :load-path* "modules"
+  :require t
+  :hook (eww-mode-hook . eww-rdrview-mode))
 
 ;; ----------------------------------------------------------------------------------
 ;; Directory listings
