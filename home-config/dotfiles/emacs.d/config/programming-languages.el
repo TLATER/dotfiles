@@ -512,7 +512,7 @@
     ((or 'bazel-mode
          (app (lambda (m) (get m 'derived-mode-parent)) 'bazel-mode))
      (bazel-buildifier))
-    (_ (if (eglot-managed-p)
+    (_ (if (and (eglot-managed-p) (eglot-server-capable :documentFormattingProvider))
            (eglot-format)
          (message "No formatter for this file type")))))
 
