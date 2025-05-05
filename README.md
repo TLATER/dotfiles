@@ -48,8 +48,7 @@ and create a new `nixosConfigurations` entry for it.
 
 Then set up:
 
-1. Basic networking. Typically a bond config, see ren/yui for
-   examples.
+1. Basic networking. Typically a bond config, see yui for examples.
 2. Make sure to include one of the network modules so that wireless
    networking is set up on first boot.
 3. Generate and include a new `hardware-configuration.nix`:

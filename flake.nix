@@ -72,16 +72,6 @@
           specialArgs.flake-inputs = inputs;
         };
 
-        ren = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            ./nixos-config
-            ./nixos-config/hosts/ren
-          ];
-
-          specialArgs.flake-inputs = inputs;
-        };
-
         rin = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
