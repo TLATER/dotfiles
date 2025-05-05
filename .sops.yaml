@@ -1,7 +1,6 @@
 keys:
   - &tlater B9C7AE554602D82B1AC2CFD0BC7BB2DB17C78E42!
   - &yui 71132A2D171E79E6A20E81E6C33BC9C8C67C5948
-  - &ren 4F82D975EFA78365B552A8B7A0FEFBBAE3259F52
   - &tlater-famedly E3A01E05CDB7D42E9909 B9394D863FBF16FE6D51
   - &rin age1qne0ry5pxn4pfqzney9hxy9dedst02qtvfrmnf2p7dhr560mgcusg3tpz6
 
@@ -10,7 +9,6 @@ creation_rules:
       - pgp:
           - *tlater
           - *yui
-          - *ren
   - path_regex: secrets/work/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - pgp:
