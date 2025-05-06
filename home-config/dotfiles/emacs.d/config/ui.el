@@ -66,7 +66,6 @@
   (popper-display-function . #'display-popup)
   :global-minor-mode popper-mode
   :global-minor-mode popper-echo-mode
-  :global-minot-mode popper-tab-line-mode
   :config
   (defun display-popup (buffer &optional alist)
     (display-buffer-in-side-window buffer (append alist '((window-width . 100)
