@@ -42,6 +42,38 @@
 (define-key global-map (kbd "<XF86Forward>") nil)
 
 ;; ----------------------------------------------------------------------------------
+;;; Window management
+;; ----------------------------------------------------------------------------------
+
+(leaf popper
+  :ensure t
+  :bind
+  ("C-c p p" . popper-toggle)
+  ("C-c p o" . popper-cycle)
+  ("C-c p O" . popper-cycle-backwards)
+  ("C-c p u" . popper-toggle-type)
+  ("C-c p k" . popper-kill-latest-popup)
+  :custom
+  (popper-group-function . #'popper-group-by-project)
+  (popper-reference-buffers . `(compilation-mode
+                                ,(rx "-vterm*" string-end) vterm-mode
+                                magit-process-mode
+                                magit-status-mode
+                                help-mode
+                                flymake-diagnostics-buffer-mode
+                                ,(rx string-start "*Messages*" string-end)
+                                ,(rx string-start "*edit-indirect ")))
+  (popper-display-function . #'display-popup)
+  :global-minor-mode popper-mode
+  :global-minor-mode popper-echo-mode
+  :global-minot-mode popper-tab-line-mode
+  :config
+  (defun display-popup (buffer &optional alist)
+    (display-buffer-in-side-window buffer (append alist '((window-width . 100)
+                                                          (side . right)
+                                                          (slot . 1))))))
+
+;; ----------------------------------------------------------------------------------
 ;;; Unbind keys I don't like
 ;; ----------------------------------------------------------------------------------
 
