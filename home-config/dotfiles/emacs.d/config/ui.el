@@ -60,6 +60,7 @@
                                 magit-process-mode
                                 magit-status-mode
                                 help-mode
+                                devdocs-mode
                                 flymake-diagnostics-buffer-mode
                                 ,(rx string-start "*Messages*" string-end)
                                 ,(rx string-start "*edit-indirect ")))
