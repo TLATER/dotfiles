@@ -187,7 +187,7 @@
   (nix-mode-hook . eglot-ensure)
   :defer-config
   (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nixd"))))
+               '(nix-mode . ("nil"))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; org
@@ -422,9 +422,10 @@
   :defun eglot-alternatives
   :defvar eglot-workspace-configuration
   :setq-default (eglot-workspace-configuration .
-    '((nixd
+    '((nil
        (formatting
-        (command . ["nixfmt" "--strict"])))
+        (command . ["nixfmt" "--strict"]))
+       (nix (flake (autoEvalInputs . :json-false))))
       (pylsp
        (plugins
         (pydocstyle

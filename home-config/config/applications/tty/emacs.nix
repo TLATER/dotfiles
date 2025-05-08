@@ -31,7 +31,7 @@ in
 
     # Language servers and linters for super generic stuff
     biome # json/web stuff
-    nixd # nix
+    nil # nix
     ruff # python
     # *sh
     bash-language-server
