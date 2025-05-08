@@ -10,10 +10,12 @@ let
   inherit (config) xdg;
 in
 {
-  home.activation = {
-    xdg-dir-prep = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  home = {
+    activation.xdg-dir-prep = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       $DRY_RUN_CMD mkdir $VERBOSE_ARG -p '${xdg.cacheHome}/less' '${xdg.cacheHome}/zsh'
     '';
+
+    preferXdgDirectories = true;
   };
 
   xdg.userDirs = {
@@ -71,5 +73,9 @@ in
     '';
 
     PYTHONSTARTUP = "${config._dotfiles}/bin/history.py";
+
+    EM_CONFIG = "${xdg.configHome}/emscripten/config";
+    EM_CACHE = "${xdg.cacheHome}/emscripten/cache";
+    EM_PORTS = "${xdg.dataHome}/emscripten/cache";
   };
 }
