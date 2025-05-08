@@ -534,7 +534,7 @@
        (cond ((and (eglot-managed-p) (eglot-server-capable :experimental :externalDocs))
               (cl-letf (((symbol-function 'browse-url) #'eww-browse-url))
                 (eglot-x-open-external-documentation)))
-             (devdocs-current-docs (devdocs-lookup))
+             (devdocs-current-docs (devdocs-lookup nil searchterm))
              (t
               (eww-browse-url (concat "https://duckduckgo.com/lite/?q=%21"
                                       (string-trim-right (symbol-name mode) (rx (opt "-ts") "-mode" string-end))
