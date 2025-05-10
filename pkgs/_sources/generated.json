@@ -190,7 +190,7 @@
     },
     "ohmyzsh": {
         "cargoLocks": null,
-        "date": "2025-04-29",
+        "date": "2025-05-06",
         "extract": null,
         "name": "ohmyzsh",
         "passthru": null,
@@ -202,11 +202,11 @@
             "name": null,
             "owner": "ohmyzsh",
             "repo": "ohmyzsh",
-            "rev": "f6a7bbf81a18d30f75bad72de3398d0f55c8792b",
-            "sha256": "sha256-2SoiItbJ/WQ+Kv8gM+nBjco0BiX+CYoJ4d+yj71XckE=",
+            "rev": "62afbdebb96bf91c044a92b75d86f85a67da67a7",
+            "sha256": "sha256-7h3yXbQ/1KiI4nwtuKghtqxi7jY3LfzyVXX19HY9dbg=",
             "type": "github"
         },
-        "version": "f6a7bbf81a18d30f75bad72de3398d0f55c8792b"
+        "version": "62afbdebb96bf91c044a92b75d86f85a67da67a7"
     },
     "phosphor-icons": {
         "cargoLocks": null,
