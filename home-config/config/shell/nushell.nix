@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  flake-inputs,
   ...
 }:
 {
@@ -23,6 +24,22 @@
       }
     '';
   };
+
+  # TODO(tlater): Next home-manager release adds a plugin option
+  home.file."${config.xdg.configHome}/nushell/plugin.msgpackz".source =
+    let
+      plugins = [ flake-inputs.self.packages.${pkgs.system}.nushell-dbus ];
+      msgpackz = pkgs.runCommand "nushellMsgpackz" { } ''
+        mkdir -p $out
+
+        ${lib.getExe config.programs.nushell.package} \
+          --plugin-config "$out/plugin.msgpackz" \
+          --commands '${
+            lib.concatStringsSep "; " (map (plugin: "plugin add ${lib.getExe plugin}") plugins)
+          }'
+      '';
+    in
+    "${msgpackz}/plugin.msgpackz";
 
   programs.carapace.enable = true;
 }
