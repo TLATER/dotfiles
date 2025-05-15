@@ -1,3 +1,4 @@
+{ flake-inputs, pkgs, ... }:
 {
   imports = [
     ../config
@@ -10,4 +11,6 @@
 
     ../config/personal
   ];
+
+  home.packages = [ flake-inputs.self.packages.${pkgs.system}.jazz-jackrabbit-2 ];
 }
