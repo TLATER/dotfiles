@@ -11,7 +11,7 @@ in
   imports = [
     ./vaapi.nix
     ./prime.nix
-    ./wlroots.nix
+    ./de-compat.nix
   ];
 
   options.easyNvidia = with lib.types; {
@@ -35,7 +35,8 @@ in
       type = lib.types.enum [
         "x11"
         "wlroots"
-        # TODO(tlater): Implement gnome-wayland and kde-wayland
+        "plasma"
+        "gnome"
       ];
       description = ''
         The desktop environment that will be used. Each has subtly
