@@ -178,16 +178,16 @@
 ;;; Nix
 ;; ----------------------------------------------------------------------------------
 
-(leaf nix-mode
+(leaf nix-ts-mode
   :ensure t
   :require eglot
   :mode `(,(rx ".nix" string-end))
   :hook
-  (nix-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix"))))
-  (nix-mode-hook . eglot-ensure)
+  (nix-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix"))))
+  (nix-ts-mode-hook . eglot-ensure)
   :defer-config
   (add-to-list 'eglot-server-programs
-               '(nix-mode . ("nil"))))
+               '(nix-ts-mode . ("nil"))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; org

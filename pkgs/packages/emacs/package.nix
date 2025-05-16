@@ -34,6 +34,7 @@ emacsWithPackagesFromUsePackage {
         tree-sitter-css
         tree-sitter-dockerfile
         tree-sitter-json
+        tree-sitter-nix
         tree-sitter-nu
         tree-sitter-rust
         tree-sitter-typescript
