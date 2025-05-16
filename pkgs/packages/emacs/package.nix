@@ -32,10 +32,13 @@ emacsWithPackagesFromUsePackage {
       grammars: with grammars; [
         tree-sitter-bash
         tree-sitter-css
+        tree-sitter-dockerfile
+        tree-sitter-json
         tree-sitter-nu
         tree-sitter-rust
         tree-sitter-typescript
         tree-sitter-tsx
+        tree-sitter-yaml
       ]
     ))
   ];

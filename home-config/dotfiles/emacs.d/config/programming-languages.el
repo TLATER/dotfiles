@@ -64,10 +64,12 @@
 ;;; Dockerfile
 ;; ----------------------------------------------------------------------------------
 
-(leaf dockerfile-mode
-  :ensure t
-  :mode `(,(rx string-start "Dockerfile" string-end))
-  :hook (dockerfile-mode-hook . (lambda () (setq-local devdocs-current-docs '("docker")))))
+(leaf dockerfile-ts-mode
+  :mode `(,(rx (or
+                (and "Dockerfile" (opt "." (1+ anything)))
+                (and "." (char "Dd") "ockerfile"))
+               string-end))
+  :hook (dockerfile-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("docker")))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; GLSL
@@ -111,26 +113,24 @@
 ;;; JSON & co.
 ;; ----------------------------------------------------------------------------------
 
-(leaf json-mode
-  :ensure t
+(leaf json-ts-mode
   :require eglot
-  :mode `(,(rx ".json" string-end))
-  :hook (json-mode-hook . eglot-ensure)
+  :mode `(,(rx (or ".json" ".jsonld") string-end))
+  :magic-fallback ("^[{[]$" . json-ts-mode)
+  :hook (json-ts-mode-hook . eglot-ensure)
   :defvar eglot-server-programs
   :defer-config
   (add-to-list 'eglot-server-programs
-               '(json-mode . ("biome" "lsp-proxy"))))
+               '(json-ts-mode . ("biome" "lsp-proxy"))))
 
 (leaf jsonnet-mode
   :ensure t
   :mode `(,(rx ".jsonnet" string-end)))
 
-(leaf yaml-mode
-  :ensure t
+(leaf yaml-ts-mode
   :require eglot
-  :mode `(,(rx (or ".yaml" ".yml" ".bst"
-                   (and string-start "project.conf")) string-end))
-  :hook (yaml-mode-hook . eglot-ensure))
+  :mode `(,(rx (or ".yaml" ".yml" ".bst" "project.conf") string-end))
+  :hook (yaml-ts-mode-hook . eglot-ensure))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Kotlin
