@@ -237,21 +237,26 @@
 ;;; Python
 ;; ----------------------------------------------------------------------------------
 
+(defun find-python-hook ()
+  "Find and set the python executable."
+  (setq-local python-shell-interpreter
+              (cond
+               ((executable-find "ipython") "ipython")
+               ((executable-find "ipython3") "ipython3")
+               ((executable-find "python3") "python3"))))
+
 (leaf python
   :require eglot
-  :mode `(,(rx ".py" string-end) . python-mode)
-  :interpreter ("python" . python-mode)
+  :mode `(,(rx ".py" string-end) . python-ts-mode)
+  :interpreter ("python" . python-ts-mode)
   :hook
-  ((python-mode-hook python-ts-mode-hook) . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
-  ((python-mode-hook python-ts-mode-hook) . eglot-ensure)
+  (python-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("python~3.11"))))
+  (python-ts-mode-hook . eglot-ensure)
+  (python-ts-mode-hook . find-python-hook)
   :custom
-  (python-shell-interpreter . '(cond
-                                ((executable-find "ipython") "ipython")
-                                ((executable-find "ipython3") "ipython3")
-                                ((executable-find "python3") "python3")))
   (python-shell-interpreter-args . "--simple-prompt -i")
   :defer-config
-  (add-to-list 'eglot-server-programs '((python-mode python-ts-mode) . ("ruff" "server"))))
+  (add-to-list 'eglot-server-programs '(python-ts-mode . ("ruff" "server"))))
 
 (leaf cython-mode
   :ensure t

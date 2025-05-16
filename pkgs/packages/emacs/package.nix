@@ -36,6 +36,7 @@ emacsWithPackagesFromUsePackage {
         tree-sitter-json
         tree-sitter-nix
         tree-sitter-nu
+        tree-sitter-python
         tree-sitter-rust
         tree-sitter-typescript
         tree-sitter-tsx
