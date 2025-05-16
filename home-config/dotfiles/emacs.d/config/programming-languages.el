@@ -262,20 +262,19 @@
 ;;; Rust
 ;; ----------------------------------------------------------------------------------
 
-(leaf rust-mode
-  :ensure t
+(leaf rust-ts-mode
+  :mode `(,(rx ".rs" string-end))
   :require eglot
-  :mode `(,(rx (or (and ".rs" string-end)
-                 (and string-start "Cargo.toml" string-end))) . rust-mode)
   :hook
-  (rust-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust"))))
-  (rust-mode-hook . eglot-ensure)
+  (rust-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("rust"))))
+  (rust-ts-mode-hook . eglot-ensure)
+  (rust-ts-mode-hook . (lambda () (remove-hook 'flymake-diagnostic-functions #'rust-ts-flymake t)))
   :defer-config
   (add-to-list 'eglot-server-programs
-               '(rust-mode . ("rust-analyzer"
-                              :initializationOptions
-                              (:checkOnSave
-                               (:command "clippy"))))))
+               '(rust-ts-mode . ("rust-analyzer"
+                                 :initializationOptions
+                                 (:checkOnSave
+                                  (:command "clippy"))))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; SCSS

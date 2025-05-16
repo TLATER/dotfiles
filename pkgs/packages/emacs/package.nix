@@ -33,6 +33,7 @@ emacsWithPackagesFromUsePackage {
         tree-sitter-bash
         tree-sitter-css
         tree-sitter-nu
+        tree-sitter-rust
         tree-sitter-typescript
         tree-sitter-tsx
       ]
