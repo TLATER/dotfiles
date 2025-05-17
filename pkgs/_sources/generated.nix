@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "1c40a9750acce02563cc211d4d2c2e49c75ac674";
+    version = "c40951ba09f8a8b88d1d4b9b15ca9338da01522c";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "1c40a9750acce02563cc211d4d2c2e49c75ac674";
+      rev = "c40951ba09f8a8b88d1d4b9b15ca9338da01522c";
       fetchSubmodules = true;
-      sha256 = "sha256-tRG/mNPFkU9+KUjhxcjo/vzraA2lqtUyGLDdenf5uPA=";
+      sha256 = "sha256-4bNfw+H0APp+7FKsDXS6W6ypuqyDD/tLihXt9Ixk0+A=";
     };
-    date = "2025-05-02";
+    date = "2025-05-10";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -77,13 +77,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.7.0";
+    version = "v8.7.1";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.7.0";
+      rev = "v8.7.1";
       fetchSubmodules = false;
-      sha256 = "sha256-NBPSKIxTNSuJahySyLqD45R/UmeyvkJBKehUIE/dI0I=";
+      sha256 = "sha256-2/hTy4QED2qLaMEz2gYS9IQqFf4AZACorh/8Wb2NZwA=";
     };
   };
   gcs = {
@@ -110,26 +110,26 @@
   };
   ohmyzsh = {
     pname = "ohmyzsh";
-    version = "62afbdebb96bf91c044a92b75d86f85a67da67a7";
+    version = "c95509ebfdbcc3c497f12697cfd2717bcb0a528b";
     src = fetchFromGitHub {
       owner = "ohmyzsh";
       repo = "ohmyzsh";
-      rev = "62afbdebb96bf91c044a92b75d86f85a67da67a7";
+      rev = "c95509ebfdbcc3c497f12697cfd2717bcb0a528b";
       fetchSubmodules = false;
-      sha256 = "sha256-7h3yXbQ/1KiI4nwtuKghtqxi7jY3LfzyVXX19HY9dbg=";
+      sha256 = "sha256-abhfCm/7L866nLbucPNHfM5xLU7CYfb8fbK6auUOw3Q=";
     };
-    date = "2025-05-06";
+    date = "2025-05-14";
   };
   phosphor-icons = {
     pname = "phosphor-icons";
-    version = "16678d40a0f34b99f4c48b8bf7b1a49ce0c9c1a1";
+    version = "00ac114a739ea7ae59287c2bf123267fdec191a5";
     src = fetchFromGitHub {
       owner = "phosphor-icons";
       repo = "web";
-      rev = "16678d40a0f34b99f4c48b8bf7b1a49ce0c9c1a1";
+      rev = "00ac114a739ea7ae59287c2bf123267fdec191a5";
       fetchSubmodules = false;
-      sha256 = "sha256-T7zvhh8Ot9f2h78dBR9yt+aPKgM66xKRKBTUhMTptsU=";
+      sha256 = "sha256-mHPosmdBD4ecmDUZhzPQx80z7zazmL4BiMo5K2XVXA4=";
     };
-    date = "2025-04-11";
+    date = "2025-05-12";
   };
 }
