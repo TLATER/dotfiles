@@ -12,6 +12,9 @@
     enable = true;
     wrapperFeatures.gtk = true;
 
+    # The existence of this option is definitely an anti-pattern
+    extraPackages = [ ];
+
     package = lib.mkIf config.easyNvidia.enable (
       pkgs.sway.override {
         inherit (flake-inputs.nixpkgs-wayland.packages.${pkgs.system}) sway-unwrapped;

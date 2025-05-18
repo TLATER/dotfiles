@@ -58,6 +58,7 @@
   };
 
   powerManagement.enable = true;
+  environment.systemPackages = [ pkgs.brightnessctl ];
 
   # Used extensively for testing at work
   virtualisation.docker.enable = true;
