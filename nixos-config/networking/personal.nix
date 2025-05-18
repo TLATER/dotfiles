@@ -57,7 +57,7 @@
           };
 
           wifi-security = {
-            key-mgmt = "wpa-psk";
+            key-mgmt = "sae";
             psk = "$PSK_MIKAN";
           };
         };
