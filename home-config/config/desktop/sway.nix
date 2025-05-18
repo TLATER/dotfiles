@@ -72,22 +72,35 @@ in
     ];
   };
 
-  programs.swaylock = {
-    enable = true;
-    package = pkgs.swaylock-effects;
-    settings = {
-      screenshots = true;
-      clock = true;
-      indicator = true;
-      indicator-radius = 100;
-      indicator-thickness = 7;
-      effect-blur = "7x5";
+  programs = {
+    fuzzel = {
+      enable = true;
+      settings = {
+        main = {
+          # The launch prefix *is* set correctly for terminals
+          terminal = "${lib.getExe pkgs.alacritty}";
+          width = "100";
+        };
+      };
     };
-  };
 
-  programs.eww = {
-    enable = true;
-    configDir = ../../dotfiles/eww;
+    swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        screenshots = true;
+        clock = true;
+        indicator = true;
+        indicator-radius = 100;
+        indicator-thickness = 7;
+        effect-blur = "7x5";
+      };
+    };
+
+    eww = {
+      enable = true;
+      configDir = ../../dotfiles/eww;
+    };
   };
 
   systemd.user.services = {
