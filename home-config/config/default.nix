@@ -1,4 +1,9 @@
-{ flake-inputs, lib, ... }:
+{
+  pkgs,
+  flake-inputs,
+  lib,
+  ...
+}:
 {
   imports = [ ../../home-modules/firefox-webapp.nix ];
 
@@ -7,6 +12,11 @@
     default = "${flake-inputs.self}/home-config/dotfiles";
     description = "Path to the dotfiles in this repository";
   };
+  config.home = {
+    stateVersion = "20.09";
 
-  config.home.stateVersion = "20.09";
+    activation.expireOldGenerations = lib.hm.dag.entryAfter [
+      "writeBoundary"
+    ] (pkgs.writers.writeNu "clean-generations.nu" (builtins.readFile ./clean-generations.nu)).outPath;
+  };
 }
