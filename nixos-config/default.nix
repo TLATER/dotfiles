@@ -12,10 +12,9 @@
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
 
+    ./desktop
     ./dev.nix
-    ./greeter
     ./networking
-    ./sway.nix
     ./yubikey.nix
   ];
 

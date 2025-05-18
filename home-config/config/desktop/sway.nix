@@ -41,7 +41,8 @@ in
     enable = true;
     package = null;
     config = null;
-    systemd.xdgAutostart = true;
+    systemd.enable = false;
+    systemd.xdgAutostart = false;
     extraConfigEarly = ''
       seat seat0 xcursor_theme Bibata-Original-Ice 24
     '';
@@ -107,7 +108,8 @@ in
     eww = {
       Unit = {
         Description = "System tray";
-        After = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session.target" ];
+        ConditionEnvironment = "WAYLAND_DISPLAY";
         PartOf = [ "graphical-session.target" ];
       };
 
@@ -115,6 +117,8 @@ in
         ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
         ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
         Environment = "PATH=${config.programs.eww.package}/bin:${pkgs.systemd}/bin:${pkgs.coreutils}/bin";
+        Restart = "always";
+        Type = "exec";
       };
       Install.WantedBy = [ "graphical-session.target" ];
     };
@@ -127,12 +131,16 @@ in
     wpaperd = {
       Unit = {
         Description = "Wallpaper daemon";
-        After = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session.target" ];
+        ConditionEnvironment = "WAYLAND_DISPLAY";
         PartOf = [ "graphical-session.target" ];
         X-Restart-Triggers = [ wpaperd-config ];
       };
 
-      Service.ExecStart = "${pkgs.wpaperd}/bin/wpaperd -c ${wpaperd-config}";
+      Service = {
+        ExecStart = "${pkgs.wpaperd}/bin/wpaperd -c ${wpaperd-config}";
+        Type = "exec";
+      };
 
       Install.WantedBy = [ "graphical-session.target" ];
     };
