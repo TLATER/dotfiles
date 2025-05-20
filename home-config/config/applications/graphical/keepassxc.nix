@@ -1,4 +1,9 @@
-{ pkgs, flake-inputs, ... }:
+{
+  lib,
+  pkgs,
+  flake-inputs,
+  ...
+}:
 let
   inherit (flake-inputs.self.packages.${pkgs.system}) nextcloudcmd;
 in
@@ -6,9 +11,15 @@ in
   home.packages = with pkgs; [ keepassxc ];
 
   systemd.user.services.keepass-sync = {
-    Unit.Description = "KeepassXC synchronization";
+    Unit = {
+      Description = "KeepassXC synchronization";
+      ConditionEnvironment = [ "DBUS_SESSION_BUS_ADDRESS" ];
+    };
     Service = {
       Type = "oneshot";
+
+      ExecCondition = "${lib.getExe' pkgs.systemd "busctl"} --user status org.freedesktop.secrets";
+
       ExecStart =
         builtins.toString (
           pkgs.writeShellApplication {
