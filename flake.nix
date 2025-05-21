@@ -94,23 +94,29 @@
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
-      devShells.x86_64-linux.default =
-        let
-          inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
-        in
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = [
-            nushell
-            nvfetcher
-            sops-init-gpg-key
-          ];
+      devShells.x86_64-linux = {
+        default =
+          let
+            inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+            inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
+          in
+          nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = [
+              nushell
+              nvfetcher
+              sops-init-gpg-key
+            ];
 
-          sopsPGPKeyDirs = [
-            "./keys/hosts/"
-            "./keys/users/"
-          ];
-          nativeBuildInputs = [ sops-import-keys-hook ];
+            sopsPGPKeyDirs = [
+              "./keys/hosts/"
+              "./keys/users/"
+            ];
+            nativeBuildInputs = [ sops-import-keys-hook ];
+          };
+
+        desktopctl = import ./pkgs/packages/desktopctl/shell.nix {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
         };
+      };
     };
 }
