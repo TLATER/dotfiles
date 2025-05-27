@@ -4,6 +4,7 @@
   kdePackages,
   cmake,
   pkg-config,
+  libp11,
   openssl,
   zlib,
 }:
@@ -18,6 +19,7 @@ stdenv.mkDerivation {
   ];
 
   buildInputs = [
+    libp11
     openssl
     zlib
     kdePackages.qtbase

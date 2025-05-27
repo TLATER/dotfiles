@@ -32,7 +32,7 @@ in
     programs.firefox = {
       enable = true;
       profiles."tlater" = {
-        extensions =
+        extensions.packages =
           with pkgs.nur.repos.rycee.firefox-addons;
           lib.mkIf thirdParty [
             aria2-integration

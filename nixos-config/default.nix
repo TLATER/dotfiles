@@ -241,7 +241,6 @@
     fstrim.enable = true;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
-    geoclue2.geoProviderUrl = "https://api.beacondb.net/v1/geolocate";
   };
 
   hardware = {

@@ -1,15 +1,13 @@
 {
   location ? "~/.local/share/wine-prefixes/jjr2",
   protonPath ? "${proton-ge-bin.steamcompattool}/",
-  umu-launcher ? flake-inputs.nixpkgs-unstable.legacyPackages.${system}.umu-launcher,
 
-  flake-inputs,
-  system,
   lib,
 
   proton-ge-bin,
   innoextract,
   icoutils,
+  umu-launcher,
 
   requireFile,
   writers,

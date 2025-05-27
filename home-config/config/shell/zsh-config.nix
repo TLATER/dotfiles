@@ -10,27 +10,31 @@ let
   tlaterpkgs = flake-inputs.self.packages.${pkgs.system};
 in
 {
-  home.packages = with pkgs; [ any-nix-shell ];
+  home = {
+    packages = with pkgs; [ any-nix-shell ];
 
-  home.file.".profile".text = ''
-    source "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
+    shell.enableZshIntegration = true;
 
-    export BROWSER="firefox"
+    file.".profile".text = ''
+      source "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
 
-    export XDG_CONFIG_HOME="$HOME/.config"
-    export XDG_DATA_HOME="$HOME/.local/share"
-    export XDG_BIN_HOME="$HOME/.local/bin"
-    export XDG_LIB_HOME="$HOME/.local/lib"
-    export XDG_CACHE_HOME="$HOME/.cache"
+      export BROWSER="firefox"
 
-    export PATH="$PATH:$HOME/.local/bin"
-    export PATH="$PATH:$HOME/.local/usr/bin"
+      export XDG_CONFIG_HOME="$HOME/.config"
+      export XDG_DATA_HOME="$HOME/.local/share"
+      export XDG_BIN_HOME="$HOME/.local/bin"
+      export XDG_LIB_HOME="$HOME/.local/lib"
+      export XDG_CACHE_HOME="$HOME/.cache"
 
-    export VISUAL='emacsclient'
-    export EDITOR='emacsclient'
-    export ALTERNATE_EDITOR='emacs'
-    export VTERM='alacritty'
-  '';
+      export PATH="$PATH:$HOME/.local/bin"
+      export PATH="$PATH:$HOME/.local/usr/bin"
+
+      export VISUAL='emacsclient'
+      export EDITOR='emacsclient'
+      export ALTERNATE_EDITOR='emacs'
+      export VTERM='alacritty'
+    '';
+  };
 
   programs = {
     zsh = {

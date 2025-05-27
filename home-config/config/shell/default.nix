@@ -21,7 +21,7 @@
     enableSshSupport = true;
     defaultCacheTtl = 86400;
     maxCacheTtl = 2592000;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    pinentry.package = pkgs.pinentry-gnome3;
   };
 
   programs = {
@@ -30,8 +30,6 @@
     direnv = {
       enable = true;
       nix-direnv.enable = true;
-      enableZshIntegration = true;
-      enableNushellIntegration = true;
     };
 
     git = {

@@ -1,18 +1,16 @@
 {
   self,
-  flake-inputs,
-  system,
   lib,
   mkTest,
   fetchpatch,
 
   deadnix,
+  nixfmt-rfc-style,
   nushell,
   shellcheck,
   statix,
 }:
 let
-  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${system}) nixfmt-rfc-style;
   statix' = statix.overrideAttrs (old: {
     patches = old.patches ++ [
       (fetchpatch {
