@@ -6,7 +6,7 @@
   dmidecode,
   glib,
   glib-networking,
-  libsoup,
+  libsoup_2_4,
   rpmextract,
   wrapGAppsHook,
 }:
@@ -20,7 +20,7 @@ stdenv.mkDerivation (finalAttrs: {
     glib-networking
     rpmextract
   ];
-  buildInputs = [ libsoup ];
+  buildInputs = [ libsoup_2_4 ];
 
   unpackCmd = ''
     mkdir ${finalAttrs.pname}-${finalAttrs.version} && pushd ${finalAttrs.pname}-${finalAttrs.version}
