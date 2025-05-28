@@ -281,6 +281,12 @@
                                  (:checkOnSave
                                   (:command "clippy"))))))
 
+;; Use rust-mode just for the compilation regexes
+(leaf rust-mode
+  :ensure t
+  :after rust-ts-mode
+  :require rust-compile)
+
 ;; ----------------------------------------------------------------------------------
 ;;; SCSS
 ;; ----------------------------------------------------------------------------------
