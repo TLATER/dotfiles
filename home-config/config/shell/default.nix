@@ -2,8 +2,10 @@
 {
   imports = [ ./nushell.nix ];
 
-  xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
-  xdg.configFile."dashrc".source = "${config._dotfiles}/dashrc";
+  xdg = {
+    configFile."zellij".source = "${config._dotfiles}/zellij";
+    configFile."dashrc".source = "${config._dotfiles}/dashrc";
+  };
 
   home = {
     packages = with pkgs; [
@@ -14,6 +16,7 @@
       ouch
       ripgrep
       screen
+      zellij
     ];
 
     file.".profile".text = ''
