@@ -41,11 +41,6 @@ fetch.github = "black7375/Firefox-UI-Fix"
 src.manual = "v5.27.0"
 fetch.github = "richardwilkes/gcs"
 
-[ohmyzsh]
-src.git = "https://github.com/ohmyzsh/ohmyzsh"
-src.branch = "master"
-fetch.github = "ohmyzsh/ohmyzsh"
-
 [phosphor-icons]
 src.git = "https://github.com/phosphor-icons/web"
 src.branch = "master"

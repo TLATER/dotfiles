@@ -12,7 +12,7 @@ in
 {
   home = {
     activation.xdg-dir-prep = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      $DRY_RUN_CMD mkdir $VERBOSE_ARG -p '${xdg.cacheHome}/less' '${xdg.cacheHome}/zsh'
+      $DRY_RUN_CMD mkdir $VERBOSE_ARG -p '${xdg.cacheHome}/less'
     '';
 
     preferXdgDirectories = true;

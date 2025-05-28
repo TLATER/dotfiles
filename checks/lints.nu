@@ -1,7 +1,7 @@
 #!/usr/bin/env nu
 
 let shell_files = (
-  ls **/*.sh **/*.zsh |
+  ls **/*.sh **/dashrc |
   where type == file |
   get name
 )

@@ -1,20 +1,32 @@
 { config, pkgs, ... }:
 {
-  imports = [
-    ./nushell.nix
-    ./zsh-config.nix
-  ];
+  imports = [ ./nushell.nix ];
 
   xdg.configFile."screen/config".source = "${config._dotfiles}/screenrc";
+  xdg.configFile."dashrc".source = "${config._dotfiles}/dashrc";
 
-  home.packages = with pkgs; [
-    bat
-    eza
-    fd
-    ouch
-    ripgrep
-    screen
-  ];
+  home = {
+    packages = with pkgs; [
+      any-nix-shell
+      bat
+      eza
+      fd
+      ouch
+      ripgrep
+      screen
+    ];
+
+    file.".profile".text = ''
+      . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
+
+      export BROWSER='firefox'
+      export VISUAL='emacsclient'
+      export EDITOR='emacsclient'
+      export ALTERNATE_EDITOR='emacs'
+      export VTERM='alacritty'
+      export ENV='${config.xdg.configHome}/dashrc'
+    '';
+  };
 
   services.gpg-agent = {
     enable = true;

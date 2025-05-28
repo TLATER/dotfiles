@@ -94,7 +94,7 @@
   };
 
   users = {
-    defaultUserShell = pkgs.zsh;
+    defaultUserShell = pkgs.dash;
 
     users = {
       tlater = {
@@ -121,14 +121,11 @@
       # environment.extraInit option.
       unset -v SSH_ASKPASS
     '';
-
-    pathsToLink = [ "/share/zsh" ];
   };
 
   programs = {
     dconf.enable = true;
     git.enable = true;
-    zsh.enable = true;
     nano.enable = false;
     firefox.enable = true;
   };

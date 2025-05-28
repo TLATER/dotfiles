@@ -2,11 +2,6 @@
 {
   targets.genericLinux.enable = true;
 
-  # zsh doesn't always load ~/.profile on other distros
-  programs.zsh.envExtra = ''
-    source "$HOME/.profile"
-  '';
-
   nix = {
     package = pkgs.lix;
     settings.experimental-features = [
