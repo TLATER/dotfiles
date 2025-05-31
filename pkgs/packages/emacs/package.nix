@@ -44,5 +44,8 @@ emacsWithPackagesFromUsePackage {
       ]
     ))
   ];
-  override = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { inherit sources; }; };
+  override = self: _super: {
+    eglot-x = self.callPackage ./eglot-x.nix { inherit sources; };
+    kdl-mode = self.callPackage ./kdl-mode.nix { inherit sources; };
+  };
 }

@@ -97,6 +97,18 @@
       sha256 = "sha256-N4a+7a1XpDXsZTDiTh1AZIzXfk/A+gV4uBZdGZh+S5I=";
     };
   };
+  kdl-mode = {
+    pname = "kdl-mode";
+    version = "e535c07ebc0ee692318236ebed88b4cc2093afa6";
+    src = fetchFromGitHub {
+      owner = "taquangtrung";
+      repo = "emacs-kdl-mode";
+      rev = "e535c07ebc0ee692318236ebed88b4cc2093afa6";
+      fetchSubmodules = false;
+      sha256 = "sha256-IhNwpJXDiODELw3deF0H1df227wnXg91GqR7vQqFHDE=";
+    };
+    date = "2025-05-22";
+  };
   ocgcore = {
     pname = "ocgcore";
     version = "v11.0";

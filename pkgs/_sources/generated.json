@@ -175,6 +175,27 @@
         },
         "version": "v5.27.0"
     },
+    "kdl-mode": {
+        "cargoLocks": null,
+        "date": "2025-05-22",
+        "extract": null,
+        "name": "kdl-mode",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "taquangtrung",
+            "repo": "emacs-kdl-mode",
+            "rev": "e535c07ebc0ee692318236ebed88b4cc2093afa6",
+            "sha256": "sha256-IhNwpJXDiODELw3deF0H1df227wnXg91GqR7vQqFHDE=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "e535c07ebc0ee692318236ebed88b4cc2093afa6"
+    },
     "ocgcore": {
         "cargoLocks": null,
         "date": null,
