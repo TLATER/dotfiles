@@ -15,6 +15,7 @@
             "repo": "bauer",
             "rev": "v2.0.1",
             "sha256": "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v2.0.1"
@@ -35,6 +36,7 @@
             "repo": "DeepFilterNet",
             "rev": "v0.5.6",
             "sha256": "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v0.5.6"
@@ -70,6 +72,7 @@
             "repo": "edopro",
             "rev": "c40951ba09f8a8b88d1d4b9b15ca9338da01522c",
             "sha256": "sha256-4bNfw+H0APp+7FKsDXS6W6ypuqyDD/tLihXt9Ixk0+A=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "c40951ba09f8a8b88d1d4b9b15ca9338da01522c"
@@ -104,6 +107,7 @@
             "repo": "irrlicht1-8-4",
             "rev": "2c8b5d9a28ea5de3d69386b42d7f112f01608181",
             "sha256": "sha256-bZxTobzNdm3TACYp3uTxtiKCynRlL9CgObihFgxRMVE=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "2c8b5d9a28ea5de3d69386b42d7f112f01608181"
@@ -124,6 +128,7 @@
             "repo": "eglot-x",
             "rev": "ca565df30d8e207c00471a3723d7bd5803497a95",
             "sha256": "sha256-pJSBG84G+uRWEeoyHrsajNxIsfqlcwQM7rCsxBsn3Jc=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "ca565df30d8e207c00471a3723d7bd5803497a95"
@@ -144,6 +149,7 @@
             "repo": "Firefox-UI-Fix",
             "rev": "v8.7.1",
             "sha256": "sha256-2/hTy4QED2qLaMEz2gYS9IQqFf4AZACorh/8Wb2NZwA=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v8.7.1"
@@ -164,6 +170,7 @@
             "repo": "gcs",
             "rev": "v5.27.0",
             "sha256": "sha256-N4a+7a1XpDXsZTDiTh1AZIzXfk/A+gV4uBZdGZh+S5I=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v5.27.0"
@@ -184,29 +191,10 @@
             "repo": "ygopro-core",
             "rev": "v11.0",
             "sha256": "sha256-q11xofN4hKg+onHxmhRz+jdBz3pcUr/Slp+RCg5cjk8=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "v11.0"
-    },
-    "ohmyzsh": {
-        "cargoLocks": null,
-        "date": "2025-05-18",
-        "extract": null,
-        "name": "ohmyzsh",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "ohmyzsh",
-            "repo": "ohmyzsh",
-            "rev": "881c8b78d3e3ade9bccfddb3e616842807d07a59",
-            "sha256": "sha256-MfNt+psdgz9l0cw0X3HFHeenQz+6oV1EXnPL8T0ffGg=",
-            "type": "github"
-        },
-        "version": "881c8b78d3e3ade9bccfddb3e616842807d07a59"
     },
     "phosphor-icons": {
         "cargoLocks": null,
@@ -224,6 +212,7 @@
             "repo": "web",
             "rev": "00ac114a739ea7ae59287c2bf123267fdec191a5",
             "sha256": "sha256-mHPosmdBD4ecmDUZhzPQx80z7zazmL4BiMo5K2XVXA4=",
+            "sparseCheckout": [],
             "type": "github"
         },
         "version": "00ac114a739ea7ae59287c2bf123267fdec191a5"
