@@ -28,6 +28,10 @@ fetch.tarball = "https://github.com/ProjectIgnis/edopro-assets/releases/download
 src.git = "https://github.com/edo9300/irrlicht1-8-4.git"
 fetch.github = "edo9300/irrlicht1-8-4"
 
+[kdl-mode]
+src.git = "https://github.com/taquangtrung/emacs-kdl-mode"
+fetch.github = "taquangtrung/emacs-kdl-mode"
+
 [ocgcore]
 src.github = "edo9300/ygopro-core"
 fetch.github = "edo9300/ygopro-core"
