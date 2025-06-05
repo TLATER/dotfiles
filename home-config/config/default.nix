@@ -5,7 +5,10 @@
   ...
 }:
 {
-  imports = [ ../../home-modules/firefox-webapp.nix ];
+  imports = [
+    ../../home-modules/firefox-webapp.nix
+    ../../home-modules/way-displays.nix
+  ];
 
   options._dotfiles = lib.mkOption {
     type = lib.types.str;
