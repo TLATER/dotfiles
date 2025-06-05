@@ -270,8 +270,9 @@
                                                  (project-root (project-current t dir))
                                                dir)))))
   :custom-face
-  (cov-none-face . '((t (:foreground "red"))))
-  (cov-heavy-face . '((t (:foreground "green")))))
+  ;; If unset, the theme does not apply
+  (cov-none-face . ())
+  (cov-heavy-face . ()))
 
 ;; ----------------------------------------------------------------------------------
 ;; Project management

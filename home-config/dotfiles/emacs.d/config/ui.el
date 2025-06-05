@@ -193,8 +193,9 @@
   :ensure t
   :hook prog-mode-hook
   :custom-face
-  (fic-face . '((t (:foreground "darkred" :weight bold))))
-  (fic-author-face . '((t (:foreground "orangered" :underline t)))))
+  ;; If unset, the theme does not apply
+  (fic-face . ())
+  (fic-author-face . ()))
 
 ;; Colorful color names :3
 (leaf rainbow-mode

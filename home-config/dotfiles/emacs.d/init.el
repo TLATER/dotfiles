@@ -71,6 +71,30 @@
   :global-minor-mode t)
 
 ;; ----------------------------------------------------------------------------------
+;;; Set up nix-provided theme
+;; ----------------------------------------------------------------------------------
+
+(leaf base16-stylix-theme
+  :require t
+  :pre-setq (base16-theme-256-color-source . 'base16-shell)
+  :config
+  ;; Tweak the theme a little
+  (base16-theme-set-faces
+   'user
+   base16-stylix-theme-colors
+   '(
+     ;; Spec says to make variables red, but this looks horrible
+     (font-lock-variable-name-face :foreground base0D)
+     ;; I don't want a red cursor either
+     (cursor :background base05)
+
+     ;; No built-in settings for these packages in the base16 theme
+     (cov-none-face :foreground base08)
+     (cov-heavy-face :foreground base0B)))
+
+  (enable-theme 'base16-stylix))
+
+;; ----------------------------------------------------------------------------------
 ;;; Load other configuration files
 ;; ----------------------------------------------------------------------------------
 
