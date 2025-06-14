@@ -53,15 +53,15 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "2c8b5d9a28ea5de3d69386b42d7f112f01608181";
+    version = "6f33328df2b8da7615f9070ffa61463b7be442a7";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "2c8b5d9a28ea5de3d69386b42d7f112f01608181";
+      rev = "6f33328df2b8da7615f9070ffa61463b7be442a7";
       fetchSubmodules = false;
-      sha256 = "sha256-bZxTobzNdm3TACYp3uTxtiKCynRlL9CgObihFgxRMVE=";
+      sha256 = "sha256-pj59P+Rzqkgk0L/vxt9nlrDARywAfde6Mi1lBVbMYNE=";
     };
-    date = "2025-05-17";
+    date = "2025-06-08";
   };
   eglot-x = {
     pname = "eglot-x";
