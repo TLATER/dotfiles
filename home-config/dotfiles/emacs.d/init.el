@@ -74,14 +74,22 @@
 ;;; Set up nix-provided theme
 ;; ----------------------------------------------------------------------------------
 
-(leaf base16-stylix-theme
+(leaf color-template
+  :require t)
+
+(leaf base16-theme
   :require t
+  :ensure t
+  :after color-template
   :pre-setq (base16-theme-256-color-source . 'base16-shell)
   :config
+  (deftheme base16-custom)
+  (base16-theme-define 'base16-custom color-template-colors)
+
   ;; Tweak the theme a little
   (base16-theme-set-faces
    'user
-   base16-stylix-theme-colors
+   color-template-colors
    '(
      ;; Spec says to make variables red, but this looks horrible
      (font-lock-variable-name-face :foreground base0D)
@@ -92,7 +100,7 @@
      (cov-none-face :foreground base08)
      (cov-heavy-face :foreground base0B)))
 
-  (enable-theme 'base16-stylix))
+  (enable-theme 'base16-custom))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Load other configuration files

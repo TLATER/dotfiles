@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  imports = [ ./emacs.nix ];
+  imports = [ ./emacs ];
 
   programs.bottom = {
     enable = true;
