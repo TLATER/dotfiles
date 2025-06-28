@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "c40951ba09f8a8b88d1d4b9b15ca9338da01522c";
+    version = "211672dea40dacadf5a2d07db4e8aa8882c4046b";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "c40951ba09f8a8b88d1d4b9b15ca9338da01522c";
+      rev = "211672dea40dacadf5a2d07db4e8aa8882c4046b";
       fetchSubmodules = true;
-      sha256 = "sha256-4bNfw+H0APp+7FKsDXS6W6ypuqyDD/tLihXt9Ixk0+A=";
+      sha256 = "sha256-dHMPnqYLnLyFUE4zdatCJ4bdWdCfeyQJQbTRQa0s/1c=";
     };
-    date = "2025-05-10";
+    date = "2025-06-27";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -53,27 +53,27 @@
   };
   edopro-irrlicht = {
     pname = "edopro-irrlicht";
-    version = "2c8b5d9a28ea5de3d69386b42d7f112f01608181";
+    version = "ddad09ea5e1888df424d36071558afc10d0b4f61";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "irrlicht1-8-4";
-      rev = "2c8b5d9a28ea5de3d69386b42d7f112f01608181";
+      rev = "ddad09ea5e1888df424d36071558afc10d0b4f61";
       fetchSubmodules = false;
-      sha256 = "sha256-bZxTobzNdm3TACYp3uTxtiKCynRlL9CgObihFgxRMVE=";
+      sha256 = "sha256-sVW1JaizN4WyCrTOezCOLyFOT3nrqUqaJAVqTR9+DrI=";
     };
-    date = "2025-05-17";
+    date = "2025-06-20";
   };
   eglot-x = {
     pname = "eglot-x";
-    version = "ca565df30d8e207c00471a3723d7bd5803497a95";
+    version = "8e872efd3d0b7779bde5b1e1d75c8e646a1f729f";
     src = fetchFromGitHub {
       owner = "nemethf";
       repo = "eglot-x";
-      rev = "ca565df30d8e207c00471a3723d7bd5803497a95";
+      rev = "8e872efd3d0b7779bde5b1e1d75c8e646a1f729f";
       fetchSubmodules = false;
-      sha256 = "sha256-pJSBG84G+uRWEeoyHrsajNxIsfqlcwQM7rCsxBsn3Jc=";
+      sha256 = "sha256-a2qkitikqGZBXI4aVdn8c7P4HFwep9RPWkOVBbgQV2g=";
     };
-    date = "2025-04-19";
+    date = "2025-06-26";
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
@@ -99,15 +99,15 @@
   };
   kdl-mode = {
     pname = "kdl-mode";
-    version = "3e88553c05bf9ed5fa8ac0797e545ea67316677f";
+    version = "2d849e298199f490e4894c01764a8a83decd704a";
     src = fetchFromGitHub {
       owner = "taquangtrung";
       repo = "emacs-kdl-mode";
-      rev = "3e88553c05bf9ed5fa8ac0797e545ea67316677f";
+      rev = "2d849e298199f490e4894c01764a8a83decd704a";
       fetchSubmodules = false;
-      sha256 = "sha256-4NbEM6isY34RxXg7h/QZNmI0ngrpE3vUMzp5sQglzZk=";
+      sha256 = "sha256-5PHAV1yrpiZrWJDI5r9dSgfbSJQJ80nQXvklr24saqM=";
     };
-    date = "2025-06-03";
+    date = "2025-06-20";
   };
   ocgcore = {
     pname = "ocgcore";
