@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "211672dea40dacadf5a2d07db4e8aa8882c4046b";
+    version = "3190ee5bc03a6189d9f7bdd635aaa450192f7cdd";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "211672dea40dacadf5a2d07db4e8aa8882c4046b";
+      rev = "3190ee5bc03a6189d9f7bdd635aaa450192f7cdd";
       fetchSubmodules = true;
-      sha256 = "sha256-dHMPnqYLnLyFUE4zdatCJ4bdWdCfeyQJQbTRQa0s/1c=";
+      sha256 = "sha256-gmFunFFn2+gw1IU5nA3ByBoPvF7JsN5tpP+UnN6CpSk=";
     };
-    date = "2025-06-27";
+    date = "2025-06-28";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -77,13 +77,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.7.1";
+    version = "v8.7.2";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.7.1";
+      rev = "v8.7.2";
       fetchSubmodules = false;
-      sha256 = "sha256-2/hTy4QED2qLaMEz2gYS9IQqFf4AZACorh/8Wb2NZwA=";
+      sha256 = "sha256-t0mEpG2f43wdssmq7CXjQj01IzRYS2dy5N2US0gKTVA=";
     };
   };
   gcs = {
