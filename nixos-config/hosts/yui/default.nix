@@ -63,10 +63,12 @@ in
       {
         root = {
           device = "/dev/disk/by-uuid/3c0d48f6-f051-4328-9919-677a7fcddae7";
-        } // ssdOptimization;
+        }
+        // ssdOptimization;
         storage = {
           device = "/dev/disk/by-uuid/dd17e735-fac4-467f-b1ee-8bb214bc2b08";
-        } // ssdOptimization;
+        }
+        // ssdOptimization;
       };
   };
 

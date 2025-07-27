@@ -17,11 +17,12 @@ let
   };
 
   # Compute the list of leaf-d packages.
-  emacsConfigs =
-    [ "${emacsDotfiles}/init.el" ]
-    ++ (lib.mapAttrsToList (fname: _: "${emacsDotfiles}/config/${fname}") (
-      lib.filterAttrs (_: type: type == "regular") (builtins.readDir "${emacsDotfiles}/config/")
-    ));
+  emacsConfigs = [
+    "${emacsDotfiles}/init.el"
+  ]
+  ++ (lib.mapAttrsToList (fname: _: "${emacsDotfiles}/config/${fname}") (
+    lib.filterAttrs (_: type: type == "regular") (builtins.readDir "${emacsDotfiles}/config/")
+  ));
 
   runtimeDeps = with pkgs; [
     # Spell checks

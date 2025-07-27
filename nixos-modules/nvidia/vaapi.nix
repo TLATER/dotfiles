@@ -72,13 +72,12 @@ in
   config = lib.mkIf cfg.enable {
     environment = {
       systemPackages = [ pkgs.libva-utils ];
-      variables =
-        {
-          NVD_BACKEND = "direct";
-          LIBVA_DRIVER_NAME = "nvidia";
-        }
-        // lib.optionalAttrs (cfg.maxInstances != null) { NVD_MAX_INSTANCES = toString cfg.maxInstances; }
-        // lib.optionalAttrs cfg.firefox.enable { MOZ_DISABLE_RDD_SANDBOX = "1"; };
+      variables = {
+        NVD_BACKEND = "direct";
+        LIBVA_DRIVER_NAME = "nvidia";
+      }
+      // lib.optionalAttrs (cfg.maxInstances != null) { NVD_MAX_INSTANCES = toString cfg.maxInstances; }
+      // lib.optionalAttrs cfg.firefox.enable { MOZ_DISABLE_RDD_SANDBOX = "1"; };
     };
 
     programs.firefox.preferences = lib.mkIf cfg.firefox.enable {
