@@ -1,19 +1,22 @@
 #!/usr/bin/env dash
 
-# Disable C-s freezing the terminal
-stty -ixon
+# Ensure that e.g. tramp doesn't try to launch nu/zellij
+if ! [ "$TERM" = "dumb" ]; then
+    # Disable C-s freezing the terminal
+    stty -ixon
 
-# Enter/exit zellij automatically
-if [ -z "$INSIDE_EMACS" ] && [ -z "$ZELLIJ" ]; then
-    if [ "$ZELLIJ_AUTO_ATTACH" = "true" ]; then
-        exec zellij attach -c
-    else
-        exec zellij
+    # Enter/exit zellij automatically
+    if [ -z "$INSIDE_EMACS" ] && [ -z "$ZELLIJ" ]; then
+        if [ "$ZELLIJ_AUTO_ATTACH" = "true" ]; then
+            exec zellij attach -c
+        else
+            exec zellij
+        fi
+
+        if [ "$ZELLIJ_AUTO_EXIT" = "true" ]; then
+            exit
+        fi
     fi
 
-    if [ "$ZELLIJ_AUTO_EXIT" = "true" ]; then
-        exit
-    fi
+    exec nu
 fi
-
-exec nu
