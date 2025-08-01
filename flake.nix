@@ -21,6 +21,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-webapps.url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
+
     nixos-anywhere = {
       url = "github:numtide/nixos-anywhere";
       inputs = {

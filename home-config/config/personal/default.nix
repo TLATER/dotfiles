@@ -1,6 +1,9 @@
 { flake-inputs, pkgs, ... }:
 {
-  imports = [ ./ssh-servers.nix ];
+  imports = [
+    ./ssh-servers.nix
+    ./webapps.nix
+  ];
 
   home.packages = with pkgs; [
     prismlauncher

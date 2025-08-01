@@ -25,16 +25,7 @@
       };
     };
 
-    firefox = {
-      enableThirdPartyRepositories = false;
-
-      # Disable the webapps that shouldn't be on a work computer
-      webapps = {
-        discord.enable = lib.mkForce false;
-        whatsapp.enable = lib.mkForce false;
-        element.enable = lib.mkForce false;
-      };
-    };
+    firefox.enableThirdPartyRepositories = false;
   };
 
   home.packages = with pkgs; [

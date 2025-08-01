@@ -6,11 +6,8 @@
 }:
 {
   imports = [
-    ./discord.nix
-    ./element.nix
     ./firefox.nix
     ./keepassxc.nix
-    ./whatsapp.nix
   ];
 
   home.packages = with pkgs; [
