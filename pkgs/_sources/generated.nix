@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "3190ee5bc03a6189d9f7bdd635aaa450192f7cdd";
+    version = "f3e3f900c5031dffc8a932f83d9f37a168a02ac6";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "3190ee5bc03a6189d9f7bdd635aaa450192f7cdd";
+      rev = "f3e3f900c5031dffc8a932f83d9f37a168a02ac6";
       fetchSubmodules = true;
-      sha256 = "sha256-gmFunFFn2+gw1IU5nA3ByBoPvF7JsN5tpP+UnN6CpSk=";
+      sha256 = "sha256-0L8iwp8z/1ejdAQ8EjTnETzZ9z9Q+zyhTNt/nNomYJE=";
     };
-    date = "2025-06-28";
+    date = "2025-07-27";
   };
   edopro-assets = {
     pname = "edopro-assets";
