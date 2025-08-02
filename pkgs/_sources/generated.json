@@ -196,6 +196,42 @@
         },
         "version": "2d849e298199f490e4894c01764a8a83decd704a"
     },
+    "nvidia": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "nvidia",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "name": null,
+            "sha256": "sha256-AlaGfggsr5PXsl+nyOabMWBiqcbHLG4ij617I4xvoX0=",
+            "type": "url",
+            "url": "https://download.nvidia.com/XFree86/Linux-x86_64/570.172.08/NVIDIA-Linux-x86_64-570.172.08.run"
+        },
+        "version": "570.172.08"
+    },
+    "nvidia-open": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "nvidia-open",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "NVIDIA",
+            "repo": "open-gpu-kernel-modules",
+            "rev": "570.172.08",
+            "sha256": "sha256-aTV5J4zmEgRCOavo6wLwh5efOZUG+YtoeIT/tnrC1Hg=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "570.172.08"
+    },
     "ocgcore": {
         "cargoLocks": null,
         "date": null,

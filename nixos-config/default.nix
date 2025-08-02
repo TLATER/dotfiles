@@ -60,6 +60,28 @@
     desktopEnvironment = "wlroots";
   };
 
+  hardware.nvidia =
+    let
+      inherit (pkgs.callPackage "${flake-inputs.self}/pkgs/sources.nix" { }) nvidia nvidia-open;
+    in
+    {
+      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        inherit (nvidia) version;
+        sha256_64bit = nvidia.src.outputHash;
+        openSha256 = nvidia-open.src.outputHash;
+
+        # Components we don't use, so they can be left unspecified
+        sha256_aarch64 = lib.fakeHash;
+        settingsSha256 = lib.fakeHash;
+        persistencedSha256 = lib.fakeHash;
+      };
+
+      # Disabled because I don't use it and I can't be bothered to
+      # figure out how to get a hash for something nvidia don't seem to
+      # publish consistently.
+      nvidiaSettings = false;
+    };
+
   stylix = {
     enable = true;
     autoEnable = false;

@@ -109,6 +109,25 @@
     };
     date = "2025-06-20";
   };
+  nvidia = {
+    pname = "nvidia";
+    version = "570.172.08";
+    src = fetchurl {
+      url = "https://download.nvidia.com/XFree86/Linux-x86_64/570.172.08/NVIDIA-Linux-x86_64-570.172.08.run";
+      sha256 = "sha256-AlaGfggsr5PXsl+nyOabMWBiqcbHLG4ij617I4xvoX0=";
+    };
+  };
+  nvidia-open = {
+    pname = "nvidia-open";
+    version = "570.172.08";
+    src = fetchFromGitHub {
+      owner = "NVIDIA";
+      repo = "open-gpu-kernel-modules";
+      rev = "570.172.08";
+      fetchSubmodules = false;
+      sha256 = "sha256-aTV5J4zmEgRCOavo6wLwh5efOZUG+YtoeIT/tnrC1Hg=";
+    };
+  };
   ocgcore = {
     pname = "ocgcore";
     version = "v11.0";
