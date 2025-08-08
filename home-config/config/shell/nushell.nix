@@ -1,4 +1,9 @@
-{ config, ... }:
+{
+  config,
+  pkgs,
+  flake-inputs,
+  ...
+}:
 {
   home.shell.enableNushellIntegration = true;
 
@@ -7,5 +12,9 @@
     configFile.source = "${config._dotfiles}/nushell/config.nu";
   };
 
-  programs.carapace.enable = true;
+  programs.carapace = {
+    enable = true;
+    # Needed because of https://github.com/nix-community/home-manager/issues/7517
+    package = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.carapace;
+  };
 }
