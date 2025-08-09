@@ -79,7 +79,7 @@ in
       settings = {
         main = {
           # The launch prefix *is* set correctly for terminals
-          terminal = "${lib.getExe pkgs.alacritty}";
+          terminal = "${lib.getExe pkgs.alacritty} -e";
           width = "100";
         };
       };
