@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./desktopOverrides
+    ./graphical
+    ./tty
+  ];
+}

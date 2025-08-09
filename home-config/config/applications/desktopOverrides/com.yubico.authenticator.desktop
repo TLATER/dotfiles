@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Yubico Authenticator
+GenericName=Yubico Authenticator
+Exec="/nix/store/phgz620cn4x7iaavwfc38ns7hf5psqgn-yubioath-flutter-7.1.1/bin/yubioath-flutter"
+# Changed the icon path; this was hard-coded
+Icon=yubioath
+Type=Application
+Categories=Utility;
+Keywords=Yubico;Authenticator;
