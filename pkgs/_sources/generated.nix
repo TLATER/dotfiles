@@ -33,15 +33,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "f3e3f900c5031dffc8a932f83d9f37a168a02ac6";
+    version = "16ef19f8019c50f534f062b702941a689b28a4c1";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "f3e3f900c5031dffc8a932f83d9f37a168a02ac6";
+      rev = "16ef19f8019c50f534f062b702941a689b28a4c1";
       fetchSubmodules = true;
-      sha256 = "sha256-0L8iwp8z/1ejdAQ8EjTnETzZ9z9Q+zyhTNt/nNomYJE=";
+      sha256 = "sha256-H+agFxPqcIYr2I7I/dOn8DBkWFa8quqyFSvIouS1A7w=";
     };
-    date = "2025-07-27";
+    date = "2025-08-09";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -111,21 +111,21 @@
   };
   nvidia = {
     pname = "nvidia";
-    version = "570.172.08";
+    version = "570.181";
     src = fetchurl {
-      url = "https://download.nvidia.com/XFree86/Linux-x86_64/570.172.08/NVIDIA-Linux-x86_64-570.172.08.run";
-      sha256 = "sha256-AlaGfggsr5PXsl+nyOabMWBiqcbHLG4ij617I4xvoX0=";
+      url = "https://us.download.nvidia.com/XFree86/Linux-x86_64/570.181/NVIDIA-Linux-x86_64-570.181.run";
+      sha256 = "sha256-8G0lzj8YAupQetpLXcRrPCyLOFA9tvaPPvAWurjj3Pk=";
     };
   };
   nvidia-open = {
     pname = "nvidia-open";
-    version = "570.172.08";
+    version = "570.181";
     src = fetchFromGitHub {
       owner = "NVIDIA";
       repo = "open-gpu-kernel-modules";
-      rev = "570.172.08";
+      rev = "570.181";
       fetchSubmodules = false;
-      sha256 = "sha256-aTV5J4zmEgRCOavo6wLwh5efOZUG+YtoeIT/tnrC1Hg=";
+      sha256 = "sha256-U/uqAhf83W/mns/7b2cU26B7JRMoBfQ3V6HiYEI5J48=";
     };
   };
   ocgcore = {

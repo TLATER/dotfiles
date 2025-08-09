@@ -58,7 +58,7 @@
     },
     "edopro": {
         "cargoLocks": null,
-        "date": "2025-07-27",
+        "date": "2025-08-09",
         "extract": null,
         "name": "edopro",
         "passthru": null,
@@ -70,12 +70,12 @@
             "name": null,
             "owner": "edo9300",
             "repo": "edopro",
-            "rev": "f3e3f900c5031dffc8a932f83d9f37a168a02ac6",
-            "sha256": "sha256-0L8iwp8z/1ejdAQ8EjTnETzZ9z9Q+zyhTNt/nNomYJE=",
+            "rev": "16ef19f8019c50f534f062b702941a689b28a4c1",
+            "sha256": "sha256-H+agFxPqcIYr2I7I/dOn8DBkWFa8quqyFSvIouS1A7w=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "f3e3f900c5031dffc8a932f83d9f37a168a02ac6"
+        "version": "16ef19f8019c50f534f062b702941a689b28a4c1"
     },
     "edopro-assets": {
         "cargoLocks": null,
@@ -205,11 +205,11 @@
         "pinned": false,
         "src": {
             "name": null,
-            "sha256": "sha256-AlaGfggsr5PXsl+nyOabMWBiqcbHLG4ij617I4xvoX0=",
+            "sha256": "sha256-8G0lzj8YAupQetpLXcRrPCyLOFA9tvaPPvAWurjj3Pk=",
             "type": "url",
-            "url": "https://download.nvidia.com/XFree86/Linux-x86_64/570.172.08/NVIDIA-Linux-x86_64-570.172.08.run"
+            "url": "https://us.download.nvidia.com/XFree86/Linux-x86_64/570.181/NVIDIA-Linux-x86_64-570.181.run"
         },
-        "version": "570.172.08"
+        "version": "570.181"
     },
     "nvidia-open": {
         "cargoLocks": null,
@@ -225,12 +225,12 @@
             "name": null,
             "owner": "NVIDIA",
             "repo": "open-gpu-kernel-modules",
-            "rev": "570.172.08",
-            "sha256": "sha256-aTV5J4zmEgRCOavo6wLwh5efOZUG+YtoeIT/tnrC1Hg=",
+            "rev": "570.181",
+            "sha256": "sha256-U/uqAhf83W/mns/7b2cU26B7JRMoBfQ3V6HiYEI5J48=",
             "sparseCheckout": [],
             "type": "github"
         },
-        "version": "570.172.08"
+        "version": "570.181"
     },
     "ocgcore": {
         "cargoLocks": null,
