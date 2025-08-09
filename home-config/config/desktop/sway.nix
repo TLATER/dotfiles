@@ -1,5 +1,6 @@
 {
   config,
+  flake-inputs,
   nixos-config ? { },
   pkgs,
   lib,
@@ -77,11 +78,16 @@ in
     fuzzel = {
       enable = true;
       settings = {
-        main = {
-          # The launch prefix *is* set correctly for terminals
-          terminal = "${lib.getExe pkgs.alacritty} -e";
-          width = "100";
-        };
+        main =
+          let
+            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-fuzzel;
+          in
+          {
+            # The launch prefix *is* set correctly for terminals
+            terminal = "${lib.getExe pkgs.alacritty} -e";
+            width = "100";
+            include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/green.ini";
+          };
       };
     };
 

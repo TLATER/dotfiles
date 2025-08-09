@@ -12,6 +12,18 @@
       sha256 = "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=";
     };
   };
+  catppuccin-fuzzel = {
+    pname = "catppuccin-fuzzel";
+    version = "0af0e26901b60ada4b20522df739f032797b07c3";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "fuzzel";
+      rev = "0af0e26901b60ada4b20522df739f032797b07c3";
+      fetchSubmodules = false;
+      sha256 = "sha256-XpItMGsYq4XvLT+7OJ9YRILfd/9RG1GMuO6J4hSGepg=";
+    };
+    date = "2024-10-30";
+  };
   deepfilternet = {
     pname = "deepfilternet";
     version = "v0.5.6";
