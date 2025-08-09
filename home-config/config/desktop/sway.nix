@@ -1,5 +1,6 @@
 {
   config,
+  flake-inputs,
   nixos-config ? { },
   pkgs,
   lib,
@@ -43,9 +44,16 @@ in
     config = null;
     systemd.enable = false;
     systemd.xdgAutostart = false;
-    extraConfigEarly = ''
-      seat seat0 xcursor_theme Bibata-Original-Ice 24
-    '';
+    extraConfigEarly =
+      let
+        theme = "${
+          flake-inputs.self.packages.${pkgs.system}.catppuccin-i3
+        }/share/i3/themes/catppuccin-macchiato";
+      in
+      ''
+        include ${theme}
+        seat seat0 xcursor_theme Bibata-Original-Ice 24
+      '';
     extraConfig = lib.fileContents ../../dotfiles/sway.conf;
   };
 
@@ -77,11 +85,16 @@ in
     fuzzel = {
       enable = true;
       settings = {
-        main = {
-          # The launch prefix *is* set correctly for terminals
-          terminal = "${lib.getExe pkgs.alacritty} -e";
-          width = "100";
-        };
+        main =
+          let
+            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-fuzzel;
+          in
+          {
+            # The launch prefix *is* set correctly for terminals
+            terminal = "${lib.getExe pkgs.alacritty} -e";
+            width = "100";
+            include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/lavender.ini";
+          };
       };
     };
 

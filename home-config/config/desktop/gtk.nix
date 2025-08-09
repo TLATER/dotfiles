@@ -9,8 +9,8 @@
     };
 
     theme = {
-      package = pkgs.qogir-theme;
-      name = "Qogir-Dark";
+      package = pkgs.magnetic-catppuccin-gtk;
+      name = "Catppuccin-GTK-Dark";
     };
 
     cursorTheme = {

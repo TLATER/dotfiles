@@ -20,6 +20,69 @@
         },
         "version": "v2.0.1"
     },
+    "catppuccin-alacritty": {
+        "cargoLocks": null,
+        "date": "2024-10-28",
+        "extract": null,
+        "name": "catppuccin-alacritty",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "alacritty",
+            "rev": "f6cb5a5c2b404cdaceaff193b9c52317f62c62f7",
+            "sha256": "sha256-H8bouVCS46h0DgQ+oYY8JitahQDj0V9p2cOoD4cQX+Q=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "f6cb5a5c2b404cdaceaff193b9c52317f62c62f7"
+    },
+    "catppuccin-fuzzel": {
+        "cargoLocks": null,
+        "date": "2024-10-30",
+        "extract": null,
+        "name": "catppuccin-fuzzel",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "fuzzel",
+            "rev": "0af0e26901b60ada4b20522df739f032797b07c3",
+            "sha256": "sha256-XpItMGsYq4XvLT+7OJ9YRILfd/9RG1GMuO6J4hSGepg=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "0af0e26901b60ada4b20522df739f032797b07c3"
+    },
+    "catppuccin-i3": {
+        "cargoLocks": null,
+        "date": null,
+        "extract": null,
+        "name": "catppuccin-i3",
+        "passthru": null,
+        "pinned": false,
+        "src": {
+            "deepClone": false,
+            "fetchSubmodules": false,
+            "leaveDotGit": false,
+            "name": null,
+            "owner": "catppuccin",
+            "repo": "i3",
+            "rev": "v1.0.1",
+            "sha256": "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=",
+            "sparseCheckout": [],
+            "type": "github"
+        },
+        "version": "v1.0.1"
+    },
     "deepfilternet": {
         "cargoLocks": null,
         "date": null,
