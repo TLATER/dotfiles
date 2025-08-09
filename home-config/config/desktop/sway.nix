@@ -87,6 +87,7 @@ in
             terminal = "${lib.getExe pkgs.alacritty} -e";
             width = "100";
             include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/green.ini";
+            icon-theme = "Papirus-Dark";
           };
       };
     };

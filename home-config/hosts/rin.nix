@@ -1,8 +1,7 @@
 {
   imports = [
     ../config
-    ../config/applications/graphical
-    ../config/applications/tty
+    ../config/applications
     ../config/desktop
     ../config/services
     ../config/shell
