@@ -12,6 +12,41 @@
       sha256 = "sha256-jenFLJeVX1OlckvCv+c/u2GG8UNQatfQ8OwPu1cs4Q8=";
     };
   };
+  catppuccin-alacritty = {
+    pname = "catppuccin-alacritty";
+    version = "f6cb5a5c2b404cdaceaff193b9c52317f62c62f7";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "alacritty";
+      rev = "f6cb5a5c2b404cdaceaff193b9c52317f62c62f7";
+      fetchSubmodules = false;
+      sha256 = "sha256-H8bouVCS46h0DgQ+oYY8JitahQDj0V9p2cOoD4cQX+Q=";
+    };
+    date = "2024-10-28";
+  };
+  catppuccin-fuzzel = {
+    pname = "catppuccin-fuzzel";
+    version = "0af0e26901b60ada4b20522df739f032797b07c3";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "fuzzel";
+      rev = "0af0e26901b60ada4b20522df739f032797b07c3";
+      fetchSubmodules = false;
+      sha256 = "sha256-XpItMGsYq4XvLT+7OJ9YRILfd/9RG1GMuO6J4hSGepg=";
+    };
+    date = "2024-10-30";
+  };
+  catppuccin-i3 = {
+    pname = "catppuccin-i3";
+    version = "v1.0.1";
+    src = fetchFromGitHub {
+      owner = "catppuccin";
+      repo = "i3";
+      rev = "v1.0.1";
+      fetchSubmodules = false;
+      sha256 = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
+    };
+  };
   deepfilternet = {
     pname = "deepfilternet";
     version = "v0.5.6";

@@ -2,6 +2,18 @@
 src.github_tag = "matthewbauer/bauer"
 fetch.github = "matthewbauer/bauer"
 
+[catppuccin-alacritty]
+src.git = "https://github.com/catppuccin/alacritty"
+fetch.github = "catppuccin/alacritty"
+
+[catppuccin-fuzzel]
+src.git = "https://github.com/catppuccin/fuzzel"
+fetch.github = "catppuccin/fuzzel"
+
+[catppuccin-i3]
+src.github = "catppuccin/i3"
+fetch.github = "catppuccin/i3"
+
 [deepfilternet]
 src.github = "Rikorose/DeepFilterNet"
 fetch.github = "Rikorose/DeepFilterNet"
