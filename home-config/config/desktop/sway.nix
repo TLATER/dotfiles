@@ -94,6 +94,7 @@ in
             terminal = "${lib.getExe pkgs.alacritty} -e";
             width = "100";
             include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/lavender.ini";
+            icon-theme = config.gtk.iconTheme.name;
           };
       };
     };

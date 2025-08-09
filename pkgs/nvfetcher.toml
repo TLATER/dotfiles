@@ -18,6 +18,10 @@ fetch.github = "catppuccin/i3"
 src.github = "Rikorose/DeepFilterNet"
 fetch.github = "Rikorose/DeepFilterNet"
 
+[delta-icons]
+src.github = "Delta-Icons/android"
+fetch.github = "Delta-Icons/android"
+
 [drivestrike]
 src.cmd = "nu ./get-drivestrike-version.nu"
 fetch.url = "https://app.drivestrike.com/static/yum/drivestrike.rpm"
