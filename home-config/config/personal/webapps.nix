@@ -22,6 +22,7 @@ in
           All-in-one voice and text chat for gamers that's free, secure, and
           works on both your desktop and phone.
         '';
+        icon = "discord";
         genericName = "Internet Messenger";
         categories = [
           "Network"
@@ -35,6 +36,7 @@ in
       url = "https://app.element.io";
 
       makeDesktopItemArgs = {
+        icon = "Element";
         mimeTypes = [ "x-scheme-handler/element" ];
         categories = [
           "Network"
@@ -50,6 +52,7 @@ in
       url = "https://web.whatsapp.com";
 
       makeDesktopItemArgs = {
+        icon = "whatsapp";
         categories = [
           "Network"
           "InstantMessaging"

@@ -58,6 +58,17 @@
       sha256 = "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=";
     };
   };
+  delta-icons = {
+    pname = "delta-icons";
+    version = "v2.6.0";
+    src = fetchFromGitHub {
+      owner = "Delta-Icons";
+      repo = "android";
+      rev = "v2.6.0";
+      fetchSubmodules = false;
+      sha256 = "sha256-L2QBerH6EuQQL1G3UCxyNFBSam6I+pdTrlV59XQUVVc=";
+    };
+  };
   drivestrike = {
     pname = "drivestrike";
     version = "2.1.22-31";
