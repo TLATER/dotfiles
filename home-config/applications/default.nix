@@ -1,6 +1,6 @@
 {
   imports = [
-    ./desktopOverrides
+    ./desktopOverrides.nix
     ./graphical
     ./tty
   ];

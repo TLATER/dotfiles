@@ -15,7 +15,7 @@ in
   // (lib.mapAttrs' (p: _: {
     name = "applications/${p}";
     value = {
-      source = ./. + "/${p}";
+      source = ./desktopfiles + "/${p}";
     };
-  }) (builtins.readDir ./.));
+  }) (builtins.readDir ./desktopfiles));
 }
