@@ -43,15 +43,7 @@ in
             keepassxc-browser
             libredirect
             no-pdf-download
-            react-devtools
-            reduxdevtools
             ublock-origin
-
-            # # Missing:
-            # cloudhole
-            # devtools-adb-extension
-            # firefox-sticky-window-containers
-            # warframe-reliquary-prime
           ];
 
         userChrome = lib.mkIf thirdParty (builtins.readFile "${firefox-ui-fix}/css/leptonChrome.css");
