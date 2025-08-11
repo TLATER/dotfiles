@@ -6,6 +6,21 @@ def readable-pwd [] {
   }
 }
 
+def --env eproject [] {
+  let cmd = '
+    (with-current-buffer (window-buffer)
+      (let ((project (project-current)))
+        (when project
+          (expand-file-name (project-root project)))))
+    '
+
+  let project = emacsclient --eval $cmd | str trim --char '"'
+
+  if $project != nil {
+    cd $project
+  }
+}
+
 $env.config = {
   show_banner: false
 
