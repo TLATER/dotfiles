@@ -95,7 +95,9 @@ in
             width = "100";
             include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/lavender.ini";
             icon-theme = config.gtk.iconTheme.name;
+            font = "monospace:size=15";
           };
+        border.radius = 0;
       };
     };
 
