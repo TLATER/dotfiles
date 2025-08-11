@@ -1,15 +1,10 @@
-{
-  config,
-  pkgs,
-  flake-inputs,
-  ...
-}:
+{ pkgs, flake-inputs, ... }:
 {
   home.shell.enableNushellIntegration = true;
 
   programs.nushell = {
     enable = true;
-    configFile.source = "${config._dotfiles}/nushell/config.nu";
+    configFile.source = ../dotfiles/nushell/config.nu;
   };
 
   programs.carapace = {
