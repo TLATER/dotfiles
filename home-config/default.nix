@@ -1,8 +1,8 @@
 { flake-inputs, lib, ... }:
 {
   imports = [
-    ../../home-modules/way-displays.nix
-    ../../home-modules/clean-generations
+    ../home-modules/way-displays.nix
+    ../home-modules/clean-generations
   ];
 
   options._dotfiles = lib.mkOption {

@@ -1,13 +1,13 @@
 {
   imports = [
-    ../config
-    ../config/applications
-    ../config/desktop
-    ../config/services
-    ../config/shell
-    ../config/xdg-settings.nix
+    ../.
+    ../applications
+    ../desktop
+    ../services
+    ../shell
+    ../xdg-settings.nix
 
-    ../config/work/famedly.nix
+    ../work/famedly.nix
   ];
 
   # Make sure the primary display is set before eww/wpaperd launch

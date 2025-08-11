@@ -54,7 +54,7 @@ in
         include ${theme}
         seat seat0 xcursor_theme Bibata-Original-Ice 24
       '';
-    extraConfig = lib.fileContents ../../dotfiles/sway.conf;
+    extraConfig = lib.fileContents ../dotfiles/sway.conf;
   };
 
   services.swayidle = {
@@ -116,7 +116,7 @@ in
 
     eww = {
       enable = true;
-      configDir = ../../dotfiles/eww;
+      configDir = ../dotfiles/eww;
     };
   };
 
