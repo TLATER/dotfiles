@@ -203,7 +203,6 @@
     dconf.enable = true;
     git.enable = true;
     nano.enable = false;
-    firefox.enable = true;
   };
 
   security.sudo-rs.enable = true;

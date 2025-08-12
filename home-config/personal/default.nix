@@ -5,12 +5,13 @@
     ./webapps.nix
   ];
 
+  allowThirdPartyPackages = true;
+
   home.packages = with pkgs; [
     prismlauncher
     flake-inputs.self.packages.${pkgs.system}.gcs
     flake-inputs.self.packages.${pkgs.system}.edopro
   ];
-  programs.firefox.enableThirdPartyRepositories = true;
 
   programs.git = {
     userEmail = "tm@tlater.net";
