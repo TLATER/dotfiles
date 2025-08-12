@@ -1,4 +1,3 @@
-{ flake-inputs, pkgs, ... }:
 {
   imports = [
     ./keepassxc.nix
@@ -7,12 +6,6 @@
   ];
 
   allowThirdPartyPackages = true;
-
-  home.packages = with pkgs; [
-    prismlauncher
-    flake-inputs.self.packages.${pkgs.system}.gcs
-    flake-inputs.self.packages.${pkgs.system}.edopro
-  ];
 
   programs.git = {
     userEmail = "tm@tlater.net";

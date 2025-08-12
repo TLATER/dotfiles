@@ -11,5 +11,10 @@
     ../personal
   ];
 
-  home.packages = [ flake-inputs.self.packages.${pkgs.system}.jazz-jackrabbit-2 ];
+  home.packages = [
+    pkgs.prismlauncher
+
+    flake-inputs.self.packages.${pkgs.system}.edopro
+    flake-inputs.self.packages.${pkgs.system}.jazz-jackrabbit-2
+  ];
 }
