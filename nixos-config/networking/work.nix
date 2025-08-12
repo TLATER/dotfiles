@@ -11,6 +11,8 @@
 
           autoconnect = true;
           autoconnect-priority = 100;
+          # Attempt to connect indefinitely
+          autoconnect-retries = 0;
         };
 
         wifi = {
