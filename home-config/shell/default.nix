@@ -15,7 +15,6 @@
       fd
       ouch
       ripgrep
-      screen
       zellij
     ];
 
