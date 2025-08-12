@@ -1,6 +1,7 @@
 { flake-inputs, pkgs, ... }:
 {
   imports = [
+    ./keepassxc.nix
     ./ssh-servers.nix
     ./webapps.nix
   ];

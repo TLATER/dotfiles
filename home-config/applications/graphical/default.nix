@@ -1,9 +1,6 @@
 { flake-inputs, pkgs, ... }:
 {
-  imports = [
-    ./keepassxc.nix
-    ./librewolf
-  ];
+  imports = [ ./librewolf ];
 
   home.packages = with pkgs; [
     apvlv
