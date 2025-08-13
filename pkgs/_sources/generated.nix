@@ -47,17 +47,6 @@
       sha256 = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
     };
   };
-  deepfilternet = {
-    pname = "deepfilternet";
-    version = "v0.5.6";
-    src = fetchFromGitHub {
-      owner = "Rikorose";
-      repo = "DeepFilterNet";
-      rev = "v0.5.6";
-      fetchSubmodules = false;
-      sha256 = "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=";
-    };
-  };
   delta-icons = {
     pname = "delta-icons";
     version = "v2.6.0";

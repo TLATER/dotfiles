@@ -14,10 +14,6 @@ fetch.github = "catppuccin/fuzzel"
 src.github = "catppuccin/i3"
 fetch.github = "catppuccin/i3"
 
-[deepfilternet]
-src.github = "Rikorose/DeepFilterNet"
-fetch.github = "Rikorose/DeepFilterNet"
-
 [delta-icons]
 src.github = "Delta-Icons/android"
 fetch.github = "Delta-Icons/android"

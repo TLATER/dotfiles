@@ -83,27 +83,6 @@
         },
         "version": "v1.0.1"
     },
-    "deepfilternet": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "deepfilternet",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "deepClone": false,
-            "fetchSubmodules": false,
-            "leaveDotGit": false,
-            "name": null,
-            "owner": "Rikorose",
-            "repo": "DeepFilterNet",
-            "rev": "v0.5.6",
-            "sha256": "sha256-5bYbfO1kmduNm9YV5niaaPvRIDRmPt4QOX7eKpK+sWY=",
-            "sparseCheckout": [],
-            "type": "github"
-        },
-        "version": "v0.5.6"
-    },
     "delta-icons": {
         "cargoLocks": null,
         "date": null,
