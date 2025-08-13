@@ -10,6 +10,9 @@ pref("browser.quitShortcut.disabled", true);
 // Don't show the bookmark toolbar
 pref("browser.toolbars.bookmarks.visibility", "never");
 
+// Use OS locale (for time, date, etc.)
+pref("intl.regional_prefs.use_os_locales", true);
+
 // Stuff for VAAPI support; See the easyNvidia module, repeated here
 // because Firefox policies don't apply to librewolf
 pref("media.hardware-video-decoding.force-enabled", true);
