@@ -21,7 +21,7 @@
     file.".profile".text = ''
       . "${config.home.profileDirectory}/etc/profile.d/hm-session-vars.sh"
 
-      export BROWSER='firefox'
+      export BROWSER='librewolf'
       export VISUAL='emacsclient'
       export EDITOR='emacsclient'
       export ALTERNATE_EDITOR='emacs'

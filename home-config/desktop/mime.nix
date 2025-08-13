@@ -65,8 +65,8 @@
       "text/x-c++" = "emacsclient.desktop";
 
       # Use firefox for http/s
-      "x-scheme-handler/http" = "firefox.desktop";
-      "x-scheme-handler/https" = "firefox.desktop";
+      "x-scheme-handler/http" = "librewolf.desktop";
+      "x-scheme-handler/https" = "librewolf.desktop";
     };
 
     # xdg-open ignores these, but let's unregister all the wine cruft

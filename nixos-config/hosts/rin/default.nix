@@ -7,7 +7,6 @@
     ./hardware-configuration.nix
     ./disko.nix
 
-    ./firefox.nix
     ./hardware-policy.nix
 
     flake-inputs.nixos-hardware.nixosModules.common-pc-laptop
