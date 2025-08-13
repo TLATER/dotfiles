@@ -1,9 +1,6 @@
 // Open last browser session on startup
 pref("browser.startup.page", 3);
 
-// Allow extensions to be pre-installed
-pref("extensions.autoDisableScopes", 0);
-
 // Disable an annoying pop-up
 pref("browser.protections_panel.infoMessage.seen", true);
 
