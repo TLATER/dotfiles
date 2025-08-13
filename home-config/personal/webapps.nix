@@ -1,4 +1,10 @@
-{ pkgs, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  flake-inputs,
+  ...
+}:
 let
   inherit ((flake-inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
 in
@@ -7,15 +13,7 @@ in
     (mkFirefoxApp {
       name = "discord";
       url = "https://discord.com/app";
-
-      extensions =
-        let
-          inherit (pkgs.nur.repos.rycee) firefox-addons;
-        in
-        [
-          firefox-addons.ublock-origin
-          firefox-addons.decentraleyes
-        ];
+      firefoxBin = lib.getExe config.programs.librewolf.package;
 
       makeDesktopItemArgs = {
         comment = pkgs.lib.replaceStrings [ "\n" ] [ " " ] ''
@@ -34,6 +32,7 @@ in
     (mkFirefoxApp {
       name = "element";
       url = "https://app.element.io";
+      firefoxBin = lib.getExe config.programs.librewolf.package;
 
       makeDesktopItemArgs = {
         icon = "Element";
@@ -50,6 +49,7 @@ in
     (mkFirefoxApp {
       name = "whatsapp";
       url = "https://web.whatsapp.com";
+      firefoxBin = lib.getExe config.programs.librewolf.package;
 
       makeDesktopItemArgs = {
         icon = "whatsapp";

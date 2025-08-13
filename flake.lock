@@ -367,11 +367,11 @@
         "nurpkgs": "nurpkgs"
       },
       "locked": {
-        "lastModified": 1754402001,
-        "narHash": "sha256-QdMPmFJuA4hBlFsjxbvGucQ58C++IkMrt2Jkme1M4cg=",
+        "lastModified": 1755103834,
+        "narHash": "sha256-6sbEDsycv4Zg1SxokeHTcmqd2b+EjpL/JRBY2ZKEQeI=",
         "owner": "TLATER",
         "repo": "nix-webapps",
-        "rev": "f615defdff103609a2381a1d04619c4d92857ba3",
+        "rev": "8217e724617a12f76bb3d1c07bd2986a8863b70c",
         "type": "github"
       },
       "original": {
