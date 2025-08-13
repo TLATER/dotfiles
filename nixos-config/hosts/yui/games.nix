@@ -10,8 +10,6 @@ in
     nix-gaming.nixosModules.wine
   ];
 
-  environment.systemPackages = [ pkgs.mangohud ];
-
   # Make steam controller work
   hardware.steam-hardware.enable = true;
 
@@ -27,21 +25,6 @@ in
       # This sets some sensible game performance settings, along with
       # some required for Star Citizen
       platformOptimizations.enable = true;
-    };
-
-    gamescope = {
-      enable = true;
-      capSysNice = true;
-      args = [
-        "--steam"
-        "--expose-wayland"
-        "--rt"
-        "-W 1920"
-        "-H 1080"
-        "--force-grab-cursor"
-        "--grab"
-        "--fullscreen"
-      ];
     };
 
     wine = {
