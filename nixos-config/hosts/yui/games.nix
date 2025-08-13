@@ -24,7 +24,6 @@ in
     steam = {
       enable = true;
       extraCompatPackages = [ pkgsUnstable.proton-ge-bin ];
-      gamescopeSession.enable = true;
       # This sets some sensible game performance settings, along with
       # some required for Star Citizen
       platformOptimizations.enable = true;
