@@ -1,11 +1,13 @@
 { flake-inputs, pkgs, ... }:
 let
-  inherit (flake-inputs) nix-gaming;
+  inherit (flake-inputs) nix-gaming nixpkgs-unstable;
+  pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
 in
 {
   imports = [
     nix-gaming.nixosModules.pipewireLowLatency
     nix-gaming.nixosModules.platformOptimizations
+    nix-gaming.nixosModules.wine
   ];
 
   environment.systemPackages = [ pkgs.mangohud ];
@@ -21,12 +23,13 @@ in
   programs = {
     steam = {
       enable = true;
-      extraCompatPackages = [ pkgs.proton-ge-bin ];
+      extraCompatPackages = [ pkgsUnstable.proton-ge-bin ];
       gamescopeSession.enable = true;
       # This sets some sensible game performance settings, along with
       # some required for Star Citizen
       platformOptimizations.enable = true;
     };
+
     gamescope = {
       enable = true;
       capSysNice = true;
@@ -40,6 +43,12 @@ in
         "--grab"
         "--fullscreen"
       ];
+    };
+
+    wine = {
+      enable = true;
+      package = pkgsUnstable.wine-staging;
+      ntsync = true;
     };
   };
 }

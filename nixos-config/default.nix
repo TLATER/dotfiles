@@ -137,7 +137,7 @@
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
     kernelPackages = lib.mkMerge [
-      (lib.mkIf config.easyNvidia.enable pkgs.linuxKernel.packages.linux_xanmod)
+      (lib.mkIf config.easyNvidia.enable pkgs.linuxKernel.packages.linux_xanmod_stable)
       (lib.mkIf (!config.easyNvidia.enable) pkgs.linuxKernel.packages.linux_xanmod_latest)
     ];
 
