@@ -16,6 +16,10 @@
     "wpaperd.service"
   ];
 
+  programs.librewolf.policies.Extensions.Install = [
+    "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
+  ];
+
   services.wayDisplays = {
     enable = true;
     settings =
