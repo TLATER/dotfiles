@@ -1,8 +1,9 @@
 { flake-inputs, pkgs, ... }:
 let
-  inherit (flake-inputs) nix-gaming nixpkgs-unstable;
+  inherit (flake-inputs) nix-gaming nixpkgs-unstable self;
   pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
   pkgsGames = nix-gaming.packages.${pkgs.system};
+  pkgsSelf = self.packages.${pkgs.system};
 in
 {
   imports = [
@@ -15,7 +16,14 @@ in
     let
       osuLazer = pkgsGames.osu-lazer-bin.override { gmrun_enable = false; };
     in
-    [ osuLazer ];
+    [
+      osuLazer
+
+      pkgs.prismlauncher
+
+      pkgsSelf.edopro
+      pkgsSelf.jazz-jackrabbit-2
+    ];
 
   # Make steam controller work
   hardware.steam-hardware.enable = true;
