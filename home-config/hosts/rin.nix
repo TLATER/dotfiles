@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   imports = [
     ../.
@@ -16,52 +17,60 @@
     "wpaperd.service"
   ];
 
-  programs.librewolf.policies.Extensions.Install = [
-    "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
-  ];
+  programs = {
+    librewolf.policies.Extensions.Install = [
+      "https://addons.mozilla.org/firefox/downloads/latest/bitwarden-password-manager/latest.xpi"
+    ];
+    aria2.enable = lib.mkForce false;
+    ncmpcpp.enable = lib.mkForce false;
+  };
 
-  services.wayDisplays = {
-    enable = true;
-    settings =
-      let
-        builtin = "eDP-1";
-        home-1 = "!^Dell Inc. DELL G2723HN";
-        work-1 = "DELL U3219Q";
-      in
-      {
-        ARRANGE = "COLUMN";
+  services = {
+    mpd.enable = lib.mkForce false;
 
-        ORDER = [
-          work-1
-          home-1
-          builtin
-        ];
+    wayDisplays = {
+      enable = true;
+      settings =
+        let
+          builtin = "eDP-1";
+          home-1 = "!^Dell Inc. DELL G2723HN";
+          work-1 = "DELL U3219Q";
+        in
+        {
+          ARRANGE = "COLUMN";
 
-        SCALING = true;
+          ORDER = [
+            work-1
+            home-1
+            builtin
+          ];
 
-        SCALE = [
-          {
-            NAME_DESC = "eDP-1";
-            SCALE = 1.0;
-          }
-        ];
+          SCALING = true;
 
-        MODE = [
-          {
-            NAME_DESC = home-1;
-            WIDTH = 1920;
-            HEIGHT = 1080;
-            HZ = 60;
-          }
-        ];
+          SCALE = [
+            {
+              NAME_DESC = "eDP-1";
+              SCALE = 1.0;
+            }
+          ];
 
-        VRR_OFF = [
-          work-1 # Doesn't support VRR, this suppresses warnings
+          MODE = [
+            {
+              NAME_DESC = home-1;
+              WIDTH = 1920;
+              HEIGHT = 1080;
+              HZ = 60;
+            }
+          ];
 
-          # Currently VRR is borked with an amdgpu
-          builtin
-          home-1
-        ];
-      };
+          VRR_OFF = [
+            work-1 # Doesn't support VRR, this suppresses warnings
+
+            # Currently VRR is borked with an amdgpu
+            builtin
+            home-1
+          ];
+        };
+    };
   };
 }
