@@ -2,6 +2,7 @@
 let
   inherit (flake-inputs) nix-gaming nixpkgs-unstable;
   pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
+  pkgsGames = nix-gaming.packages.${pkgs.system};
 in
 {
   imports = [
@@ -9,6 +10,12 @@ in
     nix-gaming.nixosModules.platformOptimizations
     nix-gaming.nixosModules.wine
   ];
+
+  environment.systemPackages =
+    let
+      osuLazer = pkgsGames.osu-lazer-bin.override { gmrun_enable = false; };
+    in
+    [ osuLazer ];
 
   # Make steam controller work
   hardware.steam-hardware.enable = true;
