@@ -1,4 +1,9 @@
-{ flake-inputs, pkgs, ... }:
+{
+  flake-inputs,
+  pkgs,
+  config,
+  ...
+}:
 let
   inherit (flake-inputs) nix-gaming nixpkgs-unstable;
   pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
@@ -14,8 +19,27 @@ in
   environment.systemPackages =
     let
       osuLazer = pkgsGames.osu-lazer-bin.override { gmrun_enable = false; };
+
+      # TODO(tlater): Star Citizen doesn't currently work due to EAC
+      # not liking the wine version we're using (10.0+).
+      #
+      # Since this is required for ntsync to work, guess we'll have to
+      # wait for EAC to "fix itself", as the LUG installer comments
+      # put it.
+      starCitizen = pkgsGames.star-citizen.override {
+        inherit (pkgsUnstable) proton-ge-bin;
+
+        useUmu = true;
+        location = "$HOME/.local/share/wine-prefixes/star-citizen";
+
+        gameScopeEnable = true;
+        gameScopeArgs = config.programs.gamescope.args;
+      };
     in
-    [ osuLazer ];
+    [
+      osuLazer
+      starCitizen
+    ];
 
   # Make steam controller work
   hardware.steam-hardware.enable = true;
