@@ -40,6 +40,7 @@ in
       # This sets some sensible game performance settings, along with
       # some required for Star Citizen
       platformOptimizations.enable = true;
+      protontricks.enable = true;
     };
 
     wine = {
