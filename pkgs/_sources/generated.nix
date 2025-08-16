@@ -68,15 +68,15 @@
   };
   edopro = {
     pname = "edopro";
-    version = "16ef19f8019c50f534f062b702941a689b28a4c1";
+    version = "90fcc7a546945f0b333e96190351e531f004298a";
     src = fetchFromGitHub {
       owner = "edo9300";
       repo = "edopro";
-      rev = "16ef19f8019c50f534f062b702941a689b28a4c1";
+      rev = "90fcc7a546945f0b333e96190351e531f004298a";
       fetchSubmodules = true;
-      sha256 = "sha256-H+agFxPqcIYr2I7I/dOn8DBkWFa8quqyFSvIouS1A7w=";
+      sha256 = "sha256-SLRd8z/zOAiJ/jxD1DUKVM0klMKBTy9RN3Q8n9oUCPQ=";
     };
-    date = "2025-08-09";
+    date = "2025-08-14";
   };
   edopro-assets = {
     pname = "edopro-assets";
@@ -112,13 +112,13 @@
   };
   firefox-ui-fix = {
     pname = "firefox-ui-fix";
-    version = "v8.7.2";
+    version = "v8.7.3";
     src = fetchFromGitHub {
       owner = "black7375";
       repo = "Firefox-UI-Fix";
-      rev = "v8.7.2";
+      rev = "v8.7.3";
       fetchSubmodules = false;
-      sha256 = "sha256-t0mEpG2f43wdssmq7CXjQj01IzRYS2dy5N2US0gKTVA=";
+      sha256 = "sha256-2AIUzfWp7RhhW5Ku1qYTxr0y+1qpfCIHPVv3wdI2VyU=";
     };
   };
   gcs = {
@@ -146,21 +146,21 @@
   };
   nvidia = {
     pname = "nvidia";
-    version = "570.181";
+    version = "580.76.05";
     src = fetchurl {
-      url = "https://us.download.nvidia.com/XFree86/Linux-x86_64/570.181/NVIDIA-Linux-x86_64-570.181.run";
-      sha256 = "sha256-8G0lzj8YAupQetpLXcRrPCyLOFA9tvaPPvAWurjj3Pk=";
+      url = "https://us.download.nvidia.com/XFree86/Linux-x86_64/580.76.05/NVIDIA-Linux-x86_64-580.76.05.run";
+      sha256 = "sha256-IZvmNrYJMbAhsujB4O/4hzY8cx+KlAyqh7zAVNBdl/0=";
     };
   };
   nvidia-open = {
     pname = "nvidia-open";
-    version = "570.181";
+    version = "580.76.05";
     src = fetchFromGitHub {
       owner = "NVIDIA";
       repo = "open-gpu-kernel-modules";
-      rev = "570.181";
+      rev = "580.76.05";
       fetchSubmodules = false;
-      sha256 = "sha256-U/uqAhf83W/mns/7b2cU26B7JRMoBfQ3V6HiYEI5J48=";
+      sha256 = "sha256-xEPJ9nskN1kISnSbfBigVaO6Mw03wyHebqQOQmUg/eQ=";
     };
   };
   ocgcore = {
