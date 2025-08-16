@@ -46,12 +46,12 @@ fetch.github = "taquangtrung/emacs-kdl-mode"
 
 [nvidia]
 src.webpage = "https://www.nvidia.com/en-us/drivers/unix/"
-src.regex = "Latest Production Branch Version:</span> <a href=.*?> (.*?)</a>"
+src.regex = "Latest Production Branch Version:</span> *<a href=.*?> *(.*?) *</a>"
 fetch.url = "https://us.download.nvidia.com/XFree86/Linux-x86_64/$ver/NVIDIA-Linux-x86_64-$ver.run"
 
 [nvidia-open]
 src.webpage = "https://www.nvidia.com/en-us/drivers/unix/"
-src.regex = "Latest Production Branch Version:</span> <a href=.*?> (.*?)</a>"
+src.regex = "Latest Production Branch Version:</span> *<a href=.*?> *(.*?) *</a>"
 fetch.github = "NVIDIA/open-gpu-kernel-modules"
 
 [ocgcore]
