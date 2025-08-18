@@ -47,7 +47,7 @@ in
     extraConfigEarly =
       let
         theme = "${
-          flake-inputs.self.packages.${pkgs.system}.catppuccin-i3
+          flake-inputs.self.packages.${pkgs.system}.catppuccin-themes
         }/share/i3/themes/catppuccin-macchiato";
       in
       ''
@@ -87,13 +87,13 @@ in
       settings = {
         main =
           let
-            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-fuzzel;
+            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-themes;
           in
           {
             # The launch prefix *is* set correctly for terminals
             terminal = "${lib.getExe pkgs.alacritty} -e";
             width = "100";
-            include = "${catppuccin-fuzzel}/share/fuzzel/themes/catppuccin-macchiato/lavender.ini";
+            include = "${catppuccin-themes}/share/fuzzel/themes/catppuccin-macchiato/lavender.ini";
             icon-theme = config.gtk.iconTheme.name;
             font = "monospace:size=15";
           };

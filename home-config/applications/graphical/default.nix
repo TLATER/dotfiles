@@ -12,8 +12,8 @@
     enable = true;
     settings.general.import =
       let
-        inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-alacritty;
+        inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-themes;
       in
-      [ "${catppuccin-alacritty}/share/alacritty/themes/catppuccin-macchiato.toml" ];
+      [ "${catppuccin-themes}/share/alacritty/themes/catppuccin-macchiato.toml" ];
   };
 }
