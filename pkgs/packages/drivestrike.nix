@@ -1,5 +1,5 @@
 {
-  sources,
+  fetchurl,
   stdenv,
   lib,
   autoPatchelfHook,
@@ -11,7 +11,13 @@
   wrapGAppsHook,
 }:
 stdenv.mkDerivation (finalAttrs: {
-  inherit (sources.drivestrike) pname version src;
+  pname = "drivestrike";
+  version = "2.1.22-31";
+
+  src = fetchurl {
+    url = "https://app.drivestrike.com/static/yum/drivestrike.rpm";
+    hash = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
+  };
 
   nativeBuildInputs = [
     autoPatchelfHook

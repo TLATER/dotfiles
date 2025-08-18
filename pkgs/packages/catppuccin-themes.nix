@@ -1,12 +1,44 @@
-{ sources, stdenv }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+
+  writers,
+
+  buildEnv,
+  symlinkJoin,
+  writeText,
+  tree-sitter,
+  makeWrapper,
+}:
 stdenv.mkDerivation {
   pname = "catppuccin-themes";
   version = "unknown";
 
   srcs = [
-    (sources.catppuccin-alacritty.src.override { name = "catppuccin-alacritty"; })
-    (sources.catppuccin-fuzzel.src.override { name = "catppuccin-fuzzel"; })
-    (sources.catppuccin-i3.src.override { name = "catppuccin-i3"; })
+    (fetchFromGitHub {
+      name = "catppuccin-alacritty";
+      owner = "catppuccin";
+      repo = "alacritty";
+      rev = "f6cb5a5c2b404cdaceaff193b9c52317f62c62f7";
+      hash = "sha256-H8bouVCS46h0DgQ+oYY8JitahQDj0V9p2cOoD4cQX+Q=";
+    })
+
+    (fetchFromGitHub {
+      name = "catppuccin-fuzzel";
+      owner = "catppuccin";
+      repo = "fuzzel";
+      rev = "0af0e26901b60ada4b20522df739f032797b07c3";
+      hash = "sha256-XpItMGsYq4XvLT+7OJ9YRILfd/9RG1GMuO6J4hSGepg=";
+    })
+
+    (fetchFromGitHub {
+      name = "catppuccin-i3";
+      owner = "catppuccin";
+      repo = "i3";
+      rev = "v1.0.1";
+      hash = "sha256-91GsedHF6xM1jmutZX/xdNtGFDrGerRSaRVh29CXt8U=";
+    })
   ];
 
   unpackPhase = ''
@@ -33,4 +65,38 @@ stdenv.mkDerivation {
     cp -r catppuccin-fuzzel/themes $out/share/fuzzel
     cp -r catppuccin-i3/themes $out/share/i3
   '';
+
+  passthru.updateScript =
+    let
+      tree-sitter-nix = buildEnv {
+        name = "tree-sitter-nix";
+        paths = [ (tree-sitter.withPlugins (p: [ p.tree-sitter-nix ])) ];
+        extraPrefix = "/tree-sitter-nix";
+      };
+
+      tree-sitter-config = writeText "tree-sitte.conf" (
+        builtins.toJSON { parser-directories = [ "${tree-sitter-nix}/" ]; }
+      );
+    in
+    writers.writeNuBin "update-catppuccin-themes"
+      {
+        makeWrapperArgs = [
+          "--prefix"
+          "PATH"
+          ":"
+          "${lib.makeBinPath [
+            (symlinkJoin {
+              name = "tree-sitter";
+              paths = [
+                tree-sitter
+              ];
+            })
+          ]}"
+        ];
+      }
+      ''
+        open ${tree-sitter-config} | print
+        tree-sitter parse --config-path ${tree-sitter-config} catppuccin-themes.nix
+        # update-source-version catppuccin-themes unknown xxx --source-key=0
+      '';
 }
