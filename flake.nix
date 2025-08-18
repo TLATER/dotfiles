@@ -85,14 +85,9 @@
       devShells.x86_64-linux.default =
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-          inherit (nixpkgs.legacyPackages.x86_64-linux) nushell nvfetcher;
         in
         nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = [
-            nushell
-            nvfetcher
-            sops-init-gpg-key
-          ];
+          packages = [ sops-init-gpg-key ];
 
           sopsPGPKeyDirs = [
             "./keys/hosts/"

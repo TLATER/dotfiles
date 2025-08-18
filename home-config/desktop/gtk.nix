@@ -31,7 +31,7 @@
           let
             edopro = "${
               flake-inputs.self.packages.${pkgs.system}.delta-icons
-            }/resources/vectors/figma/yu_gi_oh.svg";
+            }/share/icons/delta-icons/scalable/apps/EDOPro.svg";
           in
           ''
             ln -s $out/share/icons/Papirus-Dark/24x24/apps/utilities-system-monitor.svg \

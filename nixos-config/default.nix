@@ -61,18 +61,15 @@
 
   hardware.nvidia =
     let
-      inherit (pkgs.callPackage "${flake-inputs.self}/pkgs/sources.nix" { }) nvidia nvidia-open;
+      inherit (flake-inputs.self.packages.${pkgs.system}) nvidia;
     in
     {
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
         inherit (nvidia) version;
         sha256_64bit = nvidia.src.outputHash;
-        openSha256 = nvidia-open.src.outputHash;
-
-        # Components we don't use, so they can be left unspecified
-        sha256_aarch64 = lib.fakeHash;
-        settingsSha256 = lib.fakeHash;
-        persistencedSha256 = lib.fakeHash;
+        openSha256 = nvidia.open.src.outputHash;
+        useSettings = false;
+        usePersistenced = false;
       };
 
       # Disabled because I don't use it and I can't be bothered to
