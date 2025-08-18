@@ -1,6 +1,7 @@
 {
   stdenv,
-  sources,
+  fetchFromGitHub,
+  edopro-assets,
 
   # build deps
   premake5,
@@ -29,7 +30,16 @@ let
   font = "${noto-fonts-cjk-sans}/share/fonts/opentype/noto-cjk/NotoSansCJK-VF.otf.ttc";
 in
 stdenv.mkDerivation {
-  inherit (sources.edopro) pname version src;
+  pname = "edopro";
+  version = "41.0.2";
+
+  src = fetchFromGitHub {
+    owner = "edo9300";
+    repo = "edopro";
+    rev = "90fcc7a546945f0b333e96190351e531f004298a";
+    hash = "sha256-SLRd8z/zOAiJ/jxD1DUKVM0klMKBTy9RN3Q8n9oUCPQ=";
+    fetchSubmodules = true;
+  };
 
   nativeBuildInputs = [ premake5 ];
 
@@ -80,5 +90,18 @@ stdenv.mkDerivation {
     mkdir -p $out/{lib,bin}
     cp ../bin/x64/release/ygopro $out/bin/
     cp ../bin/x64/release/*.a $out/lib
+
+    mkdir -p $out/share/applications/
+    sed '/Path=/d
+         s/Exec=.*/Exec=EDOPro/
+         s/Icon=.*/Icon=EDOPro/' \
+      ${edopro-assets}/config/io.github.edo9300.EDOPro.desktop.in \
+      > $out/share/applications/io.github.edo9300.EDOPro.desktop
   '';
+
+  # TODO(tlater): Add icon
+  # mkdir -p $out/share/icons/hicolor/256x256/apps/
+  # magick ${sources.edopro-assets.src}/textures/AppIcon.png \
+  #   -resize 256x256 \
+  #   $out/share/icons/hicolor/256x256/apps/EDOPro.png
 }

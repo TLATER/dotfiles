@@ -25,7 +25,7 @@ jobs:
           git_committer_name: GitHub automation
           git_committer_email: tm@tlater.net
       - run: nix flake update --commit-lock-file
-      - run: nix run .#commit-nvfetcher -L
+      - run: nix run --inputs-from . nixpkgs#nushell -L -- pkgs/update.nu
       - uses: peter-evans/create-pull-request@v6
         with:
           branch: bot/update

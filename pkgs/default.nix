@@ -1,8 +1,11 @@
 { pkgs, flake-inputs }:
 let
-  sources = pkgs.callPackage ./sources.nix { };
+  localLib = import ./lib.nix { inherit pkgs; };
+
+  # TODO(tlater): ast-grep supports nix starting with version 0.39
+  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) ast-grep;
 in
 pkgs.lib.packagesFromDirectoryRecursive {
-  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit sources flake-inputs; });
+  callPackage = pkgs.lib.callPackageWith (pkgs // { inherit flake-inputs localLib ast-grep; });
   directory = ./packages;
 }

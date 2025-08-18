@@ -1,14 +1,20 @@
 {
   pkgs,
   flake-inputs,
-  sources,
   lib,
   hostPlatform,
   emacsMacport,
   emacs30-pgtk,
   symlinkJoin,
+
+  localLib,
+  system,
+  nix-prefetch-github,
 }:
 let
+  # TODO(tlater): ast-grep supports nix starting with version 0.39
+  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${system}) ast-grep;
+
   package = if hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
   emacsDotfiles = "${flake-inputs.self}/home-config/dotfiles/emacs.d";
 
@@ -85,8 +91,8 @@ let
       ))
     ];
     override = self: _super: {
-      eglot-x = self.callPackage ./eglot-x.nix { inherit sources; };
-      kdl-mode = self.callPackage ./kdl-mode.nix { inherit sources; };
+      eglot-x = self.callPackage ./eglot-x.nix { };
+      kdl-mode = self.callPackage ./kdl-mode.nix { };
     };
   };
 in
@@ -95,7 +101,20 @@ symlinkJoin {
   paths = [ emacs ];
   nativeBuildInputs = [ pkgs.makeWrapper ];
 
-  passthru.emacs = emacs;
+  passthru = {
+    inherit emacs;
+
+    updateScript = localLib.writeUpdateScript {
+      packageToUpdate = "emacs-packages";
+
+      utils = [
+        ast-grep
+        nix-prefetch-github
+      ];
+
+      script = ./update-emacs-packages.nu;
+    };
+  };
 
   # TODO(tlater): Seems the upstream package already creates binary
   # wrappers for the various emacs `bin/` binaries, since they are all

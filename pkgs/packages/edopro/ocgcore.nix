@@ -1,13 +1,17 @@
 {
-  stdenv,
-  sources,
+  edopro-unwrapped,
 
+  stdenv,
   premake5,
 
   luacxx,
 }:
-stdenv.mkDerivation {
-  inherit (sources.ocgcore) pname version src;
+stdenv.mkDerivation (drv: {
+  inherit (edopro-unwrapped) src;
+  sourceRoot = "${drv.src.name}/ocgcore";
+
+  pname = "ocgcore";
+  version = drv.src.rev;
 
   nativeBuildInputs = [ premake5 ];
 
@@ -28,4 +32,4 @@ stdenv.mkDerivation {
   installPhase = ''
     install -Dt $out/lib/ ../bin/release/libocgcore.so
   '';
-}
+})
