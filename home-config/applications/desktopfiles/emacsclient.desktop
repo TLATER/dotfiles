@@ -1,7 +1,8 @@
 [Desktop Entry]
 Categories=Development;TextEditor;
 Comment=Edit text
-Exec=/nix/store/kv75qhqqiwaxslh2fsgdm86hv9xd7wiv-emacs-with-runtimedeps-with-packages-/bin/emacsclient --no-wait --create-frame %F
+# Changed the exec path; this was hard-coded
+Exec=emacsclient --no-wait --create-frame %F
 GenericName=Text Editor
 Icon=emacs
 Keywords=Text;Editor;
