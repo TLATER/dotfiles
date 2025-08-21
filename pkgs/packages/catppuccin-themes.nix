@@ -16,7 +16,14 @@ stdenv.mkDerivation {
       cp -r "$_src" $(stripHash "$_src")
     done
 
+    chmod -R u+rw *
+
     runHook postUnpack
+  '';
+
+  patchPhase = ''
+    # Make backgrounds non-transparent
+    find catppuccin-fuzzel/themes/ -name '*.ini' -exec sed -Ei 's/^(background=.*)dd$/\1ff/' {} +
   '';
 
   installPhase = ''
