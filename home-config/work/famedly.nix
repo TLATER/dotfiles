@@ -6,6 +6,12 @@
     aria2.enable = lib.mkForce false;
     ncmpcpp.enable = lib.mkForce false;
 
+    librewolf = {
+      # Required for the Famedly webapp, so I can't realistically work
+      # without this
+      settings."webgl.disabled" = lib.mkForce false;
+    };
+
     git = {
       userEmail = "t.maat@famedly.com";
 
