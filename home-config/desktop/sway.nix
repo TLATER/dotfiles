@@ -125,6 +125,7 @@ in
       Unit = {
         Description = "System tray";
         After = [ "graphical-session.target" ];
+        Before = [ "way-displays.service" ];
         ConditionEnvironment = "WAYLAND_DISPLAY";
         PartOf = [ "graphical-session.target" ];
       };
@@ -148,6 +149,7 @@ in
       Unit = {
         Description = "Wallpaper daemon";
         After = [ "graphical-session.target" ];
+        Before = [ "way-displays.service" ];
         ConditionEnvironment = "WAYLAND_DISPLAY";
         PartOf = [ "graphical-session.target" ];
         X-Restart-Triggers = [ wpaperd-config ];

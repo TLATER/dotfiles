@@ -10,12 +10,6 @@
     ../work/famedly.nix
   ];
 
-  # Make sure the primary display is set before eww/wpaperd launch
-  systemd.user.services.way-displays.Unit.Before = [
-    "eww.service"
-    "wpaperd.service"
-  ];
-
   services.wayDisplays = {
     enable = true;
     settings =
