@@ -48,6 +48,7 @@ let
 
     # Language servers, linters and formatters
     biome # json/web stuff
+    marksman # markdown
     nil # nix
     nixfmt-rfc-style
     ruff # python
