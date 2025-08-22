@@ -3,6 +3,9 @@
   allowThirdPartyPackages = false;
 
   programs = {
+    aria2.enable = lib.mkForce false;
+    ncmpcpp.enable = lib.mkForce false;
+
     git = {
       userEmail = "t.maat@famedly.com";
 
@@ -22,6 +25,8 @@
       };
     };
   };
+
+  services.mpd.enable = lib.mkForce false;
 
   home.packages = with pkgs; [
     bitwarden

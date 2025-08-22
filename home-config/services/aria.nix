@@ -35,7 +35,7 @@ in
     };
   };
 
-  systemd.user.services.aria2 = {
+  systemd.user.services.aria2 = lib.mkIf config.programs.aria2.enable {
     Unit.Description = "aria2 download manager";
     Service = {
       ExecStartPre =
