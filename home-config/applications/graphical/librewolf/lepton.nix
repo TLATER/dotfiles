@@ -10,7 +10,9 @@ let
   cfg = config.programs.librewolf;
 in
 {
-  config = lib.mkIf config.allowThirdPartyPackages {
+  options.programs.librewolf.enableLepton = lib.mkEnableOption "enable the lepton theme";
+
+  config = lib.mkIf cfg.enableLepton {
     home.file = lib.mkMerge (
       lib.mapAttrsToList (_: profile: {
         "${cfg.profilesPath}/${profile.path}/chrome/userChrome.css".source =

@@ -5,8 +5,6 @@
     ./webapps.nix
   ];
 
-  allowThirdPartyPackages = true;
-
   programs.git = {
     userEmail = "tm@tlater.net";
 

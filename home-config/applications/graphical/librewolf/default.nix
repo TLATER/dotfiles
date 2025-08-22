@@ -7,6 +7,7 @@
 
   programs.librewolf = {
     enable = true;
+    enableLepton = true;
 
     languagePacks = [
       "af"

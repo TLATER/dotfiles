@@ -1,12 +1,23 @@
-{ pkgs, flake-inputs, ... }:
 {
-  allowThirdPartyPackages = false;
-
+  pkgs,
+  lib,
+  flake-inputs,
+  ...
+}:
+{
   programs = {
     aria2.enable = lib.mkForce false;
     ncmpcpp.enable = lib.mkForce false;
 
     librewolf = {
+      enableLepton = lib.mkForce false;
+
+      extensions.installByPolicy = [
+        "bitwarden-password-manager"
+        "canvasblocker"
+        "ublock-origin"
+      ];
+
       # Required for the Famedly webapp, so I can't realistically work
       # without this
       settings."webgl.disabled" = lib.mkForce false;
