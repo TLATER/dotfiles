@@ -60,6 +60,16 @@
   environment.systemPackages = [ pkgs.brightnessctl ];
 
   # Used extensively for testing at work
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false;
+
+    autoPrune.enable = true;
+
+    daemon.settings = {
+      live-restore = false;
+    };
+  };
+
   users.users.tlater.extraGroups = [ "docker" ];
 }
