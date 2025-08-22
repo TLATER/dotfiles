@@ -12,7 +12,7 @@
 (defwidget _tray_items []
            (box :class "tray-items"
 
-                :spacing 3
+                :spacing 4
                 :vexpand true
                 :hexpand true
                 :valign "center"
@@ -23,7 +23,7 @@
                 (_clock)
                 "|"
                 (_idle_inhibitor)
-                (systray :spacing 5
+                (systray :spacing 0
                          :orientation "horizontal"
                          :space-evenly false)))
 
