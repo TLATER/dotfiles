@@ -15,7 +15,7 @@
     settings =
       let
         builtin = "eDP-1";
-        home-1 = "Dell Inc. DELL G2723HN 5B0C3H3";
+        home-1 = "!^Dell Inc. DELL G2723HN";
         work-1 = "DELL U3219Q";
       in
       {
@@ -41,7 +41,7 @@
             NAME_DESC = home-1;
             WIDTH = 1920;
             HEIGHT = 1080;
-            Hz = 164.997;
+            HZ = 60;
           }
         ];
 
