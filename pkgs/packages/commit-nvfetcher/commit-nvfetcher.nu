@@ -9,7 +9,12 @@ nvfetcher -l $changelog
 
 if ($scratch_dir + '/changelog' | path exists) {
   git add _sources/
-  git commit --message ("sources.nix: Update\n\n" + (open $changelog))
+
+  try {
+    git commit --message ("sources.nix: Update\n\n" + (open $changelog))
+  } catch {
+    print "Nothing to commit"
+  }
 } else {
   # Clean up any debris nvfetcher may leave in its database.
   #
