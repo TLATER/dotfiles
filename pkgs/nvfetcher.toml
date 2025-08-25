@@ -18,10 +18,6 @@ fetch.github = "catppuccin/i3"
 src.github = "Delta-Icons/android"
 fetch.github = "Delta-Icons/android"
 
-[drivestrike]
-src.cmd = "nu ./get-drivestrike-version.nu"
-fetch.url = "https://app.drivestrike.com/static/yum/drivestrike.rpm"
-
 [eglot-x]
 src.git = "https://github.com/nemethf/eglot-x"
 fetch.github = "nemethf/eglot-x"

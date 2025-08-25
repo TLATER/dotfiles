@@ -104,21 +104,6 @@
         },
         "version": "v2.6.0"
     },
-    "drivestrike": {
-        "cargoLocks": null,
-        "date": null,
-        "extract": null,
-        "name": "drivestrike",
-        "passthru": null,
-        "pinned": false,
-        "src": {
-            "name": null,
-            "sha256": "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=",
-            "type": "url",
-            "url": "https://app.drivestrike.com/static/yum/drivestrike.rpm"
-        },
-        "version": "2.1.22-31"
-    },
     "edopro": {
         "cargoLocks": null,
         "date": "2025-08-14",
