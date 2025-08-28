@@ -13,45 +13,6 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/87fd2a8f-e3c2-4ea2-a170-c05cd68090c5";
-      fsType = "ext4";
-    };
-
-  fileSystems."/nix" =
-    { device = "/dev/disk/by-uuid/38ba7f29-0828-452a-a85b-1e61ee416285";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/b5ce8483-2630-4d55-8627-f61c80329bd6";
-      fsType = "ext4";
-    };
-
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F0D3-969E";
-      fsType = "vfat";
-    };
-
-  fileSystems."/mnt/steam-library" =
-    { device = "/dev/disk/by-uuid/2800a362-a988-42ed-a7b4-172b6326d39d";
-      fsType = "ext4";
-    };
-
-  fileSystems."/var/lib/flatpak" =
-    { device = "/dev/disk/by-uuid/c08b4434-a464-4ff4-99fb-9724576bfe88";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/tlater/Documents/Music" =
-    { device = "/dev/disk/by-uuid/df349b4d-e387-470d-8335-32f58ddc5baa";
-      fsType = "ext4";
-    };
-
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/e622a760-a23b-403c-91bd-5280edeb69f5"; }
-    ];
-
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction

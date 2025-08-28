@@ -9,15 +9,20 @@ let
 in
 {
   imports = [
+    flake-inputs.disko.nixosModules.disko
+
     flake-inputs.nixos-hardware.nixosModules.common-pc
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
 
-    ./games.nix
-    ./hardware-configuration.nix
-    ../../networking/personal.nix
-    ./wireguard.nix
     ../../wireguard.nix
+    ../../networking/personal.nix
+
+    ./hardware-configuration.nix
+    ./disko.nix
+
+    ./games.nix
+    ./wireguard.nix
     ./networking.nix
   ];
 
@@ -52,46 +57,26 @@ in
       # by motherboard.
       "sp5100_tco"
     ];
-
-    initrd.luks.devices =
-      let
-        ssdOptimization = {
-          allowDiscards = true;
-          bypassWorkqueues = true;
-        };
-      in
-      {
-        root = {
-          device = "/dev/disk/by-uuid/3c0d48f6-f051-4328-9919-677a7fcddae7";
-        }
-        // ssdOptimization;
-        storage = {
-          device = "/dev/disk/by-uuid/dd17e735-fac4-467f-b1ee-8bb214bc2b08";
-        }
-        // ssdOptimization;
-      };
   };
+  services = {
+    btrfs.autoScrub.enable = true;
 
-  fileSystems."/nix".options = [
-    "defaults"
-    "noatime"
-  ];
-
-  # Fix broken suspend on b550i motherboard
-  #
-  # The rule is a bit overzealous, as it disables wake from *either*
-  # NVME drive, but I don't see why anyone would want to wake from
-  # NVME drives anyway.
-  #
-  # At least I *think* that's what the GPP bridge maps to, at least
-  # this fixes the immediate resume from suspend on my board.
-  services.udev.extraRules = concatStringsSep ", " [
-    ''ACTION=="add"''
-    ''SUBSYSTEM=="pci"''
-    ''ATTR{vendor}=="0x1022"''
-    ''ATTR{device}=="0x1483"''
-    ''ATTR{power/wakeup}="disabled"''
-  ];
+    # Fix broken suspend on b550i motherboard
+    #
+    # The rule is a bit overzealous, as it disables wake from *either*
+    # NVME drive, but I don't see why anyone would want to wake from
+    # NVME drives anyway.
+    #
+    # At least I *think* that's what the GPP bridge maps to, at least
+    # this fixes the immediate resume from suspend on my board.
+    udev.extraRules = concatStringsSep ", " [
+      ''ACTION=="add"''
+      ''SUBSYSTEM=="pci"''
+      ''ATTR{vendor}=="0x1022"''
+      ''ATTR{device}=="0x1483"''
+      ''ATTR{power/wakeup}="disabled"''
+    ];
+  };
 
   # For random android-related things
   programs.adb.enable = true;
