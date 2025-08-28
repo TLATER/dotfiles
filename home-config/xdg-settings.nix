@@ -72,7 +72,7 @@ in
       init-module=${xdg.configHome}/npm/config/npm-init.js
     '';
 
-    PYTHONSTARTUP = ../dotfiles/bin/history.py;
+    PYTHONSTARTUP = "${./dotfiles/bin/history.py}";
 
     EM_CONFIG = "${xdg.configHome}/emscripten/config";
     EM_CACHE = "${xdg.cacheHome}/emscripten/cache";
