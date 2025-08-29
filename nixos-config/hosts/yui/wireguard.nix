@@ -36,21 +36,26 @@
 
     dispatcherScripts = [
       {
-        source = pkgs.writers.writeNu "wireguard-dispatchers.nu" {
-          makeWrapperArgs = [
-            "--set"
-            "NIXOS_DNS_SERVER"
-            (builtins.head config.services.unbound.settings.forward-zone).forward-addr
+        source =
+          let
+            dnsServers =
+              (lib.findFirst (zone: zone.name == ".") [ ] config.services.unbound.settings.forward-zone)
+              .forward-addr;
+          in
+          pkgs.writers.writeNu "wireguard-dispatchers.nu" {
+            makeWrapperArgs = [
+              "--prefix"
+              "PATH"
+              ":"
+              "${lib.makeBinPath [
+                pkgs.unbound
+              ]}"
 
-            "--prefix"
-            "PATH"
-            ":"
-            "${lib.makeBinPath [
-              pkgs.unbound
-            ]}"
-          ];
-
-        } ./wireguard-dispatchers.nu;
+              "--set"
+              "NIXOS_DNS_SERVERS"
+              (lib.concatStringsSep ":" dnsServers)
+            ];
+          } ./wireguard-dispatchers.nu;
         type = "basic";
       }
     ];

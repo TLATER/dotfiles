@@ -14,9 +14,11 @@
 
       forward-zone = [
         {
-          # Cloudflare backup
           name = ".";
-          forward-addr = "1.1.1.1";
+          forward-addr = [
+            "9.9.9.9"
+            "149.112.112.112"
+          ];
         }
       ];
     };
