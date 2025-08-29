@@ -15,7 +15,6 @@ in
     flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
     flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
 
-    ../../wireguard.nix
     ../../networking/personal.nix
 
     ./hardware-configuration.nix
