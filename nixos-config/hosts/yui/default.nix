@@ -57,6 +57,12 @@ in
   services = {
     btrfs.autoScrub.enable = true;
 
+    flatpak = {
+      packages = [ "de.schmidhuberj.tubefeeder" ];
+      update.auto.enable = false;
+      uninstallUnmanaged = false;
+    };
+
     # Fix broken suspend on b550i motherboard
     #
     # The rule is a bit overzealous, as it disables wake from *either*

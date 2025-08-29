@@ -12,6 +12,7 @@
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.stylix.nixosModules.stylix
+    flake-inputs.nix-flatpak.nixosModules.nix-flatpak
 
     ./desktop
     ./dev.nix
