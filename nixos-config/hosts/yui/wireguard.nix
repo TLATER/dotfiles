@@ -53,7 +53,7 @@
 
               "--set"
               "NIXOS_DNS_SERVERS"
-              (lib.concatStringsSep ":" dnsServers)
+              (lib.concatStringsSep "_" dnsServers)
             ];
           } ./wireguard-dispatchers.nu;
         type = "basic";

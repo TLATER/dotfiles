@@ -6,11 +6,15 @@ def main [interface: string, action: string] {
       match $action {
         "up" => {
           log info 'Enabling Proton DNS server'
-          unbound-control -q forward 10.2.0.1
+
+          unbound-control -q forward_remove .
+          unbound-control -q forward_add . 10.2.0.1
         }
         "down" => {
           log info 'Disabling Proton DNS server'
-          unbound-control -q forward ...($env.NIXOS_DNS_SERVERS | split row : | reverse)
+
+          unbound-control -q forward_remove .
+          unbound-control -q forward_add +t . ...($env.NIXOS_DNS_SERVERS | split row _ | reverse)
         }
       }
     }
