@@ -162,18 +162,6 @@
   :after eglot
   :bind ("M-s e" . consult-eglot-symbols))
 
-(leaf consult-org-roam
-  :ensure t
-  :after org-roam
-  :bind
-  ("C-c n b" . consult-org-roam-backlinks)
-  ("C-c n l" . consult-org-roam-forward-links)
-  ("C-c n s" . consult-org-roam-search)
-  :custom
-  (consult-org-roam-grep-func . #'consult-ripgrep)
-  (consult-org-roam-buffer-after-buffers . t)
-  :global-minor-mode consult-org-roam-mode)
-
 (leaf consult-project-extra
   :ensure t
   :bind

@@ -73,6 +73,10 @@
   :config
   (dashboard-setup-startup-hook))
 
+(leaf bookmark
+  :custom
+  `(bookmark-file . ,(expand-file-name "bookmarks" data-dir)))
+
 ;; ----------------------------------------------------------------------------------
 ;; Git porcelain
 ;; ----------------------------------------------------------------------------------

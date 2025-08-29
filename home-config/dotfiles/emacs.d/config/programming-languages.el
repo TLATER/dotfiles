@@ -201,7 +201,6 @@
 ;;; org
 ;; ----------------------------------------------------------------------------------
 
-;; Configure org-mode
 (leaf org
   :mode `(,(rx ".org" string-end) . org-mode)
   :custom
@@ -211,27 +210,6 @@
    'org-babel-load-languages
    '((emacs-lisp . t)
      (gnuplot . t))))
-
-(leaf org-roam
-  :ensure t
-  :custom
-  `(org-roam-db-location . ,(expand-file-name "org-roam.db" data-dir))
-  (org-roam-directory . "~/Documents/Notes/")
-  (org-roam-dailies-directory . "Journal") ; Relative to org-roam-directory
-  (org-agenda-files . '("~/Documents/Notes/Journal/"))
-  :bind
-  (("C-c n f" . org-roam-node-find)
-   ("C-c n i" . org-roam-node-insert))
-  :global-minor-mode org-roam-db-autosync-mode
-  :defvar org-roam-dailies-map
-  :config
-  (require 'org-roam-dailies)
-  (bind-key "C-c n d" 'org-roam-dailies-map))
-
-;; Used by org-agenda to store the TODO mark
-(leaf bookmark
-  :custom
-  `(bookmark-file . ,(expand-file-name "bookmarks" data-dir)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Protobuf
