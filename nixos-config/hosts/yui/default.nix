@@ -39,10 +39,7 @@ in
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
 
-  sops.gnupg = {
-    home = "/var/lib/sops";
-    sshKeyPaths = [ ];
-  };
+  sops.age.keyFile = "/var/lib/sops/host.age";
 
   easyNvidia = {
     enable = true;
