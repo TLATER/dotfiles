@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 {
   networking.networkmanager = {
     ensureProfiles = {
@@ -8,7 +13,7 @@
         connection = {
           id = "wg-tlaternet";
           type = "wireguard";
-          interface-name = "wgt0";
+          interface-name = "wgt-tlaternet";
         };
 
         ipv4 = {
@@ -31,16 +36,21 @@
 
     dispatcherScripts = [
       {
-        source = pkgs.writeShellScript "wgDomainHook" ''
-          if [ "$1" == "wgt0" ] && [ "$2" == "up" ]; then
-              ${pkgs.unbound}/bin/unbound-control local_zone tlater.net. redirect
-              ${pkgs.unbound}/bin/unbound-control local_data tlater.net. A 10.45.249.1
-          fi
+        source = pkgs.writers.writeNu "wireguard-dispatchers.nu" {
+          makeWrapperArgs = [
+            "--set"
+            "NIXOS_DNS_SERVER"
+            (builtins.head config.services.unbound.settings.forward-zone).forward-addr
 
-          if [ "$1" == "wgt0" ] && [ "$2" == "down" ]; then
-              ${pkgs.unbound}/bin/unbound-control local_zone_remove tlater.net.
-          fi
-        '';
+            "--prefix"
+            "PATH"
+            ":"
+            "${lib.makeBinPath [
+              pkgs.unbound
+            ]}"
+          ];
+
+        } ./wireguard-dispatchers.nu;
         type = "basic";
       }
     ];
