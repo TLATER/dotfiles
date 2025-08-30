@@ -60,10 +60,10 @@
   };
   drivestrike = {
     pname = "drivestrike";
-    version = "2.1.22-31";
+    version = "2.1.23-8";
     src = fetchurl {
       url = "https://app.drivestrike.com/static/yum/drivestrike.rpm";
-      sha256 = "sha256-2O0TjRhuwLd+QPUxV9tHeuWYtGoRnBa6icU7DMmxWyI=";
+      sha256 = "sha256-eVCWF7YaXSDnu3d5t97+zqnjsFIHCKUKKZkQwxtvOBQ=";
     };
   };
   edopro = {
