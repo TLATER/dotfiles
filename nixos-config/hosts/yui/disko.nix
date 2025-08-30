@@ -2,7 +2,7 @@
   disko.devices.disk = {
     nvme0n1 = {
       type = "disk";
-      device = "/dev/nvme0n1";
+      device = "/dev/disk/by-id/nvme-eui.002538ba015048d0";
       content = {
         type = "gpt";
         partitions = {
@@ -84,7 +84,7 @@
 
     nvme1n1 = {
       type = "disk";
-      device = "/dev/nvme1n1";
+      device = "/dev/disk/by-id/nvme-Sabrent_Rocket_Q_BD520704027D01592244";
       content = {
         type = "luks";
         name = "storage";
