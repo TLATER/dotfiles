@@ -17,10 +17,6 @@
         # Prevent DNSSEC algorithm downgrades
         harden-algo-downgrade = true;
 
-        # Required for DoT, unbound does not include the system (or
-        # any) certs by default
-        tls-system-cert = true;
-
         # These addresses are forbidden from public responses, but
         # unbound does not enforce this by default
         private-address = [
