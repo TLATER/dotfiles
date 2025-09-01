@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   users.users.tlater.extraGroups = [ "networking" ];
 
@@ -46,4 +47,9 @@
 
     localControlSocketPath = "/run/unbound/unbound.ctl";
   };
+
+  # Ensure unbound is available for DNS settings by the time
+  # connections might set such
+  systemd.services.unbound.after = lib.mkForce [ ];
+  systemd.services.unbound.before = [ "NetworkManager.service" ];
 }

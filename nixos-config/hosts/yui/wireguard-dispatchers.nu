@@ -1,6 +1,15 @@
 use std/log
 
-def main [interface: string, action: string] {
+def main [interface_arg: string, action_arg?: string] {
+  let action = $action_arg | default $interface_arg
+  let interface = match $interface_arg {
+    none => null,
+    _ if $action_arg == null => null,
+    $other => $other
+  }
+
+  log debug $"($interface) ($action)"
+
   match $interface {
     "wgt-pvpn" => {
       match $action {
