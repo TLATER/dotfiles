@@ -40,6 +40,10 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
+    famedly-nixos = {
+      url = "github:famedly/famedly-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

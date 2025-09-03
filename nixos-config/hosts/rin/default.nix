@@ -1,63 +1,28 @@
-{ pkgs, flake-inputs, ... }:
+{
+  config,
+  flake-inputs,
+  lib,
+  ...
+}:
 {
   imports = [
-    flake-inputs.disko.nixosModules.disko
+    flake-inputs.famedly-nixos.nixosModules.default
+
+    ../../laptops.nix
     ../../networking/work.nix
 
-    ./hardware-configuration.nix
-    ./disko.nix
-
-    ./hardware-policy.nix
-
-    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop
-    flake-inputs.nixos-hardware.nixosModules.common-pc-laptop-ssd
-    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd
-    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-pstate
-    flake-inputs.nixos-hardware.nixosModules.common-cpu-amd-zenpower
+    ./hardware.nix
   ];
-
-  boot.extraModprobeConfig = "options snd-hda-intel model=thinkpad,dmic-thinkpad\n";
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/rin.nix";
 
-  sops.age.keyFile = "/var/lib/sops/host.age";
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-    ];
-
-  easyNvidia = {
-    enable = true;
-    withIntegratedGPU = true;
+  sops = {
+    age.keyFile = "/var/lib/sops/host.age";
+    secrets."osquery/enroll" = { };
   };
 
-  hardware.nvidia.prime = {
-    nvidiaBusId = "PCI:1:0:0";
-    # Apparently, xorg requires bus IDs to be *decimal*
-    amdgpuBusId = "PCI:197:0:0";
-  };
-
-  services = {
-    xserver.videoDrivers = [ "amdgpu" ];
-
-    upower = {
-      enable = true;
-      noPollBatteries = true;
-    };
-
-    auto-cpufreq.enable = true;
-  };
-
-  networking = {
-    hostName = "rin";
-    hostId = "e6aaf496";
-  };
-
-  powerManagement.enable = true;
-  environment.systemPackages = [ pkgs.brightnessctl ];
+  famedly-hwp.osquery_secret_path = config.sops.secrets."osquery/enroll".path;
+  programs.gnupg.agent.enable = lib.mkForce false;
 
   # Used extensively for testing at work
   virtualisation.docker = {
@@ -72,4 +37,25 @@
   };
 
   users.users.tlater.extraGroups = [ "docker" ];
+
+  # Allow docker containers to communicate
+  networking.firewall.extraCommands =
+    let
+      # Either get the docker daemon setting *or* the default value
+      dockerAddressPools =
+        config.virtualisation.docker.daemon.settings.default-address-pools or [
+          {
+            base = "172.30.0.0/16";
+            size = 24;
+          }
+          {
+            base = "172.31.0.0/16";
+            size = 24;
+          }
+        ];
+      addresses = lib.concatMapStringsSep "," (pool: pool.base) dockerAddressPools;
+    in
+    ''
+      iptables -A INPUT -s ${addresses} -d ${addresses},172.17.0.1 -j ACCEPT
+    '';
 }

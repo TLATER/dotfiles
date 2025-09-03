@@ -58,14 +58,6 @@
       sha256 = "sha256-L2QBerH6EuQQL1G3UCxyNFBSam6I+pdTrlV59XQUVVc=";
     };
   };
-  drivestrike = {
-    pname = "drivestrike";
-    version = "2.1.23-8";
-    src = fetchurl {
-      url = "https://app.drivestrike.com/static/yum/drivestrike.rpm";
-      sha256 = "sha256-eVCWF7YaXSDnu3d5t97+zqnjsFIHCKUKKZkQwxtvOBQ=";
-    };
-  };
   edopro = {
     pname = "edopro";
     version = "90fcc7a546945f0b333e96190351e531f004298a";
