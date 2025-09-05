@@ -5,6 +5,7 @@
 
   # build deps
   premake5,
+  imagemagick,
 
   # edopro deps
   bzip2,
@@ -41,7 +42,10 @@ stdenv.mkDerivation {
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = [ premake5 ];
+  nativeBuildInputs = [
+    imagemagick
+    premake5
+  ];
 
   buildInputs = [
     bzip2
@@ -97,11 +101,10 @@ stdenv.mkDerivation {
          s/Icon=.*/Icon=EDOPro/' \
       ${edopro-assets}/config/io.github.edo9300.EDOPro.desktop.in \
       > $out/share/applications/io.github.edo9300.EDOPro.desktop
-  '';
 
-  # TODO(tlater): Add icon
-  # mkdir -p $out/share/icons/hicolor/256x256/apps/
-  # magick ${sources.edopro-assets.src}/textures/AppIcon.png \
-  #   -resize 256x256 \
-  #   $out/share/icons/hicolor/256x256/apps/EDOPro.png
+    mkdir -p $out/share/icons/hicolor/256x256/apps/
+    magick ${edopro-assets}/textures/AppIcon.png \
+      -resize 256x256 \
+      $out/share/icons/hicolor/256x256/apps/EDOPro.png
+  '';
 }
