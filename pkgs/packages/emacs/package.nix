@@ -97,7 +97,9 @@ let
   };
 in
 symlinkJoin {
-  name = "emacs-with-runtimedeps";
+  inherit (emacs.emacs) version;
+  pname = "emacs";
+
   paths = [ emacs ];
   nativeBuildInputs = [ pkgs.makeWrapper ];
 

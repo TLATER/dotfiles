@@ -44,7 +44,9 @@ let
 
 in
 symlinkJoin {
-  name = "edopro";
+  inherit (scope.edopro-unwrapped) version;
+  pname = "edopro";
+
   paths = [
     scope.edopro-unwrapped
     scope.edopro-wrapper
