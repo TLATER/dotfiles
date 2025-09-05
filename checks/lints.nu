@@ -1,16 +1,14 @@
 #!/usr/bin/env nu
 
 let shell_files = (
-  ls **/*.sh **/dashrc |
-  where type == file |
-  get name
+  ls **/*.sh **/dashrc | where type == file | get name
 )
 
 let nix_files = (
-  ls **/*.nix |
-  where type == file |
-  where name !~ "hardware-configuration.nix$|^pkgs/_sources|emacs.d/share/templates" |
-  get name
+  ls **/*.nix
+  | where type == file
+  | where name !~ "hardware-configuration.nix$|^pkgs/_sources|emacs.d/share/templates"
+  | get name
 )
 
 let linters = [
@@ -30,19 +28,19 @@ def run-lint [command] {
     $e.exit_code
   }
 
-  [$command.0, $exit_code]
+  [$command.0 $exit_code]
 }
 
 mkdir $env.out
 
-let results = $linters | each {|command| run-lint $command}
+let results = $linters | each {|command| run-lint $command }
 
 print 'Linter results:'
 
 let success = $results | each {|result|
   match $result.1 {
-    0 => {print $'(ansi green)($result.0)(ansi reset)'}
-    _ => {print $'(ansi red)($result.0)(ansi reset)'}
+    0 => { print $'(ansi green)($result.0)(ansi reset)' }
+    _ => { print $'(ansi red)($result.0)(ansi reset)' }
   }
 
   $result.1

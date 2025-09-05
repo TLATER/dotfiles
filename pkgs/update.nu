@@ -5,7 +5,7 @@ let packages_with_updatescript = (
   | from json
   | $in.packages.x86_64-linux
   | columns
-  | filter { |p| nix eval $'.#($p)' --apply 'builtins.hasAttr "updateScript"' | $in == 'true' }
+  | filter {|p| nix eval $'.#($p)' --apply 'builtins.hasAttr "updateScript"' | $in == 'true' }
 )
 
 for $package in $packages_with_updatescript {

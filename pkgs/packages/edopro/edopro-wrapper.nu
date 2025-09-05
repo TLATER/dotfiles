@@ -1,15 +1,15 @@
 const ASSETS_TO_COPY = [
-  "config",
-  "deck",
-  "COPYING.txt",
-  "expansions",
-  "lflists",
-  "notices",
-  "puzzles",
-  "fonts",
-  "script",
-  "skin",
-  "sound",
+  "config"
+  "deck"
+  "COPYING.txt"
+  "expansions"
+  "lflists"
+  "notices"
+  "puzzles"
+  "fonts"
+  "script"
+  "skin"
+  "sound"
   "textures"
 ];
 
