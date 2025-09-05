@@ -1,6 +1,13 @@
-{ pkgs, lib, ... }:
+{
+  flake-inputs,
+  pkgs,
+  lib,
+  ...
+}:
 {
   imports = [ ./emacs ];
+
+  home.packages = [ flake-inputs.self.packages.${pkgs.system}.topiary ];
 
   programs.bottom = {
     enable = true;

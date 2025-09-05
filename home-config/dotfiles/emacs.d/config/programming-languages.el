@@ -467,7 +467,9 @@
              clang-format-region
              clang-format-buffer
              latexindent-region
-             latexindent-buffer)
+             latexindent-buffer
+             topiary-nushell-region
+             topiary-nushell-buffer)
   :defer-config
   ;; Work around `make-variable-buffer-local' being called at a
   ;; non-top-level.
@@ -491,7 +493,11 @@
       :lighter " LF")
     (reformatter-define dart-format
       :program "dart"
-      :args '("format"))))
+      :args '("format"))
+    (reformatter-define topiary-nushell
+      :program "topiary"
+      :group 'nushell-ts-mode
+      :args '("format" "--language" "nu"))))
 
 (defun autoformat ()
   "Autoformat the current buffer."
@@ -503,6 +509,8 @@
      (latexindent-buffer))
     ('dart-mode
      (dart-format-buffer))
+    ('nushell-ts-mode
+     (topiary-nushell-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode 'json-mode)
      (biome-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))

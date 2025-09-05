@@ -22,7 +22,10 @@ let
 in
 {
   nixUpdateScript =
-    { packageToUpdate }:
+    {
+      packageToUpdate,
+      version ? null,
+    }:
     writeNuBin "update-${packageToUpdate}" [ ]
       {
         makeWrapperArgs = [
@@ -39,6 +42,7 @@ in
         (nix-update
           --flake
           --format
+          ${lib.concatStringsSep " " (lib.optional (version != null) "--version=${version}")}
           ${packageToUpdate})
       '';
 
