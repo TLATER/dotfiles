@@ -21,24 +21,18 @@ def --env eproject [] {
   }
 }
 
-def nix-create-gcroot [path] {
+def nix-create-gcroot [path: path] {
   let store_path = nix-store --add-fixed sha256 $path
-  let components = $store_path | path basename | split row '-' | {name: ($in | skip 1 | str join '-'), hash: $in.0}
+  let name = $store_path | path basename | split row '-' | skip 1 | str join '-'
+  let gcroot = [(pwd) gcroots ($name + '.gcroot')] | path join
 
-  let local_reference = [(pwd) gcroots ($components.name + '.gcroot')] | path join
-  let gcroot = [/nix/var/nix/gcroots/per-user/ $env.USER ($components.hash + (basename $local_reference))] | path join
-
-  if (($local_reference | path exists) or ($gcroot | path exists)) {
-    print $'gcroot already exists; you should delete:'
-    print $'- ($local_reference)'
-    print $'- ($gcroot)'
+  if (gcroot | path exists) {
+    print gcroot already exists
     return
   }
 
-  mkdir (dirname $local_reference)
-
-  ln -s $store_path $local_reference
-  ln -s $local_reference $gcroot
+  mkdir (dirname $gcroot)
+  nix-store --add-root $gcroot --indirect --realise $store_path
 }
 
 $env.config = {
