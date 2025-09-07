@@ -22,7 +22,7 @@ let
     text = ''
       {
         languages = {
-          nushell = {
+          nu = {
             extensions = ["nu"],
             grammar.source.path = "${tree-sitter-grammars.tree-sitter-nu}/parser"
           }
