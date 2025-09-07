@@ -35,6 +35,32 @@ def nix-create-gcroot [path: path] {
   nix-store --add-root $gcroot --indirect --realise $store_path
 }
 
+def git-prune-merged [] {
+  let merged = git branch --merged | lines | where ($it != "* master" and $it != "* main")
+
+  if ($merged | length) == 0 {
+    print 'No branches to prune'
+    return
+  }
+
+  print 'Branches to prune:'
+  print $merged
+
+  print 'Really prune [y/n]?'
+
+  loop {
+    match (input listen --types [key]).code {
+      'y' => {
+        $merged | each {|br| git branch -D ($br | str trim) } | str trim
+        break
+      }
+      'n' => {
+        break
+      }
+    }
+  }
+}
+
 $env.config = {
   show_banner: false
 
