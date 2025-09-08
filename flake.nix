@@ -80,6 +80,8 @@
         flake-inputs = inputs;
       };
 
+      pkgs-lib.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.callPackage ./lib { };
+
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
       devShells.x86_64-linux.default =
