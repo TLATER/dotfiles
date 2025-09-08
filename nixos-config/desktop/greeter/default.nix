@@ -14,13 +14,17 @@ let
     seat seat0 xcursor_theme Bibata-Original-Ice 24
 
     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-    exec ${pkgs.eww}/bin/eww -c ${./eww-config} open powermenu
-    exec "${pkgs.greetd.gtkgreet}/bin/gtkgreet -l; ${sway}/bin/swaymsg exit"
+    exec eww -c ${./eww-config} open powermenu
+    exec "gtkgreet -l; swaymsg exit"
   '';
 
   launch-gtkgreet = pkgs.writeShellApplication {
     name = "launch-gtkgreet";
-    runtimeInputs = [ sway ];
+    runtimeInputs = [
+      pkgs.eww
+      pkgs.greetd.gtkgreet
+      sway
+    ];
     text = ''
       export XDG_SESSION_TYPE=wayland
       export HOME=/var/run/gtkgreet
@@ -43,17 +47,16 @@ in
     };
   };
 
+  environment.etc."greetd/environments".text = ''
+    sway-run
+  '';
+
   environment.systemPackages = with pkgs; [
-    eww
     sway-run
     pciutils
   ];
 
   fonts.packages = [ flake-inputs.self.packages.${pkgs.system}.phosphor-icons ];
-
-  environment.etc."greetd/environments".text = ''
-    sway-run
-  '';
 
   systemd.tmpfiles.rules =
     let
