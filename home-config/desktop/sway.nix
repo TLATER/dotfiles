@@ -7,29 +7,36 @@
   ...
 }:
 let
+  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuBinWith;
+
   loginctl = "${pkgs.systemd}/bin/loginctl";
-  swaymsg = "${nixos-config.programs.sway.package or pkgs.sway}/bin/swaymsg";
+  swaypkg = nixos-config.programs.sway.package or pkgs.sway;
   systemctl = "${pkgs.systemd}/bin/systemctl";
 
   wpaperd-config = (pkgs.formats.toml { }).generate "wallpaper.toml" {
     default.path = "~/Documents/Pictures/Backgrounds";
   };
 
-  keepassxc-copy = pkgs.writeShellApplication {
-    name = "keepassxc-copy";
-    runtimeInputs = with pkgs; [
-      jq
-      libsecret
-      wl-clipboard
-    ];
-    text = ''
-      WINDOW_TITLE="$(${swaymsg} --type get_tree | jq -r 'recurse(.nodes[]) | select(.focused)  | .app_id // .window_properties.title')"
-      secret-tool lookup KP2A_URL "title://$WINDOW_TITLE" | wl-copy
-      # Wait 45 seconds before clearing the clipboard
-      sleep 45
-      wl-copy -c
-    '';
-  };
+  keepassxc-copy =
+    writeNuBinWith
+      {
+        packages = [
+          pkgs.jq
+          pkgs.libsecret
+          pkgs.wl-clipboard
+
+          swaypkg
+        ];
+      }
+      "keepassxc-copy"
+      ''
+        let current_window = swaymsg --type get_tree | jq 'recurse(.nodes[]) | select(.focused?)'
+        let title = $current_window.app_id | default $current_window.window_properties.title
+
+        secret-tool lookup KP2A_URL $'title://($title)' | wl-copy
+        sleep 45sec
+        wl-copy -c
+      '';
 in
 {
   home.packages = [
@@ -71,8 +78,8 @@ in
     timeouts = [
       {
         timeout = 5 * 60;
-        command = "${swaymsg} 'output * power off'";
-        resumeCommand = "${swaymsg} 'output * power on'";
+        command = "${lib.getExe swaypkg} 'output * power off'";
+        resumeCommand = "${lib.getExe swaypkg} 'output * power on'";
       }
       {
         timeout = 6 * 60;

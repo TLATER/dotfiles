@@ -6,6 +6,7 @@
 }:
 let
   inherit (flake-inputs.self.packages.${pkgs.system}) nextcloudcmd;
+  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuWith;
 in
 {
   home.packages = with pkgs; [ keepassxc ];
@@ -21,29 +22,24 @@ in
       ExecCondition = "${lib.getExe' pkgs.systemd "busctl"} --user status org.freedesktop.secrets";
 
       ExecStart =
-        builtins.toString (
-          pkgs.writeShellApplication {
-            name = "sync-keepassxc";
-            runtimeInputs = with pkgs; [
-              coreutils
-              gnugrep
-              libsecret
+        writeNuWith
+          {
+            packages = [
               nextcloudcmd
+              pkgs.libsecret
             ];
-
-            text = ''
-              (secret-tool search URL 'https://nextcloud.tlater.net' 2>&1 \
-                | grep UserName \
-                | cut -d' ' -f3; \
-               secret-tool lookup URL 'https://nextcloud.tlater.net') | \
-               nextcloudcmd \
-               --path Backups/keepass \
-               "$HOME/.local/share/keepassxc/synced/" \
-               'https://nextcloud.tlater.net'
-            '';
           }
-        )
-        + "/bin/sync-keepassxc";
+          "sync-keepassxc"
+          ''
+            const url = 'https://nextcloud.tlater.net'
+            const nextcloud_dir = 'Backups/keepass'
+            let local_dir = $'($env.XDG_DATA_HOME | default ~/.local/share)/keepassxc/synced'
+
+            let attributes = secret-tool search URL $url o+e>| parse "{attribute} = {value}" | transpose -rid
+            let password = secret-tool lookup URL $url
+
+            $"($attributes.'attribute.UserName')\n($password)" | nextcloudcmd --path $nextcloud_dir $local_dir $url
+          '';
     };
   };
 
