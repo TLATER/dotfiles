@@ -1,7 +1,5 @@
 {
   self,
-  flake-inputs,
-  system,
   lib,
   mkTest,
   fetchpatch,
@@ -47,7 +45,6 @@ mkTest {
     nixfmt-rfc-style
     shellcheck
     statix'
-    flake-inputs.self.packages.${system}.topiary
   ];
 
   checkPhase = ''
