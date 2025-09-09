@@ -8,10 +8,10 @@ jobs:
     name: Update flake inputs
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
-      - uses: cachix/install-nix-action@v27
+      - uses: cachix/install-nix-action@v31
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
@@ -26,7 +26,7 @@ jobs:
           git_committer_email: tm@tlater.net
       - run: nix flake update --commit-lock-file
       - run: nix run --inputs-from . nixpkgs#nushell -L -- pkgs/update.nu
-      - uses: peter-evans/create-pull-request@v6
+      - uses: peter-evans/create-pull-request@v7
         with:
           branch: bot/update
           delete-branch: true
