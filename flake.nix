@@ -28,11 +28,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:nix-community/stylix/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";

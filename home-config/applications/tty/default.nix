@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ ./emacs ];
+  imports = [ ./emacs.nix ];
 
   home.packages = [ flake-inputs.self.packages.${pkgs.system}.topiary ];
 

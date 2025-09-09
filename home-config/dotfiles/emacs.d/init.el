@@ -74,33 +74,56 @@
 ;;; Set up nix-provided theme
 ;; ----------------------------------------------------------------------------------
 
-(leaf color-template
-  :require t)
-
 (leaf base16-theme
   :require t
   :ensure t
-  :after color-template
   :pre-setq (base16-theme-256-color-source . 'base16-shell)
   :config
   (deftheme base16-custom)
-  (base16-theme-define 'base16-custom color-template-colors)
+  (let ((colors '(; Background tones
+                  :base00 "#002d38"
+                  :base01 "#093946"
 
-  ;; Tweak the theme a little
-  (base16-theme-set-faces
-   'user
-   color-template-colors
-   '(
-     ;; Spec says to make variables red, but this looks horrible
-     (font-lock-variable-name-face :foreground base0D)
-     ;; I don't want a red cursor either
-     (cursor :background base05)
+                  ; Content tones
+                  ;; TODO(tlater): Fix these colors; they're not completely suited
+                  ;; ATM because solarized considers these "content colors", while
+                  ;; base16 only considers base03 a content color
+                  :base02 "#5b7279"
+                  :base03 "#657377"
+                  :base04 "#98a8a8"
+                  :base05 "#8faaab"
 
-     ;; No built-in settings for these packages in the base16 theme
-     (cov-none-face :foreground base08)
-     (cov-heavy-face :foreground base0B)))
+                  ; Foreground tones
+                  :base06 "#f1e9d2"
+                  :base07 "#fbf7ef"
 
-  (enable-theme 'base16-custom))
+                  ; Accent colors
+                  :base08 "#f23749"
+                  :base09 "#d56500"
+                  :base0A "#ac8300"
+                  :base0B "#819500"
+                  :base0C "#259d94"
+                  :base0D "#2b90d8"
+                  :base0E "#7d80d1"
+                  :base0F "#dd459d")))
+
+    (base16-theme-define 'base16-custom colors)
+
+    ;; Tweak the theme a little
+    (base16-theme-set-faces
+     'user
+     colors
+     '(
+       ;; Spec says to make variables red, but this looks horrible
+       (font-lock-variable-name-face :foreground base0D)
+       ;; I don't want a red cursor either
+       (cursor :background base05)
+
+       ;; No built-in settings for these packages in the base16 theme
+       (cov-none-face :foreground base08)
+       (cov-heavy-face :foreground base0B)))
+
+    (enable-theme 'base16-custom)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Load other configuration files
