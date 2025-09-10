@@ -30,6 +30,7 @@ let
     }
   );
 in
-{
-  lints = callPackage ./lints.nix { };
+pkgs.lib.packagesFromDirectoryRecursive {
+  inherit callPackage;
+  directory = ./checks;
 }
