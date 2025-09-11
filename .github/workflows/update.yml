@@ -11,12 +11,12 @@ jobs:
       - uses: actions/checkout@v5
         with:
           ssh-key: ${{ secrets.PR_CREATE_KEY }}
-      - uses: cachix/install-nix-action@v31
+      - uses: nixbuild/nix-quick-install-action@v33
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
           # Used only for things like nix-prefetch-*, which do not yet
           # seem to universally support flakes
-          nix_path: nixpkgs=channel:nixos-unstable
+          nix_conf: |
+            nix-path = nixpkgs=flake:nixpkgs
       - uses: crazy-max/ghaction-import-gpg@v6
         with:
           gpg_private_key: ${{ secrets.GIT_SIGNING_KEY }}
