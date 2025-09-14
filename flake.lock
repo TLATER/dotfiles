@@ -179,18 +179,12 @@
       }
     },
     "nix-webapps": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nurpkgs": "nurpkgs"
-      },
       "locked": {
-        "lastModified": 1755486942,
-        "narHash": "sha256-XggJKpGra2AerB3b+kMbrjmuj+/JvNmteg6iofRAFBw=",
+        "lastModified": 1757827222,
+        "narHash": "sha256-5xrYvYm5cCFTW+9/JTy0rV2FVvwdVzcPnqe4wiGHroU=",
         "owner": "TLATER",
         "repo": "nix-webapps",
-        "rev": "e22adf9e5e8fa940c6a78beaff46db38c629dc9c",
+        "rev": "5ffb9d521339f2ceb101d2052207d17d56e92d82",
         "type": "github"
       },
       "original": {
@@ -255,30 +249,6 @@
       "original": {
         "type": "tarball",
         "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
-      }
-    },
-    "nurpkgs": {
-      "inputs": {
-        "flake-parts": [
-          "nix-gaming",
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1757449026,
-        "narHash": "sha256-jyP5nPXjbqsEjK8Wm1smsCtP0ksfob1GIKwRwR4y5HM=",
-        "owner": "nix-community",
-        "repo": "NUR",
-        "rev": "4a052ccf5c288af61330774340f514db05efb3f1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "NUR",
-        "type": "github"
       }
     },
     "root": {

@@ -21,17 +21,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nix-webapps = {
-      url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
-
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        nurpkgs.inputs = {
-          flake-parts.follows = "nix-gaming/flake-parts";
-          nixpkgs.follows = "nixpkgs";
-        };
-      };
-    };
+    nix-webapps.url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.05";
