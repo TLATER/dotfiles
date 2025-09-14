@@ -1,3 +1,7 @@
+{ pkgs, flake-inputs, ... }:
+let
+  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) mapSubvolumes;
+in
 {
   disko.devices.disk = {
     nvme0n1 = {
@@ -32,35 +36,11 @@
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
-                subvolumes = {
-                  "/root" = {
-                    mountpoint = "/";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/home" = {
-                    mountpoint = "/home";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/var" = {
-                    mountpoint = "/var";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
+                subvolumes = mapSubvolumes {
+                  "/root" = "/";
+                  "/home" = "/home";
+                  "/var" = "/var";
+                  "/nix" = "/nix";
                 };
               };
             };

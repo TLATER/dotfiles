@@ -1,3 +1,7 @@
+{ pkgs, flake-inputs, ... }:
+let
+  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) mapSubvolumes;
+in
 {
   disko.devices.disk = {
     nvme0n1 = {
@@ -32,36 +36,11 @@
               content = {
                 type = "btrfs";
                 extraArgs = [ "-f" ];
-                subvolumes = {
-                  "/root" = {
-                    mountpoint = "/";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/home" = {
-                    mountpoint = "/home";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/var" = {
-                    mountpoint = "/var";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    mountOptions = [
-                      "compress=zstd"
-                      "noatime"
-                    ];
-                  };
-
+                subvolumes = mapSubvolumes {
+                  "/root" = "/";
+                  "/home" = "/home";
+                  "/var" = "/var";
+                  "/nix" = "/nix";
                   "/snapshots" = {
                     mountpoint = "/snapshots/main";
                   };
@@ -93,28 +72,10 @@
         content = {
           type = "btrfs";
           extraArgs = [ "-f" ];
-          subvolumes = {
-            "/root" = {
-              mountpoint = "/storage";
-              mountOptions = [
-                "compress=zstd"
-                "noatime"
-              ];
-            };
-            "/steam" = {
-              mountpoint = "/storage/steam";
-              mountOptions = [
-                "compress=zstd"
-                "noatime"
-              ];
-            };
-            "/media" = {
-              mountpoint = "/storage/media";
-              mountOptions = [
-                "compress=zstd"
-                "noatime"
-              ];
-            };
+          subvolumes = mapSubvolumes {
+            "/root" = "/storage";
+            "/steam" = "/storage/steam";
+            "/media" = "/storage/media";
             "/snapshots" = {
               mountpoint = "/snapshots/storage";
             };
