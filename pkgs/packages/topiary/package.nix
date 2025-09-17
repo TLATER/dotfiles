@@ -1,4 +1,7 @@
 {
+  system,
+  flake-inputs,
+  lib,
   callPackage,
   writeTextFile,
   symlinkJoin,
@@ -11,7 +14,10 @@
   nix-update,
 }:
 let
+  inherit (flake-inputs.tree-sitter-sieve.packages.${system}) tree-sitter-sieve topiary-sieve;
+
   languages = {
+    inherit topiary-sieve;
     topiary-nushell = callPackage ./topiary-nushell.nix { };
   };
 
@@ -25,6 +31,11 @@ let
           nu = {
             extensions = ["nu"],
             grammar.source.path = "${tree-sitter-grammars.tree-sitter-nu}/parser"
+          },
+
+          sieve = {
+            extensions = ["sieve"],
+            grammar.source.path = "${tree-sitter-sieve}/parser"
           }
         }
       }
@@ -37,8 +48,8 @@ symlinkJoin {
   paths = [
     topiary
     topiary-config
-    languages.topiary-nushell
-  ];
+  ]
+  ++ lib.attrValues languages;
 
   nativeBuildInputs = [ makeBinaryWrapper ];
 

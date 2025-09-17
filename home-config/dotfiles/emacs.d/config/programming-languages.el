@@ -469,7 +469,9 @@
              latexindent-region
              latexindent-buffer
              topiary-nushell-region
-             topiary-nushell-buffer)
+             topiary-nushell-buffer
+             topiary-sieve-region
+             topiary-sieve-buffer)
   :defer-config
   ;; Work around `make-variable-buffer-local' being called at a
   ;; non-top-level.
@@ -497,7 +499,11 @@
     (reformatter-define topiary-nushell
       :program "topiary"
       :group 'nushell-ts-mode
-      :args '("format" "--language" "nu"))))
+      :args '("format" "--language" "nu"))
+    (reformatter-define topiary-sieve
+      :program "topiary"
+      :group 'sieve-mode
+      :args '("format" "--language" "sieve"))))
 
 (defun autoformat ()
   "Autoformat the current buffer."
@@ -511,6 +517,8 @@
      (dart-format-buffer))
     ('nushell-ts-mode
      (topiary-nushell-buffer))
+    ('sieve-mode
+     (topiary-sieve-buffer))
     ((or 'mhtml-mode 'web-mode 'scss-mode 'json-mode)
      (biome-format-buffer))
     ('haskell-mode (haskell-mode-stylish-buffer))

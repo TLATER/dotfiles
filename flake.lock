@@ -263,7 +263,8 @@
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "sops-nix": "sops-nix"
+        "sops-nix": "sops-nix",
+        "tree-sitter-sieve": "tree-sitter-sieve"
       }
     },
     "rust-analyzer-src": {
@@ -300,6 +301,26 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
+        "type": "github"
+      }
+    },
+    "tree-sitter-sieve": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1758136894,
+        "narHash": "sha256-SPC4oBRGM0LmDbHDXVdBKsSOsTfkOiD5Q2yWUVCKM5o=",
+        "owner": "TLATER",
+        "repo": "tree-sitter-sieve",
+        "rev": "d4971e9eb867ec380b02e1f6065bbfaa72d174fb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TLATER",
+        "repo": "tree-sitter-sieve",
         "type": "github"
       }
     }

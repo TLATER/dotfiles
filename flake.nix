@@ -34,6 +34,11 @@
       inputs.nixpkgs-stable.follows = "nixpkgs";
     };
 
+    tree-sitter-sieve = {
+      url = "github:TLATER/tree-sitter-sieve";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     famedly-nixos = {
       url = "github:famedly/famedly-nixos";
