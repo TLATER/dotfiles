@@ -1,4 +1,4 @@
-let lockfile = open flake.lock | from json
+let lockfile = open $env.src | from json
 
 let duplicates = (
   $lockfile.nodes

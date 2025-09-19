@@ -1,8 +1,6 @@
 {
   self,
-  lib,
   mkTest,
-
   nushell,
 }:
 mkTest {
@@ -18,12 +16,10 @@ mkTest {
   #
   # *Maybe* if the repo grows an order of magnitude or two and we
   # split apart the nix and shell checks again.
-  src = lib.cleanSourceWith {
-    src = self;
-    filter = lib.cleanSourceFilter;
-  };
+  src = "${self}/flake.lock";
 
   checkInputs = [ nushell ];
+  dontUnpack = true;
 
   checkPhase = ''
     nu ${./optimal-flake-lock.nu}
