@@ -47,7 +47,12 @@
   };
 
   outputs =
-    { nixpkgs, sops-nix, ... }@inputs:
+    {
+      nixpkgs-unstable,
+      nixpkgs,
+      sops-nix,
+      ...
+    }@inputs:
     {
       nixosConfigurations = {
         yui = nixpkgs.lib.nixosSystem {
@@ -84,18 +89,33 @@
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
-      devShells.x86_64-linux.default =
+      devShells.x86_64-linux =
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+          inherit (nixpkgs) lib;
         in
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = [ sops-init-gpg-key ];
+        {
+          default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = [ sops-init-gpg-key ];
 
-          sopsPGPKeyDirs = [
-            "./keys/hosts/"
-            "./keys/users/"
-          ];
-          nativeBuildInputs = [ sops-import-keys-hook ];
+            sopsPGPKeyDirs = [
+              "./keys/hosts/"
+              "./keys/users/"
+            ];
+            nativeBuildInputs = [ sops-import-keys-hook ];
+          };
+
+          rust = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = lib.attrValues {
+              inherit (nixpkgs-unstable.legacyPackages.x86_64-linux)
+                rust-analyzer
+                rustc
+                rustfmt
+                cargo
+                clippy
+                ;
+            };
+          };
         };
     };
 }
