@@ -43,6 +43,7 @@ in
           prestart = writeScript "aria2-prestart" ''
             #!${runtimeShell}
             ${coreutils-bin}/mkdir -p ${dataHome}/aria2
+            ${coreutils-bin}/mkdir -p ${config.xdg.userDirs.download}/aria
 
             if [ ! -e "${sessionFile}" ]; then
                 ${coreutils-bin}/touch ${sessionFile}
