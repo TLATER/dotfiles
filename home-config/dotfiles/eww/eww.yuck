@@ -1,10 +1,11 @@
+(defvar DL_NOTIFICATIONS "[]")
+
 (defwindow tray
            :monitor 0
            :geometry (geometry :height "0%"
                                :width "0%"
                                :anchor "bottom left")
            :stacking "bottom"
-           :exclusive true
            :focusable false
 
            (_tray_items))
@@ -25,7 +26,16 @@
                 (_idle_inhibitor)
                 (systray :spacing 0
                          :orientation "horizontal"
-                         :space-evenly false)))
+                         :space-evenly false)
+                (_notifications)))
+
+(defwidget _notifications []
+           (stack :selected 0
+                  :transition "slidedown"
+                  :same-size true
+
+                  (box (for entry in DL_NOTIFICATIONS
+                       `${entry.summary}`))))
 
 (defwidget _battery_icon []
            (label :text {

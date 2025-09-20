@@ -44,10 +44,20 @@
       url = "github:famedly/famedly-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { nixpkgs, sops-nix, ... }@inputs:
+    {
+      fenix,
+      nixpkgs,
+      sops-nix,
+      ...
+    }@inputs:
     {
       nixosConfigurations = {
         yui = nixpkgs.lib.nixosSystem {
@@ -84,18 +94,28 @@
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
-      devShells.x86_64-linux.default =
+      devShells.x86_64-linux =
         let
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
+          inherit (nixpkgs) lib;
         in
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = [ sops-init-gpg-key ];
+        {
+          default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = [ sops-init-gpg-key ];
 
-          sopsPGPKeyDirs = [
-            "./keys/hosts/"
-            "./keys/users/"
-          ];
-          nativeBuildInputs = [ sops-import-keys-hook ];
+            sopsPGPKeyDirs = [
+              "./keys/hosts/"
+              "./keys/users/"
+            ];
+            nativeBuildInputs = [ sops-import-keys-hook ];
+          };
+
+          rust = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+            packages = lib.attrValues {
+              inherit (fenix.packages.x86_64-linux.default) toolchain;
+              inherit (fenix.packages.x86_64-linux) rust-analyzer;
+            };
+          };
         };
     };
 }
