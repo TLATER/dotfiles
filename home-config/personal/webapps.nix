@@ -27,6 +27,12 @@ in
           "InstantMessaging"
         ];
       };
+
+      prefs = {
+        "media.gmp-provider.enabled" = true;
+        "media.gmp-gmpopenh264.enabled" = true;
+        "media.webrtc.hw.h264.enabled" = false;
+      };
     })
 
     (mkFirefoxApp {
