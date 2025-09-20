@@ -1,6 +1,5 @@
 {
   imports = [
-    ./dunst.nix
     ./gtk.nix
     ./mime.nix
     ./sway.nix
