@@ -19,7 +19,10 @@ async fn main() -> Result<()> {
         .build()
         .await?;
 
-    notification_handler.run().await?;
+    notification_handler.run();
 
-    Ok(())
+    loop {
+        notification_handler.previous_notification();
+        tokio::time::sleep(tokio::time::Duration::from_secs(1)).await;
+    }
 }

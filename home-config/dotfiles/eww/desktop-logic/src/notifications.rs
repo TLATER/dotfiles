@@ -1,5 +1,5 @@
 use std::{
-    collections::HashMap,
+    collections::HashMap as BTreeMap,
     sync::{Arc, Mutex},
 };
 
@@ -25,14 +25,14 @@ const DEFAULT_TIMEOUT: Duration = Duration::seconds(3);
 /// DBus interface.
 pub struct NotificationHandler {
     /// The set of notifications currently tracked by this handler
-    notifications: Arc<Mutex<HashMap<u32, Notification>>>,
+    notifications: Arc<Mutex<BTreeMap<u32, Notification>>>,
 }
 
 impl NotificationHandler {
     /// Constructor for the `NotificationHandler`
     pub fn new() -> Self {
         Self {
-            notifications: Arc::new(Mutex::new(HashMap::new())),
+            notifications: Arc::new(Mutex::new(BTreeMap::new())),
         }
     }
 
@@ -76,6 +76,20 @@ impl NotificationHandler {
 
         Ok(())
     }
+
+    pub async fn previous_notification(&self) -> Option<String> {
+        let notifications = self
+            .notifications
+            .lock()
+            .expect("Failed to acquire lock on notification map; poisoned mutex");
+        notifications
+            .get(&0)
+            .map(|notification| notification.summary.clone())
+    }
+
+    pub async fn next_notification() -> String {
+        todo!()
+    }
 }
 
 impl Default for NotificationHandler {
@@ -116,7 +130,7 @@ impl NotificationHandler {
         summary: &str,
         _body: &str,
         _actions: Vec<&str>,
-        _hints: HashMap<&str, zvariant::OwnedValue>,
+        _hints: BTreeMap<&str, zvariant::OwnedValue>,
         expire_timeout: i32,
     ) -> zbus::fdo::Result<u32> {
         log::info!("Received notification from `{}`", app_name);
@@ -206,7 +220,7 @@ struct Notification {
     /// The icon of the notification
     _app_icon: String,
     /// The notification summary
-    _summary: String,
+    summary: String,
     /// The date/time at which the notification should naturally
     /// expire, or `None` if it should not expire
     timeout: Option<OffsetDateTime>,
@@ -225,7 +239,7 @@ impl Notification {
 
         Self {
             _app_icon: app_icon.as_ref().to_owned(),
-            _summary: summary.as_ref().to_owned(),
+            summary: summary.as_ref().to_owned(),
             timeout,
         }
     }
@@ -247,7 +261,7 @@ mod test {
                 "Test Notification",
                 "",
                 vec![],
-                HashMap::new(),
+                BTreeMap::new(),
                 0,
             )
             .await
@@ -268,7 +282,7 @@ mod test {
                 "Test Notification",
                 "",
                 vec![],
-                HashMap::new(),
+                BTreeMap::new(),
                 0,
             )
             .await
@@ -284,7 +298,7 @@ mod test {
                 "Another Notification",
                 "",
                 vec![],
-                HashMap::new(),
+                BTreeMap::new(),
                 0,
             )
             .await
@@ -300,7 +314,7 @@ mod test {
                 "Overwritten Notification",
                 "",
                 vec![],
-                HashMap::new(),
+                BTreeMap::new(),
                 0,
             )
             .await
@@ -321,7 +335,7 @@ mod test {
                 "Test Notification",
                 "",
                 vec![],
-                HashMap::new(),
+                BTreeMap::new(),
                 0,
             )
             .await;
