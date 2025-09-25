@@ -120,33 +120,9 @@ in
         effect-blur = "7x5";
       };
     };
-
-    eww = {
-      enable = true;
-      configDir = ../dotfiles/eww;
-    };
   };
 
   systemd.user.services = {
-    eww = {
-      Unit = {
-        Description = "System tray";
-        After = [ "graphical-session.target" ];
-        Before = [ "way-displays.service" ];
-        ConditionEnvironment = "WAYLAND_DISPLAY";
-        PartOf = [ "graphical-session.target" ];
-      };
-
-      Service = {
-        ExecStart = "${config.programs.eww.package}/bin/eww daemon --no-daemonize";
-        ExecStartPost = "${config.programs.eww.package}/bin/eww open tray";
-        Environment = "PATH=${config.programs.eww.package}/bin:${pkgs.systemd}/bin:${pkgs.coreutils}/bin";
-        Restart = "always";
-        Type = "exec";
-      };
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
-
     swaylock = {
       Unit.Description = "Lock screen";
       Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
