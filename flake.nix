@@ -84,18 +84,15 @@
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
-      devShells.x86_64-linux.default =
-        let
+      devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+        packages = nixpkgs.lib.attrValues {
           inherit (sops-nix.packages.x86_64-linux) sops-init-gpg-key sops-import-keys-hook;
-        in
-        nixpkgs.legacyPackages.x86_64-linux.mkShell {
-          packages = [ sops-init-gpg-key ];
-
-          sopsPGPKeyDirs = [
-            "./keys/hosts/"
-            "./keys/users/"
-          ];
-          nativeBuildInputs = [ sops-import-keys-hook ];
         };
+
+        sopsPGPKeyDirs = [
+          "./keys/hosts/"
+          "./keys/users/"
+        ];
+      };
     };
 }
