@@ -1,6 +1,6 @@
-{ flake-inputs }:
+{ nixpkgs, ... }@flake-inputs:
 let
-  pkgs = flake-inputs.nixpkgs.legacyPackages.x86_64-linux;
+  pkgs = nixpkgs.legacyPackages;
 
   mkTest =
     test:

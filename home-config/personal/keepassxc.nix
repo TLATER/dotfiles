@@ -5,8 +5,8 @@
   ...
 }:
 let
-  inherit (flake-inputs.self.packages.${pkgs.system}) nextcloudcmd;
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuWith;
+  inherit (flake-inputs.self.packages) nextcloudcmd;
+  inherit (flake-inputs.self.pkgs-lib) writeNuWith;
 in
 {
   home.packages = with pkgs; [ keepassxc ];

@@ -1,7 +1,7 @@
 { pkgs, flake-inputs }:
 let
   inherit (pkgs) lib;
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuBinWith;
+  inherit (flake-inputs.self.pkgs-lib) writeNuBinWith;
 in
 {
   nixUpdateScript =

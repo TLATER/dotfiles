@@ -60,7 +60,7 @@
 
   hardware.nvidia =
     let
-      inherit (flake-inputs.self.packages.${pkgs.system}) nvidia;
+      inherit (flake-inputs.self.packages) nvidia;
     in
     {
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {

@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuBinWith;
+  inherit (flake-inputs.self.pkgs-lib) writeNuBinWith;
 
   loginctl = "${pkgs.systemd}/bin/loginctl";
   swaypkg = nixos-config.programs.sway.package or pkgs.sway;
@@ -53,9 +53,7 @@ in
     systemd.xdgAutostart = false;
     extraConfigEarly =
       let
-        theme = "${
-          flake-inputs.self.packages.${pkgs.system}.catppuccin-themes
-        }/share/i3/themes/catppuccin-macchiato";
+        theme = "${flake-inputs.self.packages.catppuccin-themes}/share/i3/themes/catppuccin-macchiato";
       in
       ''
         include ${theme}
@@ -94,7 +92,7 @@ in
       settings = {
         main =
           let
-            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-themes;
+            inherit (flake-inputs.self.packages) catppuccin-themes;
           in
           {
             # The launch prefix *is* set correctly for terminals

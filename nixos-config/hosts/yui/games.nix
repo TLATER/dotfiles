@@ -1,9 +1,9 @@
 { flake-inputs, pkgs, ... }:
 let
   inherit (flake-inputs) nix-gaming nixpkgs-unstable self;
-  pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
-  pkgsGames = nix-gaming.packages.${pkgs.system};
-  pkgsSelf = self.packages.${pkgs.system};
+  pkgsUnstable = nixpkgs-unstable.legacyPackages;
+  pkgsGames = nix-gaming.packages;
+  pkgsSelf = self.packages;
 in
 {
   imports = [

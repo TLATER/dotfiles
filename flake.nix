@@ -47,7 +47,11 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { self, ... }@inputs:
+    let
+      x86Inputs = self.lib.flattenFlakeInputs inputs "x86_64-linux";
+      inherit (x86Inputs) nixpkgs sops-nix;
+    in
     {
       nixosConfigurations = {
         yui = nixpkgs.lib.nixosSystem {
@@ -57,7 +61,7 @@
             ./nixos-config/hosts/yui
           ];
 
-          specialArgs.flake-inputs = inputs;
+          specialArgs.flake-inputs = x86Inputs;
         };
 
         rin = nixpkgs.lib.nixosSystem {
@@ -67,7 +71,7 @@
             ./nixos-config/hosts/rin
           ];
 
-          specialArgs.flake-inputs = inputs;
+          specialArgs.flake-inputs = x86Inputs;
         };
       };
 
@@ -76,29 +80,24 @@
       };
 
       packages.x86_64-linux = import ./pkgs {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        flake-inputs = inputs;
+        pkgs = nixpkgs.legacyPackages;
+        flake-inputs = x86Inputs;
       };
 
-      lib = import ./lib/pure.nix { inherit (nixpkgs) lib; };
+      lib = import ./lib/pure.nix { inherit (inputs.nixpkgs) lib; };
       pkgs-lib.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.callPackage ./lib/pkgs.nix { };
 
-      checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
+      checks.x86_64-linux = import ./checks x86Inputs;
 
-      devShells.x86_64-linux.default =
-        (
-          { nixpkgs, sops-nix, ... }:
-          nixpkgs.legacyPackages.mkShell {
-            packages = nixpkgs.lib.attrValues {
-              inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
-            };
+      devShells.x86_64-linux.default = nixpkgs.legacyPackages.mkShell {
+        packages = nixpkgs.lib.attrValues {
+          inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
+        };
 
-            sopsPGPKeyDirs = [
-              "./keys/hosts/"
-              "./keys/users/"
-            ];
-          }
-        )
-          (self.lib.flattenFlakeInputs inputs "x86_64-linux");
+        sopsPGPKeyDirs = [
+          "./keys/hosts/"
+          "./keys/users/"
+        ];
+      };
     };
 }

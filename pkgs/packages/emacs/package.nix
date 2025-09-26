@@ -8,12 +8,11 @@
   symlinkJoin,
 
   localLib,
-  system,
   nix-prefetch-github,
 }:
 let
   # TODO(tlater): ast-grep supports nix starting with version 0.39
-  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${system}) ast-grep;
+  inherit (flake-inputs.nixpkgs-unstable.legacyPackages) ast-grep;
 
   package = if hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
   emacsDotfiles = "${flake-inputs.self}/home-config/dotfiles/emacs.d";

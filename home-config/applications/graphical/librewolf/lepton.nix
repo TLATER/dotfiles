@@ -1,12 +1,11 @@
 {
   flake-inputs,
-  pkgs,
   lib,
   config,
   ...
 }:
 let
-  inherit (flake-inputs.self.packages.${pkgs.system}) firefox-ui-fix;
+  inherit (flake-inputs.self.packages) firefox-ui-fix;
   cfg = config.programs.librewolf;
 in
 {

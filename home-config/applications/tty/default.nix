@@ -7,7 +7,7 @@
 {
   imports = [ ./emacs.nix ];
 
-  home.packages = [ flake-inputs.self.packages.${pkgs.system}.topiary ];
+  home.packages = [ flake-inputs.self.packages.topiary ];
 
   programs.bottom = {
     enable = true;

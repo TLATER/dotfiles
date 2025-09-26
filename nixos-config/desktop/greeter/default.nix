@@ -56,7 +56,7 @@ in
     pciutils
   ];
 
-  fonts.packages = [ flake-inputs.self.packages.${pkgs.system}.phosphor-icons ];
+  fonts.packages = [ flake-inputs.self.packages.phosphor-icons ];
 
   systemd.tmpfiles.rules =
     let

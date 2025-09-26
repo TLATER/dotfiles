@@ -12,6 +12,6 @@
   programs.carapace = {
     enable = true;
     # Needed because of https://github.com/nix-community/home-manager/issues/7517
-    package = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.carapace;
+    package = flake-inputs.nixpkgs-unstable.legacyPackages.carapace;
   };
 }

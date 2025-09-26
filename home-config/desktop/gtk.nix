@@ -29,9 +29,7 @@
         paths = [ pkgs.papirus-icon-theme ];
         postBuild =
           let
-            edopro = "${
-              flake-inputs.self.packages.${pkgs.system}.delta-icons
-            }/share/icons/delta-icons/scalable/apps/EDOPro.svg";
+            edopro = "${flake-inputs.self.packages.delta-icons}/share/icons/delta-icons/scalable/apps/EDOPro.svg";
           in
           ''
             ln -s $out/share/icons/Papirus-Dark/24x24/apps/utilities-system-monitor.svg \

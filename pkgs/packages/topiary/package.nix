@@ -1,5 +1,4 @@
 {
-  system,
   flake-inputs,
   lib,
   callPackage,
@@ -14,7 +13,7 @@
   nix-update,
 }:
 let
-  inherit (flake-inputs.tree-sitter-sieve.packages.${system}) tree-sitter-sieve topiary-sieve;
+  inherit (flake-inputs.tree-sitter-sieve.packages) tree-sitter-sieve topiary-sieve;
 
   languages = {
     inherit topiary-sieve;
