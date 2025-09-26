@@ -80,7 +80,8 @@
         flake-inputs = inputs;
       };
 
-      pkgs-lib.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.callPackage ./lib { };
+      lib = import ./lib/pure.nix { inherit (nixpkgs) lib; };
+      pkgs-lib.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.callPackage ./lib/pkgs.nix { };
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 

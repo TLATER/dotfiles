@@ -1,6 +1,6 @@
-{ pkgs, flake-inputs, ... }:
+{ flake-inputs, ... }:
 let
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) mapSubvolumes;
+  inherit (flake-inputs.self.lib) mapSubvolumes;
 in
 {
   disko.devices.disk = {
