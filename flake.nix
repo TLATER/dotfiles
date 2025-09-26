@@ -85,18 +85,32 @@
 
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
-      devShells.x86_64-linux.default =
+      devShells.x86_64-linux =
         (
           { nixpkgs, sops-nix, ... }:
-          nixpkgs.legacyPackages.mkShell {
-            packages = nixpkgs.lib.attrValues {
-              inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
+          {
+            default = nixpkgs.legacyPackages.mkShell {
+              packages = nixpkgs.lib.attrValues {
+                inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
+              };
+
+              sopsPGPKeyDirs = [
+                "./keys/hosts/"
+                "./keys/users/"
+              ];
             };
 
-            sopsPGPKeyDirs = [
-              "./keys/hosts/"
-              "./keys/users/"
-            ];
+            rust = nixpkgs.legacyPackages.mkShell {
+              packages = nixpkgs.lib.attrValues {
+                inherit (nixpkgs.legacyPackages)
+                  rust-analyzer
+                  rustc
+                  rustfmt
+                  cargo
+                  clippy
+                  ;
+              };
+            };
           }
         )
           (self.lib.flattenFlakeInputs inputs "x86_64-linux");
