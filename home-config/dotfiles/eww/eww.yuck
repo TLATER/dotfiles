@@ -45,12 +45,12 @@
                   :visible {EWW_BATTERY != ""}
                   :tooltip "${EWW_BATTERY == "" ? "" : jq(EWW_BATTERY, "first(.[])").capacity}%"))
 
-(defvar inhibit false)
+(deflisten inhibiting :initial "{ \"payload\": { \"data\": [\"\", { \"IsInhibiting\": {\"data\": false} }] } }"
+           `busctl -j --user monitor --match="type='signal',sender='net.tlater.DesktopLogic',path='/net/tlater/desktoplogic/idleinhibitor',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged'"`)
 (defwidget _idle_inhibitor []
            (button
-            :timeout 2147483647
-            :onclick "${ EWW_CONFIG_DIR }/inhibit.sh"
-            {inhibit ? "" : ""}))
+            :onclick "busctl --user call net.tlater.DesktopLogic /net/tlater/desktoplogic/idleinhibitor net.tlater.DesktopLogic.IdleInhibitor ToggleInhibit"
+            {inhibiting.payload.data[1].IsInhibiting.data ? "" : ""}))
 
 (defwidget _clock []
            (label :text { formattime(EWW_TIME, "%R") }
