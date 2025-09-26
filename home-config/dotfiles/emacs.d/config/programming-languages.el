@@ -264,7 +264,7 @@
   (add-to-list 'eglot-server-programs
                '(rust-ts-mode . ("rust-analyzer"
                                  :initializationOptions
-                                 (:checkOnSave
+                                 (:check
                                   (:command "clippy"))))))
 
 ;; Use rust-mode just for the compilation regexes
