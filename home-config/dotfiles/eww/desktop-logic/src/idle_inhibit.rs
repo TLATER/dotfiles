@@ -5,16 +5,16 @@ use tokio::sync::Mutex;
 use zbus::{Connection, interface, object_server::SignalEmitter, proxy, zvariant::OwnedFd};
 
 /// A ``DBus`` service that manages inhibiting screen idling
-pub struct IdleInhibitor<'login_manager> {
+pub struct IdleInhibitor {
     /// The file descriptor returned by the freedesktop idle
     /// interface; when this file descriptor is closed (freed), the
     /// idle lock is released.
     inhibit_lock: Arc<Mutex<Option<OwnedFd>>>,
     /// A reference to the freedesktop login manager interface.
-    login_manager: LoginManagerProxy<'login_manager>,
+    login_manager: LoginManagerProxy<'static>,
 }
 
-impl IdleInhibitor<'_> {
+impl IdleInhibitor {
     /// Constructor for the `IdleInhibitor`
     pub async fn try_new() -> zbus::Result<Self> {
         let system_bus = Connection::system().await?;
@@ -28,7 +28,7 @@ impl IdleInhibitor<'_> {
 }
 
 #[interface(name = "net.tlater.DesktopLogic.IdleInhibitor")]
-impl IdleInhibitor<'static> {
+impl IdleInhibitor {
     /// Toggle the screen idle inhibit
     async fn toggle_inhibit(
         &self,

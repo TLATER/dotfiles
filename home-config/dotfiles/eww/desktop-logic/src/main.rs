@@ -37,7 +37,6 @@
     clippy::missing_inline_in_public_items,
     clippy::mixed_read_write_in_expression,
     clippy::module_name_repetitions,
-    clippy::multiple_inherent_impl,
     clippy::multiple_unsafe_ops_per_block,
     clippy::mutex_atomic,
     clippy::mutex_integer,
