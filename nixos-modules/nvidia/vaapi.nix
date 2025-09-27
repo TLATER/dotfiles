@@ -78,12 +78,17 @@ in
       {
         environment = {
           systemPackages = [ pkgs.libva-utils ];
-          variables = {
-            NVD_BACKEND = "direct";
-            LIBVA_DRIVER_NAME = "nvidia";
-          }
-          // lib.optionalAttrs (cfg.maxInstances != null) { NVD_MAX_INSTANCES = toString cfg.maxInstances; }
-          // lib.optionalAttrs cfg.firefox.enable { MOZ_DISABLE_RDD_SANDBOX = "1"; };
+
+          variables = lib.mergeAttrsList (
+            [
+              {
+                MOZ_DISABLE_RDD_SANDBOX = "1";
+                NVD_BACKEND = "direct";
+                LIBVA_DRIVER_NAME = "nvidia";
+              }
+            ]
+            ++ lib.optional (cfg.maxInstances != null) { NVD_MAX_INSTANCES = toString cfg.maxInstances; }
+          );
         };
       }
 
@@ -104,22 +109,20 @@ in
               "widget.dmabuf.force-enabled" = true;
             };
         in
-        lib.mkIf cfg.firefox.enable (
-          lib.mkMerge [
-            { programs.firefox.preferences = firefoxSettings config.programs.firefox.package; }
-            (lib.optionalAttrs (options ? home-manager) {
-              home-manager.sharedModules = [
-                (
-                  { config, ... }:
-                  {
-                    programs.librewolf.settings = firefoxSettings config.programs.librewolf.package;
-                    # TODO(tlater): Add settings for Firefox and floorp
-                  }
-                )
-              ];
-            })
-          ]
-        )
+        lib.mkMerge [
+          { programs.firefox.preferences = firefoxSettings config.programs.firefox.package; }
+          (lib.optionalAttrs (options ? home-manager) {
+            home-manager.sharedModules = [
+              (
+                { config, ... }:
+                {
+                  programs.librewolf.settings = firefoxSettings config.programs.librewolf.package;
+                  # TODO(tlater): Add settings for Firefox and floorp
+                }
+              )
+            ];
+          })
+        ]
       )
     ]
   );

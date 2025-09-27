@@ -44,7 +44,10 @@ in
   easyNvidia = {
     enable = true;
     withIntegratedGPU = false;
-    vaapi.firefox.av1Support = true;
+    vaapi = {
+      enable = true;
+      firefox.av1Support = true;
+    };
   };
 
   boot = {
