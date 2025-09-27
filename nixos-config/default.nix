@@ -52,6 +52,15 @@
     };
   };
 
+  # TODO(tlater): Only an issue for NixOS 25.05 - the 0.0.13 version
+  # of the nvidia-vaapi-driver is broken, see
+  # https://github.com/elFarto/nvidia-vaapi-driver/issues/370
+  nixpkgs.overlays = [
+    (_: _: {
+      inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) nvidia-vaapi-driver;
+    })
+  ];
+
   easyNvidia = {
     # Apparently xanmod isn't available for LTS at the moment, oh well
     advanced.forceKernel = true;
