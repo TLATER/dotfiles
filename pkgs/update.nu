@@ -17,6 +17,7 @@ log info 'Committing changes'
 
 try {
   git add pkgs/packages/
+  git add home-config/dotfiles/eww/desktop-logic/Cargo.lock
   git commit -m 'update(pkgs): Update sources of all downstream packages'
 } catch {
   log warning 'No changes to commit'
