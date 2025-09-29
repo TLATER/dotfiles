@@ -26,7 +26,7 @@ def nix-create-gcroot [path: path] {
   let name = $store_path | path basename | split row '-' | skip 1 | str join '-'
   let gcroot = [(pwd) gcroots ($name + '.gcroot')] | path join
 
-  if (gcroot | path exists) {
+  if ($gcroot | path exists) {
     print gcroot already exists
     return
   }
