@@ -34,7 +34,6 @@ in
       "steam-original"
       "steam-unwrapped"
       "nvidia-x11"
-      "nvidia-settings"
     ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
