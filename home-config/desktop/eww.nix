@@ -30,8 +30,11 @@ in
         ExecStartPost = "${ewwBin} open tray";
         Environment = "PATH=${
           lib.makeBinPath [
-            pkgs.bashInteractive # `eww` shells out using `sh`; `dash` does not currently contain an `sh` symlink
+            # See https://github.com/elkowar/eww/issues/553#issuecomment-3369207619
+            pkgs.bashInteractive
+            # To run nushell scripts in the config
             pkgs.nushell
+            # For busctl
             pkgs.systemd
           ]
         }";

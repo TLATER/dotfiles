@@ -25,7 +25,11 @@
                 (_idle_inhibitor)
                 (systray :spacing 0
                          :orientation "horizontal"
-                         :space-evenly false)))
+                         :space-evenly false)
+
+                (_notifications)
+
+                ))
 
 (defwidget _battery_icon []
            (label :text {
@@ -55,3 +59,12 @@
 (defwidget _clock []
            (label :text { formattime(EWW_TIME, "%R") }
                   :tooltip { formattime(EWW_TIME, "%F") }))
+
+(defvar DL_NOTIFICATIONS "")
+(defvar DL_NOTIFICATION_COUNT 2)
+(defvar notification_index 1)
+
+(defwidget _notifications []
+           (eventbox
+            :onscroll "commands.nu scroll-notifications"
+            (literal :content DL_NOTIFICATIONS)))

@@ -7,4 +7,6 @@ edition = "2024"
 env_logger = "0.11.8"
 log = "0.4.28"
 zbus = "5.11.0"
-tokio = { version = "1.47.1", features = ["macros", "rt", "rt-multi-thread", "sync"] }
+tokio = { version = "1.47.1", features = ["macros", "rt", "rt-multi-thread", "sync", "time"] }
+time = "0.3.44"
+tokio-stream = "0.1.17"

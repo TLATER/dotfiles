@@ -81,8 +81,10 @@
 )]
 
 mod idle_inhibit;
+mod notifications;
 
 use idle_inhibit::IdleInhibitor;
+use notifications::NotificationHandler;
 use zbus::connection;
 
 #[tokio::main]
@@ -97,11 +99,8 @@ async fn main() -> zbus::Result<()> {
         .build()
         .await?;
 
-    #[expect(
-        clippy::infinite_loop,
-        reason = "we need to keep the main thread alive so the DBus interface continues running"
-    )]
-    loop {
-        std::future::pending::<()>().await;
-    }
+    let notification_handler = NotificationHandler::try_new();
+    notification_handler.run().await;
+
+    Ok(())
 }
