@@ -9,7 +9,7 @@
     userEmail = "tm@tlater.net";
 
     signing = {
-      key = "0x49670FD774E43268";
+      key = "0x02E935006CF2E8E7";
       signByDefault = true;
     };
 

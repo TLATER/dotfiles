@@ -1,6 +1,8 @@
-{ flake-inputs, lib, ... }:
+{ lib, ... }:
 {
-  home.file.".ssh/tlater.pub".source = "${flake-inputs.self}/keys/tlater.pub";
+  home.file.".ssh/tlater.pub".text = ''
+    ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMMst2rs9WuvWnRTOuQElDMx0/cf4n9x9lC1+8clT0LZ openpgp:0xDD46BD5E
+  '';
 
   programs.ssh.matchBlocks = {
     "*" = {
