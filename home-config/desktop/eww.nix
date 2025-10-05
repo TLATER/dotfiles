@@ -31,6 +31,7 @@ in
         Environment = "PATH=${
           lib.makeBinPath [
             pkgs.bashInteractive # `eww` shells out using `sh`; `dash` does not currently contain an `sh` symlink
+            pkgs.nushell
             pkgs.systemd
           ]
         }";

@@ -46,10 +46,10 @@
                   :tooltip "${EWW_BATTERY == "" ? "" : jq(EWW_BATTERY, "first(.[])").capacity}%"))
 
 (deflisten inhibiting :initial "{ \"payload\": { \"data\": [\"\", { \"IsInhibiting\": {\"data\": false} }] } }"
-           `busctl -j --user monitor --match="type='signal',sender='net.tlater.DesktopLogic',path='/net/tlater/desktoplogic/idleinhibitor',interface='org.freedesktop.DBus.Properties',member='PropertiesChanged'"`)
+           "nu commands.nu monitor-notifications")
 (defwidget _idle_inhibitor []
            (button
-            :onclick "busctl --user call net.tlater.DesktopLogic /net/tlater/desktoplogic/idleinhibitor net.tlater.DesktopLogic.IdleInhibitor ToggleInhibit"
+            :onclick "nu commands.nu toggle-inhibit"
             {inhibiting.payload.data[1].IsInhibiting.data ? "" : ""}))
 
 (defwidget _clock []
