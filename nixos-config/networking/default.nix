@@ -35,12 +35,23 @@
         {
           name = ".";
           forward-tls-upstream = true;
-          forward-addr = [
-            "9.9.9.9@853#dns.quad9.net"
-            "149.112.112.112@853#dns.quad9.net"
-            "2620:fe::fe@853#dns.quad9.net"
-            "2620:fe::9@853#dns.quad9.net"
-          ];
+          forward-addr = lib.flatten (
+            lib.mapAttrsToList (domain: ips: map (ip: "${ip}@853#${domain}") ips) {
+              "dns.quad9.net" = [
+                "9.9.9.9"
+                "149.112.112.112"
+                "2620:fe::fe"
+                "2620:fe::9"
+              ];
+
+              "one.one.one.one" = [
+                "1.1.1.1"
+                "1.0.0.1"
+                "2606:4700:4700::1111"
+                "2606:4700:4700::1001"
+              ];
+            }
+          );
         }
       ];
     };
