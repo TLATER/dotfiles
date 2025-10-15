@@ -1,6 +1,5 @@
 {
   imports = [
-    ./dunst.nix
     ./eww.nix
     ./gtk.nix
     ./mime.nix
