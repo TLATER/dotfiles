@@ -1,35 +1,30 @@
 (defwindow tray
            :monitor 0
-           :geometry (geometry :height "0%"
-                               :width "0%"
+           :geometry (geometry :height "0"
+                               :width "100%"
                                :anchor "bottom left")
            :stacking "bottom"
-           :exclusive true
            :focusable false
 
-           (_tray_items))
+           (centerbox
+            (_tray_items)
+            ""
+            (_notifications)))
 
 (defwidget _tray_items []
-           (box :class "tray-items"
+           (box
+            :halign "start"
 
-                :spacing 4
-                :vexpand true
-                :hexpand true
-                :valign "center"
-                :halign "start"
-                :space-evenly false
+            :spacing 4
+            :space-evenly false
 
-                (_battery_icon)
-                (_clock)
-                "|"
-                (_idle_inhibitor)
-                (systray :spacing 0
-                         :orientation "horizontal"
-                         :space-evenly false)
-
-                (_notifications)
-
-                ))
+            (_battery_icon)
+            (_clock)
+            "|"
+            (_idle_inhibitor)
+            (systray :spacing 0
+                     :orientation "horizontal"
+                     :space-evenly false)))
 
 (defwidget _battery_icon []
            (label :text {
@@ -66,5 +61,7 @@
 
 (defwidget _notifications []
            (eventbox
+            :halign "end"
+
             :onscroll "commands.nu scroll-notifications"
             (literal :content DL_NOTIFICATIONS)))

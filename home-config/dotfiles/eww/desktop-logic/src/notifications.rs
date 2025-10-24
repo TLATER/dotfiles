@@ -16,7 +16,8 @@ use tokio_stream::{StreamExt as _, wrappers::IntervalStream};
 const DEFAULT_EXPIRE_INTERVAL: std::time::Duration = std::time::Duration::from_secs(1);
 /// The variable name under which the notifications are exposed inside
 /// eww
-const EWW_VARIABLE_NAME: &str = "DL_NOTIFICATIONS";
+const EWW_NOTIFICATION_VARIABLE: &str = "DL_NOTIFICATIONS";
+const EWW_NOTIFICATION_COUNT_VARIABLE: &str = "DL_NOTIFICATION_COUNT";
 
 /// Internal representation of a ``DBus`` notification.
 ///
@@ -101,7 +102,7 @@ fn eww_update(notifications: &[Notification]) -> std::result::Result<(), std::io
             let _ = write!(acc, "(label :text \"{}\")", notification.summary);
             acc
         });
-    let var_string = format!("DL_NOTIFICATIONS=(stack :selected notification_index {widgets})");
+    let var_string = format!("{EWW_NOTIFICATION_VARIABLE}=(stack :selected notification_index {widgets})");
 
     log::debug!("Setting eww variable: {var_string}");
     std::process::Command::new("eww")
@@ -110,7 +111,7 @@ fn eww_update(notifications: &[Notification]) -> std::result::Result<(), std::io
             "/home/tlater/.local/src/dotfiles/home-config/dotfiles/eww",
             "update",
             &var_string,
-            &format!("DL_NOTIFICATION_COUNT={}", notifications.len()),
+            &format!("{EWW_NOTIFICATION_COUNT_VARIABLE}={}", notifications.len()),
         ])
         .status()?;
 
