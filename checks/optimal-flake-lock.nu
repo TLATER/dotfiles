@@ -1,4 +1,4 @@
-let lockfile = open $env.src | from json
+let lockfile = open flake.lock | from json
 
 let duplicates = (
   $lockfile.nodes
@@ -14,7 +14,6 @@ let root = $lockfile.nodes | get $lockfile.root
 
 if ($duplicates | is-empty) {
   print "No duplicate inputs found; check successful"
-  mkdir $env.out
   exit
 }
 
