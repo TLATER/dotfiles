@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    flint = {
+      url = "github:NotAShelf/flint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     famedly-nixos = {
       url = "github:famedly/famedly-nixos";
