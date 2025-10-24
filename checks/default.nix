@@ -32,9 +32,10 @@ in
   lockfile = checkLib.mkLint {
     name = "nix-lockfile";
     fileset = ../flake.lock;
+    checkInputs = lib.attrValues { inherit (flake-inputs.flint.packages.x86_64-linux) flint; };
 
     script = ''
-      nu ${./optimal-flake-lock.nu}
+      flint --fail-if-multiple-versions
     '';
   };
 
