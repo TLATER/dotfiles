@@ -87,7 +87,12 @@
 
       devShells.x86_64-linux =
         (
-          { nixpkgs, sops-nix, ... }:
+          {
+            self,
+            nixpkgs,
+            sops-nix,
+            ...
+          }:
           {
             default = nixpkgs.legacyPackages.mkShell {
               packages = nixpkgs.lib.attrValues {
@@ -100,17 +105,7 @@
               ];
             };
 
-            rust = nixpkgs.legacyPackages.mkShell {
-              packages = nixpkgs.lib.attrValues {
-                inherit (nixpkgs.legacyPackages)
-                  rust-analyzer
-                  rustc
-                  rustfmt
-                  cargo
-                  clippy
-                  ;
-              };
-            };
+            desktop-logic = self.packages.desktop-logic.devShell;
           }
         )
           (self.lib.flattenFlakeInputs inputs "x86_64-linux");
