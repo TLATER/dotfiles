@@ -108,6 +108,9 @@
             rust = nixpkgs.legacyPackages.mkShell {
               packages = nixpkgs.lib.attrValues {
                 inherit (nixpkgs.legacyPackages)
+                  pkg-config
+                  libxkbcommon
+
                   rust-analyzer
                   rustc
                   rustfmt
