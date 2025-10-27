@@ -80,28 +80,33 @@
     clippy::verbose_file_reads
 )]
 
+use tray::Tray;
+
 mod idle_inhibit;
+mod tray;
 
-use idle_inhibit::IdleInhibitor;
-use zbus::connection;
+// use idle_inhibit::IdleInhibitor;
+// use zbus::connection;
 
-#[tokio::main]
-async fn main() -> zbus::Result<()> {
+fn main() {
     env_logger::init();
 
-    let inhibitor = IdleInhibitor::try_new().await?;
+    let tray = Tray::new();
+    tray.run().unwrap();
 
-    let _connection = connection::Builder::session()?
-        .name("net.tlater.DesktopLogic")?
-        .serve_at("/net/tlater/desktoplogic/idleinhibitor", inhibitor)?
-        .build()
-        .await?;
+    // let inhibitor = IdleInhibitor::try_new().await?;
 
-    #[expect(
-        clippy::infinite_loop,
-        reason = "we need to keep the main thread alive so the DBus interface continues running"
-    )]
-    loop {
-        std::future::pending::<()>().await;
-    }
+    // let _connection = connection::Builder::session()?
+    //     .name("net.tlater.DesktopLogic")?
+    //     .serve_at("/net/tlater/desktoplogic/idleinhibitor", inhibitor)?
+    //     .build()
+    //     .await?;
+
+    // #[expect(
+    //     clippy::infinite_loop,
+    //     reason = "we need to keep the main thread alive so the DBus interface continues running"
+    // )]
+    // loop {
+    //     std::future::pending::<()>().await;
+    // }
 }
