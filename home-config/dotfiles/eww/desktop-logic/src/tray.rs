@@ -65,7 +65,7 @@ impl Tray {
         // initial memory allocation.
         let _pool = SlotPool::new(256 * 256 * 4, &shm)?;
 
-        let mut state = TrayState::new(&globals);
+        let mut state = TrayState::new(&globals, shm);
 
         loop {
             event_queue.blocking_dispatch(&mut state)?;
@@ -75,15 +75,18 @@ impl Tray {
 
 /// Tray state
 struct TrayState {
-    /// The registry; tracks various Wayland globals
+    /// The registry which tracks various Wayland globals
     registry_state: RegistryState,
+    /// The shared memory into which we draw
+    shm: Shm,
 }
 
 impl TrayState {
     /// Constructor for the tray state
-    fn new(globals: &GlobalList) -> Self {
+    fn new(globals: &GlobalList, shm: Shm) -> Self {
         Self {
             registry_state: RegistryState::new(globals),
+            shm,
         }
     }
 }
@@ -197,7 +200,7 @@ impl LayerShellHandler for TrayState {
 
 impl ShmHandler for TrayState {
     fn shm_state(&mut self) -> &mut Shm {
-        todo!()
+        &mut self.shm
     }
 }
 
