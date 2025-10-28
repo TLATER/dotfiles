@@ -16,7 +16,7 @@ use smithay_client_toolkit::{
 };
 use thiserror::Error;
 use wayland_client::{
-    ConnectError, Connection, DispatchError,
+    ConnectError, Connection, DispatchError, QueueHandle,
     globals::{BindError, GlobalError, GlobalList, registry_queue_init},
 };
 
@@ -67,7 +67,7 @@ impl Tray {
         // initial memory allocation.
         let _pool = SlotPool::new(256 * 256 * 4, &shm)?;
 
-        let mut state = TrayState::new(&globals, shm);
+        let mut state = TrayState::new(&globals, &queue_handle, shm);
 
         loop {
             event_queue.blocking_dispatch(&mut state)?;
@@ -80,8 +80,10 @@ impl Tray {
 
 /// Tray state
 struct TrayState {
-    /// The registry which tracks various Wayland globals
+    /// Tracks various Wayland globals
     registry_state: RegistryState,
+    /// Tracks the state of outputs that we might create layers on
+    output_state: OutputState,
     /// The shared memory into which we draw
     shm: Shm,
     /// Whether we are closing
@@ -94,9 +96,10 @@ struct TrayState {
 
 impl TrayState {
     /// Constructor for the tray state
-    fn new(globals: &GlobalList, shm: Shm) -> Self {
+    fn new(globals: &GlobalList, queue_handle: &QueueHandle<Self>, shm: Shm) -> Self {
         Self {
             registry_state: RegistryState::new(globals),
+            output_state: OutputState::new(globals, queue_handle),
             shm,
             closing: false,
             width: 256,
@@ -159,7 +162,7 @@ impl CompositorHandler for TrayState {
 
 impl OutputHandler for TrayState {
     fn output_state(&mut self) -> &mut smithay_client_toolkit::output::OutputState {
-        todo!()
+        &mut self.output_state
     }
 
     fn new_output(
@@ -168,7 +171,8 @@ impl OutputHandler for TrayState {
         _qh: &wayland_client::QueueHandle<Self>,
         _output: wayland_client::protocol::wl_output::WlOutput,
     ) {
-        todo!()
+        // TODO(tlater): Some logic to shift the layer to the
+        // "primary" output
     }
 
     fn update_output(
@@ -177,7 +181,8 @@ impl OutputHandler for TrayState {
         _qh: &wayland_client::QueueHandle<Self>,
         _output: wayland_client::protocol::wl_output::WlOutput,
     ) {
-        todo!()
+        // TODO(tlater): Some logic to update window sizes and such?
+        // Idk
     }
 
     fn output_destroyed(
@@ -186,7 +191,8 @@ impl OutputHandler for TrayState {
         _qh: &wayland_client::QueueHandle<Self>,
         _output: wayland_client::protocol::wl_output::WlOutput,
     ) {
-        todo!()
+        // TODO(tlater): Some logic to shift the layer to the
+        // "primary" output
     }
 }
 
