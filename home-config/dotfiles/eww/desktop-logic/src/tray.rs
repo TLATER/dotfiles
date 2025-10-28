@@ -1,5 +1,7 @@
 //! A custom tray for Wayland compositors that implement `wlr_shell`
 
+use std::num::NonZeroU32;
+
 use smithay_client_toolkit::{
     compositor::{CompositorHandler, CompositorState},
     delegate_compositor, delegate_layer, delegate_output, delegate_registry, delegate_shm,
@@ -69,6 +71,9 @@ impl Tray {
 
         loop {
             event_queue.blocking_dispatch(&mut state)?;
+            if state.closing {
+                break Ok(());
+            }
         }
     }
 }
@@ -79,6 +84,12 @@ struct TrayState {
     registry_state: RegistryState,
     /// The shared memory into which we draw
     shm: Shm,
+    /// Whether we are closing
+    closing: bool,
+    /// The width of the tray
+    width: u32,
+    /// The height of the tray
+    height: u32,
 }
 
 impl TrayState {
@@ -87,6 +98,9 @@ impl TrayState {
         Self {
             registry_state: RegistryState::new(globals),
             shm,
+            closing: false,
+            width: 256,
+            height: 256,
         }
     }
 }
@@ -183,7 +197,7 @@ impl LayerShellHandler for TrayState {
         _qh: &wayland_client::QueueHandle<Self>,
         _layer: &smithay_client_toolkit::shell::wlr_layer::LayerSurface,
     ) {
-        todo!()
+        self.closing = true;
     }
 
     fn configure(
@@ -191,10 +205,11 @@ impl LayerShellHandler for TrayState {
         _conn: &Connection,
         _qh: &wayland_client::QueueHandle<Self>,
         _layer: &smithay_client_toolkit::shell::wlr_layer::LayerSurface,
-        _configure: smithay_client_toolkit::shell::wlr_layer::LayerSurfaceConfigure,
+        configure: smithay_client_toolkit::shell::wlr_layer::LayerSurfaceConfigure,
         _serial: u32,
     ) {
-        todo!()
+        self.width = NonZeroU32::new(configure.new_size.0).map_or(256, NonZeroU32::get);
+        self.height = NonZeroU32::new(configure.new_size.1).map_or(256, NonZeroU32::get);
     }
 }
 
