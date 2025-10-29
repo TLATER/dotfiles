@@ -1,6 +1,6 @@
 //! A custom tray for Wayland compositors that implement `wlr_shell`
 
-use std::num::NonZeroU32;
+use std::num::{NonZeroI32, TryFromIntError};
 
 use smithay_client_toolkit::{
     compositor::{CompositorHandler, CompositorState},
@@ -10,29 +10,26 @@ use smithay_client_toolkit::{
     registry_handlers,
     shell::{
         WaylandSurface as _,
-        wlr_layer::{Anchor, Layer, LayerShell, LayerShellHandler},
+        wlr_layer::{Anchor, Layer, LayerShell, LayerShellHandler, LayerSurface},
     },
-    shm::{CreatePoolError, Shm, ShmHandler, slot::SlotPool},
+    shm::{CreatePoolError, Shm, ShmHandler, multi::MultiPool, slot::CreateBufferError},
 };
 use thiserror::Error;
 use wayland_client::{
     ConnectError, Connection, DispatchError, QueueHandle,
     globals::{BindError, GlobalError, GlobalList, registry_queue_init},
+    protocol::wl_shm,
 };
 
 // See upstream example: https://github.com/Smithay/client-toolkit/blob/master/examples/simple_layer.rs
 // This may also help: https://gaultier.github.io/blog/wayland_from_scratch.html
 
+/// A simple tray
 pub struct Tray;
 
 impl Tray {
-    /// Constructor for the tray
-    pub fn new() -> Self {
-        Self
-    }
-
     /// Run the tray
-    pub fn run(&self) -> Result<()> {
+    pub fn run() -> Result<()> {
         let connection = Connection::connect_to_env()?;
         let (globals, mut event_queue) = registry_queue_init(&connection)?;
         let queue_handle = event_queue.handle();
@@ -63,11 +60,8 @@ impl Tray {
         // surface with the correct options.
         layer.commit();
 
-        // We don't know how large the window will be yet, so lets assume the minimum size we suggested for the
-        // initial memory allocation.
-        let _pool = SlotPool::new(256 * 256 * 4, &shm)?;
-
-        let mut state = TrayState::new(&globals, &queue_handle, shm);
+        let pool = MultiPool::new(&shm)?;
+        let mut state = TrayState::new(&globals, &queue_handle, shm, pool, layer);
 
         loop {
             event_queue.blocking_dispatch(&mut state)?;
@@ -86,24 +80,82 @@ struct TrayState {
     output_state: OutputState,
     /// The shared memory into which we draw
     shm: Shm,
+    /// The width of the tray
+    width: i32,
+    /// The height of the tray
+    height: i32,
+    /// The shared memory pool
+    pool: MultiPool<usize>,
+    /// The current buffer index
+    current_buffer: usize,
+    /// The layer to draw on
+    layer: LayerSurface,
+
     /// Whether we are closing
     closing: bool,
-    /// The width of the tray
-    width: u32,
-    /// The height of the tray
-    height: u32,
+    /// Whether the initial config has been completed
+    initial_config: bool,
 }
 
 impl TrayState {
     /// Constructor for the tray state
-    fn new(globals: &GlobalList, queue_handle: &QueueHandle<Self>, shm: Shm) -> Self {
+    fn new(
+        globals: &GlobalList,
+        queue_handle: &QueueHandle<Self>,
+        shm: Shm,
+        pool: MultiPool<usize>,
+        layer: LayerSurface,
+    ) -> Self {
         Self {
             registry_state: RegistryState::new(globals),
             output_state: OutputState::new(globals, queue_handle),
             shm,
-            closing: false,
             width: 256,
             height: 256,
+            pool,
+            current_buffer: 0,
+            layer,
+
+            closing: false,
+            initial_config: true,
+        }
+    }
+
+    /// Draw the tray
+    fn draw(&mut self, queue_handle: &QueueHandle<Self>) {
+        let stride = 4;
+
+        // i.e., double buffering
+        for i in 0..=1 {
+            self.current_buffer = i;
+
+            if let Ok((_offset, buffer, canvas)) = self.pool.create_buffer(
+                self.width,
+                self.width * stride,
+                self.height,
+                &self.current_buffer,
+                wl_shm::Format::Argb8888,
+            ) {
+                log::info!("Drawing frame!");
+
+                // Draw to the window:
+                {
+                    for byte in canvas.iter_mut() {
+                        *byte = 0xBB;
+                    }
+                }
+
+                self.layer
+                    .wl_surface()
+                    .damage_buffer(0, 0, self.width, self.height);
+                self.layer
+                    .wl_surface()
+                    .frame(queue_handle, self.layer.wl_surface().clone());
+                self.layer.wl_surface().attach(Some(buffer), 0, 0);
+                self.layer.commit();
+            } else {
+                log::warn!("Frame dropped!");
+            }
         }
     }
 }
@@ -116,7 +168,7 @@ impl CompositorHandler for TrayState {
         _surface: &wayland_client::protocol::wl_surface::WlSurface,
         _new_factor: i32,
     ) {
-        todo!()
+        // TODO(tlater)
     }
 
     fn transform_changed(
@@ -126,17 +178,17 @@ impl CompositorHandler for TrayState {
         _surface: &wayland_client::protocol::wl_surface::WlSurface,
         _new_transform: wayland_client::protocol::wl_output::Transform,
     ) {
-        todo!()
+        // TODO(tlater)
     }
 
     fn frame(
         &mut self,
         _conn: &Connection,
-        _qh: &wayland_client::QueueHandle<Self>,
+        qh: &wayland_client::QueueHandle<Self>,
         _surface: &wayland_client::protocol::wl_surface::WlSurface,
         _time: u32,
     ) {
-        todo!()
+        self.draw(qh);
     }
 
     fn surface_enter(
@@ -146,7 +198,7 @@ impl CompositorHandler for TrayState {
         _surface: &wayland_client::protocol::wl_surface::WlSurface,
         _output: &wayland_client::protocol::wl_output::WlOutput,
     ) {
-        todo!()
+        // TODO(tlater)
     }
 
     fn surface_leave(
@@ -156,7 +208,7 @@ impl CompositorHandler for TrayState {
         _surface: &wayland_client::protocol::wl_surface::WlSurface,
         _output: &wayland_client::protocol::wl_output::WlOutput,
     ) {
-        todo!()
+        // TODO(tlater)
     }
 }
 
@@ -206,16 +258,39 @@ impl LayerShellHandler for TrayState {
         self.closing = true;
     }
 
+    #[expect(
+        clippy::expect_used,
+        reason = "No option but to do an unclean u32 -> i32 conversion here"
+    )]
     fn configure(
         &mut self,
         _conn: &Connection,
-        _qh: &wayland_client::QueueHandle<Self>,
+        qh: &wayland_client::QueueHandle<Self>,
         _layer: &smithay_client_toolkit::shell::wlr_layer::LayerSurface,
         configure: smithay_client_toolkit::shell::wlr_layer::LayerSurfaceConfigure,
         _serial: u32,
     ) {
-        self.width = NonZeroU32::new(configure.new_size.0).map_or(256, NonZeroU32::get);
-        self.height = NonZeroU32::new(configure.new_size.1).map_or(256, NonZeroU32::get);
+        self.width = NonZeroI32::new(
+            configure
+                .new_size
+                .0
+                .try_into()
+                .expect("must be a valid i32"),
+        )
+        .map_or(256, NonZeroI32::get);
+        self.height = NonZeroI32::new(
+            configure
+                .new_size
+                .1
+                .try_into()
+                .expect("must be a valid i32"),
+        )
+        .map_or(256, NonZeroI32::get);
+
+        if self.initial_config {
+            self.initial_config = false;
+            self.draw(qh);
+        }
     }
 }
 
@@ -257,6 +332,12 @@ pub enum TrayError {
     /// TODO
     #[error(transparent)]
     CreatePool(#[from] CreatePoolError),
+    /// TODO
+    #[error(transparent)]
+    CreateBuffer(#[from] CreateBufferError),
+    /// TODO
+    #[error(transparent)]
+    BufferSize(#[from] TryFromIntError),
 }
 
 type Result<T> = std::result::Result<T, TrayError>;

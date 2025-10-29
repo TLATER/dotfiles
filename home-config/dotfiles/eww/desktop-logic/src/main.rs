@@ -85,16 +85,17 @@ use tray::Tray;
 mod idle_inhibit;
 mod tray;
 
-// use idle_inhibit::IdleInhibitor;
+use idle_inhibit::IdleInhibitor;
 // use zbus::connection;
 
-fn main() {
+#[tokio::main]
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
     env_logger::init();
 
-    let tray = Tray::new();
-    tray.run().unwrap();
+    Tray::run()?;
 
-    // let inhibitor = IdleInhibitor::try_new().await?;
+    let _inhibitor = IdleInhibitor::try_new().await?;
+    Ok(())
 
     // let _connection = connection::Builder::session()?
     //     .name("net.tlater.DesktopLogic")?
