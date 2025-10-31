@@ -120,6 +120,26 @@
         "type": "github"
       }
     },
+    "flint": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1759491390,
+        "narHash": "sha256-FAV+yoaTjwa8qiOwABxrdEx+/QaYPDYbFJ7iVcRqdeg=",
+        "owner": "NotAShelf",
+        "repo": "flint",
+        "rev": "d43835672958f1125ee4567ab4ddf6ecde33a965",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NotAShelf",
+        "repo": "flint",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -256,6 +276,7 @@
         "disko": "disko",
         "emacs-overlay": "emacs-overlay",
         "famedly-nixos": "famedly-nixos",
+        "flint": "flint",
         "home-manager": "home-manager",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
