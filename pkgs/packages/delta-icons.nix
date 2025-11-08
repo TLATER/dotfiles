@@ -5,13 +5,13 @@
 }:
 stdenvNoCC.mkDerivation (drv: {
   pname = "delta-icons";
-  version = "2.8.0";
+  version = "2.9.0";
 
   src = fetchFromGitHub {
     owner = "Delta-Icons";
     repo = "android";
     rev = "v${drv.version}";
-    sha256 = "sha256-kuFYGAjms2/tfKCP4ylF+Y4y3LdJ5aP03Xwi2elBVqg=";
+    sha256 = "sha256-8NaRrNJ7nEKDMFkmGS/1bxmG9pFDPKG+y8z/hVGYkCQ=";
   };
 
   installPhase = ''
