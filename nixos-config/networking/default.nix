@@ -1,6 +1,8 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   users.users.tlater.extraGroups = [ "networking" ];
+
+  environment.systemPackages = [ pkgs.dig ];
 
   networking = {
     useDHCP = false;
