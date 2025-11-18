@@ -39,6 +39,29 @@
           };
         };
 
+        lala = {
+          connection = {
+            id = "lala";
+            type = "wifi";
+
+            master = "bond0";
+            slave-type = "bond0";
+
+            autoconnect = true;
+            autoconnect-priority = 101;
+          };
+
+          wifi = {
+            mode = "infrastructure";
+            ssid = "lala";
+          };
+
+          wifi-security = {
+            key-mgmt = "sae";
+            psk = "$PSK_LALA";
+          };
+        };
+
         mikan = {
           connection = {
             id = "mikan";
