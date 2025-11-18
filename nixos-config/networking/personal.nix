@@ -45,7 +45,7 @@
             type = "wifi";
 
             master = "bond0";
-            slave-type = "bond0";
+            slave-type = "bond";
 
             autoconnect = true;
             autoconnect-priority = 101;
