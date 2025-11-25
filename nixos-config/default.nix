@@ -20,7 +20,8 @@
   ];
 
   nix = {
-    package = pkgs.lix;
+    # Work around a bug in flake lockfile resolution
+    package = pkgs.lixPackageSets.lix_2_93.lix;
 
     settings = {
       auto-optimise-store = true;
