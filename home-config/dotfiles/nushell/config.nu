@@ -1,11 +1,3 @@
-def readable-pwd [] {
-  match ($env.PWD | path relative-to $nu.home-path) {
-    null => $env.PWD
-    '' => '~'
-    $relative_pwd => ([~ $relative_pwd] | path join)
-  }
-}
-
 def --env eproject [] {
   let cmd = '
     (with-current-buffer (window-buffer)
