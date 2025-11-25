@@ -53,6 +53,52 @@ def git-prune-merged [] {
   }
 }
 
+def get-project-root []: [nothing -> directory nothing -> nothing] {
+  (
+    git rev-parse --show-toplevel | complete
+    | if $in.exit_code == 0 { $in.stdout | str trim } else { null }
+  )
+}
+
+$env.PROMPT_COMMAND = {||
+  let project_root = get-project-root
+  let relative_root = (
+    $project_root
+    | default (do -i { $env.PWD | path relative-to $nu.home-path | echo $nu.home-path })
+    | default '/'
+  )
+
+  let home_char = match $relative_root {
+    '/' => '/'
+    $root if $root == $nu.home-path => '~'
+    _ => $'$(basename $project_root)'
+  }
+
+  let dir = $env.PWD | str replace $relative_root $home_char
+
+  let path_color = (
+    if (is-admin) {
+      ansi red_bold
+    } else if ($project_root != null) {
+      ansi purple_bold
+    } else {
+      ansi green_bold
+    }
+  )
+  let separator_color = (
+    if (is-admin) {
+      ansi light_red_bold
+    } else if ($project_root != null) {
+      ansi light_purple_bold
+    } else {
+      ansi light_green_bold
+    }
+  )
+  let path_segment = $"($path_color)($dir)(ansi reset)"
+
+  $path_segment | str replace --all (char path_sep) $"($separator_color)(char path_sep)($path_color)"
+}
+
 $env.config = {
   show_banner: false
 
@@ -74,5 +120,5 @@ $env.config = {
     isolation: true
   }
 
-  buffer_editor: [emacslcient -tc]
+  buffer_editor: [emacsclient -tc]
 }
