@@ -7,11 +7,11 @@
   ...
 }:
 let
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.system}) writeNuBinWith;
+  inherit (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}) writeNuBinWith;
 
-  loginctl = "${pkgs.systemd}/bin/loginctl";
+  loginctl = "${pkgs.stdenv.hostPlatform.system}/bin/loginctl";
   swaypkg = nixos-config.programs.sway.package or pkgs.sway;
-  systemctl = "${pkgs.systemd}/bin/systemctl";
+  systemctl = "${pkgs.stdenv.hostPlatform.system}/bin/systemctl";
 
   wpaperd-config = (pkgs.formats.toml { }).generate "wallpaper.toml" {
     default.path = "~/Documents/Pictures/Backgrounds";
@@ -54,7 +54,7 @@ in
     extraConfigEarly =
       let
         theme = "${
-          flake-inputs.self.packages.${pkgs.system}.catppuccin-themes
+          flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-themes
         }/share/i3/themes/catppuccin-macchiato";
       in
       ''
@@ -94,7 +94,7 @@ in
       settings = {
         main =
           let
-            inherit (flake-inputs.self.packages.${pkgs.system}) catppuccin-themes;
+            inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) catppuccin-themes;
           in
           {
             # The launch prefix *is* set correctly for terminals

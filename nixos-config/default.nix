@@ -20,9 +20,6 @@
   ];
 
   nix = {
-    # Work around a bug in flake lockfile resolution
-    package = pkgs.lixPackageSets.lix_2_93.lix;
-
     settings = {
       auto-optimise-store = true;
       experimental-features = [
@@ -51,15 +48,6 @@
     };
   };
 
-  # TODO(tlater): Only an issue for NixOS 25.05 - the 0.0.13 version
-  # of the nvidia-vaapi-driver is broken, see
-  # https://github.com/elFarto/nvidia-vaapi-driver/issues/370
-  nixpkgs.overlays = [
-    (_: _: {
-      inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}) nvidia-vaapi-driver;
-    })
-  ];
-
   easyNvidia = {
     # Apparently xanmod isn't available for LTS at the moment, oh well
     advanced.forceKernel = true;
@@ -68,7 +56,7 @@
 
   hardware.nvidia =
     let
-      inherit (flake-inputs.self.packages.${pkgs.system}) nvidia;
+      inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) nvidia;
     in
     {
       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
@@ -86,6 +74,8 @@
     };
 
   boot = {
+    initrd.systemd.enable = true;
+
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
     kernelPackages = lib.mkMerge [
@@ -166,7 +156,7 @@
       hack-font
       noto-fonts
       noto-fonts-cjk-sans
-      noto-fonts-emoji
+      noto-fonts-color-emoji
     ];
 
     fontconfig = {

@@ -1,6 +1,6 @@
 let dir = 'pkgs/packages/emacs'
 
-for file in [$'($dir)/eglot-x.nix' $'($dir)/kdl-mode.nix'] {
+for file in [$'($dir)/eglot-x.nix'] {
   let owner = (
     ast-grep run
     --pattern '{ owner = $OWNER; }'

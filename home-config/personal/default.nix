@@ -6,14 +6,13 @@
   ];
 
   programs.git = {
-    userEmail = "tm@tlater.net";
-
     signing = {
       key = "0x02E935006CF2E8E7";
       signByDefault = true;
     };
 
-    extraConfig = {
+    settings = {
+      user.email = "tm@tlater.net";
       # Magit-forge configuration
       github.user = "tlater";
       gitlab.user = "tlater";

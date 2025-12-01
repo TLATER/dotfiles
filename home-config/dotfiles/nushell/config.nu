@@ -64,7 +64,7 @@ $env.PROMPT_COMMAND = {||
   let project_root = get-project-root
   let relative_root = (
     $project_root
-    | default (do -i { $env.PWD | path relative-to $nu.home-path | echo $nu.home-path })
+    | default (do -i { $env.PWD | path relative-to $nu.home-path; echo $nu.home-path })
     | default '/'
   )
 

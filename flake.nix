@@ -2,8 +2,7 @@
   description = "tlater's dotfiles";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.05/nixexprs.tar.xz";
-    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix = {
@@ -24,7 +23,7 @@
     nix-webapps.url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,7 +45,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     famedly-nixos = {
-      url = "github:famedly/famedly-nixos";
+      url = "github:TLATER/famedly-nixos/tlater/nixos-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -56,7 +55,6 @@
     {
       nixosConfigurations = {
         yui = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             ./nixos-config
             ./nixos-config/hosts/yui
@@ -66,7 +64,6 @@
         };
 
         rin = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
           modules = [
             ./nixos-config
             ./nixos-config/hosts/rin
@@ -76,9 +73,7 @@
         };
       };
 
-      nixosModules = {
-        nvidia = import ./nixos-modules/nvidia;
-      };
+      nixosModules.nvidia = ./nixos-modules/nvidia;
 
       packages.x86_64-linux = import ./pkgs {
         pkgs = nixpkgs.legacyPackages.x86_64-linux;

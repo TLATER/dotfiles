@@ -36,5 +36,6 @@ stdenv.mkDerivation {
     "-DBUILD_GUI=off"
     "-DBUILD_SHELL_INTEGRATION=off"
     "-DBUILD_WITH_WEBENGINE=off"
+    "-DINSTALL_SYSTEMD=off"
   ];
 }

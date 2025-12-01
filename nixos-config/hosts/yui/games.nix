@@ -1,9 +1,8 @@
 { flake-inputs, pkgs, ... }:
 let
-  inherit (flake-inputs) nix-gaming nixpkgs-unstable self;
-  pkgsUnstable = nixpkgs-unstable.legacyPackages.${pkgs.system};
-  pkgsGames = nix-gaming.packages.${pkgs.system};
-  pkgsSelf = self.packages.${pkgs.system};
+  inherit (flake-inputs) nix-gaming self;
+  pkgsGames = nix-gaming.packages.${pkgs.stdenv.hostPlatform.system};
+  pkgsSelf = self.packages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports = [
@@ -36,7 +35,7 @@ in
   programs = {
     steam = {
       enable = true;
-      extraCompatPackages = [ pkgsUnstable.proton-ge-bin ];
+      extraCompatPackages = [ pkgs.proton-ge-bin ];
       # This sets some sensible game performance settings, along with
       # some required for Star Citizen
       platformOptimizations.enable = true;
@@ -45,7 +44,7 @@ in
 
     wine = {
       enable = true;
-      package = pkgsUnstable.wine-staging;
+      package = pkgs.wine-staging;
       ntsync = true;
     };
 

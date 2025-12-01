@@ -1,21 +1,18 @@
 {
+  stdenv,
   pkgs,
   flake-inputs,
   lib,
-  hostPlatform,
   emacsMacport,
   emacs30-pgtk,
   symlinkJoin,
 
   localLib,
-  system,
+  ast-grep,
   nix-prefetch-github,
 }:
 let
-  # TODO(tlater): ast-grep supports nix starting with version 0.39
-  inherit (flake-inputs.nixpkgs-unstable.legacyPackages.${system}) ast-grep;
-
-  package = if hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
+  package = if stdenv.hostPlatform.isDarwin then emacsMacport else emacs30-pgtk;
   emacsDotfiles = "${flake-inputs.self}/home-config/dotfiles/emacs.d";
 
   emacsWithPackagesFromUsePackage = import "${flake-inputs.emacs-overlay}/elisp.nix" {
@@ -90,10 +87,7 @@ let
         ]
       ))
     ];
-    override = self: _super: {
-      eglot-x = self.callPackage ./eglot-x.nix { };
-      kdl-mode = self.callPackage ./kdl-mode.nix { };
-    };
+    override = self: _super: { eglot-x = self.callPackage ./eglot-x.nix { }; };
   };
 in
 symlinkJoin {

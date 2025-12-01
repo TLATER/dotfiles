@@ -51,7 +51,7 @@ in
       };
 
       Service = {
-        ExecStart = lib.getExe flake-inputs.self.packages.${pkgs.system}.desktop-logic;
+        ExecStart = lib.getExe flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.desktop-logic;
         Restart = "on-failure";
         Type = "dbus";
         BusName = "net.tlater.DesktopLogic";

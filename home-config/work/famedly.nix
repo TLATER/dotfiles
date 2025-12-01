@@ -24,29 +24,28 @@
     };
 
     git = {
-      userEmail = "t.maat@famedly.com";
-
       signing = {
         key = "0x4D863FBF16FE6D51";
         signByDefault = true;
       };
 
       # For magit
-      extraConfig.github.user = "famedly-tlater";
+      settings = {
+        user.email = "t.maat@famedly.com";
+        github.user = "famedly-tlater";
+      };
     };
 
-    ssh.matchBlocks = {
-      "*" = {
-        identitiesOnly = true;
-        identityFile = "~/.ssh/famedly-tlater.pub";
-      };
+    ssh = {
+      enableDefaultConfig = false;
+      matchBlocks."*".identityFile = "~/.ssh/famedly-tlater.pub";
     };
   };
 
   services.mpd.enable = lib.mkForce false;
 
   home.packages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     pre-commit
   ];
 

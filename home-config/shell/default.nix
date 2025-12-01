@@ -39,7 +39,23 @@
   };
 
   programs = {
-    ssh.enable = true;
+    ssh = {
+      enable = true;
+
+      matchBlocks."*" = {
+        identitiesOnly = true;
+        forwardAgent = false;
+        addKeysToAgent = "no";
+        compression = false;
+        serverAliveInterval = 0;
+        serverAliveCountMax = 3;
+        hashKnownHosts = false;
+        userKnownHostsFile = "~/.ssh/known_hosts";
+        controlMaster = "no";
+        controlPath = "~/.ssh/master-%r@%n:%p";
+        controlPersist = "no";
+      };
+    };
 
     direnv = {
       enable = true;
@@ -49,13 +65,15 @@
     git = {
       enable = true;
       lfs.enable = true;
-      userName = "Tristan Daniël Maat";
 
       ignores = [
         ".envrc"
         ".direnv/"
       ];
-      extraConfig = {
+
+      settings = {
+        user.name = "Tristan Daniël Maat";
+
         branch.autoSetupRebase = "always";
         checkout.defaultRemote = "origin";
 

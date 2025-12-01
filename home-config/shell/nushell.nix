@@ -1,4 +1,4 @@
-{ pkgs, flake-inputs, ... }:
+{ pkgs, ... }:
 {
   home.shell.enableNushellIntegration = true;
 
@@ -9,9 +9,5 @@
     plugins = [ pkgs.nushellPlugins.query ];
   };
 
-  programs.carapace = {
-    enable = true;
-    # Needed because of https://github.com/nix-community/home-manager/issues/7517
-    package = flake-inputs.nixpkgs-unstable.legacyPackages.${pkgs.system}.carapace;
-  };
+  programs.carapace.enable = true;
 }

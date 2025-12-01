@@ -6,7 +6,7 @@
   ...
 }:
 let
-  inherit (flake-inputs.self.packages.${pkgs.system}) firefox-ui-fix;
+  inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) firefox-ui-fix;
   cfg = config.programs.librewolf;
 in
 {

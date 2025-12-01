@@ -30,7 +30,7 @@
         postBuild =
           let
             edopro = "${
-              flake-inputs.self.packages.${pkgs.system}.delta-icons
+              flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.delta-icons
             }/share/icons/delta-icons/scalable/apps/EDOPro.svg";
           in
           ''

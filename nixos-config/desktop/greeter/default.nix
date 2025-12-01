@@ -22,7 +22,7 @@ let
     name = "launch-gtkgreet";
     runtimeInputs = [
       pkgs.eww
-      pkgs.greetd.gtkgreet
+      pkgs.gtkgreet
       sway
     ];
     text = ''
@@ -34,7 +34,7 @@ let
   };
 
   sway-run = pkgs.writeShellScriptBin "sway-run" ''
-    uwsm start -S -F -- ${lib.getExe config.programs.sway.package} ${lib.optionalString unsupported-gpu "--unsupported-gpu"}
+    uwsm start -F -- ${lib.getExe config.programs.sway.package} ${lib.optionalString unsupported-gpu "--unsupported-gpu"}
   '';
 in
 {
@@ -56,7 +56,7 @@ in
     pciutils
   ];
 
-  fonts.packages = [ flake-inputs.self.packages.${pkgs.system}.phosphor-icons ];
+  fonts.packages = [ flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.phosphor-icons ];
 
   systemd.tmpfiles.rules =
     let

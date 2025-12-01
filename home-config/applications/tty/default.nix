@@ -7,14 +7,14 @@
 {
   imports = [ ./emacs.nix ];
 
-  home.packages = [ flake-inputs.self.packages.${pkgs.system}.topiary ];
+  home.packages = [ flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.topiary ];
 
   programs.bottom = {
     enable = true;
     settings.flags.group_processes = true;
   };
 
-  programs.git.extraConfig =
+  programs.git.settings =
     let
       mergiraf-attributes =
         pkgs.runCommandLocal "gitattributes" { nativeBuildInputs = [ pkgs.mergiraf ]; }
