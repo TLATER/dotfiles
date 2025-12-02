@@ -34,8 +34,8 @@
             id = "ethernet";
             type = "ethernet";
 
-            master = "bond0";
-            slave-type = "bond";
+            controller = "bond0";
+            port-type = "bond";
           };
         };
 
@@ -44,8 +44,8 @@
             id = "lala";
             type = "wifi";
 
-            master = "bond0";
-            slave-type = "bond";
+            controller = "bond0";
+            port-type = "bond";
 
             autoconnect = true;
             autoconnect-priority = 101;
@@ -67,8 +67,8 @@
             id = "mikan";
             type = "wifi";
 
-            master = "bond0";
-            slave-type = "bond";
+            controller = "bond0";
+            port-type = "bond";
 
             autoconnect = true;
             autoconnect-priority = 100;
