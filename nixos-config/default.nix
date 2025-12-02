@@ -172,7 +172,34 @@
   # mode just drops into a shell telling me it can't log into root
   systemd.enableEmergencyMode = false;
 
+  systemd.services.angrr-touch = {
+    description = "`touch` gcroots that angrr shouldn't delete";
+    wantedBy = [ "angrr.service" ];
+    before = [ "angrr.service" ];
+
+    serviceConfig.ExecStart =
+      (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
+        { packages = [ pkgs.fd ]; }
+        "angrr-touch"
+        ''
+          let roots = (fd --no-ignore -t d gcroots /home/tlater/.local/src /home/tlater/Documents/Projects
+             | split row "\n"
+             | each { ls -l $in }
+             | flatten
+             | where target =~ ^/nix/store)
+
+          print ($roots | select name accessed modified | update name { path relative-to /home/tlater })
+          $roots | each { touch --no-deref $in.name }
+        ''
+      ).outPath;
+  };
+
   services = {
+    angrr = {
+      enable = true;
+      enableNixGcIntegration = true;
+    };
+
     xserver = {
       enable = true;
       xkb.layout = "us";
