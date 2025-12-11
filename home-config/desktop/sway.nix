@@ -13,10 +13,6 @@ let
   swaypkg = nixos-config.programs.sway.package or pkgs.sway;
   systemctl = "${pkgs.stdenv.hostPlatform.system}/bin/systemctl";
 
-  wpaperd-config = (pkgs.formats.toml { }).generate "wallpaper.toml" {
-    default.path = "~/Documents/Pictures/Backgrounds";
-  };
-
   keepassxc-copy =
     writeNuBinWith
       {
@@ -128,18 +124,26 @@ in
       Service.ExecStart = "${config.programs.swaylock.package}/bin/swaylock";
     };
 
-    wpaperd = {
+    swaybg = {
       Unit = {
         Description = "Wallpaper daemon";
         After = [ "graphical-session.target" ];
         Before = [ "way-displays.service" ];
         ConditionEnvironment = "WAYLAND_DISPLAY";
         PartOf = [ "graphical-session.target" ];
-        X-Restart-Triggers = [ wpaperd-config ];
       };
 
       Service = {
-        ExecStart = "${pkgs.wpaperd}/bin/wpaperd -c ${wpaperd-config}";
+        Slice = "background-graphical.slice";
+        ExecStart =
+          (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
+            { packages = [ pkgs.swaybg ]; }
+            "swaybg"
+            ''
+              let background = ls ~/Documents/Pictures/Backgrounds | shuffle | first | $in.name
+              exec swaybg --output=* --image $background
+            ''
+          ).outPath;
         Type = "exec";
       };
 
