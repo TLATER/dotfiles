@@ -35,11 +35,21 @@ let
       '';
 in
 {
-  home.packages = [
-    keepassxc-copy
-    pkgs.glib
-    pkgs.sway-contrib.grimshot
-  ];
+  home = {
+    packages = [
+      keepassxc-copy
+      pkgs.glib
+      pkgs.sway-contrib.grimshot
+      pkgs.app2unit
+      pkgs.xdg-terminal-exec
+    ];
+
+    sessionVariables.APP2UNIT_SLICES = lib.concatMapAttrsStringSep " " (key: slice: "${key}=${slice}") {
+      a = "app-graphical.slice";
+      b = "background-graphical.slice";
+      s = "session-graphical.slice";
+    };
+  };
 
   wayland.windowManager.sway = {
     enable = true;
