@@ -68,12 +68,10 @@ in
       # that it will resume the downloads.
       SuccessExitStatus = "7";
 
-      # We use falloc, so if we use this unit on any other fs it will
-      # cause issues
-      Slice = "session.slice";
+      Slice = "background.slice";
       ProtectSystem = "full";
     };
 
-    Install.WantedBy = [ "graphical-session.target" ];
+    Install.WantedBy = [ "default.target" ];
   };
 }
