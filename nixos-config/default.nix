@@ -6,12 +6,16 @@
   ...
 }:
 {
+  disabledModules = [ "services/system/automatic-timezoned.nix" ];
+
   imports = [
     flake-inputs.self.nixosModules.nvidia
 
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nix-flatpak.nixosModules.nix-flatpak
+
+    "${flake-inputs.nixpkgs-tlater}/nixos/modules/services/system/automatic-timezoned.nix"
 
     ./desktop
     ./dev.nix

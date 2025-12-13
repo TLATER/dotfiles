@@ -260,6 +260,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-tlater": {
+      "locked": {
+        "lastModified": 1765605304,
+        "narHash": "sha256-PXnCKhGhmMkzjgGo8/quliTSmX8BM3l8tTINxJqDrdw=",
+        "owner": "tlater",
+        "repo": "nixpkgs",
+        "rev": "718167630e3d15ac76f80b4f07f0a8febb2fb6eb",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tlater",
+        "ref": "tlater/fix-automatic-timezoned-startup-delay",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "disko": "disko",
@@ -272,6 +288,7 @@
         "nix-webapps": "nix-webapps",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-tlater": "nixpkgs-tlater",
         "sops-nix": "sops-nix",
         "tree-sitter-sieve": "tree-sitter-sieve"
       }
