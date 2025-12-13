@@ -16,7 +16,7 @@
     };
 
     nix-gaming = {
-      url = "github:fufexan/nix-gaming";
+      url = "github:tlater/nix-gaming/tlater/fix-osu-mime-anubis";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
