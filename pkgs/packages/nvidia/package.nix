@@ -10,9 +10,9 @@ let
   inherit (flake-inputs.self.nixosConfigurations.yui.config.boot) kernelPackages;
 in
 (kernelPackages.nvidiaPackages.mkDriver {
-  version = "580.105.08";
-  sha256_64bit = "sha256-2cboGIZy8+t03QTPpp3VhHn6HQFiyMKMjRdiV2MpNHU=";
-  openSha256 = "sha256-FGmMt3ShQrw4q6wsk8DSvm96ie5yELoDFYinSlGZcwQ=";
+  version = "580.119.02";
+  sha256_64bit = "sha256-gCD139PuiK7no4mQ0MPSr+VHUemhcLqerdfqZwE47Nc=";
+  openSha256 = "sha256-l3IQDoopOt0n0+Ig+Ee3AOcFCGJXhbH1Q1nh1TEAHTE=";
 
   useSettings = false;
   usePersistenced = false;
