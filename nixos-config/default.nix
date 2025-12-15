@@ -52,11 +52,7 @@
     };
   };
 
-  easyNvidia = {
-    # Apparently xanmod isn't available for LTS at the moment, oh well
-    advanced.forceKernel = true;
-    desktopEnvironment = "wlroots";
-  };
+  easyNvidia.desktopEnvironment = "wlroots";
 
   hardware.nvidia =
     let
@@ -82,10 +78,7 @@
 
     tmp.cleanOnBoot = true;
     plymouth.enable = true;
-    kernelPackages = lib.mkMerge [
-      (lib.mkIf config.easyNvidia.enable pkgs.linuxKernel.packages.linux_xanmod_stable)
-      (lib.mkIf (!config.easyNvidia.enable) pkgs.linuxKernel.packages.linux_xanmod_latest)
-    ];
+    kernelPackages = pkgs.linuxKernel.packages.linux_xanmod;
 
     loader = {
       timeout = 0;
