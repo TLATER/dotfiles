@@ -60,7 +60,10 @@ in
     btrfs.autoScrub.enable = true;
 
     flatpak = {
-      packages = [ "de.schmidhuberj.tubefeeder" ];
+      packages = [
+        "de.schmidhuberj.tubefeeder"
+        "com.github.rafostar.Clapper"
+      ];
       update.auto.enable = false;
       uninstallUnmanaged = false;
     };
