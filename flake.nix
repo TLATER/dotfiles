@@ -92,6 +92,7 @@
           {
             default = nixpkgs.legacyPackages.mkShell {
               packages = nixpkgs.lib.attrValues {
+                inherit (nixpkgs.legacyPackages) nh;
                 inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
               };
 
@@ -99,6 +100,9 @@
                 "./keys/hosts/"
                 "./keys/users/"
               ];
+
+              NH_NO_CHECKS = true;
+              NH_FLAKE = "/home/tlater/.local/src/dotfiles";
             };
 
             rust = nixpkgs.legacyPackages.mkShell {
