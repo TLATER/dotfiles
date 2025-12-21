@@ -130,7 +130,8 @@
 (leaf yaml-ts-mode
   :require eglot
   :mode `(,(rx (or ".yaml" ".yml" ".bst" "project.conf") string-end))
-  :hook (yaml-ts-mode-hook . eglot-ensure))
+  :hook (yaml-ts-mode-hook . eglot-ensure)
+  :hook (yaml-ts-mode-hook . (lambda () (setq-local tab-width 2))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; KDL
