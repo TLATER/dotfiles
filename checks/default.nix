@@ -11,19 +11,11 @@ in
 
     checkInputs = lib.attrValues {
       inherit (pkgs) deadnix nixfmt-rfc-style;
-
-      statix = pkgs.statix.overrideAttrs (old: {
-        patches = old.patches ++ [
-          (pkgs.fetchpatch {
-            url = "https://github.com/oppiliappan/statix/commit/925dec39bb705acbbe77178b4d658fe1b752abbb.patch";
-            hash = "sha256-0wacO6wuYJ4ufN9PGucRVJucFdFFNF+NoHYIrLXsCWs=";
-          })
-        ];
-      });
+      inherit (flake-inputs.nix-ast-lint.packages.x86_64-linux) nix-ast-lint;
     };
 
     script = ''
-      statix check **/*.nix
+      nix-ast-lint --error --off=empty-let-in
       deadnix --fail **/*.nix
       nixfmt --check --strict **/*.nix
     '';

@@ -38,7 +38,7 @@
           name = ".";
           forward-tls-upstream = true;
           forward-addr = lib.flatten (
-            lib.mapAttrsToList (domain: ips: map (ip: "${ip}@853#${domain}") ips) {
+            lib.mapAttrsToList (domain: map (ip: "${ip}@853#${domain}")) {
               "dns.quad9.net" = [
                 "9.9.9.9"
                 "149.112.112.112"
