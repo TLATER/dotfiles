@@ -4,3 +4,5 @@
 ba4f3ffb1956acd35a2d4a71a8775d2f520497d1
 # Switched to `nix-ast-lint`
 8581934d6669224eed540123af826deec67b400c
+# Fixed a bug in `nix-ast-lint`
+66cb0c4ec188b9623edffee834cad6d6ab07c0e5
