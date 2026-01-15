@@ -38,12 +38,14 @@ let
   '';
 in
 {
-  services.xserver.displayManager.lightdm.enable = false;
+  services = {
+    xserver.displayManager.lightdm.enable = false;
 
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = lib.getExe launch-gtkgreet;
+    greetd = {
+      enable = true;
+      settings.default_session = {
+        command = lib.getExe launch-gtkgreet;
+      };
     };
   };
 

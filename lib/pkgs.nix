@@ -15,7 +15,7 @@ rec {
       interpreter = lib.concatStringsSep " " [
         (lib.getExe nushell)
         "--no-config-file"
-        "--plugins [${lib.concatStringsSep " " (map (p: lib.getExe p) plugins)}]"
+        "--plugins [${lib.concatStringsSep " " (map lib.getExe plugins)}]"
       ];
 
       makeWrapperArgs = [

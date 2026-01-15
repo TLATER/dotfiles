@@ -2,9 +2,9 @@
 {
   imports = [ ./nushell.nix ];
 
-  xdg = {
-    configFile."zellij".source = ../dotfiles/zellij;
-    configFile."dashrc".source = ../dotfiles/dashrc;
+  xdg.configFile = {
+    "zellij".source = ../dotfiles/zellij;
+    "dashrc".source = ../dotfiles/dashrc;
   };
 
   home = {

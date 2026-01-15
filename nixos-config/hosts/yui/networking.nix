@@ -9,7 +9,7 @@
     ];
 
     firewall.allowedUDPPorts = [ 25565 ];
-  };
 
-  networking.networkmanager.ensureProfiles.profiles.bond.bond.primary = "eno1";
+    networkmanager.ensureProfiles.profiles.bond.bond.primary = "eno1";
+  };
 }

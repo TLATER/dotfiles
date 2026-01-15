@@ -17,21 +17,19 @@
       If a string is given, it is used as the mountpoint, and a set of
       standard mount options are set.
   */
-  mapSubvolumes =
-    subvolumes:
-    lib.mapAttrs (
-      _name: options:
-      if (lib.types.attrs.check options) then
-        options
-      else
-        {
-          mountpoint = options;
-          mountOptions = [
-            "compress=zstd"
-            "noatime"
-          ];
-        }
-    ) subvolumes;
+  mapSubvolumes = lib.mapAttrs (
+    _name: options:
+    if (lib.types.attrs.check options) then
+      options
+    else
+      {
+        mountpoint = options;
+        mountOptions = [
+          "compress=zstd"
+          "noatime"
+        ];
+      }
+  );
 
   /**
     Specifies the system for all (legacy)?[Pp]ackages in a flake input attrset.
@@ -47,7 +45,7 @@
   flattenFlakeInputs =
     inputs: system:
     lib.mapAttrs (
-      _: input:
+      _:
 
       lib.mapAttrs (
         name: output:
@@ -63,6 +61,6 @@
           output.${system}
         else
           output
-      ) input
+      )
     ) inputs;
 }

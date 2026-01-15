@@ -14,20 +14,6 @@ in
   # Also set up a static IP address of 192.168.9.2/24, with a gateway
   # of 192.168.9.1.
 
-  # Add bridge network to connect VMs to
-  networking.networkmanager.ensureProfiles.profiles.bridge = {
-    connection = {
-      id = bridgeName;
-      type = "bridge";
-      interface-name = bridgeName;
-    };
-
-    ipv4 = {
-      method = "manual";
-      address1 = "192.168.9.1/24";
-    };
-  };
-
   # Enable qemu-bridge-helper for setting up bridged networking in VMs
   security.wrappers.qemu-bridge-helper = {
     setuid = true;
@@ -51,17 +37,34 @@ in
     groups.qemu = { };
   };
 
-  # # Set up firewall to forward requests to the internet from the
-  # # bridge network
+  # Set up firewall to forward requests to the internet from the
+  # bridge network
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-  networking.nftables.tables.dev-nat = {
-    family = "inet";
-    content = ''
-      chain postrouting {
-        type nat hook postrouting priority 100;
-        ip saddr 192.168.9.0/24 oifname bond0 masquerade
-      }
-    '';
+
+  networking = {
+    # Add bridge network to connect VMs to
+    networkmanager.ensureProfiles.profiles.bridge = {
+      connection = {
+        id = bridgeName;
+        type = "bridge";
+        interface-name = bridgeName;
+      };
+
+      ipv4 = {
+        method = "manual";
+        address1 = "192.168.9.1/24";
+      };
+    };
+
+    nftables.tables.dev-nat = {
+      family = "inet";
+      content = ''
+        chain postrouting {
+          type nat hook postrouting priority 100;
+          ip saddr 192.168.9.0/24 oifname bond0 masquerade
+        }
+      '';
+    };
   };
 
   # Add local DNS zone for VMs

@@ -3,10 +3,10 @@
   networking = {
     nftables.enable = true;
 
-    networkmanager = {
-      ensureProfiles.environmentFiles = [ config.sops.secrets.wireless-env.path ];
+    networkmanager.ensureProfiles = {
+      environmentFiles = [ config.sops.secrets.wireless-env.path ];
 
-      ensureProfiles.profiles = {
+      profiles = {
         bond = {
           connection = {
             id = "bond";
