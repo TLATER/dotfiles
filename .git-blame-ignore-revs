@@ -2,3 +2,5 @@
 62a605b7c5ce7f9334dd946ef3de8fedfb4cdfaa
 # Enabled strict formatting with nixfmt
 ba4f3ffb1956acd35a2d4a71a8775d2f520497d1
+# Switched to `nix-ast-lint`
+8581934d6669224eed540123af826deec67b400c
