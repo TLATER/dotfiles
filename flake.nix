@@ -39,6 +39,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-ast-lint = {
+      url = "https://codeberg.org/tlater/nix-ast-lint/archive/main.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flint = {
       url = "github:NotAShelf/flint";
       inputs.nixpkgs.follows = "nixpkgs";

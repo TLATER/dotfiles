@@ -162,6 +162,24 @@
         "type": "github"
       }
     },
+    "nix-ast-lint": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1768472416,
+        "narHash": "sha256-SWAY3QviGbp4MN1/RlQOeh3VfSD2/8o8wwvISHXe2oo=",
+        "rev": "e5acfd1d234fcd6b6997e25dc9d830d023a2d025",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/tlater/nix-ast-lint/archive/e5acfd1d234fcd6b6997e25dc9d830d023a2d025.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/tlater/nix-ast-lint/archive/main.tar.gz"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1767983141,
@@ -282,6 +300,7 @@
         "famedly-nixos": "famedly-nixos",
         "flint": "flint",
         "home-manager": "home-manager",
+        "nix-ast-lint": "nix-ast-lint",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",
         "nix-webapps": "nix-webapps",
