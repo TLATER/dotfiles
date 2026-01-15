@@ -55,8 +55,10 @@ in
     enable = true;
     package = null;
     config = null;
-    systemd.enable = false;
-    systemd.xdgAutostart = false;
+    systemd = {
+      enable = false;
+      xdgAutostart = false;
+    };
     extraConfigEarly =
       let
         theme = "${

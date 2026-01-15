@@ -2,12 +2,14 @@
 {
   home.shell.enableNushellIntegration = true;
 
-  programs.nushell = {
-    enable = true;
-    configFile.source = ../dotfiles/nushell/config.nu;
+  programs = {
+    nushell = {
+      enable = true;
+      configFile.source = ../dotfiles/nushell/config.nu;
 
-    plugins = [ pkgs.nushellPlugins.query ];
+      plugins = [ pkgs.nushellPlugins.query ];
+    };
+
+    carapace.enable = true;
   };
-
-  programs.carapace.enable = true;
 }

@@ -77,8 +77,10 @@
         branch.autoSetupRebase = "always";
         checkout.defaultRemote = "origin";
 
-        pull.rebase = true;
-        pull.ff = "only";
+        pull = {
+          rebase = true;
+          ff = "only";
+        };
         push.default = "current";
 
         init.defaultBranch = "main";

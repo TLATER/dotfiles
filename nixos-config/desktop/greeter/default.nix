@@ -49,14 +49,16 @@ in
     };
   };
 
-  environment.etc."greetd/environments".text = ''
-    sway-run
-  '';
+  environment = {
+    etc."greetd/environments".text = ''
+      sway-run
+    '';
 
-  environment.systemPackages = with pkgs; [
-    sway-run
-    pciutils
-  ];
+    systemPackages = with pkgs; [
+      sway-run
+      pciutils
+    ];
+  };
 
   fonts.packages = [ flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.phosphor-icons ];
 

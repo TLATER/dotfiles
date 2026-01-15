@@ -63,6 +63,8 @@
 
   # Ensure unbound is available for DNS settings by the time
   # connections might set such
-  systemd.services.unbound.after = lib.mkForce [ ];
-  systemd.services.unbound.before = [ "NetworkManager.service" ];
+  systemd.services.unbound = {
+    after = lib.mkForce [ ];
+    before = [ "NetworkManager.service" ];
+  };
 }

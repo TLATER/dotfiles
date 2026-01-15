@@ -44,10 +44,12 @@
 
   services.mpd.enable = lib.mkForce false;
 
-  home.packages = with pkgs; [
-    bitwarden-desktop
-    pre-commit
-  ];
+  home = {
+    packages = with pkgs; [
+      bitwarden-desktop
+      pre-commit
+    ];
 
-  home.file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
+    file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
+  };
 }

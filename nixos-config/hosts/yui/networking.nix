@@ -2,13 +2,12 @@
   networking = {
     hostName = "yui";
 
-    firewall.allowedTCPPorts = [
-      # Allow minecraft for when I'm running a minecraft server
-      # locally
-      25565
-    ];
-
-    firewall.allowedUDPPorts = [ 25565 ];
+    # Allow minecraft for when I'm running a minecraft server
+    # locally
+    firewall = {
+      allowedTCPPorts = [ 25565 ];
+      allowedUDPPorts = [ 25565 ];
+    };
 
     networkmanager.ensureProfiles.profiles.bond.bond.primary = "eno1";
   };

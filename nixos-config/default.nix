@@ -54,25 +54,6 @@
 
   easyNvidia.desktopEnvironment = "wlroots";
 
-  hardware.nvidia =
-    let
-      inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) nvidia;
-    in
-    {
-      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        inherit (nvidia) version;
-        sha256_64bit = nvidia.src.outputHash;
-        openSha256 = nvidia.open.src.outputHash;
-        useSettings = false;
-        usePersistenced = false;
-      };
-
-      # Disabled because I don't use it and I can't be bothered to
-      # figure out how to get a hash for something nvidia don't seem to
-      # publish consistently.
-      nvidiaSettings = false;
-    };
-
   boot = {
     initrd.systemd.enable = true;
 
@@ -142,7 +123,10 @@
     nano.enable = false;
   };
 
-  security.sudo-rs.enable = true;
+  security = {
+    sudo-rs.enable = true;
+    rtkit.enable = true;
+  };
 
   fileSystems."/boot".options = [ "umask=0077" ];
 
@@ -165,30 +149,32 @@
     };
   };
 
-  # My systems never have usable root accounts anyway, so emergency
-  # mode just drops into a shell telling me it can't log into root
-  systemd.enableEmergencyMode = false;
+  systemd = {
+    # My systems never have usable root accounts anyway, so emergency
+    # mode just drops into a shell telling me it can't log into root
+    enableEmergencyMode = false;
 
-  systemd.services.angrr-touch = {
-    description = "`touch` gcroots that angrr shouldn't delete";
-    wantedBy = [ "angrr.service" ];
-    before = [ "angrr.service" ];
+    services.angrr-touch = {
+      description = "`touch` gcroots that angrr shouldn't delete";
+      wantedBy = [ "angrr.service" ];
+      before = [ "angrr.service" ];
 
-    serviceConfig.ExecStart =
-      (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
-        { packages = [ pkgs.fd ]; }
-        "angrr-touch"
-        ''
-          let roots = (fd --no-ignore -t d gcroots /home/tlater/.local/src /home/tlater/Documents/Projects
-             | split row "\n"
-             | each { ls -l $in }
-             | flatten
-             | where target =~ ^/nix/store)
+      serviceConfig.ExecStart =
+        (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
+          { packages = [ pkgs.fd ]; }
+          "angrr-touch"
+          ''
+            let roots = (fd --no-ignore -t d gcroots /home/tlater/.local/src /home/tlater/Documents/Projects
+               | split row "\n"
+               | each { ls -l $in }
+               | flatten
+               | where target =~ ^/nix/store)
 
-          print ($roots | select name accessed modified | update name { path relative-to /home/tlater })
-          $roots | each { touch --no-deref $in.name }
-        ''
-      ).outPath;
+            print ($roots | select name accessed modified | update name { path relative-to /home/tlater })
+            $roots | each { touch --no-deref $in.name }
+          ''
+        ).outPath;
+    };
   };
 
   services = {
@@ -277,18 +263,35 @@
     fstrim.enable = true;
     fwupd.enable = true;
     automatic-timezoned.enable = true;
+
+    # Necessary for opening links in gnome under certain conditions
+    gvfs.enable = true;
   };
 
   hardware = {
     bluetooth.enable = true;
     enableRedistributableFirmware = true;
     opentabletdriver.enable = true;
+
+    nvidia =
+      let
+        inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) nvidia;
+      in
+      {
+        package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          inherit (nvidia) version;
+          sha256_64bit = nvidia.src.outputHash;
+          openSha256 = nvidia.open.src.outputHash;
+          useSettings = false;
+          usePersistenced = false;
+        };
+
+        # Disabled because I don't use it and I can't be bothered to
+        # figure out how to get a hash for something nvidia don't seem to
+        # publish consistently.
+        nvidiaSettings = false;
+      };
   };
-
-  security.rtkit.enable = true;
-
-  # Necessary for opening links in gnome under certain conditions
-  services.gvfs.enable = true;
 
   system.stateVersion = "20.09";
 }

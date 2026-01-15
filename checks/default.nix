@@ -15,7 +15,7 @@ in
     };
 
     script = ''
-      nix-ast-lint --error --off=empty-let-in
+      nix-ast-lint --error
       deadnix --fail **/*.nix
       nixfmt --check --strict **/*.nix
     '';
