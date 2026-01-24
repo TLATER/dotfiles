@@ -190,7 +190,6 @@
 (leaf nix-ts-mode
   :ensure t
   :require eglot
-  :mode `(,(rx ".nix" string-end))
   :hook
   (nix-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix"))))
   (nix-ts-mode-hook . eglot-ensure)
@@ -380,6 +379,107 @@
 ;;; More generic programming-language support features
 ;; ----------------------------------------------------------------------------------
 ;; ----------------------------------------------------------------------------------
+
+(leaf polymode
+  :ensure t
+  :require nix-ts-mode
+  :mode `(,(rx ".nix" string-end) . poly-nix-mode)
+  :custom
+  (polymode-mode-name-aliases .
+   '((bash . bash-ts-mode)
+     (md . markdown-mode)
+     (markdown . markdown-mode)
+     (nu . nushell-ts-mode)
+     (python . python-ts-mode)))
+  :config
+  (pm-around-advice '(eglot-ensure flymake-mode) #'polymode-inhibit-in-indirect-buffers)
+  (define-hostmode poly-nix-hostmode
+    :mode 'nix-ts-mode)
+  (define-auto-innermode poly-nix-string-innermode
+    :head-matcher "/\\*[[:space:]]+[[:graph:]]+[[:space:]]+\\*/[[:space:]]+''"
+    :tail-matcher (cons "[^']\\(?1:''\\)[^']" 1)
+    :mode-matcher (cons "/\\*[[:space:]]+\\(?1:[[:graph:]]+\\)[[:space:]]+\\*/" 1)
+    :body-indent-offset nix-ts-mode-indent-offset
+    ;; :head-matcher (rx "/*" (one-or-more space) (one-or-more graphic) (one-or-more space) "*/" (one-or-more space) "''")
+    ;; :tail-matcher (rx (not "'") "''" (not "'"))
+    ;; :mode-matcher (rx "/*" (one-or-more space) (group-n 1 (one-or-more graphic)) (one-or-more space) "*/")
+    :head-mode 'host
+    :tail-mode 'host)
+  (define-polymode poly-nix-mode
+    :hostmode 'poly-nix-hostmode
+    :innermodes '(poly-nix-string-innermode)))
+
+(defun polymode-edit-indirect-chunk--determine-indent (span)
+  (let ((start (cadr span))
+        (end (caddr span))
+        (body-indent-offset (eieio-oref (cadddr span) :body-indent-offset))
+        indent)
+
+    (save-excursion
+      (goto-char start)
+
+      ;; We're at the head; either skip it if it's empty, or calculate
+      ;; the post-head indent if not.
+      (unless (looking-at "[[:space:]]*$")
+        (re-search-forward "[[:space:]]*" (line-end-position) t 1)
+        (setq indent (- (match-end 0) (match-beginning 0))))
+
+      (forward-line)
+      (while (< (point) end)
+        (back-to-indentation)
+        (cond
+         ;; If we're at the tail, skip the line, *unless* we don't
+         ;; have an indent set yet, at which point take the indent +
+         ;; the body offset.
+         ((eq 'tail (car (pm-innermost-span)))
+          (unless (eq indent nil)
+            (setq indent (+ (current-indentation) body-indent-offset))))
+
+         ;; We ignore empty lines
+         ((and
+           (looking-at "[[:space:]]*$")
+           (looking-back "^[[:space:]]*")))
+
+         ;; Finally, take the indentation of the line with the
+         ;; least indentation.
+         ((or
+           (eq indent nil)
+           (< (current-indentation) indent))
+          (setq indent (current-indentation))))
+        (forward-line)))
+    indent))
+
+(defun polymode-edit-indirect-chunk ()
+  (let* ((span (pm-innermost-span))
+         (head-empty (save-excursion
+                       (goto-char (cadr span))
+                       (looking-at "[[:space:]]*$")))
+         (tail-empty (save-excursion
+                       (goto-char (caddr span))
+                       (looking-back "^[[:space:]]*")))
+         (mode (eieio-oref (cadddr span) :mode))
+         (indent (polymode-edit-indirect-chunk--determine-indent span))
+
+         (edit-indirect-after-creation-hook
+          (lambda ()
+            (save-excursion
+              (let ((inhibit-read-only t))
+                ;; If the tail is completely empty, we delete it, and
+                ;; add it back later
+                (when tail-empty
+                  (goto-char (point-max))
+                  (delete-line))
+
+                (goto-char (point-min))
+                ;; Ditto for the head
+                (when head-empty
+                  (delete-line))
+
+                (while (< (point) (point-max))
+                  (delete-region (line-beginning-position) (+ (line-beginning-position) indent))
+                  (forward-line))))
+            (funcall mode))))
+    (edit-indirect-region (cadr span) (caddr span))))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Language servers
