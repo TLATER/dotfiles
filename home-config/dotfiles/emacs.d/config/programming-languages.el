@@ -190,7 +190,6 @@
 (leaf nix-ts-mode
   :ensure t
   :require eglot
-  :mode `(,(rx ".nix" string-end))
   :hook
   (nix-ts-mode-hook . (lambda () (setq-local devdocs-current-docs '("nix"))))
   (nix-ts-mode-hook . eglot-ensure)
@@ -380,6 +379,40 @@
 ;;; More generic programming-language support features
 ;; ----------------------------------------------------------------------------------
 ;; ----------------------------------------------------------------------------------
+
+(leaf fancy-edit-indirect
+  :load-path* "modules")
+
+(leaf polymode
+  :ensure t
+  :require (nix-ts-mode fancy-edit-indirect)
+  :mode `(,(rx ".nix" string-end) . poly-nix-mode)
+  :bind (:polymode-mode-map
+         ("C-c ;" . #'fancy-edit-indirect))
+  :custom
+  (polymode-mode-name-aliases .
+   '((bash . bash-ts-mode)
+     (md . markdown-mode)
+     (markdown . markdown-mode)
+     (nu . nushell-ts-mode)
+     (python . python-ts-mode)))
+  :config
+  (pm-around-advice '(eglot-ensure flymake-mode) #'polymode-inhibit-in-indirect-buffers)
+  (define-hostmode poly-nix-hostmode
+    :mode 'nix-ts-mode)
+  (define-auto-innermode poly-nix-string-innermode
+    :head-matcher "/\\*[[:space:]]+[[:graph:]]+[[:space:]]+\\*/[[:space:]]+''"
+    :tail-matcher (cons "[^']\\(?1:''\\)[^']" 1)
+    :mode-matcher (cons "/\\*[[:space:]]+\\(?1:[[:graph:]]+\\)[[:space:]]+\\*/" 1)
+    :body-indent-offset nix-ts-mode-indent-offset
+    ;; :head-matcher (rx "/*" (one-or-more space) (one-or-more graphic) (one-or-more space) "*/" (one-or-more space) "''")
+    ;; :tail-matcher (rx (not "'") "''" (not "'"))
+    ;; :mode-matcher (rx "/*" (one-or-more space) (group-n 1 (one-or-more graphic)) (one-or-more space) "*/")
+    :head-mode 'host
+    :tail-mode 'host)
+  (define-polymode poly-nix-mode
+    :hostmode 'poly-nix-hostmode
+    :innermodes '(poly-nix-string-innermode)))
 
 ;; ----------------------------------------------------------------------------------
 ;;; Language servers
