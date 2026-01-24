@@ -54,14 +54,13 @@
       "locked": {
         "lastModified": 1764600923,
         "narHash": "sha256-4LQV1mbsiFfc4UYaj20E7eggASV4z7x6a5Azsg2LQZs=",
-        "owner": "TLATER",
+        "owner": "famedly",
         "repo": "famedly-nixos",
         "rev": "5b1c947e10add35297ca3d23b9a2f9196004a785",
         "type": "github"
       },
       "original": {
-        "owner": "TLATER",
-        "ref": "tlater/nixos-25.11",
+        "owner": "famedly",
         "repo": "famedly-nixos",
         "type": "github"
       }
