@@ -52,7 +52,7 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     famedly-nixos = {
-      url = "github:TLATER/famedly-nixos/tlater/nixos-25.11";
+      url = "github:famedly/famedly-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
