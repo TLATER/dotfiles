@@ -384,6 +384,8 @@
   :ensure t
   :require nix-ts-mode
   :mode `(,(rx ".nix" string-end) . poly-nix-mode)
+  :bind (:polymode-mode-map
+         ("C-c ;" . #'polymode-edit-indirect-chunk))
   :custom
   (polymode-mode-name-aliases .
    '((bash . bash-ts-mode)
@@ -450,13 +452,16 @@
     indent))
 
 (defun polymode-edit-indirect-chunk ()
+  (interactive)
   (let* ((span (pm-innermost-span))
          (head-empty (save-excursion
                        (goto-char (cadr span))
-                       (looking-at "[[:space:]]*$")))
+                       (when (looking-at "[[:space:]]*$")
+                         (match-string 0))))
          (tail-empty (save-excursion
                        (goto-char (caddr span))
-                       (looking-back "^[[:space:]]*")))
+                       (when (looking-back "^[[:space:]]*")
+                         (match-string 0))))
          (mode (eieio-oref (cadddr span) :mode))
          (indent (polymode-edit-indirect-chunk--determine-indent span))
 
@@ -467,18 +472,38 @@
                 ;; If the tail is completely empty, we delete it, and
                 ;; add it back later
                 (when tail-empty
-                  (goto-char (point-max))
+                  (goto-char (buffer-end 1))
                   (delete-line))
 
-                (goto-char (point-min))
+                (goto-char (buffer-end -1))
                 ;; Ditto for the head
                 (when head-empty
                   (delete-line))
 
-                (while (< (point) (point-max))
-                  (delete-region (line-beginning-position) (+ (line-beginning-position) indent))
+                (while (< (point) (buffer-end 1))
+                  (unless (looking-at "[[:space:]]*$")
+                    (delete-region (line-beginning-position) (+ (line-beginning-position) indent)))
                   (forward-line))))
-            (funcall mode))))
+            (funcall mode)))
+
+         ;; TODO(tlater): This hook isn't working
+         (edit-indirect-before-commit-hook
+          (lambda ()
+            (message "Restoring indent")
+            (save-excursion
+              (let ((inhibit-read-only t))
+                (goto-char (buffer-end -1))
+                (when head-empty
+                  (insert head-empty))
+
+                ;; TODO(tlater): What happens if we hit the end of buffer exactly?
+                (while (< (point) (buffer-end 1))
+                  (beginning-of-line)
+                  (indent-to indent)
+                  (forward-line))
+
+                (when tail-empty
+                  (insert tail-empty)))))))
     (edit-indirect-region (cadr span) (caddr span))))
 
 ;; ----------------------------------------------------------------------------------
