@@ -3,10 +3,10 @@ melpaBuild {
   src = fetchFromGitHub {
     owner = "nemethf";
     repo = "eglot-x";
-    rev = "b92c44e6b34f8df0539d3c8ab5992c5a7eb815d5";
-    hash = "sha256-VvamDqZ3NowM6XfRlC2exsM6ssRBqWUw6ziKgqdphwM=";
+    rev = "60cf3dcc02f268c8f561dc47998f01e4884ab9a8";
+    hash = "sha256-FknyiRwGt9nukFhYgMHeruOFEeK9mmV9ZO6Pe9n6vas=";
   };
 
-  version = "20251219.1330";
+  version = "20260120.1716";
   pname = "eglot-x";
 }
