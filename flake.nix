@@ -3,7 +3,6 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
-    nixpkgs-tlater.url = "github:tlater/nixpkgs/tlater/fix-automatic-timezoned-startup-delay";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix = {
