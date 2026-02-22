@@ -6,7 +6,10 @@
   ...
 }:
 {
-  disabledModules = [ "services/system/automatic-timezoned.nix" ];
+  disabledModules = [
+    "services/misc/angrr.nix"
+    "services/system/automatic-timezoned.nix"
+  ];
 
   imports = [
     flake-inputs.self.nixosModules.nvidia
@@ -15,6 +18,7 @@
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nix-flatpak.nixosModules.nix-flatpak
 
+    "${flake-inputs.nixpkgs-unstable}/nixos/modules/services/misc/angrr.nix"
     "${flake-inputs.nixpkgs-unstable}/nixos/modules/services/system/automatic-timezoned.nix"
 
     ./desktop
@@ -149,38 +153,47 @@
     };
   };
 
-  systemd = {
-    # My systems never have usable root accounts anyway, so emergency
-    # mode just drops into a shell telling me it can't log into root
-    enableEmergencyMode = false;
-
-    services.angrr-touch = {
-      description = "`touch` gcroots that angrr shouldn't delete";
-      wantedBy = [ "angrr.service" ];
-      before = [ "angrr.service" ];
-
-      serviceConfig.ExecStart =
-        (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
-          { packages = [ pkgs.fd ]; }
-          "angrr-touch"
-          ''
-            let roots = (fd --no-ignore -t d gcroots /home/tlater/.local/src /home/tlater/Documents/Projects
-               | split row "\n"
-               | each { ls -l $in }
-               | flatten
-               | where target =~ ^/nix/store)
-
-            print ($roots | select name accessed modified | update name { path relative-to /home/tlater })
-            $roots | each { touch --no-deref $in.name }
-          ''
-        ).outPath;
-    };
-  };
+  # My systems never have usable root accounts anyway, so emergency
+  # mode just drops into a shell telling me it can't log into root
+  systemd.enableEmergencyMode = false;
 
   services = {
     angrr = {
       enable = true;
-      enableNixGcIntegration = true;
+      package = flake-inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}".angrr;
+
+      settings = {
+        temporary-root-policies = {
+          direnv = {
+            path-regex = "/\\.direnv/";
+            period = "14d";
+          };
+
+          result = {
+            path-regex = "/result[^/]*$";
+            period = "3d";
+          };
+        };
+
+        profile-policies = {
+          system = {
+            profile-paths = [ "/nix/var/nix/profiles/system" ];
+            keep-since = "14d";
+            keep-latest-n = 5;
+            keep-booted-system = true;
+            keep-current-system = true;
+          };
+
+          user = {
+            profile-paths = [
+              "~/.local/state/nix/profiles/profile"
+              "/nix/var/nix/profiles/per-user/root/profile"
+            ];
+            keep-since = "1d";
+            keep-latest-n = 1;
+          };
+        };
+      };
     };
 
     xserver = {
