@@ -9,6 +9,8 @@ in
     nix-gaming.nixosModules.pipewireLowLatency
     nix-gaming.nixosModules.platformOptimizations
     nix-gaming.nixosModules.wine
+
+    ./sunshine.nix
   ];
 
   environment.systemPackages =
