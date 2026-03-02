@@ -6,6 +6,8 @@
     inputs.nix-gaming.nixosModules.pipewireLowLatency
     inputs.nix-gaming.nixosModules.platformOptimizations
     inputs.nix-gaming.nixosModules.wine
+
+    ./sunshine.nix
   ];
 
   hardware.steam-hardware.enable = true;

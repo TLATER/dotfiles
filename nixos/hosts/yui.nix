@@ -25,7 +25,7 @@
 
   # nixpkgs.config.allowUnfreePredicate =
   #   pkg:
-  #   builtins.elem (pkgs.lib.getName pkg) [
+  #   (builtins.elem (lib.getName pkg) [
   #     "steam"
   #     "steam-run"
   #     # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
@@ -33,7 +33,13 @@
   #     "steam-unwrapped"
   #     "nvidia-x11"
   #     "obsidian"
-  #   ];
+  #     "cuda-merged"
+  #     "libnpp"
+  #   ])
+  #   || (lib.strings.hasPrefix "cuda_" (lib.getName pkg))
+  #   || (lib.strings.hasPrefix "libcu" (lib.getName pkg))
+  #   || (lib.strings.hasPrefix "libnv" (lib.getName pkg));
+
 
   # easyNvidia = {
   #   vaapi = {
