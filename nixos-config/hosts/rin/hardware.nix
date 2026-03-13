@@ -37,6 +37,4 @@
     # Apparently, xorg requires bus IDs to be *decimal*
     amdgpuBusId = "PCI:197:0:0";
   };
-
-  services.xserver.videoDrivers = [ "amdgpu" ];
 }
