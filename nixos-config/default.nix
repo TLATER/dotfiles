@@ -131,6 +131,7 @@
   security = {
     sudo-rs.enable = true;
     rtkit.enable = true;
+    pam.enableUMask = true;
   };
 
   fileSystems."/boot".options = [ "umask=0077" ];
