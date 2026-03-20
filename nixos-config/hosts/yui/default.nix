@@ -1,12 +1,4 @@
-{
-  pkgs,
-  lib,
-  flake-inputs,
-  ...
-}:
-let
-  inherit (lib.strings) concatStringsSep;
-in
+{ pkgs, flake-inputs, ... }:
 {
   imports = [
     flake-inputs.disko.nixosModules.disko
@@ -68,21 +60,18 @@ in
       uninstallUnmanaged = false;
     };
 
-    # Fix broken suspend on b550i motherboard
-    #
-    # The rule is a bit overzealous, as it disables wake from *either*
-    # NVME drive, but I don't see why anyone would want to wake from
-    # NVME drives anyway.
-    #
-    # At least I *think* that's what the GPP bridge maps to, at least
-    # this fixes the immediate resume from suspend on my board.
-    udev.extraRules = concatStringsSep ", " [
-      ''ACTION=="add"''
-      ''SUBSYSTEM=="pci"''
-      ''ATTR{vendor}=="0x1022"''
-      ''ATTR{device}=="0x1483"''
-      ''ATTR{power/wakeup}="disabled"''
-    ];
+    udev.rules."98-b550i-suspend.rules" = ''
+      # Fix broken suspend on b550i motherboard
+      #
+      # The rule is a bit overzealous, as it disables wake from *either*
+      # NVME drive, but I don't see why anyone would want to wake from
+      # NVME drives anyway.
+      #
+      # At least I *think* that's what the GPP bridge maps to. In
+      # either case, this fixes the immediate resume from suspend on
+      # my board.
+      ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1022", ATTR{device}=="0x1483", ATTR{power/wakeup}="disabled"
+    '';
   };
 
   # For random android-related things

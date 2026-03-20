@@ -24,6 +24,7 @@
     ./desktop
     ./dev.nix
     ./networking
+    ./udev.nix
     ./yubikey.nix
   ];
 
