@@ -88,11 +88,7 @@ in
 
   config = lib.mkIf cfg.enable {
     assertions = lib.singleton {
-      assertion =
-        cfg.advanced.forceKernel
-        ||
-          lib.strings.compareVersions config.boot.kernelPackages.kernel.version pkgs.linuxKernel.kernels.linux_default.version
-          <= 0;
+      assertion = config.boot.kernelPackages.kernel.isLTS;
       message = "The nvidia driver can only support the LTS kernel. You can ignore this with `easyNvidia.advanced.forceKernel`.";
     };
 
