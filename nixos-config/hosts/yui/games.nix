@@ -1,4 +1,5 @@
 {
+  config,
   flake-inputs,
   pkgs,
   lib,
@@ -35,6 +36,42 @@ in
   services = {
     joycond.enable = true;
     pipewire.lowLatency.enable = true;
+    sunshine = {
+      enable = true;
+      package = pkgs.sunshine.override { cudaSupport = true; };
+
+      openFirewall = true;
+      settings = {
+        sunshine_name = config.networking.hostName;
+        system_tray = false;
+        encoder = "nvenc";
+        capture = "wlr";
+      };
+
+      applications.apps = [
+        (
+          let
+            setsid = lib.getExe' pkgs.util-linux "setsid";
+            steam = lib.getExe config.programs.steam.package;
+
+            run-steam = pkgs.writers.writeNu "run-steam" /* nu */ ''
+              try {
+                ${steam} steam://open/bigpicture
+              } catch {
+                print 'Steam failed to run'
+                sleep 30sec
+              }
+            '';
+          in
+          {
+            name = "Steam Big Picture";
+            cmd = "${pkgs.alacritty}/bin/alacritty --command ${run-steam}";
+            auto-detach = false;
+            prep-cmd = [ { undo = "${setsid} ${steam} steam://close/bigpicture"; } ];
+          }
+        )
+      ];
+    };
   };
 
   # We need at least kernel 6.14 for wine-ntsync
