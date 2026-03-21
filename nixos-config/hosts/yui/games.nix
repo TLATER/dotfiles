@@ -1,9 +1,4 @@
-{
-  flake-inputs,
-  pkgs,
-  lib,
-  ...
-}:
+{ flake-inputs, pkgs, ... }:
 let
   inherit (flake-inputs) nix-gaming self;
   pkgsGames = nix-gaming.packages.${pkgs.stdenv.hostPlatform.system};
@@ -36,14 +31,6 @@ in
     joycond.enable = true;
     pipewire.lowLatency.enable = true;
   };
-
-  # We need at least kernel 6.14 for wine-ntsync
-  boot.kernelPackages = lib.mkIf (lib.versionOlder pkgs.linuxKernel.packages.linux_xanmod.kernel.version "6.14") (
-    lib.mkOverride 99 pkgs.linuxKernel.packages.linux_xanmod_latest
-  );
-
-  # Force using the 6.14 kernel for wine-ntsyc
-  easyNvidia.advanced.forceKernel = lib.versionOlder pkgs.linuxKernel.packages.linux_xanmod.kernel.version "6.14";
 
   programs = {
     steam = {
