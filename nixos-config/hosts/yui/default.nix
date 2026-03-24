@@ -26,6 +26,7 @@
       "steam-original"
       "steam-unwrapped"
       "nvidia-x11"
+      "obsidian"
     ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
