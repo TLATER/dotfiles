@@ -32,6 +32,7 @@
   #     "steam-original"
   #     "steam-unwrapped"
   #     "nvidia-x11"
+  #     "obsidian"
   #   ];
 
   # easyNvidia = {
