@@ -1,4 +1,4 @@
-{ pkgs, flake-inputs, ... }:
+{ lib, flake-inputs, ... }:
 {
   imports = [
     flake-inputs.disko.nixosModules.disko
@@ -19,14 +19,21 @@
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
-    builtins.elem (pkgs.lib.getName pkg) [
+    (builtins.elem (lib.getName pkg) [
       "steam"
       "steam-run"
       # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
       "steam-original"
       "steam-unwrapped"
       "nvidia-x11"
-    ];
+      "obsidian"
+      # For sunshine streams with nvenc
+      "cuda-merged"
+      "libnpp"
+    ])
+    || (lib.strings.hasPrefix "cuda_" (lib.getName pkg))
+    || (lib.strings.hasPrefix "libcu" (lib.getName pkg))
+    || (lib.strings.hasPrefix "libnv" (lib.getName pkg));
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
 

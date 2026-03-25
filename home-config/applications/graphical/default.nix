@@ -6,6 +6,7 @@
     apvlv
     feh
     yubioath-flutter
+    obsidian
   ];
 
   programs.alacritty = {
