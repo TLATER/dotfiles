@@ -90,12 +90,6 @@ in
     services.xserver.videoDrivers = [ "nvidia" ];
 
     hardware.nvidia = {
-      # This will no longer be necessary when
-      # https://github.com/NixOS/nixpkgs/pull/326369 hits stable
-      modesetting.enable = lib.mkDefault true;
-      # Power management is nearly always required to get nvidia GPUs to
-      # behave on suspend, due to firmware bugs.
-      powerManagement.enable = true;
       # The open driver is recommended by nvidia now, see
       # https://download.nvidia.com/XFree86/Linux-x86_64/565.57.01/README/kernel_open.html
       open = true;
@@ -105,9 +99,11 @@ in
 
     boot.extraModprobeConfig =
       let
-        options =
-          lib.optional cfg.advanced.usePageAttributeTable "NVreg_UsePageAttributeTable=1"
-          ++ lib.optional cfg.advanced.monitorControlSupport "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100";
+        options = [
+          "NVreg_UseKernelSuspendNotifiers=1"
+        ]
+        ++ lib.optional cfg.advanced.usePageAttributeTable "NVreg_UsePageAttributeTable=1"
+        ++ lib.optional cfg.advanced.monitorControlSupport "NVreg_RegistryDwords=RMUseSwI2c=0x01;RMI2cSpeed=100";
       in
       lib.mkIf (options != [ ]) "options nvidia ${lib.concatStringsSep " " options}";
   };
