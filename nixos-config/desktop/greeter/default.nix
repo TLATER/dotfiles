@@ -11,6 +11,7 @@ let
 
   sway-gtkgreet = pkgs.writeText "sway-gtkgreet" ''
     output '*' background #fafafa solid_color
+    output 'GSS edid.build 0x00000001' disable
     seat seat0 xcursor_theme Bibata-Original-Ice 24
 
     exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
