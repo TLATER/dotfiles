@@ -1,23 +1,16 @@
 { runCommand, fetchFromGitHub }:
 runCommand "topiary-nushell"
   {
-    version = "0-unstable-2025-08-23";
+    pname = "topiary-nushell";
+    version = "0-unstable-2026-03-04";
 
     src = fetchFromGitHub {
       owner = "blindFS";
       repo = "topiary-nushell";
-      rev = "48934dd3086a2f51ee60b973bb523874ead6af36";
-      hash = "sha256-pxgG2zYWLrxksDIs/nQtnpaITLYhYZ5LktWqiH/Zs1w=";
+      rev = "6e2f9b339a664a46e4015fa5d79e537807fefa39";
+      hash = "sha256-fTfxSnVI7TY6vQhD+GimPBRJ4K0SyyVtoLcLGH3xIPc=";
     };
-
-    # Don't update this package for now; it's tied pretty heavily to
-    # specific grammar versions.
-    #
-    # passthru.updateScript = localLib.nixUpdateScript {
-    #   packageToUpdate = "topiary-nushell";
-    #   version = "branch";
-    # };
   }
   ''
-    install -D --target-directory $out/share/queries/ $src/languages/nu.scm
+    install -D --target-directory $out/share/queries/ $src/queries/nu.scm
   ''

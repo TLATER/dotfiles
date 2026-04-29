@@ -8,16 +8,22 @@
   makeBinaryWrapper,
 
   topiary,
-  tree-sitter-grammars,
 
   localLib,
   nix-update,
+  ast-grep,
+  nix-prefetch-github,
 }:
 let
   inherit (flake-inputs.tree-sitter-sieve.packages.${stdenv.hostPlatform.system})
     tree-sitter-sieve
     topiary-sieve
     ;
+
+  grammars = {
+    inherit tree-sitter-sieve;
+    tree-sitter-nu = callPackage ./tree-sitter-nu.nix { };
+  };
 
   languages = {
     inherit topiary-sieve;
@@ -33,12 +39,12 @@ let
         languages = {
           nu = {
             extensions = ["nu"],
-            grammar.source.path = "${tree-sitter-grammars.tree-sitter-nu}/parser"
+            grammar.source.path = "${grammars.tree-sitter-nu}/parser"
           },
 
           sieve = {
             extensions = ["sieve"],
-            grammar.source.path = "${tree-sitter-sieve}/parser"
+            grammar.source.path = "${grammars.tree-sitter-sieve}/parser"
           }
         }
       }
@@ -63,17 +69,16 @@ symlinkJoin {
   '';
 
   passthru = {
-    inherit languages;
+    inherit grammars languages;
 
     updateScript = localLib.writeUpdateScript {
       packageToUpdate = "topiary";
-      utils = [ nix-update ];
-      script = ''
-        # Don't automatically update topiary-nushell for now, it's
-        # very heavily tied to its tree-sitter grammar version.
-        #
-        # nix-update --flake --format --version=branch topiary.languages.topiary-nushell
-      '';
+      utils = [
+        ast-grep
+        nix-update
+        nix-prefetch-github
+      ];
+      script = ./update.nu;
     };
   };
 }
