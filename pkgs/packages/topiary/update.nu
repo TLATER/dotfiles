@@ -3,7 +3,7 @@ let self = "pkgs/packages/topiary"
 nix-update --flake --format --version=branch topiary.languages.topiary-nushell
 
 # Get the current version of topiary-nushell
-let src = nix eval --raw .#packages.x86_64-linux.topiary.languages.topiary-nushell.src
+let src = nix build --print-out-paths --no-link .#packages.x86_64-linux.topiary.languages.topiary-nushell.src
 
 # Parse the commit of tree-sitter-nu topiary-nushell is compatible
 # with from their `flake.nix`
