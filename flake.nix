@@ -54,7 +54,10 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/latest";
     famedly-nixos = {
       url = "github:famedly/famedly-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-compat.follows = "nix-gaming/git-hooks/flake-compat";
+      };
     };
   };
 
