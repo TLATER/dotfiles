@@ -17,6 +17,8 @@
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/rin.nix";
 
   sops = {
+    defaultSopsFile = "/etc/sops/secrets.yaml";
+    validateSopsFiles = false;
     age.keyFile = "/var/lib/sops/host.age";
     secrets."osquery/enroll" = { };
   };

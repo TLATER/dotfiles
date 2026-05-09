@@ -24,29 +24,10 @@
     ./desktop
     ./dev.nix
     ./networking
+    ./nix.nix
     ./udev.nix
     ./yubikey.nix
   ];
-
-  nix = {
-    settings = {
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-
-    gc = {
-      automatic = true;
-      dates = "Thu";
-    };
-  };
-
-  sops = {
-    defaultSopsFile = "/etc/sops/secrets.yaml";
-    validateSopsFiles = false;
-  };
 
   home-manager = {
     useGlobalPkgs = true;

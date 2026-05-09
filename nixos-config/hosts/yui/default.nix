@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  flake-inputs,
-  ...
-}:
+{ pkgs, flake-inputs, ... }:
 {
   imports = [
     flake-inputs.disko.nixosModules.disko
@@ -21,9 +16,6 @@
     ./networking.nix
   ];
 
-  sops.secrets.nix-signing = { };
-  nix.settings.secret-key-files = [ config.sops.secrets.nix-signing.path ];
-
   nixpkgs.config.allowUnfreePredicate =
     pkg:
     builtins.elem (pkgs.lib.getName pkg) [
@@ -36,8 +28,6 @@
     ];
 
   home-manager.users.tlater = import "${flake-inputs.self}/home-config/hosts/yui.nix";
-
-  sops.age.keyFile = "/var/lib/sops/host.age";
 
   easyNvidia = {
     enable = true;
