@@ -18,7 +18,6 @@
     ./disko.nix
 
     ./games.nix
-    ./wireguard.nix
     ./networking.nix
   ];
 
