@@ -7,6 +7,7 @@
   networking = {
     useDHCP = false;
     networkmanager.enable = true;
+    nftables.enable = true;
   };
 
   services.unbound = {

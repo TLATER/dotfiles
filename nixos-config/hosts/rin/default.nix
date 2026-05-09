@@ -38,6 +38,9 @@
 
   users.users.tlater.extraGroups = [ "docker" ];
 
+  # Incompatible with docker
+  networking.nftables.enable = lib.mkForce false;
+
   # Allow docker containers to communicate
   networking.firewall.extraCommands =
     let
