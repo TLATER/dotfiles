@@ -1,4 +1,9 @@
-{ pkgs, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  flake-inputs,
+  ...
+}:
 {
   imports = [
     flake-inputs.disko.nixosModules.disko
@@ -16,6 +21,9 @@
     ./wireguard.nix
     ./networking.nix
   ];
+
+  sops.secrets.nix-signing = { };
+  nix.settings.secret-key-files = [ config.sops.secrets.nix-signing.path ];
 
   nixpkgs.config.allowUnfreePredicate =
     pkg:
