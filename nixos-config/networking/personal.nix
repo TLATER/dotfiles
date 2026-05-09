@@ -29,60 +29,12 @@
           };
         };
 
-        ethernet = {
-          connection = {
-            id = "ethernet";
-            type = "ethernet";
+        ethernet.connection = {
+          id = "ethernet";
+          type = "ethernet";
 
-            controller = "bond0";
-            port-type = "bond";
-          };
-        };
-
-        lala = {
-          connection = {
-            id = "lala";
-            type = "wifi";
-
-            controller = "bond0";
-            port-type = "bond";
-
-            autoconnect = true;
-            autoconnect-priority = 101;
-          };
-
-          wifi = {
-            mode = "infrastructure";
-            ssid = "lala";
-          };
-
-          wifi-security = {
-            key-mgmt = "sae";
-            psk = "$PSK_LALA";
-          };
-        };
-
-        mikan = {
-          connection = {
-            id = "mikan";
-            type = "wifi";
-
-            controller = "bond0";
-            port-type = "bond";
-
-            autoconnect = true;
-            autoconnect-priority = 100;
-          };
-
-          wifi = {
-            mode = "infrastructure";
-            ssid = "mikan";
-          };
-
-          wifi-security = {
-            key-mgmt = "sae";
-            psk = "$PSK_MIKAN";
-          };
+          controller = "bond0";
+          port-type = "bond";
         };
       };
     };
