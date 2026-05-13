@@ -23,7 +23,6 @@
     secrets."osquery/enroll" = { };
   };
 
-  famedly-hwp.osquery_secret_path = config.sops.secrets."osquery/enroll".path;
   programs.gnupg.agent.enable = lib.mkForce false;
 
   # Used extensively for testing at work
