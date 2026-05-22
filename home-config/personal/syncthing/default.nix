@@ -1,0 +1,84 @@
+{
+  config,
+  flake-inputs,
+  pkgs,
+  lib,
+  ...
+}:
+let
+  cfg = config.services.syncthing;
+  settingsFormat = pkgs.formats.json { };
+in
+{
+  disabledModules = [ "services/syncthing.nix" ];
+
+  options.services.syncthing = {
+    settings = lib.mkOption {
+      type = lib.types.submodule { freeformType = settingsFormat.type; };
+      default = { };
+    };
+  };
+
+  config = {
+    services.syncthing.settings.options = {
+      # Use tailscale to set up mesh networking, and disable all
+      # built-in networking.
+      listenAddresses = lib.mkDefault [
+        "tcp://100.64.0.5:22000"
+        "quic://100.64.0.5:22000"
+      ];
+      globalAnnounceEnabled = lib.mkDefault false;
+      localAnnounceEnabled = lib.mkDefault false;
+      relaysEnabled = lib.mkDefault false;
+      natEnabled = lib.mkDefault false;
+      urAccepted = lib.mkDefault (-1);
+      announceLANAddresses = lib.mkDefault false;
+      stunKeepaliveStartS = lib.mkDefault 0;
+
+      # Disable auto-ugprades; may not be necessary, but better safe
+      # than sorry.
+      autoUpgradeIntervalH = lib.mkDefault 0;
+
+      # We do this via the systemd service (background.slice)
+      setLowPriority = lib.mkDefault false;
+    };
+
+    xdg.configFile."systemd/user/syncthing.service".source =
+      "${pkgs.syncthing}/share/systemd/user/syncthing.service";
+
+    xdg.configFile."systemd/user/syncthing.service.d/override.conf".text = ''
+      [Unit]
+      Wants=syncthing-init.service
+
+      [Service]
+      Slice=background.slice
+    '';
+
+    systemd.user.services.syncthing-init = {
+      Unit = {
+        Description = "Syncthing configuration updater";
+        Requisite = [ "syncthing.service" ];
+        After = [ "syncthing.service" ];
+      };
+
+      Service = {
+        Slice = "background.slice";
+        Type = "oneshot";
+
+        Environment = [ "NU_LOG_LEVEL=INFO" ];
+
+        ExecStart =
+          let
+            configFile = settingsFormat.generate "config.json" cfg.settings.options;
+          in
+          flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith {
+            plugins = [ pkgs.nushellPlugins.query ];
+            extraMakeWrapperArgs = [
+              "--add-flag"
+              configFile
+            ];
+          } "syncthing-apply-config" ./syncthing-apply-config.nu;
+      };
+    };
+  };
+}

@@ -18,13 +18,14 @@ rec {
         "--plugins [${lib.concatStringsSep " " (map lib.getExe plugins)}]"
       ];
 
-      makeWrapperArgs = [
-        "--prefix"
-        "PATH"
-        ":"
-        (lib.makeBinPath packages)
-      ]
-      ++ extraMakeWrapperArgs;
+      makeWrapperArgs =
+        (lib.optionals (packages != [ ]) [
+          "--prefix"
+          "PATH"
+          ":"
+          (lib.makeBinPath packages)
+        ])
+        ++ extraMakeWrapperArgs;
     };
 
   writeNuBinWith = args: name: writeNuWith args "/bin/${name}";

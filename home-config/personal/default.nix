@@ -2,6 +2,7 @@
   imports = [
     ./keepassxc.nix
     ./ssh-servers.nix
+    ./syncthing
     ./webapps.nix
   ];
 
