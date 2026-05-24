@@ -46,6 +46,10 @@ in
     xdg.configFile."systemd/user/syncthing.service".source =
       "${pkgs.syncthing}/share/systemd/user/syncthing.service";
 
+    xdg.configFile."systemd/user/default.target.wants/syncthing.service" = {
+      inherit (config.xdg.configFile."systemd/user/syncthing.service") source;
+    };
+
     xdg.configFile."systemd/user/syncthing.service.d/override.conf".text = ''
       [Unit]
       Wants=syncthing-init.service
