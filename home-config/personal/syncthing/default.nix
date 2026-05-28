@@ -1,88 +1,42 @@
 {
   config,
-  flake-inputs,
   pkgs,
   lib,
+  flake-inputs,
   ...
 }:
 let
-  cfg = config.services.syncthing;
-  settingsFormat = pkgs.formats.json { };
+  inherit ((flake-inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
 in
 {
-  disabledModules = [ "services/syncthing.nix" ];
+  imports = [ ./syncthing.nix ];
 
-  options.services.syncthing = {
-    settings = lib.mkOption {
-      type = lib.types.submodule { freeformType = settingsFormat.type; };
-      default = { };
-    };
+  services.syncthing.settings.options = {
+    # Use tailscale to set up mesh networking, and disable all
+    # built-in networking.
+    listenAddresses = [
+      "tcp://100.64.0.5:22000"
+      "quic://100.64.0.5:22000"
+    ];
+    globalAnnounceEnabled = false;
+    localAnnounceEnabled = false;
+    relaysEnabled = false;
+    natEnabled = false;
+    urAccepted = (-1);
+    announceLANAddresses = false;
+    stunKeepaliveStartS = 0;
   };
 
-  config = {
-    services.syncthing.settings.options = {
-      # Use tailscale to set up mesh networking, and disable all
-      # built-in networking.
-      listenAddresses = lib.mkDefault [
-        "tcp://100.64.0.5:22000"
-        "quic://100.64.0.5:22000"
-      ];
-      globalAnnounceEnabled = lib.mkDefault false;
-      localAnnounceEnabled = lib.mkDefault false;
-      relaysEnabled = lib.mkDefault false;
-      natEnabled = lib.mkDefault false;
-      urAccepted = lib.mkDefault (-1);
-      announceLANAddresses = lib.mkDefault false;
-      stunKeepaliveStartS = lib.mkDefault 0;
+  home.packages = [
+    (mkFirefoxApp {
+      name = "syncthing";
+      url = "http://127.0.0.1:8384";
+      firefoxBin = lib.getExe config.programs.librewolf.package;
 
-      # Disable auto-ugprades; may not be necessary, but better safe
-      # than sorry.
-      autoUpgradeIntervalH = lib.mkDefault 0;
-
-      # We do this via the systemd service (background.slice)
-      setLowPriority = lib.mkDefault false;
-    };
-
-    xdg.configFile."systemd/user/syncthing.service".source =
-      "${pkgs.syncthing}/share/systemd/user/syncthing.service";
-
-    xdg.configFile."systemd/user/default.target.wants/syncthing.service" = {
-      inherit (config.xdg.configFile."systemd/user/syncthing.service") source;
-    };
-
-    xdg.configFile."systemd/user/syncthing.service.d/override.conf".text = ''
-      [Unit]
-      Wants=syncthing-init.service
-
-      [Service]
-      Slice=background.slice
-    '';
-
-    systemd.user.services.syncthing-init = {
-      Unit = {
-        Description = "Syncthing configuration updater";
-        Requisite = [ "syncthing.service" ];
-        After = [ "syncthing.service" ];
+      makeDesktopItemArgs = {
+        comment = pkgs.syncthing.meta.description;
+        icon = "${pkgs.syncthing}/share/icons/hicolor/scalable/apps/syncthing.svg";
       };
-
-      Service = {
-        Slice = "background.slice";
-        Type = "oneshot";
-
-        Environment = [ "NU_LOG_LEVEL=INFO" ];
-
-        ExecStart =
-          let
-            configFile = settingsFormat.generate "config.json" cfg.settings.options;
-          in
-          flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith {
-            plugins = [ pkgs.nushellPlugins.query ];
-            extraMakeWrapperArgs = [
-              "--add-flag"
-              configFile
-            ];
-          } "syncthing-apply-config" ./syncthing-apply-config.nu;
-      };
-    };
-  };
+    })
+  ];
 }
