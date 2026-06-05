@@ -10,7 +10,7 @@ in
     fileset = lib.fileset.fileFilter (file: file.hasExt "nix") ../.;
 
     checkInputs = lib.attrValues {
-      inherit (pkgs) deadnix nixfmt-rfc-style;
+      inherit (pkgs) deadnix nixfmt;
       inherit (flake-inputs.nix-ast-lint.packages.x86_64-linux) nix-ast-lint;
     };
 

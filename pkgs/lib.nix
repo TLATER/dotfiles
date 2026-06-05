@@ -13,7 +13,7 @@ in
       {
         packages = [
           pkgs.nix-update
-          pkgs.nixfmt-rfc-style
+          pkgs.nixfmt
 
         ];
       }

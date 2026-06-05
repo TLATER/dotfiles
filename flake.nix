@@ -2,8 +2,7 @@
   description = "tlater's dotfiles";
 
   inputs = {
-    nixpkgs.url = "https://channels.nixos.org/nixos-25.11/nixexprs.tar.xz";
-    nixpkgs-unstable.url = "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz";
+    nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     sops-nix = {
@@ -24,7 +23,14 @@
     nix-webapps.url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # TODO: Remove when this hits the current home-manager release
+    # branch (or remove it along with home-manager).
+    home-manager-fix-ssh-socket = {
+      url = "github:nix-community/home-manager?rev=55b927d6ebeeee9aadd70135125a35d80573ad6a";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -97,37 +103,34 @@
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
       devShells.x86_64-linux =
-        (
-          { nixpkgs, sops-nix, ... }:
-          {
-            default = nixpkgs.legacyPackages.mkShell {
-              packages = nixpkgs.lib.attrValues {
-                inherit (nixpkgs.legacyPackages) nh;
-                inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
-              };
-
-              sopsPGPKeyDirs = [
-                "./keys/hosts/"
-                "./keys/users/"
-              ];
-
-              NH_NO_CHECKS = true;
-              NH_FLAKE = "/home/tlater/.local/src/dotfiles";
+        ({ nixpkgs, sops-nix, ... }: {
+          default = nixpkgs.legacyPackages.mkShell {
+            packages = nixpkgs.lib.attrValues {
+              inherit (nixpkgs.legacyPackages) nh;
+              inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
             };
 
-            rust = nixpkgs.legacyPackages.mkShell {
-              packages = nixpkgs.lib.attrValues {
-                inherit (nixpkgs.legacyPackages)
-                  rust-analyzer
-                  rustc
-                  rustfmt
-                  cargo
-                  clippy
-                  ;
-              };
+            sopsPGPKeyDirs = [
+              "./keys/hosts/"
+              "./keys/users/"
+            ];
+
+            NH_NO_CHECKS = true;
+            NH_FLAKE = "/home/tlater/.local/src/dotfiles";
+          };
+
+          rust = nixpkgs.legacyPackages.mkShell {
+            packages = nixpkgs.lib.attrValues {
+              inherit (nixpkgs.legacyPackages)
+                rust-analyzer
+                rustc
+                rustfmt
+                cargo
+                clippy
+                ;
             };
-          }
-        )
+          };
+        })
           (self.lib.flattenFlakeInputs inputs "x86_64-linux");
     };
 }

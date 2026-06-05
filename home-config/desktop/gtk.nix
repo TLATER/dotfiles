@@ -1,4 +1,9 @@
-{ flake-inputs, pkgs, ... }:
+{
+  config,
+  flake-inputs,
+  pkgs,
+  ...
+}:
 {
   dconf.settings."org/gnome/desktop/interface" = {
     color-scheme = "prefer-dark";
@@ -12,6 +17,7 @@
       name = "NotoSans";
     };
 
+    gtk4.theme = config.gtk.theme;
     theme = {
       package = pkgs.magnetic-catppuccin-gtk;
       name = "Catppuccin-GTK-Dark";

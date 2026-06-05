@@ -74,14 +74,9 @@ in
 
   services.swayidle = {
     enable = true;
-    systemdTarget = "graphical-session.target";
+    systemdTargets = [ "graphical-session.target" ];
 
-    events = [
-      {
-        event = "lock";
-        command = "${systemctl} --user start swaylock";
-      }
-    ];
+    events.lock = "${systemctl} --user start swaylock";
 
     timeouts = [
       {

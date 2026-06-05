@@ -4,6 +4,14 @@ let
   inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) emacs;
 in
 {
+  disabledModules = [ "misc/ssh-auth-sock.nix" ];
+  imports = [ "${flake-inputs.home-manager-fix-ssh-socket}/modules/misc/ssh-auth-sock.nix" ];
+
+  sshAuthSock = {
+    enable = true;
+    systemd.socketProviderUnit = "gpg-agent-ssh.socket";
+  };
+
   xdg.configFile."emacs".source = "${self}/home-config/dotfiles/emacs.d/";
 
   programs.emacs = {
@@ -21,5 +29,10 @@ in
       ];
     };
     socketActivation.enable = true;
+  };
+
+  systemd.user.services.emacs.Unit = {
+    After = [ "gpg-agent-ssh.socket" ];
+    Requires = [ "gpg-agent-ssh.socket" ];
   };
 }

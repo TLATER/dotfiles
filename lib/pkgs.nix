@@ -2,6 +2,9 @@
   lib,
   writers,
   nushell,
+
+  runCommand,
+  makeBinaryWrapper,
   ...
 }:
 rec {
@@ -12,11 +15,19 @@ rec {
       extraMakeWrapperArgs ? [ ],
     }:
     writers.makeScriptWriter {
-      interpreter = lib.concatStringsSep " " [
-        (lib.getExe nushell)
-        "--no-config-file"
-        "--plugins [${lib.concatStringsSep " " (map lib.getExe plugins)}]"
-      ];
+      interpreter = lib.getExe (
+        runCommand "wrapped-nu"
+          {
+            nativeBuildInputs = [ makeBinaryWrapper ];
+            meta.mainProgram = "nu";
+          }
+          ''
+            makeBinaryWrapper ${lib.getExe nushell} $out/bin/nu \
+              --add-flag --plugins \
+              --add-flag '[${lib.concatStringsSep " " (map lib.getExe plugins)}]' \
+              --add-flag --no-config-file
+          ''
+      );
 
       makeWrapperArgs =
         (lib.optionals (packages != [ ]) [

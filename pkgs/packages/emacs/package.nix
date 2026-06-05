@@ -53,7 +53,7 @@ let
     biome # json/web stuff
     marksman # markdown
     nil # nix
-    nixfmt-rfc-style
+    nixfmt
     ruff # python
     # *sh
     bash-language-server

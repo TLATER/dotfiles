@@ -9,10 +9,9 @@ let
   ewwBin = lib.getExe config.programs.eww.package;
 in
 {
-  programs.eww = {
-    enable = true;
-    configDir = ../dotfiles/eww;
-  };
+
+  programs.eww.enable = true;
+  xdg.configFile."eww".source = ../dotfiles/eww;
 
   systemd.user.services = {
     eww = {

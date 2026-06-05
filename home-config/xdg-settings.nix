@@ -12,6 +12,8 @@ in
 {
   xdg.userDirs = {
     enable = true;
+    setSessionVariables = true;
+
     # Work around firefox creating a "Desktop" directory
     desktop = "${config.home.homeDirectory}";
     download = "${config.home.homeDirectory}/Downloads";
@@ -22,7 +24,7 @@ in
     publicShare = "${config.xdg.userDirs.documents}/Public";
     templates = "${config.xdg.userDirs.documents}/Templates";
     extraConfig = {
-      XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+      SCREENSHOTS = "${config.xdg.userDirs.pictures}/Screenshots";
     };
   };
 

@@ -6,20 +6,12 @@
   ...
 }:
 {
-  disabledModules = [
-    "services/misc/angrr.nix"
-    "services/system/automatic-timezoned.nix"
-  ];
-
   imports = [
     flake-inputs.self.nixosModules.nvidia
 
     flake-inputs.home-manager.nixosModules.home-manager
     flake-inputs.sops-nix.nixosModules.sops
     flake-inputs.nix-flatpak.nixosModules.nix-flatpak
-
-    "${flake-inputs.nixpkgs-unstable}/nixos/modules/services/misc/angrr.nix"
-    "${flake-inputs.nixpkgs-unstable}/nixos/modules/services/system/automatic-timezoned.nix"
 
     ./desktop
     ./dev.nix
@@ -90,7 +82,7 @@
 
   # Ensure that we can find stuff with `man -k` (used with emacs a
   # lot)
-  documentation.man.generateCaches = true;
+  documentation.man.cache.enable = true;
 
   environment = {
     systemPackages = with pkgs; [ pavucontrol ];
@@ -143,7 +135,6 @@
   services = {
     angrr = {
       enable = true;
-      package = flake-inputs.nixpkgs-unstable.legacyPackages."${pkgs.stdenv.hostPlatform.system}".angrr;
 
       settings = {
         temporary-root-policies = {
