@@ -1,13 +1,40 @@
-{ lib, pkgs, ... }:
-{
+{ lib, pkgs, ... }: {
+  imports = [ ./networkmanager-ensure-profiles.nix ];
+
   users.users.tlater.extraGroups = [ "networking" ];
 
   environment.systemPackages = [ pkgs.dig ];
 
   networking = {
     useDHCP = false;
-    networkmanager.enable = true;
     nftables.enable = true;
+    networkmanager = {
+      enable = true;
+
+      ensureProfiles = {
+        environmentFiles = [ "/run/credentials/NetworkManager-ensure-profiles.service/wifi-passwords" ];
+
+        profiles.maatjies = {
+          connection = {
+            id = "maatjies";
+            type = "wifi";
+
+            autoconnect = true;
+            autoconnect-priority = 100;
+          };
+
+          wifi = {
+            mode = "infrastructure";
+            ssid = "maatjies";
+          };
+
+          wifi-security = {
+            key-mgmt = "wpa-psk";
+            psk = "$PSK_MAATJIES";
+          };
+        };
+      };
+    };
   };
 
   services.unbound = {
@@ -62,10 +89,14 @@
     localControlSocketPath = "/run/unbound/unbound.ctl";
   };
 
-  # Ensure unbound is available for DNS settings by the time
-  # connections might set such
-  systemd.services.unbound = {
-    after = lib.mkForce [ ];
-    before = [ "NetworkManager.service" ];
+  systemd.services = {
+    # Ensure unbound is available for DNS settings by the time
+    # connections might set such
+    unbound = {
+      after = lib.mkForce [ ];
+      before = [ "NetworkManager.service" ];
+    };
+
+    NetworkManager-ensure-profiles.serviceConfig.LoadCredentialEncrypted = [ "wifi-passwords" ];
   };
 }

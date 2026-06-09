@@ -5,11 +5,6 @@
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -103,17 +98,9 @@
       checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
 
       devShells.x86_64-linux =
-        ({ nixpkgs, sops-nix, ... }: {
+        ({ nixpkgs, ... }: {
           default = nixpkgs.legacyPackages.mkShell {
-            packages = nixpkgs.lib.attrValues {
-              inherit (nixpkgs.legacyPackages) nh;
-              inherit (sops-nix.packages) sops-init-gpg-key sops-import-keys-hook;
-            };
-
-            sopsPGPKeyDirs = [
-              "./keys/hosts/"
-              "./keys/users/"
-            ];
+            packages = [ nixpkgs.legacyPackages.nh ];
 
             NH_NO_CHECKS = true;
             NH_FLAKE = "/home/tlater/.local/src/dotfiles";

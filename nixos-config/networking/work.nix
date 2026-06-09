@@ -1,7 +1,12 @@
-{ config, lib, ... }:
-{
-  networking.networkmanager.ensureProfiles = lib.mkForce {
-    environmentFiles = [ config.sops.secrets.wireless-env.path ];
+{ lib, ... }: {
+  systemd.services.NetworkManager-ensure-profiles.serviceConfig.LoadCredentialEncrypted = [
+    "work-wifi-passwords"
+  ];
+
+  networking.networkmanager.ensureProfiles = {
+    environmentFiles = [
+      "/run/credentials/NetworkManager-ensure-profiles.service/work-wifi-passwords"
+    ];
 
     profiles = {
       lala-guest = {
@@ -53,6 +58,4 @@
       };
     };
   };
-
-  sops.secrets.wireless-env = { };
 }
