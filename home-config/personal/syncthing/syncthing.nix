@@ -1,6 +1,6 @@
 {
   config,
-  flake-inputs,
+  inputs,
   pkgs,
   lib,
   ...
@@ -61,7 +61,7 @@ in
           let
             configFile = settingsFormat.generate "config.json" cfg.settings.options;
           in
-          flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith {
+          inputs.self.builders.${pkgs.stdenv.hostPlatform.system}.writeNuWith {
             plugins = [ pkgs.nushellPlugins.query ];
             extraMakeWrapperArgs = [
               "--add-flag"

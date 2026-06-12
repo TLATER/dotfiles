@@ -1,5 +1,7 @@
-{ lib, ... }:
-{
+/**
+  Utility library functions.
+*/
+{ lib, ... }: {
   /**
     A helper for creating btrfs subvolumes with disko.
 
@@ -30,37 +32,4 @@
         ];
       }
   );
-
-  /**
-    Specifies the system for all (legacy)?[Pp]ackages in a flake input attrset.
-
-    # Inputs
-
-    `inputs` (Attrset)
-    : A flake input attrset.
-
-    `system`  (String)
-    : The system that should be used for all inputs.
-  */
-  flattenFlakeInputs =
-    inputs: system:
-    lib.mapAttrs (
-      _:
-
-      lib.mapAttrs (
-        name: output:
-        if
-          (lib.elem name [
-            "checks"
-            "devShells"
-            "packages"
-            "pkgs-lib"
-            "legacyPackages"
-          ])
-        then
-          output.${system}
-        else
-          output
-      )
-    ) inputs;
 }

@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  flake-inputs,
-  ...
-}:
-{
+{ pkgs, lib, ... }: {
   programs = {
     aria2.enable = lib.mkForce false;
     ncmpcpp.enable = lib.mkForce false;
@@ -46,7 +40,6 @@
 
   home = {
     packages = with pkgs; [ pre-commit ];
-
-    file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
+    file.".ssh/famedly-tlater.pub".source = ../../keys/famedly-tlater.pub;
   };
 }

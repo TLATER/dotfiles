@@ -2,11 +2,11 @@
   config,
   pkgs,
   lib,
-  flake-inputs,
+  inputs,
   ...
 }:
 let
-  inherit ((flake-inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
+  inherit ((inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
 in
 {
   imports = [ ./syncthing.nix ];

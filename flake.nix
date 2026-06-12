@@ -3,7 +3,17 @@
 
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-26.05/nixexprs.tar.xz";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+
+    wrappers = {
+      url = "github:BirdeeHub/nix-wrapper-modules";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -12,7 +22,10 @@
 
     nix-gaming = {
       url = "github:fufexan/nix-gaming";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
     };
 
     nix-webapps.url = "github:TLATER/nix-webapps?ref=tlater/idiomatic-flake";
@@ -63,61 +76,48 @@
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
     {
-      nixosConfigurations = {
-        yui = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./nixos-config
-            ./nixos-config/hosts/yui
-          ];
+      devshell,
+      flake-parts,
+      nixpkgs,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./dev/devshells.nix
+        ./lib/builders.nix
+      ];
 
-          specialArgs.flake-inputs = inputs;
+      systems = [ "x86_64-linux" ];
+
+      flake = {
+        nixosConfigurations = {
+          rin = nixpkgs.lib.nixosSystem {
+            modules = [
+              ./nixos/hosts/rin.nix
+              # TODO: Replace with hjem
+              ./nixos/home-manager.nix
+            ];
+
+            specialArgs.inputs = inputs;
+          };
         };
 
-        rin = nixpkgs.lib.nixosSystem {
-          modules = [
-            ./nixos-config
-            ./nixos-config/hosts/rin
-          ];
+        lib = import ./lib/pure.nix { inherit (inputs.nixpkgs) lib; };
+      };
 
-          specialArgs.flake-inputs = inputs;
+      perSystem =
+        {
+          pkgs,
+          inputs',
+          self',
+          ...
+        }:
+        {
+          packages = pkgs.lib.packagesFromDirectoryRecursive {
+            callPackage = pkgs.lib.callPackageWith (pkgs // { inherit inputs inputs' self'; });
+            directory = ./packages;
+          };
         };
-      };
-
-      nixosModules.nvidia = ./nixos-modules/nvidia;
-
-      packages.x86_64-linux = import ./pkgs {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        flake-inputs = inputs;
-      };
-
-      lib = import ./lib/pure.nix { inherit (nixpkgs) lib; };
-      pkgs-lib.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.callPackage ./lib/pkgs.nix { };
-
-      checks.x86_64-linux = import ./checks { flake-inputs = inputs; };
-
-      devShells.x86_64-linux =
-        ({ nixpkgs, ... }: {
-          default = nixpkgs.legacyPackages.mkShell {
-            packages = [ nixpkgs.legacyPackages.nh ];
-
-            NH_NO_CHECKS = true;
-            NH_FLAKE = "/home/tlater/.local/src/dotfiles";
-          };
-
-          rust = nixpkgs.legacyPackages.mkShell {
-            packages = nixpkgs.lib.attrValues {
-              inherit (nixpkgs.legacyPackages)
-                rust-analyzer
-                rustc
-                rustfmt
-                cargo
-                clippy
-                ;
-            };
-          };
-        })
-          (self.lib.flattenFlakeInputs inputs "x86_64-linux");
     };
 }
