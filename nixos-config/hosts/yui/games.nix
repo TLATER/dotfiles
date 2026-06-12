@@ -18,7 +18,11 @@ in
     [
       osuLazer
 
-      pkgs.prismlauncher
+      (pkgs.prismlauncher.overrideAttrs (old: {
+        qtWrapperArgs = old.qtWrapperArgs ++ [
+          "--prefix _JAVA_OPTIONS ' ' '-Dorg.lwjgl.glfw.libname=${pkgs.glfw3-minecraft}/lib/libglfw.so'"
+        ];
+      }))
 
       pkgsSelf.edopro
       pkgsSelf.jazz-jackrabbit-2
