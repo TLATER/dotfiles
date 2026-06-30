@@ -55,6 +55,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    treefmt = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nix-ast-lint = {
       url = "https://codeberg.org/tlater/nix-ast-lint/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -85,6 +90,8 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       imports = [
         ./dev/devshells.nix
+        ./dev/formatting.nix
+        ./dev/pre-commit-hooks.nix
         ./lib/builders.nix
       ];
 

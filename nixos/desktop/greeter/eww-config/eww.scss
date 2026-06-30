@@ -1,17 +1,21 @@
-* { all: unset; }
+* {
+  all: unset;
+}
 
 .btns-box {
-    font-family: Phosphor;
+  font-family: Phosphor;
   font-size: 2.5em;
 
   button {
     padding: 0.4em;
     border-radius: 0.1em;
-    background-color: rgba(black, 0.0);
+    background-color: rgba(black, 0);
     color: black;
 
     &:hover {
-      transition: 200ms linear background-color, border-radius;
+      transition:
+        200ms linear background-color,
+        border-radius;
       background-color: rgba(black, 0.2);
     }
 

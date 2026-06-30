@@ -1,5 +1,4 @@
-{ config, lib, ... }:
-{
+{ config, lib, ... }: {
   imports = [
     ./extensions.nix
     ./lepton.nix

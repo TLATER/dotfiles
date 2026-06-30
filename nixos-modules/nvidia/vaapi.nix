@@ -113,13 +113,10 @@ in
           { programs.firefox.preferences = firefoxSettings config.programs.firefox.package; }
           (lib.optionalAttrs (options ? home-manager) {
             home-manager.sharedModules = [
-              (
-                { config, ... }:
-                {
-                  programs.librewolf.settings = firefoxSettings config.programs.librewolf.package;
-                  # TODO(tlater): Add settings for Firefox and floorp
-                }
-              )
+              ({ config, ... }: {
+                programs.librewolf.settings = firefoxSettings config.programs.librewolf.package;
+                # TODO(tlater): Add settings for Firefox and floorp
+              })
             ];
           })
         ]
