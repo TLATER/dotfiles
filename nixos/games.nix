@@ -20,6 +20,8 @@
   programs = {
     steam = {
       enable = true;
+      extraPackages = [ pkgs.hidapi ];
+
       extraCompatPackages = [ pkgs.proton-ge-bin ];
       platformOptimizations.enable = true;
       protontricks.enable = true;
