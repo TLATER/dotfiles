@@ -1,4 +1,4 @@
-let dir = 'pkgs/packages/edopro/' | path expand
+let dir = 'packages/edopro/' | path expand
 
 def parse_edopro_version []: nothing -> string {
   print $dir

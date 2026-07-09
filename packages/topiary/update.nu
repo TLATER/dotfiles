@@ -1,4 +1,4 @@
-let self = "pkgs/packages/topiary"
+let self = "packages/topiary"
 
 nix-update --flake --format --version=branch topiary.languages.topiary-nushell
 

@@ -1,4 +1,4 @@
-let dir = 'pkgs/packages/emacs'
+let dir = 'packages/emacs'
 
 for file in [$'($dir)/eglot-x.nix'] {
   let owner = (

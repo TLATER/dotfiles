@@ -57,31 +57,40 @@
           {
             packages ? [ ],
             plugins ? [ ],
-            extraMakeWrapperArgs ? [ ],
-          }:
-          writers.makeScriptWriter {
-            interpreter =
-              (inputs.wrappers.lib.evalModule {
-                inherit pkgs;
-                imports = [ inputs.wrappers.lib.modules.default ];
+            ...
+          }@args:
+          writers.makeScriptWriter (
+            {
+              interpreter =
+                lib.getExe
+                  (inputs.wrappers.lib.evalModule {
+                    inherit pkgs;
+                    imports = [ inputs.wrappers.lib.modules.default ];
 
-                package = pkgs.nushell;
+                    package = pkgs.nushell;
 
-                flags = {
-                  "--plugins" = "[" + (lib.concatStringsSep " " (map lib.getExe plugins)) + "]";
-                  "--no-config-file" = true;
-                };
-              }).config.wrapper;
-
-            makeWrapperArgs =
-              (lib.optionals (packages != [ ]) [
-                "--prefix"
-                "PATH"
-                ":"
-                (lib.makeBinPath packages)
-              ])
-              ++ extraMakeWrapperArgs;
-          };
+                    runtimePkgs = packages;
+                    flags = {
+                      "--no-config-file" = true;
+                      "--plugins" =
+                        if (plugins == [ ]) then
+                          false
+                        else
+                          {
+                            data = map lib.getExe plugins;
+                            ifs = " ";
+                            sep = " ";
+                            before = [ "--no-config-file" ];
+                            esc-fn = lib.id;
+                          };
+                    };
+                  }).config.wrapper;
+            }
+            // (lib.removeAttrs args [
+              "packages"
+              "plugins"
+            ])
+          );
 
         /**
           An alternative to `pkgs.writers.writeNuBinWith` that allows

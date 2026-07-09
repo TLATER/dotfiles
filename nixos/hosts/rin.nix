@@ -18,6 +18,11 @@
     ./rin/wifi.nix
   ];
 
+  unfree.allowUnfreePackages = [
+    "nvidia-x11"
+    "nvidia-settings"
+  ];
+
   networking = {
     hostName = "rin";
     hostId = "e6aaf496";

@@ -1,4 +1,4 @@
-let self = "pkgs/packages/nvidia/package.nix"
+let self = "packages/nvidia/package.nix"
 
 mut updates = {}
 

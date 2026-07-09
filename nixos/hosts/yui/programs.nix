@@ -24,7 +24,9 @@ in
 
     pkgs.prismlauncher
 
-    pkgsSelf.edopro
+    # pkgsSelf.edopro
     pkgsSelf.jazz-jackrabbit-2
+
+    pkgs.android-tools
   ];
 }

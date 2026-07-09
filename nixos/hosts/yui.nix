@@ -1,7 +1,8 @@
 /**
   Entrypoint for yui.
 */
-{ inputs, ... }: {
+{ inputs, ... }:
+{
   imports = [
     # flake-inputs.nixos-hardware.nixosModules.common-pc
     # flake-inputs.nixos-hardware.nixosModules.common-pc-ssd
@@ -20,26 +21,19 @@
     ./yui/disko.nix
     ./yui/hardware.nix
     ./yui/programs.nix
-    ./yui/tailscale.nix
+    ./yui/sunshine.nix
+    # ./yui/tailscale.nix
   ];
 
-  # nixpkgs.config.allowUnfreePredicate =
-  #   pkg:
-  #   (builtins.elem (lib.getName pkg) [
-  #     "steam"
-  #     "steam-run"
-  #     # Required to get the steam controller to work (i.e., for hardware.steam-hardware)
-  #     "steam-original"
-  #     "steam-unwrapped"
-  #     "nvidia-x11"
-  #     "obsidian"
-  #     "cuda-merged"
-  #     "libnpp"
-  #   ])
-  #   || (lib.strings.hasPrefix "cuda_" (lib.getName pkg))
-  #   || (lib.strings.hasPrefix "libcu" (lib.getName pkg))
-  #   || (lib.strings.hasPrefix "libnv" (lib.getName pkg));
-
+  unfree.allowUnfreePackages = [
+    "nvidia-x11"
+    "nvidia-settings"
+    "obsidian"
+    "steam"
+    "steam-run"
+    "steam-original"
+    "steam-unwrapped"
+  ];
 
   # easyNvidia = {
   #   vaapi = {
@@ -51,10 +45,9 @@
   networking.hostName = "yui";
 
   home-manager.users.tlater = import "${inputs.self}/home-config/hosts/yui.nix";
-  hardware.facter.reportPaht = ./yui/facter.json;
+  hardware.facter.reportPath = ./yui/facter.json;
 
   # For random android-related things
-  programs.adb.enable = true;
   users.users.tlater.extraGroups = [ "adbusers" ];
 
   system.stateVersion = "20.09";

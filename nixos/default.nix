@@ -1,13 +1,20 @@
 /**
   Entrypoint into general-purpose configuration.
 */
-{ inputs, lib, ... }: {
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     inputs.disko.nixosModules.disko
     inputs.nix-flatpak.nixosModules.nix-flatpak
 
     ./modules/networkmanager-ensure-profiles.nix
     ./modules/udev-rules.nix
+    ./modules/unfree-packages.nix
 
     ./boot.nix
     ./desktop.nix
@@ -17,12 +24,11 @@
     ./security.nix
   ];
 
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-    ];
+  _module.args.inputs' = lib.mapAttrs (
+    _: outputs: lib.mapAttrs (_: output: output.${pkgs.stdenv.hostPlatform.system}) outputs
+  ) inputs;
+
+  hardware.facter.enable = true;
 
   # Remove some silly defaults.
   programs.nano.enable = false;

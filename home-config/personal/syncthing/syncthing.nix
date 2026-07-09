@@ -63,7 +63,7 @@ in
           in
           inputs.self.builders.${pkgs.stdenv.hostPlatform.system}.writeNuWith {
             plugins = [ pkgs.nushellPlugins.query ];
-            extraMakeWrapperArgs = [
+            makeWrapperArgs = [
               "--add-flag"
               configFile
             ];

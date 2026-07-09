@@ -1,4 +1,4 @@
-let self = "pkgs/packages/catppuccin-themes/package.nix"
+let self = "packages/catppuccin-themes/package.nix"
 
 def update [prefetch] {
   mut new_attrset = $"{\n  name = \"catppuccin-($prefetch.repo)\";\n  "

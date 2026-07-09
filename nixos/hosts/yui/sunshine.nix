@@ -1,17 +1,32 @@
 {
-  flake-inputs,
   config,
+  inputs',
+  lib,
   pkgs,
   ...
 }:
 let
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}) writeNuWith;
-  inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) edid-generator;
+  inherit (inputs'.self.builders) writeNuWith;
+  inherit (inputs'.self.packages) edid-generator;
 in
 {
   nix.settings = {
     substituters = [ "https://cache.nixos-cuda.org" ];
     trusted-public-keys = [ "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=" ];
+  };
+
+  # These packages are required for nvenc
+  unfree = {
+    allowUnfreePackages = [
+      "cuda-merged"
+      "libnpp"
+    ];
+
+    extraPredicates = [
+      (pkg: lib.strings.hasPrefix "cuda_" (lib.getName pkg))
+      (pkg: lib.strings.hasPrefix "libcu" (lib.getName pkg))
+      (pkg: lib.strings.hasPrefix "libnv" (lib.getName pkg))
+    ];
   };
 
   # Create a virtual display to render games for sunshine on
@@ -106,7 +121,7 @@ in
         {
           name = "Steam Big Picture";
           cmd =
-            (runScript "run-steam" /* nu */ ''
+            (runScript "run-steam" ''
               swaymsg output DP-2 enable
               swaymsg workspace sunshine gaps outer 0
               swaymsg workspace sunshine gaps inner 0
@@ -139,7 +154,7 @@ in
           prep-cmd = [
             {
               undo =
-                (runScript "close-steam" /* nu */ ''
+                (runScript "close-steam" ''
                   swaymsg output DP-2 disable
 
                   (busctl --user call

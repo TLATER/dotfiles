@@ -335,11 +335,11 @@
     },
     "nix-webapps": {
       "locked": {
-        "lastModified": 1758980590,
-        "narHash": "sha256-dPAU7K3ntk7UayXF9uYv8N3qhmyLpfhAb7WMWhWwfr8=",
+        "lastModified": 1783628082,
+        "narHash": "sha256-XIX1EELu2UkkzkFSAiFD7W7Qb3paFUmK3DZ0VUCZRdI=",
         "owner": "TLATER",
         "repo": "nix-webapps",
-        "rev": "2ad0b7004ef46c3c37a23e5d9bb03a67ec142f00",
+        "rev": "07b566b60afbd37b0d8b96d137c18b06984e2877",
         "type": "github"
       },
       "original": {

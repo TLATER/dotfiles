@@ -99,6 +99,16 @@
 
       flake = {
         nixosConfigurations = {
+          yui = nixpkgs.lib.nixosSystem {
+            modules = [
+              ./nixos/hosts/yui.nix
+              # TODO: Replace with hjem
+              ./nixos/home-manager.nix
+            ];
+
+            specialArgs.inputs = inputs;
+          };
+
           rin = nixpkgs.lib.nixosSystem {
             modules = [
               ./nixos/hosts/rin.nix
