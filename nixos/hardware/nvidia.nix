@@ -3,6 +3,7 @@
 */
 {
   config,
+  inputs',
   lib,
   pkgs,
   ...
@@ -33,6 +34,23 @@ lib.mkMerge [
       open = true;
       powerManagement.enable = true;
       moduleParams.nvidia.NVreg_UsePageAttributeTable = lib.mkIf cpuSupportsPat 1;
+
+      package =
+        let
+          inherit (inputs'.self.packages) nvidia;
+        in
+        config.boot.kernelPackages.nvidiaPackages.mkDriver {
+          inherit (nvidia) version;
+          sha256_64bit = nvidia.src.outputHash;
+          openSha256 = nvidia.open.src.outputHash;
+          useSettings = false;
+          usePersistenced = false;
+        };
+
+      # Disabled because I don't use it and I can't be bothered to
+      # figure out how to get a hash for something nvidia don't seem to
+      # publish consistently.
+      nvidiaSettings = false;
     };
   }
 
@@ -93,24 +111,3 @@ lib.mkMerge [
     }
   ))
 ]
-
-# hardware = {
-#   nvidia =
-#     let
-#       inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) nvidia;
-#     in
-#     {
-#       package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-#         inherit (nvidia) version;
-#         sha256_64bit = nvidia.src.outputHash;
-#         openSha256 = nvidia.open.src.outputHash;
-#         useSettings = false;
-#         usePersistenced = false;
-#       };
-
-#       # Disabled because I don't use it and I can't be bothered to
-#       # figure out how to get a hash for something nvidia don't seem to
-#       # publish consistently.
-#       nvidiaSettings = false;
-#     };
-# };
