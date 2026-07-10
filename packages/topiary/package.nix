@@ -12,6 +12,7 @@
   nix-update,
   ast-grep,
   nix-prefetch-github,
+  nixfmt,
 }:
 let
   inherit (inputs'.tree-sitter-sieve.packages) tree-sitter-sieve topiary-sieve;
@@ -73,6 +74,7 @@ symlinkJoin {
         ast-grep
         nix-update
         nix-prefetch-github
+        nixfmt
       ];
       script = ./update.nu;
     };
