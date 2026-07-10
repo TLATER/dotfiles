@@ -12,6 +12,8 @@
     package = pkgs.lixPackageSets.stable.lix;
 
     settings = {
+      allowed-users = [ "@wheel" ];
+
       auto-optimise-store = true;
       experimental-features = [
         "nix-command"
