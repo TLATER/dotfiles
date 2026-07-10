@@ -19,6 +19,8 @@
       ];
 
       secret-key-files = [ "/run/credentials/nix-daemon.service/nix-signing-key" ];
+
+      substituters = lib.mkForce [ "http://${config.services.ncro.settings.server.listen}" ];
     };
 
     gc = {
@@ -27,39 +29,69 @@
     };
   };
 
-  # Regularly clean up gcroots
-  services.angrr = {
-    enable = true;
+  services = {
+    # Fix nix' stupid cache resolution
+    ncro = {
+      enable = true;
+      settings = {
+        server.listen = "127.0.0.1:8080";
+        cache.ttl = "1d";
 
-    settings = {
-      temporary-root-policies = {
-        direnv = {
-          path-regex = "/\\.direnv/";
-          period = "14d";
+        logging = {
+          timestamps = false;
+          format = "text";
         };
 
-        result = {
-          path-regex = "/result[^/]*$";
-          period = "3d";
-        };
+        upstreams = [
+          {
+            url = "https://cache.nixos.org";
+            priority = 10;
+            # The key for cache.nixos.org is provided by nixpkgs, so
+            # we don't add it manually.
+          }
+          {
+            url = "https://cache.nixos-cuda.org";
+            priority = 20;
+            public_key = "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=";
+          }
+        ];
       };
+    };
 
-      profile-policies = {
-        system = {
-          profile-paths = [ "/nix/var/nix/profiles/system" ];
-          keep-since = "14d";
-          keep-latest-n = 5;
-          keep-booted-system = true;
-          keep-current-system = true;
+    # Regularly clean up gcroots
+    angrr = {
+      enable = true;
+
+      settings = {
+        temporary-root-policies = {
+          direnv = {
+            path-regex = "/\\.direnv/";
+            period = "14d";
+          };
+
+          result = {
+            path-regex = "/result[^/]*$";
+            period = "3d";
+          };
         };
 
-        user = {
-          profile-paths = [
-            "~/.local/state/nix/profiles/profile"
-            "/nix/var/nix/profiles/per-user/root/profile"
-          ];
-          keep-since = "1d";
-          keep-latest-n = 1;
+        profile-policies = {
+          system = {
+            profile-paths = [ "/nix/var/nix/profiles/system" ];
+            keep-since = "14d";
+            keep-latest-n = 5;
+            keep-booted-system = true;
+            keep-current-system = true;
+          };
+
+          user = {
+            profile-paths = [
+              "~/.local/state/nix/profiles/profile"
+              "/nix/var/nix/profiles/per-user/root/profile"
+            ];
+            keep-since = "1d";
+            keep-latest-n = 1;
+          };
         };
       };
     };

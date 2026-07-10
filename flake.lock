@@ -319,6 +319,26 @@
         "type": "github"
       }
     },
+    "ncro": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783665058,
+        "narHash": "sha256-WNl+0YP4/XCshpj5c0ZYNBuTzg/bLIaLcf7qtxrLIfU=",
+        "owner": "manic-systems",
+        "repo": "ncro",
+        "rev": "eec6c0ed0577312779b0842d8c15cce8fd4dcbc9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "manic-systems",
+        "repo": "ncro",
+        "type": "github"
+      }
+    },
     "nix-ast-lint": {
       "inputs": {
         "nixpkgs": [
@@ -460,6 +480,7 @@
         "flint": "flint",
         "home-manager": "home-manager",
         "home-manager-fix-ssh-socket": "home-manager-fix-ssh-socket",
+        "ncro": "ncro",
         "nix-ast-lint": "nix-ast-lint",
         "nix-flatpak": "nix-flatpak",
         "nix-gaming": "nix-gaming",

@@ -10,6 +10,7 @@
 {
   imports = [
     inputs.disko.nixosModules.disko
+    inputs.ncro.nixosModules.ncro
     inputs.nix-flatpak.nixosModules.nix-flatpak
 
     ./modules/networkmanager-ensure-profiles.nix
