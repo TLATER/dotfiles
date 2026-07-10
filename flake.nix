@@ -75,7 +75,7 @@
       url = "github:famedly/famedly-nixos";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        flake-compat.follows = "nix-gaming/git-hooks/flake-compat";
+        flake-parts.follows = "flake-parts";
       };
     };
   };

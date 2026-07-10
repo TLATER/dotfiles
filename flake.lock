@@ -111,8 +111,6 @@
       "inputs": {
         "famedly-engineering-standards": "famedly-engineering-standards",
         "flake-parts": [
-          "famedly-nixos",
-          "famedly-engineering-standards",
           "flake-parts"
         ],
         "fleet-nixos": "fleet-nixos",
