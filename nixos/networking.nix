@@ -14,8 +14,21 @@
   services.unbound.enable = true;
 
   networking = {
-    networkmanager.enable = true;
+    # Not needed since NetworkManager uses its own internal dhcp
+    # client.
+    dhcpcd.enable = false;
     nftables.enable = true;
+
+    networkmanager = {
+      enable = true;
+
+      # We need at least an ethernet profile to get NetworkManager to
+      # attempt an ethernet connection.
+      ensureProfiles.profiles.ethernet.connection = {
+        id = "ethernet";
+        type = "ethernet";
+      };
+    };
   };
 
   # NTP
