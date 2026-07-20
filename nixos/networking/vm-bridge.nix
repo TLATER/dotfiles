@@ -68,10 +68,4 @@ in
 
   # More configuration to enable request forwarding from the VM
   boot.kernel.sysctl."net.ipv4.ip_forward" = 1;
-
-  # Add local DNS zone for VMs
-  services.unbound.settings.server = {
-    local-zone = ''"dev.local." redirect'';
-    local-data = ''"dev.local. A 192.168.9.2"'';
-  };
 }
