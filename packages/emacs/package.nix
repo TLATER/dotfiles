@@ -82,6 +82,7 @@ let
           tree-sitter-typescript
           tree-sitter-tsx
           tree-sitter-yaml
+          tree-sitter-zig
         ]
       ))
     ];
