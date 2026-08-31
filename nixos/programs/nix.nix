@@ -84,7 +84,7 @@
               {
                 action = "allow";
                 field = "name";
-                pattern = "cuda_*";
+                pattern = "cuda*";
               }
               {
                 action = "allow";
