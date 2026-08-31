@@ -52,6 +52,12 @@
             # we don't add it manually.
           }
           {
+            url = "https://aseipp-nix-cache.global.ssl.fastly.net";
+            priority = 9;
+            # This is the "beta" cache, which should be faster. It
+            # uses the same key as https://cache.nixos.org.
+          }
+          {
             url = "https://cache.nixos-cuda.org";
             priority = 20;
             filters = [
