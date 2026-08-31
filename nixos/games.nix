@@ -15,6 +15,8 @@
     pipewire.lowLatency.enable = true;
   };
 
+  environment.systemPackages = [ pkgs.mangohud ];
+
   programs = {
     steam = {
       enable = true;
