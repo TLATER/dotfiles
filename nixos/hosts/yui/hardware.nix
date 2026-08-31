@@ -33,6 +33,12 @@
       })
   );
 
+  # Broken upstream, intel refuse to fix it:
+  # https://bugzilla.kernel.org/show_bug.cgi?id=220300
+  boot.extraModprobeConfig = ''
+    options iwlwifi 11n_disable=1
+  '';
+
   services.udev.rules."98-b550i-suspend.rules" = ''
     # Fix broken suspend on b550i motherboard
     #
