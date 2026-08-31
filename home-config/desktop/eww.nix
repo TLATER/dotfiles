@@ -1,5 +1,5 @@
 {
-  flake-inputs,
+  inputs,
   pkgs,
   config,
   lib,
@@ -9,10 +9,9 @@ let
   ewwBin = lib.getExe config.programs.eww.package;
 in
 {
-  programs.eww = {
-    enable = true;
-    configDir = ../dotfiles/eww;
-  };
+
+  programs.eww.enable = true;
+  xdg.configFile."eww".source = ../dotfiles/eww;
 
   systemd.user.services = {
     eww = {
@@ -51,7 +50,7 @@ in
       };
 
       Service = {
-        ExecStart = lib.getExe flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.desktop-logic;
+        ExecStart = lib.getExe inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.desktop-logic;
         Restart = "on-failure";
         Type = "dbus";
         BusName = "net.tlater.DesktopLogic";

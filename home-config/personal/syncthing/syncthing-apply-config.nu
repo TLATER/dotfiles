@@ -4,12 +4,12 @@ def main [config: path] {
   let options = open $config
 
   let address = (
-    open --raw $'($env.XDG_STATE_HOME)/syncthing/config.xml'
+    open --raw $'($env.XDG_STATE_HOME? | default "~/.local/state")/syncthing/config.xml'
     | query xml 'string(configuration/gui/address)'
   )
 
   let api_key = (
-    open --raw $'($env.XDG_STATE_HOME)/syncthing/config.xml'
+    open --raw $'($env.XDG_STATE_HOME? | default "~/.local/state")/syncthing/config.xml'
     | query xml 'string(configuration/gui/apikey)'
   )
 

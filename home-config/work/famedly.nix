@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  flake-inputs,
-  ...
-}:
-{
+{ pkgs, lib, ... }: {
   programs = {
     aria2.enable = lib.mkForce false;
     ncmpcpp.enable = lib.mkForce false;
@@ -38,18 +32,14 @@
 
     ssh = {
       enableDefaultConfig = false;
-      matchBlocks."*".identityFile = "~/.ssh/famedly-tlater.pub";
+      settings."*".IdentityFile = "~/.ssh/famedly-tlater.pub";
     };
   };
 
   services.mpd.enable = lib.mkForce false;
 
   home = {
-    packages = with pkgs; [
-      bitwarden-desktop
-      pre-commit
-    ];
-
-    file.".ssh/famedly-tlater.pub".source = "${flake-inputs.self}/keys/famedly-tlater.pub";
+    packages = with pkgs; [ pre-commit ];
+    file.".ssh/famedly-tlater.pub".source = ../../keys/famedly-tlater.pub;
   };
 }

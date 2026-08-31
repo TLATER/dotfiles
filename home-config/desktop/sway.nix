@@ -1,13 +1,13 @@
 {
   config,
-  flake-inputs,
+  inputs,
   nixos-config ? { },
   pkgs,
   lib,
   ...
 }:
 let
-  inherit (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}) writeNuBinWith;
+  inherit (inputs.self.builders.${pkgs.stdenv.hostPlatform.system}) writeNuBinWith;
 
   loginctl = "${pkgs.stdenv.hostPlatform.system}/bin/loginctl";
   swaypkg = nixos-config.programs.sway.package or pkgs.sway;
@@ -62,7 +62,7 @@ in
     extraConfigEarly =
       let
         theme = "${
-          flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-themes
+          inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.catppuccin-themes
         }/share/i3/themes/catppuccin-macchiato";
       in
       ''
@@ -74,14 +74,9 @@ in
 
   services.swayidle = {
     enable = true;
-    systemdTarget = "graphical-session.target";
+    systemdTargets = [ "graphical-session.target" ];
 
-    events = [
-      {
-        event = "lock";
-        command = "${systemctl} --user start swaylock";
-      }
-    ];
+    events.lock = "${systemctl} --user start swaylock";
 
     timeouts = [
       {
@@ -102,7 +97,7 @@ in
       settings = {
         main =
           let
-            inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) catppuccin-themes;
+            inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) catppuccin-themes;
           in
           {
             # The launch prefix *is* set correctly for terminals
@@ -148,7 +143,7 @@ in
       Service = {
         Slice = "background-graphical.slice";
         ExecStart =
-          (flake-inputs.self.pkgs-lib.${pkgs.stdenv.hostPlatform.system}.writeNuWith
+          ((inputs.self.builders.${pkgs.stdenv.hostPlatform.system}).writeNuWith
             { packages = [ pkgs.swaybg ]; }
             "swaybg"
             ''

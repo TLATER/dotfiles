@@ -1,5 +1,5 @@
 {
-  flake-inputs,
+  inputs,
   pkgs,
   lib,
   ...
@@ -7,7 +7,7 @@
 {
   imports = [ ./emacs.nix ];
 
-  home.packages = [ flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.topiary ];
+  home.packages = [ inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.topiary ];
 
   programs = {
     bottom = {

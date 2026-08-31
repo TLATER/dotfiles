@@ -1,18 +1,18 @@
-{ flake-inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   imports = [ ./librewolf ];
 
   home.packages = with pkgs; [
     apvlv
     feh
     yubioath-flutter
+    obsidian
   ];
 
   programs.alacritty = {
     enable = true;
     settings.general.import =
       let
-        inherit (flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) catppuccin-themes;
+        inherit (inputs.self.packages.${pkgs.stdenv.hostPlatform.system}) catppuccin-themes;
       in
       [ "${catppuccin-themes}/share/alacritty/themes/catppuccin-macchiato.toml" ];
   };

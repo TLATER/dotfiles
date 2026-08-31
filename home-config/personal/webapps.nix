@@ -2,11 +2,11 @@
   config,
   pkgs,
   lib,
-  flake-inputs,
+  inputs,
   ...
 }:
 let
-  inherit ((flake-inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
+  inherit ((inputs.nix-webapps.overlays.default pkgs pkgs).nix-webapp-lib) mkFirefoxApp;
 in
 {
   home.packages = [
@@ -36,12 +36,12 @@ in
     })
 
     (mkFirefoxApp {
-      name = "element";
-      url = "https://app.element.io";
+      name = "cinny";
+      url = "https://dev.cinny.in/login/matrix.tlater.net";
       firefoxBin = lib.getExe config.programs.librewolf.package;
 
       makeDesktopItemArgs = {
-        icon = "Element";
+        icon = "cinny";
         mimeTypes = [ "x-scheme-handler/element" ];
         categories = [
           "Network"

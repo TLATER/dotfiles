@@ -1,4 +1,9 @@
-{ flake-inputs, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   dconf.settings."org/gnome/desktop/interface" = {
     color-scheme = "prefer-dark";
@@ -12,6 +17,7 @@
       name = "NotoSans";
     };
 
+    gtk4.theme = config.gtk.theme;
     theme = {
       package = pkgs.magnetic-catppuccin-gtk;
       name = "Catppuccin-GTK-Dark";
@@ -30,7 +36,7 @@
         postBuild =
           let
             edopro = "${
-              flake-inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.delta-icons
+              inputs.self.packages.${pkgs.stdenv.hostPlatform.system}.delta-icons
             }/share/icons/delta-icons/scalable/apps/EDOPro.svg";
           in
           ''

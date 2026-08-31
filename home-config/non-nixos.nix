@@ -1,5 +1,4 @@
-{ flake-inputs, pkgs, ... }:
-{
+{ inputs, pkgs, ... }: {
   targets.genericLinux.enable = true;
 
   nix = {
@@ -14,11 +13,11 @@
         id = "nixpkgs";
         type = "indirect";
       };
-      flake = flake-inputs.nixpkgs;
+      flake = inputs.nixpkgs;
     };
   };
 
   home.sessionVariables = {
-    NIX_PATH = "nixpkgs=${flake-inputs.nixpkgs}";
+    NIX_PATH = "nixpkgs=${inputs.nixpkgs}";
   };
 }

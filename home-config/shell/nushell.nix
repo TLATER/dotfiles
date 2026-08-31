@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   home.shell.enableNushellIntegration = true;
 
   programs = {

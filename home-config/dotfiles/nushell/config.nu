@@ -90,13 +90,13 @@ $env.PROMPT_COMMAND = {||
   let project_root = get-project-root
   let relative_root = (
     $project_root
-    | default (do -i { $env.PWD | path relative-to $nu.home-path; echo $nu.home-path })
+    | default (do -i { $env.PWD | path relative-to $nu.home-dir; echo $nu.home-dir })
     | default '/'
   )
 
   let home_char = match $relative_root {
     '/' => '/'
-    $root if $root == $nu.home-path => '~'
+    $root if $root == $nu.home-dir => '~'
     _ => $'$(basename $project_root)'
   }
 
