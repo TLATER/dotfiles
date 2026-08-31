@@ -32,7 +32,7 @@ in
   };
 
   systemd.user.services.emacs.Unit = {
-    After = [ "gpg-agent-ssh.socket" ];
-    Requires = [ "gpg-agent-ssh.socket" ];
+    After = [ "set-SSH_AUTH_SOCK.service" ];
+    Requires = [ "set-SSH_AUTH_SOCK.service" ];
   };
 }
