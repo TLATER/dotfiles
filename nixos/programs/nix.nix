@@ -54,6 +54,49 @@
           {
             url = "https://cache.nixos-cuda.org";
             priority = 20;
+            filters = [
+              {
+                action = "allow";
+                field = "name";
+                pattern = "nvidia-x11";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "nvidia-settings";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "cuda-merged";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "libnpp";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "cuda_*";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "libcu_*";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "libnv_*";
+              }
+              {
+                action = "allow";
+                field = "name";
+                pattern = "libnv_*";
+              }
+            ];
+
             public_key = "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M=";
           }
         ];
